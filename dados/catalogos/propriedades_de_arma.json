@@ -16,7 +16,22 @@
         "capitulo": 6,
         "pagina_livro": 213,
         "pagina_pdf": 217
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "substituir_atributo",
+          "alvo_do_calculo": [
+            "jogada_de_ataque_com_arma",
+            "dano_de_arma"
+          ],
+          "escolha_entre": [
+            "FOR",
+            "DES"
+          ],
+          "mesmo_nas_duas_jogadas": true,
+          "momento": "ao_equipar"
+        }
+      ]
     },
     {
       "id": "alcance",
@@ -26,7 +41,28 @@
         "capitulo": 6,
         "pagina_livro": 213,
         "pagina_pdf": 217
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "condicao": {
+            "todas": [
+              "alvo_alem_do_alcance_normal"
+            ]
+          }
+        },
+        {
+          "tipo": "impedir",
+          "alvo": "atacar_ou_alvejar",
+          "condicao": {
+            "todas": [
+              "alvo_alem_do_alcance_maximo"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "arremesso",
@@ -36,7 +72,20 @@
         "capitulo": 6,
         "pagina_livro": 213,
         "pagina_pdf": 217
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "tipo_ataque": "a_distancia",
+          "modo": "arremessar_a_arma",
+          "saca_como_parte_do_ataque": true,
+          "atributo": "mantem_o_da_arma",
+          "nota": "Arma corpo a corpo arremessada usa o mesmo atributo do ataque corpo a corpo dela; com Acuidade, vale a escolha feita."
+        }
+      ]
     },
     {
       "id": "duas_maos",
@@ -46,6 +95,18 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
+      },
+      "efeitos": [
+        {
+          "tipo": "declara_campo_no_item",
+          "campo": "maos_ocupadas",
+          "valor": 2,
+          "nota": "Cada arma com esta propriedade declara maos_ocupadas: 2."
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": ""
       }
     },
     {
@@ -56,7 +117,23 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "alcance_do_ataque_desarmado",
+          "valor": [
+            "1.5"
+          ],
+          "unidade": "metros",
+          "empilha": "soma",
+          "aplica_a": [
+            "ataque_com_a_arma",
+            "ataque_de_oportunidade_com_a_arma"
+          ],
+          "nota": "Some 1,5 m ao alcance com esta arma, inclusive para Ataques de Oportunidade."
+        }
+      ]
     },
     {
       "id": "leve",
@@ -66,7 +143,26 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "custo": "acao_bonus",
+          "condicao": {
+            "todas": [
+              "executou:atacar_no_turno",
+              "empunhando:arma_leve"
+            ]
+          },
+          "exige_outra_arma_leve": true,
+          "sem_modificador_no_dano": true,
+          "excecao": "modificador negativo continua sendo somado",
+          "momento": "mais_tarde_no_mesmo_turno"
+        }
+      ]
     },
     {
       "id": "municao",
@@ -76,6 +172,23 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
+      },
+      "efeitos": [
+        {
+          "tipo": "declara_campo_no_item",
+          "campo": "consumo",
+          "consumo_por_ataque": 1,
+          "recuperacao_apos_o_combate": {
+            "fracao": "metade",
+            "arredondamento": "baixo",
+            "tempo": "1 minuto"
+          },
+          "nota": "Cada arma com esta propriedade declara o campo `consumo`, com o id da munição que gasta."
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": ""
       }
     },
     {
@@ -86,7 +199,20 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
-      }
+      },
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "condicao": {
+            "alguma": [
+              "arma_corpo_a_corpo_e_forca_menor_que:13",
+              "arma_a_distancia_e_destreza_menor_que:13"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "recarga",
@@ -96,6 +222,23 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
+      },
+      "efeitos": [
+        {
+          "tipo": "declara_campo_no_item",
+          "campo": "limite_por_acao",
+          "disparos": 1,
+          "vale_para": [
+            "acao",
+            "acao_bonus",
+            "reacao"
+          ],
+          "nota": "Cada arma com esta propriedade declara o campo `limite_por_acao`."
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": ""
       }
     },
     {
@@ -106,7 +249,25 @@
         "capitulo": 6,
         "pagina_livro": 214,
         "pagina_pdf": 218
+      },
+      "efeitos": [
+        {
+          "tipo": "dado_de_dano",
+          "modo": "substitui_dado_da_arma",
+          "formula_dado": "dado_versatil_da_arma",
+          "condicao": {
+            "todas": [
+              "empunhando_com_as_duas_maos"
+            ]
+          },
+          "nota": "A arma declara maos_ocupadas: 1 e maos_alternativas['2'] com o dado maior."
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": ""
       }
     }
-  ]
+  ],
+  "nota": "As 10 propriedades da coluna Propriedades da tabela Armas (p. 214-217), com efeitos executáveis. Acuidade é a que o backend precisa para saber qual atributo usar."
 }

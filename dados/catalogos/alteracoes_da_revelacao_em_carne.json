@@ -1,0 +1,98 @@
+{
+  "catalogo": "alteracoes_da_revelacao_em_carne",
+  "nome": "Alterações da Revelação em Carne",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 110,
+    "pagina_pdf": 114
+  },
+  "nota": "Cada Ponto de Feitiçaria gasto compra uma destas alterações; podem ser combinadas na mesma ativação.",
+  "total": 4,
+  "itens": [
+    {
+      "id": "adaptacao_aquatica",
+      "nome": "Adaptação Aquática",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Deslocamento de Natação igual ao dobro do seu Deslocamento e respiração subaquática; guelras crescem no pescoço ou atrás das orelhas.",
+      "duracao": "10 minutos",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "natacao",
+          "formula": [
+            {
+              "op": "mult",
+              "args": [
+                "2",
+                "deslocamento"
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "respirar_agua",
+          "texto": "Você pode respirar debaixo d'água."
+        }
+      ]
+    },
+    {
+      "id": "movimento_vermiforme",
+      "nome": "Movimento Vermiforme",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "O corpo e o equipamento ficam viscosos: passa por espaços de até 2,5 cm e gasta 1,5 m de movimento para escapar de restrições não mágicas ou da condição Imobilizado.",
+      "duracao": "10 minutos",
+      "efeitos": [
+        {
+          "tipo": "restringir_movimento",
+          "modo": "libera",
+          "permite": "passar_por_espaco_estreito",
+          "largura_minima_cm": 2.5
+        },
+        {
+          "tipo": "remover_condicao",
+          "condicao_id": "imobilizado",
+          "custo_em_movimento_m": 1.5,
+          "tambem_remove": [
+            "restricoes_nao_magicas"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ver_o_invisivel",
+      "nome": "Ver o Invisível",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Enxerga criaturas com a condição Invisível a até 18 m que não estejam atrás de Cobertura Total.",
+      "duracao": "10 minutos",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "ver_invisivel",
+          "alcance_m": 18,
+          "excecoes": [
+            "atras_de_cobertura_total"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voo_reluzente",
+      "nome": "Voo Reluzente",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Deslocamento de Voo igual ao seu Deslocamento, e pode pairar.",
+      "duracao": "10 minutos",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "voo",
+          "formula": [
+            "deslocamento"
+          ],
+          "pode_pairar": true
+        }
+      ]
+    }
+  ],
+  "recurso": "pontos_de_feiticaria"
+}

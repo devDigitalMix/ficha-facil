@@ -6,7 +6,7 @@
     "pagina_livro": 360,
     "pagina_pdf": 364
   },
-  "total": 16,
+  "total": 26,
   "itens": [
     {
       "id": "teste_d20",
@@ -22,19 +22,23 @@
     },
     {
       "id": "teste_de_atributo",
-      "nome": "Seus testes de atributo"
+      "nome": "Seus testes de atributo",
+      "derivado_id": "teste_de_atributo"
     },
     {
       "id": "salvaguarda",
-      "nome": "Suas salvaguardas"
+      "nome": "Suas salvaguardas",
+      "derivado_id": "salvaguarda"
     },
     {
       "id": "iniciativa",
-      "nome": "Sua jogada de Iniciativa"
+      "nome": "Sua jogada de Iniciativa",
+      "derivado_id": "iniciativa"
     },
     {
       "id": "ca_total",
-      "nome": "Classe de Armadura"
+      "nome": "Classe de Armadura",
+      "derivado_id": "classe_de_armadura"
     },
     {
       "id": "deslocamento",
@@ -71,6 +75,60 @@
     {
       "id": "teste_de_dissipar",
       "nome": "Teste de atributo para dissipar magia"
+    },
+    {
+      "id": "ataque_com_arma",
+      "nome": "Jogada de ataque com arma",
+      "nota": "Recorte de jogada_de_ataque. Usado pelo Crítico Aprimorado do Campeão (p. 129)."
+    },
+    {
+      "id": "ataque_desarmado",
+      "nome": "Jogada de ataque de Ataque Desarmado",
+      "nota": "Recorte de jogada_de_ataque. Usado pelo Crítico Aprimorado do Campeão (p. 129)."
+    },
+    {
+      "id": "teste_d20_de_criatura_a_vista",
+      "nome": "Teste de D20 de uma criatura à vista",
+      "nota": "Teste de outra criatura, não seu. Usado pelo Prodígio do Adivinhador (p. 155)."
+    },
+    {
+      "id": "cd_para_evitar_sua_magia",
+      "nome": "CD para evitar suas magias",
+      "descricao_curta": "O valor que as criaturas precisam alcançar na salvaguarda contra suas magias. Alvo de modificador, por exemplo, na Feitiçaria Inata do Feiticeiro.",
+      "derivado_id": "cd_para_evitar_sua_magia"
+    },
+    {
+      "id": "jogada_de_ataque_magico",
+      "nome": "Jogada de ataque mágico",
+      "descricao_curta": "A jogada de ataque de uma magia, distinta da jogada de ataque com arma.",
+      "derivado_id": "jogada_de_ataque_magico"
+    },
+    {
+      "id": "pontos_de_vida_maximos",
+      "nome": "Pontos de Vida máximos",
+      "descricao_curta": "O teto de Pontos de Vida da ficha. Alvo de modificador, por exemplo, na Resiliência Dracônica.",
+      "derivado_id": "pontos_de_vida_maximos"
+    },
+    {
+      "id": "custo_de_metamagia",
+      "nome": "Custo em Pontos de Feitiçaria de uma opção de Metamagia",
+      "descricao_curta": "Alvo de modificador da Apoteose Arcana (p. 105), que zera o custo de uma opção por turno."
+    },
+    {
+      "id": "rolagem_na_tabela",
+      "nome": "Rolagem numa tabela aleatória",
+      "descricao_curta": "A jogada que escolhe a linha de uma tabela (o 1d100 do Surto de Magia Selvagem, p. 113). Alvo do Caos Controlado, que joga duas vezes."
+    },
+    {
+      "id": "dado_de_dano_da_magia",
+      "nome": "Dado de dano de uma magia",
+      "descricao_curta": "Os dados de dano de uma magia já conjurada, distintos dos dados de dano de arma. Alvo da Magia Potencializada (p. 106)."
+    },
+    {
+      "id": "pontos_de_vida_temporarios",
+      "nome": "Pontos de Vida Temporários",
+      "descricao_curta": "O amortecedor de PV temporários. Alvo de efeitos que concedem ou substituem a fonte em vigor.",
+      "derivado_id": "pontos_de_vida_temporarios"
     }
   ],
   "nota": "Catálogo de engine: nomes de alvo aceitos em 'modificador' e 'vantagem'. Sufixos permitidos: ':FOR'..':CAR' e ':<pericia>'."

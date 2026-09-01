@@ -11,22 +11,198 @@
     {
       "id": "arido",
       "nome": "Árido",
-      "resistencia": "igneo"
+      "resistencia": "igneo",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Terreno Árido",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 98,
+              "pagina_pdf": 102
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "maos_flamejantes",
+                  "raio_de_fogo",
+                  "turvar"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "bola_de_fogo"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "malogro"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "muralha_de_pedra"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "descricao_curta": "Magias de Círculo Druídico de deserto e vulcão; Resistência a dano Ígneo pela Proteção Natural."
     },
     {
       "id": "polar",
       "nome": "Polar",
-      "resistencia": "gelido"
+      "resistencia": "gelido",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Terreno Polar",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 98,
+              "pagina_pdf": 102
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "nevoa_obscurecente",
+                  "paralisar_pessoa",
+                  "raio_de_gelo"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "nevasca"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "tempestade_glacial"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "cone_de_frio"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "descricao_curta": "Magias de Círculo Druídico de gelo e tundra; Resistência a dano Gélido pela Proteção Natural."
     },
     {
       "id": "temperado",
       "nome": "Temperado",
-      "resistencia": "eletrico"
+      "resistencia": "eletrico",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Terreno Temperado",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 98,
+              "pagina_pdf": 102
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "passo_nebuloso",
+                  "sono",
+                  "toque_chocante"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "relampago"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "movimentacao_livre"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "passo_arboreo"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "descricao_curta": "Magias de Círculo Druídico de floresta e campo; Resistência a dano Elétrico pela Proteção Natural."
     },
     {
       "id": "tropical",
       "nome": "Tropical",
-      "resistencia": "venenoso"
+      "resistencia": "venenoso",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Terreno Tropical",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 98,
+              "pagina_pdf": 102
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "bolha_acida",
+                  "raio_nauseante",
+                  "teia"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "nuvem_fetida"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "polimorfia"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "praga_de_insetos"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "descricao_curta": "Magias de Círculo Druídico de selva e pântano; Resistência a dano Venenoso pela Proteção Natural."
     }
   ]
 }

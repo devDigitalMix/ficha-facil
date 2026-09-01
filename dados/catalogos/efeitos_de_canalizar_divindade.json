@@ -18,7 +18,48 @@
         "pagina_livro": 82,
         "pagina_pdf": 86
       },
-      "descricao_curta": "Ação Usar Magia: 1d8 + modificador de Sabedoria a uma criatura a até 9 m — cura, ou dano Necrótico/Radiante com salvaguarda de Constituição por metade. Sobe para 2d8 no nível 7, 3d8 no 13 e 4d8 no 18."
+      "descricao_curta": "Ação Usar Magia: 1d8 + modificador de Sabedoria a uma criatura a até 9 m — cura, ou dano Necrótico/Radiante com salvaguarda de Constituição por metade. Sobe para 2d8 no nível 7, 3d8 no 13 e 4d8 no 18.",
+      "efeitos": [
+        {
+          "tipo": "cura",
+          "formula": [
+            "1d8",
+            "mod:SAB"
+          ],
+          "alvo": "criatura_a_vista_a_ate_9m",
+          "custo": "acao_usar_magia",
+          "escala_por_nivel": {
+            "7": "2d8",
+            "13": "3d8",
+            "18": "4d8"
+          },
+          "alternativa": "dano"
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "1d8",
+          "formula_bonus": [
+            "mod:SAB"
+          ],
+          "alvo": "criatura_a_vista_a_ate_9m",
+          "escolher_tipo_dano": [
+            "necrotico",
+            "radiante"
+          ],
+          "salvaguarda": {
+            "atributo": "CON",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ],
+            "em_sucesso": "metade_do_dano"
+          },
+          "escala_por_nivel": {
+            "7": "2d8",
+            "13": "3d8",
+            "18": "4d8"
+          }
+        }
+      ]
     },
     {
       "id": "expulsar_mortos_vivos",
@@ -28,7 +69,59 @@
         "pagina_livro": 82,
         "pagina_pdf": 86
       },
-      "descricao_curta": "Ação Usar Magia: cada Morto-Vivo à escolha a até 9 m faz salvaguarda de Sabedoria ou fica Amedrontado e Incapacitado por 1 minuto, fugindo de você. Encerra se sofrer dano, se você ficar Incapacitado ou morrer."
+      "descricao_curta": "Ação Usar Magia: cada Morto-Vivo à escolha a até 9 m faz salvaguarda de Sabedoria ou fica Amedrontado e Incapacitado por 1 minuto, fugindo de você. Encerra se sofrer dano, se você ficar Incapacitado ou morrer.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "alvo": "mortos_vivos_a_escolha_a_ate_9m",
+          "custo": "acao_usar_magia",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ]
+          },
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "gatilho": "alvo_sofre_dano"
+            },
+            {
+              "condicao_id": "incapacitado",
+              "de": "voce"
+            },
+            {
+              "gatilho": "voce_morre"
+            }
+          ],
+          "efeito_adicional": "o alvo tenta se afastar o máximo possível de você nos turnos dele"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "incapacitado",
+          "alvo": "mortos_vivos_a_escolha_a_ate_9m",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ]
+          },
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "gatilho": "alvo_sofre_dano"
+            },
+            {
+              "condicao_id": "incapacitado",
+              "de": "voce"
+            },
+            {
+              "gatilho": "voce_morre"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

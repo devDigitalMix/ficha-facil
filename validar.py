@@ -8,6 +8,10 @@ import json, os, sys, re
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
 erros, avisos = [], []
+# ids de escolha declarados e referenciados, para casar depois
+ESCOLHAS_DECLARADAS = {}
+ESCOLHAS_REFERENCIADAS = set()
+OPCOES_CONCEDIDAS = set()
 
 
 def carregar(path):
@@ -36,7 +40,22 @@ ATRIBUTOS = CHAVES['atributos']
 PERICIAS = CHAVES['pericias']
 ALVOS = CHAVES['alvos']
 ALVOS_IMP = CHAVES['alvos_de_impedimento']
+
+# Tipos de efeito cujo campo 'alvo' aponta para uma jogada/valor da ficha
+# (catalogos/alvos.json). Os demais usam 'alvo' noutro sentido: uma característica
+# a melhorar (melhorar_caracteristica) ou uma descrição de quem sofre o efeito
+# (dano, teleporte), e por isso não são conferidos aqui.
+TIPOS_COM_ALVO_DE_JOGADA = {
+    'modificador', 'vantagem', 'falha_automatica',
+    'alterar_resultado_de_salvaguarda', 'rolar_novamente',
+    'tratar_resultado_minimo', 'alterar_faixa_de_critico',
+    'substituir_resultado_de_d20',
+}
 DANOS = CHAVES['tipos_de_dano'] | {'todos'}
+# tipos de dano que não são literais: o valor sai da arma, do ataque ou de uma escolha
+DANOS_DERIVADOS = {'mesmo_do_ataque', 'mesmo_da_arma', 'mesmo_do_ataque_defletido'}
+DESLOCAMENTOS = CHAVES['tipos_de_deslocamento']
+SENTIDOS = CHAVES['sentidos']
 CONDICOES = CHAVES['condicoes']
 
 
@@ -107,13 +126,25 @@ def resolver_filtro(cat, filtro):
                     else bool(fonte_cat.get('parcial')))
         return (0, 'catalogo_pendente' if pendente else 'ok')
     conhecidas = {'nivel', 'nivel_minimo', 'nivel_maximo', 'lista', 'escola',
-                  'categoria', 'grupo', 'classe'}
+                  'categoria', 'grupo', 'classe', 'alguma_propriedade'}
+    # Além dessas, qualquer campo simples que os próprios itens declarem pode ser
+    # filtrado por igualdade. Sem isto, um filtro como
+    # {'escolhivel_no_surto_controlado': True} era ignorado — e um filtro que não
+    # devolve nada passava despercebido, que é justamente o defeito silencioso que
+    # a regra 5 existe para pegar.
+    diretas = {k for it in itens for k, v in it.items()
+               if isinstance(v, (bool, int, float, str)) and k not in ('id', 'nome')}
+    conhecidas = conhecidas | diretas
     if not any(k in conhecidas for k in filtro):
         return (1, 'nao_avaliavel')
     lista_alvo = filtro.get('lista')
     if isinstance(lista_alvo, str) and lista_alvo.startswith('$'):
         return (1, 'variavel')
-    if lista_alvo and lista_alvo in LISTAS_DECLARADAS and lista_alvo not in LISTAS_PREENCHIDAS:
+    # 'lista' pode ser uma lista de listas (Segredos Mágicos do Bardo abre quatro)
+    listas_alvo = ([lista_alvo] if isinstance(lista_alvo, str)
+                   else list(lista_alvo or []))
+    declaradas = [l for l in listas_alvo if l in LISTAS_DECLARADAS]
+    if declaradas and not any(l in LISTAS_PREENCHIDAS for l in declaradas):
         return (0, 'lista_nao_preenchida')
     n = 0
     for it in itens:
@@ -121,13 +152,22 @@ def resolver_filtro(cat, filtro):
         for k, v in filtro.items():
             if k not in conhecidas or (isinstance(v, str) and v.startswith('$')):
                 continue
-            if k == 'nivel' and it.get('nivel') != v: ok = False
+            if k in diretas and k not in (
+                    'nivel', 'escola', 'categoria', 'classe', 'grupo'):
+                if it.get(k) != v: ok = False
+            elif k == 'nivel' and it.get('nivel') != v: ok = False
             elif k == 'nivel_minimo' and (it.get('nivel') is None or it['nivel'] < v): ok = False
             elif k == 'nivel_maximo' and (it.get('nivel') is None or it['nivel'] > v): ok = False
-            elif k == 'lista' and v not in (it.get('listas') or []): ok = False
+            elif k == 'lista':
+                minhas = set(it.get('listas') or [])
+                alvo_l = {v} if isinstance(v, str) else set(v)
+                if not (minhas & alvo_l): ok = False
             elif k == 'escola' and it.get('escola') != v: ok = False
             elif k == 'categoria' and it.get('categoria') != v: ok = False
             elif k == 'classe' and it.get('classe') != v: ok = False
+            elif k == 'alguma_propriedade':
+                tem = {p.get('propriedade') for p in (it.get('propriedades') or [])}
+                if not (set(v) & tem): ok = False
             elif k == 'grupo':
                 g = it.get('grupo')
                 if isinstance(v, list):
@@ -153,12 +193,14 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
                          "o efeito precisa consumir o item escolhido")
         # o valor real vem do catálogo da escolha, já validado — não checar chaves aqui
         return
-    if t in ('modificador', 'vantagem') and isinstance(e.get('alvo'), str):
-        checar_alvo(ctx, e['alvo'])
-    if t == 'impedir' and e.get('alvo') not in ALVOS_IMP:
-        erros.append(f"[alvo de impedimento inexistente] {ctx}: '{e.get('alvo')}'")
-    if t == 'falha_automatica' and 'alvo' in e:
-        checar_alvo(ctx, e['alvo'])
+    if t == 'impedir':
+        if e.get('alvo') not in ALVOS_IMP:
+            erros.append(f"[alvo de impedimento inexistente] {ctx}: '{e.get('alvo')}'")
+    elif t in TIPOS_COM_ALVO_DE_JOGADA and 'alvo' in e:
+        # 'alvo' aqui é uma jogada/valor da ficha: sai de catalogos/alvos.json
+        for a in (e['alvo'] if isinstance(e['alvo'], list) else [e['alvo']]):
+            if isinstance(a, str):
+                checar_alvo(ctx, a)
     if t == 'alterar_dano':
         # ou o tipo é literal, ou é derivado de uma escolha — e aí todo valor do mapa vale
         if 'tipo_dano_derivado' in e:
@@ -170,6 +212,23 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
                     erros.append(f"[tipo de dano inexistente] {ctx}: mapa['{chave}'] = '{dano}'")
         elif e.get('tipo_dano') not in DANOS:
             erros.append(f"[tipo de dano inexistente] {ctx}: '{e.get('tipo_dano')}'")
+        # 'todos, exceto X, Y' só vale se X e Y forem tipos de dano de verdade
+        for d in e.get('excecoes', []):
+            if d not in DANOS:
+                erros.append(f"[tipo de dano inexistente] {ctx}: exceção '{d}'")
+    # tipo de dano em QUALQUER efeito, não só em alterar_dano. Os valores derivados
+    # ('mesmo_do_ataque', 'mesmo_da_arma'…) e o placeholder de escolha são legítimos.
+    if t != 'alterar_dano' and isinstance(e.get('tipo_dano'), str):
+        d = e['tipo_dano']
+        if d not in DANOS and d not in DANOS_DERIVADOS and d != PLACEHOLDER:
+            erros.append(f"[tipo de dano inexistente] {ctx}: '{d}'")
+    for d in (e.get('escolher_tipo_dano') or []):
+        if isinstance(d, str) and d not in DANOS:
+            erros.append(f"[tipo de dano inexistente] {ctx}: escolha '{d}'")
+    if t == 'conceder_velocidade' and e.get('tipo_deslocamento') not in DESLOCAMENTOS:
+        erros.append(f"[tipo de deslocamento inexistente] {ctx}: '{e.get('tipo_deslocamento')}'")
+    if t == 'conceder_sentido' and e.get('sentido') not in SENTIDOS:
+        erros.append(f"[sentido inexistente] {ctx}: '{e.get('sentido')}'")
     if t in ('conceder_condicao', 'alterar_condicao') and e.get('condicao_id') not in CONDICOES:
         erros.append(f"[condição inexistente] {ctx}: '{e.get('condicao_id')}'")
     if t == 'preparar_magias':
@@ -188,6 +247,22 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
             for k in op.get('base', []):
                 if k not in CHAVES[cat]:
                     erros.append(f"[opção inexistente] {ctx}: '{k}' não está em '{cat}'")
+    if t in ('expandir_opcoes_de_escolha', 'alterar_quantidade_de_escolha'):
+        eid = e.get('escolha_id')
+        if not eid:
+            erros.append(f"[escolha_id ausente] {ctx}: '{t}' precisa dizer qual escolha altera")
+        else:
+            ESCOLHAS_REFERENCIADAS.add((ctx, eid))
+    if t == 'expandir_opcoes_de_escolha':
+        cat = e.get('catalogo')
+        if cat not in CHAVES:
+            erros.append(f"[catálogo inexistente] {ctx}: '{cat}'")
+        else:
+            for k in e.get('chaves', []):
+                if k not in CHAVES[cat]:
+                    erros.append(f"[opção inexistente] {ctx}: '{k}' não está em '{cat}'")
+                else:
+                    OPCOES_CONCEDIDAS.add((cat, k))
     if t == 'magias_de_patrono':
         for linha in ((e.get('tabela') or {}).get('linhas') or []):
             for mg in linha.get('magias', []):
@@ -211,6 +286,8 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
         avisos.append(f"[substituir_regra sem revisão] {ctx}")
     # 3./5. escolha: quantidade e filtro
     if t == 'escolha':
+        if e.get('id'):
+            ESCOLHAS_DECLARADAS[e['id']] = ctx
         de = e.get('de', {})
         cat = de.get('catalogo')
         if cat not in CHAVES:
@@ -244,19 +321,29 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
 
 
 ctx_status = {}
+# todo efeito visto, com o caminho — para as checagens por tipo mais abaixo
+EFEITOS_VISTOS = []
 
 
-def varrer(ctx, obj):
+def varrer(ctx, obj, e_efeito=False):
+    """e_efeito: obj está dentro de uma lista 'efeitos', logo TEM de ser um efeito
+    com tipo conhecido. Sem isso, um tipo digitado errado passava despercebido —
+    a checagem só rodava quando o tipo já era válido."""
     if isinstance(obj, dict):
-        if 'tipo' in obj and isinstance(obj.get('tipo'), str) and obj['tipo'] in TIPOS_EFEITO:
+        t = obj.get('tipo')
+        if e_efeito and not (isinstance(t, str) and t in TIPOS_EFEITO):
+            erros.append(f"[tipo de efeito desconhecido] {ctx}: '{t}'")
+        elif isinstance(t, str) and t in TIPOS_EFEITO:
             checar_efeito(ctx, obj)
+        if isinstance(t, str) and t in TIPOS_EFEITO:
+            EFEITOS_VISTOS.append((ctx, obj))
         for k, v in obj.items():
             if k == 'efeito_por_item_escolhido':
                 continue  # já validado pelo bloco 'escolha' da mãe
-            varrer(f"{ctx}/{k}", v)
+            varrer(f"{ctx}/{k}", v, e_efeito=(k == 'efeitos'))
     elif isinstance(obj, list):
         for n, v in enumerate(obj):
-            varrer(f"{ctx}[{n}]", v)
+            varrer(f"{ctx}[{n}]", v, e_efeito=e_efeito)
 
 
 for cid, c in list(colecoes.items()) + list(catalogos.items()):
@@ -335,9 +422,15 @@ SUBCLASSES = CHAVES.get('subclasses', set())
 
 for cl in colecoes.get('classes', {}).get('itens', []):
     ctx = f"classes/{cl['id']}"
-    for s_ in cl.get('salvaguardas_primarias', []) + cl.get('atributo_primario', []):
-        if s_ not in ATRIBUTOS:
-            erros.append(f"[atributo inexistente] {ctx}: '{s_}'")
+    # os dois campos são LISTA de atributos; string solta já causou erro de forma
+    for campo in ('salvaguardas_primarias', 'atributo_primario'):
+        v = cl.get(campo)
+        if v is not None and not isinstance(v, list):
+            erros.append(f"[campo deveria ser lista] {ctx}/{campo}: {v!r}")
+            continue
+        for s_ in (v or []):
+            if s_ not in ATRIBUTOS:
+                erros.append(f"[atributo inexistente] {ctx}: '{s_}'")
     for sc in cl.get('subclasses', []):
         if sc not in SUBCLASSES:
             erros.append(f"[subclasse inexistente] {ctx}: '{sc}'")
@@ -437,6 +530,461 @@ for cl in colecoes.get('classes', {}).get('itens', []):
         if c_ is not None and not (1 <= c_ <= 5):
             erros.append(f"[círculo de pacto fora da faixa] classes/{cl['id']}/nivel_{linha['nivel']}: "
                          f"{c_} (Magia de Pacto vai do 1º ao 5º círculo)")
+
+# ------------------------------------------------------------------ itens
+# O capítulo 6 fechou o catálogo de itens. Daqui em diante, referência a item
+# que não existe é erro, e os campos numéricos precisam ser coerentes entre si.
+MOEDAS_EM_PC = {'pc': 1, 'pp': 10, 'pe': 50, 'po': 100, 'pl': 1000}
+CATEGORIAS_DE_ITEM = {
+    'arma', 'armadura', 'municao', 'equipamento_de_aventura',
+    'foco_de_conjuracao', 'montaria', 'arreio_ou_veiculo_de_tracao', 'veiculo',
+}
+GRUPOS_DE_ARMA = CHAVES.get('categorias_de_arma', set())
+GRUPOS_DE_ARMADURA = CHAVES.get('categorias_de_armadura', set())
+MAESTRIAS = CHAVES.get('maestrias_de_arma', set())
+PROPRIEDADES_DE_ARMA = CHAVES.get('propriedades_de_arma', set())
+ITENS = CHAVES.get('itens', set())
+FERRAMENTAS = CHAVES.get('ferramentas', set())
+
+
+def checar_custo(ctx, c):
+    if c is None:
+        return
+    if c.get('moeda') not in MOEDAS_EM_PC:
+        erros.append(f"[moeda inválida] {ctx}: {c.get('moeda')!r}")
+        return
+    esperado = c['valor'] * MOEDAS_EM_PC[c['moeda']]
+    if abs(c.get('em_pc', -1) - esperado) > 0.001:
+        erros.append(f"[custo incoerente] {ctx}: {c['valor']} {c['moeda'].upper()} "
+                     f"são {esperado} PC, mas o campo diz {c.get('em_pc')}")
+
+
+itens_cat = catalogos.get('itens')
+if itens_cat:
+    for i in itens_cat['itens']:
+        ctx = f"itens/{i['id']}"
+        if i.get('categoria') not in CATEGORIAS_DE_ITEM:
+            erros.append(f"[categoria de item inválida] {ctx}: {i.get('categoria')!r}")
+        checar_custo(ctx, i.get('custo'))
+        if i.get('custo') is None and not i.get('custo_varia'):
+            erros.append(f"[item sem custo] {ctx}: sem 'custo' e sem 'custo_varia'")
+        p = i.get('peso_kg')
+        if p is not None and (not isinstance(p, (int, float)) or p <= 0):
+            erros.append(f"[peso inválido] {ctx}: {p!r}")
+        if i['categoria'] == 'arma':
+            if i.get('grupo') not in GRUPOS_DE_ARMA:
+                erros.append(f"[grupo de arma inválido] {ctx}: {i.get('grupo')!r}")
+            if i.get('alcance') not in ('corpo_a_corpo', 'a_distancia'):
+                erros.append(f"[alcance de arma inválido] {ctx}: {i.get('alcance')!r}")
+            if i.get('maestria') not in MAESTRIAS:
+                erros.append(f"[maestria inexistente] {ctx}: {i.get('maestria')!r}")
+            d = i.get('dano') or {}
+            if d.get('tipo_dano') not in DANOS:
+                erros.append(f"[tipo de dano inexistente] {ctx}: {d.get('tipo_dano')!r}")
+            if not d.get('formula_dado') and d.get('valor_fixo') is None:
+                erros.append(f"[arma sem dano] {ctx}")
+            for prop in (i.get('propriedades') or []):
+                if prop.get('propriedade') not in PROPRIEDADES_DE_ARMA:
+                    erros.append(f"[propriedade de arma inexistente] {ctx}: "
+                                 f"{prop.get('propriedade')!r}")
+                if prop.get('propriedade') == 'municao' and 'municao' in prop:
+                    if prop['municao'] not in ITENS:
+                        erros.append(f"[munição inexistente] {ctx}: {prop['municao']!r}")
+        if i['categoria'] == 'armadura':
+            if i.get('grupo') not in GRUPOS_DE_ARMADURA:
+                erros.append(f"[grupo de armadura inválido] {ctx}: {i.get('grupo')!r}")
+            ca = i.get('ca') or {}
+            if 'base' not in ca and 'bonus' not in ca:
+                erros.append(f"[armadura sem CA] {ctx}")
+        if i['categoria'] == 'municao' and i.get('armazenada_em') not in ITENS:
+            erros.append(f"[recipiente de munição inexistente] {ctx}: "
+                         f"{i.get('armazenada_em')!r}")
+
+# ferramentas: atributo, custo e a lista de Fabricação
+fer_cat = catalogos.get('ferramentas')
+if fer_cat and not fer_cat.get('parcial'):
+    for i in fer_cat['itens']:
+        ctx = f"ferramentas/{i['id']}"
+        if i.get('atributo') not in ATRIBUTOS:
+            erros.append(f"[atributo inexistente] {ctx}: {i.get('atributo')!r}")
+        checar_custo(ctx, i.get('custo'))
+        for chave in ((i.get('fabricacao') or {}).get('itens') or []):
+            if chave not in ITENS:
+                erros.append(f"[item de fabricação inexistente] {ctx}: '{chave}'")
+
+# Propriedade que DECLARA CAMPO: todo item que tem a propriedade precisa trazer o
+# campo. Sem isso, 'declara_campo_no_item' seria só uma promessa no catálogo.
+props_cat = catalogos.get('propriedades_de_arma')
+if props_cat and itens_cat:
+    exigidos = {}
+    for p in props_cat['itens']:
+        for e in (p.get('efeitos') or []):
+            if e.get('tipo') == 'declara_campo_no_item':
+                exigidos[p['id']] = e['campo']
+    for i in itens_cat['itens']:
+        tem = {x.get('propriedade') for x in (i.get('propriedades') or [])}
+        for prop_id, campo in exigidos.items():
+            if prop_id in tem and campo not in i:
+                erros.append(f"[campo declarado ausente] itens/{i['id']}: tem a "
+                             f"propriedade '{prop_id}', que exige o campo '{campo}'")
+    # o consumo aponta para uma munição que existe
+    for i in itens_cat['itens']:
+        c = i.get('consumo')
+        if c and c.get('item') not in ITENS:
+            erros.append(f"[munição de consumo inexistente] itens/{i['id']}: "
+                         f"{c.get('item')!r}")
+    # toda arma e todo escudo dizem quantas mãos ocupam
+    for i in itens_cat['itens']:
+        if i['categoria'] == 'arma' or (i['categoria'] == 'armadura' and
+                                        i.get('grupo') == 'escudo'):
+            m = i.get('maos_ocupadas')
+            if m not in (1, 2):
+                erros.append(f"[mãos ocupadas inválidas] itens/{i['id']}: {m!r}")
+
+
+# proficiência concedida por FILTRO: resolve contra o catálogo e cobra resultado.
+# Antes isso era uma string ('categoria:marcial+propriedade:acuidade_ou_leve') que
+# ninguém interpretava — filtro que não devolve nada é defeito silencioso.
+for c in colecoes.get('classes', {}).get('itens', []):
+    for e in (c.get('proficiencias_iniciais') or []):
+        if e.get('tipo') != 'conceder_proficiencia' or 'de' not in e:
+            continue
+        ctx = f"classes/{c['id']}/proficiencias_iniciais"
+        de = e['de']
+        cat = de.get('catalogo')
+        if cat not in CHAVES:
+            erros.append(f"[catálogo inexistente] {ctx}: {cat!r}")
+            continue
+        q, motivo = resolver_filtro(cat, de.get('filtro') or {})
+        if motivo == 'ok' and q == 0:
+            erros.append(f"[filtro de proficiência vazio] {ctx}: {de.get('filtro')} "
+                         f"não devolve nenhum item de '{cat}'")
+        if 'chave' in e and 'de' in e:
+            erros.append(f"[proficiência com chave e filtro] {ctx}: declare um ou outro")
+
+
+# equipamento inicial das classes: todo id precisa existir
+for c in colecoes.get('classes', {}).get('itens', []):
+    eq = c.get('equipamento_inicial') or {}
+    for op in eq.get('opcoes', []):
+        for it in (op.get('itens') or []):
+            if 'item' in it and it['item'] not in ITENS | FERRAMENTAS:
+                erros.append(f"[item inexistente] classes/{c['id']}/equipamento_inicial: "
+                             f"'{it['item']}'")
+
+
+# ----------------------------------------------------------------- magias
+# Uma magia 'detalhada' passou pelo capítulo 7 e precisa ter os campos da entrada.
+# As demais ainda só têm nome/círculo/escola/listas, e isso é declarado, não defeito.
+CAMPOS_DE_MAGIA = {
+    'descricao_curta': str,
+    'tempo_de_conjuracao': dict,
+    'alcance': dict,
+    'componentes': dict,
+    'duracao': dict,
+}
+TIPOS_DE_CONJURACAO = {'acao', 'acao_bonus', 'reacao', 'tempo'}
+TIPOS_DE_ALCANCE = {'pessoal', 'toque', 'distancia', 'ilimitado', 'a_vista',
+                    'especial'}
+TIPOS_DE_DURACAO = {'instantanea', 'tempo', 'ate_dissipada', 'especial'}
+FORMAS_DE_AREA = {'esfera', 'cubo', 'cone', 'cilindro', 'linha', 'emanacao'}
+ESCOLAS = CHAVES.get('escolas_de_magia', set())
+LISTAS_DE_CLASSE = CHAVES.get('listas_de_magia', set())
+
+
+def normalizar(s):
+    import unicodedata
+    s = unicodedata.normalize('NFD', str(s).lower())
+    s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
+    return re.sub(r'[^a-z0-9]+', ' ', s).strip()
+
+
+magias_cat = catalogos.get('magias')
+if magias_cat:
+    vistos_norm = {}
+    n_detalhadas = 0
+    for m in magias_cat['itens']:
+        ctx = f"magias/{m['id']}"
+        # nome duplicado depois de normalizar (acento, caixa e pontuação não contam)
+        chave = normalizar(m['nome'])
+        if chave in vistos_norm:
+            erros.append(f"[nome de magia duplicado] {ctx}: '{m['nome']}' colide com "
+                         f"'{vistos_norm[chave]}' depois de normalizar")
+        vistos_norm[chave] = m['nome']
+
+        if m.get('escola') and m['escola'] not in ESCOLAS:
+            erros.append(f"[escola inexistente] {ctx}: '{m['escola']}'")
+        if not isinstance(m.get('nivel'), int) or not 0 <= m['nivel'] <= 9:
+            erros.append(f"[círculo inválido] {ctx}: {m.get('nivel')!r}")
+        for lista in (m.get('listas') or []):
+            if lista not in LISTAS_DE_CLASSE:
+                erros.append(f"[lista de magia inexistente] {ctx}: '{lista}'")
+
+        if not m.get('detalhada'):
+            continue
+        n_detalhadas += 1
+        for campo, tipo in CAMPOS_DE_MAGIA.items():
+            if not isinstance(m.get(campo), tipo):
+                erros.append(f"[campo obrigatório ausente] {ctx}: falta '{campo}' "
+                             "numa magia marcada como detalhada")
+        tc = m.get('tempo_de_conjuracao') or {}
+        if tc.get('tipo') not in TIPOS_DE_CONJURACAO:
+            erros.append(f"[tempo de conjuração inválido] {ctx}: {tc.get('tipo')!r}")
+        al = m.get('alcance') or {}
+        if al.get('tipo') not in TIPOS_DE_ALCANCE:
+            erros.append(f"[alcance inválido] {ctx}: {al.get('tipo')!r}")
+        if al.get('tipo') == 'distancia' and not isinstance(al.get('metros'), (int, float)):
+            erros.append(f"[alcance sem distância] {ctx}: tipo 'distancia' sem 'metros'")
+        du = m.get('duracao') or {}
+        if du.get('tipo') not in TIPOS_DE_DURACAO:
+            erros.append(f"[duração inválida] {ctx}: {du.get('tipo')!r}")
+        if du.get('concentracao') is not m.get('concentracao'):
+            erros.append(f"[concentração inconsistente] {ctx}: o campo diz "
+                         f"{m.get('concentracao')!r}, a duração diz {du.get('concentracao')!r}")
+        if (m.get('tempo_de_conjuracao') or {}).get('ritual') is not m.get('ritual'):
+            erros.append(f"[ritual inconsistente] {ctx}: o campo diz {m.get('ritual')!r}, "
+                         f"o tempo de conjuração diz {tc.get('ritual')!r}")
+        co = m.get('componentes') or {}
+        if not any(co.get(k) for k in ('verbal', 'somatico', 'material')):
+            erros.append(f"[sem componentes] {ctx}: nenhum de V, S ou M")
+        if co.get('material') and 'material_descricao' not in co and \
+                m.get('componente_material_especifico'):
+            erros.append(f"[material sem descrição] {ctx}")
+        for bloco in ([m['dano']] if 'dano' in m else []) + (m.get('dano_adicional_citado') or []):
+            if bloco.get('tipo_dano') not in DANOS:
+                erros.append(f"[tipo de dano inexistente] {ctx}: '{bloco.get('tipo_dano')}'")
+            if not re.fullmatch(r'\d+d\d+', str(bloco.get('formula_dado', ''))):
+                erros.append(f"[fórmula de dado inválida] {ctx}: {bloco.get('formula_dado')!r}")
+        sv = m.get('salvaguarda')
+        if sv and sv.get('atributo') not in ATRIBUTOS:
+            erros.append(f"[atributo de salvaguarda inválido] {ctx}: {sv.get('atributo')!r}")
+        ar = m.get('area')
+        if ar and ar.get('forma') not in FORMAS_DE_AREA:
+            erros.append(f"[forma de área inválida] {ctx}: {ar.get('forma')!r}")
+        for c in (m.get('condicoes_citadas') or []):
+            if c not in CONDICOES:
+                erros.append(f"[condição inexistente] {ctx}: '{c}'")
+    if magias_cat.get('detalhadas') != n_detalhadas:
+        erros.append(f"[contagem de detalhadas incorreta] magias: declarado "
+                     f"{magias_cat.get('detalhadas')}, contadas {n_detalhadas}")
+
+
+# ------------------------------------------------ item de catálogo sem efeitos
+# Catálogos de VOCABULÁRIO (perícias, idiomas, tipos de dano…) descrevem termos e
+# não têm efeitos. Catálogos de OPÇÃO descrevem escolhas mecânicas: item sem
+# 'efeitos' ali é ou defeito, ou pendência — e pendência precisa estar declarada.
+CATALOGOS_DE_VOCABULARIO = {
+    'alvos', 'alvos_de_impedimento', 'areas_de_efeito', 'atitudes', 'atributos',
+    'categorias_de_arma', 'categorias_de_armadura', 'criaturas', 'custos_de_acao',
+    'escolas_de_magia', 'estados', 'ferramentas', 'graus_de_cobertura', 'idiomas',
+    'itens', 'listas_de_iniciado_em_magia', 'listas_de_magia',
+    'magias', 'manifestacoes_da_ordem', 'pericias', 'riscos', 'sentidos', 'tamanhos',
+    'tipos_de_criatura', 'tipos_de_dano', 'tipos_de_descanso',
+    'tipos_de_deslocamento', 'tipos_de_efeito',
+}
+# Terceira família: catálogos de FÓRMULA, cujos itens são contas da ficha e não
+# opções que o jogador escolhe. Ali o obrigatório é a fórmula, não os efeitos.
+CATALOGOS_DE_FORMULA = {'valores_derivados'}
+for cid in CATALOGOS_DE_FORMULA:
+    c = catalogos.get(cid)
+    if not c:
+        continue
+    for i in c['itens']:
+        tem = any(k in i for k in ('formula', 'tabela_por_nivel', 'tabela_por_tamanho',
+                                   'por_alcance_da_arma'))
+        if not tem:
+            erros.append(f"[derivado sem fórmula] {cid}/{i['id']}: precisa de 'formula' "
+                         "ou de uma tabela que a substitua")
+        if not i.get('descricao_curta'):
+            erros.append(f"[derivado sem descrição] {cid}/{i['id']}")
+        for parc in (i.get('parcelas') or []):
+            if 'rotulo' not in parc or 'chave' not in parc:
+                erros.append(f"[parcela incompleta] {cid}/{i['id']}: toda parcela precisa "
+                             "de 'rotulo' e 'chave' para o log de proveniência")
+            if not parc.get('sempre') and 'condicao' not in parc:
+                erros.append(f"[parcela sem condição] {cid}/{i['id']}/{parc.get('chave')}: "
+                             "parcela que não é 'sempre' precisa dizer quando entra")
+
+for cid, c in catalogos.items():
+    if cid in CATALOGOS_DE_VOCABULARIO or cid in CATALOGOS_DE_FORMULA:
+        continue
+    for i in c['itens']:
+        if not i.get('efeitos') and not i.get('pendente'):
+            erros.append(f"[opção de catálogo sem efeitos] {cid}/{i['id']}: "
+                         "toda opção precisa de 'efeitos' executáveis, ou de "
+                         "'pendente': true dizendo que ainda faltam")
+
+
+# -------------------------------- escolhas alteradas à distância e opções gated
+# Quem expande ou remaneja uma escolha precisa apontar para uma escolha que existe.
+for ctx, eid in sorted(ESCOLHAS_REFERENCIADAS):
+    if eid not in ESCOLHAS_DECLARADAS:
+        erros.append(f"[escolha inexistente] {ctx}: nenhuma escolha declara id '{eid}'")
+
+# Item de catálogo marcado 'apenas_se_concedido' não é alcançável por nível:
+# alguma característica precisa concedê-lo explicitamente.
+for cid, c in catalogos.items():
+    for i in c['itens']:
+        if i.get('apenas_se_concedido') and (cid, i['id']) not in OPCOES_CONCEDIDAS:
+            erros.append(f"[opção órfã] {cid}/{i['id']}: marcada 'apenas_se_concedido', "
+                         "mas nenhuma característica a concede")
+
+# ------------------------------------- tabelas aleatórias: a faixa tem de fechar
+# Uma tabela de dado só está inteira se as faixas cobrem o dado sem buraco e sem
+# sobreposição. Faixa faltando é um resultado que o app não saberia resolver.
+for cid, c in catalogos.items():
+    if not c.get('dado_da_tabela'):
+        continue
+    campo = next((k for k in ('faixa_1d100', 'faixa_1d20', 'faixa_1d12', 'faixa_1d10',
+                              'faixa_1d8', 'faixa_1d6')
+                  if any(k in i for i in c['itens'])), None)
+    if not campo:
+        erros.append(f"[tabela sem faixas] {cid}: declara dado_da_tabela "
+                     f"'{c['dado_da_tabela']}' mas nenhum item traz a faixa do dado")
+        continue
+    cob = c.get('cobertura_da_faixa') or {}
+    inicio, fim = cob.get('min', 1), cob.get('max')
+    if fim is None:
+        erros.append(f"[tabela sem cobertura declarada] {cid}: precisa de "
+                     "'cobertura_da_faixa' com min e max")
+        continue
+    faixas = []
+    for i in c['itens']:
+        f = i.get(campo)
+        if not f or 'min' not in f or 'max' not in f:
+            erros.append(f"[linha de tabela sem faixa] {cid}/{i['id']}: precisa de "
+                         f"'{campo}' com min e max")
+            continue
+        if f['min'] > f['max']:
+            erros.append(f"[faixa invertida] {cid}/{i['id']}: {f['min']}–{f['max']}")
+        faixas.append((f['min'], f['max'], i['id']))
+    faixas.sort()
+    esperado = inicio
+    for lo, hi, iid in faixas:
+        if lo > esperado:
+            erros.append(f"[buraco na tabela] {cid}: nada cobre {esperado}–{lo - 1} "
+                         f"(antes de '{iid}')")
+        elif lo < esperado:
+            erros.append(f"[faixas sobrepostas] {cid}/{iid}: começa em {lo}, mas "
+                         f"{esperado - 1} já estava coberto")
+        esperado = max(esperado, hi + 1)
+    if faixas and esperado != fim + 1:
+        erros.append(f"[tabela incompleta] {cid}: cobertura termina em {esperado - 1}, "
+                     f"deveria terminar em {fim}")
+
+# ----------------------------------------- catálogo que custa recurso tem de dizer quanto
+# opcoes_de_metamagia e afins declaram 'recurso' no cabeçalho: aí todo item precisa
+# dizer o custo, ou o backend não saberia quanto debitar.
+for cid, c in catalogos.items():
+    rec = c.get('recurso')
+    if not rec:
+        continue
+    campo = f"custo_em_{rec}"
+    for i in c['itens']:
+        v = i.get(campo)
+        if not isinstance(v, int) or v < 1:
+            erros.append(f"[opção sem custo] {cid}/{i['id']}: o catálogo declara "
+                         f"recurso '{rec}', logo o item precisa de '{campo}' inteiro "
+                         "e maior que zero")
+
+# --------------------------------------------- movimento forçado precisa de direção
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'movimento_forcado':
+        continue
+    if e.get('direcao') not in ('empurrar', 'puxar'):
+        erros.append(f"[direção inválida] {ctx}: movimento_forcado precisa de "
+                     f"direcao 'empurrar' ou 'puxar' (veio '{e.get('direcao')}')")
+    if 'distancia_m' not in e and 'destino' not in e:
+        erros.append(f"[movimento sem distância] {ctx}: movimento_forcado precisa de "
+                     "'distancia_m' ou de um 'destino'")
+
+# ------------------------------- rolar_na_tabela tem de apontar para uma tabela real
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'rolar_na_tabela':
+        continue
+    cat = e.get('catalogo')
+    if cat not in catalogos:
+        erros.append(f"[catálogo inexistente] {ctx}: '{cat}'")
+    elif not catalogos[cat].get('dado_da_tabela'):
+        erros.append(f"[catálogo não é tabela] {ctx}: '{cat}' não declara "
+                     "'dado_da_tabela'")
+
+# ------------------------- níveis de subclasse: classe e subclasse têm de concordar
+for c in colecoes['classes']['itens']:
+    niveis = c.get('niveis_de_caracteristica_de_subclasse')
+    if not niveis:
+        continue
+    for s in colecoes['subclasses']['itens']:
+        if s.get('classe') != c['id']:
+            continue
+        if s.get('niveis_de_caracteristica') != niveis:
+            erros.append(f"[níveis de subclasse divergentes] subclasses/{s['id']}: "
+                         f"{s.get('niveis_de_caracteristica')} ≠ {niveis} declarado em "
+                         f"classes/{c['id']}")
+        reais = sorted({f['nivel'] for f in colecoes['caracteristicas']['itens']
+                        if f.get('subclasse') == s['id']})
+        if reais and reais != sorted(niveis):
+            erros.append(f"[características fora dos níveis] subclasses/{s['id']}: as "
+                         f"características estão nos níveis {reais}, mas a subclasse "
+                         f"declara {sorted(niveis)}")
+
+# -------------------------------- alvo que promete um derivado tem de ter um derivado
+# Foi assim que o buraco apareceu: a Resiliência Dracônica somava em
+# 'pontos_de_vida_maximos' e NENHUM valor derivado montava esse número. O alvo
+# declara 'derivado_id' e aqui a promessa é cobrada.
+DERIVADOS_DECLARADOS = CHAVES.get('valores_derivados', set())
+for i in catalogos.get('alvos', {}).get('itens', []):
+    did = i.get('derivado_id')
+    if did and did not in DERIVADOS_DECLARADOS:
+        erros.append(f"[derivado inexistente] alvos/{i['id']}: aponta para "
+                     f"'{did}', que não está em valores_derivados")
+
+# ------------------------------- operação de fórmula tem de estar no vocabulário
+# Antes cada gerador podia inventar um 'op'. Agora as operações são dado declarado.
+OPS = {o['id'] for o in catalogos.get('valores_derivados', {}).get('operacoes', [])}
+
+
+def checar_ops(ctx, obj):
+    if isinstance(obj, dict):
+        op = obj.get('op')
+        if isinstance(op, str) and OPS and op not in OPS:
+            erros.append(f"[operação desconhecida] {ctx}: '{op}' não está em "
+                         "valores_derivados.operacoes")
+        for k, v in obj.items():
+            checar_ops(f"{ctx}/{k}", v)
+    elif isinstance(obj, list):
+        for n, v in enumerate(obj):
+            checar_ops(f"{ctx}[{n}]", v)
+
+
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        checar_ops(f"{cid}/{i['id']}", i)
+
+# ------------------------------------------- PV temporários: sempre com quantidade
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'pontos_de_vida_temporarios':
+        continue
+    if not (e.get('formula') or e.get('total') or e.get('modo')):
+        erros.append(f"[PV temporários sem quantidade] {ctx}: precisa de 'formula', "
+                     "'total' ou 'modo'")
+
+# ------------------------------------------- bloco de PV das magias
+CHAVES_MAXIMOS = {'aumento', 'reducao', 'impede_reducao', 'remove_reducao',
+                  'da_criatura_criada'}
+for i in catalogos.get('magias', {}).get('itens', []):
+    pv = i.get('pontos_de_vida')
+    if not pv:
+        continue
+    ctx = f"magias/{i['id']}/pontos_de_vida"
+    t = pv.get('temporarios')
+    if t is not None and not (t.get('formula') or t.get('total')):
+        erros.append(f"[PV temporários sem quantidade] {ctx}: 'temporarios' precisa de "
+                     "'formula' ou 'total'")
+    mx = pv.get('maximos')
+    if mx is not None and not (set(mx) & CHAVES_MAXIMOS):
+        erros.append(f"[efeito sobre o máximo sem operação] {ctx}: 'maximos' precisa de "
+                     f"um de {sorted(CHAVES_MAXIMOS)}")
 
 # ------------------------------------------------------------------ saída
 erros = list(dict.fromkeys(erros))

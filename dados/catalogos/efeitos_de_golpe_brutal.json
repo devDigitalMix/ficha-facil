@@ -1,0 +1,109 @@
+{
+  "catalogo": "efeitos_de_golpe_brutal",
+  "nome": "Efeitos de Golpe Brutal",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 53,
+    "pagina_pdf": 57
+  },
+  "total": 4,
+  "itens": [
+    {
+      "id": "golpe_debilitador",
+      "nome": "Golpe Debilitador",
+      "nivel_minimo": 9,
+      "descricao_curta": "Deslocamento do alvo reduzido em 4,5 m até o início do seu próximo turno. Só um por alvo — o mais recente.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "beneficiario": "alvo",
+          "valor": [
+            "-4.5"
+          ],
+          "unidade": "metros",
+          "empilha": "substitui",
+          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "limite": {
+            "por_alvo": 1,
+            "resolucao": "mais_recente_prevalece"
+          }
+        }
+      ]
+    },
+    {
+      "id": "golpe_poderoso",
+      "nome": "Golpe Poderoso",
+      "nivel_minimo": 9,
+      "descricao_curta": "Empurra o alvo 4,5 m para longe; você pode avançar metade do Deslocamento em direção a ele sem provocar Ataques de Oportunidade.",
+      "efeitos": [
+        {
+          "tipo": "restringir_movimento",
+          "modo": "empurrar",
+          "beneficiario": "alvo",
+          "distancia_m": 4.5,
+          "direcao": "para_longe_de_voce"
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "caminhada",
+          "modo": "movimento_imediato",
+          "formula": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "deslocamento",
+                "2"
+              ]
+            }
+          ],
+          "direcao": "em_direcao_ao_alvo",
+          "sem_provocar_ataques_de_oportunidade": true
+        }
+      ]
+    },
+    {
+      "id": "golpe_atordoante",
+      "nome": "Golpe Atordoante",
+      "nivel_minimo": 13,
+      "descricao_curta": "O alvo tem Desvantagem na próxima salvaguarda e não pode fazer Ataques de Oportunidade até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "desvantagem",
+          "beneficiario": "alvo",
+          "duracao": "proxima_salvaguarda_do_alvo"
+        },
+        {
+          "tipo": "impedir",
+          "alvo": "reacao",
+          "beneficiario": "alvo",
+          "restrito_a": "ataque_de_oportunidade",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "golpe_destruidor",
+      "nome": "Golpe Destruidor",
+      "nivel_minimo": 13,
+      "descricao_curta": "O próximo ataque de outra criatura contra o alvo recebe +5, antes do início do seu próximo turno. Um bônus por jogada.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_ataque",
+          "valor": [
+            "5"
+          ],
+          "beneficiario": "proxima_criatura_que_atacar_o_alvo",
+          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "limite": {
+            "por_jogada": 1,
+            "nota": "Uma jogada só recebe um bônus de Golpe Destruidor por vez."
+          }
+        }
+      ]
+    }
+  ]
+}

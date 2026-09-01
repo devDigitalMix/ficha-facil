@@ -1,14 +1,13 @@
 {
   "catalogo": "itens",
-  "nome": "Itens",
-  "parcial": true,
+  "nome": "Itens de Equipamento",
   "fonte": {
     "capitulo": 6,
-    "pagina_livro": 215,
-    "pagina_pdf": 219
+    "pagina_livro": 213,
+    "pagina_pdf": 217
   },
-  "total": 38,
-  "nota": "PARCIAL: por ora só as armas da tabela Armas (p. 215), com nome, grupo e alcance — o que a escolha de Maestria em Arma do Guerreiro precisa referenciar. Dano, propriedades, maestria, peso e custo entram na fase do capítulo 6, junto com armaduras e equipamento de aventura.",
+  "nota": "Capítulo 6 completo: armas, armaduras, munição, equipamento de aventura, focos de conjuração, montarias, arreios e veículos. Itens mágicos ficam no Livro do Mestre e estão fora do escopo.",
+  "total": 170,
   "itens": [
     {
       "id": "adaga",
@@ -16,167 +15,40 @@
       "categoria": "arma",
       "grupo": "simples",
       "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "agil",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        },
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        },
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "azagaia",
-      "nome": "Azagaia",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "cajado",
-      "nome": "Cajado",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "clava",
-      "nome": "Clava",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "clava_grande",
-      "nome": "Clava Grande",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "foice",
-      "nome": "Foice",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "lanca",
-      "nome": "Lança",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "maca",
-      "nome": "Maça",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "machadinha",
-      "nome": "Machadinha",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "martelo_leve",
-      "nome": "Martelo Leve",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "arco_curto",
-      "nome": "Arco Curto",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "a_distancia",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "besta_leve",
-      "nome": "Besta Leve",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "a_distancia",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "dardo",
-      "nome": "Dardo",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "a_distancia",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "funda",
-      "nome": "Funda",
-      "categoria": "arma",
-      "grupo": "simples",
-      "alcance": "a_distancia",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
+      },
+      "maos_ocupadas": 1
     },
     {
       "id": "alabarda",
@@ -184,214 +56,84 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "trespassar",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "extensao",
+          "texto": "Extensão"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
-      }
+      },
+      "maos_ocupadas": 2
     },
     {
-      "id": "chicote",
-      "nome": "Chicote",
+      "id": "arco_curto",
+      "nome": "Arco Curto",
       "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 24/96; Flecha)",
+          "alcance_normal_m": 24.0,
+          "alcance_longo_m": 96.0,
+          "municao": "flechas"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "cimitarra",
-      "nome": "Cimitarra",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "espada_curta",
-      "nome": "Espada Curta",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "espada_grande",
-      "nome": "Espada Grande",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "espada_longa",
-      "nome": "Espada Longa",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "glaive",
-      "nome": "Glaive",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "lanca_de_montaria",
-      "nome": "Lança de Montaria",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "lanca_longa",
-      "nome": "Lança Longa",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "maca_estrela",
-      "nome": "Maça Estrela",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "machado_de_batalha",
-      "nome": "Machado de Batalha",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "machado_grande",
-      "nome": "Machado Grande",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "malho",
-      "nome": "Malho",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "mangual",
-      "nome": "Mangual",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "martelo_de_guerra",
-      "nome": "Martelo de Guerra",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "picareta_de_guerra",
-      "nome": "Picareta de Guerra",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "rapieira",
-      "nome": "Rapieira",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
-      }
-    },
-    {
-      "id": "tridente",
-      "nome": "Tridente",
-      "categoria": "arma",
-      "grupo": "marcial",
-      "alcance": "corpo_a_corpo",
-      "fonte": {
-        "capitulo": 6,
-        "pagina_livro": 215,
-        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2,
+      "consumo": {
+        "item": "flechas",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
       }
     },
     {
@@ -400,11 +142,83 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 45/180; Flecha)",
+          "alcance_normal_m": 45.0,
+          "alcance_longo_m": 180.0,
+          "municao": "flechas"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2,
+      "consumo": {
+        "item": "flechas",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
       }
+    },
+    {
+      "id": "azagaia",
+      "nome": "Azagaia",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "propriedades": [
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 9/36)",
+          "alcance_normal_m": 9.0,
+          "alcance_longo_m": 36.0
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
     },
     {
       "id": "besta_de_mao",
@@ -412,10 +226,118 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 75,
+        "moeda": "po",
+        "em_pc": 7500
+      },
+      "propriedades": [
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 9/36; Virote)",
+          "alcance_normal_m": 9.0,
+          "alcance_longo_m": 36.0,
+          "municao": "virotes"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "consumo": {
+        "item": "virotes",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
+      }
+    },
+    {
+      "id": "besta_leve",
+      "nome": "Besta Leve",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 24/96; Virote)",
+          "alcance_normal_m": 24.0,
+          "alcance_longo_m": 96.0,
+          "municao": "virotes"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2,
+      "consumo": {
+        "item": "virotes",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
       }
     },
     {
@@ -424,11 +346,916 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "empurrar",
+      "peso_kg": 9.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 30/120; Virote)",
+          "alcance_normal_m": 30.0,
+          "alcance_longo_m": 120.0,
+          "municao": "virotes"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2,
+      "consumo": {
+        "item": "virotes",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
       }
+    },
+    {
+      "id": "cajado",
+      "nome": "Cajado",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "derrubar",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "pp",
+        "em_pc": 20
+      },
+      "propriedades": [
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d8)",
+          "dado_versatil": "1d8"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "tambem_e": [
+        "foco_de_conjuracao"
+      ],
+      "tipo_de_foco": "arcano",
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d8",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
+      }
+    },
+    {
+      "id": "chicote",
+      "nome": "Chicote",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        },
+        {
+          "propriedade": "extensao",
+          "texto": "Extensão"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "cimitarra",
+      "nome": "Cimitarra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "agil",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        },
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "clava",
+      "nome": "Clava",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "propriedades": [
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "clava_grande",
+      "nome": "Clava Grande",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "empurrar",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "pp",
+        "em_pc": 20
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "dardo",
+      "nome": "Dardo",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 0.15,
+      "custo": {
+        "valor": 5,
+        "moeda": "pc",
+        "em_pc": 5
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        },
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "espada_curta",
+      "nome": "Espada Curta",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        },
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "espada_grande",
+      "nome": "Espada Grande",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "2d6",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "garantido",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "espada_longa",
+      "nome": "Espada Longa",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "drenar",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "propriedades": [
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d10)",
+          "dado_versatil": "1d10"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d10",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
+      }
+    },
+    {
+      "id": "foice",
+      "nome": "Foice",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "agil",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "propriedades": [
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "funda",
+      "nome": "Funda",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "lentidao",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "propriedades": [
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 9/36; Bala)",
+          "alcance_normal_m": 9.0,
+          "alcance_longo_m": 36.0,
+          "municao": "balas_funda"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "consumo": {
+        "item": "balas_funda",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      }
+    },
+    {
+      "id": "glaive",
+      "nome": "Glaive",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "garantido",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "extensao",
+          "texto": "Extensão"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "lanca",
+      "nome": "Lança",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "drenar",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "propriedades": [
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        },
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d8)",
+          "dado_versatil": "1d8"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d8",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
+      }
+    },
+    {
+      "id": "lanca_de_montaria",
+      "nome": "Lança de Montaria",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "derrubar",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos (a menos que montado)",
+          "condicional": "duas_maos_exceto_montado"
+        },
+        {
+          "propriedade": "extensao",
+          "texto": "Extensão"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "lanca_longa",
+      "nome": "Lança Longa",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "empurrar",
+      "peso_kg": 9.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "extensao",
+          "texto": "Extensão"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "maca",
+      "nome": "Maça",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "drenar",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "propriedades": [],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "maca_estrela",
+      "nome": "Maça Estrela",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "drenar",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "propriedades": [],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "machadinha",
+      "nome": "Machadinha",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d6",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "propriedades": [
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        },
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "machado_de_batalha",
+      "nome": "Machado de Batalha",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "derrubar",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d10)",
+          "dado_versatil": "1d10"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d10",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
+      }
+    },
+    {
+      "id": "machado_grande",
+      "nome": "Machado Grande",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d12",
+        "valor_fixo": null,
+        "tipo_dano": "cortante"
+      },
+      "maestria": "trespassar",
+      "peso_kg": 3.5,
+      "custo": {
+        "valor": 30,
+        "moeda": "po",
+        "em_pc": 3000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "malho",
+      "nome": "Malho",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "2d6",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "derrubar",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "pesada",
+          "texto": "Pesada"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2
+    },
+    {
+      "id": "mangual",
+      "nome": "Mangual",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "drenar",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "martelo_de_guerra",
+      "nome": "Martelo de Guerra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "empurrar",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "propriedades": [
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d10)",
+          "dado_versatil": "1d10"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d10",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
+      }
+    },
+    {
+      "id": "martelo_leve",
+      "nome": "Martelo Leve",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d4",
+        "valor_fixo": null,
+        "tipo_dano": "contundente"
+      },
+      "maestria": "agil",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "propriedades": [
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        },
+        {
+          "propriedade": "leve",
+          "texto": "Leve"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
     },
     {
       "id": "mosquete",
@@ -436,10 +1263,96 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d12",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "lentidao",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 500,
+        "moeda": "po",
+        "em_pc": 50000
+      },
+      "propriedades": [
+        {
+          "propriedade": "duas_maos",
+          "texto": "Duas Mãos"
+        },
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 12/36; Bala)",
+          "alcance_normal_m": 12.0,
+          "alcance_longo_m": 36.0,
+          "municao": "balas_arma_de_fogo"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 2,
+      "consumo": {
+        "item": "balas_arma_de_fogo",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
+      }
+    },
+    {
+      "id": "picareta_de_guerra",
+      "nome": "Picareta de Guerra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "drenar",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "propriedades": [
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d10)",
+          "dado_versatil": "1d10"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d10",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
       }
     },
     {
@@ -448,10 +1361,129 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": "1d10",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 250,
+        "moeda": "po",
+        "em_pc": 25000
+      },
+      "propriedades": [
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 9/27; Bala)",
+          "alcance_normal_m": 9.0,
+          "alcance_longo_m": 27.0,
+          "municao": "balas_arma_de_fogo"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "consumo": {
+        "item": "balas_arma_de_fogo",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
+      }
+    },
+    {
+      "id": "rapieira",
+      "nome": "Rapieira",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "propriedades": [
+        {
+          "propriedade": "acuidade",
+          "texto": "Acuidade"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "tridente",
+      "nome": "Tridente",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "dano": {
+        "formula_dado": "1d8",
+        "valor_fixo": null,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "derrubar",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "propriedades": [
+        {
+          "propriedade": "arremesso",
+          "texto": "Arremesso (Alcance 6/18)",
+          "alcance_normal_m": 6.0,
+          "alcance_longo_m": 18.0
+        },
+        {
+          "propriedade": "versatil",
+          "texto": "Versátil (1d10)",
+          "dado_versatil": "1d10"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "maos_alternativas": {
+        "2": {
+          "dado_de_dano": "1d10",
+          "nota": "Empunhada com as duas mãos, usa o dado Versátil."
+        }
       }
     },
     {
@@ -460,10 +1492,2425 @@
       "categoria": "arma",
       "grupo": "marcial",
       "alcance": "a_distancia",
+      "dano": {
+        "formula_dado": null,
+        "valor_fixo": 1,
+        "tipo_dano": "perfurante"
+      },
+      "maestria": "afligir",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "propriedades": [
+        {
+          "propriedade": "municao",
+          "texto": "Munição (Alcance 7,5/30; Agulha)",
+          "alcance_normal_m": 7.5,
+          "alcance_longo_m": 30.0,
+          "municao": "agulhas"
+        },
+        {
+          "propriedade": "recarga",
+          "texto": "Recarga"
+        }
+      ],
       "fonte": {
         "capitulo": 6,
         "pagina_livro": 215,
         "pagina_pdf": 219
+      },
+      "maos_ocupadas": 1,
+      "consumo": {
+        "item": "agulhas",
+        "por_ataque": 1,
+        "recuperacao_apos_o_combate": {
+          "fracao": "metade",
+          "arredondamento": "baixo",
+          "tempo": "1 minuto"
+        }
+      },
+      "limite_por_acao": {
+        "disparos": 1,
+        "vale_para": [
+          "acao",
+          "acao_bonus",
+          "reacao"
+        ],
+        "nota": "Vale mesmo com Ataque Extra (p. 217)."
+      }
+    },
+    {
+      "id": "acolchoada",
+      "nome": "Acolchoada",
+      "categoria": "armadura",
+      "grupo": "leve",
+      "ca": {
+        "base": 11,
+        "soma_modificador_destreza": true,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_acolchoada"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 4.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "minutos_para_vestir": 1,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Armadura Acolchoada"
+      ]
+    },
+    {
+      "id": "armadura_de_tala",
+      "nome": "Armadura de Tala",
+      "categoria": "armadura",
+      "grupo": "pesada",
+      "ca": {
+        "base": 17,
+        "soma_modificador_destreza": false,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_armadura_de_tala"
+      },
+      "forca_minima": 15,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 30.0,
+      "custo": {
+        "valor": 200,
+        "moeda": "po",
+        "em_pc": 20000
+      },
+      "minutos_para_vestir": 10,
+      "minutos_para_despir": 5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      }
+    },
+    {
+      "id": "cota_de_aneis",
+      "nome": "Cota de Anéis",
+      "categoria": "armadura",
+      "grupo": "pesada",
+      "ca": {
+        "base": 14,
+        "soma_modificador_destreza": false,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_cota_de_aneis"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 20.0,
+      "custo": {
+        "valor": 30,
+        "moeda": "po",
+        "em_pc": 3000
+      },
+      "minutos_para_vestir": 10,
+      "minutos_para_despir": 5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      }
+    },
+    {
+      "id": "cota_de_malha",
+      "nome": "Cota de Malha",
+      "categoria": "armadura",
+      "grupo": "pesada",
+      "ca": {
+        "base": 16,
+        "soma_modificador_destreza": false,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_cota_de_malha"
+      },
+      "forca_minima": 13,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 27.0,
+      "custo": {
+        "valor": 75,
+        "moeda": "po",
+        "em_pc": 7500
+      },
+      "minutos_para_vestir": 10,
+      "minutos_para_despir": 5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      }
+    },
+    {
+      "id": "cota_de_malha_parcial",
+      "nome": "Cota de Malha Parcial",
+      "categoria": "armadura",
+      "grupo": "media",
+      "ca": {
+        "base": 13,
+        "soma_modificador_destreza": true,
+        "teto_do_modificador": 2,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_cota_de_malha_parcial"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 10.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "minutos_para_vestir": 5,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Malha Parcial"
+      ]
+    },
+    {
+      "id": "couraca_peitoral",
+      "nome": "Couraça Peitoral",
+      "categoria": "armadura",
+      "grupo": "media",
+      "ca": {
+        "base": 14,
+        "soma_modificador_destreza": true,
+        "teto_do_modificador": 2,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_couraca_peitoral"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 10.0,
+      "custo": {
+        "valor": 400,
+        "moeda": "po",
+        "em_pc": 40000
+      },
+      "minutos_para_vestir": 5,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      }
+    },
+    {
+      "id": "couro",
+      "nome": "Couro",
+      "categoria": "armadura",
+      "grupo": "leve",
+      "ca": {
+        "base": 11,
+        "soma_modificador_destreza": true,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_couro"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "minutos_para_vestir": 1,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Armadura de Couro"
+      ]
+    },
+    {
+      "id": "couro_batido",
+      "nome": "Couro Batido",
+      "categoria": "armadura",
+      "grupo": "leve",
+      "ca": {
+        "base": 12,
+        "soma_modificador_destreza": true,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_couro_batido"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 6.5,
+      "custo": {
+        "valor": 45,
+        "moeda": "po",
+        "em_pc": 4500
+      },
+      "minutos_para_vestir": 1,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Armadura de Couro Batido"
+      ]
+    },
+    {
+      "id": "escudo",
+      "nome": "Escudo",
+      "categoria": "armadura",
+      "grupo": "escudo",
+      "ca": {
+        "bonus": 2
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "maos_ocupadas": 1
+    },
+    {
+      "id": "gibao_de_peles",
+      "nome": "Gibão de Peles",
+      "categoria": "armadura",
+      "grupo": "media",
+      "ca": {
+        "base": 12,
+        "soma_modificador_destreza": true,
+        "teto_do_modificador": 2,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_gibao_de_peles"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": false,
+      "peso_kg": 6.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "minutos_para_vestir": 5,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Gibão de Pele"
+      ]
+    },
+    {
+      "id": "loriga_de_escamas",
+      "nome": "Loriga de Escamas",
+      "categoria": "armadura",
+      "grupo": "media",
+      "ca": {
+        "base": 14,
+        "soma_modificador_destreza": true,
+        "teto_do_modificador": 2,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_loriga_de_escamas"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 22.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "minutos_para_vestir": 5,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      }
+    },
+    {
+      "id": "placas",
+      "nome": "Placas",
+      "categoria": "armadura",
+      "grupo": "pesada",
+      "ca": {
+        "base": 18,
+        "soma_modificador_destreza": false,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_placas"
+      },
+      "forca_minima": 15,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 32.0,
+      "custo": {
+        "valor": 1500,
+        "moeda": "po",
+        "em_pc": 150000
+      },
+      "minutos_para_vestir": 10,
+      "minutos_para_despir": 5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Armadura de Placas"
+      ]
+    },
+    {
+      "id": "placas_parcial",
+      "nome": "Placas Parcial",
+      "categoria": "armadura",
+      "grupo": "media",
+      "ca": {
+        "base": 15,
+        "soma_modificador_destreza": true,
+        "teto_do_modificador": 2,
+        "concorre_como": "calculo_de_ca_base",
+        "id": "ca_placas_parcial"
+      },
+      "forca_minima": null,
+      "desvantagem_em_furtividade": true,
+      "peso_kg": 20.0,
+      "custo": {
+        "valor": 750,
+        "moeda": "po",
+        "em_pc": 75000
+      },
+      "minutos_para_vestir": 5,
+      "minutos_para_despir": 1,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 219,
+        "pagina_pdf": 223
+      },
+      "nomes_alternativos": [
+        "Armadura de Placas Parcial"
+      ]
+    },
+    {
+      "id": "alimentacao_por_dia",
+      "nome": "Alimentação por dia",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "pc",
+        "em_pc": 5
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "biga",
+      "nome": "Biga",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 50.0,
+      "custo": {
+        "valor": 250,
+        "moeda": "po",
+        "em_pc": 25000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "carroca",
+      "nome": "Carroça",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 100.0,
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "carruagem",
+      "nome": "Carruagem",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 300.0,
+      "custo": {
+        "valor": 100,
+        "moeda": "po",
+        "em_pc": 10000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "estabulo_por_dia",
+      "nome": "Estábulo por dia",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": null,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "sela_exotica",
+      "nome": "Sela Exótica",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 20.0,
+      "custo": {
+        "valor": 60,
+        "moeda": "po",
+        "em_pc": 6000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "sela_militar",
+      "nome": "Sela Militar",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 15.0,
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "sela_viagem",
+      "nome": "Sela Viagem",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 12.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "treno",
+      "nome": "Trenó",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 150.0,
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "vagao",
+      "nome": "Vagão",
+      "categoria": "arreio_ou_veiculo_de_tracao",
+      "peso_kg": 200.0,
+      "custo": {
+        "valor": 35,
+        "moeda": "po",
+        "em_pc": 3500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "acido",
+      "nome": "Ácido",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "agua_benta",
+      "nome": "Água Benta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "algibeira",
+      "nome": "Algibeira",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "aljava",
+      "nome": "Aljava",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "antitoxina",
+      "nome": "Antitoxina",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "apito_sinalizador",
+      "nome": "Apito Sinalizador",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 5,
+        "moeda": "pc",
+        "em_pc": 5
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "ariete_portavel",
+      "nome": "Aríete Portável",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 16.5,
+      "custo": {
+        "valor": 4,
+        "moeda": "po",
+        "em_pc": 400
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "armadilha_de_caca",
+      "nome": "Armadilha de Caça",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 12.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "arpeu",
+      "nome": "Arpéu",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "balde",
+      "nome": "Balde",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "pc",
+        "em_pc": 5
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "baliza",
+      "nome": "Baliza",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 3.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "pc",
+        "em_pc": 5
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "barril",
+      "nome": "Barril",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 35.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "bau",
+      "nome": "Baú",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 12.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "bolsa_de_componentes",
+      "nome": "Bolsa de Componentes",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "cadeado",
+      "nome": "Cadeado",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "caixa_para_fogo",
+      "nome": "Caixa para Fogo",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "caneta_tinteiro",
+      "nome": "Caneta Tinteiro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 2,
+        "moeda": "pc",
+        "em_pc": 2
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "cantil",
+      "nome": "Cantil",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "pp",
+        "em_pc": 20
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "cesta",
+      "nome": "Cesta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 4,
+        "moeda": "pp",
+        "em_pc": 40
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "cobertor",
+      "nome": "Cobertor",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "corda",
+      "nome": "Corda",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "cordao",
+      "nome": "Cordão",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "corrente",
+      "nome": "Corrente",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "escada",
+      "nome": "Escada",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 12.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "esferas_de_metal",
+      "nome": "Esferas de Metal",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "espelho",
+      "nome": "Espelho",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.25,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "estacas_de_ferro",
+      "nome": "Estacas de Ferro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "estojo_mapa_ou_pergaminho",
+      "nome": "Estojo, Mapa ou Pergaminho",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "estojo_virote_de_besta",
+      "nome": "Estojo, Virote de Besta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "estrepes",
+      "nome": "Estrepes",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "fogo_alquimico",
+      "nome": "Fogo Alquímico",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "frasco",
+      "nome": "Frasco",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "garrafa_de_vidro",
+      "nome": "Garrafa de Vidro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "grilhoes",
+      "nome": "Grilhões",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "jarro",
+      "nome": "Jarro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "pc",
+        "em_pc": 2
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_artista",
+      "nome": "Kit de Artista",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 29.0,
+      "custo": {
+        "valor": 40,
+        "moeda": "po",
+        "em_pc": 4000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_assaltante",
+      "nome": "Kit de Assaltante",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 21.0,
+      "custo": {
+        "valor": 16,
+        "moeda": "po",
+        "em_pc": 1600
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_aventureiro",
+      "nome": "Kit de Aventureiro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 27.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_curandeiro",
+      "nome": "Kit de Curandeiro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_diplomata",
+      "nome": "Kit de Diplomata",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 19.5,
+      "custo": {
+        "valor": 39,
+        "moeda": "po",
+        "em_pc": 3900
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_erudito",
+      "nome": "Kit de Erudito",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 11.0,
+      "custo": {
+        "valor": 40,
+        "moeda": "po",
+        "em_pc": 4000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_escalada",
+      "nome": "Kit de Escalada",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 6.0,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "kit_de_explorador_de_masmorras",
+      "nome": "Kit de Explorador de Masmorras",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 27.5,
+      "custo": {
+        "valor": 12,
+        "moeda": "po",
+        "em_pc": 1200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      },
+      "nomes_alternativos": [
+        "Kit de Explorador"
+      ]
+    },
+    {
+      "id": "kit_de_sacerdote",
+      "nome": "Kit de Sacerdote",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 14.5,
+      "custo": {
+        "valor": 33,
+        "moeda": "po",
+        "em_pc": 3300
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "lampada",
+      "nome": "Lâmpada",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "lanterna_coberta",
+      "nome": "Lanterna Coberta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "lanterna_foca_facho",
+      "nome": "Lanterna Foca-facho",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "livro",
+      "nome": "Livro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "livro_de_magias",
+      "nome": "Livro de Magias",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.5,
+      "custo": null,
+      "custo_varia": true,
+      "descricao_curta": "Objeto Minúsculo de 100 páginas onde o Mago registra as magias que conhece.",
+      "nota": "Não está na tabela do capítulo 6: é definido na característica de Conjuração do Mago (p. 147).",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 147,
+        "pagina_pdf": 151
+      }
+    },
+    {
+      "id": "luneta",
+      "nome": "Luneta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1000,
+        "moeda": "po",
+        "em_pc": 100000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "lupa",
+      "nome": "Lupa",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 100,
+        "moeda": "po",
+        "em_pc": 10000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "mapa",
+      "nome": "Mapa",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "mochila",
+      "nome": "Mochila",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "oleo",
+      "nome": "Óleo",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pa",
+      "nome": "Pá",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "papel",
+      "nome": "Papel",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 2,
+        "moeda": "pp",
+        "em_pc": 20
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pe_de_cabra",
+      "nome": "Pé de Cabra",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "perfume",
+      "nome": "Perfume",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pergaminho",
+      "nome": "Pergaminho",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "pp",
+        "em_pc": 10
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pergaminho_magico_1_circulo",
+      "nome": "Pergaminho Mágico (1º Círculo)",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pergaminho_magico_truque",
+      "nome": "Pergaminho Mágico (Truque)",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 30,
+        "moeda": "po",
+        "em_pc": 3000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pocao_de_cura",
+      "nome": "Poção de Cura",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.25,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pote",
+      "nome": "Pote",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 2,
+        "moeda": "pc",
+        "em_pc": 2
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "pote_ferro",
+      "nome": "Pote, Ferro",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 5.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "racoes",
+      "nome": "Rações",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "pp",
+        "em_pc": 50
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "rede",
+      "nome": "Rede",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "roldana_e_polias",
+      "nome": "Roldana e Polias",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "roupas_fantasia",
+      "nome": "Roupas, Fantasia",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "roupas_finas",
+      "nome": "Roupas, Finas",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 3.0,
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "roupas_viagem",
+      "nome": "Roupas, Viagem",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "saca",
+      "nome": "Saca",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.25,
+      "custo": {
+        "valor": 1,
+        "moeda": "pc",
+        "em_pc": 1
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "saco_de_dormir",
+      "nome": "Saco de Dormir",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 3.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "sino",
+      "nome": "Sino",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "tenda",
+      "nome": "Tenda",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 10.0,
+      "custo": {
+        "valor": 2,
+        "moeda": "po",
+        "em_pc": 200
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "tinta",
+      "nome": "Tinta",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "tocha",
+      "nome": "Tocha",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "pc",
+        "em_pc": 1
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "tunica",
+      "nome": "Túnica",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "vela",
+      "nome": "Vela",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "pc",
+        "em_pc": 1
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "veneno_basico",
+      "nome": "Veneno Básico",
+      "categoria": "equipamento_de_aventura",
+      "peso_kg": null,
+      "custo": {
+        "valor": 100,
+        "moeda": "po",
+        "em_pc": 10000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 222,
+        "pagina_pdf": 226
+      }
+    },
+    {
+      "id": "amuleto",
+      "nome": "Amuleto",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "sagrado",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "cajado_de_madeira",
+      "nome": "Cajado de madeira",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "druidico",
+      "peso_kg": 2.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "cetro",
+      "nome": "Cetro",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "arcano",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "cristal",
+      "nome": "Cristal",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "arcano",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "emblema",
+      "nome": "Emblema",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "sagrado",
+      "peso_kg": null,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "orbe",
+      "nome": "Orbe",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "arcano",
+      "peso_kg": 1.5,
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "ramo_de_visco",
+      "nome": "Ramo de visco",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "druidico",
+      "peso_kg": null,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "relicario",
+      "nome": "Relicário",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "sagrado",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "varinha",
+      "nome": "Varinha",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "arcano",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "varinha_de_teixo",
+      "nome": "Varinha de teixo",
+      "categoria": "foco_de_conjuracao",
+      "tipo_de_foco": "druidico",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 225,
+        "pagina_pdf": 229
+      },
+      "maos_ocupadas": 1,
+      "deve_ser_segurado": true
+    },
+    {
+      "id": "camelo",
+      "nome": "Camelo",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 225.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "cavalo_de_carga",
+      "nome": "Cavalo de Carga",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 270.0,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "cavalo_de_guerra",
+      "nome": "Cavalo de Guerra",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 270.0,
+      "custo": {
+        "valor": 400,
+        "moeda": "po",
+        "em_pc": 40000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "cavalo_de_montaria",
+      "nome": "Cavalo de Montaria",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 240.0,
+      "custo": {
+        "valor": 75,
+        "moeda": "po",
+        "em_pc": 7500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "elefante",
+      "nome": "Elefante",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 660.0,
+      "custo": {
+        "valor": 200,
+        "moeda": "po",
+        "em_pc": 20000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "mastim",
+      "nome": "Mastim",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 93.0,
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "mula",
+      "nome": "Mula",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 210.0,
+      "custo": {
+        "valor": 8,
+        "moeda": "po",
+        "em_pc": 800
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "ponei",
+      "nome": "Pônei",
+      "categoria": "montaria",
+      "capacidade_de_carga_kg": 112.0,
+      "custo": {
+        "valor": 30,
+        "moeda": "po",
+        "em_pc": 3000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 229,
+        "pagina_pdf": 233
+      }
+    },
+    {
+      "id": "agulhas",
+      "nome": "Agulhas",
+      "categoria": "municao",
+      "quantidade_por_compra": 50,
+      "armazenada_em": "algibeira",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 227,
+        "pagina_pdf": 231
+      }
+    },
+    {
+      "id": "balas_arma_de_fogo",
+      "nome": "Balas, Arma de Fogo",
+      "categoria": "municao",
+      "quantidade_por_compra": 10,
+      "armazenada_em": "algibeira",
+      "peso_kg": 1.0,
+      "custo": {
+        "valor": 3,
+        "moeda": "po",
+        "em_pc": 300
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 227,
+        "pagina_pdf": 231
+      }
+    },
+    {
+      "id": "balas_funda",
+      "nome": "Balas, Funda",
+      "categoria": "municao",
+      "quantidade_por_compra": 20,
+      "armazenada_em": "algibeira",
+      "peso_kg": 0.75,
+      "custo": {
+        "valor": 4,
+        "moeda": "pc",
+        "em_pc": 4
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 227,
+        "pagina_pdf": 231
+      }
+    },
+    {
+      "id": "flechas",
+      "nome": "Flechas",
+      "categoria": "municao",
+      "quantidade_por_compra": 20,
+      "armazenada_em": "aljava",
+      "peso_kg": 0.5,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 227,
+        "pagina_pdf": 231
+      },
+      "nomes_alternativos": [
+        "Flecha"
+      ]
+    },
+    {
+      "id": "virotes",
+      "nome": "Virotes",
+      "categoria": "municao",
+      "quantidade_por_compra": 20,
+      "armazenada_em": "estojo_virote_de_besta",
+      "peso_kg": 0.75,
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 227,
+        "pagina_pdf": 231
+      },
+      "nomes_alternativos": [
+        "Virote"
+      ]
+    },
+    {
+      "id": "aeronau",
+      "nome": "Aeronau",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 13.0,
+      "tripulacao": 10,
+      "passageiros": 20.0,
+      "carga_toneladas": 1.0,
+      "ca": 13,
+      "pontos_de_vida": 300,
+      "limiar_de_dano": null,
+      "custo": {
+        "valor": 40000,
+        "moeda": "po",
+        "em_pc": 4000000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      },
+      "revisao": {
+        "status": "duvida",
+        "notas": "O livro imprime 'Aeronau' (p. 230). Parece 'Aeronave' truncado, mas mantive como está impresso."
+      }
+    },
+    {
+      "id": "barco_a_remo",
+      "nome": "Barco a Remo",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 2.4,
+      "tripulacao": 1,
+      "passageiros": 3.0,
+      "carga_toneladas": null,
+      "ca": 11,
+      "pontos_de_vida": 50,
+      "limiar_de_dano": null,
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      }
+    },
+    {
+      "id": "barco_de_quilha",
+      "nome": "Barco de Quilha",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 1.6,
+      "tripulacao": 1,
+      "passageiros": 6.0,
+      "carga_toneladas": 0.5,
+      "ca": 15,
+      "pontos_de_vida": 100,
+      "limiar_de_dano": 10.0,
+      "custo": {
+        "valor": 3000,
+        "moeda": "po",
+        "em_pc": 300000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      }
+    },
+    {
+      "id": "dracar",
+      "nome": "Dracar",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 4.8,
+      "tripulacao": 40,
+      "passageiros": 150.0,
+      "carga_toneladas": 10.0,
+      "ca": 15,
+      "pontos_de_vida": 300,
+      "limiar_de_dano": 15.0,
+      "custo": {
+        "valor": 10000,
+        "moeda": "po",
+        "em_pc": 1000000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      }
+    },
+    {
+      "id": "galera",
+      "nome": "Galera",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 6.5,
+      "tripulacao": 80,
+      "passageiros": null,
+      "carga_toneladas": 150.0,
+      "ca": 15,
+      "pontos_de_vida": 500,
+      "limiar_de_dano": 20.0,
+      "custo": {
+        "valor": 30000,
+        "moeda": "po",
+        "em_pc": 3000000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      }
+    },
+    {
+      "id": "navio_de_guerra",
+      "nome": "Navio de Guerra",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 4.0,
+      "tripulacao": 60,
+      "passageiros": 60.0,
+      "carga_toneladas": 200.0,
+      "ca": 15,
+      "pontos_de_vida": 500,
+      "limiar_de_dano": 20.0,
+      "custo": {
+        "valor": 25000,
+        "moeda": "po",
+        "em_pc": 2500000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
+      }
+    },
+    {
+      "id": "veleiro",
+      "nome": "Veleiro",
+      "categoria": "veiculo",
+      "deslocamento_kmh": 3.2,
+      "tripulacao": 20,
+      "passageiros": 20.0,
+      "carga_toneladas": 100.0,
+      "ca": 15,
+      "pontos_de_vida": 300,
+      "limiar_de_dano": 15.0,
+      "custo": {
+        "valor": 10000,
+        "moeda": "po",
+        "em_pc": 1000000
+      },
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 230,
+        "pagina_pdf": 234
       }
     }
   ]

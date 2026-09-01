@@ -18,7 +18,10 @@
         "capitulo": 5,
         "pagina_livro": 210,
         "pagina_pdf": 214
-      }
+      },
+      "descricao_curta": "Talento de Dádiva Épica. Definição completa no capítulo 5 (p. 210), ainda não extraído.",
+      "pendente": true,
+      "nota": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
     },
     {
       "id": "dadiva_do_ataque_irresistivel",
@@ -28,7 +31,10 @@
         "capitulo": 5,
         "pagina_livro": 210,
         "pagina_pdf": 214
-      }
+      },
+      "descricao_curta": "Talento de Dádiva Épica. Definição completa no capítulo 5 (p. 210), ainda não extraído.",
+      "pendente": true,
+      "nota": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
     },
     {
       "id": "dadiva_epica",
@@ -38,7 +44,10 @@
         "capitulo": 5,
         "pagina_livro": 210,
         "pagina_pdf": 214
-      }
+      },
+      "descricao_curta": "Categoria de talento escolhida no nível 19 da maioria das classes. Definição completa no capítulo 5 (p. 210), ainda não extraído.",
+      "pendente": true,
+      "nota": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
     },
     {
       "id": "arquearia",
@@ -387,7 +396,10 @@
         "capitulo": 5,
         "pagina_livro": 199,
         "pagina_pdf": 203
-      }
+      },
+      "descricao_curta": "Talento Geral tomado nos níveis de melhoria. Definição completa no capítulo 5 (p. 199), ainda não extraído.",
+      "pendente": true,
+      "nota": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
     },
     {
       "id": "iniciado_em_magia",

@@ -1,7 +1,7 @@
 {
   "catalogo": "alvos_de_impedimento",
   "nome": "Alvos de Impedimento",
-  "total": 8,
+  "total": 10,
   "itens": [
     {
       "id": "acao",
@@ -34,6 +34,16 @@
     {
       "id": "ataque_de_oportunidade_provocado_por_voce",
       "nome": "Provocar Ataques de Oportunidade ao se mover"
+    },
+    {
+      "id": "vantagem_em_ataque_contra_voce",
+      "nome": "Ter Vantagem numa jogada de ataque contra você",
+      "nota": "Usado pelo Elusivo do Ladino (nível 18, p. 141). Impede que atacantes obtenham Vantagem contra o personagem."
+    },
+    {
+      "id": "vantagem_ou_desvantagem_em_teste_d20",
+      "nome": "Beneficiar-se de Vantagem ou Desvantagem num Teste de D20",
+      "nota": "Usado pelo Restaurar Equilíbrio do Feiticeiro Mecânico (nível 3, p. 111): a Reação faz o teste deixar de ser afetado por Vantagem e por Desvantagem."
     }
   ],
   "fonte": {

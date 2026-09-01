@@ -1,0 +1,54 @@
+{
+  "catalogo": "opcoes_de_aspecto_dos_selvagens",
+  "nome": "Aspecto dos Selvagens",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 56,
+    "pagina_pdf": 60
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "coruja",
+      "nome": "Coruja",
+      "descricao_curta": "Visão no Escuro de 18 m, ou +18 m se já tiver.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_no_escuro",
+          "alcance_m": 18,
+          "empilha": "soma",
+          "nota": "Se já tiver Visão no Escuro, o alcance aumenta em 18 m."
+        }
+      ]
+    },
+    {
+      "id": "pantera",
+      "nome": "Pantera",
+      "descricao_curta": "Deslocamento de Escalada igual ao seu Deslocamento.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "escalada",
+          "formula": [
+            "deslocamento"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salmao",
+      "nome": "Salmão",
+      "descricao_curta": "Deslocamento de Natação igual ao seu Deslocamento.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "natacao",
+          "formula": [
+            "deslocamento"
+          ]
+        }
+      ]
+    }
+  ]
+}

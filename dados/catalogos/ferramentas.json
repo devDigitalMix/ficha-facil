@@ -20,6 +20,29 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 8,
+        "moeda": "po",
+        "em_pc": 800
+      },
+      "usar_objeto": {
+        "acao": "Selar ou abrir uma porta ou recipiente",
+        "cd": 20
+      },
+      "fabricacao": {
+        "texto": "Aríete Portável, Baliza, Barril, Baú, Cajado, Clava, Clava Grande, Escada, Tocha",
+        "itens": [
+          "ariete_portavel",
+          "baliza",
+          "barril",
+          "bau",
+          "cajado",
+          "clava",
+          "clava_grande",
+          "escada",
+          "tocha"
+        ]
       }
     },
     {
@@ -34,6 +57,21 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "usar_objeto": {
+        "acao": "Elaborar o mapa de uma pequena área",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Mapa",
+        "itens": [
+          "mapa"
+        ]
       }
     },
     {
@@ -48,6 +86,32 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "usar_objeto": {
+        "acao": "Moldar a estética de um item de couro",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Algibeira, Aljava, Armadura de Couro, Armadura de Couro Batido, Cantil, Chicote, Estojo de Mapa ou Pergaminho, Estojo de Virotes de Besta, Funda, Gibão de Peles, Mochila, Pergaminho",
+        "itens": [
+          "algibeira",
+          "aljava",
+          "couro",
+          "couro_batido",
+          "cantil",
+          "chicote",
+          "estojo_mapa_ou_pergaminho",
+          "estojo_virote_de_besta",
+          "funda",
+          "gibao_de_peles",
+          "mochila",
+          "pergaminho"
+        ]
       }
     },
     {
@@ -62,6 +126,41 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "usar_objeto": {
+        "acao": "Entalhar um padrão em madeira",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Armas à Distância (exceto Funda, Mosquete e Pistola), Cajado, Caneta Tinteiro, Clava, Clava Grande, Dardos, Flechas, Foco Arcano, Foco Druídico, Virotes",
+        "itens": [
+          "cajado",
+          "caneta_tinteiro",
+          "clava",
+          "clava_grande",
+          "dardo",
+          "flechas",
+          "virotes"
+        ],
+        "nao_resolvidos": [
+          {
+            "texto": "Armas à Distância",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "Foco Arcano",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "Foco Druídico",
+            "motivo": "descrição genérica, não é um item único"
+          }
+        ]
       }
     },
     {
@@ -76,6 +175,44 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "usar_objeto": {
+        "acao": "Forçar a abertura de uma porta ou recipiente",
+        "cd": 20
+      },
+      "fabricacao": {
+        "texto": "qualquer arma Corpo a Corpo (exceto Cajado, Chicote, Clava, Clava Grande), armadura Média (exceto Gibão de Peles), armadura Pesada, Arpéu e Gancho, Balas de Arma de Fogo, Balas de Funda, Balde, Corrente, Esferas de Metal, Estacas de Ferro, Estrepes, Panela de Ferro, Pé de Cabra",
+        "itens": [
+          "arpeu",
+          "balas_arma_de_fogo",
+          "balas_funda",
+          "balde",
+          "corrente",
+          "esferas_de_metal",
+          "estacas_de_ferro",
+          "estrepes",
+          "pote_ferro",
+          "pe_de_cabra"
+        ],
+        "nao_resolvidos": [
+          {
+            "texto": "qualquer arma Corpo a Corpo",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "armadura Média",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "armadura Pesada",
+            "motivo": "descrição genérica, não é um item único"
+          }
+        ]
       }
     },
     {
@@ -90,6 +227,33 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "usar_objeto": {
+        "acao": "Monte um item Minúsculo composto de sucata, que se desfaz em 1 minuto",
+        "cd": 20
+      },
+      "fabricacao": {
+        "texto": "Apito Sinalizador, Armadilha de Caça, Cadeado ou Fechadura, Caixa para Fogo, Espelho, Grilhões, Lanterna Coberta, Lanterna Foca-Facho, Mosquete, Pá, Pistola,Pote, Sino",
+        "itens": [
+          "apito_sinalizador",
+          "armadilha_de_caca",
+          "cadeado",
+          "caixa_para_fogo",
+          "espelho",
+          "grilhoes",
+          "lanterna_coberta",
+          "lanterna_foca_facho",
+          "mosquete",
+          "pa",
+          "pistola",
+          "pote",
+          "sino"
+        ]
       }
     },
     {
@@ -104,6 +268,29 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "usar_objeto": {
+        "acao": "Discernir o valor de uma gema",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Foco Arcano, Símbolo Sagrado",
+        "itens": [],
+        "nao_resolvidos": [
+          {
+            "texto": "Foco Arcano",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "Símbolo Sagrado",
+            "motivo": "descrição genérica, não é um item único"
+          }
+        ]
       }
     },
     {
@@ -118,6 +305,22 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "usar_objeto": {
+        "acao": "Discernir como um objeto de cerâmica foi manuseado nas últimas 24 horas",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Jarro, Lâmpada",
+        "itens": [
+          "jarro",
+          "lampada"
+        ]
       }
     },
     {
@@ -132,6 +335,21 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "usar_objeto": {
+        "acao": "Cinzelar um símbolo ou buraco na pedra",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Roldana e Polias",
+        "itens": [
+          "roldana_e_polias"
+        ]
       }
     },
     {
@@ -146,6 +364,21 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "usar_objeto": {
+        "acao": "Modificar calçado para conceder Vantagem no próximo teste de Destreza (Acrobacia) do usuário",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Kit de Escalada",
+        "itens": [
+          "kit_de_escalada"
+        ]
       }
     },
     {
@@ -160,6 +393,32 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "usar_objeto": {
+        "acao": "Reparar um rasgo em uma roupa (CD 10) ou costurar um ornamento Minúsculo",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Armadura Acolchoada, Cesta, Cobertor, Saco de Dormir, Roupas Finas, Rede, Túnica, Corda, Saca, Cordão, Tenda, Roupas de Viagem",
+        "itens": [
+          "acolchoada",
+          "cesta",
+          "cobertor",
+          "saco_de_dormir",
+          "roupas_finas",
+          "rede",
+          "tunica",
+          "corda",
+          "saca",
+          "cordao",
+          "tenda",
+          "roupas_viagem"
+        ]
       }
     },
     {
@@ -174,6 +433,24 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 30,
+        "moeda": "po",
+        "em_pc": 3000
+      },
+      "usar_objeto": {
+        "acao": "Discernir como um objeto de vidro foi manuseado nas últimas 24 horas",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Frasco, Jarro, Luneta, Lupa",
+        "itens": [
+          "frasco",
+          "jarro",
+          "luneta",
+          "lupa"
+        ]
       }
     },
     {
@@ -188,6 +465,26 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "usar_objeto": {
+        "acao": "Identificar uma substância (CD 15) ou iniciar um incêndio",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Ácido, Bolsa de Componentes, Fogo Alquímico, Óleo, Papel, Perfume",
+        "itens": [
+          "acido",
+          "bolsa_de_componentes",
+          "fogo_alquimico",
+          "oleo",
+          "papel",
+          "perfume"
+        ]
       }
     },
     {
@@ -202,6 +499,27 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "usar_objeto": {
+        "acao": "Escrever texto com uma caligrafia que protege contra falsificação",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Pergaminho Mágico, Tinta",
+        "itens": [
+          "tinta"
+        ],
+        "nao_resolvidos": [
+          {
+            "texto": "Pergaminho Mágico",
+            "motivo": "descrição genérica, não é um item único"
+          }
+        ]
       }
     },
     {
@@ -216,6 +534,21 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 20,
+        "moeda": "po",
+        "em_pc": 2000
+      },
+      "usar_objeto": {
+        "acao": "Detectar bebida envenenada (CD 15) ou identificar álcool",
+        "cd": 15
+      },
+      "fabricacao": {
+        "texto": "Antitoxina",
+        "itens": [
+          "antitoxina"
+        ]
       }
     },
     {
@@ -230,6 +563,25 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 10,
+        "moeda": "po",
+        "em_pc": 1000
+      },
+      "fabricacao": {
+        "texto": "Foco Druídico, Símbolo Sagrado",
+        "itens": [],
+        "nao_resolvidos": [
+          {
+            "texto": "Foco Druídico",
+            "motivo": "descrição genérica, não é um item único"
+          },
+          {
+            "texto": "Símbolo Sagrado",
+            "motivo": "descrição genérica, não é um item único"
+          }
+        ]
       }
     },
     {
@@ -244,6 +596,21 @@
         "capitulo": 6,
         "pagina_livro": 220,
         "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 1,
+        "moeda": "po",
+        "em_pc": 100
+      },
+      "usar_objeto": {
+        "acao": "Melhorar o sabor dos alimentos (CD 10) ou detectar alimentos estragados ou envenenados",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Rações",
+        "itens": [
+          "racoes"
+        ]
       }
     },
     {
@@ -255,8 +622,17 @@
       "peso_kg": 0.5,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "usar_objeto": {
+        "acao": "Abrir uma fechadura (CD 15) ou desarmar uma armadilha",
+        "cd": 15
       }
     },
     {
@@ -268,8 +644,17 @@
       "peso_kg": 1.0,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "usar_objeto": {
+        "acao": "Traçar uma rota (CD 10) ou determinar a posição observando as estrelas",
+        "cd": 10
       }
     },
     {
@@ -281,8 +666,8 @@
       "peso_kg": null,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
       },
       "variantes": [
         "Alaúde",
@@ -296,7 +681,14 @@
         "Violino",
         "Xilofone"
       ],
-      "nota": "Custo e peso variam conforme a variante."
+      "nota": "Custo e peso variam conforme a variante.",
+      "custo": null,
+      "custo_varia": true,
+      "peso_varia": true,
+      "usar_objeto": {
+        "acao": "Tocar uma música conhecida (CD 10) ou improvisar uma música",
+        "cd": 10
+      }
     },
     {
       "id": "kit_de_disfarce",
@@ -307,8 +699,23 @@
       "peso_kg": 1.5,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 25,
+        "moeda": "po",
+        "em_pc": 2500
+      },
+      "usar_objeto": {
+        "acao": "Aplicar maquiagem",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Fantasia",
+        "itens": [
+          "roupas_fantasia"
+        ]
       }
     },
     {
@@ -320,8 +727,17 @@
       "peso_kg": 2.5,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 15,
+        "moeda": "po",
+        "em_pc": 1500
+      },
+      "usar_objeto": {
+        "acao": "Imitar 10 ou menos palavras escritas de outra pessoa (CD 15) ou duplicar um selo de cera",
+        "cd": 15
       }
     },
     {
@@ -333,8 +749,26 @@
       "peso_kg": 1.5,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 5,
+        "moeda": "po",
+        "em_pc": 500
+      },
+      "usar_objeto": {
+        "acao": "Identificar uma planta",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Antitoxina, Kit de Curandeiro, Poção de Cura, Vela",
+        "itens": [
+          "antitoxina",
+          "kit_de_curandeiro",
+          "pocao_de_cura",
+          "vela"
+        ]
       }
     },
     {
@@ -346,8 +780,8 @@
       "peso_kg": null,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
       },
       "variantes": [
         "Dados",
@@ -355,7 +789,13 @@
         "Baralho",
         "Conjunto do Jogo dos Três Dragões"
       ],
-      "nota": "Custo e peso variam conforme a variante."
+      "nota": "Custo e peso variam conforme a variante.",
+      "custo": null,
+      "custo_varia": true,
+      "usar_objeto": {
+        "acao": "Discernir se alguém está trapaceando (CD 10) ou ganhar o jogo",
+        "cd": 10
+      }
     },
     {
       "id": "kit_de_veneno",
@@ -366,10 +806,26 @@
       "peso_kg": 1.0,
       "fonte": {
         "capitulo": 6,
-        "pagina_livro": 221,
-        "pagina_pdf": 225
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      },
+      "custo": {
+        "valor": 50,
+        "moeda": "po",
+        "em_pc": 5000
+      },
+      "usar_objeto": {
+        "acao": "Detectar um objeto envenenado",
+        "cd": 10
+      },
+      "fabricacao": {
+        "texto": "Veneno Básico",
+        "itens": [
+          "veneno_basico"
+        ]
       }
     }
   ],
-  "nota": "Cada Ferramenta de Artesão exige proficiência separada. Proficiência soma o BP ao teste; proficiência na perícia usada no mesmo teste dá Vantagem. Listas de 'Fabricação' de cada ferramenta não foram extraídas nesta fase (dependem do catálogo de itens do cap. 6)."
+  "nota": "As 25 ferramentas do capítulo 6 (p. 220-222), com atributo, peso, custo, o teste de Usar Objeto e a lista de Fabricação.",
+  "parcial": false
 }

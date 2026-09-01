@@ -12,25 +12,91 @@
       "id": "passo_provocante",
       "nome": "Passo Provocante",
       "nivel_minimo": 3,
-      "descricao_curta": "Criaturas a até 1,5 m do espaço que você deixou fazem salvaguarda de Sabedoria ou têm Desvantagem em ataques contra outros que não você até o início do seu próximo turno."
+      "descricao_curta": "Criaturas a até 1,5 m do espaço que você deixou fazem salvaguarda de Sabedoria ou têm Desvantagem em ataques contra outros que não você até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "beneficiario": "criaturas_a_ate_1_5m_do_espaco_de_saida",
+          "excecao_de_alvo": [
+            "voce"
+          ],
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ]
+          },
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ]
     },
     {
       "id": "passo_revigorante",
       "nome": "Passo Revigorante",
       "nivel_minimo": 3,
-      "descricao_curta": "Você ou criatura à vista a até 3 m ganha 1d10 Pontos de Vida Temporários."
+      "descricao_curta": "Você ou criatura à vista a até 3 m ganha 1d10 Pontos de Vida Temporários.",
+      "efeitos": [
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "formula": [
+            "1d10"
+          ],
+          "beneficiario": "voce_ou_criatura_a_vista_a_ate_3m",
+          "momento": "imediatamente_apos_o_teleporte"
+        }
+      ]
     },
     {
       "id": "passo_desvanecedor",
       "nome": "Passo Desvanecedor",
       "nivel_minimo": 6,
-      "descricao_curta": "Fica Invisível até o início do seu próximo turno ou até atacar, causar dano ou conjurar."
+      "descricao_curta": "Fica Invisível até o início do seu próximo turno ou até atacar, causar dano ou conjurar.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "invisivel",
+          "beneficiario": "voce",
+          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "encerra_se": [
+            {
+              "gatilho": "jogada_de_ataque"
+            },
+            {
+              "gatilho": "causar_dano"
+            },
+            {
+              "gatilho": "conjurar_magia"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "passo_terrivel",
       "nome": "Passo Terrível",
       "nivel_minimo": 6,
-      "descricao_curta": "Criaturas a até 1,5 m do espaço de saída ou de chegada fazem salvaguarda de Sabedoria ou sofrem 2d10 de dano Psíquico."
+      "descricao_curta": "Criaturas a até 1,5 m do espaço de saída ou de chegada fazem salvaguarda de Sabedoria ou sofrem 2d10 de dano Psíquico.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "2d10",
+          "tipo_dano": "psiquico",
+          "alvo": "criaturas_a_ate_1_5m_do_espaco_escolhido",
+          "escolha_de_espaco": [
+            "saida",
+            "chegada"
+          ],
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ],
+            "em_sucesso": "nenhum_dano"
+          }
+        }
+      ]
     }
   ]
 }

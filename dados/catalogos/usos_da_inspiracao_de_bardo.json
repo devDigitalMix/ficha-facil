@@ -1,0 +1,63 @@
+{
+  "catalogo": "usos_da_inspiracao_de_bardo",
+  "nome": "Usos da Inspiração de Bardo",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 64,
+    "pagina_pdf": 68
+  },
+  "nota": "A classe entra com o uso padrão; o Colégio da Bravura acrescenta os dois de combate. Catálogo expansível por subclasse.",
+  "expansivel_por_subclasse": true,
+  "total": 3,
+  "itens": [
+    {
+      "id": "padrao",
+      "nome": "Virar uma falha em sucesso",
+      "descricao_curta": "Depois de falhar num Teste de D20, soma o dado e pode transformar a falha em sucesso.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_d20",
+          "valor": [
+            "coluna:dados_de_inspiracao"
+          ],
+          "empilha": "soma",
+          "momento": "apos_falhar"
+        }
+      ]
+    },
+    {
+      "id": "defensivo",
+      "nome": "Defensivo",
+      "descricao_curta": "Reação, ao ser atingida: soma o dado à própria CA contra aquele ataque, podendo fazer errar.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": [
+            "coluna:dados_de_inspiracao"
+          ],
+          "empilha": "soma",
+          "custo": "reacao",
+          "duracao": "contra_o_ataque_que_disparou"
+        }
+      ]
+    },
+    {
+      "id": "ofensivo",
+      "nome": "Ofensivo",
+      "descricao_curta": "Depois de acertar um ataque: soma o dado ao dano.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "coluna:dados_de_inspiracao"
+          ],
+          "empilha": "soma",
+          "momento": "apos_acertar"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+Date : 2026-09-01 14:24:49
+Directory : e:\workspace-joao\apis\projetos\ficha-facil
+Total : 32 files,  6754 codes, 77 comments, 182 blanks, all 7013 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| JSON     |         22 |      5,364 |          0 |          0 |      5,364 |
+| Python   |          6 |      1,155 |         77 |         95 |      1,327 |
+| Markdown |          4 |        235 |          0 |         87 |        322 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                             | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                |         32 |      6,754 |         77 |        182 |      7,013 |
+| . (Files)                                                                                        |          5 |        308 |         21 |         92 |        421 |
+| dados                                                                                            |         22 |      5,364 |          0 |          0 |      5,364 |
+| dados (Files)                                                                                    |          3 |      4,113 |          0 |          0 |      4,113 |
+| dados\catalogos                                                                                  |         19 |      1,251 |          0 |          0 |      1,251 |
+| geradores                                                                                        |          5 |      1,082 |         56 |         90 |      1,228 |
++--------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                         | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| e:\workspace-joao\apis\projetos\ficha-facil\PENDENCIAS.md                                        | Markdown |         18 |          0 |          3 |         21 |
+| e:\workspace-joao\apis\projetos\ficha-facil\PLANO-APP.md                                         | Markdown |         54 |          0 |         24 |         78 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\caracteristicas.json                           | JSON     |      3,131 |          0 |          0 |      3,131 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\alvos.json                           | JSON     |         15 |          0 |          0 |         15 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\alvos_de_impedimento.json            | JSON     |          5 |          0 |          0 |          5 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\beneficios_do_terceiro_olho.json     | JSON     |         28 |          0 |          0 |         28 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\constelacoes.json                    | JSON     |         52 |          0 |          0 |         52 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\efeitos_da_mao_espalmada.json        | JSON     |         41 |          0 |          0 |         41 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\efeitos_de_canalizar_divindade.json  | JSON     |         93 |          0 |          0 |         93 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\efeitos_de_golpe_astuto.json         | JSON     |        215 |          0 |          0 |        215 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\efeitos_de_golpe_brutal.json         | JSON     |        109 |          0 |          0 |        109 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\efeitos_dos_passos_feericos.json     | JSON     |         64 |          0 |          0 |         64 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\opcoes_de_aspecto_dos_selvagens.json | JSON     |         54 |          0 |          0 |         54 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\opcoes_de_furia_dos_selvagens.json   | JSON     |         85 |          0 |          0 |         85 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\opcoes_de_furia_elemental.json       | JSON     |         50 |          0 |          0 |         50 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\opcoes_de_golpes_abencoados.json     | JSON     |         31 |          0 |          0 |         31 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\opcoes_de_poder_dos_selvagens.json   | JSON     |         74 |          0 |          0 |         74 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\ordens_divinas.json                  | JSON     |         62 |          0 |          0 |         62 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\ordens_primais.json                  | JSON     |         62 |          0 |          0 |         62 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\talentos.json                        | JSON     |         12 |          0 |          0 |         12 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\terrenos_druidicos.json              | JSON     |        176 |          0 |          0 |        176 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\catalogos\tipos_de_efeito.json                 | JSON     |         23 |          0 |          0 |         23 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\classes.json                                   | JSON     |        760 |          0 |          0 |        760 |
+| e:\workspace-joao\apis\projetos\ficha-facil\dados\subclasses.json                                | JSON     |        222 |          0 |          0 |        222 |
+| e:\workspace-joao\apis\projetos\ficha-facil\geradores\gerar_barbaro.py                           | Python   |         83 |          2 |          5 |         90 |
+| e:\workspace-joao\apis\projetos\ficha-facil\geradores\gerar_barbaro_car.py                       | Python   |        242 |          5 |         22 |        269 |
+| e:\workspace-joao\apis\projetos\ficha-facil\geradores\gerar_efeitos_de_opcao.py                  | Python   |        163 |         15 |         15 |        193 |
+| e:\workspace-joao\apis\projetos\ficha-facil\geradores\gerar_ladino.py                            | Python   |        348 |          6 |         26 |        380 |
+| e:\workspace-joao\apis\projetos\ficha-facil\geradores\gerar_varredura_opcoes.py                  | Python   |        246 |         28 |         22 |        296 |
+| e:\workspace-joao\apis\projetos\ficha-facil\revisao-fase2-barbaro-ladino.md                      | Markdown |         88 |          0 |         33 |        121 |
+| e:\workspace-joao\apis\projetos\ficha-facil\revisao-varredura-opcoes.md                          | Markdown |         75 |          0 |         27 |        102 |
+| e:\workspace-joao\apis\projetos\ficha-facil\validar.py                                           | Python   |         73 |         21 |          5 |         99 |
+| Total                                                                                            |          |      6,754 |         77 |        182 |      7,013 |
++--------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

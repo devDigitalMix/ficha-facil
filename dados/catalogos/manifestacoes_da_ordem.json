@@ -1,0 +1,49 @@
+{
+  "catalogo": "manifestacoes_da_ordem",
+  "nome": "Manifestações da Ordem",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 111,
+    "pagina_pdf": 115
+  },
+  "nota": "Tabela puramente descritiva (1d6): diz como a conexão com a ordem aparece quando o Feiticeiro Mecânico conjura. Não tem efeito mecânico — por isso é catálogo de vocabulário.",
+  "total": 6,
+  "itens": [
+    {
+      "id": "engrenagens_espectrais",
+      "nome": "Engrenagens espectrais pairam atrás de você",
+      "resultado_1d6": 1,
+      "descricao_curta": "Engrenagens espectrais pairam atrás de você."
+    },
+    {
+      "id": "ponteiros_nos_olhos",
+      "nome": "Os ponteiros de um relógio giram em seus olhos",
+      "resultado_1d6": 2,
+      "descricao_curta": "Os ponteiros de um relógio giram em seus olhos."
+    },
+    {
+      "id": "reflexo_acobreado",
+      "nome": "Sua pele brilha com um reflexo acobreado",
+      "resultado_1d6": 3,
+      "descricao_curta": "Sua pele brilha com um reflexo acobreado."
+    },
+    {
+      "id": "equacoes_flutuantes",
+      "nome": "Equações flutuantes e objetos geométricos se sobrepõem ao seu corpo",
+      "resultado_1d6": 4,
+      "descricao_curta": "Equações flutuantes e objetos geométricos se sobrepõem ao seu corpo."
+    },
+    {
+      "id": "foco_de_relojoaria",
+      "nome": "Seu Foco de Conjuração assume temporariamente a forma de um mecanismo de relógio Minúsculo",
+      "resultado_1d6": 5,
+      "descricao_curta": "Seu Foco de Conjuração assume temporariamente a forma de um mecanismo de relógio Minúsculo."
+    },
+    {
+      "id": "tique_taque",
+      "nome": "O tique-taque das engrenagens ou o toque de um relógio podem ser ouvidos por você e por quem é afetado por sua magia",
+      "resultado_1d6": 6,
+      "descricao_curta": "O tique-taque das engrenagens ou o toque de um relógio podem ser ouvidos por você e por quem é afetado por sua magia."
+    }
+  ]
+}

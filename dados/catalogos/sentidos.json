@@ -6,7 +6,7 @@
     "pagina_livro": 377,
     "pagina_pdf": 381
   },
-  "total": 5,
+  "total": 6,
   "itens": [
     {
       "id": "visao_as_cegas",
@@ -36,6 +36,11 @@
         "10",
         "bonus_teste:SAB.percepcao"
       ]
+    },
+    {
+      "id": "ver_invisivel",
+      "nome": "Ver o Invisível",
+      "descricao_curta": "Enxerga criaturas com a condição Invisível dentro do alcance indicado."
     }
   ]
 }

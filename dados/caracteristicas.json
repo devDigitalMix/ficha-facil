@@ -1,6 +1,6 @@
 {
   "colecao": "caracteristicas",
-  "total": 194,
+  "total": 320,
   "itens": [
     {
       "id": "artes_marciais",
@@ -129,7 +129,10 @@
               "flag:sem_escudo"
             ]
           },
-          "empilha": "substitui"
+          "empilha": "substitui",
+          "id": "ca_defesa_sem_armadura",
+          "concorre_como": "calculo_de_ca_base",
+          "nota": "Concorre com os demais cálculos de CA base; o jogador escolhe um, não se somam (Ap. C, 'Classe de Armadura')."
         }
       ]
     },
@@ -1008,9 +1011,12 @@
           },
           "em_falha": [
             {
-              "tipo": "efeito_narrativo",
-              "chave": "empurrao",
-              "texto": "Empurra o alvo até 4,5 metros para longe de você."
+              "tipo": "movimento_forcado",
+              "direcao": "empurrar",
+              "distancia_m": 4.5,
+              "origem": "voce",
+              "alvo": "alvo",
+              "nota": "Antes era efeito_narrativo; virou efeito com o tipo movimento_forcado."
             }
           ]
         }
@@ -4388,7 +4394,7 @@
           ],
           "frequencia": "uma_vez_por_turno",
           "alvo": [
-            "seu_teste_d20",
+            "teste_d20",
             "teste_d20_de_criatura_a_vista"
           ],
           "momento": "antes_da_jogada",
@@ -6686,12 +6692,20 @@
               "proficiencias_de_pericia_e_salvaguarda"
             ],
             "substitui": "as demais estatísticas pelo bloco da Fera; se a perícia ou salvaguarda do bloco for maior, use a do bloco",
-            "pv_temporarios": [
-              "nivel_classe:druida"
-            ],
             "conjuracao": "não pode conjurar, mas a multimorfia não quebra Concentração nem interfere em magia já conjurada",
             "equipamento": "cai no espaço, funde-se à forma ou é usado por ela, à escolha; o que a forma não puder usar cai ou se funde e fica sem efeito"
-          }
+          },
+          "efeitos": [
+            {
+              "tipo": "pontos_de_vida_temporarios",
+              "formula": [
+                "nivel_classe:druida"
+              ],
+              "beneficiario": "voce",
+              "momento": "ao_assumir_a_forma",
+              "nota": "Antes isto era um campo solto dentro de regras_enquanto_multimorfado; virou efeito para o backend não precisar conhecer o nome do campo. O Círculo da Lua substitui esta fórmula por três vezes o nível de Druida."
+            }
+          ]
         },
         {
           "id": "druida_formas_conhecidas",
@@ -7022,7 +7036,10 @@
                 "todas": [
                   "em_forma_selvagem"
                 ]
-              }
+              },
+              "id": "ca_formas_animais_dos_circulos_druidicos",
+              "concorre_como": "calculo_de_ca_base",
+              "nota": "Concorre com os demais cálculos de CA base; o jogador escolhe um, não se somam (Ap. C, 'Classe de Armadura')."
             },
             {
               "tipo": "pontos_de_vida_temporarios",
@@ -8038,9 +8055,13 @@
               "alvo": "criatura_a_vista_na_emanacao"
             },
             {
-              "tipo": "efeito_narrativo",
-              "chave": "empurrao_do_mar",
-              "texto": "Alvo Grande ou menor que falhar é empurrado até 4,5 metros para longe de você."
+              "tipo": "movimento_forcado",
+              "direcao": "empurrar",
+              "distancia_m": 4.5,
+              "origem": "voce",
+              "alvo": "criatura_que_falhou_na_salvaguarda",
+              "restricao_de_tamanho": "grande_ou_menor",
+              "nota": "Antes era efeito_narrativo; virou efeito com o tipo movimento_forcado."
             }
           ]
         }
@@ -9733,6 +9754,5974 @@
         }
       ],
       "subclasse": "dominio_da_vida"
+    },
+    {
+      "id": "furia",
+      "nome": "Fúria",
+      "classe": "barbaro",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 51,
+        "pagina_pdf": 55
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para entrar em Fúria (não pode com armadura Pesada). Enquanto ativa: Resistência a Contundente, Cortante e Perfurante; bônus de dano em ataques com Força; Vantagem em testes e salvaguardas de Força; não pode conjurar nem manter Concentração. Dura até o fim do próximo turno, estendendo-se com ataque, salvaguarda forçada ou Ação Bônus, até 10 minutos.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "furia",
+          "nome": "Fúrias",
+          "formula_maximo": [
+            "coluna:furias"
+          ],
+          "recarga": [
+            {
+              "gatilho": "descanso_curto",
+              "quantidade": 1
+            },
+            {
+              "gatilho": "descanso_longo",
+              "quantidade": "todos"
+            }
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "furia",
+          "recurso_id": "furia",
+          "custo": "acao_bonus",
+          "pre_requisitos": [
+            {
+              "tipo": "estado",
+              "nao": "armadura:pesada"
+            }
+          ],
+          "duracao": "ate_o_fim_do_seu_proximo_turno",
+          "duracao_maxima": "10 minutos",
+          "extensao": {
+            "gatilhos": [
+              "jogada_de_ataque_contra_inimigo",
+              "forcar_salvaguarda_de_inimigo",
+              "acao_bonus"
+            ],
+            "efeito": "estende até o fim do seu próximo turno"
+          },
+          "encerra_se": [
+            {
+              "gatilho": "vestir_armadura_pesada"
+            },
+            {
+              "condicao_id": "incapacitado"
+            }
+          ],
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "contundente",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "cortante",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "perfurante",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "coluna:dano_da_furia"
+              ],
+              "empilha": "soma",
+              "condicao": {
+                "todas": [
+                  "ataque_com_forca"
+                ]
+              }
+            },
+            {
+              "tipo": "vantagem",
+              "alvo": "teste_de_atributo:FOR",
+              "modo": "vantagem"
+            },
+            {
+              "tipo": "vantagem",
+              "alvo": "salvaguarda:FOR",
+              "modo": "vantagem"
+            },
+            {
+              "tipo": "impedir",
+              "alvo": "concentracao"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defesa_sem_armadura_barbaro",
+      "nome": "Defesa sem Armadura",
+      "classe": "barbaro",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 51,
+        "pagina_pdf": 55
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sem armadura, sua CA base é 10 + modificador de Destreza + modificador de Constituição. Pode usar Escudo e manter o benefício.",
+      "efeitos": [
+        {
+          "tipo": "ca_base",
+          "formula": [
+            "10",
+            "mod:DES",
+            "mod:CON"
+          ],
+          "permite_escudo": true,
+          "condicao": {
+            "todas": [
+              "flag:sem_armadura"
+            ]
+          },
+          "empilha": "substitui",
+          "id": "ca_defesa_sem_armadura_barbaro",
+          "concorre_como": "calculo_de_ca_base",
+          "nota": "Concorre com os demais cálculos de CA base; o jogador escolhe um, não se somam (Ap. C, 'Classe de Armadura')."
+        }
+      ]
+    },
+    {
+      "id": "maestria_em_arma_barbaro",
+      "nome": "Maestria em Arma",
+      "classe": "barbaro",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 51,
+        "pagina_pdf": 55
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usa as propriedades de maestria de tipos de armas Corpo a Corpo Simples ou Marciais à escolha, conforme a coluna Maestria em Armas. Troca uma escolha a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "barbaro_maestrias",
+          "tipo": "escolha",
+          "rotulo": "Escolha os tipos de arma com maestria",
+          "quantidade": "coluna:maestria_em_arma",
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "reescolha_quantidade": 1,
+          "de": {
+            "catalogo": "itens",
+            "pendente": true,
+            "filtro": {
+              "categoria": "arma",
+              "grupo": [
+                "simples",
+                "marcial"
+              ],
+              "alcance": "corpo_a_corpo"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "maestria_liberada",
+            "arma": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ataque_imprudente",
+      "nome": "Ataque Imprudente",
+      "classe": "barbaro",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 52,
+        "pagina_pdf": 56
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Na primeira jogada de ataque do turno, pode atacar imprudentemente: Vantagem em ataques com Força até o início do próximo turno, mas ataques contra você também têm Vantagem.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "ataque_com_forca"
+            ]
+          },
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque_contra_voce",
+          "modo": "vantagem",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "sentido_de_perigo",
+      "nome": "Sentido de Perigo",
+      "classe": "barbaro",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 52,
+        "pagina_pdf": 56
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vantagem em salvaguardas de Destreza, salvo se estiver Incapacitado.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda:DES",
+          "modo": "vantagem",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        }
+      ]
+    },
+    {
+      "id": "conhecimento_primordial",
+      "nome": "Conhecimento Primordial",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 52,
+        "pagina_pdf": 56
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Mais uma perícia da lista do Bárbaro. Em Fúria, pode fazer testes de Acrobacia, Furtividade, Intimidação, Percepção ou Sobrevivência como testes de Força.",
+      "efeitos": [
+        {
+          "id": "barbaro_pericia_extra",
+          "tipo": "escolha",
+          "rotulo": "Escolha mais uma perícia",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "de": {
+            "catalogo": "pericias",
+            "chaves": [
+              "atletismo",
+              "intimidacao",
+              "lidar_com_animais",
+              "natureza",
+              "percepcao",
+              "sobrevivencia"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        },
+        {
+          "tipo": "substituir_atributo",
+          "de": "atributo_normal",
+          "para": "FOR",
+          "escopo": [
+            "teste_de_atributo"
+          ],
+          "aplica_a": [
+            "acrobacia",
+            "furtividade",
+            "intimidacao",
+            "percepcao",
+            "sobrevivencia"
+          ],
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "subclasse_de_barbaro",
+      "nome": "Subclasse de Bárbaro",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 52,
+        "pagina_pdf": 56
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe uma trilha; as características chegam nos níveis 3, 6, 10 e 14.",
+      "efeitos": [
+        {
+          "id": "barbaro_escolha_de_subclasse",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma trilha",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "de": {
+            "catalogo": "subclasses",
+            "filtro": {
+              "classe": "barbaro"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_subclasse",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "movimento_rapido",
+      "nome": "Movimento Rápido",
+      "classe": "barbaro",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 52,
+        "pagina_pdf": 56
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Deslocamento aumenta em 3 metros enquanto não usar Armadura Pesada.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "3"
+          ],
+          "unidade": "m",
+          "empilha": "soma",
+          "condicao": {
+            "nao": "armadura:pesada"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bote_instintivo",
+      "nome": "Bote Instintivo",
+      "classe": "barbaro",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Como parte da Ação Bônus para entrar em Fúria, move até metade do Deslocamento.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "movimento_ao_entrar_em_furia",
+          "gatilho": "entrar_em_furia",
+          "texto": "Move até metade do Deslocamento como parte da mesma Ação Bônus."
+        }
+      ]
+    },
+    {
+      "id": "instintos_primitivos",
+      "nome": "Instintos Primitivos",
+      "classe": "barbaro",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vantagem nas jogadas de Iniciativa.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "iniciativa",
+          "modo": "vantagem"
+        }
+      ]
+    },
+    {
+      "id": "golpe_brutal",
+      "nome": "Golpe Brutal",
+      "classe": "barbaro",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usando Ataque Imprudente, abre mão da Vantagem numa jogada de ataque com Força (que não tenha Desvantagem): acertando, causa 1d10 extra do tipo da arma e aplica um efeito de Golpe Brutal à escolha.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d10",
+          "tipo_dano": "mesmo_do_ataque",
+          "modo": "dano_adicional",
+          "condicao": {
+            "todas": [
+              "usou:ataque_imprudente",
+              "abriu_mao_da_vantagem",
+              {
+                "nao": "desvantagem_na_jogada"
+              }
+            ]
+          }
+        },
+        {
+          "id": "barbaro_golpe_brutal",
+          "tipo": "escolha",
+          "rotulo": "Escolha o efeito de Golpe Brutal",
+          "quantidade": 1,
+          "momento": "no_acerto",
+          "reescolhivel": true,
+          "de": {
+            "catalogo": "efeitos_de_golpe_brutal",
+            "todo_o_catalogo": true,
+            "respeitar_nivel_minimo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "furia_implacavel",
+      "nome": "Fúria Implacável",
+      "classe": "barbaro",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao chegar a 0 PV em Fúria sem morrer na hora, salvaguarda de Constituição CD 10: passando, seus PV viram o dobro do seu nível de Bárbaro. A CD sobe 5 a cada uso e volta a 10 em qualquer descanso.",
+      "efeitos": [
+        {
+          "tipo": "cura",
+          "formula": [
+            {
+              "op": "mult",
+              "args": [
+                "2",
+                "nivel_classe:barbaro"
+              ]
+            }
+          ],
+          "modo": "define_pv",
+          "gatilho": "chegar_a_0_pv",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          },
+          "salvaguarda": {
+            "atributo": "CON",
+            "cd": 10,
+            "cd_escalonavel": {
+              "incremento": 5,
+              "reseta_em": [
+                "descanso_curto",
+                "descanso_longo"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "golpe_brutal_fortalecido_13",
+      "nome": "Golpe Brutal Fortalecido",
+      "classe": "barbaro",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": "A tabela (p. 52) chama os níveis 13 e 17 de 'Golpe Brutal Aprimorado'; os títulos do corpo do texto dizem 'Golpe Brutal Fortalecido' nos dois. Adotei o título do corpo. São duas seções tituladas distintas com o mesmo nome, então viraram duas características, com id sufixado pelo nível."
+      },
+      "descricao_curta": "Golpe Atordoante e Golpe Destruidor entram nas opções de Golpe Brutal.",
+      "nome_na_tabela": "Golpe Brutal Aprimorado",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_brutal",
+          "efeitos": [
+            {
+              "tipo": "expandir_opcoes_de_escolha",
+              "escolha_id": "barbaro_golpe_brutal",
+              "catalogo": "efeitos_de_golpe_brutal",
+              "chaves": [
+                "golpe_atordoante",
+                "golpe_destruidor"
+              ],
+              "nota": "As duas opções já constam do catálogo com nivel_minimo 13; esta característica é o que as libera."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "golpe_brutal_fortalecido_17",
+      "nome": "Golpe Brutal Fortalecido",
+      "classe": "barbaro",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": "A tabela (p. 52) chama os níveis 13 e 17 de 'Golpe Brutal Aprimorado'; os títulos do corpo do texto dizem 'Golpe Brutal Fortalecido' nos dois. Adotei o título do corpo. São duas seções tituladas distintas com o mesmo nome, então viraram duas características, com id sufixado pelo nível."
+      },
+      "descricao_curta": "O dano adicional do Golpe Brutal passa a 2d10 e você aplica dois efeitos diferentes por uso.",
+      "nome_na_tabela": "Golpe Brutal Aprimorado",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_brutal",
+          "efeitos": [
+            {
+              "tipo": "dano",
+              "formula_dado": "2d10",
+              "tipo_dano": "mesmo_do_ataque",
+              "modo": "substitui_dado_da_caracteristica"
+            },
+            {
+              "tipo": "alterar_quantidade_de_escolha",
+              "escolha_id": "barbaro_golpe_brutal",
+              "quantidade": 2,
+              "modo": "substitui_quantidade",
+              "restricao": "efeitos_diferentes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "furia_persistente",
+      "nome": "Fúria Persistente",
+      "classe": "barbaro",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao jogar Iniciativa, recupera todos os usos de Fúria (uma vez por Descanso Longo). A Fúria passa a durar 10 minutos sem precisar ser estendida, e só encerra se você ficar Inconsciente ou vestir armadura Pesada.",
+      "efeitos": [
+        {
+          "tipo": "restaurar_recurso",
+          "recurso_id": "furia",
+          "quantidade": "total",
+          "gatilho": "jogar_iniciativa",
+          "recarga": [
+            "descanso_longo"
+          ]
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "furia",
+          "efeitos": [
+            {
+              "tipo": "furia",
+              "duracao": "10 minutos",
+              "modo": "substitui_duracao",
+              "encerra_se": [
+                {
+                  "condicao_id": "inconsciente"
+                },
+                {
+                  "gatilho": "vestir_armadura_pesada"
+                }
+              ],
+              "dispensa_extensao": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca_indomavel",
+      "nome": "Força Indomável",
+      "classe": "barbaro",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Se o total do seu teste ou salvaguarda de Força for menor que seu valor de Força, use o valor de Força no lugar.",
+      "efeitos": [
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": [
+            "teste_de_atributo:FOR",
+            "salvaguarda:FOR"
+          ],
+          "minimo": "attr:FOR"
+        }
+      ]
+    },
+    {
+      "id": "campeao_primitivo",
+      "nome": "Campeão Primitivo",
+      "classe": "barbaro",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Força e Constituição aumentam em 4, até o máximo de 25.",
+      "efeitos": [
+        {
+          "tipo": "aumento_atributo",
+          "distribuicao": {
+            "FOR": 4,
+            "CON": 4
+          },
+          "limite": 25
+        }
+      ]
+    },
+    {
+      "id": "vitalidade_da_arvore",
+      "nome": "Vitalidade da Árvore",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 54,
+        "pagina_pdf": 58
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao entrar em Fúria, ganha PV temporários iguais ao nível de Bárbaro. E, no início de cada turno em Fúria, pode dar a outra criatura a até 3 m PV temporários iguais a tantos d6 quanto seu bônus de Dano da Fúria.",
+      "efeitos": [
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "formula": [
+            "nivel_classe:barbaro"
+          ],
+          "gatilho": "entrar_em_furia"
+        },
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "beneficiario": "criatura_a_ate_3m",
+          "formula": [
+            {
+              "op": "mult",
+              "args": [
+                "coluna:dano_da_furia",
+                "1d6"
+              ]
+            }
+          ],
+          "momento": "inicio_do_seu_turno",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          },
+          "nota": "Esses PV temporários desaparecem quando a Fúria termina."
+        }
+      ],
+      "subclasse": "trilha_da_arvore_do_mundo"
+    },
+    {
+      "id": "ramos_da_arvore",
+      "nome": "Ramos da Árvore",
+      "classe": "barbaro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 54,
+        "pagina_pdf": 58
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação quando criatura à vista começa o turno a até 9 m em Fúria: salvaguarda de Força ou é teleportada para perto de você, e você pode zerar o Deslocamento dela até o fim do turno.",
+      "efeitos": [
+        {
+          "tipo": "teleporte",
+          "custo": "reacao",
+          "beneficiario": "alvo",
+          "destino": "espaco_a_ate_1_5m_de_voce",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          },
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:FOR",
+              "prof"
+            ]
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "0"
+          ],
+          "empilha": "substitui",
+          "beneficiario": "alvo",
+          "duracao": "ate_o_fim_do_turno_atual"
+        }
+      ],
+      "subclasse": "trilha_da_arvore_do_mundo"
+    },
+    {
+      "id": "raizes_devastadoras",
+      "nome": "Raízes Devastadoras",
+      "classe": "barbaro",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 54,
+        "pagina_pdf": 58
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "No seu turno, +3 m de alcance com arma corpo a corpo Pesada ou Versátil; ao acertar, pode ativar Derrubar ou Empurrar além da maestria que já estiver usando.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "alcance_do_ataque_desarmado",
+          "valor": [
+            "3"
+          ],
+          "unidade": "m",
+          "empilha": "soma",
+          "aplica_a": "arma_corpo_a_corpo_pesada_ou_versatil",
+          "condicao": {
+            "todas": [
+              "seu_turno"
+            ]
+          }
+        },
+        {
+          "tipo": "substituir_maestria",
+          "escopo": "arma_corpo_a_corpo_pesada_ou_versatil",
+          "opcoes": [
+            "derrubar",
+            "empurrar"
+          ],
+          "modo": "adiciona_alem_da_atual"
+        }
+      ],
+      "subclasse": "trilha_da_arvore_do_mundo"
+    },
+    {
+      "id": "percorrer_a_arvore",
+      "nome": "Percorrer a Árvore",
+      "classe": "barbaro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao entrar em Fúria e com Ação Bônus durante ela, teleporta até 18 m. Uma vez por Fúria, o alcance vira 45 m e leva até seis criaturas voluntárias a até 3 m.",
+      "efeitos": [
+        {
+          "tipo": "teleporte",
+          "alcance_m": 18,
+          "custo": "acao_bonus",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          },
+          "requisitos": [
+            "destino_desocupado",
+            "destino_a_vista"
+          ]
+        },
+        {
+          "tipo": "teleporte",
+          "alcance_m": 45,
+          "frequencia": "uma_vez_por_furia",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          },
+          "leva_junto": {
+            "quantidade": 6,
+            "alcance_m": 3,
+            "criaturas": "voluntarias"
+          }
+        }
+      ],
+      "subclasse": "trilha_da_arvore_do_mundo"
+    },
+    {
+      "id": "frenesi",
+      "nome": "Frenesi",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usando Ataque Imprudente em Fúria, causa dano extra no primeiro alvo atingido no turno com ataque de Força: tantos d6 quanto seu bônus de Dano da Fúria, do tipo da arma.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": {
+            "op": "mult",
+            "args": [
+              "coluna:dano_da_furia",
+              "1d6"
+            ]
+          },
+          "tipo_dano": "mesmo_do_ataque",
+          "modo": "dano_adicional",
+          "frequencia": "primeiro_alvo_do_turno",
+          "condicao": {
+            "todas": [
+              "ativo:furia",
+              "usou:ataque_imprudente",
+              "ataque_com_forca"
+            ]
+          }
+        }
+      ],
+      "subclasse": "trilha_do_berserker"
+    },
+    {
+      "id": "furia_irracional",
+      "nome": "Fúria Irracional",
+      "classe": "barbaro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Imunidade às condições Amedrontado e Enfeitiçado em Fúria; se já estiver sob uma delas ao entrar em Fúria, ela encerra.",
+      "efeitos": [
+        {
+          "tipo": "alterar_condicao",
+          "condicao_id": "amedrontado",
+          "operacao": "imunidade",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        },
+        {
+          "tipo": "alterar_condicao",
+          "condicao_id": "enfeiticado",
+          "operacao": "imunidade",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        },
+        {
+          "tipo": "remover_condicao",
+          "condicoes": [
+            "amedrontado",
+            "enfeiticado"
+          ],
+          "quantidade": "todas",
+          "gatilho": "entrar_em_furia"
+        }
+      ],
+      "subclasse": "trilha_do_berserker"
+    },
+    {
+      "id": "retaliacao",
+      "nome": "Retaliação",
+      "classe": "barbaro",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao sofrer dano de criatura a até 1,5 m, Reação para atacá-la corpo a corpo com arma ou Ataque Desarmado.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "custo": "reacao",
+          "gatilho": "sofrer_dano_de_criatura_a_ate_1_5m"
+        }
+      ],
+      "subclasse": "trilha_do_berserker"
+    },
+    {
+      "id": "presenca_intimidante",
+      "nome": "Presença Intimidante",
+      "classe": "barbaro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus: criaturas à escolha numa Emanação de 9 m fazem salvaguarda de Sabedoria ou ficam Amedrontadas por 1 minuto, repetindo no fim de cada turno delas. Recarrega em Descanso Longo, ou gastando um uso de Fúria.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "presenca_intimidante",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome_recurso": "furia",
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "custo": "acao_bonus",
+          "beneficiario": "criaturas_a_escolha_na_emanacao",
+          "area": {
+            "forma": "emanacao",
+            "tamanho_m": 9
+          },
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:FOR",
+              "prof"
+            ]
+          },
+          "duracao": "1 minuto",
+          "repete_salvaguarda": "fim_de_cada_turno_do_alvo",
+          "consome_recurso": "presenca_intimidante"
+        }
+      ],
+      "subclasse": "trilha_do_berserker"
+    },
+    {
+      "id": "arauto_da_fauna",
+      "nome": "Arauto da Fauna",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Falar com Animais e Sentido Feral, mas só como Rituais, usando Sabedoria.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magias": [
+            "falar_com_animais",
+            "sentido_feral"
+          ],
+          "atributo_conjuracao": "SAB",
+          "apenas_como_ritual": true
+        }
+      ],
+      "subclasse": "trilha_do_coracao_selvagem"
+    },
+    {
+      "id": "furia_dos_selvagens",
+      "nome": "Fúria dos Selvagens",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "A cada Fúria, escolhe Águia, Lobo ou Urso.",
+      "efeitos": [
+        {
+          "id": "barbaro_furia_dos_selvagens",
+          "tipo": "escolha",
+          "rotulo": "Escolha o animal da Fúria",
+          "quantidade": 1,
+          "momento": "ao_entrar_em_furia",
+          "reescolhivel": true,
+          "de": {
+            "catalogo": "opcoes_de_furia_dos_selvagens",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "trilha_do_coracao_selvagem"
+    },
+    {
+      "id": "aspecto_dos_selvagens",
+      "nome": "Aspecto dos Selvagens",
+      "classe": "barbaro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe Coruja, Pantera ou Salmão; troca a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "barbaro_aspecto",
+          "tipo": "escolha",
+          "rotulo": "Escolha o aspecto",
+          "quantidade": 1,
+          "momento": "nivel_6",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "opcoes_de_aspecto_dos_selvagens",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "trilha_do_coracao_selvagem"
+    },
+    {
+      "id": "arauto_da_natureza",
+      "nome": "Arauto da Natureza",
+      "classe": "barbaro",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Comunhão com a Natureza, só como Ritual, usando Sabedoria.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magias": [
+            "comunhao_com_a_natureza"
+          ],
+          "atributo_conjuracao": "SAB",
+          "apenas_como_ritual": true
+        }
+      ],
+      "subclasse": "trilha_do_coracao_selvagem"
+    },
+    {
+      "id": "poder_dos_selvagens",
+      "nome": "Poder dos Selvagens",
+      "classe": "barbaro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "A cada Fúria, escolhe Carneiro, Falcão ou Leão.",
+      "efeitos": [
+        {
+          "id": "barbaro_poder_dos_selvagens",
+          "tipo": "escolha",
+          "rotulo": "Escolha o poder da Fúria",
+          "quantidade": 1,
+          "momento": "ao_entrar_em_furia",
+          "reescolhivel": true,
+          "de": {
+            "catalogo": "opcoes_de_poder_dos_selvagens",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "trilha_do_coracao_selvagem"
+    },
+    {
+      "id": "campeao_dos_deuses",
+      "nome": "Campeão dos Deuses",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reserva de d12s para se curar: começa com 4 e sobe para 5, 6 e 7 nos níveis 6, 12 e 17. Ação Bônus para gastar dados e recuperar PV. Recarrega em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "reserva_de_dados",
+          "id": "campeao_dos_deuses",
+          "dado": "d12",
+          "formula_quantidade": [
+            "4"
+          ],
+          "escalonamento_por_nivel": {
+            "6": 5,
+            "12": 6,
+            "17": 7
+          },
+          "recarga": [
+            "descanso_longo"
+          ]
+        },
+        {
+          "tipo": "cura",
+          "custo": "acao_bonus",
+          "formula": [
+            "dados_gastos:campeao_dos_deuses"
+          ]
+        }
+      ],
+      "subclasse": "trilha_do_fanatico"
+    },
+    {
+      "id": "furia_divina",
+      "nome": "Fúria Divina",
+      "classe": "barbaro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Em Fúria, a primeira criatura que você atinge a cada turno sofre 1d6 + metade do nível de Bárbaro (arredondado para baixo) de dano Necrótico ou Radiante, à sua escolha a cada vez.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d6",
+          "somar": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "nivel_classe:barbaro",
+                "2"
+              ]
+            }
+          ],
+          "escolher_tipo_de_dano": [
+            "necrotico",
+            "radiante"
+          ],
+          "modo": "dano_adicional",
+          "frequencia": "primeiro_alvo_do_turno",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ],
+      "subclasse": "trilha_do_fanatico"
+    },
+    {
+      "id": "concentracao_fanatica",
+      "nome": "Concentração Fanática",
+      "classe": "barbaro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Uma vez por Fúria, ao falhar numa salvaguarda, joga de novo com bônus igual ao Dano da Fúria e usa o novo resultado.",
+      "efeitos": [
+        {
+          "tipo": "rolar_novamente",
+          "alvo": "salvaguarda",
+          "gatilho": "falha",
+          "usa_novo_resultado": true,
+          "bonus": [
+            "coluna:dano_da_furia"
+          ],
+          "frequencia": "uma_vez_por_furia",
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ],
+      "subclasse": "trilha_do_fanatico"
+    },
+    {
+      "id": "presenca_zelosa",
+      "nome": "Presença Zelosa",
+      "classe": "barbaro",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus: até dez criaturas à escolha a até 18 m ganham Vantagem em ataques e salvaguardas até o início do seu próximo turno. Recarrega em Descanso Longo ou gastando um uso de Fúria.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "presenca_zelosa",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome_recurso": "furia",
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "custo": "acao_bonus",
+          "beneficiario": "ate_10_criaturas_a_ate_18m",
+          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "consome_recurso": "presenca_zelosa"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "vantagem",
+          "beneficiario": "ate_10_criaturas_a_ate_18m",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ],
+      "subclasse": "trilha_do_fanatico"
+    },
+    {
+      "id": "furia_dos_deuses",
+      "nome": "Fúria dos Deuses",
+      "classe": "barbaro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao entrar em Fúria, assume forma de combatente divino por 1 minuto ou até chegar a 0 PV: Resistência a Necrótico, Psíquico e Radiante; voo igual ao Deslocamento; e Reação gastando um uso de Fúria para pôr em pé uma criatura a até 9 m que chegou a 0 PV, com PV iguais ao seu nível. Recarrega em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "furia_dos_deuses",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "necrotico",
+          "operacao": "resistencia",
+          "condicao": {
+            "todas": [
+              "ativo:furia_dos_deuses"
+            ]
+          }
+        },
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "psiquico",
+          "operacao": "resistencia",
+          "condicao": {
+            "todas": [
+              "ativo:furia_dos_deuses"
+            ]
+          }
+        },
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "radiante",
+          "operacao": "resistencia",
+          "condicao": {
+            "todas": [
+              "ativo:furia_dos_deuses"
+            ]
+          }
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "voo",
+          "formula": [
+            "deslocamento"
+          ],
+          "pode_pairar": true,
+          "condicao": {
+            "todas": [
+              "ativo:furia_dos_deuses"
+            ]
+          }
+        },
+        {
+          "tipo": "cura",
+          "custo": "reacao",
+          "consome_recurso": "furia",
+          "modo": "define_pv",
+          "formula": [
+            "nivel_classe:barbaro"
+          ],
+          "beneficiario": "criatura_a_ate_9m_que_chegou_a_0_pv"
+        }
+      ],
+      "subclasse": "trilha_do_fanatico"
+    },
+    {
+      "id": "ataque_furtivo",
+      "nome": "Ataque Furtivo",
+      "classe": "ladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 137,
+        "pagina_pdf": 141
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Uma vez por turno, ao acertar com arma de Acuidade ou à Distância tendo Vantagem, causa dano extra conforme a coluna Ataque Furtivo. Dispensa a Vantagem se um aliado não Incapacitado estiver a até 1,5 m do alvo e você não tiver Desvantagem.",
+      "efeitos": [
+        {
+          "tipo": "dado_de_impacto",
+          "coluna": "ataque_furtivo",
+          "tipo_dano": "mesmo_da_arma",
+          "frequencia": "uma_vez_por_turno",
+          "condicao": {
+            "todas": [
+              "arma:acuidade_ou_a_distancia",
+              {
+                "alguma": [
+                  "vantagem_na_jogada",
+                  "aliado_nao_incapacitado_a_ate_1_5m_do_alvo_e_sem_desvantagem"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "especialista",
+      "nome": "Especialista",
+      "classe": "ladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 137,
+        "pagina_pdf": 141
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Especialização em duas perícias em que já é proficiente. Mais duas no nível 6.",
+      "efeitos": [
+        {
+          "id": "ladino_especializacao",
+          "tipo": "escolha",
+          "rotulo": "Escolha perícias para Especialização",
+          "quantidade": 2,
+          "momento": "nivel_1",
+          "quantidade_por_nivel": {
+            "1": 2,
+            "6": 4
+          },
+          "recomendadas": [
+            "furtividade",
+            "prestidigitacao"
+          ],
+          "de": {
+            "catalogo": "pericias",
+            "chaves": [
+              "acrobacia",
+              "atletismo",
+              "enganacao",
+              "furtividade",
+              "intimidacao",
+              "intuicao",
+              "investigacao",
+              "percepcao",
+              "persuasao",
+              "prestidigitacao"
+            ],
+            "filtro_adicional": {
+              "ja_proficiente": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "especialista"
+          }
+        }
+      ],
+      "niveis": [
+        1,
+        6
+      ],
+      "repetivel": true,
+      "tipo_de_repeticao": "nova_escolha",
+      "nome_na_tabela": "Especialização"
+    },
+    {
+      "id": "giria_do_ladrao",
+      "nome": "Gíria do Ladrão",
+      "classe": "ladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 137,
+        "pagina_pdf": 141
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conhece a Gíria dos Ladrões e mais um idioma à escolha.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "idioma",
+          "chave": "giria_dos_ladroes",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "ladino_idioma",
+          "tipo": "escolha",
+          "rotulo": "Escolha mais um idioma",
+          "quantidade": 1,
+          "momento": "nivel_1",
+          "de": {
+            "catalogo": "idiomas",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "idioma",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "nome_na_tabela": "Gíria dos Ladrões"
+    },
+    {
+      "id": "maestria_em_arma_ladino",
+      "nome": "Maestria em Arma",
+      "classe": "ladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 137,
+        "pagina_pdf": 141
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usa as propriedades de maestria de dois tipos de armas com que tenha proficiência. Troca a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "ladino_maestrias",
+          "tipo": "escolha",
+          "rotulo": "Escolha dois tipos de arma",
+          "quantidade": 2,
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "itens",
+            "pendente": true,
+            "filtro": {
+              "categoria": "arma",
+              "com_proficiencia": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "maestria_liberada",
+            "arma": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "acao_ardilosa",
+      "nome": "Ação Ardilosa",
+      "classe": "ladino",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 137,
+        "pagina_pdf": 141
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para executar Correr, Desengajar ou Esconder.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "acao_ardilosa",
+          "custo": "acao_bonus",
+          "acoes": [
+            "correr",
+            "desengajar",
+            "esconder"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mira_firme",
+      "nome": "Mira Firme",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para dar a si Vantagem na próxima jogada de ataque do turno. Só se não tiver se movido, e depois o Deslocamento vira 0 até o fim do turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "custo": "acao_bonus",
+          "pre_requisitos": [
+            {
+              "tipo": "estado",
+              "chave": "nao_se_moveu_neste_turno"
+            }
+          ],
+          "duracao": "proxima_jogada_de_ataque_do_turno"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "0"
+          ],
+          "empilha": "substitui",
+          "duracao": "ate_o_fim_do_turno_atual"
+        }
+      ]
+    },
+    {
+      "id": "subclasse_de_ladino",
+      "nome": "Subclasse de Ladino",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe uma subclasse; as características chegam nos níveis 3, 9, 13 e 17.",
+      "efeitos": [
+        {
+          "id": "ladino_escolha_de_subclasse",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma subclasse",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "de": {
+            "catalogo": "subclasses",
+            "filtro": {
+              "classe": "ladino"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_subclasse",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "golpe_astuto",
+      "nome": "Golpe Astuto",
+      "classe": "ladino",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao causar dano com Ataque Furtivo, aplica um efeito de Golpe Astuto pagando o custo em dados, subtraído do dano antes de jogar. CD: 8 + mod. de Destreza + BP.",
+      "efeitos": [
+        {
+          "id": "ladino_golpe_astuto",
+          "tipo": "escolha",
+          "rotulo": "Escolha o efeito de Golpe Astuto",
+          "quantidade": 1,
+          "momento": "ao_causar_dano_de_ataque_furtivo",
+          "reescolhivel": true,
+          "de": {
+            "catalogo": "efeitos_de_golpe_astuto",
+            "todo_o_catalogo": true,
+            "respeitar_nivel_minimo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "cd_dos_efeitos": [
+        "8",
+        "mod:DES",
+        "prof"
+      ],
+      "nota": "O custo em dados sai do dano do Ataque Furtivo: remova o dado antes de jogar."
+    },
+    {
+      "id": "esquiva_sobrenatural",
+      "nome": "Esquiva Sobrenatural",
+      "classe": "ladino",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação para reduzir à metade o dano de um ataque de atacante à vista.",
+      "efeitos": [
+        {
+          "tipo": "reducao_de_dano",
+          "custo": "reacao",
+          "formula": {
+            "op": "div_arred_baixo",
+            "args": [
+              "dano",
+              "2"
+            ]
+          },
+          "tipos_de_dano": [
+            "todos"
+          ],
+          "requisitos": [
+            "atacante_a_vista"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evasao_ladino",
+      "nome": "Evasão",
+      "classe": "ladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Contra efeito com salvaguarda de Destreza por metade do dano: nenhum dano no sucesso, metade na falha. Não funciona Incapacitado.",
+      "efeitos": [
+        {
+          "tipo": "alterar_resultado_de_salvaguarda",
+          "alvo": "salvaguarda:DES",
+          "aplica_a": "efeito_com_metade_do_dano",
+          "em_sucesso": "nenhum_dano",
+          "em_falha": "metade_do_dano",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        }
+      ]
+    },
+    {
+      "id": "talento_confiavel",
+      "nome": "Talento Confiável",
+      "classe": "ladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Em teste de atributo com proficiência em perícia ou ferramenta, trata 9 ou menos no d20 como 10.",
+      "efeitos": [
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": [
+            "teste_de_atributo"
+          ],
+          "minimo": 10,
+          "condicao": {
+            "todas": [
+              "com_proficiencia_em_pericia_ou_ferramenta"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "golpe_astuto_aprimorado",
+      "nome": "Golpe Astuto Aprimorado",
+      "classe": "ladino",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Aplica até dois efeitos de Golpe Astuto por Ataque Furtivo, pagando o custo de cada um.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_astuto",
+          "efeitos": [
+            {
+              "tipo": "alterar_quantidade_de_escolha",
+              "escolha_id": "ladino_golpe_astuto",
+              "quantidade": 2,
+              "modo": "substitui_quantidade",
+              "restricao": "efeitos_diferentes",
+              "nota": "Paga-se o custo em dados de cada efeito escolhido (p. 139)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "golpes_sujos",
+      "nome": "Golpes Sujos",
+      "classe": "ladino",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Aturdir, Nocaute e Obscurecer entram nas opções de Golpe Astuto.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_astuto",
+          "efeitos": [
+            {
+              "tipo": "expandir_opcoes_de_escolha",
+              "escolha_id": "ladino_golpe_astuto",
+              "catalogo": "efeitos_de_golpe_astuto",
+              "chaves": [
+                "aturdir",
+                "nocaute",
+                "obscurecer"
+              ],
+              "nota": "As três já constam do catálogo com nivel_minimo 14; esta característica é o que as libera."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mente_escorregadia",
+      "nome": "Mente Escorregadia",
+      "classe": "ladino",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Proficiência em salvaguardas de Sabedoria e Carisma.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "SAB",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "CAR",
+          "nivel_dominio": "proficiente"
+        }
+      ]
+    },
+    {
+      "id": "elusivo",
+      "nome": "Elusivo",
+      "classe": "ladino",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Nenhuma jogada de ataque pode ter Vantagem contra você, salvo se estiver Incapacitado.",
+      "efeitos": [
+        {
+          "tipo": "impedir",
+          "alvo": "vantagem_em_ataque_contra_voce",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        }
+      ]
+    },
+    {
+      "id": "golpe_de_sorte",
+      "nome": "Golpe de Sorte",
+      "classe": "ladino",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao falhar num Teste de D20, transforma o resultado em 20. Recarrega em Descanso Curto ou Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "golpe_de_sorte",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_curto",
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": [
+            "teste_d20"
+          ],
+          "minimo": 20,
+          "gatilho": "falha",
+          "consome_recurso": "golpe_de_sorte"
+        }
+      ]
+    },
+    {
+      "id": "laminas_psiquicas",
+      "nome": "Lâminas Psíquicas",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Na ação Atacar ou num Ataque de Oportunidade, manifesta uma Lâmina Psíquica: arma Simples Corpo a Corpo, 1d6 Psíquico + modificador do ataque, Acuidade e Arremesso (18/36), maestria Afligir sem contar para o limite. Depois de atacar com ela, pode atacar com uma segunda como Ação Bônus, com dado 1d4.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "arma_virtual": {
+            "nome": "Lâmina Psíquica",
+            "categoria": "arma",
+            "grupo": "simples",
+            "alcance": "corpo_a_corpo",
+            "dano": "1d6",
+            "tipo_dano": "psiquico",
+            "somar": [
+              "mod_do_ataque"
+            ],
+            "propriedades": [
+              "acuidade",
+              "arremesso"
+            ],
+            "alcance_arremesso_m": [
+              18,
+              36
+            ],
+            "maestria": "afligir",
+            "maestria_nao_conta_para_o_limite": true
+          }
+        },
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "custo": "acao_bonus",
+          "arma_virtual": {
+            "nome": "Lâmina Psíquica (segunda)",
+            "dano": "1d4",
+            "tipo_dano": "psiquico"
+          },
+          "requisitos": [
+            "outra_mao_livre"
+          ]
+        }
+      ],
+      "subclasse": "adaga_espiritual"
+    },
+    {
+      "id": "poder_psionico_ladino",
+      "nome": "Poder Psiônico",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 140,
+        "pagina_pdf": 144
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Dados de Energia Psiônica pela tabela, recuperando um em Descanso Curto e todos no Longo. Aptidão Reforçada Psiquicamente (soma um dado a teste falho, gastando só se virar sucesso) e Sussurros Psíquicos (telepatia com até BP criaturas por horas iguais ao dado).",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "dados_de_energia_psionica_ladino",
+          "nome": "Dados de Energia Psiônica",
+          "formula_maximo": [
+            "tabela:dados_de_energia_ladino.quantidade"
+          ],
+          "dado": "tabela:dados_de_energia_ladino.tipo",
+          "recarga": [
+            {
+              "gatilho": "descanso_curto",
+              "quantidade": 1
+            },
+            {
+              "gatilho": "descanso_longo",
+              "quantidade": "todos"
+            }
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "valor": [
+            "dado:dados_de_energia_psionica_ladino"
+          ],
+          "empilha": "soma",
+          "gatilho": "falha",
+          "momento": "apos_a_jogada",
+          "condicao": {
+            "todas": [
+              "com_proficiencia_em_pericia_ou_ferramenta"
+            ]
+          },
+          "consome_recurso": "dados_de_energia_psionica_ladino",
+          "nota": "O dado só é gasto se o teste virar sucesso."
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "sussurros_psiquicos",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "texto": "Telepatia com até (Bônus de Proficiência) criaturas à vista, por horas iguais ao resultado do dado, alcance 1,5 km. O primeiro uso após Descanso Longo não gasta o dado."
+        }
+      ],
+      "subclasse": "adaga_espiritual",
+      "tabela_de_dados": {
+        "id": "dados_de_energia_ladino",
+        "fonte": {
+          "capitulo": 3,
+          "pagina_livro": 140,
+          "pagina_pdf": 144
+        },
+        "linhas": [
+          {
+            "nivel": 3,
+            "tipo": "d6",
+            "quantidade": 4
+          },
+          {
+            "nivel": 5,
+            "tipo": "d8",
+            "quantidade": 6
+          },
+          {
+            "nivel": 9,
+            "tipo": "d8",
+            "quantidade": 8
+          },
+          {
+            "nivel": 11,
+            "tipo": "d10",
+            "quantidade": 8
+          },
+          {
+            "nivel": 13,
+            "tipo": "d10",
+            "quantidade": 10
+          },
+          {
+            "nivel": 17,
+            "tipo": "d12",
+            "quantidade": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "laminas_da_alma",
+      "nome": "Lâminas da Alma",
+      "classe": "ladino",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 140,
+        "pagina_pdf": 144
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Golpes Teleguiados (soma um dado à jogada de ataque errada da Lâmina; gasta só se acertar) e Teleporte Psíquico (Ação Bônus: arremessa a lâmina e se teleporta até 3 m por ponto do dado).",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_ataque",
+          "valor": [
+            "dado:dados_de_energia_psionica_ladino"
+          ],
+          "empilha": "soma",
+          "gatilho": "erro",
+          "momento": "apos_a_jogada",
+          "condicao": {
+            "todas": [
+              "ataque_com_lamina_psiquica"
+            ]
+          },
+          "consome_recurso": "dados_de_energia_psionica_ladino",
+          "nota": "Gasta o dado só se o ataque passar a acertar."
+        },
+        {
+          "tipo": "teleporte",
+          "custo": "acao_bonus",
+          "alcance_formula": {
+            "op": "mult",
+            "args": [
+              "3",
+              "dado:dados_de_energia_psionica_ladino"
+            ]
+          },
+          "unidade": "m",
+          "consome_recurso": "dados_de_energia_psionica_ladino",
+          "requisitos": [
+            "destino_desocupado",
+            "destino_a_vista"
+          ]
+        }
+      ],
+      "subclasse": "adaga_espiritual"
+    },
+    {
+      "id": "veu_psiquico",
+      "nome": "Véu Psíquico",
+      "classe": "ladino",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 140,
+        "pagina_pdf": 144
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia para ficar Invisível por 1 hora ou até encerrar; acaba se causar dano ou forçar salvaguarda. Recarrega gastando um Dado de Energia Psiônica ou em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "veu_psiquico",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome_recurso": "dados_de_energia_psionica_ladino",
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "invisivel",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "duracao": "1 hora",
+          "consome_recurso": "veu_psiquico",
+          "encerra_se": [
+            {
+              "gatilho": "causar_dano"
+            },
+            {
+              "gatilho": "forcar_salvaguarda"
+            },
+            {
+              "gatilho": "encerrar"
+            }
+          ]
+        }
+      ],
+      "subclasse": "adaga_espiritual"
+    },
+    {
+      "id": "rasgar_mente",
+      "nome": "Rasgar Mente",
+      "classe": "ladino",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 140,
+        "pagina_pdf": 144
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao causar dano de Ataque Furtivo com a Lâmina Psíquica, o alvo faz salvaguarda de Sabedoria ou fica Atordoado por 1 minuto, repetindo no fim de cada turno. Recarrega gastando três Dados de Energia Psiônica ou em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "rasgar_mente",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome_recurso": "dados_de_energia_psionica_ladino",
+            "quantidade": 3,
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "atordoado",
+          "beneficiario": "alvo",
+          "gatilho": "dano_de_ataque_furtivo_com_lamina_psiquica",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:DES",
+              "prof"
+            ]
+          },
+          "duracao": "1 minuto",
+          "repete_salvaguarda": "fim_de_cada_turno_do_alvo",
+          "consome_recurso": "rasgar_mente"
+        }
+      ],
+      "subclasse": "adaga_espiritual"
+    },
+    {
+      "id": "assassinar",
+      "nome": "Assassinar",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vantagem nas jogadas de Iniciativa. Na primeira rodada, Vantagem em ataques contra quem ainda não agiu; e se o Ataque Furtivo acertar nessa rodada, o alvo sofre dano extra do tipo da arma igual ao seu nível de Ladino.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "iniciativa",
+          "modo": "vantagem"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "primeira_rodada",
+              "alvo_ainda_nao_agiu"
+            ]
+          }
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "nivel_classe:ladino",
+          "tipo_dano": "mesmo_da_arma",
+          "modo": "dano_adicional",
+          "condicao": {
+            "todas": [
+              "primeira_rodada",
+              "acerto_com_ataque_furtivo"
+            ]
+          }
+        }
+      ],
+      "subclasse": "assassino"
+    },
+    {
+      "id": "ferramentas_de_assassino",
+      "nome": "Ferramentas de Assassino",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ganha um Kit de Disfarce e um Kit de Veneno, com proficiência em ambos.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "kit_de_disfarce",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "kit_de_veneno",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "itens_concedidos",
+          "texto": "Você recebe um Kit de Disfarce e um Kit de Veneno."
+        }
+      ],
+      "subclasse": "assassino"
+    },
+    {
+      "id": "especialista_em_infiltracao",
+      "nome": "Especialista em Infiltração",
+      "classe": "ladino",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Mimetismo Magistral (imita fala e caligrafia após 1 hora de estudo) e Mira Móvel (Mira Firme não zera seu Deslocamento).",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "mimetismo_magistral",
+          "texto": "Imita perfeitamente a fala, a caligrafia ou ambos de alguém, após 1 hora estudando."
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "mira_firme",
+          "efeitos": [
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "mira_movel",
+              "texto": "Mira Firme deixa de reduzir seu Deslocamento a 0."
+            }
+          ]
+        }
+      ],
+      "subclasse": "assassino"
+    },
+    {
+      "id": "armas_venenosas",
+      "nome": "Armas Venenosas",
+      "classe": "ladino",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Com a opção Envenenar do Golpe Astuto, o alvo sofre também 2d6 de dano Venenoso a cada falha na salvaguarda, ignorando Resistência a Venenoso.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "2d6",
+          "tipo_dano": "venenoso",
+          "modo": "dano_adicional",
+          "ignora": [
+            "resistencia"
+          ],
+          "condicao": {
+            "todas": [
+              "usou:envenenar",
+              "alvo_falhou_na_salvaguarda"
+            ]
+          }
+        }
+      ],
+      "subclasse": "assassino"
+    },
+    {
+      "id": "golpe_mortal",
+      "nome": "Golpe Mortal",
+      "classe": "ladino",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao acertar com Ataque Furtivo na primeira rodada, o alvo faz salvaguarda de Constituição ou o dano do ataque é dobrado.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "modo": "dobrar_dano_do_ataque",
+          "condicao": {
+            "todas": [
+              "primeira_rodada",
+              "acerto_com_ataque_furtivo"
+            ]
+          },
+          "salvaguarda": {
+            "atributo": "CON",
+            "cd": [
+              "8",
+              "mod:DES",
+              "prof"
+            ]
+          }
+        }
+      ],
+      "subclasse": "assassino"
+    },
+    {
+      "id": "andarilho_de_telhados",
+      "nome": "Andarilho de Telhados",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Deslocamento de Escalada igual ao seu Deslocamento, e distância de salto calculada por Destreza em vez de Força.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "escalada",
+          "formula": [
+            "deslocamento"
+          ]
+        },
+        {
+          "tipo": "substituir_atributo",
+          "de": "FOR",
+          "para": "DES",
+          "escopo": [
+            "distancia_de_salto"
+          ]
+        }
+      ],
+      "subclasse": "ladrao"
+    },
+    {
+      "id": "mao_leve",
+      "nome": "Mão Leve",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para um teste de Destreza (Prestidigitação) — abrir fechadura, desarmar armadilha com Ferramentas de Ladrão ou furtar um bolso — ou para executar Usar Objeto/Usar Magia com item mágico.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "mao_leve",
+          "custo": "acao_bonus",
+          "opcoes": [
+            {
+              "id": "prestidigitacao",
+              "teste": {
+                "atributo": "DES",
+                "pericia": "prestidigitacao"
+              }
+            },
+            {
+              "id": "usar_objeto",
+              "acoes": [
+                "usar_objeto",
+                "usar_magia"
+              ],
+              "nota": "para utilizar item mágico que exija essa ação"
+            }
+          ]
+        }
+      ],
+      "subclasse": "ladrao"
+    },
+    {
+      "id": "furtividade_suprema",
+      "nome": "Furtividade Suprema",
+      "classe": "ladino",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ganha a opção de Golpe Astuto Ataque Escondido (1d6).",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_astuto",
+          "efeitos": [
+            {
+              "tipo": "expandir_opcoes_de_escolha",
+              "escolha_id": "ladino_golpe_astuto",
+              "catalogo": "efeitos_de_golpe_astuto",
+              "chaves": [
+                "ataque_escondido"
+              ]
+            }
+          ]
+        }
+      ],
+      "subclasse": "ladrao"
+    },
+    {
+      "id": "usar_dispositivo_magico",
+      "nome": "Usar Dispositivo Mágico",
+      "classe": "ladino",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sintoniza até quatro itens mágicos; ao gastar cargas, 1d6 — num 6 não gasta; e usa qualquer Pergaminho Mágico com Inteligência (truque e 1º círculo direto; acima disso, teste de Inteligência (Arcanismo) CD 10 + círculo, e o pergaminho se desintegra na falha).",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "sintonizacao_extra",
+          "texto": "Pode sintonizar até quatro itens mágicos."
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "cargas_economizadas",
+          "texto": "Ao gastar cargas de item mágico, jogue 1d6: num 6 a carga não é gasta."
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "pergaminhos",
+          "texto": "Usa qualquer Pergaminho Mágico com Inteligência como atributo de conjuração. Truque ou 1º círculo saem direto; acima disso exige teste de Inteligência (Arcanismo) CD 10 + círculo, e o pergaminho se desintegra em caso de falha.",
+          "teste": {
+            "atributo": "INT",
+            "pericia": "arcanismo"
+          }
+        }
+      ],
+      "subclasse": "ladrao"
+    },
+    {
+      "id": "reflexos_de_ladrao",
+      "nome": "Reflexos de Ladrão",
+      "classe": "ladino",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Na primeira rodada de combate você tem dois turnos: um na sua Iniciativa e outro na Iniciativa menos 10.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "turno_extra_na_primeira_rodada",
+          "texto": "Dois turnos na primeira rodada: o normal e outro na sua Iniciativa menos 10."
+        }
+      ],
+      "subclasse": "ladrao"
+    },
+    {
+      "id": "conjuracao_trapaceiro_arcano",
+      "nome": "Conjuração",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura magias da lista do Mago com Inteligência. Três truques (Mãos Mágicas obrigatória + dois à escolha; mais um no nível 10), espaços e magias preparadas pela tabela Conjuração do Trapaceiro Arcano.",
+      "efeitos": [
+        {
+          "tipo": "conceder_slot",
+          "tabela_progressao_id": "trapaceiro_arcano",
+          "recarga": "descanso_longo"
+        },
+        {
+          "tipo": "preparar_magias",
+          "formula_quantidade": [
+            "coluna_conjuracao:magias_preparadas"
+          ],
+          "atributo_conjuracao": "INT",
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "mago",
+          "restricao": "de um círculo para o qual você possui espaços de magia"
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "mago",
+          "modo": "disponivel_para_preparar",
+          "atributo_conjuracao": "INT",
+          "circulo_minimo": 1
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "mago",
+          "modo": "conhecida",
+          "magias": [
+            "maos_magicas"
+          ],
+          "obrigatoria": true,
+          "nao_substituivel": true
+        },
+        {
+          "id": "trapaceiro_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha truques da lista do Mago",
+          "quantidade": 2,
+          "momento": "nivel_3",
+          "quantidade_por_nivel": {
+            "3": 2,
+            "10": 3
+          },
+          "reescolhivel": true,
+          "reescolha_em": "cada_nivel_de_ladino",
+          "recomendados": [
+            "ilusao_menor",
+            "talho_mental"
+          ],
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0,
+              "lista": "mago"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "mago",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}"
+          }
+        },
+        {
+          "id": "trapaceiro_preparadas",
+          "tipo": "escolha",
+          "rotulo": "Prepare magias de 1º círculo ou superior",
+          "quantidade": "coluna_conjuracao:magias_preparadas",
+          "momento": "nivel_3",
+          "reescolhivel": true,
+          "reescolha_em": "cada_nivel_de_ladino",
+          "reescolha_quantidade": 1,
+          "recomendados": [
+            "disfarcar_se",
+            "enfeiticar_pessoa",
+            "nevoa_obscurecente"
+          ],
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel_minimo": 1,
+              "lista": "mago",
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "mago",
+            "modo": "preparada",
+            "magia": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "trapaceiro_arcano",
+      "foco_de_conjuracao": [
+        "foco_arcano"
+      ],
+      "tabela_de_conjuracao": {
+        "id": "trapaceiro_arcano",
+        "fonte": {
+          "capitulo": 3,
+          "pagina_livro": 144,
+          "pagina_pdf": 148
+        },
+        "colunas": [
+          "magias_preparadas",
+          "espacos_1",
+          "espacos_2",
+          "espacos_3",
+          "espacos_4"
+        ],
+        "linhas": [
+          {
+            "nivel": 3,
+            "magias_preparadas": 3,
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 4,
+            "magias_preparadas": 4,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 5,
+            "magias_preparadas": 4,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 6,
+            "magias_preparadas": 4,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 7,
+            "magias_preparadas": 5,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 8,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 9,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 10,
+            "magias_preparadas": 7,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 11,
+            "magias_preparadas": 8,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 12,
+            "magias_preparadas": 8,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 13,
+            "magias_preparadas": 9,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 14,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 15,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 16,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 17,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 18,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0
+          },
+          {
+            "nivel": 19,
+            "magias_preparadas": 12,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1
+          },
+          {
+            "nivel": 20,
+            "magias_preparadas": 13,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "maos_magicas_ligeiras",
+      "nome": "Mãos Mágicas Ligeiras",
+      "classe": "ladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 145,
+        "pagina_pdf": 149
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Mãos Mágicas como Ação Bônus, pode deixar a mão Invisível, controlá-la como Ação Bônus e usá-la para testes de Destreza (Prestidigitação).",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "maos_magicas_ligeiras",
+          "custo": "acao_bonus",
+          "texto": "Mãos Mágicas como Ação Bônus, mão espectral Invisível, controlada por Ação Bônus e capaz de testes de Destreza (Prestidigitação).",
+          "teste": {
+            "atributo": "DES",
+            "pericia": "prestidigitacao"
+          }
+        }
+      ],
+      "subclasse": "trapaceiro_arcano"
+    },
+    {
+      "id": "emboscada_magica",
+      "nome": "Emboscada Mágica",
+      "classe": "ladino",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 145,
+        "pagina_pdf": 149
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Estando Invisível ao conjurar uma magia numa criatura, ela tem Desvantagem nas salvaguardas contra essa magia no mesmo turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "desvantagem",
+          "beneficiario": "alvo",
+          "condicao": {
+            "todas": [
+              "voce_invisivel_ao_conjurar"
+            ]
+          },
+          "duracao": "mesmo_turno"
+        }
+      ],
+      "subclasse": "trapaceiro_arcano"
+    },
+    {
+      "id": "trapaceiro_versatil",
+      "nome": "Trapaceiro Versátil",
+      "classe": "ladino",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 145,
+        "pagina_pdf": 149
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao usar Golpe Astuto numa criatura, pode aplicar a mesma opção em outra criatura a até 1,5 m da mão espectral.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "golpe_astuto",
+          "efeitos": [
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "golpe_astuto_em_segundo_alvo",
+              "texto": "Aplica a mesma opção de Golpe Astuto em outra criatura a até 1,5 m das Mãos Mágicas."
+            }
+          ]
+        }
+      ],
+      "subclasse": "trapaceiro_arcano"
+    },
+    {
+      "id": "ladrao_de_magias",
+      "nome": "Ladrão de Magias",
+      "classe": "ladino",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 145,
+        "pagina_pdf": 149
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação quando alguém conjura magia que te atinge: salvaguarda de Inteligência contra sua CD ou você nega o efeito e rouba a magia por 8 horas (se for de 1º círculo ou de um círculo que você conjura, mesmo não sendo de Mago); a criatura não pode conjurá-la nesse período. Recarrega em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "ladrao_de_magias",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "roubar_magia",
+          "custo": "reacao",
+          "salvaguarda": {
+            "atributo": "INT",
+            "cd": [
+              "8",
+              "mod:INT",
+              "prof"
+            ]
+          },
+          "consome_recurso": "ladrao_de_magias",
+          "texto": "Nega o efeito da magia contra você e a rouba por 8 horas, ficando com ela preparada; a criatura não pode conjurá-la nesse período. Vale para magia de 1º círculo ou de círculo que você possa conjurar, mesmo fora da lista do Mago."
+        }
+      ],
+      "subclasse": "trapaceiro_arcano"
+    },
+    {
+      "id": "inspiracao_de_bardo",
+      "nome": "Inspiração de Bardo",
+      "classe": "bardo",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para dar um dado de Inspiração a uma criatura a até 18 m que veja ou ouça você. Dentro de 1 hora, depois de falhar num Teste de D20, ela soma o dado e pode virar a falha em sucesso. Usos iguais ao modificador de Carisma, recuperados no Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "inspiracao_de_bardo",
+          "nome": "Inspiração de Bardo",
+          "formula_maximo": [
+            {
+              "op": "max",
+              "args": [
+                "mod:CAR",
+                "1"
+              ]
+            }
+          ],
+          "recarga": [
+            {
+              "gatilho": "descanso_longo",
+              "quantidade": "todos"
+            }
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "acao_conceder_inspiracao",
+          "custo": "acao_bonus",
+          "recurso_id": "inspiracao_de_bardo",
+          "alcance_m": 18,
+          "efeitos": [
+            {
+              "id": "conceder_inspiracao",
+              "tipo": "escolha",
+              "rotulo": "Como o dado de Inspiração pode ser gasto",
+              "quantidade": 1,
+              "momento": "ao_gastar_o_dado",
+              "reescolhivel": true,
+              "de": {
+                "catalogo": "usos_da_inspiracao_de_bardo",
+                "chaves": [
+                  "padrao"
+                ]
+              },
+              "efeito_por_item_escolhido": {
+                "tipo": "aplicar_efeito_nomeado",
+                "chave": "{{escolhido}}"
+              },
+              "duracao": "1 hora",
+              "limite": {
+                "por_criatura": 1,
+                "nota": "Uma criatura só carrega um dado por vez."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conjuracao_bardo",
+      "nome": "Conjuração",
+      "classe": "bardo",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura pela lista de Bardo, com Carisma. Prepara da lista inteira, sem livro, trocando uma magia por nível ganho.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "disponivel_para_preparar",
+          "lista_id": "bardo"
+        },
+        {
+          "id": "bardo_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha os truques de Bardo",
+          "quantidade": [
+            "coluna:truques"
+          ],
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "recomendadas": [
+            "luzes_dancantes",
+            "zombaria_perversa"
+          ],
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "bardo",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "magia": "{{escolhido}}",
+            "modo": "conhecida"
+          }
+        },
+        {
+          "id": "bardo_preparadas",
+          "tipo": "escolha",
+          "rotulo": "Escolha as magias preparadas de Bardo",
+          "quantidade": [
+            "coluna:magias_preparadas"
+          ],
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "bardo",
+              "nivel_minimo": 1,
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "preparar_magias",
+            "magia": "{{escolhido}}",
+            "fonte_das_magias": "lista_de_classe",
+            "lista_id": "bardo"
+          }
+        }
+      ],
+      "cd_para_evitar_sua_magia": [
+        "8",
+        "mod:CAR",
+        "prof"
+      ],
+      "foco_de_conjuracao": [
+        "instrumento_musical"
+      ]
+    },
+    {
+      "id": "especialista_bardo",
+      "nome": "Especialista",
+      "classe": "bardo",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Especialização em duas perícias em que já é proficiente, e mais duas no nível 9.",
+      "efeitos": [
+        {
+          "id": "bardo_especializacao",
+          "tipo": "escolha",
+          "rotulo": "Escolha perícias para Especialização",
+          "quantidade": 2,
+          "quantidade_por_nivel": {
+            "2": 2,
+            "9": 4
+          },
+          "recomendadas": [
+            "atuacao",
+            "persuasao"
+          ],
+          "de": {
+            "catalogo": "pericias",
+            "todo_o_catalogo": true,
+            "filtro_adicional": {
+              "ja_proficiente": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "especializacao"
+          }
+        }
+      ],
+      "niveis": [
+        2,
+        9
+      ],
+      "repetivel": true,
+      "tipo_de_repeticao": "melhoria",
+      "nome_na_tabela": "Especialização"
+    },
+    {
+      "id": "pau_pra_toda_obra",
+      "nome": "Pau pra Toda Obra",
+      "classe": "bardo",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Soma metade do Bônus de Proficiência (arredondado para baixo) em testes de atributo com perícia em que não é proficiente e que ainda não usem o bônus.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "valor": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "prof",
+                "2"
+              ]
+            }
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "nao_proficiente_na_pericia",
+              {
+                "nao": "ja_soma_bonus_de_proficiencia"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "subclasse_de_bardo",
+      "nome": "Subclasse de Bardo",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe um Colégio de Bardo. Ele concede características nos níveis 3, 6 e 14, somadas às da classe nesses mesmos níveis.",
+      "efeitos": [
+        {
+          "id": "bardo_subclasse",
+          "tipo": "escolha",
+          "rotulo": "Escolha um Colégio de Bardo",
+          "quantidade": 1,
+          "de": {
+            "catalogo": "subclasses",
+            "filtro": {
+              "classe": "bardo"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_subclasse",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fonte_de_inspiracao",
+      "nome": "Fonte de Inspiração",
+      "classe": "bardo",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "A Inspiração de Bardo passa a recuperar todos os usos também no Descanso Curto.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "inspiracao_de_bardo",
+          "efeitos": [
+            {
+              "tipo": "recurso_com_recarga",
+              "id": "inspiracao_de_bardo",
+              "modo": "acrescenta_recarga",
+              "recarga": [
+                {
+                  "gatilho": "descanso_curto",
+                  "quantidade": "todos"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contra_encantamento",
+      "nome": "Contra-Encantamento",
+      "classe": "bardo",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 61,
+        "pagina_pdf": 65
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação: quando você ou alguém a até 9 m falha numa salvaguarda contra Amedrontado ou Enfeitiçado, repete a salvaguarda com Vantagem.",
+      "efeitos": [
+        {
+          "tipo": "rolar_novamente",
+          "alvo": "salvaguarda",
+          "custo": "reacao",
+          "com_vantagem": true,
+          "beneficiario": "voce_ou_criatura_a_ate_9m",
+          "condicao": {
+            "todas": [
+              "falhou_na_salvaguarda",
+              {
+                "alguma": [
+                  "efeito_aplica:amedrontado",
+                  "efeito_aplica:enfeiticado"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "segredos_magicos",
+      "nome": "Segredos Mágicos",
+      "classe": "bardo",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 62,
+        "pagina_pdf": 66
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "As magias preparadas de Bardo passam a poder vir também das listas de Clérigo, Druida e Mago, e contam como magias de Bardo. Vale para cada nova magia preparada e para cada troca.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "bardo_preparadas",
+          "catalogo": "magias",
+          "filtro": {
+            "lista": [
+              "bardo",
+              "clerigo",
+              "druida",
+              "mago"
+            ],
+            "nivel_minimo": 1,
+            "circulo_com_espaco_disponivel": true
+          },
+          "modo": "substitui_filtro",
+          "nota": "Alarga o filtro da escolha de preparadas em vez de criar outra escolha. As magias escolhidas contam como magias de Bardo."
+        }
+      ]
+    },
+    {
+      "id": "inspiracao_superior",
+      "nome": "Inspiração Superior",
+      "classe": "bardo",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 62,
+        "pagina_pdf": 66
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao jogar Iniciativa, recupera usos de Inspiração de Bardo até ter dois, se tiver menos.",
+      "efeitos": [
+        {
+          "tipo": "restaurar_recurso",
+          "recurso_id": "inspiracao_de_bardo",
+          "gatilho": "jogar_iniciativa",
+          "ate_o_total_de": 2,
+          "condicao": {
+            "todas": [
+              "usos_atuais_menores_que:2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "palavras_de_criacao",
+      "nome": "Palavras de Criação",
+      "classe": "bardo",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 62,
+        "pagina_pdf": 66
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sempre com Palavra de Poder: Matar e Palavra de Poder: Salvar preparadas, e ao conjurar qualquer uma delas pode escolher uma segunda criatura a até 3 m do primeiro alvo.",
+      "efeitos": [
+        {
+          "tipo": "preparar_magias",
+          "magias": [
+            "palavra_de_poder_matar",
+            "palavra_de_poder_salvar"
+          ],
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true,
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "bardo"
+        },
+        {
+          "tipo": "alterar_alvos_da_magia",
+          "magias": [
+            "palavra_de_poder_matar",
+            "palavra_de_poder_salvar"
+          ],
+          "alvos_adicionais": 1,
+          "distancia_do_primeiro_alvo_m": 3
+        }
+      ]
+    },
+    {
+      "id": "inspiracao_em_combate",
+      "nome": "Inspiração em Combate",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Quem tem seu dado de Inspiração pode gastá-lo de dois jeitos novos: somar à CA contra um ataque que a acertou (Reação), ou somar ao dano de um ataque que ela acertou.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "conceder_inspiracao",
+          "catalogo": "usos_da_inspiracao_de_bardo",
+          "chaves": [
+            "defensivo",
+            "ofensivo"
+          ]
+        }
+      ],
+      "subclasse": "colegio_da_bravura"
+    },
+    {
+      "id": "treinamento_marcial",
+      "nome": "Treinamento Marcial",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Proficiência com armas Marciais e armaduras Médias, treinamento com Escudos, e pode usar uma arma Simples ou Marcial como Foco de Conjuração para magias de Bardo.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": "marcial"
+            }
+          },
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "armadura",
+          "chave": "media",
+          "nivel_dominio": "treinado"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "armadura",
+          "chave": "escudo",
+          "nivel_dominio": "treinado"
+        }
+      ],
+      "foco_de_conjuracao": [
+        "arma_simples_ou_marcial"
+      ],
+      "nota_do_foco": "Só para magias da lista de Bardo (p. 64).",
+      "subclasse": "colegio_da_bravura"
+    },
+    {
+      "id": "ataque_extra_bardo",
+      "nome": "Ataque Extra",
+      "classe": "bardo",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 65,
+        "pagina_pdf": 69
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Dois ataques na ação Atacar, e pode trocar um deles por um truque de conjuração de uma ação.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "modo": "ataque_extra",
+          "condicao": {
+            "todas": [
+              "executou:atacar"
+            ]
+          }
+        },
+        {
+          "tipo": "substituir_ataque_por_magia",
+          "quantidade_de_ataques": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "bardo",
+              "nivel": 0,
+              "tempo_de_conjuracao": "acao"
+            }
+          }
+        }
+      ],
+      "subclasse": "colegio_da_bravura"
+    },
+    {
+      "id": "magia_de_batalha",
+      "nome": "Magia de Batalha",
+      "classe": "bardo",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 65,
+        "pagina_pdf": 69
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Depois de conjurar uma magia de uma ação, pode atacar com uma arma como Ação Bônus.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "custo": "acao_bonus",
+          "condicao": {
+            "todas": [
+              "conjurou_magia_de_tempo:acao"
+            ]
+          }
+        }
+      ],
+      "subclasse": "colegio_da_bravura"
+    },
+    {
+      "id": "ginga_fascinante",
+      "nome": "Ginga Fascinante",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 65,
+        "pagina_pdf": 69
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sem armadura e sem Escudo: Vantagem em testes de Atuação que envolvam dançar; usa Destreza no ataque desarmado; e o dano desarmado pode ser o dado de Inspiração + Destreza, como dano Contundente.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "teste_de_atributo:atuacao",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "flag:sem_armadura",
+              "flag:sem_escudo",
+              "envolve_dancar"
+            ]
+          }
+        },
+        {
+          "tipo": "substituir_atributo",
+          "alvo_do_calculo": [
+            "jogada_de_ataque_desarmado"
+          ],
+          "usa": "DES",
+          "condicao": {
+            "todas": [
+              "flag:sem_armadura",
+              "flag:sem_escudo"
+            ]
+          }
+        },
+        {
+          "tipo": "dado_de_dano",
+          "modo": "substitui_dano_desarmado",
+          "formula_dado": "coluna:dados_de_inspiracao",
+          "formula_bonus": [
+            "mod:DES"
+          ],
+          "tipo_dano": "contundente",
+          "condicao": {
+            "todas": [
+              "flag:sem_armadura",
+              "flag:sem_escudo"
+            ]
+          }
+        }
+      ],
+      "subclasse": "colegio_da_danca"
+    },
+    {
+      "id": "gingado_coordenado",
+      "nome": "Gingado Coordenado",
+      "classe": "bardo",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao jogar Iniciativa, gasta um uso de Inspiração (se não estiver Incapacitado): você e cada aliado a até 9 m que veja ou ouça você somam o dado à Iniciativa.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "iniciativa",
+          "valor": [
+            "coluna:dados_de_inspiracao"
+          ],
+          "empilha": "soma",
+          "recurso_id": "inspiracao_de_bardo",
+          "beneficiario": "voce_e_aliados_a_ate_9m_que_vejam_ou_ouçam",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        }
+      ],
+      "subclasse": "colegio_da_danca"
+    },
+    {
+      "id": "movimento_inspirador",
+      "nome": "Movimento Inspirador",
+      "classe": "bardo",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação, quando um inimigo à vista termina o turno a 1,5 m de você: gasta um uso de Inspiração para mover metade do seu Deslocamento, e um aliado a até 9 m também move metade do dele com a Reação dele. Nenhum dos dois provoca Ataques de Oportunidade.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "caminhada",
+          "modo": "movimento_imediato",
+          "custo": "reacao",
+          "recurso_id": "inspiracao_de_bardo",
+          "formula": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "deslocamento",
+                "2"
+              ]
+            }
+          ],
+          "sem_provocar_ataques_de_oportunidade": true,
+          "condicao": {
+            "todas": [
+              "inimigo_a_vista_terminou_turno_a_ate:1.5m"
+            ]
+          }
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "caminhada",
+          "modo": "movimento_imediato",
+          "custo": "reacao_do_aliado",
+          "beneficiario": "aliado_a_escolha_a_ate_9m",
+          "formula": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "deslocamento_do_aliado",
+                "2"
+              ]
+            }
+          ],
+          "sem_provocar_ataques_de_oportunidade": true
+        }
+      ],
+      "subclasse": "colegio_da_danca"
+    },
+    {
+      "id": "evasao_liderada",
+      "nome": "Evasão Liderada",
+      "classe": "bardo",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Numa salvaguarda de Destreza por metade do dano, você não sofre nada se passar e metade se falhar, e pode estender isso a criaturas a até 1,5 m que também façam a salvaguarda. Não funciona se você estiver Incapacitado.",
+      "efeitos": [
+        {
+          "tipo": "alterar_resultado_de_salvaguarda",
+          "alvo": "salvaguarda:DES",
+          "em_sucesso": "nenhum_dano",
+          "em_falha": "metade_do_dano",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        },
+        {
+          "tipo": "alterar_resultado_de_salvaguarda",
+          "alvo": "salvaguarda:DES",
+          "beneficiario": "criaturas_a_escolha_a_ate_1_5m",
+          "em_sucesso": "nenhum_dano",
+          "em_falha": "metade_do_dano",
+          "condicao": {
+            "todas": [
+              "criatura_tambem_faz_a_salvaguarda",
+              {
+                "nao": "condicao:incapacitado"
+              }
+            ]
+          }
+        }
+      ],
+      "subclasse": "colegio_da_danca"
+    },
+    {
+      "id": "palavras_de_interrupcao",
+      "nome": "Palavras de Interrupção",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação, quando uma criatura à vista a até 18 m faz uma jogada de dano ou passa num teste ou ataque: gasta um uso de Inspiração e subtrai o dado do resultado dela.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_d20_de_criatura_a_vista",
+          "valor": [
+            {
+              "op": "mult",
+              "args": [
+                "coluna:dados_de_inspiracao",
+                "-1"
+              ]
+            }
+          ],
+          "custo": "reacao",
+          "recurso_id": "inspiracao_de_bardo",
+          "empilha": "soma",
+          "alcance_m": 18,
+          "tambem_vale_para": [
+            "jogada_de_dano"
+          ]
+        }
+      ],
+      "subclasse": "colegio_do_conhecimento"
+    },
+    {
+      "id": "proficiencias_bonus",
+      "nome": "Proficiências Bônus",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Proficiência em três perícias à sua escolha.",
+      "efeitos": [
+        {
+          "id": "bardo_pericias_bonus",
+          "tipo": "escolha",
+          "rotulo": "Escolha 3 perícias",
+          "quantidade": 3,
+          "de": {
+            "catalogo": "pericias",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "subclasse": "colegio_do_conhecimento"
+    },
+    {
+      "id": "descobertas_magicas",
+      "nome": "Descobertas Mágicas",
+      "classe": "bardo",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Aprende duas magias das listas de Clérigo, Druida ou Mago — truque ou de círculo para o qual tenha espaço. Ficam sempre preparadas e podem ser trocadas a cada nível.",
+      "efeitos": [
+        {
+          "id": "bardo_descobertas_magicas",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 magias de outra lista",
+          "quantidade": 2,
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": [
+                "clerigo",
+                "druida",
+                "mago"
+              ],
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "preparar_magias",
+            "magia": "{{escolhido}}",
+            "modo": "sempre_preparada",
+            "nao_conta_para_o_limite": true,
+            "fonte_das_magias": "conhecidas"
+          }
+        }
+      ],
+      "subclasse": "colegio_do_conhecimento"
+    },
+    {
+      "id": "pericia_inigualavel",
+      "nome": "Perícia Inigualável",
+      "classe": "bardo",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Falhando num teste de atributo ou jogada de ataque, gasta um uso de Inspiração e soma o dado ao d20. Se ainda assim falhar, o uso não é gasto.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_d20",
+          "valor": [
+            "coluna:dados_de_inspiracao"
+          ],
+          "empilha": "soma",
+          "momento": "apos_falhar",
+          "recurso_id": "inspiracao_de_bardo",
+          "consumo_condicional": "so_gasta_se_virar_sucesso"
+        }
+      ],
+      "subclasse": "colegio_do_conhecimento"
+    },
+    {
+      "id": "magia_fascinante",
+      "nome": "Magia Fascinante",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Enfeitiçar Pessoa e Reflexos sempre preparadas. Depois de conjurar uma magia de Encantamento ou Ilusão com espaço, uma criatura à vista a 18 m faz salvaguarda de Sabedoria ou fica Amedrontada ou Enfeitiçada por 1 minuto. Uma vez por Descanso.",
+      "efeitos": [
+        {
+          "tipo": "preparar_magias",
+          "magias": [
+            "enfeiticar_pessoa",
+            "reflexos"
+          ],
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true,
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "bardo"
+        },
+        {
+          "id": "glamour_condicao",
+          "tipo": "escolha",
+          "rotulo": "Amedrontado ou Enfeitiçado",
+          "quantidade": 1,
+          "momento": "ao_usar",
+          "de": {
+            "catalogo": "condicoes",
+            "chaves": [
+              "amedrontado",
+              "enfeiticado"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_condicao",
+            "condicao_id": "{{escolhido}}",
+            "beneficiario": "alvo"
+          }
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "beneficiario": "alvo",
+          "resolve_por": "glamour_condicao",
+          "alvo": "criatura_a_vista_a_ate_18m",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ]
+          },
+          "duracao": "1 minuto",
+          "repete_salvaguarda": {
+            "quando": "fim_do_turno_do_alvo",
+            "encerra_em_sucesso": true
+          },
+          "condicao": {
+            "todas": [
+              "conjurou_magia_de_escola:encantamento_ou_ilusao",
+              "gastou_espaco_de_magia"
+            ]
+          },
+          "recarga": [
+            "descanso_curto",
+            "descanso_longo"
+          ]
+        }
+      ],
+      "subclasse": "colegio_do_glamour"
+    },
+    {
+      "id": "manto_de_inspiracao",
+      "nome": "Manto de Inspiração",
+      "classe": "bardo",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus, gastando uma Inspiração: criaturas a até 18 m em número igual ao seu modificador de Carisma ganham o dobro do dado em Pontos de Vida Temporários e podem usar a Reação para mover todo o Deslocamento sem provocar Ataques de Oportunidade.",
+      "efeitos": [
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "formula": [
+            {
+              "op": "mult",
+              "args": [
+                "coluna:dados_de_inspiracao",
+                "2"
+              ]
+            }
+          ],
+          "custo": "acao_bonus",
+          "recurso_id": "inspiracao_de_bardo",
+          "beneficiario": "criaturas_a_escolha_a_ate_18m",
+          "quantidade_de_alvos": [
+            {
+              "op": "max",
+              "args": [
+                "mod:CAR",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "caminhada",
+          "modo": "movimento_imediato",
+          "custo": "reacao_do_aliado",
+          "formula": [
+            "deslocamento_do_aliado"
+          ],
+          "sem_provocar_ataques_de_oportunidade": true,
+          "beneficiario": "criaturas_afetadas"
+        }
+      ],
+      "subclasse": "colegio_do_glamour"
+    },
+    {
+      "id": "manto_de_majestade",
+      "nome": "Manto de Majestade",
+      "classe": "bardo",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Comando sempre preparada. Ação Bônus para conjurá-la sem espaço e assumir aparência sobrenatural por 1 minuto, durante a qual repete Comando como Ação Bônus sem gastar espaço. Quem está Enfeitiçado por você falha automaticamente. Uma vez por Descanso Longo, ou gastando um espaço de 3º círculo ou superior.",
+      "efeitos": [
+        {
+          "tipo": "preparar_magias",
+          "magias": [
+            "comando"
+          ],
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true,
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "bardo"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "comando",
+          "custo": "acao_bonus",
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "gatilho": "concentracao_quebrada"
+            }
+          ],
+          "repetivel_durante": {
+            "custo": "acao_bonus",
+            "sem_espaco": true
+          },
+          "falha_automatica_de": "criatura_enfeiticada_por_voce",
+          "recarga": [
+            "descanso_longo"
+          ],
+          "recarga_alternativa": {
+            "gastar_espaco_de_magia": {
+              "circulo_minimo": 3
+            }
+          }
+        }
+      ],
+      "subclasse": "colegio_do_glamour"
+    },
+    {
+      "id": "majestade_inquebravel",
+      "nome": "Majestade Inquebrável",
+      "classe": "bardo",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para uma presença majestosa por 1 minuto ou até ficar Incapacitado: quem acertar você pela primeira vez num turno faz salvaguarda de Carisma ou o ataque falha. Uma vez por Descanso.",
+      "efeitos": [
+        {
+          "tipo": "impedir",
+          "alvo": "atacar_ou_alvejar",
+          "custo": "acao_bonus",
+          "beneficiario": "atacante",
+          "salvaguarda": {
+            "atributo": "CAR",
+            "cd": [
+              "cd_para_evitar_sua_magia"
+            ]
+          },
+          "frequencia": "primeira_vez_por_turno_por_atacante",
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "condicao_id": "incapacitado"
+            }
+          ],
+          "recarga": [
+            "descanso_curto",
+            "descanso_longo"
+          ]
+        }
+      ],
+      "subclasse": "colegio_do_glamour"
+    },
+    {
+      "id": "conjuracao_feiticeiro",
+      "nome": "Conjuração",
+      "classe": "feiticeiro",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 103,
+        "pagina_pdf": 107
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura pela lista de Feiticeiro, com Carisma. Prepara da lista inteira, sem livro, trocando uma magia por nível ganho. Usa Foco Arcano.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "disponivel_para_preparar",
+          "lista_id": "feiticeiro"
+        },
+        {
+          "id": "feiticeiro_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha os truques de Feiticeiro",
+          "quantidade": [
+            "coluna:truques"
+          ],
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "recomendadas": [
+            "explosao_elemental",
+            "luz",
+            "prestidigitacao_arcana",
+            "toque_chocante"
+          ],
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "feiticeiro",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "magia": "{{escolhido}}",
+            "modo": "conhecida"
+          }
+        },
+        {
+          "id": "feiticeiro_preparadas",
+          "tipo": "escolha",
+          "rotulo": "Escolha as magias preparadas de Feiticeiro",
+          "quantidade": [
+            "coluna:magias_preparadas"
+          ],
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "recomendadas": [
+            "detectar_magia",
+            "maos_flamejantes"
+          ],
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "feiticeiro",
+              "nivel_minimo": 1,
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "preparar_magias",
+            "magia": "{{escolhido}}",
+            "fonte_das_magias": "lista_de_classe",
+            "lista_id": "feiticeiro"
+          }
+        }
+      ],
+      "cd_para_evitar_sua_magia": [
+        "8",
+        "mod:CAR",
+        "prof"
+      ],
+      "foco_de_conjuracao": [
+        "foco_arcano"
+      ]
+    },
+    {
+      "id": "feiticaria_inata",
+      "nome": "Feitiçaria Inata",
+      "classe": "feiticeiro",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 104,
+        "pagina_pdf": 108
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para liberar a magia latente por 1 minuto: a CD para evitar suas magias de Feiticeiro sobe 1 e você tem Vantagem nas jogadas de ataque das magias de Feiticeiro que conjurar. Dois usos, recuperados no Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "feiticaria_inata_usos",
+          "nome": "Feitiçaria Inata",
+          "formula_maximo": [
+            "2"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "ativar_feiticaria_inata",
+          "custo": "acao_bonus",
+          "recurso_id": "feiticaria_inata_usos",
+          "duracao": "1 minuto",
+          "concede_flag": "feiticaria_inata_ativa",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "cd_para_evitar_sua_magia",
+              "valor": [
+                "1"
+              ],
+              "empilha": "soma",
+              "escopo": {
+                "lista": "feiticeiro"
+              }
+            },
+            {
+              "tipo": "vantagem",
+              "alvo": "jogada_de_ataque_magico",
+              "modo": "vantagem",
+              "escopo": {
+                "lista": "feiticeiro"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fonte_de_magia",
+      "nome": "Fonte de Magia",
+      "classe": "feiticeiro",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 104,
+        "pagina_pdf": 108
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Você tem Pontos de Feitiçaria conforme a tabela, recuperados no Descanso Longo. Pode gastar um espaço de magia para receber pontos iguais ao círculo dele, e como Ação Bônus transformar pontos em um espaço de até 5º círculo — espaço criado assim some no Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "pontos_de_feiticaria",
+          "nome": "Pontos de Feitiçaria",
+          "formula_maximo": [
+            "coluna:pontos_de_feiticaria"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_ponto"
+        },
+        {
+          "tipo": "converter_recurso",
+          "id": "espaco_para_pontos",
+          "de": "espaco_de_magia",
+          "para": "pontos_de_feiticaria",
+          "taxa": "pontos_iguais_ao_circulo_do_espaco",
+          "custo": "livre",
+          "nota": "Nenhuma ação é necessária (p. 105)."
+        },
+        {
+          "tipo": "converter_recurso",
+          "id": "pontos_para_espaco",
+          "de": "pontos_de_feiticaria",
+          "para": "espaco_de_magia",
+          "custo": "acao_bonus",
+          "circulo_maximo": 5,
+          "tabela_de_custo": [
+            {
+              "circulo": 1,
+              "custo_em_pontos": 2,
+              "nivel_minimo_de_feiticeiro": 2
+            },
+            {
+              "circulo": 2,
+              "custo_em_pontos": 3,
+              "nivel_minimo_de_feiticeiro": 3
+            },
+            {
+              "circulo": 3,
+              "custo_em_pontos": 5,
+              "nivel_minimo_de_feiticeiro": 5
+            },
+            {
+              "circulo": 4,
+              "custo_em_pontos": 6,
+              "nivel_minimo_de_feiticeiro": 7
+            },
+            {
+              "circulo": 5,
+              "custo_em_pontos": 7,
+              "nivel_minimo_de_feiticeiro": 9
+            }
+          ],
+          "espaco_criado": {
+            "expira_em": "descanso_longo"
+          },
+          "fonte": {
+            "capitulo": 3,
+            "pagina_livro": 105,
+            "pagina_pdf": 109
+          }
+        }
+      ]
+    },
+    {
+      "id": "metamagia",
+      "nome": "Metamagia",
+      "classe": "feiticeiro",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe duas opções de Metamagia, mais duas no nível 10 e mais duas no nível 17, trocando uma por nível ganho. Cada opção consome Pontos de Feitiçaria e só se pode usar uma opção por magia, salvo quando a própria opção disser o contrário.",
+      "efeitos": [
+        {
+          "id": "feiticeiro_metamagia",
+          "tipo": "escolha",
+          "rotulo": "Escolha opções de Metamagia",
+          "quantidade": 2,
+          "quantidade_por_nivel": {
+            "2": 2,
+            "10": 4,
+            "17": 6
+          },
+          "reescolhivel": true,
+          "reescolha_em": "subir_de_nivel",
+          "quantidade_de_trocas": 1,
+          "de": {
+            "catalogo": "opcoes_de_metamagia",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          },
+          "limite": {
+            "opcoes_por_magia": 1,
+            "nota": "Uma opção por conjuração, salvo quando a opção disser o contrário (Buscadora e Potencializada dizem)."
+          }
+        }
+      ],
+      "niveis": [
+        2,
+        10,
+        17
+      ],
+      "repetivel": true,
+      "tipo_de_repeticao": "melhoria",
+      "nome_na_tabela": "Metamagia"
+    },
+    {
+      "id": "subclasse_de_feiticeiro",
+      "nome": "Subclasse de Feiticeiro",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe uma origem de feitiçaria. Ela concede características nos níveis 3, 6, 14 e 18 de Feiticeiro.",
+      "efeitos": [
+        {
+          "id": "feiticeiro_subclasse",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma origem de Feiticeiro",
+          "quantidade": 1,
+          "de": {
+            "catalogo": "subclasses",
+            "filtro": {
+              "classe": "feiticeiro"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_subclasse",
+            "subclasse": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "restauracao_feiticeira",
+      "nome": "Restauração Feiticeira",
+      "classe": "feiticeiro",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao completar um Descanso Curto, recupera Pontos de Feitiçaria gastos até metade do seu nível de Feiticeiro (arredondado para baixo). Só de novo depois de um Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "restauracao_feiticeira_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "restaurar_recurso",
+          "recurso_id": "pontos_de_feiticaria",
+          "quantidade": [
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "nivel_classe:feiticeiro",
+                "2"
+              ]
+            }
+          ],
+          "gatilho": "descanso_curto",
+          "consome_recurso": "restauracao_feiticeira_usos"
+        }
+      ]
+    },
+    {
+      "id": "feiticaria_encarnada",
+      "nome": "Feitiçaria Encarnada",
+      "classe": "feiticeiro",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sem usos de Feitiçaria Inata, ainda pode ativá-la gastando 2 Pontos de Feitiçaria na Ação Bônus. E enquanto a Feitiçaria Inata estiver ativa, pode usar até duas opções de Metamagia em cada magia conjurada.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "feiticaria_inata",
+          "efeitos": [
+            {
+              "tipo": "converter_recurso",
+              "id": "inata_por_pontos",
+              "de": "pontos_de_feiticaria",
+              "para": "feiticaria_inata_usos",
+              "taxa": "2:1",
+              "custo": "acao_bonus",
+              "condicao": {
+                "todas": [
+                  "recurso:feiticaria_inata_usos.atual == 0"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "metamagia",
+          "efeitos": [
+            {
+              "tipo": "alterar_quantidade_de_escolha",
+              "escolha_id": "feiticeiro_metamagia",
+              "campo": "limite.opcoes_por_magia",
+              "novo_valor": 2,
+              "condicao": {
+                "todas": [
+                  "flag:feiticaria_inata_ativa"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apoteose_arcana",
+      "nome": "Apoteose Arcana",
+      "classe": "feiticeiro",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Enquanto a Feitiçaria Inata estiver ativa, uma opção de Metamagia por turno não custa Pontos de Feitiçaria.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "metamagia",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "custo_de_metamagia",
+              "valor": [
+                "0"
+              ],
+              "empilha": "substitui",
+              "frequencia": "uma_vez_por_turno",
+              "condicao": {
+                "todas": [
+                  "flag:feiticaria_inata_ativa"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fala_telepatica",
+      "nome": "Fala Telepática",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 109,
+        "pagina_pdf": 113
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para abrir um canal telepático com uma criatura à vista a até 9 m. O canal alcança 1,5 km por ponto do modificador de Carisma (mínimo 1,5 km) e dura tantos minutos quanto seu nível de Feiticeiro; abrir outro canal encerra o anterior.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "abrir_fala_telepatica",
+          "custo": "acao_bonus",
+          "alcance_m": 9,
+          "alvo_requerido": "criatura_a_vista",
+          "duracao": "nivel de Feiticeiro em minutos",
+          "duracao_em_minutos": [
+            "nivel_classe:feiticeiro"
+          ],
+          "encerra_se": [
+            {
+              "gatilho": "conectar_com_outra_criatura"
+            }
+          ],
+          "efeitos": [
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "canal_telepatico",
+              "texto": "Você e a criatura se comunicam telepaticamente enquanto estiverem a até 1,5 km por ponto do seu modificador de Carisma (mínimo 1,5 km); cada um precisa usar mentalmente um idioma que o outro conheça.",
+              "alcance_km": [
+                {
+                  "op": "max",
+                  "args": [
+                    "1.5",
+                    {
+                      "op": "mult",
+                      "args": [
+                        "1.5",
+                        "mod:CAR"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "magias_psionicas",
+      "nome": "Magias Psiônicas",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 109,
+        "pagina_pdf": 113
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias Psiônicas, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias Psiônicas",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 109,
+              "pagina_pdf": 113
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "acalmar_emocoes",
+                  "bracos_de_hadar",
+                  "detectar_pensamentos",
+                  "sussurros_dissonantes",
+                  "talho_mental"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "fome_de_hadar",
+                  "remeter"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "invocar_aberracao",
+                  "tentaculos_negros_de_evard"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "ligacao_telepatica_de_rary",
+                  "telecinese"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "defesas_psiquicas",
+      "nome": "Defesas Psíquicas",
+      "classe": "feiticeiro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Resistência a dano Psíquico e Vantagem em salvaguardas para evitar ou encerrar as condições Amedrontado e Enfeitiçado.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "psiquico",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "vantagem",
+          "aplica_a": "evitar_ou_encerrar_condicao",
+          "condicao": {
+            "alguma": [
+              "condicao:amedrontado",
+              "condicao:enfeiticado"
+            ]
+          }
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "feiticaria_psionica",
+      "nome": "Feitiçaria Psiônica",
+      "classe": "feiticeiro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias de 1º círculo ou superior da característica Magias Psiônicas podem ser conjuradas gastando Pontos de Feitiçaria iguais ao círculo, em vez de um espaço. Conjurada assim, a magia dispensa componentes Verbais, Somáticos e Materiais — salvo material consumido ou com custo detalhado.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "escopo": {
+            "caracteristica": "magias_psionicas",
+            "nivel_minimo": 1
+          },
+          "custo_em_recurso": {
+            "recurso_id": "pontos_de_feiticaria",
+            "quantidade": "igual_ao_circulo"
+          },
+          "frequencia": "sem_limite"
+        },
+        {
+          "tipo": "dispensar_componentes",
+          "componentes": [
+            "V",
+            "S",
+            "M"
+          ],
+          "escopo": {
+            "caracteristica": "magias_psionicas",
+            "nivel_minimo": 1
+          },
+          "excecoes": [
+            "material_consumido",
+            "material_com_custo"
+          ],
+          "condicao": {
+            "todas": [
+              "conjurada_com_pontos_de_feiticaria"
+            ]
+          }
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "revelacao_em_carne",
+      "nome": "Revelação em Carne",
+      "classe": "feiticeiro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus gastando 1 ou mais Pontos de Feitiçaria para alterar o corpo por 10 minutos: cada ponto compra um dos quatro benefícios à sua escolha.",
+      "efeitos": [
+        {
+          "id": "revelacao_em_carne_escolha",
+          "tipo": "escolha",
+          "rotulo": "Escolha os benefícios da Revelação em Carne",
+          "quantidade": "um_por_ponto_gasto",
+          "custo_por_item": {
+            "recurso_id": "pontos_de_feiticaria",
+            "quantidade": 1
+          },
+          "custo": "acao_bonus",
+          "duracao": "10 minutos",
+          "momento": "ao_ativar",
+          "reescolhivel": true,
+          "reescolha_em": "cada_ativacao",
+          "de": {
+            "catalogo": "alteracoes_da_revelacao_em_carne",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "implosao_de_distorcao",
+      "nome": "Implosão de Distorção",
+      "classe": "feiticeiro",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia: teleporta-se para um espaço desocupado à vista a até 36 m. Cada criatura a até 9 m do espaço abandonado faz salvaguarda de Força contra a CD para evitar sua magia; se falhar, sofre 3d10 de dano Energético e é puxada para o espaço desocupado mais próximo daquele que você deixou. Uma vez por Descanso Longo, ou gastando 5 Pontos de Feitiçaria.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "implosao_de_distorcao_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "usar_implosao_de_distorcao",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "recurso_id": "implosao_de_distorcao_usos",
+          "custo_alternativo": {
+            "recurso_id": "pontos_de_feiticaria",
+            "quantidade": 5,
+            "custo": "livre"
+          },
+          "efeitos": [
+            {
+              "tipo": "teleporte",
+              "alcance_m": 36,
+              "requisitos": [
+                "destino_desocupado",
+                "destino_a_vista"
+              ]
+            },
+            {
+              "tipo": "dano",
+              "formula_dado": "3d10",
+              "tipo_dano": "energetico",
+              "area": {
+                "forma": "esfera",
+                "raio_m": 9,
+                "origem": "espaco_abandonado"
+              },
+              "salvaguarda": {
+                "atributo": "FOR",
+                "cd": [
+                  "8",
+                  "mod:CAR",
+                  "prof"
+                ],
+                "sucesso": "metade_do_dano"
+              }
+            },
+            {
+              "tipo": "movimento_forcado",
+              "direcao": "puxar",
+              "destino": "espaco_desocupado_mais_proximo_do_espaco_abandonado",
+              "condicao": {
+                "todas": [
+                  "falhou_na_salvaguarda"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_aberrante"
+    },
+    {
+      "id": "magias_draconicas",
+      "nome": "Magias Dracônicas",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias Dracônicas, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias Dracônicas",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 110,
+              "pagina_pdf": 114
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "alterar_se",
+                  "comando",
+                  "orbe_cromatico",
+                  "sopro_de_dragao"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "medo",
+                  "voo"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "enfeiticar_monstro",
+                  "olho_arcano"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "invocar_dragao",
+                  "lendas_e_historias"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "feiticaria_draconica"
+    },
+    {
+      "id": "resiliencia_draconica",
+      "nome": "Resiliência Dracônica",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Pontos de Vida máximos aumentam em 3 e mais 1 a cada nível de Feiticeiro seguinte. Sem armadura, sua CA base é 10 + modificador de Destreza + modificador de Carisma.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "pontos_de_vida_maximos",
+          "valor": [
+            "nivel_classe:feiticeiro"
+          ],
+          "empilha": "soma",
+          "nota": "O livro diz '+3 ao adquirir, +1 a cada nível de Feiticeiro seguinte' (p. 110). Como a característica chega no nível 3, isso é exatamente o nível de Feiticeiro: 3 no nível 3, 4 no nível 4, e assim por diante. Guardado como a conta fechada, não como duas parcelas."
+        },
+        {
+          "tipo": "ca_base",
+          "id": "ca_resiliencia_draconica",
+          "formula": [
+            "10",
+            "mod:DES",
+            "mod:CAR"
+          ],
+          "concorre_como": "calculo_de_ca_base",
+          "condicao": {
+            "todas": [
+              "flag:sem_armadura"
+            ]
+          },
+          "permite_escudo": true,
+          "nota": "Concorre com os demais cálculos de CA base; o jogador escolhe um, não se somam (Ap. C, 'Classe de Armadura')."
+        }
+      ],
+      "subclasse": "feiticaria_draconica"
+    },
+    {
+      "id": "afinidade_elemental",
+      "nome": "Afinidade Elemental",
+      "classe": "feiticeiro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe um tipo de dano dracônico (Ácido, Elétrico, Gélido, Ígneo ou Venenoso): ganha Resistência a ele e soma o modificador de Carisma a uma jogada de dano das magias que causam esse tipo.",
+      "efeitos": [
+        {
+          "id": "afinidade_elemental_tipo",
+          "tipo": "escolha",
+          "rotulo": "Escolha o tipo de dano da sua ancestralidade dracônica",
+          "quantidade": 1,
+          "de": {
+            "catalogo": "tipos_de_dano",
+            "chaves": [
+              "acido",
+              "eletrico",
+              "gelido",
+              "igneo",
+              "venenoso"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "efeitos_nomeados": {
+        "acido": {
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "acido",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "mod:CAR"
+              ],
+              "empilha": "soma",
+              "frequencia": "uma_jogada_por_magia",
+              "escopo": {
+                "origem": "magia",
+                "tipo_de_dano": "acido"
+              }
+            }
+          ]
+        },
+        "eletrico": {
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "eletrico",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "mod:CAR"
+              ],
+              "empilha": "soma",
+              "frequencia": "uma_jogada_por_magia",
+              "escopo": {
+                "origem": "magia",
+                "tipo_de_dano": "eletrico"
+              }
+            }
+          ]
+        },
+        "gelido": {
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "gelido",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "mod:CAR"
+              ],
+              "empilha": "soma",
+              "frequencia": "uma_jogada_por_magia",
+              "escopo": {
+                "origem": "magia",
+                "tipo_de_dano": "gelido"
+              }
+            }
+          ]
+        },
+        "igneo": {
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "igneo",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "mod:CAR"
+              ],
+              "empilha": "soma",
+              "frequencia": "uma_jogada_por_magia",
+              "escopo": {
+                "origem": "magia",
+                "tipo_de_dano": "igneo"
+              }
+            }
+          ]
+        },
+        "venenoso": {
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "venenoso",
+              "operacao": "resistencia"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "jogada_de_dano",
+              "valor": [
+                "mod:CAR"
+              ],
+              "empilha": "soma",
+              "frequencia": "uma_jogada_por_magia",
+              "escopo": {
+                "origem": "magia",
+                "tipo_de_dano": "venenoso"
+              }
+            }
+          ]
+        }
+      },
+      "subclasse": "feiticaria_draconica"
+    },
+    {
+      "id": "asas_de_dragao",
+      "nome": "Asas de Dragão",
+      "classe": "feiticeiro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus: asas dracônicas por 1 hora, ou até você encerrá-las, dando Deslocamento de Voo de 18 m. Uma vez por Descanso Longo, ou gastando 3 Pontos de Feitiçaria para restaurar o uso.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "asas_de_dragao_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "converter_recurso",
+          "id": "asas_por_pontos",
+          "de": "pontos_de_feiticaria",
+          "para": "asas_de_dragao_usos",
+          "taxa": "3:1",
+          "custo": "livre"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "abrir_asas_de_dragao",
+          "custo": "acao_bonus",
+          "recurso_id": "asas_de_dragao_usos",
+          "duracao": "1 hora",
+          "encerra_se": [
+            {
+              "gatilho": "encerrar_voluntariamente",
+              "custo": "livre"
+            }
+          ],
+          "efeitos": [
+            {
+              "tipo": "conceder_velocidade",
+              "tipo_deslocamento": "voo",
+              "formula": [
+                "18"
+              ]
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_draconica"
+    },
+    {
+      "id": "companheiro_draconico",
+      "nome": "Companheiro Dracônico",
+      "classe": "feiticeiro",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Invocar Dragão sem componente Material e, uma vez por Descanso Longo, sem gastar espaço de magia. Ao começar a conjurar, pode dispensar a Concentração — e então a duração daquela conjuração vira 1 minuto.",
+      "efeitos": [
+        {
+          "tipo": "dispensar_componentes",
+          "componentes": [
+            "M"
+          ],
+          "escopo": {
+            "magias": [
+              "invocar_dragao"
+            ]
+          }
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "invocar_dragao",
+          "frequencia": "uma_vez_por_descanso_longo"
+        },
+        {
+          "tipo": "dispensar_concentracao",
+          "magias": [
+            "invocar_dragao"
+          ],
+          "opcional": true,
+          "momento": "ao_comecar_a_conjurar",
+          "duracao_substituta": "1 minuto"
+        }
+      ],
+      "subclasse": "feiticaria_draconica"
+    },
+    {
+      "id": "magias_mecanicas",
+      "nome": "Magias Mecânicas",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias Mecânicas, sem contar para o limite. Escolhe também, na tabela Manifestações da Ordem, como a conexão com a ordem aparece quando você conjura.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias Mecânicas",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 111,
+              "pagina_pdf": 115
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "alarme",
+                  "auxilio",
+                  "protecao_contra_o_bem_e_o_mal",
+                  "restauracao_menor"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "dissipar_magia",
+                  "protecao_contra_energia"
+                ]
+              },
+              {
+                "nivel": 7,
+                "magias": [
+                  "invocar_constructo",
+                  "movimentacao_livre"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "muralha_de_energia",
+                  "restauracao_maior"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "nao_conta_para_o_limite": true
+        },
+        {
+          "id": "manifestacao_da_ordem",
+          "tipo": "escolha",
+          "rotulo": "Escolha (ou role 1d6) a sua Manifestação da Ordem",
+          "quantidade": 1,
+          "aleatorio_permitido": {
+            "dado": "1d6"
+          },
+          "apenas_narrativo": true,
+          "de": {
+            "catalogo": "manifestacoes_da_ordem",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "feiticaria_mecanica"
+    },
+    {
+      "id": "restaurar_equilibrio",
+      "nome": "Restaurar Equilíbrio",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação, quando uma criatura à vista a até 18 m está prestes a jogar um d20 com Vantagem ou Desvantagem: o teste deixa de ser afetado por Vantagem e Desvantagem. Usos iguais ao modificador de Carisma (mínimo 1), recuperados no Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "restaurar_equilibrio_usos",
+          "nome": "Restaurar Equilíbrio",
+          "formula_maximo": [
+            {
+              "op": "max",
+              "args": [
+                "mod:CAR",
+                "1"
+              ]
+            }
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "impedir",
+          "alvo": "vantagem_ou_desvantagem_em_teste_d20",
+          "beneficiario": "criatura_a_vista",
+          "alcance_m": 18,
+          "custo": "reacao",
+          "recurso_id": "restaurar_equilibrio_usos",
+          "momento": "antes_da_jogada"
+        }
+      ],
+      "subclasse": "feiticaria_mecanica"
+    },
+    {
+      "id": "bastiao_da_lei",
+      "nome": "Bastião da Lei",
+      "classe": "feiticeiro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia gastando de 1 a 5 Pontos de Feitiçaria: cria uma proteção em você ou numa criatura à vista a até 9 m, com um d8 por ponto gasto. Quando a criatura protegida sofre dano, pode gastar dados da reserva e reduzir o dano pelo resultado. Dura até o Descanso Longo ou até você usar de novo.",
+      "efeitos": [
+        {
+          "tipo": "reserva_de_dados",
+          "id": "bastiao_da_lei",
+          "dado": "d8",
+          "formula_quantidade": [
+            "pontos_de_feiticaria_gastos"
+          ],
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "custo_em_recurso": {
+            "recurso_id": "pontos_de_feiticaria",
+            "minimo": 1,
+            "maximo": 5
+          },
+          "alvo": "voce_ou_criatura_a_vista",
+          "alcance_m": 9,
+          "recarga": [
+            "descanso_longo"
+          ],
+          "encerra_se": [
+            {
+              "gatilho": "usar_a_caracteristica_de_novo"
+            }
+          ],
+          "gasto": {
+            "gatilho": "criatura_protegida_sofre_dano",
+            "quantidade": "a_escolha_da_criatura"
+          },
+          "efeitos": [
+            {
+              "tipo": "reducao_de_dano",
+              "formula": [
+                "resultado_dos_dados_gastos"
+              ]
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_mecanica"
+    },
+    {
+      "id": "transe_da_ordem",
+      "nome": "Transe da Ordem",
+      "classe": "feiticeiro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para entrar em transe por 1 minuto: jogadas de ataque contra você não se beneficiam de Vantagem, e em qualquer Teste de D20 você trata um resultado 9 ou menor no d20 como 10. Uma vez por Descanso Longo, ou gastando 5 Pontos de Feitiçaria para restaurar o uso.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "transe_da_ordem_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "converter_recurso",
+          "id": "transe_por_pontos",
+          "de": "pontos_de_feiticaria",
+          "para": "transe_da_ordem_usos",
+          "taxa": "5:1",
+          "custo": "livre"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "entrar_em_transe_da_ordem",
+          "custo": "acao_bonus",
+          "recurso_id": "transe_da_ordem_usos",
+          "duracao": "1 minuto",
+          "efeitos": [
+            {
+              "tipo": "impedir",
+              "alvo": "vantagem_em_ataque_contra_voce"
+            },
+            {
+              "tipo": "tratar_resultado_minimo",
+              "alvo": "teste_d20",
+              "minimo": 10
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_mecanica"
+    },
+    {
+      "id": "cavalgada_mecanica",
+      "nome": "Cavalgada Mecânica",
+      "classe": "feiticeiro",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 112,
+        "pagina_pdf": 116
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia: espíritos da ordem num Cubo de 9 m originado em você. Eles curam até 100 Pontos de Vida divididos como você quiser entre criaturas à sua escolha no Cubo, encerram magias de 6º círculo ou inferior em criaturas e objetos à sua escolha no Cubo, e reparam instantaneamente os objetos danificados no Cubo. Uma vez por Descanso Longo, ou gastando 7 Pontos de Feitiçaria para restaurar o uso.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "cavalgada_mecanica_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "converter_recurso",
+          "id": "cavalgada_por_pontos",
+          "de": "pontos_de_feiticaria",
+          "para": "cavalgada_mecanica_usos",
+          "taxa": "7:1",
+          "custo": "livre"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "usar_cavalgada_mecanica",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "recurso_id": "cavalgada_mecanica_usos",
+          "area": {
+            "forma": "cubo",
+            "lado_m": 9,
+            "origem": "voce"
+          },
+          "efeitos": [
+            {
+              "tipo": "cura",
+              "formula": [
+                "100"
+              ],
+              "modo": "dividido_a_sua_escolha",
+              "alvo": "criaturas_a_sua_escolha_na_area"
+            },
+            {
+              "tipo": "dissipar_magias",
+              "circulo_maximo": 6,
+              "alvo": "criaturas_e_objetos_a_sua_escolha_na_area"
+            },
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "reparar_objetos",
+              "texto": "Todos os objetos danificados inteiramente dentro do Cubo são reparados instantaneamente."
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_mecanica"
+    },
+    {
+      "id": "mares_do_caos",
+      "nome": "Marés do Caos",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 113,
+        "pagina_pdf": 117
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Antes de jogar, garante Vantagem num Teste de D20 à sua escolha. Depois de usar, só recupera conjurando uma magia de Feiticeiro com um espaço — o que dispara automaticamente um Surto de Magia Selvagem — ou completando um Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "mares_do_caos_usos",
+          "nome": "Marés do Caos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo",
+            {
+              "gatilho": "conjurar_magia_de_feiticeiro_com_espaco",
+              "quantidade": "todos",
+              "condicao": {
+                "todas": [
+                  "recurso:mares_do_caos_usos.atual == 0"
+                ]
+              },
+              "efeito_colateral": {
+                "tipo": "efeito_narrativo",
+                "chave": "surto_automatico",
+                "texto": "Essa conjuração dispara automaticamente um Surto de Magia Selvagem, sem a jogada de 1d20."
+              }
+            }
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "teste_d20",
+          "modo": "vantagem",
+          "momento": "antes_da_jogada",
+          "recurso_id": "mares_do_caos_usos"
+        }
+      ],
+      "subclasse": "feiticaria_selvagem"
+    },
+    {
+      "id": "surto_de_magia_selvagem",
+      "nome": "Surto de Magia Selvagem",
+      "classe": "feiticeiro",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 113,
+        "pagina_pdf": 117
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Uma vez por turno, logo depois de conjurar uma magia de Feiticeiro com um espaço, pode jogar 1d20: em 20, joga na tabela Surto de Magia Selvagem. Se o efeito for uma magia, ela é selvagem demais para sua Metamagia.",
+      "efeitos": [
+        {
+          "tipo": "rolar_na_tabela",
+          "id": "surto_de_magia_selvagem",
+          "catalogo": "surtos_de_magia_selvagem",
+          "dado_da_tabela": "1d100",
+          "gatilho": {
+            "evento": "conjurar_magia_de_feiticeiro_com_espaco",
+            "teste": {
+              "dado": "1d20",
+              "dispara_em": [
+                20
+              ]
+            }
+          },
+          "frequencia": "uma_vez_por_turno",
+          "restricoes": [
+            "magia_resultante_nao_aceita_metamagia"
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_selvagem"
+    },
+    {
+      "id": "distorcer_a_sorte",
+      "nome": "Distorcer a Sorte",
+      "classe": "feiticeiro",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 113,
+        "pagina_pdf": 117
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação, logo depois de outra criatura à sua vista jogar o d20 de um Teste de D20: gasta 1 Ponto de Feitiçaria, joga 1d4 e aplica o resultado como bônus ou penalidade, à sua escolha, naquele teste.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_d20_de_criatura_a_vista",
+          "valor": [
+            "1d4"
+          ],
+          "empilha": "soma",
+          "sinal": "a_sua_escolha",
+          "custo": "reacao",
+          "momento": "apos_a_jogada",
+          "custo_em_recurso": {
+            "recurso_id": "pontos_de_feiticaria",
+            "quantidade": 1
+          }
+        }
+      ],
+      "subclasse": "feiticaria_selvagem"
+    },
+    {
+      "id": "caos_controlado",
+      "nome": "Caos Controlado",
+      "classe": "feiticeiro",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 113,
+        "pagina_pdf": 117
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao jogar na tabela Surto de Magia Selvagem, joga duas vezes e usa qualquer um dos dois resultados.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "surto_de_magia_selvagem",
+          "efeitos": [
+            {
+              "tipo": "rolar_novamente",
+              "alvo": "rolagem_na_tabela",
+              "usa_novo_resultado": false,
+              "escolhe_entre_os_resultados": true
+            }
+          ]
+        }
+      ],
+      "subclasse": "feiticaria_selvagem"
+    },
+    {
+      "id": "surto_controlado",
+      "nome": "Surto Controlado",
+      "classe": "feiticeiro",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Logo depois de conjurar uma magia de Feiticeiro com um espaço, pode escolher um efeito da tabela Surto de Magia Selvagem em vez de jogar — qualquer um, exceto a linha final; se o efeito escolhido envolver uma jogada, você a realiza. Uma vez por Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "surto_controlado_usos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "id": "surto_controlado_escolha",
+          "tipo": "escolha",
+          "rotulo": "Escolha o efeito do Surto de Magia Selvagem",
+          "quantidade": 1,
+          "momento": "apos_conjurar_magia_de_feiticeiro_com_espaco",
+          "reescolhivel": true,
+          "reescolha_em": "cada_uso",
+          "recurso_id": "surto_controlado_usos",
+          "de": {
+            "catalogo": "surtos_de_magia_selvagem",
+            "filtro": {
+              "escolhivel_no_surto_controlado": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "feiticaria_selvagem"
     }
   ]
 }

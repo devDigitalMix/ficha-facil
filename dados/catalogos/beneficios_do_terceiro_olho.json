@@ -11,17 +11,45 @@
     {
       "id": "compreensao_superior",
       "nome": "Compreensão Superior",
-      "descricao_curta": "Você pode ler qualquer idioma."
+      "descricao_curta": "Você pode ler qualquer idioma.",
+      "efeitos": [
+        {
+          "tipo": "substituir_regra",
+          "chave": "ler_qualquer_idioma",
+          "duracao": "ate_o_proximo_descanso",
+          "revisao": "duvida",
+          "nota": "Ler qualquer idioma não tem primitivo próprio no esquema; fica como regra declarada até existir um efeito de compreensão de idiomas."
+        }
+      ],
+      "revisao": {
+        "status": "duvida",
+        "notas": "Ler qualquer idioma não tem primitivo próprio no esquema; fica como substituir_regra até existir um efeito de compreensão de idiomas (provável no cap. 5, com os talentos)."
+      }
     },
     {
       "id": "ver_o_invisivel",
       "nome": "Ver o Invisível",
-      "descricao_curta": "Conjura Ver o Invisível sem gastar espaço de magia."
+      "descricao_curta": "Conjura Ver o Invisível sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "ver_o_invisivel"
+        }
+      ]
     },
     {
       "id": "visao_no_escuro",
       "nome": "Visão no Escuro",
-      "descricao_curta": "Visão no Escuro com alcance de 36 metros."
+      "descricao_curta": "Visão no Escuro com alcance de 36 metros.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_no_escuro",
+          "alcance_m": 36,
+          "empilha": "substitui_se_maior",
+          "duracao": "ate_o_proximo_descanso"
+        }
+      ]
     }
   ]
 }

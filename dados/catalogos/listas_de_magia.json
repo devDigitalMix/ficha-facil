@@ -32,7 +32,8 @@
         "7": 15,
         "8": 13,
         "9": 12
-      }
+      },
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "clerigo",
@@ -44,7 +45,8 @@
         "pagina_pdf": 87
       },
       "preenchida": true,
-      "total_de_magias": 117
+      "total_de_magias": 117,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "druida",
@@ -56,7 +58,8 @@
         "pagina_pdf": 98
       },
       "preenchida": true,
-      "total_de_magias": 135
+      "total_de_magias": 135,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "bardo",
@@ -67,7 +70,9 @@
         "pagina_livro": 59,
         "pagina_pdf": 63
       },
-      "preenchida": false
+      "preenchida": true,
+      "total_de_magias": 140,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "feiticeiro",
@@ -78,7 +83,9 @@
         "pagina_livro": 103,
         "pagina_pdf": 107
       },
-      "preenchida": false
+      "preenchida": true,
+      "total_de_magias": 150,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "bruxo",
@@ -90,7 +97,8 @@
         "pagina_pdf": 77
       },
       "preenchida": true,
-      "total_de_magias": 91
+      "total_de_magias": 91,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "guardiao",
@@ -101,7 +109,9 @@
         "pagina_livro": 117,
         "pagina_pdf": 121
       },
-      "preenchida": false
+      "preenchida": true,
+      "total_de_magias": 61,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     },
     {
       "id": "paladino",
@@ -112,7 +122,9 @@
         "pagina_livro": 167,
         "pagina_pdf": 171
       },
-      "preenchida": false
+      "preenchida": true,
+      "total_de_magias": 51,
+      "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
     }
   ]
 }

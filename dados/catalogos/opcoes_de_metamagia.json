@@ -1,0 +1,242 @@
+{
+  "catalogo": "opcoes_de_metamagia",
+  "nome": "Opções de Metamagia",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 105,
+    "pagina_pdf": 109
+  },
+  "nota": "Toda opção é aplicada NO ATO DE CONJURAR e consome Pontos de Feitiçaria. Só uma por magia, salvo as que declaram empilha_com_outra_metamagia (Buscadora e Potencializada) — e salvo Feitiçaria Encarnada, que sobe o teto para duas.",
+  "total": 10,
+  "itens": [
+    {
+      "id": "magia_acelerada",
+      "nome": "Magia Acelerada",
+      "custo_em_pontos_de_feiticaria": 2,
+      "descricao_curta": "Magia com tempo de conjuração de uma ação passa a custar uma Ação Bônus nesta conjuração. Não vale se já conjurou magia de 1º círculo ou superior neste turno, nem permite conjurar outra depois no mesmo turno.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_tempo_de_conjuracao",
+          "de": "acao",
+          "para": "acao_bonus",
+          "escopo": {
+            "tempo_de_conjuracao": "acao"
+          },
+          "restricoes": [
+            "nenhuma_magia_de_circulo_1_ou_superior_antes_no_turno",
+            "nenhuma_magia_de_circulo_1_ou_superior_depois_no_turno"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magia_agravada",
+      "nome": "Magia Agravada",
+      "custo_em_pontos_de_feiticaria": 2,
+      "descricao_curta": "Um alvo da magia tem Desvantagem nas salvaguardas contra ela.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "desvantagem",
+          "beneficiario": "um_alvo_da_magia",
+          "escopo": {
+            "forca_salvaguarda": true
+          },
+          "duracao": "contra_esta_magia"
+        }
+      ]
+    },
+    {
+      "id": "magia_buscadora",
+      "nome": "Magia Buscadora",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Ao errar uma jogada de ataque com magia, joga o d20 de novo e usa o novo resultado. Pode ser usada mesmo já tendo usado outra opção de Metamagia nesta conjuração.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "rolar_novamente",
+          "alvo": "jogada_de_ataque_magico",
+          "gatilho": "erro",
+          "usa_novo_resultado": true
+        }
+      ],
+      "empilha_com_outra_metamagia": true
+    },
+    {
+      "id": "magia_cautelosa",
+      "nome": "Magia Cautelosa",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Escolhe até seu modificador de Carisma criaturas (mínimo 1) entre as que a magia obriga a fazer salvaguarda: elas passam automaticamente e não sofrem dano nem quando o sucesso normalmente daria metade.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_resultado_de_salvaguarda",
+          "alvo": "salvaguarda",
+          "beneficiario": "criaturas_escolhidas",
+          "quantidade_de_alvos": [
+            {
+              "op": "max",
+              "args": [
+                "mod:CAR",
+                "1"
+              ]
+            }
+          ],
+          "aplica_a": "salvaguarda_contra_esta_magia",
+          "resultado": "sucesso_automatico",
+          "em_sucesso": "nenhum_dano",
+          "escopo": {
+            "forca_salvaguarda": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "magia_distante",
+      "nome": "Magia Distante",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Dobra o alcance de uma magia com alcance de pelo menos 1,5 m; ou, se o alcance for Toque, ele vira 9 metros.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_alcance_da_magia",
+          "operacao": "dobrar",
+          "escopo": {
+            "alcance_minimo_m": 1.5
+          }
+        },
+        {
+          "tipo": "alterar_alcance_da_magia",
+          "operacao": "substituir",
+          "novo_alcance_m": 9,
+          "escopo": {
+            "tipo_de_alcance": "toque"
+          }
+        }
+      ]
+    },
+    {
+      "id": "magia_duplicada",
+      "nome": "Magia Duplicada",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Aumenta em 1 o círculo efetivo de uma magia que, com espaço superior, atinge uma criatura adicional.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_circulo_efetivo",
+          "delta": 1,
+          "escopo": {
+            "aprimoramento_atinge_criatura_adicional": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "magia_persistente",
+      "nome": "Magia Persistente",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Dobra a duração de uma magia de 1 minuto ou mais, até o máximo de 24 horas. Se ela exigir Concentração, você tem Vantagem nas salvaguardas para mantê-la.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_duracao_da_magia",
+          "operacao": "dobrar",
+          "maximo": "24 horas",
+          "escopo": {
+            "duracao_minima_minutos": 1
+          }
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "vantagem",
+          "aplica_a": "manter_concentracao_desta_magia",
+          "condicao": {
+            "todas": [
+              "magia_exige_concentracao"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "magia_potencializada",
+      "nome": "Magia Potencializada",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Joga novamente até seu modificador de Carisma dados de dano da magia (mínimo 1) e usa os novos resultados. Pode ser usada mesmo já tendo usado outra Metamagia.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "rolar_novamente",
+          "alvo": "dado_de_dano_da_magia",
+          "quantidade_de_dados": [
+            {
+              "op": "max",
+              "args": [
+                "mod:CAR",
+                "1"
+              ]
+            }
+          ],
+          "usa_novo_resultado": true
+        }
+      ],
+      "empilha_com_outra_metamagia": true
+    },
+    {
+      "id": "magia_sutil",
+      "nome": "Magia Sutil",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Conjura sem componentes Verbais, Somáticos ou Materiais — exceto material consumido pela magia ou com custo detalhado nela.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "dispensar_componentes",
+          "componentes": [
+            "V",
+            "S",
+            "M"
+          ],
+          "excecoes": [
+            "material_consumido",
+            "material_com_custo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magia_transmutada",
+      "nome": "Magia Transmutada",
+      "custo_em_pontos_de_feiticaria": 1,
+      "descricao_curta": "Troca o tipo de dano da magia por outro da lista: Ácido, Elétrico, Gélido, Ígneo, Trovejante ou Venenoso.",
+      "momento": "ao_conjurar",
+      "efeitos": [
+        {
+          "tipo": "alterar_tipo_de_dano_da_magia",
+          "opcoes": [
+            "acido",
+            "eletrico",
+            "gelido",
+            "igneo",
+            "trovejante",
+            "venenoso"
+          ],
+          "escopo": {
+            "tipo_de_dano_atual": [
+              "acido",
+              "eletrico",
+              "gelido",
+              "igneo",
+              "trovejante",
+              "venenoso"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "recurso": "pontos_de_feiticaria"
+}

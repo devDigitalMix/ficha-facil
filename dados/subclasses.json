@@ -1,6 +1,6 @@
 {
   "colecao": "subclasses",
-  "total": 24,
+  "total": 40,
   "itens": [
     {
       "id": "combatente_da_mao_espalmada",
@@ -676,6 +676,445 @@
         "preservar_a_vida",
         "curandeiro_abencoado",
         "cura_suprema"
+      ]
+    },
+    {
+      "id": "trilha_da_arvore_do_mundo",
+      "nome": "Trilha da Árvore do Mundo",
+      "classe": "barbaro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 54,
+        "pagina_pdf": 58
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conecta a Fúria a Yggdrasil: vitalidade compartilhada, alcance ampliado e teleporte entre planos.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "vitalidade_da_arvore",
+        "ramos_da_arvore",
+        "raizes_devastadoras",
+        "percorrer_a_arvore"
+      ]
+    },
+    {
+      "id": "trilha_do_berserker",
+      "nome": "Trilha do Berserker",
+      "classe": "barbaro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 55,
+        "pagina_pdf": 59
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Frenesi violento: dano extra, imunidade a medo e retaliação.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "frenesi",
+        "furia_irracional",
+        "retaliacao",
+        "presenca_intimidante"
+      ]
+    },
+    {
+      "id": "trilha_do_coracao_selvagem",
+      "nome": "Trilha do Coração Selvagem",
+      "classe": "barbaro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Comunhão com o mundo animal: rituais de fala com bichos e aspectos bestiais na Fúria.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "arauto_da_fauna",
+        "furia_dos_selvagens",
+        "aspecto_dos_selvagens",
+        "arauto_da_natureza",
+        "poder_dos_selvagens"
+      ]
+    },
+    {
+      "id": "trilha_do_fanatico",
+      "nome": "Trilha do Fanático",
+      "classe": "barbaro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 57,
+        "pagina_pdf": 61
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Fúria em êxtase divino: cura própria, dano sagrado e presença que inspira.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "campeao_dos_deuses",
+        "furia_divina",
+        "concentracao_fanatica",
+        "presenca_zelosa",
+        "furia_dos_deuses"
+      ]
+    },
+    {
+      "id": "adaga_espiritual",
+      "nome": "Adaga Espiritual",
+      "classe": "ladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 139,
+        "pagina_pdf": 143
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Lâminas psiônicas manifestadas e Dados de Energia Psiônica.",
+      "niveis_de_caracteristica": [
+        3,
+        9,
+        13,
+        17
+      ],
+      "caracteristicas": [
+        "laminas_psiquicas",
+        "poder_psionico_ladino",
+        "laminas_da_alma",
+        "veu_psiquico",
+        "rasgar_mente"
+      ]
+    },
+    {
+      "id": "assassino",
+      "nome": "Assassino",
+      "classe": "ladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Furtividade, veneno e disfarce para eliminar com eficiência mortal.",
+      "niveis_de_caracteristica": [
+        3,
+        9,
+        13,
+        17
+      ],
+      "caracteristicas": [
+        "assassinar",
+        "ferramentas_de_assassino",
+        "especialista_em_infiltracao",
+        "armas_venenosas",
+        "golpe_mortal"
+      ]
+    },
+    {
+      "id": "ladrao",
+      "nome": "Ladrão",
+      "classe": "ladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 142,
+        "pagina_pdf": 146
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Caçador de tesouros clássico: escalada, mãos rápidas e uso de itens mágicos.",
+      "niveis_de_caracteristica": [
+        3,
+        9,
+        13,
+        17
+      ],
+      "caracteristicas": [
+        "andarilho_de_telhados",
+        "mao_leve",
+        "furtividade_suprema",
+        "usar_dispositivo_magico",
+        "reflexos_de_ladrao"
+      ]
+    },
+    {
+      "id": "trapaceiro_arcano",
+      "nome": "Trapaceiro Arcano",
+      "classe": "ladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 143,
+        "pagina_pdf": 147
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Furtividade turbinada por magia arcana da lista do Mago.",
+      "niveis_de_caracteristica": [
+        3,
+        9,
+        13,
+        17
+      ],
+      "caracteristicas": [
+        "conjuracao_trapaceiro_arcano",
+        "maos_magicas_ligeiras",
+        "emboscada_magica",
+        "trapaceiro_versatil",
+        "ladrao_de_magias"
+      ]
+    },
+    {
+      "id": "colegio_da_bravura",
+      "nome": "Colégio da Bravura",
+      "classe": "bardo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Bardos guerreiros: treinamento marcial, ataque extra e uma Inspiração que serve para defender ou para ferir.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14
+      ],
+      "caracteristicas": [
+        "inspiracao_em_combate",
+        "treinamento_marcial",
+        "ataque_extra_bardo",
+        "magia_de_batalha"
+      ]
+    },
+    {
+      "id": "colegio_da_danca",
+      "nome": "Colégio da Dança",
+      "classe": "bardo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 65,
+        "pagina_pdf": 69
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Harmonia com o cosmos: luta desarmado com Destreza e o dado de Inspiração, e move a si e aos aliados fora do turno.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14
+      ],
+      "caracteristicas": [
+        "ginga_fascinante",
+        "gingado_coordenado",
+        "movimento_inspirador",
+        "evasao_liderada"
+      ]
+    },
+    {
+      "id": "colegio_do_conhecimento",
+      "nome": "Colégio do Conhecimento",
+      "classe": "bardo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 66,
+        "pagina_pdf": 70
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sagacidade e erudição: subtrai o dado de Inspiração dos outros, ganha perícias e magias de outras listas antes da hora.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14
+      ],
+      "caracteristicas": [
+        "palavras_de_interrupcao",
+        "proficiencias_bonus",
+        "descobertas_magicas",
+        "pericia_inigualavel"
+      ]
+    },
+    {
+      "id": "colegio_do_glamour",
+      "nome": "Colégio do Glamour",
+      "classe": "bardo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 67,
+        "pagina_pdf": 71
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magia feérica de encanto: amedronta ou enfeitiça com as próprias magias, dá vida temporária e movimento, e comanda com majestade.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14
+      ],
+      "caracteristicas": [
+        "magia_fascinante",
+        "manto_de_inspiracao",
+        "manto_de_majestade",
+        "majestade_inquebravel"
+      ]
+    },
+    {
+      "id": "feiticaria_aberrante",
+      "nome": "Feitiçaria Aberrante",
+      "classe": "feiticeiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 109,
+        "pagina_pdf": 113
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Poder psiônico de origem alienígena: telepatia, magias da mente pagas com Pontos de Feitiçaria e um corpo que se altera.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14,
+        18
+      ],
+      "caracteristicas": [
+        "fala_telepatica",
+        "magias_psionicas",
+        "defesas_psiquicas",
+        "feiticaria_psionica",
+        "revelacao_em_carne",
+        "implosao_de_distorcao"
+      ]
+    },
+    {
+      "id": "feiticaria_draconica",
+      "nome": "Feitiçaria Dracônica",
+      "classe": "feiticeiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Herança de dragão: mais Pontos de Vida, escamas no lugar de armadura, afinidade com um elemento e asas.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14,
+        18
+      ],
+      "caracteristicas": [
+        "magias_draconicas",
+        "resiliencia_draconica",
+        "afinidade_elemental",
+        "asas_de_dragao",
+        "companheiro_draconico"
+      ]
+    },
+    {
+      "id": "feiticaria_mecanica",
+      "nome": "Feitiçaria Mecânica",
+      "classe": "feiticeiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "A ordem de Mecanos: anula Vantagem e Desvantagem alheias, protege com dados de redução de dano e enfim cura, dissipa e repara de uma vez.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14,
+        18
+      ],
+      "caracteristicas": [
+        "magias_mecanicas",
+        "restaurar_equilibrio",
+        "bastiao_da_lei",
+        "transe_da_ordem",
+        "cavalgada_mecanica"
+      ]
+    },
+    {
+      "id": "feiticaria_selvagem",
+      "nome": "Feitiçaria Selvagem",
+      "classe": "feiticeiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 113,
+        "pagina_pdf": 117
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Caos bruto: Vantagem sob demanda ao preço de um surto, uma tabela de 1d100 e, no fim, o poder de escolher o surto.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        14,
+        18
+      ],
+      "caracteristicas": [
+        "mares_do_caos",
+        "surto_de_magia_selvagem",
+        "distorcer_a_sorte",
+        "caos_controlado",
+        "surto_controlado"
       ]
     }
   ]

@@ -3,7 +3,7 @@
 Registro vivo do que ficou de fora de propósito, do que depende de capítulo futuro e do que depende
 de decisão sua. Atualizado a cada lote.
 
-Última atualização: **2026-09-01**, após o Druida.
+Última atualização: **2026-09-01**, após o capítulo 7 completo e os quatro primitivos.
 
 ---
 
@@ -38,26 +38,49 @@ preenchido vira erro.
 
 ---
 
-## 2. Depende do capítulo 6 (Equipamento)
+## 2. Capítulo 6 (Equipamento) — RESOLVIDO
 
-- **`equipamento_inicial` das 5 classes** — marcado `revisao: duvida`. Os ids (`cota_de_malha`,
-  `foice`, `kit_de_erudito`…) apontam para itens que ainda não existem.
-- **Maestria em Arma (Guerreiro)** — escolhe do catálogo `itens`, hoje parcial com as 38 armas da
-  tabela p. 215 (só nome, grupo e alcance).
-- **Listas de "Fabricação" das ferramentas** — não extraídas; apontam para dezenas de itens do cap. 6.
+Extraído em 2026-09-01. `itens` tem 170 entradas completas e `ferramentas` as 25 com atributo,
+custo, teste de Usar Objeto e Fabricação. Fechou:
 
-Resolve sozinho quando o capítulo 6 entrar.
+- **`equipamento_inicial` das 8 classes** — todos os ids resolvem, e o validador cobra isso.
+- **Maestria em Arma (Guerreiro)** — escolhe do catálogo completo, com a maestria de cada arma.
+- **Listas de Fabricação das ferramentas** — 87 itens resolvidos; os 11 restantes são descrições
+  genéricas do próprio livro ("qualquer arma Corpo a Corpo", "Foco Arcano"), declaradas em
+  `nao_resolvidos`.
 
----
+Duas dúvidas abertas para você decidir:
 
-## 3. Depende dos capítulos 5 e 7
+- **"Aeronau"** (tabela de veículos, p. 230) parece "Aeronave" truncado. Mantive como impresso,
+  com `revisao: duvida`.
+- **"Kit de Explorador"** (Druida, p. 92) não existe no capítulo 6; lá só há "Kit de Explorador de
+  Masmorras" (p. 226). Tratei como o mesmo kit; o `equipamento_inicial` do Druida está marcado
+  como dúvida.
+
+**Componentes materiais de magia:** o capítulo 6 ajuda menos do que parecia — das 69 magias
+detalhadas com material, só 9 citam algo da tabela de equipamento. O que ele resolve é a regra da
+p. 237: cada magia agora declara `substituivel_por_foco_ou_bolsa` (44 sim, 25 exigem o material).
+
+## 3. Depende do capítulo 5
 
 - **`talentos`** — parcial. Completo só na categoria Estilo de Luta (10). `iniciado_em_magia` foi
   extraído como exemplo trabalhado. Faltam as categorias Origem, Geral e Dádiva Épica (cap. 5).
-- **`magias`** — 331 entradas, com as listas de **Mago (242), Bruxo (91) e Druida (135)** completas.
+  Os quatro talentos já citados pelas classes (Aumento no Valor de Atributo e os três de Dádiva
+  Épica) estão declarados com `pendente: true` — o validador cobra essa marca, então stub sem
+  efeitos e sem declaração vira erro.
+- **Compreensão Superior** (Terceiro Olho, do Adivinhador, p. 155) — "ler qualquer idioma" não tem
+  primitivo no esquema; está como `substituir_regra` com `revisao: duvida`. Provável que ganhe efeito
+  próprio junto com os talentos do cap. 5.
+- **`magias`** — **391 entradas, TODAS detalhadas.** Capítulo 7 fechado. Cada magia traz tempo de
+  conjuração, alcance com metros, componentes com custo e se um foco substitui, duração com
+  Concentração, dano, salvaguarda, área, condições citadas, aprimoramento, página e a descrição em
+  paráfrase.
   Cada magia tem círculo, escola e os marcadores C/R/M; o texto completo (alcance, duração,
   componentes, efeitos) vem com o cap. 7.
-- **`listas_de_magia`** — 3 de 8 preenchidas. Faltam bardo, clerigo, feiticeiro, guardiao, paladino.
+- **`listas_de_magia`** — **8 de 8 preenchidas.** A entrada de cada magia no capítulo 7 declara as
+  classes que a têm; cada lista nova foi conferida contra a tabela da própria classe no capítulo 3.
+  mago 242 · feiticeiro 150 · bardo 140 · druida 135 · clerigo 117 · bruxo 91 · guardiao 61 ·
+  paladino 51.
   Enquanto uma lista está `preenchida: false`, filtros que apontam para ela geram **aviso**, não erro.
 
 ---
@@ -70,6 +93,21 @@ Resolve sozinho quando o capítulo 6 entrar.
 - **Apêndice A (Multiverso)** — fora do escopo.
 
 ---
+
+## 4b. Primitivos — RESOLVIDOS
+
+Eu tinha listado quatro primitivos como se fossem trabalho do backend. Três eram declaração de
+dado, e o quarto era metade e metade. Todos fechados em 2026-09-01:
+
+| primitivo | onde vive |
+|---|---|
+| mãos ocupadas | `maos_ocupadas` em 49 itens; `maos_alternativas` nas armas Versáteis |
+| consumo de munição | `consumo` em 9 armas, com id da munição e recuperação pós-combate |
+| teto por ação | `limite_por_acao` em 6 armas com Recarga |
+| cálculos de CA concorrentes | `concorre_como: calculo_de_ca_base` em 15 cálculos (armaduras e Defesas sem Armadura) |
+
+As quatro propriedades saíram de `substituir_regra` para o tipo `declara_campo_no_item`, e o
+validador cobra: item com a propriedade e sem o campo é erro.
 
 ## 5. A fazer, sem depender de ninguém
 
@@ -94,3 +132,101 @@ Ficam aqui como histórico — todas com nota dentro do dado.
 | Bruxo, patronos | "Magias Psíquicas" e "Mente Desperta" impressas sob o título do Ínfero | são do Grande Antigo |
 | Bruxo, Fome de Hadar | escola grafada "Conjuração"; no resto do livro é "Invocação" | normalizado, com nota na magia |
 | Druida, lista de magias | Visão no Escuro caía no 3º círculo por cabeçalho colado | corrigido no parser; é 2º círculo (cap. 7, p. 342) |
+| Clérigo, Domínio da Luz | tabela lista "Mãos Ardentes", magia inexistente | é Mãos Flamejantes (p. 303); nome guardado em `nomes_alternativos` |
+| Clérigo, Domínio da Guerra | concede Manto do Cruzado, que a entrada declara de Paladino | acesso concedido pela subclasse |
+| "Remeter" | Evocação na lista do Clérigo, Adivinhação na entrada e na lista do Mago | vale a entrada: Adivinhação |
+| Consagrar | Evocação na lista do Clérigo (p. 84), Abjuração na entrada (p. 264) | vale a entrada: Abjuração |
+| Esfera Flamejante | Evocação nas listas de Druida e Mago, Invocação na entrada (p. 279) | vale a entrada: Invocação |
+| Tempestade Radiante | "Jallarzi" na lista do Bruxo e na entrada, "Jallazar" na do Mago | vale a entrada; as duas grafias tinham virado DUAS magias no catálogo, fundidas em uma |
+| Animar Mortos | o círculo é impresso com `3°` (sinal de grau) em vez de `3º` | erro tipográfico do livro; o parser aceita os dois |
+| Armaduras | a tabela diz "Couro"/"Couro Batido"; as classes dizem "Armadura de Couro"/"de Couro Batido" | mesmo item, com as duas formas em `nomes_alternativos` |
+| Munição | a tabela de Armas diz "Flecha"/"Virote"; a de Munição vende "Flechas"/"Virotes", e "Bala" serve a duas linhas | resolvido pelo id real, decidindo pela arma |
+| Veículos | a tabela imprime "Aeronau" (p. 230) | mantido como impresso, marcado como dúvida |
+| Bárbaro, níveis 13 e 17 | tabela diz "Golpe Brutal Aprimorado"; títulos dizem "Fortalecido" | vale o título; duas seções tituladas ⇒ duas características (`_13` e `_17`) |
+| Ladino, nível 1 | tabela diz "Especialização" e "Gíria dos Ladrões"; títulos dizem "Especialista" e "Gíria do Ladrão" | vale o título; nome da tabela em `nome_na_tabela` |
+
+---
+
+## 7. Conteúdo do livro que faltava e foi recuperado
+
+| onde | o que faltava | quando |
+|---|---|---|
+| Druida, Círculo da Terra | as **4 tabelas de Magias de Círculo Druídico** (p. 98), 24 magias — o terreno escolhido não concedia magia nenhuma | varredura das opções |
+| 11 catálogos de opção | 37 opções tinham só texto, sem efeitos executáveis | varredura das opções |
+| catálogo de magias | 24 magias do cap. 7 nunca tinham entrado (as de Bardo, Feiticeiro, Guardião e Paladino) | fase 3a |
+| catálogo de itens | o capítulo 6 inteiro, exceto as 38 armas sem detalhe | fase 4 |
+
+---
+
+## Fase 7 — Bardo e Feiticeiro (ver `revisao-fase7-bardo-feiticeiro.md`)
+
+**Fechado nesta fase**
+
+- Bardo (p. 59-67): 26 características, 4 colégios.
+- Feiticeiro (p. 103-114): 29 características, 4 origens. Único até agora com característica de
+  subclasse no **nível 18** — declarado em `niveis_de_caracteristica_de_subclasse`.
+- Catálogos novos: `usos_da_inspiracao_de_bardo` (3), `opcoes_de_metamagia` (10),
+  `alteracoes_da_revelacao_em_carne` (4), `manifestacoes_da_ordem` (6, vocabulário),
+  `surtos_de_magia_selvagem` (25, com faixa de 1d100).
+- Tipos de efeito novos (8): `alterar_tempo_de_conjuracao`, `alterar_alcance_da_magia`,
+  `alterar_duracao_da_magia`, `alterar_circulo_efetivo`, `dispensar_concentracao`,
+  `dissipar_magias`, `rolar_na_tabela`, `movimento_forcado`.
+- `checar_schema.py` passou a ser script do projeto (era passo solto rodado de memória).
+- Empurrões que eram `efeito_narrativo` migrados para `movimento_forcado` (Mão Espalmada do Monge,
+  Ira do Mar do Druida).
+
+**Corrigido de lotes anteriores**
+
+- Colégios do Bardo sem `niveis_de_caracteristica` (o schema exige).
+- Evasão Liderada (Colégio da Dança) com condição composta misturando `todas` e `nao` no mesmo
+  objeto.
+- `resolver_filtro` do validador ignorava filtro por campo booleano — filtro vazio passava batido.
+
+**Aberto**
+
+- Resiliência Dracônica: o bônus de PV máximos está gravado como a conta fechada
+  (`nivel_classe:feiticeiro`) em vez de "3 + 1 por nível seguinte". Decisão sua se quer as duas
+  parcelas separadas para o log de proveniência.
+- 6 das 25 linhas do Surto de Magia Selvagem dependem de decisão do Mestre ou de subtabela
+  aleatória, e trazem `efeito_narrativo` com os dados estruturados junto.
+
+**Falta do livro**
+
+- Classes: **Guardião** (p. 117) e **Paladino** (p. 167).
+- **Capítulos 4 e 5**: origens, espécies, antecedentes e talentos.
+
+---
+
+## Fase 8 — Pontos de Vida (ver `revisao-fase8-pontos-de-vida.md`)
+
+**Fechado nesta fase**
+
+- `valores_derivados` 17 → 19: `pontos_de_vida_maximos` (com parcelas e as 4 regras do livro) e
+  `pontos_de_vida_temporarios` (derivado próprio, com as 5 regras do cap. 1). PV **atuais** ficam
+  no backend por decisão do usuário.
+- `pontos_de_vida_no_nivel_1` e `pontos_de_vida_por_nivel` ganharam parcelas e a tabela Pontos de
+  Vida Fixos por Classe (p. 42), com os números impressos.
+- `alvos.json` declara `derivado_id`; 8 alvos ligados, e o validador cobra a promessa.
+- 10 operações de fórmula declaradas em `valores_derivados.operacoes`.
+- Forma Selvagem: PV temporários saíram de campo solto para efeito de verdade.
+- 16 magias com bloco `pontos_de_vida` estruturado.
+
+**Corrigido de lotes anteriores**
+
+- **Parser cortava o fim de 55 magias** (nome da próxima colado na última frase). Custou: Moléstia
+  sem 14d6, Palavra de Poder: Matar sem 12d12, Fonte do Luar sem Cego, Onda Destrutiva sem o
+  "metade em caso de sucesso", 11 aprimoramentos truncados. Sobraram 12 corpos truncados, nenhum
+  perdendo mecânica.
+- Regex de dano não aceitava "14d6 de dano Necrótico" (sem "pontos").
+- **Oito descrições minhas com regra de 2014 em vez de 2024**: Nevasca, Nuvem Fétida, Presença
+  Régia de Yolande, Polimorfia, Sentido Feral, Moléstia, Muralha de Vento, Muralha Prismática.
+  Todas corrigidas contra a página.
+- `passo_revigorante` usava `formula_dado` onde o resto do dado usa `formula`.
+
+**Aberto**
+
+- `auditar_descricoes.py` só pega fatos verificáveis por termo (dados, salvaguarda, condições,
+  distâncias). Inversão de "sucesso/falha" e erro de duração passam. **Proposta ao usuário: reler
+  as 391 entradas contra a paráfrase, uma a uma.**
+- Convocar Celestial dá 1d10 PV temporários, mas no bloco de estatísticas do Espírito Celestial —
+  fora do escopo enquanto criaturas estiverem adiadas.

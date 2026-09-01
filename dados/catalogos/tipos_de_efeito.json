@@ -1,7 +1,7 @@
 {
   "catalogo": "tipos_de_efeito",
   "nome": "Tipos de Efeito",
-  "total": 66,
+  "total": 80,
   "itens": [
     {
       "id": "modificador",
@@ -720,6 +720,84 @@
         "opcoes"
       ],
       "nota": "Recurso da classe que alimenta efeitos escolhidos (Canalizar Divindade)."
+    },
+    {
+      "id": "furia",
+      "nome": "Furia",
+      "origem": "NOVO_FASE2G",
+      "campos": [
+        "recurso_id",
+        "efeitos",
+        "duracao",
+        "encerra_se",
+        "extensao"
+      ],
+      "nota": "Estado de Fúria do Bárbaro: recurso + pacote de efeitos enquanto ativo."
+    },
+    {
+      "id": "expandir_opcoes_de_escolha",
+      "nome": "Expandir opções de uma escolha existente",
+      "descricao_curta": "Libera novas chaves de catálogo para uma escolha já concedida, sem duplicar a característica. Usado pelo Golpe Brutal Fortalecido (nível 13 do Bárbaro)."
+    },
+    {
+      "id": "alterar_quantidade_de_escolha",
+      "nome": "Alterar a quantidade de uma escolha existente",
+      "descricao_curta": "Muda quantos itens uma escolha já concedida permite escolher. Usado pelo Golpe Brutal Fortalecido (nível 17 do Bárbaro), que passa a aplicar dois efeitos por uso."
+    },
+    {
+      "id": "declara_campo_no_item",
+      "nome": "Declara um campo no item que tem esta propriedade",
+      "descricao_curta": "A propriedade não muda nada sozinha: ela diz que todo item que a possui traz um campo próprio com o valor (mãos ocupadas, consumo de munição, teto de disparos). O validador confere que o campo existe."
+    },
+    {
+      "id": "alterar_alvos_da_magia",
+      "nome": "Alterar quantos alvos uma magia atinge",
+      "descricao_curta": "Acrescenta ou muda o número de alvos de magias específicas, com a distância permitida em relação ao primeiro alvo. Usado pelas Palavras de Criação do Bardo (nível 20)."
+    },
+    {
+      "id": "substituir_ataque_por_magia",
+      "nome": "Trocar um ataque da ação Atacar por uma magia",
+      "descricao_curta": "Permite gastar um dos ataques da ação Atacar para conjurar uma magia que atenda ao filtro (em geral, truque de tempo de conjuração de uma ação). Usado pelo Ataque Extra do Colégio da Bravura."
+    },
+    {
+      "id": "alterar_tempo_de_conjuracao",
+      "nome": "Alterar o tempo de conjuração de uma magia",
+      "descricao_curta": "Muda o tempo de conjuração de uma magia no ato de conjurar (Magia Acelerada, p. 105). Traz 'de', 'para', o escopo e as restrições do turno."
+    },
+    {
+      "id": "alterar_alcance_da_magia",
+      "nome": "Alterar o alcance de uma magia",
+      "descricao_curta": "Dobra ou substitui o alcance de uma magia no ato de conjurar (Magia Distante, p. 106)."
+    },
+    {
+      "id": "alterar_duracao_da_magia",
+      "nome": "Alterar a duração de uma magia",
+      "descricao_curta": "Multiplica a duração de uma magia até um teto no ato de conjurar (Magia Persistente, p. 106)."
+    },
+    {
+      "id": "alterar_circulo_efetivo",
+      "nome": "Alterar o círculo efetivo de uma magia",
+      "descricao_curta": "Soma ao círculo que a magia conta como para efeito de aprimoramento, sem gastar um espaço maior (Magia Duplicada, p. 106)."
+    },
+    {
+      "id": "dispensar_concentracao",
+      "nome": "Dispensar a Concentração de uma magia",
+      "descricao_curta": "Retira a exigência de Concentração de uma magia, opcionalmente trocando a duração (Companheiro Dracônico, p. 110)."
+    },
+    {
+      "id": "dissipar_magias",
+      "nome": "Encerrar magias em alvos escolhidos",
+      "descricao_curta": "Encerra magias até um círculo máximo em alvos escolhidos, sem teste (Cavalgada Mecânica, p. 112)."
+    },
+    {
+      "id": "rolar_na_tabela",
+      "nome": "Rolar numa tabela aleatória de catálogo",
+      "descricao_curta": "Rola numa tabela aleatória de um catálogo e aplica os efeitos da linha sorteada (Surto de Magia Selvagem, p. 113)."
+    },
+    {
+      "id": "movimento_forcado",
+      "nome": "Empurrar ou puxar uma criatura",
+      "descricao_curta": "Empurra ou puxa uma criatura uma distância dada, sem que ela gaste movimento. Antes isto era escrito como efeito_narrativo em cada característica."
     }
   ],
   "fonte": {

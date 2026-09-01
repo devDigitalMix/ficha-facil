@@ -1,0 +1,677 @@
+{
+  "catalogo": "surtos_de_magia_selvagem",
+  "nome": "Surto de Magia Selvagem",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 114,
+    "pagina_pdf": 118
+  },
+  "nota": "Tabela de 1d100 do Feiticeiro Selvagem. É catálogo de OPÇÃO, não de vocabulário, porque no nível 18 (Surto Controlado) o jogador ESCOLHE a linha em vez de rolar — menos a última, marcada com escolhivel_no_surto_controlado: false. As linhas que dependem de decisão do Mestre ou de subtabelas aleatórias trazem o efeito mecânico quando existe e efeito_narrativo quando o livro deixa a resolução para a mesa.",
+  "total": 25,
+  "itens": [
+    {
+      "id": "rolar_de_novo_a_cada_turno",
+      "nome": "Surtos em cadeia",
+      "faixa_1d100": {
+        "min": 1,
+        "max": 4
+      },
+      "descricao_curta": "Pelo próximo minuto, joga nesta tabela no início de cada um dos seus turnos, ignorando este resultado nas jogadas seguintes.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "rolar_na_tabela",
+          "catalogo": "surtos_de_magia_selvagem",
+          "dado_da_tabela": "1d100",
+          "momento": "inicio_do_seu_turno",
+          "duracao": "1 minuto",
+          "ignora_faixas": [
+            [
+              1,
+              4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "criatura_amigavel",
+      "nome": "Criatura amigável",
+      "faixa_1d100": {
+        "min": 5,
+        "max": 8
+      },
+      "descricao_curta": "Uma criatura Amigável aparece num espaço desocupado aleatório a até 18 m, sob controle do Mestre, e some depois de 1 minuto (1d4: Modron Duodrone, Flunf, Modron Monodrone ou Unicórnio).",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "invocar_criatura_amigavel",
+          "texto": "Criatura Amigável aleatória (1d4) aparece a até 18 m, controlada pelo Mestre, e desaparece depois de 1 minuto. Bloco de estatísticas no Livro dos Monstros.",
+          "alcance_m": 18,
+          "duracao": "1 minuto",
+          "tabela_1d4": [
+            "Modron Duodrone",
+            "Flunf",
+            "Modron Monodrone",
+            "Unicórnio"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cura_no_inicio_do_turno",
+      "nome": "Cura contínua",
+      "faixa_1d100": {
+        "min": 9,
+        "max": 12
+      },
+      "descricao_curta": "Pelo próximo minuto, recupera 5 Pontos de Vida no início de cada um dos seus turnos.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "cura",
+          "formula": [
+            "5"
+          ],
+          "momento": "inicio_do_seu_turno",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "desvantagem_na_proxima_magia",
+      "nome": "Salvaguardas fracas",
+      "faixa_1d100": {
+        "min": 13,
+        "max": 16
+      },
+      "descricao_curta": "As criaturas têm Desvantagem nas salvaguardas contra a próxima magia com salvaguarda que você conjurar no minuto seguinte.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "desvantagem",
+          "beneficiario": "alvos_da_proxima_magia_com_salvaguarda",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "efeito_cosmetico_1d8",
+      "nome": "Marca do caos",
+      "faixa_1d100": {
+        "min": 17,
+        "max": 20
+      },
+      "descricao_curta": "Você fica sujeito a um efeito de 1d8 por 1 minuto (música etérea, tamanho maior, barba de plumas, fala aos gritos, borboletas ilusórias, um olho na testa com Vantagem em Sabedoria (Percepção), bolhas rosas ao falar, ou pele azul por 24 h).",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "efeito_do_caos_1d8",
+          "texto": "Role 1d8 na lista de efeitos da linha 17–20 (p. 114). Só o resultado 6 tem efeito mecânico: Vantagem em testes de Sabedoria (Percepção).",
+          "duracao": "1 minuto",
+          "efeitos_possiveis": [
+            {
+              "d8": 6,
+              "efeitos": [
+                {
+                  "tipo": "vantagem",
+                  "alvo": "teste_de_atributo:percepcao",
+                  "modo": "vantagem",
+                  "duracao": "1 minuto"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acao_vira_acao_bonus",
+      "nome": "Conjuração acelerada",
+      "faixa_1d100": {
+        "min": 21,
+        "max": 24
+      },
+      "descricao_curta": "Pelo próximo minuto, todas as suas magias com tempo de conjuração de uma ação passam a custar uma Ação Bônus.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "alterar_tempo_de_conjuracao",
+          "de": "acao",
+          "para": "acao_bonus",
+          "escopo": {
+            "todas_as_suas_magias": true,
+            "tempo_de_conjuracao": "acao"
+          },
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "plano_astral",
+      "nome": "Desvio astral",
+      "faixa_1d100": {
+        "min": 25,
+        "max": 28
+      },
+      "descricao_curta": "Você é transportado para o Plano Astral até o fim do seu próximo turno e depois volta ao espaço que ocupava, ou ao desocupado mais próximo.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "desvio_astral",
+          "texto": "Transportado para o Plano Astral até o fim do seu próximo turno; retorna ao espaço anterior ou ao desocupado mais próximo.",
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "dano_maximo_na_proxima_magia",
+      "nome": "Dano máximo",
+      "faixa_1d100": {
+        "min": 29,
+        "max": 32
+      },
+      "descricao_curta": "Na próxima magia de dano que conjurar no minuto seguinte, não joga os dados: usa o número mais alto possível em cada dado de dano.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "dano_maximizado",
+          "escopo": {
+            "proxima_magia_com_dano": true
+          },
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "resistencia_a_tudo",
+      "nome": "Resistência total",
+      "faixa_1d100": {
+        "min": 33,
+        "max": 36
+      },
+      "descricao_curta": "Resistência a todos os tipos de dano pelo próximo minuto.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "todos",
+          "operacao": "resistencia",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "vaso_de_plantas",
+      "nome": "Vaso de plantas",
+      "faixa_1d100": {
+        "min": 37,
+        "max": 40
+      },
+      "descricao_curta": "Você vira um vaso de plantas até o início do seu próximo turno: fica Incapacitado e com Vulnerabilidade a todo dano. A 0 Pontos de Vida o vaso quebra e você volta ao normal.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "incapacitado",
+          "beneficiario": "voce",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
+        },
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "todos",
+          "operacao": "vulnerabilidade",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "vaso_quebra",
+          "texto": "Se chegar a 0 Pontos de Vida enquanto é planta, o vaso quebra e você reverte à forma original."
+        }
+      ]
+    },
+    {
+      "id": "teleporte_por_turno",
+      "nome": "Salto curto",
+      "faixa_1d100": {
+        "min": 41,
+        "max": 44
+      },
+      "descricao_curta": "Pelo próximo minuto, pode se teleportar até 6 m como Ação Bônus em cada um dos seus turnos.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "teleporte",
+          "custo": "acao_bonus",
+          "alcance_m": 6,
+          "frequencia": "uma_vez_por_turno",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "invisibilidade_do_grupo",
+      "nome": "Sumiço",
+      "faixa_1d100": {
+        "min": 45,
+        "max": 48
+      },
+      "descricao_curta": "Você e até três criaturas à sua escolha a até 9 m ficam Invisíveis por 1 minuto; a invisibilidade acaba para quem atacar, causar dano ou conjurar magia.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "invisivel",
+          "beneficiario": "voce_e_ate_3_criaturas_a_sua_escolha",
+          "alcance_m": 9,
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "gatilho": "realizar_jogada_de_ataque"
+            },
+            {
+              "gatilho": "causar_dano"
+            },
+            {
+              "gatilho": "conjurar_magia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escudo_espectral",
+      "nome": "Escudo espectral",
+      "faixa_1d100": {
+        "min": 49,
+        "max": 52
+      },
+      "descricao_curta": "Um escudo espectral paira perto de você pelo próximo minuto: +2 na CA e imunidade a Mísseis Mágicos.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": [
+            "2"
+          ],
+          "empilha": "soma",
+          "duracao": "1 minuto"
+        },
+        {
+          "tipo": "imunidade_a_risco",
+          "risco": "magia:misseis_magicos",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "acao_adicional",
+      "nome": "Impulso",
+      "faixa_1d100": {
+        "min": 53,
+        "max": 56
+      },
+      "descricao_curta": "Você pode executar uma ação adicional neste turno.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "acao_adicional",
+          "frequencia": "uma_vez",
+          "duracao": "este_turno"
+        }
+      ]
+    },
+    {
+      "id": "magia_aleatoria",
+      "nome": "Magia aleatória",
+      "faixa_1d100": {
+        "min": 57,
+        "max": 60
+      },
+      "descricao_curta": "Você conjura uma magia aleatória (1d10), sem exigir Concentração — ela dura o tempo todo.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "conjurar_magia_aleatoria",
+          "texto": "Role 1d10 e conjure a magia correspondente; se ela exigiria Concentração, não exige neste caso e dura a duração inteira.",
+          "tabela_1d10": [
+            {
+              "d10": 1,
+              "magia": "confusao"
+            },
+            {
+              "d10": 2,
+              "magia": "bola_de_fogo"
+            },
+            {
+              "d10": 3,
+              "magia": "nevoa_obscurecente"
+            },
+            {
+              "d10": 4,
+              "magia": "voo",
+              "alvo": "criatura aleatória a até 18 m"
+            },
+            {
+              "d10": 5,
+              "magia": "graxa"
+            },
+            {
+              "d10": 6,
+              "magia": "levitacao",
+              "alvo": "você"
+            },
+            {
+              "d10": 7,
+              "magia": "misseis_magicos",
+              "circulo": 5
+            },
+            {
+              "d10": 8,
+              "magia": "reflexos"
+            },
+            {
+              "d10": 9,
+              "magia": "polimorfia",
+              "alvo": "você",
+              "nota": "Falhando na salvaguarda, vira uma Cabra (apêndice B)."
+            },
+            {
+              "d10": 10,
+              "magia": "ver_o_invisivel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toque_incendiario",
+      "nome": "Toque incendiário",
+      "faixa_1d100": {
+        "min": 61,
+        "max": 64
+      },
+      "descricao_curta": "Pelo próximo minuto, todo objeto inflamável e não mágico que você tocar e que não esteja sendo usado ou carregado por outra criatura pega fogo, sofre 1d4 de dano Ígneo e fica em combustão.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d4",
+          "tipo_dano": "igneo",
+          "alvo": "objeto_inflamavel_tocado",
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "reencarnar_ao_morrer",
+      "nome": "Retorno",
+      "faixa_1d100": {
+        "min": 65,
+        "max": 68
+      },
+      "descricao_curta": "Se você morrer na próxima hora, revive imediatamente como se estivesse sob a magia Reencarnar.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "reencarnar_automatico",
+          "texto": "Morrendo na próxima hora, você revive imediatamente como pela magia Reencarnar.",
+          "magia_de_referencia": "reencarnar",
+          "duracao": "1 hora"
+        }
+      ]
+    },
+    {
+      "id": "medo_subito",
+      "nome": "Medo súbito",
+      "faixa_1d100": {
+        "min": 69,
+        "max": 72
+      },
+      "descricao_curta": "Você fica Amedrontado até o fim do seu próximo turno; o Mestre determina a fonte do medo.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "beneficiario": "voce",
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "teleporte_18m",
+      "nome": "Deslize",
+      "faixa_1d100": {
+        "min": 73,
+        "max": 76
+      },
+      "descricao_curta": "Você se teleporta até 18 m para um espaço desocupado à sua vista.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "teleporte",
+          "alcance_m": 18,
+          "requisitos": [
+            "destino_desocupado",
+            "destino_a_vista"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veneno_aleatorio",
+      "nome": "Veneno errante",
+      "faixa_1d100": {
+        "min": 77,
+        "max": 80
+      },
+      "descricao_curta": "Uma criatura aleatória a até 18 m fica Envenenada por 1d4 horas.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "envenenado",
+          "beneficiario": "criatura_aleatoria",
+          "alcance_m": 18,
+          "duracao": {
+            "formula_horas": [
+              "1d4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "luz_plena_ofuscante",
+      "nome": "Farol",
+      "faixa_1d100": {
+        "min": 81,
+        "max": 84
+      },
+      "descricao_curta": "Você irradia Luz Plena num raio de 9 m pelo próximo minuto; quem terminar o turno a até 1,5 m de você fica Cego até o fim do próprio próximo turno.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "luz_plena_9m",
+          "texto": "Você irradia Luz Plena num raio de 9 metros.",
+          "duracao": "1 minuto"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "cego",
+          "beneficiario": "criatura_que_termina_o_turno_perto",
+          "alcance_m": 1.5,
+          "duracao": "ate_o_fim_do_proximo_turno_dela",
+          "duracao_do_efeito": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "dreno_necrotico",
+      "nome": "Dreno",
+      "faixa_1d100": {
+        "min": 85,
+        "max": 88
+      },
+      "descricao_curta": "Até três criaturas à sua escolha, à vista e a até 9 m, sofrem 1d10 de dano Necrótico; você recupera Pontos de Vida iguais à soma do dano causado.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d10",
+          "tipo_dano": "necrotico",
+          "alvo": "ate_3_criaturas_a_sua_escolha",
+          "alcance_m": 9
+        },
+        {
+          "tipo": "cura",
+          "formula": [
+            "dano_necrotico_causado"
+          ],
+          "beneficiario": "voce"
+        }
+      ]
+    },
+    {
+      "id": "descarga_eletrica",
+      "nome": "Descarga",
+      "faixa_1d100": {
+        "min": 89,
+        "max": 92
+      },
+      "descricao_curta": "Até três criaturas à sua escolha, à vista e a até 9 m, sofrem 4d10 de dano Elétrico.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "4d10",
+          "tipo_dano": "eletrico",
+          "alvo": "ate_3_criaturas_a_sua_escolha",
+          "alcance_m": 9
+        }
+      ]
+    },
+    {
+      "id": "vulnerabilidade_perfurante",
+      "nome": "Casca fina",
+      "faixa_1d100": {
+        "min": 93,
+        "max": 96
+      },
+      "descricao_curta": "Você e todas as criaturas a até 9 m ficam com Vulnerabilidade a dano Perfurante pelo próximo minuto.",
+      "escolhivel_no_surto_controlado": true,
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "perfurante",
+          "operacao": "vulnerabilidade",
+          "beneficiario": "voce_e_todas_as_criaturas_ate_9m",
+          "alcance_m": 9,
+          "duracao": "1 minuto"
+        }
+      ]
+    },
+    {
+      "id": "beneficio_aleatorio_1d6",
+      "nome": "Dádiva do caos",
+      "faixa_1d100": {
+        "min": 97,
+        "max": 100
+      },
+      "descricao_curta": "Role 1d6: 1) você recupera 2d10 Pontos de Vida; 2) um aliado à sua escolha a até 90 m recupera 2d10; 3) você recupera seu espaço de magia gasto de menor círculo; 4) um aliado a até 90 m recupera o dele; 5) você restaura todos os Pontos de Feitiçaria gastos; 6) todos os efeitos da linha 17–20 o afetam ao mesmo tempo.",
+      "escolhivel_no_surto_controlado": false,
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_do_caos_1d6",
+          "texto": "Role 1d6 na lista da linha 97–00 (p. 114) e aplique o resultado.",
+          "efeitos_possiveis": [
+            {
+              "d6": 1,
+              "efeitos": [
+                {
+                  "tipo": "cura",
+                  "formula": [
+                    "2d10"
+                  ],
+                  "beneficiario": "voce"
+                }
+              ]
+            },
+            {
+              "d6": 2,
+              "efeitos": [
+                {
+                  "tipo": "cura",
+                  "formula": [
+                    "2d10"
+                  ],
+                  "beneficiario": "aliado_a_sua_escolha",
+                  "alcance_m": 90
+                }
+              ]
+            },
+            {
+              "d6": 3,
+              "efeitos": [
+                {
+                  "tipo": "recuperar_espacos_de_magia",
+                  "quantidade": 1,
+                  "circulo": "menor_gasto",
+                  "beneficiario": "voce"
+                }
+              ]
+            },
+            {
+              "d6": 4,
+              "efeitos": [
+                {
+                  "tipo": "recuperar_espacos_de_magia",
+                  "quantidade": 1,
+                  "circulo": "menor_gasto",
+                  "beneficiario": "aliado_a_sua_escolha",
+                  "alcance_m": 90
+                }
+              ]
+            },
+            {
+              "d6": 5,
+              "efeitos": [
+                {
+                  "tipo": "restaurar_recurso",
+                  "recurso_id": "pontos_de_feiticaria",
+                  "quantidade": "total"
+                }
+              ]
+            },
+            {
+              "d6": 6,
+              "efeitos": [
+                {
+                  "tipo": "aplicar_efeito_nomeado",
+                  "chave": "efeito_cosmetico_1d8",
+                  "modo": "todos_simultaneamente"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dado_da_tabela": "1d100",
+  "cobertura_da_faixa": {
+    "min": 1,
+    "max": 100
+  }
+}

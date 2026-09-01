@@ -11,12 +11,43 @@
     {
       "id": "conjuracao_poderosa",
       "nome": "Conjuração Poderosa",
-      "descricao_curta": "Soma o modificador de Sabedoria ao dano de qualquer truque de Clérigo."
+      "descricao_curta": "Soma o modificador de Sabedoria ao dano de qualquer truque de Clérigo.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "mod:SAB"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "magia:truque_de_clerigo"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "golpe_divino",
       "nome": "Golpe Divino",
-      "descricao_curta": "Uma vez por turno, ao acertar com arma, causa 1d8 extra de dano Necrótico ou Radiante (2d8 no nível 14)."
+      "descricao_curta": "Uma vez por turno, ao acertar com arma, causa 1d8 extra de dano Necrótico ou Radiante (2d8 no nível 14).",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d8",
+          "modo": "dano_adicional",
+          "escolher_tipo_dano": [
+            "necrotico",
+            "radiante"
+          ],
+          "frequencia": "uma_vez_por_turno",
+          "momento": "ao_acertar_ataque_com_arma",
+          "escala_por_nivel": {
+            "14": "2d8"
+          }
+        }
+      ]
     }
   ]
 }

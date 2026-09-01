@@ -11,17 +11,58 @@
     {
       "id": "derrubar",
       "nome": "Derrubar",
-      "descricao_curta": "Salvaguarda de Destreza ou o alvo fica Caído."
+      "descricao_curta": "Salvaguarda de Destreza ou o alvo fica Caído.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "beneficiario": "alvo",
+          "salvaguarda": {
+            "atributo": "DES",
+            "cd": [
+              "8",
+              "mod:SAB",
+              "prof"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "desorientar",
       "nome": "Desorientar",
-      "descricao_curta": "O alvo não pode realizar Ataques de Oportunidade até o início do próximo turno dele."
+      "descricao_curta": "O alvo não pode realizar Ataques de Oportunidade até o início do próximo turno dele.",
+      "efeitos": [
+        {
+          "tipo": "impedir",
+          "alvo": "reacao",
+          "beneficiario": "alvo",
+          "restrito_a": "ataque_de_oportunidade",
+          "duracao": "ate_o_inicio_do_proximo_turno_do_alvo"
+        }
+      ]
     },
     {
       "id": "empurrar",
       "nome": "Empurrar",
-      "descricao_curta": "Salvaguarda de Força ou o alvo é empurrado até 4,5 metros."
+      "descricao_curta": "Salvaguarda de Força ou o alvo é empurrado até 4,5 metros.",
+      "efeitos": [
+        {
+          "tipo": "restringir_movimento",
+          "modo": "empurrar",
+          "beneficiario": "alvo",
+          "distancia_m": 4.5,
+          "direcao": "para_longe_de_voce",
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:SAB",
+              "prof"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

@@ -11,12 +11,74 @@
     {
       "id": "protetor",
       "nome": "Protetor",
-      "descricao_curta": "Proficiência com armas Marciais e treinamento com armadura Média."
+      "descricao_curta": "Proficiência com armas Marciais e treinamento com armadura Média.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "chave": "marciais",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "armadura",
+          "chave": "media",
+          "nivel_dominio": "treinado"
+        }
+      ]
     },
     {
       "id": "xama",
       "nome": "Xamã",
-      "descricao_curta": "Um truque adicional da lista de Druida e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Natureza)."
+      "descricao_curta": "Um truque adicional da lista de Druida e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Natureza).",
+      "efeitos": [
+        {
+          "id": "druida_truque_xama",
+          "tipo": "escolha",
+          "rotulo": "Truque adicional de Druida",
+          "quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "druida",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "magia": "{{escolhido}}",
+            "modo": "conhecida"
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo:arcanismo",
+          "valor": [
+            {
+              "op": "max",
+              "args": [
+                "mod:SAB",
+                "1"
+              ]
+            }
+          ],
+          "empilha": "soma"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo:natureza",
+          "valor": [
+            {
+              "op": "max",
+              "args": [
+                "mod:SAB",
+                "1"
+              ]
+            }
+          ],
+          "empilha": "soma"
+        }
+      ]
     }
   ]
 }

@@ -11,12 +11,74 @@
     {
       "id": "protetor",
       "nome": "Protetor",
-      "descricao_curta": "Proficiência com armas Marciais e treinamento com Armadura Pesada."
+      "descricao_curta": "Proficiência com armas Marciais e treinamento com Armadura Pesada.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "chave": "marciais",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "armadura",
+          "chave": "pesada",
+          "nivel_dominio": "treinado"
+        }
+      ]
     },
     {
       "id": "taumaturgo",
       "nome": "Taumaturgo",
-      "descricao_curta": "Um truque adicional da lista de Clérigo e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Religião)."
+      "descricao_curta": "Um truque adicional da lista de Clérigo e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Religião).",
+      "efeitos": [
+        {
+          "id": "clerigo_truque_taumaturgo",
+          "tipo": "escolha",
+          "rotulo": "Truque adicional de Clérigo",
+          "quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "clerigo",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "magia": "{{escolhido}}",
+            "modo": "conhecida"
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo:arcanismo",
+          "valor": [
+            {
+              "op": "max",
+              "args": [
+                "mod:SAB",
+                "1"
+              ]
+            }
+          ],
+          "empilha": "soma"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo:religiao",
+          "valor": [
+            {
+              "op": "max",
+              "args": [
+                "mod:SAB",
+                "1"
+              ]
+            }
+          ],
+          "empilha": "soma"
+        }
+      ]
     }
   ]
 }

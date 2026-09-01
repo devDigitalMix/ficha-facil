@@ -1,0 +1,85 @@
+{
+  "catalogo": "opcoes_de_furia_dos_selvagens",
+  "nome": "Fúria dos Selvagens",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 56,
+    "pagina_pdf": 60
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "aguia",
+      "nome": "Águia",
+      "descricao_curta": "Ao entrar em Fúria, executa Correr e Desengajar na mesma Ação Bônus; depois, uma Ação Bônus faz as duas.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "correr_e_desengajar_ao_entrar_em_furia",
+          "custo": "incluso_na_acao_bonus_da_furia",
+          "acoes": [
+            "correr",
+            "desengajar"
+          ],
+          "momento": "ao_ativar_a_furia"
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "correr_e_desengajar_em_furia",
+          "custo": "acao_bonus",
+          "acoes": [
+            "correr",
+            "desengajar"
+          ],
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "lobo",
+      "nome": "Lobo",
+      "descricao_curta": "Seus aliados têm Vantagem em ataques contra inimigos seus a até 1,5 m de você.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "beneficiario": "aliados",
+          "condicao": {
+            "todas": [
+              "ativo:furia",
+              "alvo_inimigo_a_ate:1.5m_de_voce"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "urso",
+      "nome": "Urso",
+      "descricao_curta": "Resistência a todos os tipos de dano, exceto Energético, Necrótico, Psíquico e Radiante.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "todos",
+          "operacao": "resistencia",
+          "excecoes": [
+            "energetico",
+            "necrotico",
+            "psiquico",
+            "radiante"
+          ],
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

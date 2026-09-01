@@ -11,17 +11,69 @@
     {
       "id": "arqueiro",
       "nome": "Arqueiro",
-      "descricao_curta": "Ação Bônus para um ataque mágico à distância a até 18 m, causando 1d8 + modificador de Sabedoria de dano Radiante."
+      "descricao_curta": "Ação Bônus para um ataque mágico à distância a até 18 m, causando 1d8 + modificador de Sabedoria de dano Radiante.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "tipo_ataque": "magico_a_distancia",
+          "custo": "acao_bonus",
+          "alcance_m": 18,
+          "dano": {
+            "formula_dado": "1d8",
+            "formula_bonus": [
+              "mod:SAB"
+            ],
+            "tipo_dano": "radiante"
+          },
+          "momento": "ao_ativar_e_nos_turnos_seguintes"
+        }
+      ]
     },
     {
       "id": "dragao",
       "nome": "Dragão",
-      "descricao_curta": "Trata 9 ou menos no d20 como 10 em testes de Inteligência, de Sabedoria e em salvaguardas de Constituição para manter Concentração."
+      "descricao_curta": "Trata 9 ou menos no d20 como 10 em testes de Inteligência, de Sabedoria e em salvaguardas de Constituição para manter Concentração.",
+      "efeitos": [
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": "teste_de_atributo:INT",
+          "minimo": 10
+        },
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": "teste_de_atributo:SAB",
+          "minimo": 10
+        },
+        {
+          "tipo": "tratar_resultado_minimo",
+          "alvo": "salvaguarda:CON",
+          "minimo": 10,
+          "condicao": {
+            "todas": [
+              "para_manter_concentracao"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "taca",
       "nome": "Taça",
-      "descricao_curta": "Ao conjurar magia com espaço que cure alguém, você ou criatura a até 9 m recupera 1d8 + modificador de Sabedoria."
+      "descricao_curta": "Ao conjurar magia com espaço que cure alguém, você ou criatura a até 9 m recupera 1d8 + modificador de Sabedoria.",
+      "efeitos": [
+        {
+          "tipo": "cura",
+          "formula": [
+            "1d8",
+            "mod:SAB"
+          ],
+          "beneficiario": "voce_ou_criatura_a_ate_9m",
+          "gatilho": "conjurar_magia_com_espaco_que_restaure_pontos_de_vida"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,74 @@
+{
+  "catalogo": "opcoes_de_poder_dos_selvagens",
+  "nome": "Poder dos Selvagens",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 56,
+    "pagina_pdf": 60
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "carneiro",
+      "nome": "Carneiro",
+      "descricao_curta": "Impõe Caído a criatura Grande ou menor ao acertá-la corpo a corpo.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "beneficiario": "alvo",
+          "momento": "ao_acertar_ataque_corpo_a_corpo",
+          "condicao": {
+            "todas": [
+              "ativo:furia",
+              "alvo_de_tamanho_ate:grande"
+            ]
+          },
+          "nota": "Sem salvaguarda: o livro impõe a condição direto (p. 56)."
+        }
+      ]
+    },
+    {
+      "id": "falcao",
+      "nome": "Falcão",
+      "descricao_curta": "Deslocamento de Voo igual ao seu, se não estiver usando armadura.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "voo",
+          "formula": [
+            "deslocamento"
+          ],
+          "condicao": {
+            "todas": [
+              "ativo:furia",
+              "flag:sem_armadura"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "leao",
+      "nome": "Leão",
+      "descricao_curta": "Inimigos a até 1,5 m têm Desvantagem em ataques contra alvos que não sejam você ou outro Bárbaro com essa opção.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "beneficiario": "inimigos_a_ate_1_5m_de_voce",
+          "excecao_de_alvo": [
+            "voce",
+            "outro_barbaro_com_leao_ativo"
+          ],
+          "condicao": {
+            "todas": [
+              "ativo:furia"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

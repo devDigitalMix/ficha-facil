@@ -11,12 +11,62 @@
     {
       "id": "ataque_primal",
       "nome": "Ataque Primal",
-      "descricao_curta": "Uma vez por turno, ao acertar com arma ou ataque da forma Animal, causa 1d8 extra de dano Elétrico, Gélido, Ígneo ou Trovejante (2d8 no nível 15)."
+      "descricao_curta": "Uma vez por turno, ao acertar com arma ou ataque da forma Animal, causa 1d8 extra de dano Elétrico, Gélido, Ígneo ou Trovejante (2d8 no nível 15).",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d8",
+          "modo": "dano_adicional",
+          "escolher_tipo_dano": [
+            "eletrico",
+            "gelido",
+            "igneo",
+            "trovejante"
+          ],
+          "momento_da_escolha": "ao_acertar",
+          "frequencia": "uma_vez_por_turno",
+          "momento": "ao_acertar_ataque_com_arma_ou_da_forma_animal",
+          "escala_por_nivel": {
+            "15": "2d8"
+          }
+        }
+      ]
     },
     {
       "id": "conjuracao_poderosa",
       "nome": "Conjuração Poderosa",
-      "descricao_curta": "Soma o modificador de Sabedoria ao dano de qualquer truque de Druida (no nível 15, truques de alcance 3 m ou mais passam a 90 m)."
+      "descricao_curta": "Soma o modificador de Sabedoria ao dano de qualquer truque de Druida (no nível 15, truques de alcance 3 m ou mais passam a 90 m).",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "mod:SAB"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "magia:truque_de_druida"
+            ]
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "alcance_de_magia",
+          "valor": [
+            "90"
+          ],
+          "unidade": "metros",
+          "empilha": "substitui",
+          "nivel_minimo": 15,
+          "condicao": {
+            "todas": [
+              "magia:truque_de_druida",
+              "alcance_minimo_m:3"
+            ]
+          }
+        }
+      ]
     }
   ]
 }
