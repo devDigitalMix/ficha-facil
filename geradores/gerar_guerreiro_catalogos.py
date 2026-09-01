@@ -28,11 +28,14 @@ EL = [
   [{"tipo":"modificador","alvo":"jogada_de_dano","valor":["2"],"empilha":"soma",
     "condicao":{"todas":["arma:propriedade:arremesso","ataque:a_distancia"]}}]),
  ("combate_com_armas_grandes","Combate com Armas Grandes","Trata qualquer 1 ou 2 nos dados de dano como 3, com arma Corpo a Corpo empunhada com as duas mãos (Duas Mãos ou Versátil).",209,
-  [{"tipo":"efeito_narrativo","chave":"minimo_no_dado_de_dano",
-    "texto":"Qualquer 1 ou 2 num dado de dano vira 3. Exige arma Corpo a Corpo empunhada com as duas mãos, com propriedade Duas Mãos ou Versátil."}]),
+  [{"tipo":"tratar_dado_de_dano_minimo","resultado_ate":2,"vira":3,
+    "escopo":{"arma_corpo_a_corpo":True,"empunhada_com_as_duas_maos":True,
+              "propriedade":["duas_maos","versatil"]}}]),
  ("combate_com_duas_armas","Combate com Duas Armas","No ataque adicional de arma Leve, soma o modificador de atributo ao dano, se já não estivesse somando.",209,
-  [{"tipo":"efeito_narrativo","chave":"mod_no_ataque_leve",
-    "texto":"Adiciona o modificador de atributo ao dano do ataque adicional concedido pela propriedade Leve."}]),
+  [{"tipo":"modificador","alvo":"jogada_de_dano","valor":["mod:atributo_de_ataque_da_arma"],
+    "empilha":"soma",
+    "condicao":{"todas":["ataque_adicional_da_propriedade_leve",
+                         {"nao":"ja_soma_modificador_no_dano"}]}}]),
  ("combate_desarmado","Combate Desarmado","Ataque Desarmado pode causar 1d6 + mod. de Força de dano Contundente (1d8 se você não segura arma nem Escudo). No início do seu turno, causa 1d4 Contundente a quem você tem Imobilizado.",209,
   [{"tipo":"dado_de_dano","escopo":["ataque_desarmado"],"formula_dado":"1d6","somar":["mod:FOR"],
     "tipo_dano":"contundente","modo":"substitui_a_criterio_do_jogador"},
@@ -64,14 +67,13 @@ for i, n, d_, p, ef in EL:
     por_id[i] = {"id": i, "nome": n, "categoria": "estilo_de_luta",
                  "pre_requisitos": [{"tipo": "caracteristica", "chave": "estilo_de_luta"}],
                  "repetivel": False, "descricao_curta": d_, "efeitos": ef, "fonte": f(5, p)}
-if 'dadiva_da_proeza_em_combate' not in por_id:
-    por_id['dadiva_da_proeza_em_combate'] = {"id": "dadiva_da_proeza_em_combate",
-      "nome": "Dádiva da Proeza em Combate", "categoria": "epico", "fonte": f(5, 210)}
+# O capítulo 5 (gerar_talentos.py) passou a ser o DONO do catálogo de talentos: ele
+# traz os 75 e declara as quatro categorias completas. Este script mantém só os dez
+# de Estilo de Luta, que o Guerreiro precisa desde o nível 1 — e não mexe mais no
+# cabeçalho nem cria marcadores 'pendente', para não desfazer o capítulo 5 se for
+# reexecutado fora de ordem.
 t['itens'] = sorted(por_id.values(), key=lambda x: (x.get('categoria', ''), x['id']))
 t['total'] = len(t['itens'])
-t['nota'] = ("PARCIAL nas categorias 'geral' e 'epico'. A categoria 'estilo_de_luta' está COMPLETA "
-             "(10 talentos, cap. 5 p. 209-210), porque o Guerreiro escolhe dela no nível 1.")
-t['categorias_completas'] = ["estilo_de_luta"]
 wr('catalogos/talentos.json', t)
 
 # ------------------------------------ magias parciais adicionais (referenciadas)

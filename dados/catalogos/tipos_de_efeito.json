@@ -1,7 +1,7 @@
 {
   "catalogo": "tipos_de_efeito",
   "nome": "Tipos de Efeito",
-  "total": 80,
+  "total": 96,
   "itens": [
     {
       "id": "modificador",
@@ -798,6 +798,86 @@
       "id": "movimento_forcado",
       "nome": "Empurrar ou puxar uma criatura",
       "descricao_curta": "Empurra ou puxa uma criatura uma distância dada, sem que ela gaste movimento. Antes isto era escrito como efeito_narrativo em cada característica."
+    },
+    {
+      "id": "tratar_dado_de_dano_minimo",
+      "nome": "Tratar resultado baixo num dado de dano como maior",
+      "descricao_curta": "Qualquer resultado até X num dado de dano vira Y. Combate com Armas Grandes (1 ou 2 viram 3) e Adepto Elemental (1 vira 2). Antes era efeito_narrativo."
+    },
+    {
+      "id": "ignorar_resistencia",
+      "nome": "Ignorar Resistência a um tipo de dano",
+      "descricao_curta": "O dano causado ignora Resistência ao tipo indicado (Adepto Elemental, Envenenador, Dádiva do Ataque Irresistível)."
+    },
+    {
+      "id": "ignorar_cobertura",
+      "nome": "Ignorar graus de Cobertura",
+      "descricao_curta": "A jogada de ataque indicada ignora os graus de Cobertura listados."
+    },
+    {
+      "id": "alterar_custo_de_acao",
+      "nome": "Alterar o custo de uma ação",
+      "descricao_curta": "Uma ação do catálogo passa a caber noutro custo (Procurar e Analisar como Ação Bônus; Desengajar como Ação Bônus na Dádiva da Velocidade)."
+    },
+    {
+      "id": "fabricar_item",
+      "nome": "Fabricar item",
+      "descricao_curta": "Produz itens com ferramenta, tempo e custo declarados (Artifista, Chef, Envenenador)."
+    },
+    {
+      "id": "desconto_em_compra",
+      "nome": "Desconto na compra",
+      "descricao_curta": "Reduz o preço de compra pelo percentual declarado (Artifista)."
+    },
+    {
+      "id": "conceder_inspiracao_heroica",
+      "nome": "Conceder Inspiração Heroica",
+      "descricao_curta": "Dá Inspiração Heroica a um número declarado de criaturas (Músico)."
+    },
+    {
+      "id": "trocar_iniciativa",
+      "nome": "Trocar a Iniciativa com um aliado",
+      "descricao_curta": "Troca o resultado de Iniciativa com um aliado voluntário (Alerta)."
+    },
+    {
+      "id": "transformar_erro_em_acerto",
+      "nome": "Transformar um erro em acerto",
+      "descricao_curta": "Uma jogada de ataque que erraria passa a acertar (Dádiva da Proeza em Combate)."
+    },
+    {
+      "id": "conceder_maestria_de_arma",
+      "nome": "Conceder o uso da maestria de uma arma",
+      "descricao_curta": "Libera a propriedade de maestria da arma indicada (Mestre das Armas)."
+    },
+    {
+      "id": "nao_gastar_espaco_de_magia",
+      "nome": "Não gastar o espaço de magia",
+      "descricao_curta": "Sob a condição declarada, o espaço usado não é consumido (Dádiva da Recordação de Magia)."
+    },
+    {
+      "id": "redirecionar_dano",
+      "nome": "Redirecionar dano para outra criatura",
+      "descricao_curta": "Manda para outro alvo dano do mesmo tipo recebido (Dádiva da Resistência à Energia)."
+    },
+    {
+      "id": "redirecionar_ataque",
+      "nome": "Redirecionar um ataque para si",
+      "descricao_curta": "Faz um ataque que atingiria outra criatura atingir você (Combatente Montado)."
+    },
+    {
+      "id": "aplicar_veneno",
+      "nome": "Aplicar veneno numa arma ou munição",
+      "descricao_curta": "Prepara o item envenenado, com duração e efeito ao causar dano (Envenenador)."
+    },
+    {
+      "id": "ignorar_propriedade_de_arma",
+      "nome": "Ignorar uma propriedade de arma",
+      "descricao_curta": "A propriedade indicada deixa de valer para os itens listados (Especialista em Besta ignora Recarga)."
+    },
+    {
+      "id": "alterar_teto_de_modificador_na_ca",
+      "nome": "Alterar o teto do modificador somado na CA",
+      "descricao_curta": "Muda quanto do modificador de Destreza a armadura deixa somar (Mestre em Armaduras Médias)."
     }
   ],
   "fonte": {

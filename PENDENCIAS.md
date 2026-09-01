@@ -230,3 +230,44 @@ Ficam aqui como histórico — todas com nota dentro do dado.
   as 391 entradas contra a paráfrase, uma a uma.**
 - Convocar Celestial dá 1d10 PV temporários, mas no bloco de estatísticas do Espírito Celestial —
   fora do escopo enquanto criaturas estiverem adiadas.
+
+---
+
+## Fase 9 — Capítulo 5, Talentos (ver `revisao-fase9-talentos.md`)
+
+**Fechado nesta fase**
+
+- **75 talentos**, quatro categorias completas: origem 10 · geral 43 · estilo de luta 10 ·
+  dádiva épica 12. **Nenhum talento `pendente`.**
+- As quatro pendências antigas: Aumento no Valor de Atributo, Dádiva da Proeza em Combate,
+  Dádiva do Ataque Irresistível, e Dádiva Épica — que deixou de ser talento e virou a
+  categoria `epico`; a característica de nível 19 escolhe dentro dela.
+- 16 tipos de efeito novos, 3 alvos, 2 alvos de impedimento.
+- 3 catálogos auxiliares: `modos_de_aumento_de_atributo`, `efeitos_do_ataque_em_investida`,
+  `efeitos_do_golpe_de_escudo`.
+
+**Corrigido de lotes anteriores**
+
+- Combate com Armas Grandes e Combate com Duas Armas eram `efeito_narrativo`; viraram
+  `tratar_dado_de_dano_minimo` e `modificador`.
+- `gerar_guerreiro_catalogos.py` reescrevia o cabeçalho de `talentos.json` para PARCIAL e
+  recriava um marcador pendente — rodado fora de ordem, desfazia o capítulo 5. Removido.
+- **Furo no validador**: o andador pulava `efeito_por_item_escolhido`, então checagens por tipo
+  não viam efeitos que moram ali (um `aumento_atributo` sem teto passou no teste negativo).
+- `alterar_dano` não aceitava tipo de dano derivado (`mesmo_do_ataque`).
+- Filtro por `escola`/`categoria`/`classe` não aceitava LISTA de valores — "Ilusão ou
+  Necromancia" resolvia para vazio.
+
+**Aberto**
+
+- 11 efeitos de talento continuam `efeito_narrativo`: levantar-se de Caído por 1,5 m, salto com
+  corrida curta, mimetismo do Ator, Saque Rápido, componentes Somáticos com mãos ocupadas, errar
+  escondido sem revelar posição, Correr em Terreno Difícil, Socar e Imobilizar. Dependem de
+  julgamento na mesa ou de primitivo que a base não tem. Marcados, não escondidos.
+- "Aeronau": a legenda da p. 212 usa a palavra no mesmo sentido de "nave aérea" no texto ao lado
+  — é escolha do tradutor, não truncamento. Continua sendo decisão do usuário se o app mostra.
+
+**Falta do livro**
+
+- Classes: **Guardião** (p. 117) e **Paladino** (p. 167).
+- **Capítulo 4**: origens, espécies e antecedentes.

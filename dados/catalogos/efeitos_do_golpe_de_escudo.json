@@ -1,0 +1,49 @@
+{
+  "catalogo": "efeitos_do_golpe_de_escudo",
+  "nome": "Efeitos do Golpe de Escudo",
+  "fonte": {
+    "capitulo": 5,
+    "pagina_livro": 207,
+    "pagina_pdf": 211
+  },
+  "nota": "As duas opções do Golpe de Escudo do talento Mestre em Escudos (p. 207).",
+  "total": 2,
+  "itens": [
+    {
+      "id": "empurrar",
+      "nome": "Empurrar 1,5 metro",
+      "descricao_curta": "Empurra o alvo 1,5 metro para longe de você.",
+      "efeitos": [
+        {
+          "tipo": "movimento_forcado",
+          "direcao": "empurrar",
+          "distancia_m": 1.5,
+          "origem": "voce",
+          "alvo": "alvo_atingido",
+          "condicao": {
+            "todas": [
+              "falhou_na_salvaguarda"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "derrubar",
+      "nome": "Derrubar",
+      "descricao_curta": "Impõe ao alvo a condição Caído.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "beneficiario": "alvo",
+          "condicao": {
+            "todas": [
+              "falhou_na_salvaguarda"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -162,9 +162,13 @@ def resolver_filtro(cat, filtro):
                 minhas = set(it.get('listas') or [])
                 alvo_l = {v} if isinstance(v, str) else set(v)
                 if not (minhas & alvo_l): ok = False
-            elif k == 'escola' and it.get('escola') != v: ok = False
-            elif k == 'categoria' and it.get('categoria') != v: ok = False
-            elif k == 'classe' and it.get('classe') != v: ok = False
+            elif k in ('escola', 'categoria', 'classe'):
+                # o filtro pode trazer um valor ou uma lista de valores aceitos
+                # (Tocado pelas Sombras: escola Ilusão OU Necromancia)
+                atual = it.get(k)
+                if isinstance(v, list):
+                    if atual not in v: ok = False
+                elif atual != v: ok = False
             elif k == 'alguma_propriedade':
                 tem = {p.get('propriedade') for p in (it.get('propriedades') or [])}
                 if not (set(v) & tem): ok = False
@@ -210,7 +214,11 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
             for chave, dano in mapa.items():
                 if dano not in DANOS:
                     erros.append(f"[tipo de dano inexistente] {ctx}: mapa['{chave}'] = '{dano}'")
-        elif e.get('tipo_dano') not in DANOS:
+        elif (e.get('tipo_dano') not in DANOS
+              and e.get('tipo_dano') not in DANOS_DERIVADOS
+              and e.get('tipo_dano') != PLACEHOLDER):
+            # 'mesmo_do_ataque' e afins valem aqui como em qualquer outro efeito:
+            # a Dádiva do Ataque Irresistível soma dano DO MESMO TIPO do ataque.
             erros.append(f"[tipo de dano inexistente] {ctx}: '{e.get('tipo_dano')}'")
         # 'todos, exceto X, Y' só vale se X e Y forem tipos de dano de verdade
         for d in e.get('excecoes', []):
@@ -339,7 +347,13 @@ def varrer(ctx, obj, e_efeito=False):
             EFEITOS_VISTOS.append((ctx, obj))
         for k, v in obj.items():
             if k == 'efeito_por_item_escolhido':
-                continue  # já validado pelo bloco 'escolha' da mãe
+                # A checagem de chaves fica com o bloco 'escolha' da mãe (o valor real
+                # vem do catálogo). Mas o efeito EM SI precisa entrar em EFEITOS_VISTOS,
+                # senão as checagens por tipo não o enxergam — foi assim que um
+                # aumento_atributo sem teto passou no teste negativo.
+                if isinstance(v, dict) and v.get('tipo') in TIPOS_EFEITO:
+                    EFEITOS_VISTOS.append((f"{ctx}/{k}", v))
+                continue
             varrer(f"{ctx}/{k}", v, e_efeito=(k == 'efeitos'))
     elif isinstance(obj, list):
         for n, v in enumerate(obj):
@@ -891,9 +905,10 @@ for cid, c in catalogos.items():
 for ctx, e in EFEITOS_VISTOS:
     if e.get('tipo') != 'movimento_forcado':
         continue
-    if e.get('direcao') not in ('empurrar', 'puxar'):
-        erros.append(f"[direção inválida] {ctx}: movimento_forcado precisa de "
-                     f"direcao 'empurrar' ou 'puxar' (veio '{e.get('direcao')}')")
+    if e.get('direcao') not in ('empurrar', 'puxar', 'a_sua_escolha'):
+        erros.append(f"[direção inválida] {ctx}: movimento_forcado precisa de direcao "
+                     f"'empurrar', 'puxar' ou 'a_sua_escolha' (veio "
+                     f"'{e.get('direcao')}')")
     if 'distancia_m' not in e and 'destino' not in e:
         erros.append(f"[movimento sem distância] {ctx}: movimento_forcado precisa de "
                      "'distancia_m' ou de um 'destino'")
@@ -985,6 +1000,82 @@ for i in catalogos.get('magias', {}).get('itens', []):
     if mx is not None and not (set(mx) & CHAVES_MAXIMOS):
         erros.append(f"[efeito sobre o máximo sem operação] {ctx}: 'maximos' precisa de "
                      f"um de {sorted(CHAVES_MAXIMOS)}")
+
+# ----------------------------------------------- talentos: categoria e pré-requisito
+CATEGORIAS_DE_TALENTO = {'origem', 'geral', 'estilo_de_luta', 'epico'}
+TIPOS_DE_PRE_REQUISITO = {'nivel_de_personagem', 'valor_de_atributo', 'caracteristica',
+                          'treinamento_com_armadura', 'talento', 'classe'}
+for i in catalogos.get('talentos', {}).get('itens', []):
+    ctx = f"talentos/{i['id']}"
+    if i.get('categoria') not in CATEGORIAS_DE_TALENTO:
+        erros.append(f"[categoria de talento inválida] {ctx}: '{i.get('categoria')}' "
+                     f"(esperado um de {sorted(CATEGORIAS_DE_TALENTO)})")
+    if 'pre_requisitos' not in i:
+        erros.append(f"[talento sem pré-requisitos declarados] {ctx}: use uma lista "
+                     "vazia quando não houver — silêncio não é o mesmo que 'nenhum'")
+    for pr in (i.get('pre_requisitos') or []):
+        t_pr = pr.get('tipo')
+        if t_pr not in TIPOS_DE_PRE_REQUISITO:
+            erros.append(f"[pré-requisito desconhecido] {ctx}: '{t_pr}'")
+        elif t_pr == 'valor_de_atributo':
+            for a in (pr.get('atributos') or []):
+                if a not in ATRIBUTOS:
+                    erros.append(f"[atributo inexistente] {ctx}: pré-requisito '{a}'")
+            if not isinstance(pr.get('minimo'), int):
+                erros.append(f"[pré-requisito sem mínimo] {ctx}: 'valor_de_atributo' "
+                             "precisa de 'minimo' inteiro")
+        elif t_pr == 'nivel_de_personagem' and not isinstance(pr.get('minimo'), int):
+            erros.append(f"[pré-requisito sem nível] {ctx}: 'nivel_de_personagem' "
+                         "precisa de 'minimo' inteiro")
+        elif t_pr == 'talento' and pr.get('chave') not in CHAVES.get('talentos', set()):
+            erros.append(f"[talento inexistente] {ctx}: pré-requisito "
+                         f"'{pr.get('chave')}'")
+    # Talento das categorias Geral e Épica exige nível: o livro nunca dá um sem isso.
+    if i.get('categoria') in ('geral', 'epico'):
+        if not any(pr.get('tipo') == 'nivel_de_personagem'
+                   for pr in (i.get('pre_requisitos') or [])):
+            erros.append(f"[talento sem nível mínimo] {ctx}: talento {i['categoria']} "
+                         "precisa declarar o pré-requisito de nível (4 nos Gerais, "
+                         "19 nas Dádivas Épicas)")
+
+# ---------------------------------- aumento de atributo dentro de talento tem teto
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'aumento_atributo':
+        continue
+    if 'limite' not in e:
+        erros.append(f"[aumento de atributo sem teto] {ctx}: o livro sempre dá um teto "
+                     "(20 nos talentos Gerais, 30 nas Dádivas Épicas)")
+    at = e.get('atributo')
+    if isinstance(at, str) and at != PLACEHOLDER and at not in ATRIBUTOS:
+        erros.append(f"[atributo inexistente] {ctx}: '{at}'")
+
+# ---------------------------------------- alterar_custo_de_acao aponta ação real
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'alterar_custo_de_acao':
+        continue
+    if e.get('acao_id') not in CHAVES.get('acoes', set()):
+        erros.append(f"[ação inexistente] {ctx}: '{e.get('acao_id')}'")
+    if e.get('novo_custo') not in CHAVES.get('custos_de_acao', set()):
+        erros.append(f"[custo de ação inexistente] {ctx}: '{e.get('novo_custo')}'")
+
+# ------------------------------------- ignorar_cobertura só usa graus declarados
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'ignorar_cobertura':
+        continue
+    for g in (e.get('graus') or []):
+        if g not in CHAVES.get('graus_de_cobertura', set()):
+            erros.append(f"[grau de cobertura inexistente] {ctx}: '{g}'")
+
+# --------------------------------- ignorar_resistencia nomeia tipos de dano reais
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'ignorar_resistencia':
+        continue
+    tipos = e.get('tipos_de_dano') or ([e['tipo_dano']] if e.get('tipo_dano') else [])
+    if not tipos:
+        erros.append(f"[ignorar_resistencia sem tipo] {ctx}")
+    for d in tipos:
+        if d not in DANOS and d != PLACEHOLDER:
+            erros.append(f"[tipo de dano inexistente] {ctx}: '{d}'")
 
 # ------------------------------------------------------------------ saída
 erros = list(dict.fromkeys(erros))

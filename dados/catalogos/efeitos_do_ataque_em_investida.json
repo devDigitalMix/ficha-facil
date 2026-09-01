@@ -1,0 +1,49 @@
+{
+  "catalogo": "efeitos_do_ataque_em_investida",
+  "nome": "Efeitos do Ataque em Investida",
+  "fonte": {
+    "capitulo": 5,
+    "pagina_livro": 202,
+    "pagina_pdf": 206
+  },
+  "nota": "As duas opções do Ataque em Investida do talento Agressor (p. 202).",
+  "total": 2,
+  "itens": [
+    {
+      "id": "dano_extra",
+      "nome": "+1d8 no dano",
+      "descricao_curta": "Bônus de +1d8 na jogada de dano do ataque.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "1d8"
+          ],
+          "empilha": "soma"
+        }
+      ]
+    },
+    {
+      "id": "empurrar",
+      "nome": "Empurrar até 3 metros",
+      "descricao_curta": "Empurra o alvo até 3 metros, se ele não for de um tamanho maior que o seu.",
+      "efeitos": [
+        {
+          "tipo": "movimento_forcado",
+          "direcao": "empurrar",
+          "distancia_m": 3,
+          "origem": "voce",
+          "alvo": "alvo_atingido",
+          "condicao": {
+            "todas": [
+              {
+                "nao": "alvo_maior_que_voce"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

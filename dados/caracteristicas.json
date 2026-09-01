@@ -879,21 +879,19 @@
       },
       "revisao": {
         "status": "ok",
-        "notas": ""
+        "notas": "Fechado com o capítulo 5."
       },
-      "descricao_curta": "Adquire o talento Dádiva Épica ou outro talento épico para o qual se qualifique. A recomendação do livro muda por classe (veja 'recomendado_por_classe').",
+      "descricao_curta": "No nível 19 você adquire um talento da categoria Dádiva Épica, ou outro talento para o qual se qualifique.",
       "efeitos": [
         {
-          "id": "dadiva_epica_escolha_de_talento",
+          "id": "escolha_da_dadiva_epica",
           "tipo": "escolha",
           "rotulo": "Escolha um talento de Dádiva Épica",
           "quantidade": 1,
-          "momento": "nivel_19",
           "de": {
             "catalogo": "talentos",
             "filtro": {
-              "categoria": "epico",
-              "pre_requisitos_atendidos": true
+              "categoria": "epico"
             }
           },
           "efeito_por_item_escolhido": {

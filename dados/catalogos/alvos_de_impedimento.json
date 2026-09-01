@@ -1,7 +1,7 @@
 {
   "catalogo": "alvos_de_impedimento",
   "nome": "Alvos de Impedimento",
-  "total": 10,
+  "total": 12,
   "itens": [
     {
       "id": "acao",
@@ -44,6 +44,16 @@
       "id": "vantagem_ou_desvantagem_em_teste_d20",
       "nome": "Beneficiar-se de Vantagem ou Desvantagem num Teste de D20",
       "nota": "Usado pelo Restaurar Equilíbrio do Feiticeiro Mecânico (nível 3, p. 111): a Reação faz o teste deixar de ser afetado por Vantagem e por Desvantagem."
+    },
+    {
+      "id": "desvantagem_por_inimigo_adjacente",
+      "nome": "Ter Desvantagem por um inimigo estar a até 1,5 metro",
+      "nota": "Usado por Atirador Arcano, Especialista em Besta e Mestre-Atirador (cap. 5): estar perto de um inimigo deixa de impor Desvantagem naquele tipo de ataque."
+    },
+    {
+      "id": "desvantagem_por_alcance_maximo",
+      "nome": "Ter Desvantagem por atacar no alcance máximo",
+      "nota": "Usado pelo Mestre-Atirador (p. 207): atacar no alcance máximo da arma à Distância deixa de impor Desvantagem."
     }
   ],
   "fonte": {

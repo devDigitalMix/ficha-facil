@@ -6,7 +6,7 @@
     "pagina_livro": 360,
     "pagina_pdf": 364
   },
-  "total": 26,
+  "total": 29,
   "itens": [
     {
       "id": "teste_d20",
@@ -129,6 +129,21 @@
       "nome": "Pontos de Vida Temporários",
       "descricao_curta": "O amortecedor de PV temporários. Alvo de efeitos que concedem ou substituem a fonte em vigor.",
       "derivado_id": "pontos_de_vida_temporarios"
+    },
+    {
+      "id": "dado_de_dano_da_arma",
+      "nome": "Dado de dano de uma arma",
+      "descricao_curta": "Os dados de dano de um ataque com arma, distintos dos de magia. Alvo de rejogada no Atacante Selvagem e no Perfurador."
+    },
+    {
+      "id": "dado_de_dano_do_ataque_desarmado",
+      "nome": "Dado de dano do Ataque Desarmado",
+      "descricao_curta": "O dado do Ataque Desarmado. Alvo da rejogada do Valentão de Taverna."
+    },
+    {
+      "id": "dado_de_cura",
+      "nome": "Dado de cura",
+      "descricao_curta": "Os dados jogados para determinar Pontos de Vida recuperados. Alvo da rejogada do Curandeiro."
     }
   ],
   "nota": "Catálogo de engine: nomes de alvo aceitos em 'modificador' e 'vantagem'. Sufixos permitidos: ':FOR'..':CAR' e ':<pericia>'."

@@ -41,7 +41,7 @@ t = rd('catalogos/talentos.json')
 por = {i['id']: i for i in t['itens']}
 por['iniciado_em_magia'] = {
  "id": "iniciado_em_magia", "nome": "Iniciado em Magia", "categoria": "origem",
- "fonte": f(5, 201), "repetivel": True,
+ "fonte": f(5, 201), "repetivel": True, "pre_requisitos": [],
  "restricao_de_repeticao": "a cada vez você deve escolher uma lista de magias diferente",
  "descricao_curta": ("Dois truques e uma magia de 1º círculo de uma lista à escolha (Clérigo, Druida "
    "ou Mago). A magia de 1º círculo fica sempre preparada e pode ser conjurada uma vez por Descanso "
