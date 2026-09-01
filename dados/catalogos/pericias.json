@@ -1,0 +1,103 @@
+{
+  "catalogo": "pericias",
+  "nome": "Perícias",
+  "fonte": {
+    "capitulo": 1,
+    "pagina_livro": 14,
+    "pagina_pdf": 18
+  },
+  "total": 18,
+  "itens": [
+    {
+      "id": "acrobacia",
+      "nome": "Acrobacia",
+      "atributo": "DES"
+    },
+    {
+      "id": "arcanismo",
+      "nome": "Arcanismo",
+      "atributo": "INT"
+    },
+    {
+      "id": "atletismo",
+      "nome": "Atletismo",
+      "atributo": "FOR"
+    },
+    {
+      "id": "atuacao",
+      "nome": "Atuação",
+      "atributo": "CAR"
+    },
+    {
+      "id": "enganacao",
+      "nome": "Enganação",
+      "atributo": "CAR"
+    },
+    {
+      "id": "furtividade",
+      "nome": "Furtividade",
+      "atributo": "DES"
+    },
+    {
+      "id": "historia",
+      "nome": "História",
+      "atributo": "INT"
+    },
+    {
+      "id": "intimidacao",
+      "nome": "Intimidação",
+      "atributo": "CAR"
+    },
+    {
+      "id": "intuicao",
+      "nome": "Intuição",
+      "atributo": "SAB"
+    },
+    {
+      "id": "investigacao",
+      "nome": "Investigação",
+      "atributo": "INT"
+    },
+    {
+      "id": "lidar_com_animais",
+      "nome": "Lidar com Animais",
+      "atributo": "SAB"
+    },
+    {
+      "id": "medicina",
+      "nome": "Medicina",
+      "atributo": "SAB"
+    },
+    {
+      "id": "natureza",
+      "nome": "Natureza",
+      "atributo": "INT"
+    },
+    {
+      "id": "percepcao",
+      "nome": "Percepção",
+      "atributo": "SAB"
+    },
+    {
+      "id": "persuasao",
+      "nome": "Persuasão",
+      "atributo": "CAR"
+    },
+    {
+      "id": "prestidigitacao",
+      "nome": "Prestidigitação",
+      "atributo": "DES"
+    },
+    {
+      "id": "religiao",
+      "nome": "Religião",
+      "atributo": "INT"
+    },
+    {
+      "id": "sobrevivencia",
+      "nome": "Sobrevivência",
+      "atributo": "SAB"
+    }
+  ],
+  "nota": "Tabela 'Perícias' do capítulo 1. O Mestre pode pedir a perícia com outro atributo (regra 'Perícias com Atributos Diferentes')."
+}

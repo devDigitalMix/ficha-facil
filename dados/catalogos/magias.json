@@ -1,0 +1,6542 @@
+{
+  "catalogo": "magias",
+  "nome": "Magias",
+  "parcial": true,
+  "fonte": {
+    "capitulo": 7,
+    "pagina_livro": 236,
+    "pagina_pdf": 240
+  },
+  "nota": "Listas COMPLETAS: Mago (242, p. 150-153) e Bruxo (91, p. 73-75). Outras entradas são parciais, presentes porque alguma característica as referencia; o texto completo de cada magia vem na fase do capítulo 7.",
+  "total": 368,
+  "itens": [
+    {
+      "id": "acudir_os_moribundos",
+      "nome": "Acudir os Moribundos",
+      "nivel": 0,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "amigos",
+      "nome": "Amigos",
+      "nivel": 0,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "arte_druidica",
+      "nome": "Arte Druídica",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "badalar_funebre",
+      "nome": "Badalar Fúnebre",
+      "nivel": 0,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "bolha_acida",
+      "nome": "Bolha Ácida",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "bordao_mistico",
+      "nome": "Bordão Místico",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "chama_sagrada",
+      "nome": "Chama Sagrada",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 253,
+        "pagina_pdf": 257
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 0,
+      "listas": [
+        "clerigo"
+      ],
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "chicote_de_espinhos",
+      "nome": "Chicote de Espinhos",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "criar_chamas",
+      "nome": "Criar Chamas",
+      "nivel": 0,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "elementalismo",
+      "nome": "Elementalismo",
+      "nivel": 0,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 275,
+        "pagina_pdf": 279
+      },
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ]
+    },
+    {
+      "id": "fagulha_estelar",
+      "nome": "Fagulha Estelar",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "golpe_certeiro",
+      "nome": "Golpe Certeiro",
+      "nivel": 0,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "ilusao_menor",
+      "nome": "Ilusão Menor",
+      "nivel": 0,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 288,
+        "pagina_pdf": 292
+      },
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ]
+    },
+    {
+      "id": "luz",
+      "nome": "Luz",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "luzes_dancantes",
+      "nome": "Luzes Dançantes",
+      "nivel": 0,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "maos_magicas",
+      "nome": "Mãos Mágicas",
+      "nivel": 0,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "mensagem",
+      "nome": "Mensagem",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "orientacao",
+      "nome": "Orientação",
+      "nivel": 0,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "palavra_de_radiancia",
+      "nome": "Palavra de Radiância",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "prestidigitacao_arcana",
+      "nome": "Prestidigitação Arcana",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "protecao_contra_laminas",
+      "nome": "Proteção Contra Lâminas",
+      "nivel": 0,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_de_fogo",
+      "nome": "Raio de Fogo",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_de_gelo",
+      "nome": "Raio de Gelo",
+      "nivel": 0,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 323,
+        "pagina_pdf": 327
+      },
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ]
+    },
+    {
+      "id": "raio_mistico",
+      "nome": "Raio Místico",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "rajada_de_veneno",
+      "nome": "Rajada de Veneno",
+      "nivel": 0,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "reparar",
+      "nome": "Reparar",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "resistencia",
+      "nome": "Resistência",
+      "nivel": 0,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "talho_mental",
+      "nome": "Talho Mental",
+      "nivel": 0,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "taumaturgia",
+      "nome": "Taumaturgia",
+      "nivel": 0,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "toque_chocante",
+      "nome": "Toque Chocante",
+      "nivel": 0,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 339,
+        "pagina_pdf": 343
+      },
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ]
+    },
+    {
+      "id": "toque_necrotico",
+      "nome": "Toque Necrótico",
+      "nivel": 0,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "trovao",
+      "nome": "Trovão",
+      "nivel": 0,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "alarme",
+      "nome": "Alarme",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "amizade_animal",
+      "nome": "Amizade Animal",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "armadura_arcana",
+      "nome": "Armadura Arcana",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "armadura_de_agathys",
+      "nome": "Armadura de Agathys",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "bencao",
+      "nome": "Benção",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "bom_fruto",
+      "nome": "Bom Fruto",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "bracos_de_hadar",
+      "nome": "Braços de Hadar",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "comando",
+      "nome": "Comando",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 255,
+        "pagina_pdf": 259
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 1,
+      "listas": [
+        "bardo",
+        "clerigo",
+        "paladino"
+      ],
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "compreender_idiomas",
+      "nome": "Compreender Idiomas",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "convocar_familiar",
+      "nome": "Convocar Familiar",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "criar_ou_destruir_agua",
+      "nome": "Criar ou Destruir Água",
+      "nivel": 1,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "curar_ferimentos",
+      "nome": "Curar Ferimentos",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 266,
+        "pagina_pdf": 270
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 1,
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "danacao",
+      "nome": "Danação",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "detectar_magia",
+      "nome": "Detectar Magia",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "detectar_o_bem_e_o_mal",
+      "nome": "Detectar o Bem e o Mal",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "detectar_veneno_e_doenca",
+      "nome": "Detectar Veneno e Doença",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "disco_flutuante_de_tenser",
+      "nome": "Disco Flutuante de Tenser",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "disfarcar_se",
+      "nome": "Disfarçar-se",
+      "nivel": 1,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "emaranhar",
+      "nome": "Emaranhar",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "enfeiticar_pessoa",
+      "nome": "Enfeitiçar Pessoa",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "escrita_ilusoria",
+      "nome": "Escrita Ilusória",
+      "nivel": 1,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "escudo_arcano",
+      "nome": "Escudo Arcano",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 277,
+        "pagina_pdf": 281
+      },
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ]
+    },
+    {
+      "id": "escudo_da_fe",
+      "nome": "Escudo da Fé",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "faca_de_gelo",
+      "nome": "Faca de Gelo",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "falar_com_animais",
+      "nome": "Falar com Animais",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "fogo_das_fadas",
+      "nome": "Fogo das Fadas",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 283,
+        "pagina_pdf": 287
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 1,
+      "listas": [
+        "bardo",
+        "druida"
+      ],
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "gargalhada_nefasta_de_tasha",
+      "nome": "Gargalhada Nefasta de Tasha",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "graxa",
+      "nome": "Graxa",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "identificar",
+      "nome": "Identificar",
+      "nivel": 1,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "imagem_silenciosa",
+      "nome": "Imagem Silenciosa",
+      "nivel": 1,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "infligir_ferimentos",
+      "nome": "Infligir Ferimentos",
+      "nivel": 1,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "leque_cromatico",
+      "nome": "Leque Cromático",
+      "nivel": 1,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "maos_flamejantes",
+      "nome": "Mãos Flamejantes",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 303,
+        "pagina_pdf": 307
+      },
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "nomes_alternativos": [
+        "Mãos Ardentes"
+      ],
+      "nota": "A tabela Magias de Domínio da Luz (p. 87) chama esta magia de 'Mãos Ardentes'; a entrada do capítulo 7 (p. 303) e a lista do Mago usam 'Mãos Flamejantes'. Mesma magia, nome inconsistente no livro."
+    },
+    {
+      "id": "misseis_magicos",
+      "nome": "Mísseis Mágicos",
+      "nivel": 1,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "nevoa_obscurecente",
+      "nome": "Névoa Obscurecente",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "onda_trovejante",
+      "nome": "Onda Trovejante",
+      "nivel": 1,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "orbe_cromatico",
+      "nome": "Orbe Cromático",
+      "nivel": 1,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_curativa",
+      "nome": "Palavra Curativa",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "passos_largos",
+      "nome": "Passos Largos",
+      "nivel": 1,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "perdicao",
+      "nome": "Perdição",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "protecao_contra_o_bem_e_o_mal",
+      "nome": "Proteção Contra o Bem e o Mal",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "purificar_alimentos_e_bebidas",
+      "nome": "Purificar Alimentos e Bebidas",
+      "nivel": 1,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "queda_suave",
+      "nome": "Queda Suave",
+      "nivel": 1,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_de_bruxa",
+      "nome": "Raio de Bruxa",
+      "nivel": 1,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_guia",
+      "nome": "Raio Guia",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 323,
+        "pagina_pdf": 327
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 1,
+      "escola": "evocacao",
+      "listas": [
+        "clerigo"
+      ],
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "raio_nauseante",
+      "nome": "Raio Nauseante",
+      "nivel": 1,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "repreensao_diabolica",
+      "nome": "Repreensão Diabólica",
+      "nivel": 1,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "retirada_acelerada",
+      "nome": "Retirada Acelerada",
+      "nivel": 1,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "salto",
+      "nome": "Salto",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 330,
+        "pagina_pdf": 334
+      },
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ]
+    },
+    {
+      "id": "santuario",
+      "nome": "Santuário",
+      "nivel": 1,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "servo_invisivel",
+      "nome": "Servo Invisível",
+      "nivel": 1,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sono",
+      "nome": "Sono",
+      "nivel": 1,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sussurros_dissonantes",
+      "nome": "Sussurros Dissonantes",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 334,
+        "pagina_pdf": 338
+      },
+      "parcial": true,
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 1,
+      "listas": [
+        "bardo"
+      ]
+    },
+    {
+      "id": "vitalidade_vazia",
+      "nome": "Vitalidade Vazia",
+      "nivel": 1,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "acalmar_emocoes",
+      "nome": "Acalmar Emoções",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 239,
+        "pagina_pdf": 243
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 2,
+      "listas": [
+        "bardo",
+        "clerigo"
+      ],
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "alterar_se",
+      "nome": "Alterar-se",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aprimorar_atributo",
+      "nome": "Aprimorar Atributo",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "arma_espiritual",
+      "nome": "Arma Espiritual",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "arma_magica",
+      "nome": "Arma Mágica",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "arrombar",
+      "nome": "Arrombar",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "augurio",
+      "nome": "Augúrio",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aumentar_reduzir",
+      "nome": "Aumentar/Reduzir",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aura_magica_de_nystul",
+      "nome": "Aura Mágica de Nystul",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "auxilio",
+      "nome": "Auxílio",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 246,
+        "pagina_pdf": 250
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 2,
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "boca_encantada",
+      "nome": "Boca Encantada",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "cativar",
+      "nome": "Cativar",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "cegueira_surdez",
+      "nome": "Cegueira/Surdez",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "chama_continua",
+      "nome": "Chama Contínua",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "corda_extradimensional",
+      "nome": "Corda Extradimensional",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "coroa_da_loucura",
+      "nome": "Coroa da Loucura",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "crescer_espinhos",
+      "nome": "Crescer Espinhos",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "despedacar",
+      "nome": "Despedaçar",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "detectar_pensamentos",
+      "nome": "Detectar Pensamentos",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "encontrar_armadilhas",
+      "nome": "Encontrar Armadilhas",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "escalada_de_aranha",
+      "nome": "Escalada de Aranha",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "escuridao",
+      "nome": "Escuridão",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 278,
+        "pagina_pdf": 282
+      },
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ]
+    },
+    {
+      "id": "esfera_flamejante",
+      "nome": "Esfera Flamejante",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "espinho_mental",
+      "nome": "Espinho Mental",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "esquentar_metal",
+      "nome": "Esquentar Metal",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "flecha_acida_de_melf",
+      "nome": "Flecha Ácida de Melf",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "forca_espectral",
+      "nome": "Força Espectral",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invisibilidade",
+      "nome": "Invisibilidade",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_fera",
+      "nome": "Invocar Fera",
+      "nivel": 2,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida",
+        "guardiao"
+      ],
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 294,
+        "pagina_pdf": 298
+      },
+      "nota": "Não pertence à lista do Mago. Está aqui porque a subclasse Ilusionista (Criaturas Espectrais, p. 157) concede acesso a ela."
+    },
+    {
+      "id": "lamina_flamejante",
+      "nome": "Lâmina Flamejante",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "levitacao",
+      "nome": "Levitação",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "localizar_animais_ou_plantas",
+      "nome": "Localizar Animais ou Plantas",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "localizar_objeto",
+      "nome": "Localizar Objeto",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "lufada_de_vento",
+      "nome": "Lufada de Vento",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "mensageiro_animal",
+      "nome": "Mensageiro Animal",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "nuvem_de_adagas",
+      "nome": "Nuvem de Adagas",
+      "nivel": 2,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "oracao_de_cura",
+      "nome": "Oração de Cura",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "paralisar_pessoa",
+      "nome": "Paralisar Pessoa",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "passo_nebuloso",
+      "nome": "Passo Nebuloso",
+      "nivel": 2,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "passo_sem_rastro",
+      "nome": "Passo Sem Rastro",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "pele_casca",
+      "nome": "Pele-casca",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "protecao_contra_veneno",
+      "nome": "Proteção Contra Veneno",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "raio_ardente",
+      "nome": "Raio Ardente",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_do_enfraquecimento",
+      "nome": "Raio do Enfraquecimento",
+      "nivel": 2,
+      "escola": "necromancia",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_lunar",
+      "nome": "Raio Lunar",
+      "nivel": 2,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "reflexos",
+      "nome": "Reflexos",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "repouso_tranquilo",
+      "nome": "Repouso Tranquilo",
+      "nivel": 2,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "restauracao_menor",
+      "nome": "Restauração Menor",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 329,
+        "pagina_pdf": 333
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 2,
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "sentido_feral",
+      "nome": "Sentido Feral",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "silencio",
+      "nome": "Silêncio",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "sopro_de_dragao",
+      "nome": "Sopro de Dragão",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sugestao",
+      "nome": "Sugestão",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "teia",
+      "nome": "Teia",
+      "nivel": 2,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "tranca_arcana",
+      "nome": "Tranca Arcana",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "turvar",
+      "nome": "Turvar",
+      "nivel": 2,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "ver_o_invisivel",
+      "nome": "Ver o Invisível",
+      "nivel": 2,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "vigor_arcano",
+      "nome": "Vigor Arcano",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "vinculo_de_protecao",
+      "nome": "Vínculo de Proteção",
+      "nivel": 2,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "visao_no_escuro",
+      "nome": "Visão no Escuro",
+      "nivel": 2,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "zona_da_verdade",
+      "nome": "Zona da Verdade",
+      "nivel": 2,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "animar_mortos",
+      "nome": "Animar Mortos",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "arma_elemental",
+      "nome": "Arma Elemental",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "aura_de_vitalidade",
+      "nome": "Aura de Vitalidade",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "bola_de_fogo",
+      "nome": "Bola de Fogo",
+      "nivel": 3,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "caminhar_sobre_as_aguas",
+      "nome": "Caminhar Sobre as Águas",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "celeridade",
+      "nome": "Celeridade",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "circulo_magico",
+      "nome": "Círculo Mágico",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "clarividencia",
+      "nome": "Clarividência",
+      "nivel": 3,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "contramagia",
+      "nome": "Contramagia",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "convocar_feerico",
+      "nome": "Convocar Feérico",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "convocar_relampagos",
+      "nome": "Convocar Relâmpagos",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "crescimento_de_plantas",
+      "nome": "Crescimento de Plantas",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 264,
+        "pagina_pdf": 268
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 3,
+      "listas": [
+        "bardo",
+        "druida",
+        "guardiao"
+      ],
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "criar_comida_e_agua",
+      "nome": "Criar Comida e Água",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "dissipar_magia",
+      "nome": "Dissipar Magia",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "falar_com_mortos",
+      "nome": "Falar com Mortos",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "falar_com_plantas",
+      "nome": "Falar com Plantas",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "fome_de_hadar",
+      "nome": "Fome de Hadar",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "nota": "O livro grafa a escola como 'Conjuração' nesta entrada e como 'Invocação' no resto do material. Normalizado para 'invocacao'."
+    },
+    {
+      "id": "forma_gasosa",
+      "nome": "Forma Gasosa",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "glifo_de_protecao",
+      "nome": "Glifo de Proteção",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "guardioes_espirituais",
+      "nome": "Guardiões Espirituais",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "imagem_maior",
+      "nome": "Imagem Maior",
+      "nivel": 3,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "indetectavel",
+      "nome": "Indetectável",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_animais",
+      "nome": "Invocar Animais",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "invocar_morto_vivo",
+      "nome": "Invocar Morto-vivo",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "lentidao",
+      "nome": "Lentidão",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "linguas",
+      "nome": "Línguas",
+      "nivel": 3,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "luz_do_dia",
+      "nome": "Luz do Dia",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 300,
+        "pagina_pdf": 304
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 3,
+      "listas": [
+        "clerigo",
+        "druida",
+        "feiticeiro",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "manto_do_cruzado",
+      "nome": "Manto do Cruzado",
+      "nivel": 3,
+      "escola": "evocacao",
+      "listas": [
+        "paladino"
+      ],
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 302,
+        "pagina_pdf": 306
+      },
+      "nota": "Não pertence à lista do Clérigo. Está aqui porque o Domínio da Guerra (p. 85) a concede sempre preparada."
+    },
+    {
+      "id": "medo",
+      "nome": "Medo",
+      "nivel": 3,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "mesclar_se_as_rochas",
+      "nome": "Mesclar-se às Rochas",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "montaria_fantasmagorica",
+      "nome": "Montaria Fantasmagórica",
+      "nivel": 3,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "muralha_de_vento",
+      "nome": "Muralha de Vento",
+      "nivel": 3,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "nevasca",
+      "nome": "Nevasca",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "nuvem_fetida",
+      "nome": "Nuvem Fétida",
+      "nivel": 3,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "padrao_hipnotico",
+      "nome": "Padrão Hipnótico",
+      "nivel": 3,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_curativa_em_massa",
+      "nome": "Palavra Curativa em Massa",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "pequeno_refugio_de_leomund",
+      "nome": "Pequeno Refúgio de Leomund",
+      "nivel": 3,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "piscar",
+      "nome": "Piscar",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "protecao_contra_energia",
+      "nome": "Proteção contra Energia",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "relampago",
+      "nome": "Relâmpago",
+      "nivel": 3,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "remeter",
+      "nome": "Remeter",
+      "nivel": 3,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      },
+      "nota": "Divergência do livro: a lista do Clérigo (p. 84) grafa a escola como 'Evocação'; a entrada do capítulo 7 (p. 326) e a lista do Mago (p. 151) dizem 'Adivinhação'. Mantida Adivinhação, que é o que a entrada da magia diz."
+    },
+    {
+      "id": "remover_maldicao",
+      "nome": "Remover Maldição",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "respirar_na_agua",
+      "nome": "Respirar na Água",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "revivificar",
+      "nome": "Revivificar",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 330,
+        "pagina_pdf": 334
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 3,
+      "listas": [
+        "clerigo",
+        "druida",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true
+    },
+    {
+      "id": "rogar_maldicao",
+      "nome": "Rogar Maldição",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "simular_morte",
+      "nome": "Simular Morte",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sinal_de_esperanca",
+      "nome": "Sinal de Esperança",
+      "nivel": 3,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "toque_vampirico",
+      "nome": "Toque Vampírico",
+      "nivel": 3,
+      "escola": "necromancia",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "voo",
+      "nome": "Voo",
+      "nivel": 3,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "arca_secreta_de_leomund",
+      "nome": "Arca Secreta de Leomund",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "assassino_fantasmagorico",
+      "nome": "Assassino Fantasmagórico",
+      "nivel": 4,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aura_de_pureza",
+      "nome": "Aura de Pureza",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "aura_de_vida",
+      "nome": "Aura de Vida",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "banimento",
+      "nome": "Banimento",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "cao_fiel_de_mordenkainen",
+      "nome": "Cão Fiel de Mordenkainen",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "confusao",
+      "nome": "Confusão",
+      "nivel": 4,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "controlar_agua",
+      "nome": "Controlar Água",
+      "nivel": 4,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "convocar_elemental",
+      "nome": "Convocar Elemental",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "defensor_da_fe",
+      "nome": "Defensor da Fé",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 267,
+        "pagina_pdf": 271
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 4,
+      "listas": [
+        "clerigo"
+      ],
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "dominar_fera",
+      "nome": "Dominar Fera",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 274,
+        "pagina_pdf": 278
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 4,
+      "escola": "encantamento",
+      "listas": [
+        "druida",
+        "feiticeiro",
+        "guardiao"
+      ],
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "enfeiticar_monstro",
+      "nome": "Enfeitiçar Monstro",
+      "nivel": 4,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "escudo_ardente",
+      "nome": "Escudo Ardente",
+      "nivel": 4,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "esfera_resiliente_de_otiluke",
+      "nome": "Esfera Resiliente de Otiluke",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "esfera_vitriolica",
+      "nome": "Esfera Vitriólica",
+      "nivel": 4,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "fabricar",
+      "nome": "Fabricar",
+      "nivel": 4,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "fonte_do_luar",
+      "nome": "Fonte do Luar",
+      "nivel": 4,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "inseto_gigante",
+      "nome": "Inseto Gigante",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "invisibilidade_maior",
+      "nome": "Invisibilidade Maior",
+      "nivel": 4,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_aberracao",
+      "nome": "Invocar Aberração",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_constructo",
+      "nome": "Invocar Constructo",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_elementais_menores",
+      "nome": "Invocar Elementais Menores",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_seres_da_floresta",
+      "nome": "Invocar Seres da Floresta",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "localizar_criatura",
+      "nome": "Localizar Criatura",
+      "nivel": 4,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "malogro",
+      "nome": "Malogro",
+      "nivel": 4,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "moldar_rochas",
+      "nome": "Moldar Rochas",
+      "nivel": 4,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "movimentacao_livre",
+      "nome": "Movimentação Livre",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "muralha_de_fogo",
+      "nome": "Muralha de Fogo",
+      "nivel": 4,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "olho_arcano",
+      "nome": "Olho Arcano",
+      "nivel": 4,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "pele_rocha",
+      "nome": "Pele-Rocha",
+      "nivel": 4,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "polimorfia",
+      "nome": "Polimorfia",
+      "nivel": 4,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "porta_dimensional",
+      "nome": "Porta Dimensional",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "pressagio",
+      "nome": "Presságio",
+      "nivel": 4,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "protecao_contra_a_morte",
+      "nome": "Proteção Contra a Morte",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "santuario_particular_de_mordenkainen",
+      "nome": "Santuário Particular de Mordenkainen",
+      "nivel": 4,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "tempestade_glacial",
+      "nome": "Tempestade Glacial",
+      "nivel": 4,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "tentaculos_negros_de_evard",
+      "nome": "Tentáculos Negros de Evard",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "terreno_alucinatorio",
+      "nome": "Terreno Alucinatório",
+      "nivel": 4,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "vinha_agarradora",
+      "nome": "Vinha Agarradora",
+      "nivel": 4,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "ancora_planar",
+      "nome": "Âncora Planar",
+      "nivel": 5,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "animar_objetos",
+      "nome": "Animar Objetos",
+      "nivel": 5,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "circulo_de_poder",
+      "nome": "Círculo de Poder",
+      "nivel": 5,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "circulo_de_teleporte",
+      "nome": "Círculo de Teleporte",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "coluna_de_chamas",
+      "nome": "Coluna de Chamas",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "comunhao",
+      "nome": "Comunhão",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "comunhao_com_a_natureza",
+      "nome": "Comunhão com a Natureza",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "cone_de_frio",
+      "nome": "Cone de Frio",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "consagrar",
+      "nome": "Consagrar",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "contagio",
+      "nome": "Contágio",
+      "nivel": 5,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "contato_extraplanar",
+      "nome": "Contato Extraplanar",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "convocar_celestial",
+      "nome": "Convocar Celestial",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 259,
+        "pagina_pdf": 263
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 5,
+      "listas": [
+        "clerigo",
+        "paladino"
+      ],
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true
+    },
+    {
+      "id": "criacao",
+      "nome": "Criação",
+      "nivel": 5,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "criar_passagem",
+      "nome": "Criar Passagem",
+      "nivel": 5,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "cupula_antivida",
+      "nome": "Cúpula Antivida",
+      "nivel": 5,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "curar_ferimentos_em_massa",
+      "nome": "Curar Ferimentos em Massa",
+      "nivel": 5,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "despertar",
+      "nome": "Despertar",
+      "nivel": 5,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "despistar",
+      "nome": "Despistar",
+      "nivel": 5,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "dissipar_o_bem_e_o_mal",
+      "nome": "Dissipar o Bem e o Mal",
+      "nivel": 5,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "dominar_pessoa",
+      "nome": "Dominar Pessoa",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "estatica_sinaptica",
+      "nome": "Estática Sináptica",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "golpe_de_arco",
+      "nome": "Golpe de Arço",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_dragao",
+      "nome": "Invocar Dragão",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_elemental",
+      "nome": "Invocar Elemental",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "lendas_e_historias",
+      "nome": "Lendas e Histórias",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "ligacao_telepatica_de_rary",
+      "nome": "Ligação Telepática de Rary",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "mao_de_bigby",
+      "nome": "Mão de Bigby",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "missao",
+      "nome": "Missão",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "modificar_memoria",
+      "nome": "Modificar Memória",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "muralha_de_energia",
+      "nome": "Muralha de Energia",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "muralha_de_pedra",
+      "nome": "Muralha de Pedra",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "nevoa_mortal",
+      "nome": "Névoa Mortal",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "paralisar_monstro",
+      "nome": "Paralisar Monstro",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "passo_arboreo",
+      "nome": "Passo Arbóreo",
+      "nivel": 5,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "praga_de_insetos",
+      "nome": "Praga de Insetos",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 319,
+        "pagina_pdf": 323
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 5,
+      "listas": [
+        "clerigo",
+        "druida",
+        "feiticeiro"
+      ],
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false
+    },
+    {
+      "id": "presenca_regia_de_yolande",
+      "nome": "Presença Régia de Yolande",
+      "nivel": 5,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "reencarnar",
+      "nome": "Reencarnar",
+      "nivel": 5,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "restauracao_maior",
+      "nome": "Restauração Maior",
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 328,
+        "pagina_pdf": 332
+      },
+      "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+      "nivel": 5,
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "guardiao",
+        "paladino"
+      ],
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true
+    },
+    {
+      "id": "reviver_os_mortos",
+      "nome": "Reviver os Mortos",
+      "nivel": 5,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "similaridade",
+      "nome": "Similaridade",
+      "nivel": 5,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sonho",
+      "nome": "Sonho",
+      "nivel": 5,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "telecinese",
+      "nome": "Telecinese",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 7,
+        "pagina_livro": 335,
+        "pagina_pdf": 339
+      },
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ]
+    },
+    {
+      "id": "tempestade_radiante_de_jallarzi",
+      "nome": "Tempestade Radiante de Jallarzi",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "tempestade_radiante_de_jallazar",
+      "nome": "Tempestade Radiante de Jallazar",
+      "nivel": 5,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "videncia",
+      "nome": "Vidência",
+      "nivel": 5,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aliado_extraplanar",
+      "nome": "Aliado Extraplanar",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "banquete_de_herois",
+      "nome": "Banquete de Heróis",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "barreira_de_laminas",
+      "nome": "Barreira de Lâminas",
+      "nivel": 6,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "caldeirao_borbulhante_de_tasha",
+      "nome": "Caldeirão Borbulhante de Tasha",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "caminhar_no_vento",
+      "nome": "Caminhar no Vento",
+      "nivel": 6,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "circulo_da_morte",
+      "nome": "Círculo da Morte",
+      "nivel": 6,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "contingencia",
+      "nome": "Contingência",
+      "nivel": 6,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "corrente_de_relampagos",
+      "nome": "Corrente de Relâmpagos",
+      "nivel": 6,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "criar_mortos_vivos",
+      "nome": "Criar Mortos-Vivos",
+      "nivel": 6,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "cura_completa",
+      "nome": "Cura Completa",
+      "nivel": 6,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "danca_irresistivel_de_otto",
+      "nome": "Dança Irresistível de Otto",
+      "nivel": 6,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "de_carne_para_pedra",
+      "nome": "De Carne para Pedra",
+      "nivel": 6,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "desintegrar",
+      "nome": "Desintegrar",
+      "nivel": 6,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "encontrar_o_caminho",
+      "nome": "Encontrar o Caminho",
+      "nivel": 6,
+      "escola": "adivinhacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "esfera_congelante_de_otiluke",
+      "nome": "Esfera Congelante de Otiluke",
+      "nivel": 6,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "globo_de_invulnerabilidade",
+      "nome": "Globo de Invulnerabilidade",
+      "nivel": 6,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "ilusao_programada",
+      "nome": "Ilusão Programada",
+      "nivel": 6,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocacao_instantanea_de_drawmij",
+      "nome": "Invocação Instantânea de Drawmij",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_feerico",
+      "nome": "Invocar Feérico",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "invocar_infero",
+      "nome": "Invocar Ínfero",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "mau_olhado",
+      "nome": "Mau Olhado",
+      "nivel": 6,
+      "escola": "necromancia",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "molestia",
+      "nome": "Moléstia",
+      "nivel": 6,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "mover_terra",
+      "nome": "Mover Terra",
+      "nivel": 6,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "muralha_de_espinhos",
+      "nome": "Muralha de Espinhos",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "muralha_de_gelo",
+      "nome": "Muralha de Gelo",
+      "nivel": 6,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_de_regresso",
+      "nome": "Palavra de Regresso",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "portais_arcanos",
+      "nome": "Portais Arcanos",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "proibicao",
+      "nome": "Proibição",
+      "nivel": 6,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": true,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "proteger_fortaleza",
+      "nome": "Proteger Fortaleza",
+      "nivel": 6,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "raio_solar",
+      "nome": "Raio Solar",
+      "nivel": 6,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "receptaculo_arcano",
+      "nome": "Receptáculo Arcano",
+      "nivel": 6,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "sugestao_em_massa",
+      "nome": "Sugestão em Massa",
+      "nivel": 6,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "transporte_via_plantas",
+      "nome": "Transporte via Plantas",
+      "nivel": 6,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "visao_da_verdade",
+      "nome": "Visão da Verdade",
+      "nivel": 6,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "bola_de_fogo_adiavel",
+      "nome": "Bola de Fogo Adiável",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "carcere_de_energia",
+      "nome": "Cárcere de Energia",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "dedo_da_morte",
+      "nome": "Dedo da Morte",
+      "nivel": 7,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "espada_de_mordenkainen",
+      "nome": "Espada de Mordenkainen",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "forma_eterea",
+      "nome": "Forma Etérea",
+      "nivel": 7,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "inverter_a_gravidade",
+      "nome": "Inverter a Gravidade",
+      "nivel": 7,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "invocar_celestial",
+      "nome": "Invocar Celestial",
+      "nivel": 7,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "mansao_magnifica_de_mordenkainen",
+      "nome": "Mansão Magnífica de Mordenkainen",
+      "nivel": 7,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "miragem_arcana",
+      "nome": "Miragem Arcana",
+      "nivel": 7,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_de_poder_fortificar",
+      "nome": "Palavra de Poder: Fortificar",
+      "nivel": 7,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "palavra_sagrada",
+      "nome": "Palavra Sagrada",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "projetar_imagem",
+      "nome": "Projetar Imagem",
+      "nivel": 7,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "rajada_prismatica",
+      "nome": "Rajada Prismática",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "refugiar",
+      "nome": "Refugiar",
+      "nivel": 7,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "regeneracao",
+      "nome": "Regeneração",
+      "nivel": 7,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "ressurreicao",
+      "nome": "Ressurreição",
+      "nivel": 7,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "simbolo",
+      "nome": "Símbolo",
+      "nivel": 7,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "simulacro",
+      "nome": "Simulacro",
+      "nivel": 7,
+      "escola": "ilusao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "teleporte",
+      "nome": "Teleporte",
+      "nivel": 7,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "tempestade_de_fogo",
+      "nome": "Tempestade de Fogo",
+      "nivel": 7,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "transicao_planar",
+      "nome": "Transição Planar",
+      "nivel": 7,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "antipatia_simpatia",
+      "nome": "Antipatia/Simpatia",
+      "nivel": 8,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "aura_sagrada",
+      "nome": "Aura Sagrada",
+      "nivel": 8,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "campo_antimagia",
+      "nome": "Campo Antimagia",
+      "nivel": 8,
+      "escola": "abjuracao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "clone",
+      "nome": "Clone",
+      "nivel": 8,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "controlar_o_clima",
+      "nome": "Controlar o Clima",
+      "nivel": 8,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "dominar_monstro",
+      "nome": "Dominar Monstro",
+      "nivel": 8,
+      "escola": "encantamento",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "explosao_solar",
+      "nome": "Explosão Solar",
+      "nivel": 8,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "formas_animais",
+      "nome": "Formas Animais",
+      "nivel": 8,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "labirinto",
+      "nome": "Labirinto",
+      "nivel": 8,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "limpar_a_mente",
+      "nome": "Limpar a Mente",
+      "nivel": 8,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "loquacidade",
+      "nome": "Loquacidade",
+      "nivel": 8,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      }
+    },
+    {
+      "id": "nuvem_incendiaria",
+      "nome": "Nuvem Incendiária",
+      "nivel": 8,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_de_poder_atordoar",
+      "nome": "Palavra de Poder: Atordoar",
+      "nivel": 8,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "semiplano",
+      "nome": "Semiplano",
+      "nivel": 8,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "suplicio",
+      "nome": "Suplício",
+      "nivel": 8,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "telepatia",
+      "nome": "Telepatia",
+      "nivel": 8,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "terremoto",
+      "nome": "Terremoto",
+      "nivel": 8,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "tsunami",
+      "nome": "Tsunami",
+      "nivel": 8,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "aprisionamento",
+      "nome": "Aprisionamento",
+      "nivel": 9,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "chuva_de_meteoros",
+      "nome": "Chuva de Meteoros",
+      "nivel": 9,
+      "escola": "evocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "cura_completa_em_massa",
+      "nome": "Cura Completa em Massa",
+      "nivel": 9,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "desejo",
+      "nome": "Desejo",
+      "nivel": 9,
+      "escola": "invocacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "encarnacao_fantasmagorica",
+      "nome": "Encarnação Fantasmagórica",
+      "nivel": 9,
+      "escola": "ilusao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "metamorfose",
+      "nome": "Metamorfose",
+      "nivel": 9,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "muralha_prismatica",
+      "nome": "Muralha Prismática",
+      "nivel": 9,
+      "escola": "abjuracao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_de_poder_matar",
+      "nome": "Palavra de Poder: Matar",
+      "nivel": 9,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "palavra_de_poder_salvar",
+      "nome": "Palavra de Poder: Salvar",
+      "nivel": 9,
+      "escola": "encantamento",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      }
+    },
+    {
+      "id": "parar_o_tempo",
+      "nome": "Parar o Tempo",
+      "nivel": 9,
+      "escola": "transmutacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "polimorfia_total",
+      "nome": "Polimorfia Total",
+      "nivel": 9,
+      "escola": "transmutacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "portal",
+      "nome": "Portal",
+      "nivel": 9,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "projecao_astral",
+      "nome": "Projeção Astral",
+      "nivel": 9,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "mago",
+        "bruxo",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "ressurreicao_verdadeira",
+      "nome": "Ressurreição Verdadeira",
+      "nivel": 9,
+      "escola": "necromancia",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": true,
+      "listas": [
+        "druida",
+        "clerigo"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    },
+    {
+      "id": "sexto_sentido",
+      "nome": "Sexto Sentido",
+      "nivel": 9,
+      "escola": "adivinhacao",
+      "concentracao": false,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "mago",
+        "bruxo",
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      }
+    },
+    {
+      "id": "tempestade_da_vinganca",
+      "nome": "Tempestade da Vingança",
+      "nivel": 9,
+      "escola": "invocacao",
+      "concentracao": true,
+      "ritual": false,
+      "componente_material_especifico": false,
+      "listas": [
+        "druida"
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      }
+    }
+  ],
+  "listas_completas": [
+    "bruxo",
+    "clerigo",
+    "druida",
+    "mago"
+  ]
+}

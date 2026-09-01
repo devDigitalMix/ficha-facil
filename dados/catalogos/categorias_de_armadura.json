@@ -1,0 +1,29 @@
+{
+  "catalogo": "categorias_de_armadura",
+  "nome": "Categorias de Armadura",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 377,
+    "pagina_pdf": 381
+  },
+  "total": 4,
+  "itens": [
+    {
+      "id": "leve",
+      "nome": "Leve"
+    },
+    {
+      "id": "media",
+      "nome": "Média"
+    },
+    {
+      "id": "pesada",
+      "nome": "Pesada"
+    },
+    {
+      "id": "escudo",
+      "nome": "Escudo"
+    }
+  ],
+  "nota": "Sem Treinamento com Armadura: Desvantagem em Testes de D20 de FOR/DES e não pode conjurar magias; sem treinamento com Escudo, não recebe o bônus de CA."
+}

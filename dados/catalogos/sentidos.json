@@ -1,0 +1,41 @@
+{
+  "catalogo": "sentidos",
+  "nome": "Sentidos",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 377,
+    "pagina_pdf": 381
+  },
+  "total": 5,
+  "itens": [
+    {
+      "id": "visao_as_cegas",
+      "nome": "Visão às Cegas",
+      "tem_alcance": true
+    },
+    {
+      "id": "visao_no_escuro",
+      "nome": "Visão no Escuro",
+      "tem_alcance": true
+    },
+    {
+      "id": "visao_verdadeira",
+      "nome": "Visão Verdadeira",
+      "tem_alcance": true
+    },
+    {
+      "id": "telepatia",
+      "nome": "Telepatia",
+      "tem_alcance": true
+    },
+    {
+      "id": "percepcao_passiva",
+      "nome": "Percepção Passiva",
+      "tem_alcance": false,
+      "formula": [
+        "10",
+        "bonus_teste:SAB.percepcao"
+      ]
+    }
+  ]
+}

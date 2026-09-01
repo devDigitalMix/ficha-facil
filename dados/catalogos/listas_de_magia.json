@@ -1,0 +1,118 @@
+{
+  "catalogo": "listas_de_magia",
+  "nome": "Listas de Magia de Classe",
+  "fonte": {
+    "capitulo": 7,
+    "pagina_livro": 236,
+    "pagina_pdf": 240
+  },
+  "total": 8,
+  "parcial": true,
+  "nota": "Só a lista do Mago está preenchida. As outras existem como chave para que efeitos e filtros possam referenciá-las desde já; cada uma é preenchida quando sua classe for extraída.",
+  "itens": [
+    {
+      "id": "mago",
+      "nome": "Lista de magias do Mago",
+      "classe_de_origem": "mago",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 150,
+        "pagina_pdf": 154
+      },
+      "preenchida": true,
+      "total_de_magias": 242,
+      "por_circulo": {
+        "0": 20,
+        "1": 31,
+        "2": 39,
+        "3": 32,
+        "4": 29,
+        "5": 29,
+        "6": 22,
+        "7": 15,
+        "8": 13,
+        "9": 12
+      }
+    },
+    {
+      "id": "clerigo",
+      "nome": "Lista de magias do Clérigo",
+      "classe_de_origem": "clerigo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      },
+      "preenchida": true,
+      "total_de_magias": 117
+    },
+    {
+      "id": "druida",
+      "nome": "Lista de magias do Druida",
+      "classe_de_origem": "druida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      },
+      "preenchida": true,
+      "total_de_magias": 135
+    },
+    {
+      "id": "bardo",
+      "nome": "Lista de magias do Bardo",
+      "classe_de_origem": "bardo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 59,
+        "pagina_pdf": 63
+      },
+      "preenchida": false
+    },
+    {
+      "id": "feiticeiro",
+      "nome": "Lista de magias do Feiticeiro",
+      "classe_de_origem": "feiticeiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 103,
+        "pagina_pdf": 107
+      },
+      "preenchida": false
+    },
+    {
+      "id": "bruxo",
+      "nome": "Lista de magias do Bruxo",
+      "classe_de_origem": "bruxo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "preenchida": true,
+      "total_de_magias": 91
+    },
+    {
+      "id": "guardiao",
+      "nome": "Lista de magias do Guardião",
+      "classe_de_origem": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 117,
+        "pagina_pdf": 121
+      },
+      "preenchida": false
+    },
+    {
+      "id": "paladino",
+      "nome": "Lista de magias do Paladino",
+      "classe_de_origem": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 167,
+        "pagina_pdf": 171
+      },
+      "preenchida": false
+    }
+  ]
+}

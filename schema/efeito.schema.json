@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ficha-facil.local/efeito.schema.json",
+  "title": "Efeito",
+  "type": "object",
+  "required": [
+    "tipo"
+  ],
+  "properties": {
+    "tipo": {
+      "type": "string",
+      "description": "Deve existir em dados/catalogos/tipos_de_efeito.json"
+    },
+    "alvo": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "modo": {
+      "type": "string"
+    },
+    "valor": {
+      "$ref": "#/$defs/formula"
+    },
+    "formula": {
+      "$ref": "#/$defs/formula"
+    },
+    "empilha": {
+      "enum": [
+        "soma",
+        "maior_valor",
+        "unico",
+        "substitui"
+      ]
+    },
+    "ativacao": {
+      "enum": [
+        "passiva",
+        "ativa",
+        "reativa",
+        "escolha_do_jogador"
+      ]
+    },
+    "condicao": {
+      "$ref": "#/$defs/condicao"
+    },
+    "duracao": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/formula"
+        }
+      ]
+    },
+    "condicao_id": {
+      "type": "string"
+    },
+    "tipo_dano": {
+      "type": "string"
+    },
+    "operacao": {
+      "enum": [
+        "resistencia",
+        "imunidade",
+        "vulnerabilidade",
+        "bonus"
+      ]
+    }
+  },
+  "$defs": {
+    "termo": {
+      "type": "string"
+    },
+    "formula": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/termo"
+              },
+              {
+                "$ref": "#/$defs/formula"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "op",
+            "args"
+          ],
+          "properties": {
+            "op": {
+              "enum": [
+                "soma",
+                "max",
+                "min",
+                "mult",
+                "div_arred_baixo",
+                "div_arred_cima"
+              ]
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/termo"
+                  },
+                  {
+                    "$ref": "#/$defs/formula"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "condicao": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "todas": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condicao"
+              }
+            },
+            "alguma": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condicao"
+              }
+            },
+            "nao": {
+              "$ref": "#/$defs/condicao"
+            }
+          },
+          "minProperties": 1,
+          "maxProperties": 1
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "tipo": {
+            "const": "vantagem"
+          }
+        },
+        "required": [
+          "tipo"
+        ]
+      },
+      "then": {
+        "properties": {
+          "modo": {
+            "enum": [
+              "vantagem",
+              "desvantagem"
+            ]
+          }
+        },
+        "required": [
+          "modo"
+        ]
+      }
+    }
+  ]
+}

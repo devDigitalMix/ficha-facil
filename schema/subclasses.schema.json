@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ficha-facil.local/subclasses.schema.json",
+  "title": "Coleção de Subclasses",
+  "type": "object",
+  "required": ["colecao", "total", "itens"],
+  "properties": {
+    "colecao": { "const": "subclasses" },
+    "total": { "type": "integer" },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nome", "classe", "fonte", "revisao", "descricao_curta",
+                     "niveis_de_caracteristica", "caracteristicas"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "nome": { "type": "string" },
+          "classe": { "type": "string" },
+          "descricao_curta": { "type": "string", "maxLength": 400 },
+          "fonte": { "$ref": "https://ficha-facil.local/fonte.schema.json" },
+          "revisao": { "type": "object", "required": ["status"] },
+          "niveis_de_caracteristica": { "type": "array", "items": { "type": "integer" } },
+          "caracteristicas": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

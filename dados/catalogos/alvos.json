@@ -1,0 +1,77 @@
+{
+  "catalogo": "alvos",
+  "nome": "Alvos de Efeito",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 360,
+    "pagina_pdf": 364
+  },
+  "total": 16,
+  "itens": [
+    {
+      "id": "teste_d20",
+      "nome": "Qualquer Teste de D20"
+    },
+    {
+      "id": "jogada_de_ataque",
+      "nome": "Suas jogadas de ataque"
+    },
+    {
+      "id": "jogada_de_ataque_contra_voce",
+      "nome": "Jogadas de ataque contra você"
+    },
+    {
+      "id": "teste_de_atributo",
+      "nome": "Seus testes de atributo"
+    },
+    {
+      "id": "salvaguarda",
+      "nome": "Suas salvaguardas"
+    },
+    {
+      "id": "iniciativa",
+      "nome": "Sua jogada de Iniciativa"
+    },
+    {
+      "id": "ca_total",
+      "nome": "Classe de Armadura"
+    },
+    {
+      "id": "deslocamento",
+      "nome": "Deslocamento"
+    },
+    {
+      "id": "interacao_social_contra_voce",
+      "nome": "Testes de interação social contra você"
+    },
+    {
+      "id": "movimento_do_turno",
+      "nome": "Movimento disponível no turno"
+    },
+    {
+      "id": "alcance_do_ataque_desarmado",
+      "nome": "Alcance do Ataque Desarmado"
+    },
+    {
+      "id": "jogada_de_dano",
+      "nome": "Suas jogadas de dano"
+    },
+    {
+      "id": "salvaguarda_contra_morte",
+      "nome": "Salvaguardas Contra Morte"
+    },
+    {
+      "id": "teste_de_atributo_de_outro",
+      "nome": "Teste de atributo de outra criatura"
+    },
+    {
+      "id": "alcance_de_magia",
+      "nome": "Alcance das suas magias"
+    },
+    {
+      "id": "teste_de_dissipar",
+      "nome": "Teste de atributo para dissipar magia"
+    }
+  ],
+  "nota": "Catálogo de engine: nomes de alvo aceitos em 'modificador' e 'vantagem'. Sufixos permitidos: ':FOR'..':CAR' e ':<pericia>'."
+}

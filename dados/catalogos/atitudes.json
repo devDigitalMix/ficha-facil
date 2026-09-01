@@ -1,0 +1,27 @@
+{
+  "catalogo": "atitudes",
+  "nome": "Atitudes",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 363,
+    "pagina_pdf": 367
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "amigavel",
+      "nome": "Amigável",
+      "descricao_curta": "Vê você de forma favorável; Vantagem em testes para influenciá-la."
+    },
+    {
+      "id": "indiferente",
+      "nome": "Indiferente",
+      "descricao_curta": "Atitude padrão; não deseja ajudar nem atrapalhar."
+    },
+    {
+      "id": "hostil",
+      "nome": "Hostil",
+      "descricao_curta": "Vê você de forma desfavorável; Desvantagem em testes para influenciá-la."
+    }
+  ]
+}

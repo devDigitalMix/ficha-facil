@@ -1,0 +1,44 @@
+{
+  "catalogo": "alvos_de_impedimento",
+  "nome": "Alvos de Impedimento",
+  "total": 8,
+  "itens": [
+    {
+      "id": "acao",
+      "nome": "Executar uma ação"
+    },
+    {
+      "id": "acao_bonus",
+      "nome": "Executar uma Ação Bônus"
+    },
+    {
+      "id": "reacao",
+      "nome": "Executar uma Reação"
+    },
+    {
+      "id": "concentracao",
+      "nome": "Manter Concentração"
+    },
+    {
+      "id": "falar",
+      "nome": "Falar"
+    },
+    {
+      "id": "atacar_ou_alvejar",
+      "nome": "Atacar ou ter como alvo uma criatura específica"
+    },
+    {
+      "id": "aproximar_voluntariamente_de",
+      "nome": "Aproximar-se voluntariamente de algo"
+    },
+    {
+      "id": "ataque_de_oportunidade_provocado_por_voce",
+      "nome": "Provocar Ataques de Oportunidade ao se mover"
+    }
+  ],
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 360,
+    "pagina_pdf": 364
+  }
+}

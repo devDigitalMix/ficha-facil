@@ -1,0 +1,979 @@
+{
+  "catalogo": "invocacoes_misticas",
+  "nome": "Invocações Místicas",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 71,
+    "pagina_pdf": 75
+  },
+  "total": 28,
+  "nota": "Pré-requisitos devem ser atendidos para escolher a invocação. Não se pode escolher a mesma duas vezes, salvo quando marcada repetível, e não se pode trocar uma invocação que seja pré-requisito de outra que você tenha.",
+  "itens": [
+    {
+      "id": "armadura_de_sombras",
+      "nome": "Armadura de Sombras",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "Conjura Armadura Arcana em si sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "armadura_arcana",
+          "alvo": "voce",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [],
+      "repetivel": false
+    },
+    {
+      "id": "explosao_agonizante",
+      "nome": "Explosão Agonizante",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "Soma o modificador de Carisma às jogadas de dano de um truque de Bruxo à escolha.",
+      "efeitos": [
+        {
+          "id": "explosao_agonizante_truque",
+          "tipo": "escolha",
+          "rotulo": "Escolha um truque de Bruxo que cause dano",
+          "quantidade": 1,
+          "momento": "ao_adquirir",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "bruxo",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "modificador",
+            "alvo": "jogada_de_dano",
+            "valor": [
+              "mod:CAR"
+            ],
+            "empilha": "soma",
+            "magia": "{{escolhido}}"
+          }
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        },
+        {
+          "tipo": "magia_conhecida",
+          "filtro": {
+            "lista": "bruxo",
+            "nivel": 0,
+            "causa_dano": true
+          }
+        }
+      ],
+      "repetivel": true
+    },
+    {
+      "id": "explosao_repulsiva",
+      "nome": "Explosão Repulsiva",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "Ao atingir criatura Grande ou menor com um truque de Bruxo que exija jogada de ataque, pode empurrá-la até 3 metros.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "empurrao_do_truque",
+          "texto": "Empurra até 3 metros a criatura Grande ou menor atingida pelo truque escolhido."
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        },
+        {
+          "tipo": "magia_conhecida",
+          "filtro": {
+            "lista": "bruxo",
+            "nivel": 0,
+            "causa_dano": true,
+            "exige_jogada_de_ataque": true
+          }
+        }
+      ],
+      "repetivel": true
+    },
+    {
+      "id": "investimento_do_mestre_da_corrente",
+      "nome": "Investimento do Mestre da Corrente",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "O familiar de Convocar Familiar ganha voo ou natação 12 m, pode atacar com Ação Bônus sua, usa a CD para evitar sua magia, pode trocar dano físico por Necrótico ou Radiante, e você pode dar Resistência a ele com uma Reação.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "familiar_investido",
+          "texto": "Familiar com Deslocamento de Voo ou Natação 12 m; Ação Bônus para mandá-lo Atacar; usa a CD para evitar sua magia; troca dano Contundente/Cortante/Perfurante por Necrótico ou Radiante; Reação para conceder Resistência a ele."
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "pacto_da_corrente"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "lamento_das_sepulturas",
+      "nome": "Lamento das Sepulturas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "Conjura Falar com Mortos sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "falar_com_mortos",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 7
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "lamina_devoradora",
+      "nome": "Lâmina Devoradora",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "O Ataque Extra da Lâmina Sedenta passa a conceder dois ataques extras.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "lamina_sedenta",
+          "efeitos": [
+            {
+              "tipo": "conceder_ataque",
+              "quantidade": [
+                "3"
+              ],
+              "modo": "define_total_da_acao_atacar",
+              "condicao": {
+                "todas": [
+                  "arma_de_pacto"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 12
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "lamina_sedenta"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "lamina_sedenta",
+      "nome": "Lâmina Sedenta",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 71,
+        "pagina_pdf": 75
+      },
+      "descricao_curta": "Ganha Ataque Extra apenas com a arma de pacto: ataca duas vezes com ela na ação Atacar.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "2"
+          ],
+          "modo": "define_total_da_acao_atacar",
+          "condicao": {
+            "todas": [
+              "arma_de_pacto"
+            ]
+          }
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "pacto_da_lamina"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "lanca_mistica",
+      "nome": "Lança Mística",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "O alcance de um truque de Bruxo à escolha (alcance 3 m ou mais) aumenta em 9 metros vezes seu nível de Bruxo.",
+      "efeitos": [
+        {
+          "id": "lanca_mistica_truque",
+          "tipo": "escolha",
+          "rotulo": "Escolha um truque de Bruxo que cause dano",
+          "quantidade": 1,
+          "momento": "ao_adquirir",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "bruxo",
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "modificador",
+            "alvo": "alcance_de_magia",
+            "valor": {
+              "op": "mult",
+              "args": [
+                "9",
+                "nivel_classe:bruxo"
+              ]
+            },
+            "unidade": "m",
+            "empilha": "soma",
+            "magia": "{{escolhido}}"
+          }
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        },
+        {
+          "tipo": "magia_conhecida",
+          "filtro": {
+            "lista": "bruxo",
+            "nivel": 0,
+            "causa_dano": true
+          }
+        }
+      ],
+      "repetivel": true
+    },
+    {
+      "id": "licoes_dos_grandes_antigos",
+      "nome": "Lições dos Grandes Antigos",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Adquire um talento de Origem à escolha.",
+      "efeitos": [
+        {
+          "id": "licoes_talento",
+          "tipo": "escolha",
+          "rotulo": "Escolha um talento de Origem",
+          "quantidade": 1,
+          "momento": "ao_adquirir",
+          "de": {
+            "catalogo": "talentos",
+            "filtro": {
+              "categoria": "origem"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_talento",
+            "talento_id": "{{escolhido}}"
+          }
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": true
+    },
+    {
+      "id": "mascara_das_muitas_faces",
+      "nome": "Máscara das Muitas Faces",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Conjura Disfarçar-se sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "disfarcar_se",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "mente_mistica",
+      "nome": "Mente Mística",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Vantagem em salvaguardas de Constituição para manter Concentração.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda:CON",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "manter_concentracao"
+            ]
+          }
+        }
+      ],
+      "pre_requisitos": [],
+      "repetivel": false
+    },
+    {
+      "id": "mestre_das_infindaveis_formas",
+      "nome": "Mestre das Infindáveis Formas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Conjura Alterar-se sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "alterar_se",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "olhar_de_duas_mentes",
+      "nome": "Olhar de Duas Mentes",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Ação Bônus para tocar uma criatura voluntária e perceber pelos sentidos dela até o fim do seu próximo turno, prorrogável com nova Ação Bônus.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "percepcao_emprestada",
+          "custo": "acao_bonus",
+          "texto": "Percebe pelos sentidos da criatura tocada, aproveitando sentidos especiais dela, e pode conjurar como se estivesse no espaço dela se estiverem a até 18 m."
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "pacto_da_corrente",
+      "nome": "Pacto da Corrente",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Aprende Convocar Familiar e a conjura sem gastar espaço; o familiar pode ter formas especiais e atacar com a Reação dele quando você abre mão de um ataque.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "convocar_familiar",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "frequencia": "a_vontade"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "formas_especiais_de_familiar",
+          "texto": "Formas extras: Cobra Peçonhenta, Diabrete, Esfinge Maravilhosa, Esqueleto, Pseudodragão, Quasit, Slaad Girino, Sprite. Na ação Atacar, abre mão de um ataque para o familiar atacar com a Reação dele."
+        }
+      ],
+      "pre_requisitos": [],
+      "repetivel": false
+    },
+    {
+      "id": "pacto_da_lamina",
+      "nome": "Pacto da Lâmina",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Ação Bônus para conjurar ou vincular uma arma de pacto: proficiência com ela, uso como Foco de Conjuração, ataque e dano por Carisma, e dano Necrótico, Psíquico ou Radiante à escolha.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "conjurar_arma_de_pacto",
+          "custo": "acao_bonus",
+          "efeitos": [
+            {
+              "tipo": "conceder_proficiencia",
+              "categoria": "arma",
+              "chave": "arma_de_pacto",
+              "nivel_dominio": "proficiente"
+            },
+            {
+              "tipo": "substituir_atributo",
+              "de": "FOR_ou_DES",
+              "para": "CAR",
+              "escopo": [
+                "jogada_de_ataque",
+                "jogada_de_dano"
+              ],
+              "aplica_a": [
+                "arma_de_pacto"
+              ]
+            },
+            {
+              "tipo": "escolher_tipo_de_dano",
+              "aplica_a": [
+                "arma_de_pacto"
+              ],
+              "opcoes": [
+                "necrotico",
+                "psiquico",
+                "radiante",
+                "tipo_normal"
+              ]
+            }
+          ]
+        }
+      ],
+      "pre_requisitos": [],
+      "repetivel": false,
+      "encerramento": [
+        {
+          "gatilho": "usar_a_acao_bonus_de_novo"
+        },
+        {
+          "gatilho": "arma_a_mais_de_1_5m_por_1_minuto"
+        },
+        {
+          "gatilho": "morte"
+        }
+      ]
+    },
+    {
+      "id": "pacto_do_tomo",
+      "nome": "Pacto do Tomo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Conjura o Livro das Sombras ao fim de um descanso: três truques e duas magias de 1º círculo com marcador Ritual, de QUALQUER lista de classe, ficam preparadas como magias de Bruxo. O livro serve de Foco de Conjuração.",
+      "efeitos": [
+        {
+          "id": "tomo_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha três truques de qualquer lista",
+          "quantidade": 3,
+          "momento": "ao_conjurar_o_livro",
+          "reescolhivel": true,
+          "reescolha_em": "descanso",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}",
+            "conta_como": "magia_de_bruxo"
+          }
+        },
+        {
+          "id": "tomo_rituais",
+          "tipo": "escolha",
+          "rotulo": "Escolha duas magias de 1º círculo com marcador Ritual",
+          "quantidade": 2,
+          "momento": "ao_conjurar_o_livro",
+          "reescolhivel": true,
+          "reescolha_em": "descanso",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 1,
+              "ritual": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "modo": "sempre_preparada",
+            "magia": "{{escolhido}}",
+            "conta_como": "magia_de_bruxo"
+          }
+        }
+      ],
+      "pre_requisitos": [],
+      "repetivel": false,
+      "nota": "As magias escolhidas devem ser magias que você ainda não tem preparadas."
+    },
+    {
+      "id": "passo_ascendente",
+      "nome": "Passo Ascendente",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Conjura Levitação em si sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "levitacao",
+          "alvo": "voce",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "presente_das_profundezas",
+      "nome": "Presente das Profundezas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 72,
+        "pagina_pdf": 76
+      },
+      "descricao_curta": "Respira debaixo d'água e tem Deslocamento de Natação igual ao seu Deslocamento; conjura Respirar na Água uma vez por Descanso Longo sem espaço.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "natacao",
+          "formula": [
+            "deslocamento"
+          ]
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "respiracao_aquatica",
+          "texto": "Você pode respirar debaixo d'água."
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "respirar_na_agua",
+          "frequencia": "uma_vez_por_descanso_longo",
+          "recarga": [
+            "descanso_longo"
+          ]
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "presente_dos_protetores",
+      "nome": "Presente dos Protetores",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Uma página do Livro das Sombras guarda nomes (até seu modificador de Carisma): quem estiver nela e for reduzido a 0 PV sem morrer fica com 1 PV. Recarrega em Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "presente_dos_protetores",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "salvar_com_1_pv",
+          "quantidade_de_nomes": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:CAR"
+            ]
+          },
+          "texto": "Criatura cujo nome está na página fica com 1 Ponto de Vida ao ser reduzida a 0 sem morrer."
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 9
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "pacto_do_tomo"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "punicao_mistica",
+      "nome": "Punição Mística",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Uma vez por turno, ao acertar com a arma de pacto, gasta um espaço de Magia de Pacto para causar 1d8 de dano Energético por círculo do espaço e impor Caído a alvo Enorme ou menor.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "frequencia": "uma_vez_por_turno",
+          "gatilho": "acerto_com_arma_de_pacto",
+          "formula_dado": {
+            "op": "mult",
+            "args": [
+              "circulo_do_espaco_gasto",
+              "1d8"
+            ]
+          },
+          "tipo_dano": "energetico",
+          "modo": "dano_adicional",
+          "gasta_espaco_de_magia": true
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "beneficiario": "alvo",
+          "condicao": {
+            "todas": [
+              "alvo_enorme_ou_menor"
+            ]
+          }
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "pacto_da_lamina"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "salto_sobrenatural",
+      "nome": "Salto Sobrenatural",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Conjura Salto em si sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "salto",
+          "alvo": "voce",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "sorvedouro_de_vida",
+      "nome": "Sorvedouro de Vida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Uma vez por turno, ao acertar com a arma de pacto, causa 1d6 extra de dano Necrótico, Psíquico ou Radiante e pode gastar um Dado de Pontos de Vida para se curar.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "frequencia": "uma_vez_por_turno",
+          "gatilho": "acerto_com_arma_de_pacto",
+          "formula_dado": "1d6",
+          "escolher_tipo_de_dano": [
+            "necrotico",
+            "psiquico",
+            "radiante"
+          ],
+          "modo": "dano_adicional"
+        },
+        {
+          "tipo": "cura",
+          "formula": [
+            "dado_de_vida",
+            "mod:CON"
+          ],
+          "minimo": 1,
+          "gasta": "dado_de_vida"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 9
+        },
+        {
+          "tipo": "invocacao",
+          "chave": "pacto_da_lamina"
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "uno_com_as_sombras",
+      "nome": "Uno com as Sombras",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Em Meia-luz ou Escuridão, conjura Invisibilidade em si sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "invisibilidade",
+          "alvo": "voce",
+          "frequencia": "a_vontade",
+          "requisitos": [
+            "voce_em:meia_luz_ou_escuridao"
+          ]
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 5
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "vigor_infero",
+      "nome": "Vigor Ínfero",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Conjura Vitalidade Vazia em si sem gastar espaço de magia, e recebe automaticamente o resultado máximo do dado de Pontos de Vida Temporários.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "vitalidade_vazia",
+          "alvo": "voce",
+          "frequencia": "a_vontade",
+          "modificacao": "os Pontos de Vida Temporários usam o resultado máximo do dado"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "visao_da_bruxa",
+      "nome": "Visão da Bruxa",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Visão Verdadeira com alcance de 9 metros.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_verdadeira",
+          "alcance_m": 9
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 15
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "visao_diabolica",
+      "nome": "Visão Diabólica",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Enxerga normalmente em Meia-luz e Escuridão, mágicas ou não, a até 36 metros.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_no_escuro",
+          "alcance_m": 36,
+          "inclui_escuridao_magica": true
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "visoes_de_reinos_distantes",
+      "nome": "Visões de Reinos Distantes",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Conjura Olho Arcano sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "olho_arcano",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 9
+        }
+      ],
+      "repetivel": false
+    },
+    {
+      "id": "visoes_nebulosas",
+      "nome": "Visões Nebulosas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 73,
+        "pagina_pdf": 77
+      },
+      "descricao_curta": "Conjura Imagem Silenciosa sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "imagem_silenciosa",
+          "frequencia": "a_vontade"
+        }
+      ],
+      "pre_requisitos": [
+        {
+          "tipo": "nivel_de_classe",
+          "classe": "bruxo",
+          "minimo": 2
+        }
+      ],
+      "repetivel": false
+    }
+  ]
+}

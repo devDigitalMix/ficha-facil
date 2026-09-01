@@ -1,0 +1,112 @@
+{
+  "catalogo": "propriedades_de_arma",
+  "nome": "Propriedades de Arma",
+  "fonte": {
+    "capitulo": 6,
+    "pagina_livro": 213,
+    "pagina_pdf": 217
+  },
+  "total": 10,
+  "itens": [
+    {
+      "id": "acuidade",
+      "nome": "Acuidade",
+      "descricao_curta": "Use o modificador de Força ou Destreza (o mesmo nas duas jogadas) para ataque e dano.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 213,
+        "pagina_pdf": 217
+      }
+    },
+    {
+      "id": "alcance",
+      "nome": "Alcance",
+      "descricao_curta": "Dois números em metros: alcance normal e máximo. Além do normal, Desvantagem; além do máximo, não pode atacar.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 213,
+        "pagina_pdf": 217
+      }
+    },
+    {
+      "id": "arremesso",
+      "nome": "Arremesso",
+      "descricao_curta": "Pode ser arremessada para um ataque à distância, sacando-a como parte do ataque. Arma corpo a corpo usa o mesmo modificador do ataque corpo a corpo.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 213,
+        "pagina_pdf": 217
+      }
+    },
+    {
+      "id": "duas_maos",
+      "nome": "Duas Mãos",
+      "descricao_curta": "Exige as duas mãos para atacar.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "extensao",
+      "nome": "Extensão",
+      "descricao_curta": "Soma 1,5 m ao seu alcance com ela, inclusive para Ataques de Oportunidade.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "leve",
+      "nome": "Leve",
+      "descricao_curta": "Ao executar a ação Atacar com uma arma Leve, pode atacar de novo como Ação Bônus com outra arma Leve, sem somar o modificador de atributo ao dano (salvo se negativo).",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "municao",
+      "nome": "Munição",
+      "descricao_curta": "Só ataca à distância com munição disponível; cada ataque gasta uma peça. Recupera metade (arred. baixo) em 1 minuto após a luta.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "pesada",
+      "nome": "Pesada",
+      "descricao_curta": "Desvantagem nas jogadas de ataque se For < 13 (corpo a corpo) ou Des < 13 (à distância).",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "recarga",
+      "nome": "Recarga",
+      "descricao_curta": "Dispara só uma peça de munição por ação, Ação Bônus ou Reação, independentemente do número de ataques.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "versatil",
+      "nome": "Versátil",
+      "descricao_curta": "Usável com uma ou duas mãos; o dano entre parênteses vale para o uso com as duas mãos.",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    }
+  ]
+}

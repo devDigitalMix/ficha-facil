@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ficha-facil.local/classes.schema.json",
+  "title": "Coleção de Classes",
+  "type": "object",
+  "required": ["colecao", "total", "itens"],
+  "properties": {
+    "colecao": { "const": "classes" },
+    "total": { "type": "integer" },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nome", "fonte", "revisao", "dado_de_vida", "atributo_primario",
+                     "salvaguardas_primarias", "nivel_subclasse", "progressao"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "nome": { "type": "string" },
+          "descricao_curta": { "type": "string", "maxLength": 400 },
+          "fonte": { "$ref": "https://ficha-facil.local/fonte.schema.json" },
+          "revisao": { "type": "object", "required": ["status"],
+            "properties": { "status": { "enum": ["ok", "duvida", "conflito_2014"] } } },
+          "dado_de_vida": { "enum": [6, 8, 10, 12] },
+          "atributo_primario": { "type": "array", "items": { "enum": ["FOR","DES","CON","INT","SAB","CAR"] } },
+          "salvaguardas_primarias": { "type": "array", "minItems": 2, "maxItems": 2,
+            "items": { "enum": ["FOR","DES","CON","INT","SAB","CAR"] } },
+          "nivel_subclasse": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "conjuracao": { "type": ["object", "null"] },
+          "subclasses": { "type": "array", "items": { "type": "string" } },
+          "proficiencias_iniciais": { "type": "array", "items": { "$ref": "https://ficha-facil.local/efeito.schema.json" } },
+          "equipamento_inicial": { "type": "object" },
+          "colunas_da_tabela": { "type": "object" },
+          "progressao": {
+            "type": "array", "minItems": 20, "maxItems": 20,
+            "items": {
+              "type": "object",
+              "required": ["nivel", "bonus_de_proficiencia", "caracteristicas"],
+              "properties": {
+                "nivel": { "type": "integer", "minimum": 1, "maximum": 20 },
+                "bonus_de_proficiencia": { "type": "integer", "minimum": 2, "maximum": 6 },
+                "caracteristicas": { "type": "array", "items": { "type": "string" } },
+                "colunas": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

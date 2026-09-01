@@ -1,0 +1,510 @@
+{
+  "catalogo": "talentos",
+  "nome": "Talentos",
+  "parcial": true,
+  "fonte": {
+    "capitulo": 5,
+    "pagina_livro": 198,
+    "pagina_pdf": 202
+  },
+  "nota": "PARCIAL nas categorias 'geral' e 'epico'. A categoria 'estilo_de_luta' está COMPLETA (10 talentos, cap. 5 p. 209-210), porque o Guerreiro escolhe dela no nível 1.",
+  "total": 15,
+  "itens": [
+    {
+      "id": "dadiva_da_proeza_em_combate",
+      "nome": "Dádiva da Proeza em Combate",
+      "categoria": "epico",
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 210,
+        "pagina_pdf": 214
+      }
+    },
+    {
+      "id": "dadiva_do_ataque_irresistivel",
+      "nome": "Dádiva do Ataque Irresistível",
+      "categoria": "epico",
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 210,
+        "pagina_pdf": 214
+      }
+    },
+    {
+      "id": "dadiva_epica",
+      "nome": "Dádiva Épica",
+      "categoria": "epico",
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 210,
+        "pagina_pdf": 214
+      }
+    },
+    {
+      "id": "arquearia",
+      "nome": "Arquearia",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "+2 nas jogadas de ataque com armas à Distância.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_ataque",
+          "valor": [
+            "2"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "arma:a_distancia"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "combate_com_armas_de_arremesso",
+      "nome": "Combate com Armas de Arremesso",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "+2 no dano ao acertar ataque à distância com arma de Arremesso.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "2"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "arma:propriedade:arremesso",
+              "ataque:a_distancia"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "combate_com_armas_grandes",
+      "nome": "Combate com Armas Grandes",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "Trata qualquer 1 ou 2 nos dados de dano como 3, com arma Corpo a Corpo empunhada com as duas mãos (Duas Mãos ou Versátil).",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "minimo_no_dado_de_dano",
+          "texto": "Qualquer 1 ou 2 num dado de dano vira 3. Exige arma Corpo a Corpo empunhada com as duas mãos, com propriedade Duas Mãos ou Versátil."
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "combate_com_duas_armas",
+      "nome": "Combate com Duas Armas",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "No ataque adicional de arma Leve, soma o modificador de atributo ao dano, se já não estivesse somando.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "mod_no_ataque_leve",
+          "texto": "Adiciona o modificador de atributo ao dano do ataque adicional concedido pela propriedade Leve."
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "combate_desarmado",
+      "nome": "Combate Desarmado",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "Ataque Desarmado pode causar 1d6 + mod. de Força de dano Contundente (1d8 se você não segura arma nem Escudo). No início do seu turno, causa 1d4 Contundente a quem você tem Imobilizado.",
+      "efeitos": [
+        {
+          "tipo": "dado_de_dano",
+          "escopo": [
+            "ataque_desarmado"
+          ],
+          "formula_dado": "1d6",
+          "somar": [
+            "mod:FOR"
+          ],
+          "tipo_dano": "contundente",
+          "modo": "substitui_a_criterio_do_jogador"
+        },
+        {
+          "tipo": "dado_de_dano",
+          "escopo": [
+            "ataque_desarmado"
+          ],
+          "formula_dado": "1d8",
+          "somar": [
+            "mod:FOR"
+          ],
+          "tipo_dano": "contundente",
+          "condicao": {
+            "todas": [
+              "sem_arma_na_mao",
+              "flag:sem_escudo"
+            ]
+          },
+          "modo": "substitui_a_criterio_do_jogador"
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "1d4",
+          "tipo_dano": "contundente",
+          "momento": "inicio_do_seu_turno",
+          "condicao": {
+            "todas": [
+              "alvo_imobilizado_por_voce"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "defensivo",
+      "nome": "Defensivo",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "+1 na Classe de Armadura enquanto usa armadura Leve, Média ou Pesada.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": [
+            "1"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "alguma": [
+              "armadura:leve",
+              "armadura:media",
+              "armadura:pesada"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "duelismo",
+      "nome": "Duelismo",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "+2 no dano com arma Corpo a Corpo empunhada em uma mão, sem nenhuma outra arma.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_dano",
+          "valor": [
+            "2"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "todas": [
+              "arma:corpo_a_corpo",
+              "uma_mao",
+              "nenhuma_outra_arma"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "intercepcao",
+      "nome": "Interceptação",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "Reação para reduzir em 1d10 + BP o dano de um ataque contra criatura a até 1,5 m de você. Exige segurar Escudo ou arma Simples/Marcial.",
+      "efeitos": [
+        {
+          "tipo": "reducao_de_dano",
+          "custo": "reacao",
+          "formula": [
+            "1d10",
+            "prof"
+          ],
+          "beneficiario": "criatura_a_ate_1_5m",
+          "tipos_de_dano": [
+            "todos"
+          ],
+          "requisitos": [
+            "segurando:escudo_ou_arma"
+          ]
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 209,
+        "pagina_pdf": 213
+      }
+    },
+    {
+      "id": "luta_as_cegas",
+      "nome": "Luta às Cegas",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "Visão às Cegas com alcance de 3 metros.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_as_cegas",
+          "alcance_m": 3
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 210,
+        "pagina_pdf": 214
+      }
+    },
+    {
+      "id": "protetivo",
+      "nome": "Protetivo",
+      "categoria": "estilo_de_luta",
+      "pre_requisitos": [
+        {
+          "tipo": "caracteristica",
+          "chave": "estilo_de_luta"
+        }
+      ],
+      "repetivel": false,
+      "descricao_curta": "Reação para interpor seu Escudo: Desvantagem no ataque que provocou a reação e em todos contra aquele alvo até o início do seu próximo turno, enquanto você estiver a até 1,5 m dele.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque_contra_voce",
+          "modo": "desvantagem",
+          "custo": "reacao",
+          "beneficiario": "alvo_protegido",
+          "requisitos": [
+            "segurando:escudo"
+          ],
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 210,
+        "pagina_pdf": 214
+      }
+    },
+    {
+      "id": "aumento_no_valor_de_atributo",
+      "nome": "Aumento no Valor de Atributo",
+      "categoria": "geral",
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 199,
+        "pagina_pdf": 203
+      }
+    },
+    {
+      "id": "iniciado_em_magia",
+      "nome": "Iniciado em Magia",
+      "categoria": "origem",
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 201,
+        "pagina_pdf": 205
+      },
+      "repetivel": true,
+      "restricao_de_repeticao": "a cada vez você deve escolher uma lista de magias diferente",
+      "descricao_curta": "Dois truques e uma magia de 1º círculo de uma lista à escolha (Clérigo, Druida ou Mago). A magia de 1º círculo fica sempre preparada e pode ser conjurada uma vez por Descanso Longo sem espaço de magia, ou com qualquer espaço que você tenha.",
+      "efeitos": [
+        {
+          "id": "iniciado_em_magia_lista",
+          "tipo": "escolha",
+          "rotulo": "Escolha a lista de magias",
+          "quantidade": 1,
+          "momento": "ao_adquirir_o_talento",
+          "de": {
+            "catalogo": "listas_de_iniciado_em_magia",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "lista_escolhida",
+            "lista": "{{escolhido}}"
+          },
+          "define_variavel": "lista_do_talento"
+        },
+        {
+          "id": "iniciado_em_magia_atributo",
+          "tipo": "escolha",
+          "rotulo": "Escolha o atributo de conjuração deste talento",
+          "quantidade": 1,
+          "momento": "ao_adquirir_o_talento",
+          "de": {
+            "catalogo": "atributos",
+            "chaves": [
+              "INT",
+              "SAB",
+              "CAR"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "atributo_do_talento",
+            "atributo": "{{escolhido}}"
+          },
+          "define_variavel": "atributo_do_talento"
+        },
+        {
+          "id": "iniciado_em_magia_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha dois truques",
+          "quantidade": 2,
+          "momento": "ao_adquirir_o_talento",
+          "reescolhivel": true,
+          "reescolha_em": "cada_novo_nivel",
+          "reescolha_quantidade": 1,
+          "depende_de": "iniciado_em_magia_lista",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0,
+              "lista": "$lista_do_talento"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}",
+            "atributo_conjuracao": "$atributo_do_talento"
+          }
+        },
+        {
+          "id": "iniciado_em_magia_magia_1",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma magia de 1º círculo",
+          "quantidade": 1,
+          "momento": "ao_adquirir_o_talento",
+          "reescolhivel": true,
+          "reescolha_em": "cada_novo_nivel",
+          "depende_de": "iniciado_em_magia_lista",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 1,
+              "lista": "$lista_do_talento"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "modo": "sempre_preparada",
+            "magia": "{{escolhido}}",
+            "atributo_conjuracao": "$atributo_do_talento",
+            "nao_conta_para_o_limite_de_preparadas": true
+          }
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "$escolhido_em:iniciado_em_magia_magia_1",
+          "frequencia": "uma_vez_por_descanso_longo",
+          "recarga": [
+            "descanso_longo"
+          ],
+          "tambem_conjuravel_com": "qualquer espaço de magia que você tenha"
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": "Extraído como exemplo trabalhado para validar o modelo de acesso a magias de outra classe. O restante do capítulo 5 ainda não foi extraído."
+      }
+    }
+  ],
+  "categorias_completas": [
+    "estilo_de_luta"
+  ]
+}

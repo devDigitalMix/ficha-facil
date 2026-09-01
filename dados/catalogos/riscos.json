@@ -1,0 +1,58 @@
+{
+  "catalogo": "riscos",
+  "nome": "Riscos",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 362,
+    "pagina_pdf": 366
+  },
+  "total": 5,
+  "itens": [
+    {
+      "id": "asfixia",
+      "nome": "Asfixia",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 362,
+        "pagina_pdf": 366
+      }
+    },
+    {
+      "id": "combustao",
+      "nome": "Combustão",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 364,
+        "pagina_pdf": 368
+      }
+    },
+    {
+      "id": "desidratacao",
+      "nome": "Desidratação",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 366,
+        "pagina_pdf": 370
+      }
+    },
+    {
+      "id": "desnutricao",
+      "nome": "Desnutrição",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 367,
+        "pagina_pdf": 371
+      }
+    },
+    {
+      "id": "queda",
+      "nome": "Queda",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 374,
+        "pagina_pdf": 378
+      }
+    }
+  ],
+  "nota": "Marcador [Risco] do glossário. Mecânica detalhada não modelada nesta fase."
+}

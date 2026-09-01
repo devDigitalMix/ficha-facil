@@ -1,0 +1,653 @@
+{
+  "catalogo": "manobras",
+  "nome": "Manobras (Mestre da Batalha)",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 134,
+    "pagina_pdf": 138
+  },
+  "total": 20,
+  "nota": "Cada manobra gasta um Dado de Superioridade. CD das que exigem salvaguarda: 8 + mod. de Força OU Destreza (à sua escolha) + Bônus de Proficiência (p. 133).",
+  "cd_das_manobras": [
+    "8",
+    "mod:FOR_ou_DES",
+    "prof"
+  ],
+  "itens": [
+    {
+      "id": "aparar",
+      "nome": "Aparar",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "reacao",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Reação ao sofrer dano de ataque corpo a corpo: reduz o dano no resultado do Dado de Superioridade mais seu modificador de Força ou Destreza.",
+      "efeitos": [
+        {
+          "tipo": "reducao_de_dano",
+          "formula": [
+            "dado:superioridade",
+            "mod:FOR_ou_DES"
+          ],
+          "tipos_de_dano": [
+            "todos"
+          ],
+          "gatilho": "sofrer_dano_de_ataque_corpo_a_corpo"
+        }
+      ]
+    },
+    {
+      "id": "ataque_ameacador",
+      "nome": "Ataque Ameaçador",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Sabedoria ou fica Amedrontado até o fim do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "beneficiario": "alvo",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:FOR_ou_DES",
+              "prof"
+            ]
+          },
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "ataque_de_varredura",
+      "nome": "Ataque de Varredura",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ao acertar corpo a corpo, escolhe outra criatura a até 1,5 m do alvo e ao seu alcance: se a jogada original a atingiria, ela sofre dano igual ao Dado de Superioridade, do mesmo tipo.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "tipo_dano": "mesmo_do_ataque",
+          "alvo": "segunda_criatura",
+          "condicao": {
+            "todas": [
+              "segunda_criatura_a_ate_1_5m_do_alvo",
+              "jogada_original_atinge_a_segunda"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ataque_estendido",
+      "nome": "Ataque Estendido",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "acao_bonus",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ação Bônus para executar Correr; se mover ao menos 1,5 m em linha reta antes de um ataque corpo a corpo da ação Atacar neste turno, soma o Dado de Superioridade ao dano.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "manobra_correr",
+          "custo": "acao_bonus",
+          "acoes": [
+            "correr"
+          ]
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "condicao": {
+            "todas": [
+              "moveu_1_5m_em_linha_reta_antes_do_ataque"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ataque_para_distrair",
+      "nome": "Ataque para Distrair",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; a próxima jogada de ataque contra o alvo por outro atacante tem Vantagem, se for antes do início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "beneficiario": "outro_atacante",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "ataque_preciso",
+      "nome": "Ataque Preciso",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 134,
+        "pagina_pdf": 138
+      },
+      "custo": "no_erro",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ao errar, soma o Dado de Superioridade à jogada de ataque, podendo transformá-la em acerto.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_ataque",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma",
+          "gatilho": "erro",
+          "momento": "apos_a_jogada"
+        }
+      ]
+    },
+    {
+      "id": "ataque_provocante",
+      "nome": "Ataque Provocante",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Sabedoria ou tem Desvantagem em ataques contra qualquer alvo que não seja você até o fim do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "beneficiario": "alvo",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:FOR_ou_DES",
+              "prof"
+            ]
+          },
+          "condicao": {
+            "nao": "alvo_do_ataque_e_voce"
+          },
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "avaliacao_tatica",
+      "nome": "Avaliação Tática",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_teste",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade a um teste de Inteligência (História ou Investigação) ou de Sabedoria (Intuição).",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma"
+        }
+      ],
+      "testes_aplicaveis": [
+        {
+          "atributo": "INT",
+          "pericias": [
+            "historia",
+            "investigacao"
+          ]
+        },
+        {
+          "atributo": "SAB",
+          "pericias": [
+            "intuicao"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contra_ataque",
+      "nome": "Contra-ataque",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "reacao",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Quando uma criatura erra um ataque corpo a corpo contra você, Reação para atacá-la com arma ou Ataque Desarmado; acertando, soma o Dado de Superioridade ao dano.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "custo": "reacao",
+          "gatilho": "criatura_erra_ataque_corpo_a_corpo_contra_voce"
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "condicao": {
+            "todas": [
+              "acerto"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "desarme",
+      "nome": "Desarme",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Força ou solta um objeto à sua escolha, que cai no espaço dele.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "desarmar",
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:FOR_ou_DES",
+              "prof"
+            ]
+          },
+          "texto": "Falhando, o alvo solta um objeto à sua escolha que esteja segurando; o objeto cai no espaço dele."
+        }
+      ]
+    },
+    {
+      "id": "emboscada",
+      "nome": "Emboscada",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_teste",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade a um teste de Destreza (Furtividade) ou à jogada de Iniciativa, salvo se você estiver Incapacitado.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "iniciativa",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma",
+          "condicao": {
+            "nao": "condicao:incapacitado"
+          }
+        }
+      ],
+      "testes_aplicaveis": [
+        {
+          "atributo": "DES",
+          "pericias": [
+            "furtividade"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encontrao",
+      "nome": "Encontrão",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; se o alvo for Grande ou menor, salvaguarda de Força ou é empurrado até 4,5 m para longe.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "empurrao",
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:FOR_ou_DES",
+              "prof"
+            ]
+          },
+          "texto": "Alvo Grande ou menor que falhar é empurrado até 4,5 metros para longe de você."
+        }
+      ]
+    },
+    {
+      "id": "finta",
+      "nome": "Finta",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "acao_bonus",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ação Bônus escolhendo uma criatura a até 1,5 m: Vantagem no seu próximo ataque contra ela neste turno; acertando, soma o Dado de Superioridade ao dano.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "duracao": "neste_turno"
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "condicao": {
+            "todas": [
+              "acerto"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gato_por_lebre",
+      "nome": "Gato Por Lebre",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "movimento",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Troca de lugar com uma criatura voluntária e não Incapacitada a até 1,5 m, gastando ao menos 1,5 m de movimento e sem provocar Ataques de Oportunidade. Até o início do seu próximo turno, você ou ela (à sua escolha) ganha bônus de CA igual ao resultado do dado.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "troca_de_lugar",
+          "texto": "Troca de posição com a criatura; o movimento não provoca Ataques de Oportunidade."
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma",
+          "beneficiario": "voce_ou_a_criatura",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ],
+      "revisao": {
+        "status": "ok",
+        "notas": "Confirmado pelo usuário em 2026-09-01: o parágrafo 'Jogue o Dado de Superioridade... bônus de CA igual ao número do resultado' é parte de Gato Por Lebre. Ele aparecia solto na extração por causa da quebra de coluna do PDF."
+      }
+    },
+    {
+      "id": "golpe_do_comandante",
+      "nome": "Golpe do Comandante",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "substitui_ataque",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Na ação Atacar, troca um ataque por instruir um aliado que possa vê-lo ou ouvi-lo: ele usa a Reação dele para atacar, somando o Dado de Superioridade ao dano em caso de acerto.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "beneficiario": "aliado",
+          "custo": "reacao_do_aliado"
+        },
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "beneficiario": "aliado",
+          "condicao": {
+            "todas": [
+              "acerto"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "manobrar",
+      "nome": "Manobrar",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano e escolhe um aliado que possa vê-lo ou ouvi-lo: ele usa a Reação dele para mover metade do Deslocamento sem provocar Ataque de Oportunidade do alvo do seu ataque.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "reposicionar_aliado",
+          "texto": "O aliado usa a Reação dele para mover até metade do Deslocamento sem provocar Ataque de Oportunidade do alvo do seu ataque."
+        }
+      ]
+    },
+    {
+      "id": "movimentacao_evasiva",
+      "nome": "Movimentação Evasiva",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "acao_bonus",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ação Bônus para executar Desengajar e somar o resultado do dado à sua CA até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "conceder_acao",
+          "id": "manobra_desengajar",
+          "custo": "acao_bonus",
+          "acoes": [
+            "desengajar"
+          ]
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "presenca_de_autoridade",
+      "nome": "Presença de Autoridade",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_teste",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade a um teste de Carisma (Atuação, Intimidação ou Persuasão).",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "valor": [
+            "dado:superioridade"
+          ],
+          "empilha": "soma"
+        }
+      ],
+      "testes_aplicaveis": [
+        {
+          "atributo": "CAR",
+          "pericias": [
+            "atuacao",
+            "intimidacao",
+            "persuasao"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prostrar",
+      "nome": "Prostrar",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "no_acerto",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Soma o Dado de Superioridade ao dano; se o alvo for Grande ou menor, salvaguarda de Força ou fica Caído.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado:superioridade",
+          "modo": "dano_adicional",
+          "tipo_dano": "mesmo_do_ataque"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "beneficiario": "alvo",
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:FOR_ou_DES",
+              "prof"
+            ]
+          },
+          "condicao": {
+            "todas": [
+              "alvo_grande_ou_menor"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "recuperar_energia",
+      "nome": "Recuperar Energia",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 135,
+        "pagina_pdf": 139
+      },
+      "custo": "acao_bonus",
+      "consome_dado_de_superioridade": true,
+      "descricao_curta": "Ação Bônus: um aliado a até 9 m que possa vê-lo ou ouvi-lo ganha PV temporários iguais ao Dado de Superioridade mais metade do seu nível de Guerreiro (arredondado para baixo).",
+      "efeitos": [
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "beneficiario": "aliado",
+          "formula": [
+            "dado:superioridade",
+            {
+              "op": "div_arred_baixo",
+              "args": [
+                "nivel_classe:guerreiro",
+                "2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

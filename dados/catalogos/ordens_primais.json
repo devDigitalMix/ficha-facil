@@ -1,0 +1,22 @@
+{
+  "catalogo": "ordens_primais",
+  "nome": "Ordem Primal",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 92,
+    "pagina_pdf": 96
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "protetor",
+      "nome": "Protetor",
+      "descricao_curta": "Proficiência com armas Marciais e treinamento com armadura Média."
+    },
+    {
+      "id": "xama",
+      "nome": "Xamã",
+      "descricao_curta": "Um truque adicional da lista de Druida e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Natureza)."
+    }
+  ]
+}

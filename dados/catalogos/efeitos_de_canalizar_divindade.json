@@ -1,0 +1,34 @@
+{
+  "catalogo": "efeitos_de_canalizar_divindade",
+  "nome": "Efeitos de Canalizar Divindade",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 82,
+    "pagina_pdf": 86
+  },
+  "total": 2,
+  "parcial": true,
+  "nota": "Efeitos básicos da classe. Subclasses acrescentam os seus (ver características de domínio).",
+  "itens": [
+    {
+      "id": "centelha_divina",
+      "nome": "Centelha Divina",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 82,
+        "pagina_pdf": 86
+      },
+      "descricao_curta": "Ação Usar Magia: 1d8 + modificador de Sabedoria a uma criatura a até 9 m — cura, ou dano Necrótico/Radiante com salvaguarda de Constituição por metade. Sobe para 2d8 no nível 7, 3d8 no 13 e 4d8 no 18."
+    },
+    {
+      "id": "expulsar_mortos_vivos",
+      "nome": "Expulsar Mortos-Vivos",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 82,
+        "pagina_pdf": 86
+      },
+      "descricao_curta": "Ação Usar Magia: cada Morto-Vivo à escolha a até 9 m faz salvaguarda de Sabedoria ou fica Amedrontado e Incapacitado por 1 minuto, fugindo de você. Encerra se sofrer dano, se você ficar Incapacitado ou morrer."
+    }
+  ]
+}

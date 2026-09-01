@@ -1,0 +1,36 @@
+{
+  "catalogo": "areas_de_efeito",
+  "nome": "Áreas de Efeito",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 361,
+    "pagina_pdf": 365
+  },
+  "total": 6,
+  "itens": [
+    {
+      "id": "cilindro",
+      "nome": "Cilindro"
+    },
+    {
+      "id": "cone",
+      "nome": "Cone"
+    },
+    {
+      "id": "cubo",
+      "nome": "Cubo"
+    },
+    {
+      "id": "emanacao",
+      "nome": "Emanação"
+    },
+    {
+      "id": "esfera",
+      "nome": "Esfera"
+    },
+    {
+      "id": "linha",
+      "nome": "Linha"
+    }
+  ]
+}

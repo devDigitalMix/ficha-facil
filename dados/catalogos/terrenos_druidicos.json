@@ -1,0 +1,32 @@
+{
+  "catalogo": "terrenos_druidicos",
+  "nome": "Terrenos do Círculo da Terra",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 98,
+    "pagina_pdf": 102
+  },
+  "total": 4,
+  "itens": [
+    {
+      "id": "arido",
+      "nome": "Árido",
+      "resistencia": "igneo"
+    },
+    {
+      "id": "polar",
+      "nome": "Polar",
+      "resistencia": "gelido"
+    },
+    {
+      "id": "temperado",
+      "nome": "Temperado",
+      "resistencia": "eletrico"
+    },
+    {
+      "id": "tropical",
+      "nome": "Tropical",
+      "resistencia": "venenoso"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "catalogo": "categorias_de_arma",
+  "nome": "Categorias de Arma",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 361,
+    "pagina_pdf": 365
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "simples",
+      "nome": "Simples"
+    },
+    {
+      "id": "marcial",
+      "nome": "Marcial"
+    }
+  ]
+}

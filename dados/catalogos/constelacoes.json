@@ -1,0 +1,27 @@
+{
+  "catalogo": "constelacoes",
+  "nome": "Constelações da Forma Estrelada",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 98,
+    "pagina_pdf": 102
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "arqueiro",
+      "nome": "Arqueiro",
+      "descricao_curta": "Ação Bônus para um ataque mágico à distância a até 18 m, causando 1d8 + modificador de Sabedoria de dano Radiante."
+    },
+    {
+      "id": "dragao",
+      "nome": "Dragão",
+      "descricao_curta": "Trata 9 ou menos no d20 como 10 em testes de Inteligência, de Sabedoria e em salvaguardas de Constituição para manter Concentração."
+    },
+    {
+      "id": "taca",
+      "nome": "Taça",
+      "descricao_curta": "Ao conjurar magia com espaço que cure alguém, você ou criatura a até 9 m recupera 1d8 + modificador de Sabedoria."
+    }
+  ]
+}

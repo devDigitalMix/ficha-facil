@@ -1,0 +1,134 @@
+{
+  "catalogo": "idiomas",
+  "nome": "Idiomas",
+  "fonte": {
+    "capitulo": 2,
+    "pagina_livro": 37,
+    "pagina_pdf": 41
+  },
+  "total": 19,
+  "itens": [
+    {
+      "id": "comum",
+      "nome": "Comum",
+      "raridade": "comum",
+      "origem": "Sigil"
+    },
+    {
+      "id": "linguagem_de_sinais_comum",
+      "nome": "Linguagem de Sinais Comum",
+      "raridade": "comum",
+      "origem": "Sigil"
+    },
+    {
+      "id": "draconico",
+      "nome": "Dracônico",
+      "raridade": "comum",
+      "origem": "Dragões"
+    },
+    {
+      "id": "anao",
+      "nome": "Anão",
+      "raridade": "comum",
+      "origem": "Anões"
+    },
+    {
+      "id": "elfico",
+      "nome": "Élfico",
+      "raridade": "comum",
+      "origem": "Elfos"
+    },
+    {
+      "id": "gigante",
+      "nome": "Gigante",
+      "raridade": "comum",
+      "origem": "Gigantes"
+    },
+    {
+      "id": "gnomico",
+      "nome": "Gnômico",
+      "raridade": "comum",
+      "origem": "Gnomos"
+    },
+    {
+      "id": "goblin",
+      "nome": "Goblin",
+      "raridade": "comum",
+      "origem": "Goblinoides"
+    },
+    {
+      "id": "pequenino",
+      "nome": "Pequenino",
+      "raridade": "comum",
+      "origem": "Pequeninos"
+    },
+    {
+      "id": "orc",
+      "nome": "Orc",
+      "raridade": "comum",
+      "origem": "Orcs"
+    },
+    {
+      "id": "abissal",
+      "nome": "Abissal",
+      "raridade": "raro",
+      "origem": "Demônios do Abismo"
+    },
+    {
+      "id": "celestial",
+      "nome": "Celestial",
+      "raridade": "raro",
+      "origem": "Celestiais"
+    },
+    {
+      "id": "dialeto_obscuro",
+      "nome": "Dialeto Obscuro",
+      "raridade": "raro",
+      "origem": "Aberrações"
+    },
+    {
+      "id": "druidico",
+      "nome": "Druídico",
+      "raridade": "raro",
+      "origem": "Círculos druídicos"
+    },
+    {
+      "id": "giria_dos_ladroes",
+      "nome": "Gíria dos Ladrões",
+      "raridade": "raro",
+      "origem": "Várias guildas criminosas"
+    },
+    {
+      "id": "infernal",
+      "nome": "Infernal",
+      "raridade": "raro",
+      "origem": "Diabos dos Nove Infernos"
+    },
+    {
+      "id": "primordial",
+      "nome": "Primordial",
+      "raridade": "raro",
+      "origem": "Elementais",
+      "dialetos": [
+        "Aquan",
+        "Auran",
+        "Ignan",
+        "Terran"
+      ],
+      "nota": "Quem conhece um dialeto se comunica com quem conhece outro."
+    },
+    {
+      "id": "silvestre",
+      "nome": "Silvestre",
+      "raridade": "raro",
+      "origem": "A Faéria"
+    },
+    {
+      "id": "subcomum",
+      "nome": "Subcomum",
+      "raridade": "raro",
+      "origem": "A Umbraeterna"
+    }
+  ],
+  "nota": "Todo personagem sabe Comum + 2 idiomas da tabela Idiomas Comuns. Idiomas raros só por característica que os conceda."
+}

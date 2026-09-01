@@ -1,0 +1,27 @@
+{
+  "catalogo": "efeitos_da_mao_espalmada",
+  "nome": "Efeitos da Técnica da Mão Espalmada",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 162,
+    "pagina_pdf": 166
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "derrubar",
+      "nome": "Derrubar",
+      "descricao_curta": "Salvaguarda de Destreza ou o alvo fica Caído."
+    },
+    {
+      "id": "desorientar",
+      "nome": "Desorientar",
+      "descricao_curta": "O alvo não pode realizar Ataques de Oportunidade até o início do próximo turno dele."
+    },
+    {
+      "id": "empurrar",
+      "nome": "Empurrar",
+      "descricao_curta": "Salvaguarda de Força ou o alvo é empurrado até 4,5 metros."
+    }
+  ]
+}

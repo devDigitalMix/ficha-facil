@@ -1,0 +1,64 @@
+{
+  "catalogo": "tipos_de_dano",
+  "nome": "Tipos de Dano",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 376,
+    "pagina_pdf": 380
+  },
+  "total": 13,
+  "itens": [
+    {
+      "id": "acido",
+      "nome": "Ácido"
+    },
+    {
+      "id": "contundente",
+      "nome": "Contundente"
+    },
+    {
+      "id": "cortante",
+      "nome": "Cortante"
+    },
+    {
+      "id": "eletrico",
+      "nome": "Elétrico"
+    },
+    {
+      "id": "energetico",
+      "nome": "Energético"
+    },
+    {
+      "id": "gelido",
+      "nome": "Gélido"
+    },
+    {
+      "id": "igneo",
+      "nome": "Ígneo"
+    },
+    {
+      "id": "necrotico",
+      "nome": "Necrótico"
+    },
+    {
+      "id": "perfurante",
+      "nome": "Perfurante"
+    },
+    {
+      "id": "psiquico",
+      "nome": "Psíquico"
+    },
+    {
+      "id": "radiante",
+      "nome": "Radiante"
+    },
+    {
+      "id": "trovejante",
+      "nome": "Trovejante"
+    },
+    {
+      "id": "venenoso",
+      "nome": "Venenoso"
+    }
+  ]
+}

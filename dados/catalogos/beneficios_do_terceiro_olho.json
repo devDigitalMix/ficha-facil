@@ -1,0 +1,27 @@
+{
+  "catalogo": "beneficios_do_terceiro_olho",
+  "nome": "Benefícios do Terceiro Olho",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 155,
+    "pagina_pdf": 159
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "compreensao_superior",
+      "nome": "Compreensão Superior",
+      "descricao_curta": "Você pode ler qualquer idioma."
+    },
+    {
+      "id": "ver_o_invisivel",
+      "nome": "Ver o Invisível",
+      "descricao_curta": "Conjura Ver o Invisível sem gastar espaço de magia."
+    },
+    {
+      "id": "visao_no_escuro",
+      "nome": "Visão no Escuro",
+      "descricao_curta": "Visão no Escuro com alcance de 36 metros."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "catalogo": "tamanhos",
+  "nome": "Tamanhos",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 375,
+    "pagina_pdf": 379
+  },
+  "total": 6,
+  "itens": [
+    {
+      "id": "minusculo",
+      "nome": "Minúsculo"
+    },
+    {
+      "id": "pequeno",
+      "nome": "Pequeno"
+    },
+    {
+      "id": "medio",
+      "nome": "Médio"
+    },
+    {
+      "id": "grande",
+      "nome": "Grande"
+    },
+    {
+      "id": "enorme",
+      "nome": "Enorme"
+    },
+    {
+      "id": "colossal",
+      "nome": "Colossal"
+    }
+  ]
+}

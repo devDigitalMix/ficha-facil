@@ -1,0 +1,22 @@
+{
+  "catalogo": "ordens_divinas",
+  "nome": "Ordem Divina",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 82,
+    "pagina_pdf": 86
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "protetor",
+      "nome": "Protetor",
+      "descricao_curta": "Proficiência com armas Marciais e treinamento com Armadura Pesada."
+    },
+    {
+      "id": "taumaturgo",
+      "nome": "Taumaturgo",
+      "descricao_curta": "Um truque adicional da lista de Clérigo e bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Inteligência (Arcanismo ou Religião)."
+    }
+  ]
+}

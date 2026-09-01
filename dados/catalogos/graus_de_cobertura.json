@@ -1,0 +1,32 @@
+{
+  "catalogo": "graus_de_cobertura",
+  "nome": "Graus de Cobertura",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 364,
+    "pagina_pdf": 368
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "parcial",
+      "nome": "Cobertura Parcial",
+      "bonus_ca": 2,
+      "bonus_salvaguarda_des": 2
+    },
+    {
+      "id": "tres_quartos",
+      "nome": "Cobertura de Três Quartos",
+      "bonus_ca": 5,
+      "bonus_salvaguarda_des": 5
+    },
+    {
+      "id": "total",
+      "nome": "Cobertura Total",
+      "bonus_ca": null,
+      "bonus_salvaguarda_des": null,
+      "descricao_curta": "Não pode ser alvo direto."
+    }
+  ],
+  "nota": "Só o grau mais protetor se aplica."
+}

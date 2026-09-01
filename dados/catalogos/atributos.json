@@ -1,0 +1,36 @@
+{
+  "catalogo": "atributos",
+  "nome": "Atributos",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 377,
+    "pagina_pdf": 381
+  },
+  "total": 6,
+  "itens": [
+    {
+      "id": "FOR",
+      "nome": "Força"
+    },
+    {
+      "id": "DES",
+      "nome": "Destreza"
+    },
+    {
+      "id": "CON",
+      "nome": "Constituição"
+    },
+    {
+      "id": "INT",
+      "nome": "Inteligência"
+    },
+    {
+      "id": "SAB",
+      "nome": "Sabedoria"
+    },
+    {
+      "id": "CAR",
+      "nome": "Carisma"
+    }
+  ]
+}

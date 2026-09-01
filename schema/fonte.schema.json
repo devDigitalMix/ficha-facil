@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ficha-facil.local/fonte.schema.json",
+  "title": "Fonte no livro",
+  "type": "object",
+  "required": ["capitulo", "pagina_livro", "pagina_pdf"],
+  "properties": {
+    "capitulo": { "description": "Número do capítulo ou 'ap_a'/'ap_b'/'ap_c'" },
+    "pagina_livro": { "type": "integer", "description": "Número impresso no rodapé da página" },
+    "pagina_pdf": { "type": "integer", "description": "Número da página no leitor de PDF (= pagina_livro + 4)" }
+  }
+}

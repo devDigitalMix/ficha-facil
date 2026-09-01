@@ -1,0 +1,36 @@
+{
+  "catalogo": "efeitos_dos_passos_feericos",
+  "nome": "Efeitos dos Passos Feéricos",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 75,
+    "pagina_pdf": 79
+  },
+  "total": 4,
+  "itens": [
+    {
+      "id": "passo_provocante",
+      "nome": "Passo Provocante",
+      "nivel_minimo": 3,
+      "descricao_curta": "Criaturas a até 1,5 m do espaço que você deixou fazem salvaguarda de Sabedoria ou têm Desvantagem em ataques contra outros que não você até o início do seu próximo turno."
+    },
+    {
+      "id": "passo_revigorante",
+      "nome": "Passo Revigorante",
+      "nivel_minimo": 3,
+      "descricao_curta": "Você ou criatura à vista a até 3 m ganha 1d10 Pontos de Vida Temporários."
+    },
+    {
+      "id": "passo_desvanecedor",
+      "nome": "Passo Desvanecedor",
+      "nivel_minimo": 6,
+      "descricao_curta": "Fica Invisível até o início do seu próximo turno ou até atacar, causar dano ou conjurar."
+    },
+    {
+      "id": "passo_terrivel",
+      "nome": "Passo Terrível",
+      "nivel_minimo": 6,
+      "descricao_curta": "Criaturas a até 1,5 m do espaço de saída ou de chegada fazem salvaguarda de Sabedoria ou sofrem 2d10 de dano Psíquico."
+    }
+  ]
+}

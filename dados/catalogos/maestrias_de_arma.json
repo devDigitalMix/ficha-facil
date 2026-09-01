@@ -1,0 +1,178 @@
+{
+  "catalogo": "maestrias_de_arma",
+  "nome": "Propriedades de Maestria",
+  "fonte": {
+    "capitulo": 6,
+    "pagina_livro": 214,
+    "pagina_pdf": 218
+  },
+  "total": 8,
+  "nota": "Só utilizável por quem tenha uma característica (ex.: Maestria em Armas) que desbloqueie a propriedade.",
+  "itens": [
+    {
+      "id": "afligir",
+      "nome": "Afligir",
+      "descricao_curta": "Se acertar e causar dano, você tem Vantagem na próxima jogada de ataque contra essa criatura antes do fim do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "mesmo_alvo_atingido"
+            ]
+          },
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "agil",
+      "nome": "Ágil",
+      "descricao_curta": "O ataque adicional da propriedade Leve pode ser feito como parte da ação Atacar, em vez de Ação Bônus. Uma vez por turno.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "ataque_leve_na_acao_atacar",
+          "texto": "O ataque extra de arma Leve passa a caber na ação Atacar; uma vez por turno."
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "derrubar",
+      "nome": "Derrubar",
+      "descricao_curta": "Se acertar, o alvo faz salvaguarda de Constituição (CD 8 + modificador usado no ataque + BP) ou fica Caído.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "em": "falha_na_salvaguarda",
+          "salvaguarda": {
+            "atributo": "CON",
+            "cd": [
+              "8",
+              "mod_do_ataque",
+              "prof"
+            ]
+          }
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "drenar",
+      "nome": "Drenar",
+      "descricao_curta": "Se acertar, o alvo tem Desvantagem na próxima jogada de ataque dele antes do início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "desvantagem",
+          "beneficiario": "alvo_atingido",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "empurrar",
+      "nome": "Empurrar",
+      "descricao_curta": "Se acertar, você pode empurrar o alvo até 3 metros para longe, se ele for Grande ou menor.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "empurrao",
+          "texto": "Empurra o alvo até 3 m; só contra criaturas Grandes ou menores."
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "garantido",
+      "nome": "Garantido",
+      "descricao_curta": "Se errar, causa dano igual ao modificador de atributo usado no ataque, do mesmo tipo da arma.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dano_no_erro",
+          "texto": "No erro, causa dano igual ao modificador de atributo do ataque, do tipo da arma."
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "lentidao",
+      "nome": "Lentidão",
+      "descricao_curta": "Se acertar e causar dano, pode reduzir o Deslocamento do alvo em 3 metros até o início do seu próximo turno (não acumula além de 3 m).",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "-3"
+          ],
+          "unidade": "m",
+          "empilha": "maior_valor",
+          "beneficiario": "alvo_atingido",
+          "duracao": "ate_inicio_do_seu_proximo_turno"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    },
+    {
+      "id": "trespassar",
+      "nome": "Trespassar",
+      "descricao_curta": "Se acertar um ataque corpo a corpo, pode atacar uma segunda criatura a até 1,5 m da primeira e dentro do seu alcance, sem somar o modificador ao dano. Uma vez por turno.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "condicao": {
+            "todas": [
+              "segundo_alvo_a_ate_1_5m_do_primeiro"
+            ]
+          },
+          "frequencia": "uma_vez_por_turno"
+        }
+      ],
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 214,
+        "pagina_pdf": 218
+      }
+    }
+  ]
+}

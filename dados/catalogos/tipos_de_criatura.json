@@ -1,0 +1,69 @@
+{
+  "catalogo": "tipos_de_criatura",
+  "nome": "Tipos de Criatura",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 376,
+    "pagina_pdf": 380
+  },
+  "total": 14,
+  "itens": [
+    {
+      "id": "aberracao",
+      "nome": "Aberração"
+    },
+    {
+      "id": "celestial",
+      "nome": "Celestial"
+    },
+    {
+      "id": "constructo",
+      "nome": "Constructo"
+    },
+    {
+      "id": "dragao",
+      "nome": "Dragão"
+    },
+    {
+      "id": "elemental",
+      "nome": "Elemental"
+    },
+    {
+      "id": "feerico",
+      "nome": "Feérico"
+    },
+    {
+      "id": "fera",
+      "nome": "Fera"
+    },
+    {
+      "id": "gigante",
+      "nome": "Gigante"
+    },
+    {
+      "id": "gosma",
+      "nome": "Gosma"
+    },
+    {
+      "id": "humanoide",
+      "nome": "Humanoide"
+    },
+    {
+      "id": "infero",
+      "nome": "Ínfero"
+    },
+    {
+      "id": "monstruosidade",
+      "nome": "Monstruosidade"
+    },
+    {
+      "id": "morto_vivo",
+      "nome": "Morto-vivo"
+    },
+    {
+      "id": "planta",
+      "nome": "Planta"
+    }
+  ],
+  "nota": "Os tipos não têm regras próprias; servem de alvo para outras regras."
+}

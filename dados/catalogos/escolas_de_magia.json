@@ -1,0 +1,53 @@
+{
+  "catalogo": "escolas_de_magia",
+  "nome": "Escolas de Magia",
+  "fonte": {
+    "capitulo": 7,
+    "pagina_livro": 236,
+    "pagina_pdf": 240
+  },
+  "total": 8,
+  "nota": "As escolas não têm regras próprias; outras regras podem referenciá-las.",
+  "itens": [
+    {
+      "id": "abjuracao",
+      "nome": "Abjuração",
+      "descricao_curta": "Previne ou neutraliza efeitos nocivos"
+    },
+    {
+      "id": "adivinhacao",
+      "nome": "Adivinhação",
+      "descricao_curta": "Revela informações"
+    },
+    {
+      "id": "encantamento",
+      "nome": "Encantamento",
+      "descricao_curta": "Influencia mentes"
+    },
+    {
+      "id": "evocacao",
+      "nome": "Evocação",
+      "descricao_curta": "Canaliza energia para criar efeitos frequentemente destrutivos"
+    },
+    {
+      "id": "ilusao",
+      "nome": "Ilusão",
+      "descricao_curta": "Engana os sentidos ou a mente"
+    },
+    {
+      "id": "invocacao",
+      "nome": "Invocação",
+      "descricao_curta": "Transporta criaturas ou objetos"
+    },
+    {
+      "id": "necromancia",
+      "nome": "Necromancia",
+      "descricao_curta": "Manipula a vida e a morte"
+    },
+    {
+      "id": "transmutacao",
+      "nome": "Transmutação",
+      "descricao_curta": "Transforma criaturas ou objetos"
+    }
+  ]
+}

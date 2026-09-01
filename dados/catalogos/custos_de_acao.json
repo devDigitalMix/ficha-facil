@@ -1,0 +1,28 @@
+{
+  "catalogo": "custos_de_acao",
+  "nome": "Custos de Ação",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 360,
+    "pagina_pdf": 364
+  },
+  "total": 4,
+  "itens": [
+    {
+      "id": "acao",
+      "nome": "Ação"
+    },
+    {
+      "id": "acao_bonus",
+      "nome": "Ação Bônus"
+    },
+    {
+      "id": "reacao",
+      "nome": "Reação"
+    },
+    {
+      "id": "livre",
+      "nome": "Sem custo"
+    }
+  ]
+}

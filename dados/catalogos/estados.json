@@ -1,0 +1,56 @@
+{
+  "catalogo": "estados",
+  "nome": "Estados",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 375,
+    "pagina_pdf": 379
+  },
+  "total": 3,
+  "nota": "Termos do glossário que descrevem um estado sem serem Condições (não têm marcador [Condição]). Lacuna da Fase 1: filtrei o glossário pelos marcadores e estes escaparam.",
+  "itens": [
+    {
+      "id": "sangrando",
+      "nome": "Sangrando",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 375,
+        "pagina_pdf": 379
+      },
+      "descricao_curta": "Uma criatura está Sangrando enquanto tiver metade ou menos dos seus Pontos de Vida restantes.",
+      "condicao": {
+        "op": "menor_ou_igual",
+        "args": [
+          "pv_atual",
+          {
+            "op": "div_arred_baixo",
+            "args": [
+              "pv_maximo",
+              "2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "estavel",
+      "nome": "Estável",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 365,
+        "pagina_pdf": 369
+      },
+      "descricao_curta": "Criatura com 0 Pontos de Vida que não é obrigada a realizar Salvaguardas Contra Morte."
+    },
+    {
+      "id": "surpresa",
+      "nome": "Surpresa",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 375,
+        "pagina_pdf": 379
+      },
+      "descricao_curta": "Pego desprevenido no início do combate: Desvantagem na jogada de Iniciativa."
+    }
+  ]
+}

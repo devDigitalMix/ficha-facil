@@ -1,0 +1,14 @@
+{
+  "catalogo": "criaturas",
+  "nome": "Blocos de Estatísticas de Criaturas",
+  "fonte": {
+    "capitulo": "ap_b",
+    "pagina_livro": 346,
+    "pagina_pdf": 350
+  },
+  "parcial": true,
+  "preenchida": false,
+  "total": 0,
+  "itens": [],
+  "nota": "VAZIO POR DECISÃO DE ESCOPO: o Apêndice B ficou de fora (decisão 5 da Fase 0). A Forma Selvagem do Druida escolhe entre blocos de Fera com ND máximo, então a escolha aponta para este catálogo por FILTRO. Enquanto ele estiver vazio o validador emite AVISO, não erro, e o seletor do app fica vazio — o mesmo dado passa a funcionar se o Ap. B for extraído depois."
+}

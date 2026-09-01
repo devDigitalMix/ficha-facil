@@ -1,0 +1,24 @@
+{
+  "catalogo": "listas_de_iniciado_em_magia",
+  "nome": "Listas oferecidas por Iniciado em Magia",
+  "fonte": {
+    "capitulo": 5,
+    "pagina_livro": 201,
+    "pagina_pdf": 205
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "clerigo",
+      "nome": "Lista de magias do Clérigo"
+    },
+    {
+      "id": "druida",
+      "nome": "Lista de magias do Druida"
+    },
+    {
+      "id": "mago",
+      "nome": "Lista de magias do Mago"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "catalogo": "tipos_de_descanso",
+  "nome": "Tipos de Descanso",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 365,
+    "pagina_pdf": 369
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "descanso_curto",
+      "nome": "Descanso Curto",
+      "duracao": "1 hora",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 365,
+        "pagina_pdf": 369
+      },
+      "interrompido_por": [
+        "jogar_iniciativa",
+        "conjurar_magia_nao_truque",
+        "receber_dano"
+      ]
+    },
+    {
+      "id": "descanso_longo",
+      "nome": "Descanso Longo",
+      "duracao": "8 horas",
+      "fonte": {
+        "capitulo": "ap_c",
+        "pagina_livro": 366,
+        "pagina_pdf": 370
+      },
+      "interrompido_por": [
+        "jogar_iniciativa",
+        "conjurar_magia_nao_truque",
+        "receber_dano",
+        "1h_de_esforco_fisico"
+      ],
+      "intervalo_minimo_entre_descansos": "16 horas"
+    }
+  ]
+}

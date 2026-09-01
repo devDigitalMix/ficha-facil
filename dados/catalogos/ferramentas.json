@@ -1,0 +1,375 @@
+{
+  "catalogo": "ferramentas",
+  "nome": "Ferramentas",
+  "fonte": {
+    "capitulo": 6,
+    "pagina_livro": 220,
+    "pagina_pdf": 224
+  },
+  "total": 25,
+  "itens": [
+    {
+      "id": "ferramentas_de_carpinteiro",
+      "nome": "Ferramentas de Carpinteiro",
+      "grupo": "artesao",
+      "atributo": "FOR",
+      "custo_po": 8,
+      "peso_kg": 3.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_cartografo",
+      "nome": "Ferramentas de Cartógrafo",
+      "grupo": "artesao",
+      "atributo": "SAB",
+      "custo_po": 15,
+      "peso_kg": 3.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_coureiro",
+      "nome": "Ferramentas de Coureiro",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 5,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_entalhador",
+      "nome": "Ferramentas de Entalhador",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 1,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_ferreiro",
+      "nome": "Ferramentas de Ferreiro",
+      "grupo": "artesao",
+      "atributo": "FOR",
+      "custo_po": 20,
+      "peso_kg": 4.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_funileiro",
+      "nome": "Ferramentas de Funileiro",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 50,
+      "peso_kg": 5.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_joalheiro",
+      "nome": "Ferramentas de Joalheiro",
+      "grupo": "artesao",
+      "atributo": "INT",
+      "custo_po": 25,
+      "peso_kg": 1.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_oleiro",
+      "nome": "Ferramentas de Oleiro",
+      "grupo": "artesao",
+      "atributo": "INT",
+      "custo_po": 10,
+      "peso_kg": 1.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_pedreiro",
+      "nome": "Ferramentas de Pedreiro",
+      "grupo": "artesao",
+      "atributo": "FOR",
+      "custo_po": 10,
+      "peso_kg": 4.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_sapateiro",
+      "nome": "Ferramentas de Sapateiro",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 5,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_tecelao",
+      "nome": "Ferramentas de Tecelão",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 1,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_vidreiro",
+      "nome": "Ferramentas de Vidreiro",
+      "grupo": "artesao",
+      "atributo": "INT",
+      "custo_po": 30,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "suprimentos_de_alquimista",
+      "nome": "Suprimentos de Alquimista",
+      "grupo": "artesao",
+      "atributo": "INT",
+      "custo_po": 50,
+      "peso_kg": 4.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "suprimentos_de_caligrafo",
+      "nome": "Suprimentos de Calígrafo",
+      "grupo": "artesao",
+      "atributo": "DES",
+      "custo_po": 10,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "suprimentos_de_cervejeiro",
+      "nome": "Suprimentos de Cervejeiro",
+      "grupo": "artesao",
+      "atributo": "INT",
+      "custo_po": 20,
+      "peso_kg": 4.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "suprimentos_de_pintor",
+      "nome": "Suprimentos de Pintor",
+      "grupo": "artesao",
+      "atributo": "SAB",
+      "custo_po": 10,
+      "peso_kg": 2.5,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "utensilios_de_cozinheiro",
+      "nome": "Utensílios de Cozinheiro",
+      "grupo": "artesao",
+      "atributo": "SAB",
+      "custo_po": 1,
+      "peso_kg": 4.0,
+      "proficiencia_separada": true,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 220,
+        "pagina_pdf": 224
+      }
+    },
+    {
+      "id": "ferramentas_de_ladrao",
+      "nome": "Ferramentas de Ladrão",
+      "grupo": "outras",
+      "atributo": "DES",
+      "custo_po": 25,
+      "peso_kg": 0.5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    },
+    {
+      "id": "ferramentas_de_navegador",
+      "nome": "Ferramentas de Navegador",
+      "grupo": "outras",
+      "atributo": "SAB",
+      "custo_po": 25,
+      "peso_kg": 1.0,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    },
+    {
+      "id": "instrumento_musical",
+      "nome": "Instrumento Musical",
+      "grupo": "outras",
+      "atributo": "CAR",
+      "custo_po": null,
+      "peso_kg": null,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      },
+      "variantes": [
+        "Alaúde",
+        "Flauta",
+        "Flauta de Pan",
+        "Gaita de Foles",
+        "Lira",
+        "Oboé",
+        "Tambor",
+        "Trombeta",
+        "Violino",
+        "Xilofone"
+      ],
+      "nota": "Custo e peso variam conforme a variante."
+    },
+    {
+      "id": "kit_de_disfarce",
+      "nome": "Kit de Disfarce",
+      "grupo": "outras",
+      "atributo": "CAR",
+      "custo_po": 25,
+      "peso_kg": 1.5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    },
+    {
+      "id": "kit_de_falsificacao",
+      "nome": "Kit de Falsificação",
+      "grupo": "outras",
+      "atributo": "DES",
+      "custo_po": 15,
+      "peso_kg": 2.5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    },
+    {
+      "id": "kit_de_herbalismo",
+      "nome": "Kit de Herbalismo",
+      "grupo": "outras",
+      "atributo": "INT",
+      "custo_po": 5,
+      "peso_kg": 1.5,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    },
+    {
+      "id": "kit_de_jogos",
+      "nome": "Kit de Jogos",
+      "grupo": "outras",
+      "atributo": "SAB",
+      "custo_po": null,
+      "peso_kg": null,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      },
+      "variantes": [
+        "Dados",
+        "Xadrez-do-Dragão",
+        "Baralho",
+        "Conjunto do Jogo dos Três Dragões"
+      ],
+      "nota": "Custo e peso variam conforme a variante."
+    },
+    {
+      "id": "kit_de_veneno",
+      "nome": "Kit de Veneno",
+      "grupo": "outras",
+      "atributo": "INT",
+      "custo_po": 50,
+      "peso_kg": 1.0,
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 221,
+        "pagina_pdf": 225
+      }
+    }
+  ],
+  "nota": "Cada Ferramenta de Artesão exige proficiência separada. Proficiência soma o BP ao teste; proficiência na perícia usada no mesmo teste dá Vantagem. Listas de 'Fabricação' de cada ferramenta não foram extraídas nesta fase (dependem do catálogo de itens do cap. 6)."
+}

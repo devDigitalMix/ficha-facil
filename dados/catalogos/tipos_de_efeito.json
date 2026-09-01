@@ -1,0 +1,730 @@
+{
+  "catalogo": "tipos_de_efeito",
+  "nome": "Tipos de Efeito",
+  "total": 66,
+  "itens": [
+    {
+      "id": "modificador",
+      "origem": "v1",
+      "campos": [
+        "alvo",
+        "valor",
+        "empilha"
+      ],
+      "nota": "Soma/subtrai um valor de um alvo de rolagem.",
+      "nome": "Modificador"
+    },
+    {
+      "id": "vantagem",
+      "origem": "v1",
+      "campos": [
+        "alvo",
+        "modo",
+        "condicao",
+        "duracao",
+        "beneficiario"
+      ],
+      "nota": "modo: vantagem | desvantagem.",
+      "nome": "Vantagem"
+    },
+    {
+      "id": "alterar_dano",
+      "origem": "v1",
+      "campos": [
+        "tipo_dano",
+        "operacao"
+      ],
+      "nota": "operacao: resistencia | imunidade | vulnerabilidade | bonus. tipo_dano aceita 'todos'.",
+      "nome": "Alterar dano"
+    },
+    {
+      "id": "conceder_condicao",
+      "origem": "NOVO",
+      "campos": [
+        "condicao_id",
+        "persiste_apos_encerrar"
+      ],
+      "nota": "Impõe outra condição (Paralisado concede Incapacitado).",
+      "nome": "Conceder condicao"
+    },
+    {
+      "id": "alterar_condicao",
+      "origem": "NOVO",
+      "campos": [
+        "condicao_id",
+        "operacao"
+      ],
+      "nota": "operacao: imunidade. Ex.: Petrificado dá Imunidade a Envenenado.",
+      "nome": "Alterar condicao"
+    },
+    {
+      "id": "travar_deslocamento",
+      "origem": "NOVO",
+      "campos": [
+        "valor",
+        "impede_aumento"
+      ],
+      "nota": "Deslocamento fixado (0) e impedido de aumentar.",
+      "nome": "Travar deslocamento"
+    },
+    {
+      "id": "restringir_movimento",
+      "origem": "NOVO",
+      "campos": [
+        "opcoes",
+        "custo_para_levantar",
+        "condicao"
+      ],
+      "nota": "Caído: só rastejar ou levantar.",
+      "nome": "Restringir movimento"
+    },
+    {
+      "id": "falha_automatica",
+      "origem": "NOVO",
+      "campos": [
+        "alvo",
+        "condicao"
+      ],
+      "nota": "Falha automática em salvaguarda ou teste.",
+      "nome": "Falha automatica"
+    },
+    {
+      "id": "impedir",
+      "origem": "NOVO",
+      "campos": [
+        "alvo",
+        "referencia",
+        "duracao"
+      ],
+      "nota": "Bloqueia ação, reação, fala, concentração, aproximação etc.",
+      "nome": "Impedir"
+    },
+    {
+      "id": "acerto_critico_automatico",
+      "origem": "NOVO",
+      "campos": [
+        "condicao"
+      ],
+      "nota": "Ataques que acertam viram crítico sob a condição.",
+      "nome": "Acerto critico automatico"
+    },
+    {
+      "id": "remocao",
+      "origem": "NOVO",
+      "campos": [
+        "gatilho",
+        "quantidade"
+      ],
+      "nota": "Remove níveis/instâncias da própria condição (Exaustão em Descanso Longo).",
+      "nome": "Remocao"
+    },
+    {
+      "id": "efeito_narrativo",
+      "origem": "NOVO",
+      "campos": [
+        "chave",
+        "texto"
+      ],
+      "nota": "Sem efeito mecânico; o app só exibe. Mantido para não perder regra.",
+      "nome": "Efeito narrativo"
+    },
+    {
+      "id": "conceder_ataque",
+      "origem": "NOVO",
+      "campos": [
+        "quantidade"
+      ],
+      "nota": "Ação Atacar.",
+      "nome": "Conceder ataque"
+    },
+    {
+      "id": "conceder_acao",
+      "origem": "v1",
+      "campos": [
+        "id",
+        "custo",
+        "duracao",
+        "efeitos"
+      ],
+      "nota": "Concede uma ação/reação nova.",
+      "nome": "Conceder acao"
+    },
+    {
+      "id": "ca_base",
+      "origem": "v1",
+      "campos": [
+        "formula",
+        "permite_escudo"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Ca base"
+    },
+    {
+      "id": "travar_atributo",
+      "origem": "v1",
+      "campos": [
+        "atributo",
+        "valor_minimo"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Travar atributo"
+    },
+    {
+      "id": "conceder_proficiencia",
+      "origem": "v1",
+      "campos": [
+        "categoria",
+        "chave",
+        "nivel_dominio"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Conceder proficiencia"
+    },
+    {
+      "id": "conceder_talento",
+      "origem": "v1",
+      "campos": [
+        "talento_id"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Conceder talento"
+    },
+    {
+      "id": "aumento_atributo",
+      "origem": "v1",
+      "campos": [
+        "distribuicao",
+        "limite"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Aumento atributo"
+    },
+    {
+      "id": "conceder_slot",
+      "origem": "v1",
+      "campos": [
+        "tabela_progressao_id"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Conceder slot"
+    },
+    {
+      "id": "desbloquear_magias",
+      "origem": "v1",
+      "campos": [
+        "lista_id",
+        "modo"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Desbloquear magias"
+    },
+    {
+      "id": "preparar_magias",
+      "origem": "v1",
+      "campos": [
+        "formula_quantidade",
+        "atributo_conjuracao"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Preparar magias"
+    },
+    {
+      "id": "recurso_com_recarga",
+      "origem": "v1",
+      "campos": [
+        "id",
+        "formula_maximo",
+        "recarga",
+        "consumo"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Recurso com recarga"
+    },
+    {
+      "id": "dado_de_impacto",
+      "origem": "v1",
+      "campos": [
+        "formula_dado",
+        "escalonamento_por_nivel"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Dado de impacto"
+    },
+    {
+      "id": "conceder_sentido",
+      "origem": "v1",
+      "campos": [
+        "sentido",
+        "alcance"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Conceder sentido"
+    },
+    {
+      "id": "conceder_velocidade",
+      "origem": "v1",
+      "campos": [
+        "tipo",
+        "formula"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Conceder velocidade"
+    },
+    {
+      "id": "escolha",
+      "origem": "v1",
+      "campos": [
+        "rotulo",
+        "quantidade",
+        "de",
+        "momento",
+        "efeito_por_item_escolhido"
+      ],
+      "nota": "Não usado nesta fase.",
+      "nome": "Escolha"
+    },
+    {
+      "id": "substituir_regra",
+      "origem": "v1",
+      "campos": [
+        "regra_id",
+        "novo_valor"
+      ],
+      "nota": "Último recurso; exige revisao.status='duvida'.",
+      "nome": "Substituir regra"
+    },
+    {
+      "id": "dado_de_dano",
+      "nome": "Dado de dano",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "coluna",
+        "escopo",
+        "modo",
+        "condicao"
+      ],
+      "nota": "Dado de dano alternativo vindo de uma coluna da tabela de classe (Artes Marciais)."
+    },
+    {
+      "id": "substituir_atributo",
+      "nome": "Substituir atributo",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "de",
+        "para",
+        "escopo",
+        "aplica_a",
+        "condicao"
+      ],
+      "nota": "Troca o atributo usado em ataque/dano/CD (Ataques com Destreza)."
+    },
+    {
+      "id": "restaurar_recurso",
+      "nome": "Restaurar recurso",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "recurso_id",
+        "quantidade",
+        "ate",
+        "gatilho",
+        "condicao"
+      ],
+      "nota": "Devolve pontos a um recurso com recarga."
+    },
+    {
+      "id": "cura",
+      "nome": "Cura",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "formula",
+        "minimo",
+        "custo",
+        "custo_em_foco",
+        "alcance",
+        "modo"
+      ],
+      "nota": "Recupera Pontos de Vida."
+    },
+    {
+      "id": "reducao_de_dano",
+      "nome": "Reducao de dano",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "formula",
+        "tipos_de_dano",
+        "custo",
+        "gatilho",
+        "origem_do_dano",
+        "modo"
+      ],
+      "nota": "Reduz dano recebido (Defletir Ataques, Queda Lenta)."
+    },
+    {
+      "id": "dano",
+      "nome": "Dano",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "formula_dado",
+        "somar",
+        "tipo_dano",
+        "salvaguarda",
+        "area",
+        "modo",
+        "frequencia",
+        "gatilho"
+      ],
+      "nota": "Causa dano, com ou sem salvaguarda e área."
+    },
+    {
+      "id": "escolher_tipo_de_dano",
+      "nome": "Escolher tipo de dano",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "aplica_a",
+        "opcoes",
+        "condicao"
+      ],
+      "nota": "O jogador escolhe o tipo de dano na hora."
+    },
+    {
+      "id": "alterar_resultado_de_salvaguarda",
+      "nome": "Alterar resultado de salvaguarda",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "alvo",
+        "aplica_a",
+        "em_sucesso",
+        "em_falha",
+        "condicao"
+      ],
+      "nota": "Evasão e similares."
+    },
+    {
+      "id": "remover_condicao",
+      "nome": "Remover condicao",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "condicoes",
+        "quantidade",
+        "momento",
+        "beneficiario"
+      ],
+      "nota": "Remove condições de si ou do alvo."
+    },
+    {
+      "id": "imunidade_a_risco",
+      "nome": "Imunidade a risco",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "riscos"
+      ],
+      "nota": "Não sofre um Risco do glossário (fome, sede)."
+    },
+    {
+      "id": "melhorar_caracteristica",
+      "nome": "Melhorar caracteristica",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "alvo",
+        "efeitos",
+        "custo_em_foco",
+        "condicao"
+      ],
+      "nota": "Altera outra característica já concedida, em vez de duplicá-la."
+    },
+    {
+      "id": "pontos_de_vida_temporarios",
+      "nome": "Pontos de vida temporarios",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "formula",
+        "condicao"
+      ],
+      "nota": "Concede PV temporários."
+    },
+    {
+      "id": "rolar_novamente",
+      "nome": "Rolar novamente",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "alvo",
+        "custo_em_foco",
+        "gatilho",
+        "usa_novo_resultado"
+      ],
+      "nota": "Permite rejogar um dado."
+    },
+    {
+      "id": "teleporte",
+      "nome": "Teleporte",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "alcance_m",
+        "custo",
+        "requisitos"
+      ],
+      "nota": "Teleporte de curta distância."
+    },
+    {
+      "id": "conceder_subclasse",
+      "nome": "Conceder subclasse",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "chave"
+      ],
+      "nota": "Aplica a subclasse escolhida."
+    },
+    {
+      "id": "aplicar_efeito_nomeado",
+      "nome": "Aplicar efeito nomeado",
+      "origem": "NOVO_FASE2",
+      "campos": [
+        "chave"
+      ],
+      "nota": "Aplica um efeito definido em 'efeitos_nomeados' da própria característica."
+    },
+    {
+      "id": "alterar_faixa_de_critico",
+      "nome": "Alterar faixa de critico",
+      "origem": "NOVO_FASE2B",
+      "campos": [
+        "alvo",
+        "faixa"
+      ],
+      "nota": "Muda o intervalo do d20 que conta como Acerto Crítico."
+    },
+    {
+      "id": "acao_adicional",
+      "nome": "Acao adicional",
+      "origem": "NOVO_FASE2B",
+      "campos": [
+        "excecoes",
+        "recarga"
+      ],
+      "nota": "Concede uma ação a mais no turno (Surto de Ação)."
+    },
+    {
+      "id": "substituir_maestria",
+      "nome": "Substituir maestria",
+      "origem": "NOVO_FASE2B",
+      "campos": [
+        "opcoes",
+        "escopo"
+      ],
+      "nota": "Troca a propriedade de maestria de uma arma no ataque."
+    },
+    {
+      "id": "conceder_cobertura",
+      "nome": "Conceder cobertura",
+      "origem": "NOVO_FASE2B",
+      "campos": [
+        "grau",
+        "alvos",
+        "alcance_m",
+        "duracao"
+      ],
+      "nota": "Concede um grau de Cobertura a criaturas escolhidas."
+    },
+    {
+      "id": "livro_de_magias",
+      "nome": "Livro de magias",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "capacidade_paginas",
+        "magias_iniciais",
+        "ganho_por_nivel"
+      ],
+      "nota": "O livro do Mago: magias de 1º círculo ou superior que ele conhece."
+    },
+    {
+      "id": "conjurar_como_ritual",
+      "nome": "Conjurar como ritual",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "condicao"
+      ],
+      "nota": "Conjura como Ritual magias com o marcador Ritual, sem precisar prepará-las."
+    },
+    {
+      "id": "recuperar_espacos_de_magia",
+      "nome": "Recuperar espacos de magia",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "formula_circulos",
+        "limite_de_circulo",
+        "gatilho",
+        "recarga"
+      ],
+      "nota": "Devolve espaços gastos (Recuperação Arcana, Perito em Adivinhação)."
+    },
+    {
+      "id": "adicionar_magia_ao_livro",
+      "nome": "Adicionar magia ao livro",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "quantidade",
+        "filtro",
+        "gratuito",
+        "momento"
+      ],
+      "nota": "Acrescenta magias ao livro sem custo (Versado em <escola>)."
+    },
+    {
+      "id": "conjurar_sem_espaco",
+      "nome": "Conjurar sem espaco",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "magias",
+        "circulo",
+        "frequencia"
+      ],
+      "nota": "Conjura certas magias sem gastar espaço de magia."
+    },
+    {
+      "id": "trocar_magia_preparada",
+      "nome": "Trocar magia preparada",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "quantidade",
+        "gatilho",
+        "fonte"
+      ],
+      "nota": "Substitui magia preparada (Memorizar Magia)."
+    },
+    {
+      "id": "barreira_de_dano",
+      "nome": "Barreira de dano",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "formula_pv_maximo",
+        "recarga",
+        "absorve"
+      ],
+      "nota": "Reserva de PV que absorve dano antes do personagem (Proteção Arcana)."
+    },
+    {
+      "id": "substituir_resultado_de_d20",
+      "nome": "Substituir resultado de d20",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "quantidade_de_jogadas",
+        "recarga",
+        "frequencia",
+        "alvo"
+      ],
+      "nota": "Troca um Teste de D20 por um resultado guardado (Prodígio)."
+    },
+    {
+      "id": "dano_maximizado",
+      "nome": "Dano maximizado",
+      "origem": "NOVO_FASE2C",
+      "campos": [
+        "escopo",
+        "custo_de_uso_repetido"
+      ],
+      "nota": "Faz a magia causar dano máximo (Sobrecarga)."
+    },
+    {
+      "id": "reserva_de_dados",
+      "nome": "Reserva de dados",
+      "origem": "NOVO_FASE2D",
+      "campos": [
+        "id",
+        "formula_quantidade",
+        "dado",
+        "recarga",
+        "gasto_maximo_por_uso"
+      ],
+      "nota": "Reserva de dados gastáveis (Luz Medicinal do Celestial)."
+    },
+    {
+      "id": "magias_de_patrono",
+      "nome": "Magias de patrono",
+      "origem": "NOVO_FASE2D",
+      "campos": [
+        "tabela"
+      ],
+      "nota": "Magias sempre preparadas por nível, concedidas pela subclasse, que não contam para o limite."
+    },
+    {
+      "id": "alterar_tipo_de_dano_da_magia",
+      "nome": "Alterar tipo de dano da magia",
+      "origem": "NOVO_FASE2D",
+      "campos": [
+        "opcoes",
+        "escopo"
+      ],
+      "nota": "Troca o tipo de dano de uma magia conjurada."
+    },
+    {
+      "id": "dispensar_componentes",
+      "nome": "Dispensar componentes",
+      "origem": "NOVO_FASE2D",
+      "campos": [
+        "componentes",
+        "escopo"
+      ],
+      "nota": "Conjura sem componentes Verbais e/ou Somáticos."
+    },
+    {
+      "id": "forma_selvagem",
+      "nome": "Forma selvagem",
+      "origem": "NOVO_FASE2E",
+      "campos": [
+        "recurso_id",
+        "tabela_de_formas",
+        "regras_enquanto_multimorfado"
+      ],
+      "nota": "Multimorfia em forma Animal (Forma Selvagem do Druida)."
+    },
+    {
+      "id": "converter_recurso",
+      "nome": "Converter recurso",
+      "origem": "NOVO_FASE2E",
+      "campos": [
+        "de",
+        "para",
+        "taxa",
+        "gatilho"
+      ],
+      "nota": "Troca usos de um recurso por outro (Forma Selvagem ↔ espaço de magia)."
+    },
+    {
+      "id": "emanacao",
+      "nome": "Emanacao",
+      "origem": "NOVO_FASE2E",
+      "campos": [
+        "tamanho_m",
+        "duracao",
+        "efeitos",
+        "encerra_se"
+      ],
+      "nota": "Área que acompanha o personagem (Ira do Mar)."
+    },
+    {
+      "id": "tratar_resultado_minimo",
+      "nome": "Tratar resultado minimo",
+      "origem": "NOVO_FASE2E",
+      "campos": [
+        "alvo",
+        "minimo"
+      ],
+      "nota": "Trata um resultado abaixo de X no d20 como X (constelação do Dragão)."
+    },
+    {
+      "id": "canalizar_divindade",
+      "nome": "Canalizar divindade",
+      "origem": "NOVO_FASE2F",
+      "campos": [
+        "recurso_id",
+        "opcoes"
+      ],
+      "nota": "Recurso da classe que alimenta efeitos escolhidos (Canalizar Divindade)."
+    }
+  ],
+  "fonte": {
+    "capitulo": "engine",
+    "pagina_livro": 0,
+    "pagina_pdf": 0
+  }
+}

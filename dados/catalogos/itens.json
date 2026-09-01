@@ -1,0 +1,470 @@
+{
+  "catalogo": "itens",
+  "nome": "Itens",
+  "parcial": true,
+  "fonte": {
+    "capitulo": 6,
+    "pagina_livro": 215,
+    "pagina_pdf": 219
+  },
+  "total": 38,
+  "nota": "PARCIAL: por ora só as armas da tabela Armas (p. 215), com nome, grupo e alcance — o que a escolha de Maestria em Arma do Guerreiro precisa referenciar. Dano, propriedades, maestria, peso e custo entram na fase do capítulo 6, junto com armaduras e equipamento de aventura.",
+  "itens": [
+    {
+      "id": "adaga",
+      "nome": "Adaga",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "azagaia",
+      "nome": "Azagaia",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "cajado",
+      "nome": "Cajado",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "clava",
+      "nome": "Clava",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "clava_grande",
+      "nome": "Clava Grande",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "foice",
+      "nome": "Foice",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "lanca",
+      "nome": "Lança",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "maca",
+      "nome": "Maça",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "machadinha",
+      "nome": "Machadinha",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "martelo_leve",
+      "nome": "Martelo Leve",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "arco_curto",
+      "nome": "Arco Curto",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "besta_leve",
+      "nome": "Besta Leve",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "dardo",
+      "nome": "Dardo",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "funda",
+      "nome": "Funda",
+      "categoria": "arma",
+      "grupo": "simples",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "alabarda",
+      "nome": "Alabarda",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "chicote",
+      "nome": "Chicote",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "cimitarra",
+      "nome": "Cimitarra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "espada_curta",
+      "nome": "Espada Curta",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "espada_grande",
+      "nome": "Espada Grande",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "espada_longa",
+      "nome": "Espada Longa",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "glaive",
+      "nome": "Glaive",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "lanca_de_montaria",
+      "nome": "Lança de Montaria",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "lanca_longa",
+      "nome": "Lança Longa",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "maca_estrela",
+      "nome": "Maça Estrela",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "machado_de_batalha",
+      "nome": "Machado de Batalha",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "machado_grande",
+      "nome": "Machado Grande",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "malho",
+      "nome": "Malho",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "mangual",
+      "nome": "Mangual",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "martelo_de_guerra",
+      "nome": "Martelo de Guerra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "picareta_de_guerra",
+      "nome": "Picareta de Guerra",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "rapieira",
+      "nome": "Rapieira",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "tridente",
+      "nome": "Tridente",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "corpo_a_corpo",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "arco_longo",
+      "nome": "Arco Longo",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "besta_de_mao",
+      "nome": "Besta de Mão",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "besta_pesada",
+      "nome": "Besta Pesada",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "mosquete",
+      "nome": "Mosquete",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "pistola",
+      "nome": "Pistola",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    },
+    {
+      "id": "zarabatana",
+      "nome": "Zarabatana",
+      "categoria": "arma",
+      "grupo": "marcial",
+      "alcance": "a_distancia",
+      "fonte": {
+        "capitulo": 6,
+        "pagina_livro": 215,
+        "pagina_pdf": 219
+      }
+    }
+  ]
+}

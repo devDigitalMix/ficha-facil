@@ -1,0 +1,682 @@
+{
+  "colecao": "subclasses",
+  "total": 24,
+  "itens": [
+    {
+      "id": "combatente_da_mao_espalmada",
+      "nome": "Combatente da Mão Espalmada",
+      "classe": "monge",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 162,
+        "pagina_pdf": 166
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Mestres do combate desarmado: empurram, derrubam e manipulam a própria energia para se proteger.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        11,
+        17
+      ],
+      "caracteristicas": [
+        "tecnica_da_mao_espalmada",
+        "integridade_corporal",
+        "passo_veloz",
+        "palma_vibrante"
+      ]
+    },
+    {
+      "id": "combatente_da_misericordia",
+      "nome": "Combatente da Misericórdia",
+      "classe": "monge",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 162,
+        "pagina_pdf": 166
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Controlam a força vital alheia: curam com uma mão e eliminam com a outra.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        11,
+        17
+      ],
+      "caracteristicas": [
+        "implementos_de_misericordia",
+        "mao_de_cura",
+        "mao_de_dolo",
+        "toque_de_medico",
+        "torrente_de_cura_e_dolo",
+        "mao_da_misericordia_final"
+      ]
+    },
+    {
+      "id": "combatente_das_sombras",
+      "nome": "Combatente das Sombras",
+      "classe": "monge",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 163,
+        "pagina_pdf": 167
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Praticam furtividade e subterfúgio aproveitando o poder do Sombral.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        11,
+        17
+      ],
+      "caracteristicas": [
+        "artes_das_sombras",
+        "passo_da_sombra",
+        "passo_da_sombra_aprimorado",
+        "manto_da_sombra"
+      ]
+    },
+    {
+      "id": "combatente_dos_elementos",
+      "nome": "Combatente dos Elementos",
+      "classe": "monge",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 164,
+        "pagina_pdf": 168
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Dominam momentaneamente a energia do Caos Elemental para golpes e explosões.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        11,
+        17
+      ],
+      "caracteristicas": [
+        "manipular_elementos",
+        "sintonia_elemental",
+        "explosao_elemental",
+        "passo_dos_elementos",
+        "apice_elemental"
+      ]
+    },
+    {
+      "id": "campeao",
+      "nome": "Campeão",
+      "classe": "guerreiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 129,
+        "pagina_pdf": 133
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Foca no desenvolvimento marcial e na excelência física: críticos mais frequentes, atletismo e resiliência.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        10,
+        15,
+        18
+      ],
+      "caracteristicas": [
+        "atleta_extraordinario",
+        "critico_aprimorado",
+        "estilo_de_luta_adicional",
+        "combatente_heroico",
+        "critico_superior",
+        "sobrevivente"
+      ]
+    },
+    {
+      "id": "cavaleiro_mistico",
+      "nome": "Cavaleiro Místico",
+      "classe": "guerreiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 130,
+        "pagina_pdf": 134
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Une habilidade marcial ao estudo da magia arcana, com conjuração parcial da lista do Mago.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        10,
+        15,
+        18
+      ],
+      "caracteristicas": [
+        "conjuracao_cavaleiro_mistico",
+        "vinculo_com_arma",
+        "magia_de_guerra",
+        "golpe_mistico",
+        "investida_mistica",
+        "magia_de_guerra_aprimorada"
+      ]
+    },
+    {
+      "id": "combatente_psiquico",
+      "nome": "Combatente Psíquico",
+      "classe": "guerreiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 132,
+        "pagina_pdf": 136
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Desperta poder psiônico para infundir ataques, mover objetos com a mente e erguer barreiras de força.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        10,
+        15,
+        18
+      ],
+      "caracteristicas": [
+        "poder_psionico",
+        "adepto_telecinetico",
+        "resguardo_mental",
+        "baluarte_de_energia",
+        "mestre_telecinetico"
+      ]
+    },
+    {
+      "id": "mestre_da_batalha",
+      "nome": "Mestre da Batalha",
+      "classe": "guerreiro",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 133,
+        "pagina_pdf": 137
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Estudante da arte do combate: aprende manobras alimentadas por Dados de Superioridade.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        10,
+        15,
+        18
+      ],
+      "caracteristicas": [
+        "estudioso_da_guerra",
+        "superioridade_em_combate",
+        "conheca_seu_inimigo",
+        "superioridade_em_combate_aprimorada",
+        "implacavel",
+        "superioridade_em_combate_suprema"
+      ]
+    },
+    {
+      "id": "abjurador",
+      "nome": "Abjurador",
+      "classe": "mago",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 154,
+        "pagina_pdf": 158
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Concentra o estudo em bloqueio, banimento e proteção: ergue barreiras, dissipa magia hostil e defende o grupo.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "protecao_arcana",
+        "versado_em_abjuracao",
+        "protecao_projetada",
+        "rompe_magia",
+        "resistencia_a_magia"
+      ]
+    },
+    {
+      "id": "adivinhador",
+      "nome": "Adivinhador",
+      "classe": "mago",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 155,
+        "pagina_pdf": 159
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Desvenda passado, presente e futuro com discernimento, visão remota e previsão.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "prodigio",
+        "versado_em_adivinhacao",
+        "perito_em_adivinhacao",
+        "o_terceiro_olho",
+        "prodigio_maior"
+      ]
+    },
+    {
+      "id": "evocador",
+      "nome": "Evocador",
+      "classe": "mago",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 156,
+        "pagina_pdf": 160
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Concentra-se em efeitos elementais explosivos — fogo, frio, trovão, relâmpago e ácido.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "truque_potente",
+        "versado_em_evocacao",
+        "esculpir_magias",
+        "evocacao_potencializada",
+        "sobrecarga"
+      ]
+    },
+    {
+      "id": "ilusionista",
+      "nome": "Ilusionista",
+      "classe": "mago",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 157,
+        "pagina_pdf": 161
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Tece magia sutil de enganação, deslumbrando os sentidos e fazendo o impossível parecer real.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "ilusoes_aprimoradas",
+        "versado_em_ilusao",
+        "criaturas_espectrais",
+        "autoimagem_ilusoria",
+        "realidade_ilusoria"
+      ]
+    },
+    {
+      "id": "patrono_arquifada",
+      "nome": "Patrono Arquifada",
+      "classe": "bruxo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 75,
+        "pagina_pdf": 79
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Pacto fundado no poder de Faéria: teleporte, encantamento e defesas sedutoras.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "magias_de_pacto_da_arquifada",
+        "passos_feericos",
+        "fuga_em_nevoa",
+        "defesas_sedutoras",
+        "magia_sedutora"
+      ]
+    },
+    {
+      "id": "patrono_celestial",
+      "nome": "Patrono Celestial",
+      "classe": "bruxo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 76,
+        "pagina_pdf": 80
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Pacto com os Planos Superiores: cura, luz radiante e resiliência.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "luz_medicinal",
+        "magias_de_pacto_do_celestial",
+        "alma_radiante",
+        "resiliencia_celestial",
+        "vinganca_calcinante"
+      ]
+    },
+    {
+      "id": "patrono_grande_antigo",
+      "nome": "Patrono O Grande Antigo",
+      "classe": "bruxo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 77,
+        "pagina_pdf": 81
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conhecimento de entidades inefáveis: telepatia, dano psíquico e servos aberrantes.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "magias_de_pacto_do_grande_antigo",
+        "magias_psiquicas",
+        "mente_desperta",
+        "combatente_clarividente",
+        "danacao_mistica",
+        "escudo_mental",
+        "criar_servo"
+      ]
+    },
+    {
+      "id": "patrono_infero",
+      "nome": "Patrono Ínfero",
+      "classe": "bruxo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 78,
+        "pagina_pdf": 82
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Pacto com os Planos Inferiores: vigor tenebroso, sorte alterada e fogo infernal.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "bencao_do_tenebroso",
+        "magias_de_pacto_do_infero",
+        "a_sorte_do_proprio_tenebroso",
+        "resistencia_infera",
+        "lancar_no_inferno"
+      ]
+    },
+    {
+      "id": "circulo_da_lua",
+      "nome": "Círculo da Lua",
+      "classe": "druida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 96,
+        "pagina_pdf": 100
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Canaliza a magia lunar na Forma Selvagem: formas mais fortes, dano radiante e teleporte de luar.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "formas_animais_dos_circulos_druidicos",
+        "magias_do_circulo_da_lua",
+        "formas_animais_dos_circulos_druidicos_aprimorada",
+        "passo_lunar",
+        "forma_lunar"
+      ]
+    },
+    {
+      "id": "circulo_da_terra",
+      "nome": "Círculo da Terra",
+      "classe": "druida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 97,
+        "pagina_pdf": 101
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Místicos e sábios ligados ao terreno: magias que mudam com o bioma escolhido e recuperação natural.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "auxilio_da_terra",
+        "magias_do_circulo_da_terra",
+        "recuperacao_natural",
+        "protecao_natural",
+        "santuario_natural"
+      ]
+    },
+    {
+      "id": "circulo_das_estrelas",
+      "nome": "Círculo das Estrelas",
+      "classe": "druida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Segue os padrões celestiais: forma estrelada com constelações e presságios.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "forma_estrelada",
+        "mapa_estelar",
+        "pressagio_cosmico",
+        "constelacoes_cintilantes",
+        "repleto_de_estrelas"
+      ]
+    },
+    {
+      "id": "circulo_do_mar",
+      "nome": "Círculo do Mar",
+      "classe": "druida",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 100,
+        "pagina_pdf": 104
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Canaliza marés e tormentas numa Emanação de água que fere e empurra.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "caracteristicas": [
+        "ira_do_mar",
+        "magias_do_circulo_do_mar",
+        "afinidade_aquatica",
+        "filho_da_tempestade",
+        "manifestacao_oceanica"
+      ]
+    },
+    {
+      "id": "dominio_da_guerra",
+      "nome": "Domínio da Guerra",
+      "classe": "clerigo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 85,
+        "pagina_pdf": 89
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Inspira bravura e derrota inimigos: ataque extra, bônus de acerto e resistência física.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        17
+      ],
+      "caracteristicas": [
+        "magias_de_dominio_da_guerra",
+        "ataque_direcionado",
+        "sacerdote_da_guerra",
+        "bencao_do_deus_da_guerra",
+        "avatar_da_guerra"
+      ]
+    },
+    {
+      "id": "dominio_da_luz",
+      "nome": "Domínio da Luz",
+      "classe": "clerigo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 86,
+        "pagina_pdf": 90
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Traz luz para banir a escuridão: explosões radiantes e labaredas que atrapalham o inimigo.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        17
+      ],
+      "caracteristicas": [
+        "brilho_do_amanhecer",
+        "labareda_protetora",
+        "magias_de_dominio_da_luz",
+        "labareda_protetora_aprimorada",
+        "coroa_de_luz"
+      ]
+    },
+    {
+      "id": "dominio_da_trapaca",
+      "nome": "Domínio da Trapaça",
+      "classe": "clerigo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 88,
+        "pagina_pdf": 92
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Enganação, ilusão e furtividade, com uma cópia ilusória de si mesmo.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        17
+      ],
+      "caracteristicas": [
+        "magias_de_dominio_da_trapaca",
+        "bencao_do_trapaceiro",
+        "invocar_duplicidade",
+        "transposicao_do_trapaceiro",
+        "duplicidade_aprimorada"
+      ]
+    },
+    {
+      "id": "dominio_da_vida",
+      "nome": "Domínio da Vida",
+      "classe": "clerigo",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 89,
+        "pagina_pdf": 93
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Mestre da cura: energia positiva que sustenta e restaura.",
+      "niveis_de_caracteristica": [
+        3,
+        6,
+        17
+      ],
+      "caracteristicas": [
+        "magias_de_dominio_da_vida",
+        "discipulo_da_vida",
+        "preservar_a_vida",
+        "curandeiro_abencoado",
+        "cura_suprema"
+      ]
+    }
+  ]
+}
