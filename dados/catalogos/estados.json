@@ -19,9 +19,11 @@
       },
       "descricao_curta": "Uma criatura está Sangrando enquanto tiver metade ou menos dos seus Pontos de Vida restantes.",
       "condicao": {
-        "op": "menor_ou_igual",
-        "args": [
-          "pv_atual",
+        "comparar": [
+          "pv_atual"
+        ],
+        "op": "lte",
+        "com": [
           {
             "op": "div_arred_baixo",
             "args": [

@@ -16,7 +16,7 @@
         {
           "tipo": "substituir_regra",
           "chave": "ler_qualquer_idioma",
-          "duracao": "ate_o_proximo_descanso",
+          "duracao": "ate_iniciar_descanso_curto_ou_longo",
           "revisao": "duvida",
           "nota": "Ler qualquer idioma não tem primitivo próprio no esquema; fica como regra declarada até existir um efeito de compreensão de idiomas."
         }
@@ -59,7 +59,7 @@
           "sentido": "visao_no_escuro",
           "alcance_m": 36,
           "empilha": "substitui_se_maior",
-          "duracao": "ate_o_proximo_descanso"
+          "duracao": "ate_iniciar_descanso_curto_ou_longo"
         }
       ],
       "fonte": {

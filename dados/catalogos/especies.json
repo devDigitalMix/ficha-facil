@@ -29,7 +29,7 @@
           "medio",
           "pequeno"
         ],
-        "momento": "criacao",
+        "gatilho": "ao_adquirir",
         "escolha_id": "aasimar_tamanho",
         "alturas": {
           "medio": "1,20-2,10 m",
@@ -164,7 +164,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha a forma da Revelação Celestial",
               "quantidade": 1,
-              "momento": "cada_uso",
+              "gatilho": "cada_uso",
               "reescolhivel": true,
               "reescolha_em": "cada_uso",
               "de": {
@@ -313,7 +313,12 @@
               "sentido": "sismiconsciencia",
               "alcance_m": 18,
               "custo": "acao_bonus",
-              "duracao": "10 minutos",
+              "duracao": {
+                "quantidade": [
+                  "10"
+                ],
+                "unidade": "minuto"
+              },
               "consome_recurso": "conhecimento_de_pedras",
               "requisito": "estar em, ou tocar, uma superfície de pedra natural ou trabalhada"
             }
@@ -359,7 +364,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha o tipo de dragão da sua herança",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "heranca_draconica",
                 "todo_o_catalogo": true
@@ -406,7 +411,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha a forma do sopro",
               "quantidade": 1,
-              "momento": "cada_uso",
+              "gatilho": "cada_uso",
               "reescolhivel": true,
               "reescolha_em": "cada_uso",
               "de": {
@@ -548,7 +553,12 @@
                 "deslocamento"
               ],
               "custo": "acao_bonus",
-              "duracao": "10 minutos",
+              "duracao": {
+                "quantidade": [
+                  "10"
+                ],
+                "unidade": "minuto"
+              },
               "consome_recurso": "voo_draconico",
               "encerra_se": [
                 {
@@ -619,7 +629,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha sua linhagem élfica",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "linhagens_elficas",
                 "todo_o_catalogo": true
@@ -636,7 +646,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha o atributo de conjuração da linhagem",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "atributos",
                 "chaves": [
@@ -691,7 +701,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha uma perícia",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "pericias",
                 "chaves": [
@@ -818,7 +828,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha sua linhagem gnômica",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "linhagens_gnomicas",
                 "todo_o_catalogo": true
@@ -835,7 +845,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha o atributo de conjuração da linhagem",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "atributos",
                 "chaves": [
@@ -905,7 +915,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha o benefício da sua ancestralidade gigante",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "ancestralidades_gigantes",
                 "todo_o_catalogo": true
@@ -944,9 +954,15 @@
             },
             {
               "tipo": "alterar_tamanho",
+              "id": "forma_grande",
               "novo_tamanho": "grande",
               "custo": "acao_bonus",
-              "duracao": "10 minutos",
+              "duracao": {
+                "quantidade": [
+                  "10"
+                ],
+                "unidade": "minuto"
+              },
               "consome_recurso": "forma_grande",
               "requisito": "estar em um espaço grande o suficiente",
               "efeitos": [
@@ -1022,7 +1038,7 @@
           "medio",
           "pequeno"
         ],
-        "momento": "criacao",
+        "gatilho": "ao_adquirir",
         "escolha_id": "humano_tamanho",
         "alturas": {
           "medio": "1,20-2,10 m",
@@ -1065,7 +1081,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha uma perícia",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "pericias",
                 "todo_o_catalogo": true
@@ -1094,7 +1110,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha um talento de Origem",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "talentos",
                 "filtro": {
@@ -1348,7 +1364,7 @@
           "medio",
           "pequeno"
         ],
-        "momento": "criacao",
+        "gatilho": "ao_adquirir",
         "escolha_id": "tiferino_tamanho",
         "alturas": {
           "medio": "1,20-2,10 m",
@@ -1392,7 +1408,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha seu legado ínfero",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "legados_inferos",
                 "todo_o_catalogo": true
@@ -1409,7 +1425,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha o atributo de conjuração do legado",
               "quantidade": 1,
-              "momento": "criacao",
+              "gatilho": "ao_adquirir",
               "de": {
                 "catalogo": "atributos",
                 "chaves": [

@@ -40,8 +40,9 @@ GOLPE_ASTUTO = {
          "salvaguarda": {"atributo": "CON", "cd": CD_LADINO},
          "duracao": "1 minuto",
          "repete_salvaguarda": {"quando": "fim_do_turno_do_alvo", "encerra_em_sucesso": True},
-         "pre_requisitos": [{"tipo": "item", "chave": "kit_de_veneno",
-                             "revisao": "duvida", "nota": "id depende do cap. 6"}]}
+         # A dúvida era "id depende do cap. 6". O capítulo 6 entrou na fase 4 e o
+         # Kit de Veneno existe em ferramentas.json (p. 221) — dúvida vencida.
+         "pre_requisitos": [{"tipo": "ferramenta", "chave": "kit_de_veneno"}]}
     ],
     "retirada": [
         {"tipo": "conceder_velocidade", "tipo_deslocamento": "caminhada",

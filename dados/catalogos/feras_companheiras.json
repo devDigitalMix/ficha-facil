@@ -139,7 +139,9 @@
               "cortante"
             ],
             "escolha_do_tipo": null
-          }
+          },
+          "descricao_curta": "Ataque corpo a corpo, alcance 1,5 m, usando o bônus de ataque mágico do Guardião: 1d4 + 3 + modificador de Sabedoria de dano cortante.",
+          "descricao_derivada": true
         }
       ]
     },
@@ -272,6 +274,8 @@
             ],
             "escolha_do_tipo": "ao_invocar_a_fera"
           },
+          "descricao_curta": "Ataque corpo a corpo, alcance 1,5 m, usando o bônus de ataque mágico do Guardião: 1d6 + 2 + modificador de Sabedoria de dano contundente ou perfurante; o tipo é escolhido ao invocar a fera.",
+          "descricao_derivada": true,
           "efeito_adicional": [
             {
               "tipo": "conceder_condicao",
@@ -402,6 +406,8 @@
             ],
             "escolha_do_tipo": "ao_invocar_a_fera"
           },
+          "descricao_curta": "Ataque corpo a corpo, alcance 1,5 m, usando o bônus de ataque mágico do Guardião: 1d8 + 2 + modificador de Sabedoria de dano contundente ou cortante ou perfurante; o tipo é escolhido ao invocar a fera.",
+          "descricao_derivada": true,
           "efeito_adicional": [
             {
               "tipo": "dano",

@@ -21,6 +21,7 @@ warnings.filterwarnings('ignore')
 FAIXAS = {
     'cap6': (213, 233),   # Equipamento
     'cap7': (239, 343),   # Magias
+    'apb': (346, 359),    # Apêndice B — blocos de estatísticas de criaturas
 }
 
 

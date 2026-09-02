@@ -28,7 +28,7 @@
               "cd_para_evitar_sua_magia"
             ]
           },
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "fonte": {
@@ -50,7 +50,7 @@
             "1d10"
           ],
           "beneficiario": "voce_ou_criatura_a_vista_a_ate_3m",
-          "momento": "imediatamente_apos_o_teleporte"
+          "gatilho": "imediatamente_apos_o_teleporte"
         }
       ],
       "fonte": {
@@ -70,16 +70,16 @@
           "tipo": "conceder_condicao",
           "condicao_id": "invisivel",
           "beneficiario": "voce",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "encerra_se": [
             {
-              "gatilho": "jogada_de_ataque"
+              "gatilho": "realizar_jogada_de_ataque"
             },
             {
               "gatilho": "causar_dano"
             },
             {
-              "gatilho": "conjurar_magia"
+              "gatilho": "ao_conjurar"
             }
           ]
         }

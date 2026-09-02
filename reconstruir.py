@@ -75,6 +75,9 @@ ORDEM = [
     ('gerar_beneficios_do_terceiro_olho.py', 'fase 7: benefícios do Terceiro Olho'),
     ('gerar_varredura_opcoes.py', 'fase 7: varredura das opções'),
     ('gerar_ajustes_movimento_forcado.py', 'fase 7: movimento forçado'),
+    # O Apêndice B precisa existir ANTES do ajuste da Forma Selvagem: é ele que liga
+    # o seletor de formas contra o catálogo de criaturas.
+    ('gerar_criaturas.py', 'fase 12: Apêndice B, blocos de estatísticas'),
     ('gerar_ajuste_forma_selvagem.py', 'fase 7: Forma Selvagem'),
     # fase 8 — pontos de vida
     ('gerar_pontos_de_vida.py', 'fase 8: pontos de vida'),
@@ -92,6 +95,23 @@ ORDEM = [
     ('gerar_ajustes_maestria.py', 'auditoria 2026-09-02: marcas obsoletas de maestria'),
     ('gerar_ajustes_auditoria.py', 'auditoria 2026-09-02: fontes herdadas, primitivos, reservados'),
     ('gerar_descricoes_de_equipamento.py', 'auditoria 2026-09-02: descrições de itens e ferramentas'),
+    # fase 15 — achados ao escrever o motor
+    ('gerar_ajustes_aumento_de_antecedente.py',
+     'fase 15: aumento de atributo do antecedente (p. 177), achado pelo motor'),
+    ('gerar_ajustes_efeitos_aninhados.py',
+     'fase 15: o que um efeito aninhado significa — condição ou estrutura'),
+    ('gerar_ajustes_ids_de_escolha.py',
+     'fase 16: id para as 53 escolhas que não tinham'),
+    ('gerar_ajustes_variantes_de_antecedente.py',
+     'fase 16: quatro escolhas que ofereciam a categoria em vez das variantes'),
+    ('gerar_ajustes_escolha_de_um.py',
+     'fase 16: nove talentos que pediam escolha entre uma opção só'),
+    # fase 13 — vocabulário de runtime. A normalização reescreve o dado inteiro,
+    # então é a ÚLTIMA de todas: qualquer gerador de conteúdo rodado depois dela
+    # reintroduz o token antigo, e o validador acusa. A declaração vem em seguida,
+    # e é ela que fecha a lista para quem vier.
+    ('gerar_normalizacao_vocabulario.py', 'fase 13: fusão do vocabulário de runtime'),
+    ('gerar_vocabulario_de_runtime.py', 'fase 13: vocabulário de runtime declarado'),
 ]
 
 

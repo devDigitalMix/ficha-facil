@@ -1,0 +1,149 @@
+{
+  "id": "monge-1",
+  "nome": "Kaida, Monge de nível 1",
+  "por_que_existe": "A ficha mais simples que ainda quebra o caso interessante: a CA do Monge não é 10 + Destreza, é 10 + Destreza + Sabedoria, e ela CONCORRE com o cálculo padrão em vez de somar. Se o motor somar os dois, dá 17 em vez de 15, e nenhum outro teste pega isso.",
+  "construcao": {
+    "especie": "humano",
+    "antecedente": "guia",
+    "niveis": [
+      {
+        "classe": "monge",
+        "nivel": 1
+      }
+    ],
+    "atributos_base": {
+      "FOR": 12,
+      "DES": 15,
+      "CON": 13,
+      "INT": 10,
+      "SAB": 13,
+      "CAR": 8
+    },
+    "escolhas": {
+      "guia_aumento": {
+        "escolhido": "um_em_2_e_outro_em_1",
+        "distribuicao": {
+          "DES": 2,
+          "SAB": 1
+        }
+      },
+      "monge_pericias_iniciais": [
+        "acrobacia",
+        "furtividade"
+      ]
+    },
+    "equipamento_equipado": [],
+    "nota_das_pericias": "O antecedente Guia já dá Furtividade e Sobrevivência; a escolha do Monge repete Furtividade de propósito, para o motor ter de decidir o que fazer com proficiência duplicada. Aqui ela não soma duas vezes."
+  },
+  "estado": {
+    "predicados_ativos": [],
+    "portas_abertas": []
+  },
+  "esperado": {
+    "modificadores": {
+      "FOR": 1,
+      "DES": 3,
+      "CON": 1,
+      "INT": 0,
+      "SAB": 2,
+      "CAR": -1
+    },
+    "bonus_de_proficiencia": 2,
+    "classe_de_armadura": {
+      "valor": 15,
+      "proveniencia": "CA 15 = 10 (base) + 3 (Destreza) + 2 (Sabedoria)",
+      "calculo_de_base_usado": "ca_defesa_sem_armadura",
+      "nota": "O cálculo padrão (10 + Destreza = 13) perde para o do Monge. Os dois NÃO se somam."
+    },
+    "pontos_de_vida_maximos": {
+      "valor": 9,
+      "proveniencia": "PV 9 = 8 (Dado de Vida d8, valor máximo) + 1 (Constituição)"
+    },
+    "iniciativa": {
+      "valor": 3,
+      "dados": [
+        "1d20"
+      ]
+    },
+    "percepcao_passiva": {
+      "valor": 12,
+      "nota": "Não é proficiente em Percepção: 10 + 2 de Sabedoria, sem o Bônus de Proficiência."
+    },
+    "salvaguardas": {
+      "FOR": 3,
+      "DES": 5,
+      "CON": 1,
+      "INT": 0,
+      "SAB": 2,
+      "CAR": -1
+    },
+    "testes_de_pericia": {
+      "acrobacia": 5,
+      "furtividade": 5,
+      "sobrevivencia": 4,
+      "atletismo": 1,
+      "percepcao": 2
+    },
+    "ataque_desarmado": {
+      "jogada": {
+        "valor": 5,
+        "dados": [
+          "1d20"
+        ]
+      },
+      "dano": {
+        "valor": 3,
+        "dados": [
+          "1d6"
+        ]
+      },
+      "proveniencia_da_jogada": "+5 = 3 (Destreza, por Artes Marciais) + 2 (Bônus de Proficiência)",
+      "nota": "Artes Marciais troca Força por Destreza e sobe o dado do Ataque Desarmado de 1 para 1d6."
+    },
+    "deslocamento_m": 9,
+    "escolhas_em_aberto": [
+      "humano_habil",
+      "humano_versatil",
+      "iniciado_em_magia_atributo",
+      "iniciado_em_magia_truques",
+      "iniciado_em_magia_magia_1",
+      "monge_ferramenta_inicial"
+    ],
+    "nota_das_escolhas_em_aberto": "Nenhuma delas muda a ficha acima — e é justamente por isso que elas não podem sumir: são o checklist de 'subir de nível sem esquecer nada'. O Iniciado em Magia veio do antecedente, que já fixou a lista (Druida) e deixou o resto em aberto.",
+    "ataques": [
+      {
+        "arma": "ataque_desarmado",
+        "atributo": "DES",
+        "proficiente": true,
+        "jogada": 5,
+        "dano_valor": 3,
+        "dano_dados": [
+          "1d6"
+        ],
+        "proveniencia": "+5 = 3 (Destreza, por Artes Marciais) + 2 (Bônus de Proficiência); dano 1d6 + 3"
+      }
+    ]
+  },
+  "fonte": [
+    {
+      "o_que": "Traços Básicos de Monge (Dado de Vida d8, salvaguardas FOR e DES)",
+      "pagina_livro": 159
+    },
+    {
+      "o_que": "Defesa sem Armadura e Artes Marciais",
+      "pagina_livro": 159
+    },
+    {
+      "o_que": "Classe de Armadura: só um cálculo de base por vez",
+      "pagina_livro": 363
+    },
+    {
+      "o_que": "Modificador de atributo e Bônus de Proficiência",
+      "pagina_livro": 20
+    },
+    {
+      "o_que": "Pontos de Vida no nível 1",
+      "pagina_livro": 39
+    }
+  ]
+}

@@ -68,7 +68,14 @@ if faltando:
             j = t.find('\n' + n + '\n')
             cab = t[j:j + 200]
             mc = re.search(r'(\d)º Círculo', cab)
-            entrada['nivel'] = int(mc.group(1)) if mc else (0 if 'Truque' in cab else None)
+            # Quando a raspagem do cabeçalho falha, NÃO gravar 'nivel': None. Chave
+            # presente com None é pior que chave ausente: o setdefault dos geradores de
+            # lista não a substitui, e a magia fica sem círculo. Era o que acontecia com
+            # Raio Guia e Dominar Fera numa reconstrução do zero.
+            if mc:
+                entrada['nivel'] = int(mc.group(1))
+            elif 'Truque' in cab:
+                entrada['nivel'] = 0
             listas = re.search(r'\(([^)]+)\)', cab)
             if listas:
                 entrada['listas'] = [slug(x.strip()) for x in listas.group(1).split(',')]

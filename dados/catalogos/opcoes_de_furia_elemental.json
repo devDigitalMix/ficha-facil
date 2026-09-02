@@ -25,7 +25,7 @@
           ],
           "momento_da_escolha": "ao_acertar",
           "frequencia": "uma_vez_por_turno",
-          "momento": "ao_acertar_ataque_com_arma_ou_da_forma_animal",
+          "gatilho": "acerto_com_arma_ou_ataque_da_forma_animal",
           "escala_por_nivel": {
             "15": "2d8"
           }

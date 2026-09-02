@@ -48,7 +48,7 @@
             "radiante"
           ],
           "frequencia": "uma_vez_por_turno",
-          "momento": "ao_acertar_ataque_com_arma",
+          "gatilho": "acerto_com_arma",
           "escala_por_nivel": {
             "14": "2d8"
           }

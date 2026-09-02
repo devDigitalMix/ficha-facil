@@ -1,0 +1,12 @@
+{
+  "name": "ficha-facil-motor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Motor de efeitos do Ficha Fácil. Biblioteca pura: mesma entrada, mesma saída, sem relógio, sem aleatório, sem banco.",
+  "engines": { "node": ">=22.6" },
+  "scripts": {
+    "teste": "node --experimental-strip-types --test testes/*.test.ts",
+    "test": "node --experimental-strip-types --test testes/*.test.ts"
+  }
+}

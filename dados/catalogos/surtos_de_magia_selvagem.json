@@ -23,8 +23,13 @@
           "tipo": "rolar_na_tabela",
           "catalogo": "surtos_de_magia_selvagem",
           "dado_da_tabela": "1d100",
-          "momento": "inicio_do_seu_turno",
-          "duracao": "1 minuto",
+          "gatilho": "inicio_do_seu_turno",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "ignora_faixas": [
             [
               1,
@@ -55,7 +60,12 @@
           "chave": "invocar_criatura_amigavel",
           "texto": "Criatura Amigável aleatória (1d4) aparece a até 18 m, controlada pelo Mestre, e desaparece depois de 1 minuto. Bloco de estatísticas no Livro dos Monstros.",
           "alcance_m": 18,
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "tabela_1d4": [
             "Modron Duodrone",
             "Flunf",
@@ -86,8 +96,13 @@
           "formula": [
             "5"
           ],
-          "momento": "inicio_do_seu_turno",
-          "duracao": "1 minuto"
+          "gatilho": "inicio_do_seu_turno",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -112,7 +127,12 @@
           "alvo": "salvaguarda",
           "modo": "desvantagem",
           "beneficiario": "alvos_da_proxima_magia_com_salvaguarda",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -136,7 +156,12 @@
           "tipo": "efeito_narrativo",
           "chave": "efeito_do_caos_1d8",
           "texto": "Role 1d8 na lista de efeitos da linha 17–20 (p. 114). Só o resultado 6 tem efeito mecânico: Vantagem em testes de Sabedoria (Percepção).",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "efeitos_possiveis": [
             {
               "d8": 6,
@@ -145,7 +170,12 @@
                   "tipo": "vantagem",
                   "alvo": "teste_de_atributo:percepcao",
                   "modo": "vantagem",
-                  "duracao": "1 minuto"
+                  "duracao": {
+                    "quantidade": [
+                      "1"
+                    ],
+                    "unidade": "minuto"
+                  }
                 }
               ]
             }
@@ -177,7 +207,12 @@
             "todas_as_suas_magias": true,
             "tempo_de_conjuracao": "acao"
           },
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -226,7 +261,12 @@
           "escopo": {
             "proxima_magia_com_dano": true
           },
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -250,7 +290,12 @@
           "tipo": "alterar_dano",
           "tipo_dano": "todos",
           "operacao": "resistencia",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -310,7 +355,12 @@
           "custo": "acao_bonus",
           "alcance_m": 6,
           "frequencia": "uma_vez_por_turno",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -335,7 +385,12 @@
           "condicao_id": "invisivel",
           "beneficiario": "voce_e_ate_3_criaturas_a_sua_escolha",
           "alcance_m": 9,
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "realizar_jogada_de_ataque"
@@ -344,7 +399,7 @@
               "gatilho": "causar_dano"
             },
             {
-              "gatilho": "conjurar_magia"
+              "gatilho": "ao_conjurar"
             }
           ]
         }
@@ -373,12 +428,22 @@
             "2"
           ],
           "empilha": "soma",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         },
         {
           "tipo": "imunidade_a_risco",
           "risco": "magia:misseis_magicos",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -401,7 +466,7 @@
         {
           "tipo": "acao_adicional",
           "frequencia": "uma_vez",
-          "duracao": "este_turno"
+          "duracao": "ate_o_fim_do_turno_atual"
         }
       ],
       "fonte": {
@@ -496,7 +561,12 @@
           "formula_dado": "1d4",
           "tipo_dano": "igneo",
           "alvo": "objeto_inflamavel_tocado",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -521,7 +591,12 @@
           "chave": "reencarnar_automatico",
           "texto": "Morrendo na próxima hora, você revive imediatamente como pela magia Reencarnar.",
           "magia_de_referencia": "reencarnar",
-          "duracao": "1 hora"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "hora"
+          }
         }
       ],
       "fonte": {
@@ -624,15 +699,25 @@
           "tipo": "efeito_narrativo",
           "chave": "luz_plena_9m",
           "texto": "Você irradia Luz Plena num raio de 9 metros.",
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         },
         {
           "tipo": "conceder_condicao",
           "condicao_id": "cego",
           "beneficiario": "criatura_que_termina_o_turno_perto",
           "alcance_m": 1.5,
-          "duracao": "ate_o_fim_do_proximo_turno_dela",
-          "duracao_do_efeito": "1 minuto"
+          "duracao": "ate_o_fim_do_proximo_turno_do_beneficiario",
+          "duracao_do_efeito": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {
@@ -715,7 +800,12 @@
           "operacao": "vulnerabilidade",
           "beneficiario": "voce_e_todas_as_criaturas_ate_9m",
           "alcance_m": 9,
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "fonte": {

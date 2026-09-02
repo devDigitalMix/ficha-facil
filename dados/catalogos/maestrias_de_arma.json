@@ -20,7 +20,7 @@
           "modo": "vantagem",
           "condicao": {
             "todas": [
-              "mesmo_alvo_atingido"
+              "mesmo_alvo"
             ]
           },
           "duracao": "ate_o_fim_do_seu_proximo_turno"
@@ -84,7 +84,7 @@
           "alvo": "jogada_de_ataque",
           "modo": "desvantagem",
           "beneficiario": "alvo_atingido",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "fonte": {
@@ -141,7 +141,7 @@
           "unidade": "m",
           "empilha": "maior_valor",
           "beneficiario": "alvo_atingido",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "fonte": {

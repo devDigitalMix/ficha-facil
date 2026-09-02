@@ -2878,6 +2878,9 @@
         "pagina_livro": 222,
         "pagina_pdf": 226
       },
+      "nomes_alternativos": [
+        "Kit de Explorador"
+      ],
       "descricao_curta": "Equipamento de aventura; 10 PO · 27,5 kg.",
       "descricao_derivada": true
     },
@@ -2968,9 +2971,6 @@
         "pagina_livro": 222,
         "pagina_pdf": 226
       },
-      "nomes_alternativos": [
-        "Kit de Explorador"
-      ],
       "descricao_curta": "Equipamento de aventura; 12 PO · 27,5 kg.",
       "descricao_derivada": true
     },

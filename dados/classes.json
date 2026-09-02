@@ -50,7 +50,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -104,7 +104,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma ferramenta",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
@@ -479,7 +479,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -553,8 +553,7 @@
                 "quantidade": 8
               },
               {
-                "item": "kit_de_explorador_de_masmorras",
-                "nota": "A página do Druida (p. 92) escreve 'Kit de Explorador'; o capítulo 6 só tem 'Kit de Explorador de Masmorras' (p. 226). Tratei como o mesmo kit — confira se concorda."
+                "item": "kit_de_explorador_de_masmorras"
               }
             ],
             "moedas": {
@@ -584,8 +583,7 @@
                 "item": "aljava"
               },
               {
-                "item": "kit_de_explorador_de_masmorras",
-                "nota": "A página do Druida (p. 92) escreve 'Kit de Explorador'; o capítulo 6 só tem 'Kit de Explorador de Masmorras' (p. 226). Tratei como o mesmo kit — confira se concorda."
+                "item": "kit_de_explorador_de_masmorras"
               }
             ],
             "moedas": {
@@ -921,7 +919,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -1508,7 +1506,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -1962,7 +1960,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -2026,8 +2024,8 @@
                 "como": "foco_druidico"
               },
               {
-                "item": "kit_de_explorador_de_masmorras",
-                "nota": "A página do Druida (p. 92) escreve 'Kit de Explorador'; o capítulo 6 só tem 'Kit de Explorador de Masmorras' (p. 226). Tratei como o mesmo kit — confira se concorda."
+                "item": "kit_de_aventureiro",
+                "nota": "A linha do Druida (p. 91) escreve só 'Kit de Explorador'. É este kit, e não o 'Kit de Explorador de Masmorras': o conteúdo do Kit de Aventureiro (Saco de Dormir, sem Pé de Cabra nem Estrepes, p. 226) é o do Explorer's Pack, que é o que o Druida recebe; o Kit de Explorador de Masmorras é o Dungeoneer's Pack. E quando o livro quer esse último numa linha de classe ele escreve o nome inteiro (Feiticeiro p. 103, Guerreiro p. 127). É deslize do tradutor, que verteu 'Explorer's' ao pé da letra na linha do Druida em vez de usar o nome da tabela."
               },
               {
                 "item": "kit_de_herbalismo"
@@ -2046,8 +2044,8 @@
           }
         ],
         "revisao": {
-          "status": "duvida",
-          "notas": "A página do Druida (p. 92) escreve 'Kit de Explorador'; o capítulo 6 só tem 'Kit de Explorador de Masmorras' (p. 226). Tratei como o mesmo kit — confira se concorda."
+          "status": "ok",
+          "notas": "A linha do Druida (p. 91) escreve só 'Kit de Explorador'. É este kit, e não o 'Kit de Explorador de Masmorras': o conteúdo do Kit de Aventureiro (Saco de Dormir, sem Pé de Cabra nem Estrepes, p. 226) é o do Explorer's Pack, que é o que o Druida recebe; o Kit de Explorador de Masmorras é o Dungeoneer's Pack. E quando o livro quer esse último numa linha de classe ele escreve o nome inteiro (Feiticeiro p. 103, Guerreiro p. 127). É deslize do tradutor, que verteu 'Explorer's' ao pé da letra na linha do Druida em vez de usar o nome da tabela."
         }
       },
       "progressao": [
@@ -2590,7 +2588,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -3204,7 +3202,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -3612,7 +3610,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 4 perícias",
           "quantidade": 4,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -4030,23 +4028,20 @@
           "id": "bardo_instrumentos",
           "tipo": "escolha",
           "rotulo": "Escolha 3 instrumentos musicais",
-          "quantidade": 1,
-          "quantidade_de_instrumentos": 3,
+          "quantidade": 3,
           "de": {
             "catalogo": "ferramentas",
             "chaves": [
               "instrumento_musical"
             ],
-            "nota": "O livro pede TRÊS instrumentos (p. 60); o capítulo 6 traz 'Instrumento Musical' como uma entrada genérica (p. 222), sem listar os instrumentos um a um. A quantidade real está em quantidade_de_instrumentos."
-          },
-          "revisao": {
-            "status": "duvida",
-            "notas": "O livro não enumera os instrumentos; se você quiser a lista (alaúde, tambor, flauta…), ela teria de vir de outra fonte."
+            "de_variantes": true,
+            "nota": "As dez variantes estão declaradas na própria entrada de Instrumento Musical (cap. 6, p. 221), com custo e peso."
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
             "categoria": "ferramenta",
-            "chave": "{{escolhido}}",
+            "chave": "instrumento_musical",
+            "variante": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           }
         }
@@ -5128,7 +5123,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 3 perícias",
           "quantidade": 3,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -5662,7 +5657,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias",
           "quantidade": 2,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [

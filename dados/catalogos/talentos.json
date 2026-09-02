@@ -24,9 +24,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_fortitude_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -76,9 +77,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_proeza_em_combate_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -118,9 +120,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_proficiencia_em_pericia_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -146,7 +149,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia para Especialização",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "todo_o_catalogo": true,
@@ -188,9 +191,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_recordacao_de_magia_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -241,9 +245,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_recuperacao_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -277,7 +282,7 @@
               ]
             }
           ],
-          "gatilho": "reduzido_a_zero_pv",
+          "gatilho": "reduzido_a_0_pontos_de_vida",
           "consome_recurso": "ate_a_morte",
           "mantem_com_pv": 1
         },
@@ -323,9 +328,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_resistencia_a_energia_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -366,6 +372,7 @@
         },
         {
           "tipo": "redirecionar_dano",
+          "id": "dadiva_da_resistencia_a_energia",
           "custo": "reacao",
           "alcance_m": 18,
           "alvo": "criatura_a_vista",
@@ -415,9 +422,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_velocidade_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -471,9 +479,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_viagem_dimensional_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -520,9 +529,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_da_visao_verdadeira_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -561,9 +571,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_do_ataque_irresistivel_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -623,9 +634,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_do_destino_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -660,7 +672,7 @@
           "sinal": "a_sua_escolha",
           "alcance_m": 18,
           "beneficiario": "voce_ou_criatura_a_ate_18m",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "consome_recurso": "aprimorar_destino"
         }
       ],
@@ -685,9 +697,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "dadiva_do_espirito_da_noite_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -916,7 +929,9 @@
           "condicao": {
             "todas": [
               "sem_arma_na_mao",
-              "flag:sem_escudo"
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           },
           "modo": "substitui_a_criterio_do_jogador"
@@ -925,7 +940,7 @@
           "tipo": "dano",
           "formula_dado": "1d4",
           "tipo_dano": "contundente",
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "condicao": {
             "todas": [
               "alvo_imobilizado_por_voce"
@@ -1091,7 +1106,7 @@
           "requisitos": [
             "segurando:escudo"
           ],
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "fonte": {
@@ -1123,9 +1138,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "adepto_elemental_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1146,7 +1162,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o tipo de dano do Domínio Elemental",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "tipos_de_dano",
             "chaves": [
@@ -1295,9 +1311,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "agressor_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1331,7 +1348,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito do Ataque em Investida",
           "quantidade": 1,
-          "momento": "no_acerto",
+          "gatilho": "acerto",
           "reescolhivel": true,
           "reescolha_em": "cada_uso",
           "frequencia": "uma_vez_por_turno",
@@ -1381,9 +1398,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "analitico_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1403,7 +1421,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a perícia do Observador Atento",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -1455,9 +1473,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "atirador_arcano_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1529,9 +1548,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "atleta_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1591,22 +1611,12 @@
       "descricao_curta": "Disfarçado de alguém real ou fictício, tem Vantagem em testes de Carisma (Atuação ou Enganação) para convencer que é essa pessoa; e imita sons e vozes, com CD 8 + modificador de Carisma + Bônus de Proficiência para o ouvinte perceber.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "CAR"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "CAR",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "vantagem",
@@ -1663,7 +1673,7 @@
           "tipo": "escolha",
           "rotulo": "Como distribuir o aumento",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "modos_de_aumento_de_atributo",
             "todo_o_catalogo": true
@@ -1738,9 +1748,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "chef_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1793,7 +1804,12 @@
             "descanso_longo",
             "1 hora de trabalho"
           ],
-          "duracao": "8 horas",
+          "duracao": {
+            "quantidade": [
+              "8"
+            ],
+            "unidade": "hora"
+          },
           "requisitos": [
             "ferramenta:utensilios_de_cozinheiro",
             "ingredientes"
@@ -1831,9 +1847,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "combatente_montado_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1925,9 +1942,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "conjurador_belico_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -1994,9 +2012,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "conjurador_ritualista_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2083,22 +2102,12 @@
       "descricao_curta": "Segurando arma de Acuidade, ao ser acertado corpo a corpo pode gastar a Reação e somar o Bônus de Proficiência à CA — inclusive contra o ataque que disparou — até o início do seu próximo turno.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "DES"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "DES",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "modificador",
@@ -2109,11 +2118,11 @@
           "empilha": "soma",
           "custo": "reacao",
           "aplica_a": "ataques_corpo_a_corpo",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "requisitos": [
-            "segurando:arma_com_acuidade"
+            "empunhando:arma_com_acuidade"
           ],
-          "momento": "ao_ser_atingido_corpo_a_corpo"
+          "gatilho": "ao_ser_atingido_corpo_a_corpo"
         }
       ],
       "fonte": {
@@ -2137,9 +2146,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "envenenador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2178,6 +2188,7 @@
         },
         {
           "tipo": "aplicar_veneno",
+          "id": "envenenador",
           "custo": "acao_bonus",
           "consome": {
             "item": "dose_de_veneno"
@@ -2186,7 +2197,12 @@
             "arma",
             "municao"
           ],
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "causar_dano_com_o_item"
@@ -2211,7 +2227,7 @@
               "tipo": "conceder_condicao",
               "condicao_id": "envenenado",
               "beneficiario": "alvo",
-              "duracao": "ate_o_fim_do_proximo_turno_dele",
+              "duracao": "ate_o_fim_do_proximo_turno_do_beneficiario",
               "condicao": {
                 "todas": [
                   "falhou_na_salvaguarda"
@@ -2242,9 +2258,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "esmagador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2281,7 +2298,7 @@
           "alvo": "jogada_de_ataque",
           "modo": "vantagem",
           "beneficiario": "qualquer_atacante_do_alvo",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "condicao": {
             "todas": [
               "acerto_critico_com_dano_contundente"
@@ -2318,9 +2335,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "especialista_ambidestro_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2386,9 +2404,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "especialista_em_armaduras_leves_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2441,9 +2460,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "especialista_em_armaduras_medias_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2490,9 +2510,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "especialista_em_armaduras_pesadas_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2541,22 +2562,12 @@
       "descricao_curta": "Ignora a propriedade Recarga das bestas e recarrega sem mão livre; estar a 1,5 m de um inimigo não dá Desvantagem no ataque com besta; e no ataque adicional da propriedade Leve com besta Leve, soma o modificador ao dano se ainda não somava.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "DES"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "DES",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "ignorar_propriedade_de_arma",
@@ -2618,9 +2629,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "especialista_em_pericia_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true
@@ -2637,7 +2649,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia para ganhar proficiência",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "todo_o_catalogo": true
@@ -2654,7 +2666,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia para Especialização",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "todo_o_catalogo": true,
@@ -2692,9 +2704,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "exterminador_de_conjuradores_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2769,9 +2782,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "imobilizador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2836,9 +2850,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "lider_inspirador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -2894,29 +2909,19 @@
       "descricao_curta": "Proficiência (ou Especialização, se já proficiente) em Arcanismo, História, Investigação, Natureza ou Religião à escolha, e a ação Analisar passa a caber numa Ação Bônus.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "INT"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "INT",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "id": "mente_agucada_pericia",
           "tipo": "escolha",
           "rotulo": "Escolha a perícia do Conhecimento Vasto",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -2967,22 +2972,12 @@
       "descricao_curta": "Ataques à distância com armas ignoram Cobertura Parcial e de Três Quartos; estar a 1,5 m de um inimigo não dá Desvantagem; e atacar no alcance máximo também não.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "DES"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "DES",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "ignorar_cobertura",
@@ -3031,9 +3026,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "mestre_das_armas_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3095,9 +3091,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "mestre_em_armaduras_medias_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3119,7 +3116,15 @@
           "condicao": {
             "todas": [
               "armadura:media",
-              "valor_de_atributo:DES>=16"
+              {
+                "comparar": [
+                  "valor_de_atributo:DES"
+                ],
+                "op": "gte",
+                "com": [
+                  "16"
+                ]
+              }
             ]
           }
         }
@@ -3149,9 +3154,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "mestre_em_armaduras_pesadas_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3176,7 +3182,7 @@
             "cortante",
             "perfurante"
           ],
-          "gatilho": "ser_atingido_por_ataque",
+          "gatilho": "ser_atingido_por_jogada_de_ataque",
           "condicao": {
             "todas": [
               "armadura:pesada"
@@ -3213,9 +3219,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "mestre_em_armas_de_haste_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3251,7 +3258,7 @@
           },
           "condicao": {
             "todas": [
-              "executou_a_acao_atacar_com_essa_arma"
+              "executou:atacar_com_essa_arma"
             ]
           }
         },
@@ -3302,22 +3309,12 @@
       "descricao_curta": "Ao acertar com arma Pesada na ação Atacar, causa dano adicional igual ao Bônus de Proficiência. E logo após um Acerto Crítico ou derrubar alguém a 0 PV com arma Corpo a Corpo, ataca de novo como Ação Bônus.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "FOR"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "FOR",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "modificador",
@@ -3375,32 +3372,22 @@
       "descricao_curta": "Ao acertar corpo a corpo na ação Atacar, golpeia com o Escudo: salvaguarda de Força ou o alvo é empurrado 1,5 m ou fica Caído, à sua escolha — uma vez por turno. E com Escudo em mãos, uma salvaguarda de Destreza bem-sucedida por metade do dano passa a não causar dano nenhum, com a Reação.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "FOR"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "FOR",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "id": "mestre_em_escudos_golpe",
           "tipo": "escolha",
           "rotulo": "Escolha o efeito do Golpe de Escudo",
           "quantidade": 1,
-          "momento": "no_acerto",
+          "gatilho": "acerto",
           "frequencia": "uma_vez_por_turno",
           "requisitos": [
-            "equipado:escudo"
+            "segurando:escudo"
           ],
           "condicao": {
             "todas": [
@@ -3458,9 +3445,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "perfurador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3525,7 +3513,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o atributo",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "todo_o_catalogo": true,
@@ -3657,22 +3645,12 @@
       "descricao_curta": "Vantagem em Salvaguardas Contra Morte e, como Ação Bônus, gasta um Dado de Vida para recuperar Pontos de Vida iguais ao resultado.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "CON"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "CON",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "vantagem",
@@ -3717,9 +3695,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "sentinela_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3747,7 +3726,7 @@
           "tipo": "travar_deslocamento",
           "valor": 0,
           "alvo": "criatura_atingida",
-          "duracao": "resto_do_turno_atual",
+          "duracao": "ate_o_fim_do_turno_atual",
           "condicao": {
             "todas": [
               "acerto_com_ataque_de_oportunidade"
@@ -3782,22 +3761,12 @@
       "descricao_curta": "Visão às Cegas de 3 m; Vantagem em Destreza (Furtividade) na ação Esconder durante o combate; e errar um ataque estando escondido não revela sua posição.",
       "efeitos": [
         {
-          "tipo": "escolha",
-          "rotulo": "Escolha o atributo a aumentar",
-          "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
-          "de": {
-            "catalogo": "atributos",
-            "chaves": [
-              "DES"
-            ]
-          },
-          "efeito_por_item_escolhido": {
-            "tipo": "aumento_atributo",
-            "atributo": "{{escolhido}}",
-            "valor": 1,
-            "limite": 20
-          }
+          "tipo": "aumento_atributo",
+          "atributo": "DES",
+          "valor": 1,
+          "limite": 20,
+          "gatilho": "ao_adquirir",
+          "nota": "O livro fixa o atributo; não é escolha do jogador."
         },
         {
           "tipo": "conceder_sentido",
@@ -3842,9 +3811,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "talhador_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3868,7 +3838,7 @@
           "empilha": "soma",
           "beneficiario": "alvo_atingido",
           "frequencia": "uma_vez_por_turno",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "condicao": {
             "todas": [
               "acerto_com_dano_cortante"
@@ -3880,7 +3850,7 @@
           "alvo": "jogada_de_ataque",
           "modo": "desvantagem",
           "beneficiario": "alvo_atingido",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "condicao": {
             "todas": [
               "acerto_critico_com_dano_cortante"
@@ -3909,9 +3879,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "telecinetico_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -3994,9 +3965,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "telepatico_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4055,9 +4027,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "tocado_pelas_sombras_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4078,7 +4051,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a magia de Ilusão ou Necromancia",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "magias",
             "filtro": {
@@ -4135,9 +4108,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "tocado_por_fadas_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4158,7 +4132,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a magia de Adivinhação ou Encantamento",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "magias",
             "filtro": {
@@ -4215,9 +4189,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "treinamento_com_armas_marciais_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4274,9 +4249,10 @@
       "efeitos": [
         {
           "tipo": "escolha",
+          "id": "velocista_atributo",
           "rotulo": "Escolha o atributo a aumentar",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4338,7 +4314,7 @@
         {
           "tipo": "trocar_iniciativa",
           "com": "aliado_voluntario_no_combate",
-          "momento": "imediatamente_apos_jogar_iniciativa",
+          "gatilho": "imediatamente_apos_jogar_iniciativa",
           "condicao": {
             "todas": [
               {
@@ -4370,7 +4346,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 3 Ferramentas de Artesão",
           "quantidade": 3,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "chaves": [
@@ -4537,7 +4513,7 @@
         {
           "tipo": "rolar_novamente",
           "alvo": "dado_de_cura",
-          "gatilho": "resultado_1",
+          "gatilho": "resultado_natural_1",
           "usa_novo_resultado": true,
           "escopo": {
             "origem": [
@@ -4566,7 +4542,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 3 perícias ou ferramentas",
           "quantidade": 3,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "pericias",
             "todo_o_catalogo": true,
@@ -4595,13 +4571,13 @@
       "id": "iniciado_em_magia",
       "nome": "Iniciado em Magia",
       "categoria": "origem",
-      "pre_requisitos": [],
       "fonte": {
         "capitulo": 5,
         "pagina_livro": 201,
         "pagina_pdf": 205
       },
       "repetivel": true,
+      "pre_requisitos": [],
       "restricao_de_repeticao": "a cada vez você deve escolher uma lista de magias diferente",
       "descricao_curta": "Dois truques e uma magia de 1º círculo de uma lista à escolha (Clérigo, Druida ou Mago). A magia de 1º círculo fica sempre preparada e pode ser conjurada uma vez por Descanso Longo sem espaço de magia, ou com qualquer espaço que você tenha.",
       "efeitos": [
@@ -4610,7 +4586,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a lista de magias",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "listas_de_iniciado_em_magia",
             "todo_o_catalogo": true
@@ -4627,7 +4603,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o atributo de conjuração deste talento",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "atributos",
             "chaves": [
@@ -4648,7 +4624,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha dois truques",
           "quantidade": 2,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "reescolhivel": true,
           "reescolha_em": "cada_novo_nivel",
           "reescolha_quantidade": 1,
@@ -4672,7 +4648,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma magia de 1º círculo",
           "quantidade": 1,
-          "momento": "ao_adquirir_o_talento",
+          "gatilho": "ao_adquirir",
           "reescolhivel": true,
           "reescolha_em": "cada_novo_nivel",
           "depende_de": "iniciado_em_magia_lista",
@@ -4718,20 +4694,21 @@
           "id": "musico_instrumentos",
           "tipo": "escolha",
           "rotulo": "Escolha 3 Instrumentos Musicais",
-          "quantidade": 1,
-          "quantidade_de_instrumentos": 3,
-          "momento": "ao_adquirir_o_talento",
+          "quantidade": 3,
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "chaves": [
               "instrumento_musical"
             ],
-            "nota": "O capítulo 6 traz 'Instrumento Musical' como entrada genérica; a quantidade real está em quantidade_de_instrumentos."
+            "de_variantes": true,
+            "nota": "As dez variantes estão declaradas na entrada de Instrumento Musical (cap. 6, p. 221)."
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
             "categoria": "ferramenta",
-            "chave": "{{escolhido}}",
+            "chave": "instrumento_musical",
+            "variante": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           }
         },
@@ -4784,7 +4761,7 @@
             "recurso_id": "pontos_de_sorte",
             "quantidade": 1
           },
-          "momento": "ao_jogar_o_d20"
+          "gatilho": "ao_jogar_o_d20"
         },
         {
           "tipo": "vantagem",
@@ -4794,7 +4771,7 @@
             "recurso_id": "pontos_de_sorte",
             "quantidade": 1
           },
-          "momento": "ao_atacante_jogar_o_d20"
+          "gatilho": "ao_atacante_jogar_o_d20"
         }
       ],
       "fonte": {
@@ -4826,7 +4803,7 @@
         {
           "tipo": "rolar_novamente",
           "alvo": "dado_de_dano_do_ataque_desarmado",
-          "gatilho": "resultado_1",
+          "gatilho": "resultado_natural_1",
           "usa_novo_resultado": true
         },
         {

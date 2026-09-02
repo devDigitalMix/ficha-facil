@@ -39,9 +39,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -58,7 +58,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -175,9 +176,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -194,7 +195,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -294,9 +296,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -313,7 +315,8 @@
               "INT"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -336,7 +339,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de Ferramentas de Artesão",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
@@ -417,9 +420,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -436,7 +439,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -459,12 +463,13 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de Instrumento Musical",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
               "id": "instrumento_musical"
-            }
+            },
+            "de_variantes": true
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
@@ -472,7 +477,8 @@
             "chave": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           },
-          "define_variavel": "ferramenta_do_antecedente"
+          "define_variavel": "ferramenta_do_antecedente",
+          "nota": "A escolha é entre as VARIANTES da categoria (Dados, Xadrez-do-Dragão…), não entre categorias: é o mesmo padrão de `bardo_instrumentos`."
         }
       ],
       "equipamento": {
@@ -546,9 +552,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -565,7 +571,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -653,9 +660,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -672,7 +679,8 @@
               "INT"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -768,9 +776,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -787,7 +795,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -889,9 +898,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -908,7 +917,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1004,9 +1014,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1023,7 +1033,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1118,9 +1129,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1137,7 +1148,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1160,12 +1172,13 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de Kit de Jogos",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
               "id": "kit_de_jogos"
-            }
+            },
+            "de_variantes": true
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
@@ -1173,7 +1186,8 @@
             "chave": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           },
-          "define_variavel": "ferramenta_do_antecedente"
+          "define_variavel": "ferramenta_do_antecedente",
+          "nota": "A escolha é entre as VARIANTES da categoria (Dados, Xadrez-do-Dragão…), não entre categorias: é o mesmo padrão de `bardo_instrumentos`."
         }
       ],
       "equipamento": {
@@ -1256,9 +1270,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1275,7 +1289,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1380,9 +1395,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1399,7 +1414,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1490,9 +1506,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1509,7 +1525,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1598,9 +1615,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1617,7 +1634,8 @@
               "CAR"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1640,12 +1658,13 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de Kit de Jogos",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
               "id": "kit_de_jogos"
-            }
+            },
+            "de_variantes": true
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
@@ -1653,7 +1672,8 @@
             "chave": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           },
-          "define_variavel": "ferramenta_do_antecedente"
+          "define_variavel": "ferramenta_do_antecedente",
+          "nota": "A escolha é entre as VARIANTES da categoria (Dados, Xadrez-do-Dragão…), não entre categorias: é o mesmo padrão de `bardo_instrumentos`."
         }
       ],
       "equipamento": {
@@ -1720,9 +1740,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1739,7 +1759,8 @@
               "SAB"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1839,9 +1860,9 @@
           "tipo": "escolha",
           "rotulo": "Escolha como distribuir o aumento de atributo",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
-            "catalogo": "modos_de_aumento_de_atributo",
+            "catalogo": "modos_de_aumento_do_antecedente",
             "todo_o_catalogo": true
           },
           "atributos_disponiveis": [
@@ -1858,7 +1879,8 @@
               "CON"
             ],
             "limite": 20
-          }
+          },
+          "nota": "A regra do antecedente é 'um em 2 e outro em 1, ou os três em 1' (p. 177) — não a do talento Aumento no Valor de Atributo."
         },
         {
           "tipo": "conceder_talento",
@@ -1881,12 +1903,13 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de Kit de Jogos",
           "quantidade": 1,
-          "momento": "criacao",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
               "id": "kit_de_jogos"
-            }
+            },
+            "de_variantes": true
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
@@ -1894,7 +1917,8 @@
             "chave": "{{escolhido}}",
             "nivel_dominio": "proficiente"
           },
-          "define_variavel": "ferramenta_do_antecedente"
+          "define_variavel": "ferramenta_do_antecedente",
+          "nota": "A escolha é entre as VARIANTES da categoria (Dados, Xadrez-do-Dragão…), não entre categorias: é o mesmo padrão de `bardo_instrumentos`."
         }
       ],
       "equipamento": {

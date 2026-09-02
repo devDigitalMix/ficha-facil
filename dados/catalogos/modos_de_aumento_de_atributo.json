@@ -6,32 +6,18 @@
     "pagina_livro": 203,
     "pagina_pdf": 207
   },
-  "nota": "As duas formas de gastar o talento Aumento no Valor de Atributo (p. 203).",
+  "nota": "As duas formas de gastar o talento Aumento no Valor de Atributo (p. 203). Os efeitos moram em `efeitos_nomeados` do talento; estes itens são o vocabulário da escolha. NÃO servem para o antecedente, cuja regra é outra (ver modos_de_aumento_do_antecedente).",
   "total": 2,
   "itens": [
     {
       "id": "um_atributo_em_2",
       "nome": "Um atributo em +2",
-      "descricao_curta": "Aumenta um valor de atributo à sua escolha em 2, até o máximo de 20.",
-      "efeitos": [
-        {
-          "tipo": "efeito_narrativo",
-          "chave": "modo_um_atributo",
-          "texto": "Os efeitos reais estão em efeitos_nomeados do talento Aumento no Valor de Atributo; este item é a opção da escolha."
-        }
-      ]
+      "descricao_curta": "Aumenta um valor de atributo à sua escolha em 2, até o máximo de 20."
     },
     {
       "id": "dois_atributos_em_1",
       "nome": "Dois atributos em +1",
-      "descricao_curta": "Aumenta dois valores de atributo à sua escolha em 1 cada, até o máximo de 20.",
-      "efeitos": [
-        {
-          "tipo": "efeito_narrativo",
-          "chave": "modo_dois_atributos",
-          "texto": "Os efeitos reais estão em efeitos_nomeados do talento Aumento no Valor de Atributo; este item é a opção da escolha."
-        }
-      ]
+      "descricao_curta": "Aumenta dois valores de atributo à sua escolha em 1 cada, até o máximo de 20."
     }
   ]
 }

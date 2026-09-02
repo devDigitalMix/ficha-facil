@@ -77,7 +77,7 @@
           ],
           "tipo_dano": "radiante",
           "alvo": "criatura_a_ate_3m",
-          "gatilho": "fim_de_cada_turno_seu"
+          "gatilho": "fim_do_seu_turno"
         }
       ],
       "tipo_de_dano_adicional": "radiante"

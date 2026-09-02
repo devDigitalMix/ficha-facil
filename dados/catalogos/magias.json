@@ -3838,14 +3838,14 @@
         "pagina_pdf": 327
       },
       "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
-      "nivel": 1,
-      "escola": "evocacao",
       "listas": [
         "clerigo"
       ],
+      "escola": "evocacao",
       "concentracao": false,
       "ritual": false,
       "componente_material_especifico": false,
+      "nivel": 1,
       "descricao_curta": "Ataque mágico à distância: 4d6 de dano Radiante, e o próximo ataque contra o alvo até o fim do seu próximo turno tem Vantagem.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
@@ -3954,7 +3954,7 @@
         "texto": "Reação, que você realiza ao receber",
         "ritual": false,
         "tipo": "reacao",
-        "gatilho": "ao receber"
+        "gatilho": "sofrer_dano_de_criatura_a_ate_18m"
       },
       "alcance": {
         "texto": "18 metros",
@@ -4838,7 +4838,12 @@
           ],
           "tambem_aumenta_os_atuais": true,
           "beneficiario": "ate_3_criaturas",
-          "duracao": "8 horas",
+          "duracao": {
+            "quantidade": [
+              "8"
+            ],
+            "unidade": "hora"
+          },
           "aprimoramento_por_circulo_acima": [
             "5"
           ]
@@ -10428,16 +10433,16 @@
         "pagina_pdf": 278
       },
       "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
-      "nivel": 4,
-      "escola": "encantamento",
       "listas": [
         "druida",
         "feiticeiro",
         "guardiao"
       ],
+      "escola": "encantamento",
       "concentracao": true,
       "ritual": false,
       "componente_material_especifico": false,
+      "nivel": 4,
       "descricao_curta": "Uma Fera à vista faz salvaguarda de Sabedoria ou fica Enfeitiçada, com vínculo telepático: você comanda e ela obedece; gastando a ação, controla o turno dela por inteiro. Tem Vantagem na salvaguarda se estiver lutando com vocês, e repete a cada dano sofrido.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
@@ -10792,10 +10797,10 @@
       "salvaguarda": {
         "atributo": "CON"
       },
-      "detalhada": true,
       "condicoes_citadas": [
         "cego"
-      ]
+      ],
+      "detalhada": true
     },
     {
       "id": "inseto_gigante",
@@ -14369,7 +14374,12 @@
           ],
           "tambem_aumenta_os_atuais": true,
           "beneficiario": "ate_12_criaturas_que_participam",
-          "duracao": "24 horas"
+          "duracao": {
+            "quantidade": [
+              "24"
+            ],
+            "unidade": "hora"
+          }
         }
       }
     },
@@ -15420,15 +15430,15 @@
         "concentracao": false,
         "tipo": "instantanea"
       },
+      "dano": {
+        "formula_dado": "14d6",
+        "tipo_dano": "necrotico"
+      },
       "salvaguarda": {
         "atributo": "CON",
         "em_sucesso": "metade_do_dano"
       },
       "detalhada": true,
-      "dano": {
-        "formula_dado": "14d6",
-        "tipo_dano": "necrotico"
-      },
       "pontos_de_vida": {
         "maximos": {
           "reducao": [
@@ -18493,11 +18503,11 @@
         "concentracao": false,
         "tipo": "instantanea"
       },
-      "detalhada": true,
       "dano": {
         "formula_dado": "12d12",
         "tipo_dano": "psiquico"
-      }
+      },
+      "detalhada": true
     },
     {
       "id": "palavra_de_poder_salvar",
@@ -19822,7 +19832,7 @@
             "mod:atributo_de_conjuracao"
           ],
           "beneficiario": "alvo",
-          "momento": "inicio_de_cada_turno_do_alvo"
+          "gatilho": "inicio_de_cada_turno_do_alvo"
         }
       }
     },

@@ -481,20 +481,15 @@ CLASSE = collections.OrderedDict([
                                        "chave": "{{escolhido}}",
                                        "nivel_dominio": "proficiente"}},
         {"id": "bardo_instrumentos", "tipo": "escolha",
-         "rotulo": "Escolha 3 instrumentos musicais", "quantidade": 1,
-         "quantidade_de_instrumentos": 3,
+         "rotulo": "Escolha 3 instrumentos musicais", "quantidade": 3,
          "de": {"catalogo": "ferramentas", "chaves": ["instrumento_musical"],
-                "nota": "O livro pede TRÊS instrumentos (p. 60); o capítulo 6 traz "
-                        "'Instrumento Musical' como uma entrada genérica (p. 222), sem "
-                        "listar os instrumentos um a um. A quantidade real está em "
-                        "quantidade_de_instrumentos."},
-         "revisao": {"status": "duvida",
-                     "notas": "O livro não enumera os instrumentos; se você quiser a "
-                              "lista (alaúde, tambor, flauta…), ela teria de vir de "
-                              "outra fonte."},
+                "de_variantes": True,
+                "nota": "As dez variantes estão declaradas na própria entrada de "
+                        "Instrumento Musical (cap. 6, p. 221), com custo e peso."},
          "efeito_por_item_escolhido": {"tipo": "conceder_proficiencia",
                                        "categoria": "ferramenta",
-                                       "chave": "{{escolhido}}",
+                                       "chave": "instrumento_musical",
+                                       "variante": "{{escolhido}}",
                                        "nivel_dominio": "proficiente"}},
     ]),
     ("treinamento_com_armadura", ["leve"]),

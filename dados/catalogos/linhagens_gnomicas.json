@@ -40,7 +40,12 @@
           "classe_de_armadura": 5,
           "pontos_de_vida": 1,
           "maximo_simultaneo": 3,
-          "duracao": "8 horas",
+          "duracao": {
+            "quantidade": [
+              "8"
+            ],
+            "unidade": "hora"
+          },
           "desmontagem": {
             "custo": "acao",
             "acao_id": "usar_objeto"

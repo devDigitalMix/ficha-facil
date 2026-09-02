@@ -23,7 +23,7 @@
           ],
           "unidade": "metros",
           "empilha": "substitui",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "limite": {
             "por_alvo": 1,
             "resolucao": "mais_recente_prevalece"
@@ -85,14 +85,14 @@
           "alvo": "salvaguarda",
           "modo": "desvantagem",
           "beneficiario": "alvo",
-          "duracao": "proxima_salvaguarda_do_alvo"
+          "duracao": "ate_a_proxima_salvaguarda_do_beneficiario"
         },
         {
           "tipo": "impedir",
           "alvo": "reacao",
           "beneficiario": "alvo",
           "restrito_a": "ataque_de_oportunidade",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "fonte": {
@@ -115,7 +115,7 @@
             "5"
           ],
           "beneficiario": "proxima_criatura_que_atacar_o_alvo",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "limite": {
             "por_jogada": 1,
             "nota": "Uma jogada só recebe um bônus de Golpe Destruidor por vez."

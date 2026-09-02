@@ -14,6 +14,9 @@ CONFERIR À MÃO, não um erro — o script aponta onde olhar.
 
 Uso: python3 auditar_descricoes.py [--pdf CAMINHO]
 """
+import os, sys
+# os parsers moram em geradores/; a raiz só guarda as ferramentas
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'geradores'))
 import json, re, sys, unicodedata, warnings
 
 warnings.filterwarnings('ignore')

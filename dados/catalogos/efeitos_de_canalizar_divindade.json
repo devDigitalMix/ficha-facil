@@ -83,7 +83,12 @@
               "cd_para_evitar_sua_magia"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "alvo_sofre_dano"
@@ -108,7 +113,12 @@
               "cd_para_evitar_sua_magia"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "alvo_sofre_dano"
@@ -142,7 +152,12 @@
           "texto": "Revela localização e tipo de Celestiais, Ínferos e Mortos-Vivos a até 18 m, e lugares ou objetos consagrados ou profanados como na magia Consagrar.",
           "custo": "acao_bonus",
           "alcance_m": 18,
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "tipos_de_criatura": [
             "celestial",
             "infero",
@@ -189,7 +204,12 @@
               "prof"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "alvo_sofre_dano"
@@ -206,7 +226,7 @@
           "nota": "Amedrontado por esta característica, o alvo escolhe UMA por turno: mover-se, executar uma ação ou executar uma Ação Bônus.",
           "condicao": {
             "todas": [
-              "amedrontado_por:repudiar_inimigos"
+              "alvo_amedrontado_por:repudiar_inimigos"
             ]
           }
         }
@@ -273,14 +293,24 @@
             "acrobacia"
           ],
           "custo": "acao_bonus",
-          "duracao": "1 hora"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "hora"
+          }
         },
         {
           "tipo": "efeito_narrativo",
           "chave": "aumentar_salto",
           "texto": "Saltos Longo e em Altura aumentam em 3 m; a distância adicional custa movimento padrão.",
           "distancia_adicional_m": 3,
-          "duracao": "1 hora"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "hora"
+          }
         }
       ],
       "subclasse": "juramento_da_gloria",
@@ -309,7 +339,7 @@
           "distribuivel": true,
           "alcance_m": 9,
           "inclui_voce": true,
-          "gatilho": "imediatamente_apos_conjurar:destruicao_divina"
+          "gatilho": "conjurar:destruicao_divina"
         }
       ],
       "subclasse": "juramento_da_gloria",
@@ -331,8 +361,13 @@
           "alvo": "jogada_de_ataque",
           "modo": "vantagem",
           "alcance_m": 9,
-          "duracao": "1 minuto",
-          "gatilho": "acao_atacar",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
+          "gatilho": "executar_acao:atacar",
           "encerra_se": [
             {
               "gatilho": "usar_a_caracteristica_de_novo"
@@ -376,7 +411,12 @@
             "repete": "fim_de_cada_turno_do_alvo",
             "em_sucesso": "encerra"
           },
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "subclasse": "juramento_dos_anciaos",

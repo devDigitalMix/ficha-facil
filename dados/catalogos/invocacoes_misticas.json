@@ -44,7 +44,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um truque de Bruxo que cause dano",
           "quantidade": 1,
-          "momento": "ao_adquirir",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "magias",
             "filtro": {
@@ -261,7 +261,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um truque de Bruxo que cause dano",
           "quantidade": 1,
-          "momento": "ao_adquirir",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "magias",
             "filtro": {
@@ -317,7 +317,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um talento de Origem",
           "quantidade": 1,
-          "momento": "ao_adquirir",
+          "gatilho": "ao_adquirir",
           "de": {
             "catalogo": "talentos",
             "filtro": {
@@ -542,7 +542,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha três truques de qualquer lista",
           "quantidade": 3,
-          "momento": "ao_conjurar_o_livro",
+          "gatilho": "ao_conjurar_o_livro",
           "reescolhivel": true,
           "reescolha_em": "descanso",
           "de": {
@@ -563,7 +563,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha duas magias de 1º círculo com marcador Ritual",
           "quantidade": 2,
-          "momento": "ao_conjurar_o_livro",
+          "gatilho": "ao_conjurar_o_livro",
           "reescolhivel": true,
           "reescolha_em": "descanso",
           "de": {
@@ -729,7 +729,7 @@
           "beneficiario": "alvo",
           "condicao": {
             "todas": [
-              "alvo_enorme_ou_menor"
+              "alvo_de_tamanho_ate:enorme"
             ]
           }
         }

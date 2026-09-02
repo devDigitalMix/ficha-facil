@@ -28,7 +28,7 @@
             ],
             "tipo_dano": "radiante"
           },
-          "momento": "ao_ativar_e_nos_turnos_seguintes"
+          "gatilho": "ao_ativar_e_nos_turnos_seguintes"
         }
       ],
       "fonte": {
@@ -59,7 +59,7 @@
           "minimo": 10,
           "condicao": {
             "todas": [
-              "para_manter_concentracao"
+              "manter_concentracao"
             ]
           }
         }

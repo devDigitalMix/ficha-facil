@@ -14,7 +14,7 @@
       "nome": "Magia Acelerada",
       "custo_em_pontos_de_feiticaria": 2,
       "descricao_curta": "Magia com tempo de conjuração de uma ação passa a custar uma Ação Bônus nesta conjuração. Não vale se já conjurou magia de 1º círculo ou superior neste turno, nem permite conjurar outra depois no mesmo turno.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_tempo_de_conjuracao",
@@ -41,7 +41,7 @@
       "nome": "Magia Agravada",
       "custo_em_pontos_de_feiticaria": 2,
       "descricao_curta": "Um alvo da magia tem Desvantagem nas salvaguardas contra ela.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "vantagem",
@@ -66,7 +66,7 @@
       "nome": "Magia Buscadora",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Ao errar uma jogada de ataque com magia, joga o d20 de novo e usa o novo resultado. Pode ser usada mesmo já tendo usado outra opção de Metamagia nesta conjuração.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "rolar_novamente",
@@ -88,7 +88,7 @@
       "nome": "Magia Cautelosa",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Escolhe até seu modificador de Carisma criaturas (mínimo 1) entre as que a magia obriga a fazer salvaguarda: elas passam automaticamente e não sofrem dano nem quando o sucesso normalmente daria metade.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_resultado_de_salvaguarda",
@@ -123,7 +123,7 @@
       "nome": "Magia Distante",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Dobra o alcance de uma magia com alcance de pelo menos 1,5 m; ou, se o alcance for Toque, ele vira 9 metros.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_alcance_da_magia",
@@ -153,7 +153,7 @@
       "nome": "Magia Duplicada",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Aumenta em 1 o círculo efetivo de uma magia que, com espaço superior, atinge uma criatura adicional.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_circulo_efetivo",
@@ -175,7 +175,7 @@
       "nome": "Magia Persistente",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Dobra a duração de uma magia de 1 minuto ou mais, até o máximo de 24 horas. Se ela exigir Concentração, você tem Vantagem nas salvaguardas para mantê-la.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_duracao_da_magia",
@@ -209,7 +209,7 @@
       "nome": "Magia Potencializada",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Joga novamente até seu modificador de Carisma dados de dano da magia (mínimo 1) e usa os novos resultados. Pode ser usada mesmo já tendo usado outra Metamagia.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "rolar_novamente",
@@ -239,7 +239,7 @@
       "nome": "Magia Sutil",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Conjura sem componentes Verbais, Somáticos ou Materiais — exceto material consumido pela magia ou com custo detalhado nela.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "dispensar_componentes",
@@ -266,7 +266,7 @@
       "nome": "Magia Transmutada",
       "custo_em_pontos_de_feiticaria": 1,
       "descricao_curta": "Troca o tipo de dano da magia por outro da lista: Ácido, Elétrico, Gélido, Ígneo, Trovejante ou Venenoso.",
-      "momento": "ao_conjurar",
+      "gatilho": "ao_conjurar",
       "efeitos": [
         {
           "tipo": "alterar_tipo_de_dano_da_magia",

@@ -1,0 +1,179 @@
+{
+  "id": "barbaro-5",
+  "nome": "Torvar, Bárbaro de nível 5 (Trilha da Árvore do Mundo)",
+  "por_que_existe": "Aqui as camadas se empilham. A CA tem OUTRA fórmula concorrente (10 + Destreza + Constituição, e esta permite Escudo). Os Pontos de Vida somam cinco níveis, não um. O Aumento no Valor de Atributo do nível 4 mexe num atributo depois da criação. E a Fúria liga um punhado de efeitos condicionais de uma vez — por isso a ficha vem em duas versões, com e sem Fúria: o motor tem de dar respostas diferentes para o mesmo personagem.",
+  "construcao": {
+    "especie": "humano",
+    "antecedente": "soldado",
+    "niveis": [
+      {
+        "classe": "barbaro",
+        "nivel": 5
+      }
+    ],
+    "atributos_base": {
+      "FOR": 15,
+      "DES": 14,
+      "CON": 13,
+      "INT": 8,
+      "SAB": 12,
+      "CAR": 10
+    },
+    "escolhas": {
+      "soldado_aumento": {
+        "escolhido": "um_em_2_e_outro_em_1",
+        "distribuicao": {
+          "FOR": 2,
+          "CON": 1
+        }
+      },
+      "barbaro_pericias_iniciais": [
+        "atletismo",
+        "percepcao"
+      ],
+      "barbaro_escolha_de_subclasse": "trilha_da_arvore_do_mundo",
+      "asi_escolha_de_talento": "aumento_no_valor_de_atributo",
+      "avatributo_modo": "um_atributo_em_2",
+      "avatributo_um": "FOR"
+    },
+    "equipamento_equipado": [
+      "machado_grande"
+    ],
+    "nota_da_subclasse": "Subclasse e talento entram como escolha, não como campo próprio: no dado eles SÃO escolhas, e o efeito que produzem (conceder_subclasse, conceder_talento) é quem puxa a entidade inteira."
+  },
+  "estado_sem_furia": {
+    "predicados_ativos": [],
+    "portas_abertas": []
+  },
+  "estado_em_furia": {
+    "predicados_ativos": [
+      "ativo:furia"
+    ],
+    "portas_abertas": [
+      "furia"
+    ]
+  },
+  "esperado": {
+    "modificadores": {
+      "FOR": 4,
+      "DES": 2,
+      "CON": 2,
+      "INT": -1,
+      "SAB": 1,
+      "CAR": 0
+    },
+    "bonus_de_proficiencia": 3,
+    "classe_de_armadura": {
+      "valor": 14,
+      "proveniencia": "CA 14 = 10 (base) + 2 (Destreza) + 2 (Constituição)",
+      "calculo_de_base_usado": "ca_defesa_sem_armadura_barbaro",
+      "nota": "O cálculo padrão daria 12. A Defesa sem Armadura do Bárbaro, diferente da do Monge, ainda deixa usar Escudo — mas este Torvar não usa."
+    },
+    "pontos_de_vida_maximos": {
+      "valor": 50,
+      "proveniencia": "PV 50 = 14 no nível 1 (12 do d12 + 2 de Constituição) + 36 nos níveis 2 a 5 (4 × (7 + 2))",
+      "nota": "O 7 é o valor fixo da tabela Pontos de Vida Fixos por Classe, não a média deduzida do d12."
+    },
+    "iniciativa": {
+      "valor": 2,
+      "dados": [
+        "1d20"
+      ]
+    },
+    "percepcao_passiva": {
+      "valor": 14,
+      "nota": "10 + 1 de Sabedoria + 3 de Bônus de Proficiência, porque escolheu Percepção."
+    },
+    "salvaguardas": {
+      "FOR": 7,
+      "DES": 2,
+      "CON": 5,
+      "INT": -1,
+      "SAB": 1,
+      "CAR": 0
+    },
+    "testes_de_pericia": {
+      "atletismo": 7,
+      "intimidacao": 3,
+      "percepcao": 4,
+      "furtividade": 2,
+      "arcanismo": -1
+    },
+    "deslocamento_m": 12,
+    "nota_do_deslocamento": "9 de base + 3 de Movimento Rápido, que vale enquanto não estiver de armadura Pesada.",
+    "ataques": [
+      {
+        "arma": "ataque_desarmado",
+        "atributo": "FOR",
+        "proficiente": true,
+        "jogada": 7,
+        "dano_valor": 5,
+        "dano_dados": [],
+        "proveniencia": "+7 = 4 (Força) + 3 (BP); dano 1 + 4 de Força (Ap. C, p. 361)"
+      },
+      {
+        "arma": "machado_grande",
+        "atributo": "FOR",
+        "proficiente": true,
+        "jogada": 7,
+        "dano_valor": 4,
+        "dano_dados": [
+          "1d12"
+        ],
+        "proveniencia": "+7 = 4 (Força) + 3 (Bônus de Proficiência); dano 1d12 + 4"
+      }
+    ],
+    "em_furia": {
+      "resistencias_a_dano": [
+        "contundente",
+        "cortante",
+        "perfurante"
+      ],
+      "vantagem_em": [
+        "teste_de_atributo:FOR",
+        "salvaguarda:FOR"
+      ],
+      "impede": [
+        "concentracao"
+      ],
+      "pontos_de_vida_temporarios_ao_entrar": {
+        "valor": 5,
+        "proveniencia": "igual ao nível de Bárbaro (Surto de Vitalidade, Trilha da Árvore do Mundo)"
+      }
+    },
+    "escolhas_em_aberto": [
+      "humano_habil",
+      "humano_versatil",
+      "soldado_ferramenta",
+      "barbaro_maestrias",
+      "barbaro_pericia_extra"
+    ],
+    "nota_das_escolhas_em_aberto": "Cinco escolhas em aberto num Bárbaro de nível 5 — nenhuma muda a ficha acima, e todas aparecem no checklist. As maestrias em arma e a perícia extra do Conhecimento Primordial são exatamente o tipo de coisa que se esquece ao subir de nível."
+  },
+  "fonte": [
+    {
+      "o_que": "Traços Básicos de Bárbaro (d12, salvaguardas FOR e CON) e Fúria",
+      "pagina_livro": 51
+    },
+    {
+      "o_que": "Defesa sem Armadura do Bárbaro",
+      "pagina_livro": 51
+    },
+    {
+      "o_que": "Ataque Extra e Movimento Rápido (nível 5)",
+      "pagina_livro": 52
+    },
+    {
+      "o_que": "Vitalidade da Árvore / Surto de Vitalidade (subclasse, nível 3)",
+      "pagina_livro": 54
+    },
+    {
+      "o_que": "Pontos de Vida Fixos por Classe",
+      "pagina_livro": 42
+    },
+    {
+      "o_que": "Classe de Armadura: só um cálculo de base por vez",
+      "pagina_livro": 363
+    }
+  ]
+}

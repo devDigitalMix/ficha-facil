@@ -1,0 +1,42 @@
+{
+  "catalogo": "modos_de_aumento_do_antecedente",
+  "nome": "Modos do Aumento de Atributo do Antecedente",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 177,
+    "pagina_pdf": 181
+  },
+  "nota": "A regra do antecedente (p. 177) não é a do talento Aumento no Valor de Atributo (p. 203): aqui são TRÊS atributos, e a segunda opção aumenta os três em 1. O catálogo do talento não tem esse modo.",
+  "total": 2,
+  "itens": [
+    {
+      "id": "um_em_2_e_outro_em_1",
+      "nome": "Um em +2 e outro em +1",
+      "descricao_curta": "Aumenta um dos três valores de atributo em 2 e outro em 1. Nenhum passa de 20.",
+      "aumentos": [
+        2,
+        1
+      ],
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 177,
+        "pagina_pdf": 181
+      }
+    },
+    {
+      "id": "todos_os_tres_em_1",
+      "nome": "Todos os três em +1",
+      "descricao_curta": "Aumenta cada um dos três valores de atributo em 1. Nenhum passa de 20.",
+      "aumentos": [
+        1,
+        1,
+        1
+      ],
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 177,
+        "pagina_pdf": 181
+      }
+    }
+  ]
+}

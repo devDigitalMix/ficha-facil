@@ -101,18 +101,36 @@ ART = [
 OUTRAS = [
  ("ferramentas_de_ladrao","Ferramentas de Ladrão","DES",25,0.5,None),
  ("ferramentas_de_navegador","Ferramentas de Navegador","SAB",25,1.0,None),
+ # As variantes vêm da linha "Variantes:" da própria entrada (p. 221), com custo e
+ # peso impressos. Antes eram só o nome, e por isso o Bardo e o Músico não tinham o que
+ # escolher — a dúvida "o livro não enumera os instrumentos" era falsa: ele enumera aqui.
  ("instrumento_musical","Instrumento Musical","CAR",None,None,
-  ["Alaúde","Flauta","Flauta de Pan","Gaita de Foles","Lira","Oboé","Tambor","Trombeta","Violino","Xilofone"]),
+  [("alaude","Alaúde",35,"po",1.0), ("flauta","Flauta",2,"po",0.5),
+   ("flauta_de_pan","Flauta de Pan",12,"po",1.0), ("gaita_de_foles","Gaita de Foles",30,"po",3.0),
+   ("lira","Lira",30,"po",1.0), ("obo","Oboé",2,"po",0.5),
+   ("tambor","Tambor",6,"po",1.5), ("trombeta","Trombeta",3,"po",1.0),
+   ("violino","Violino",30,"po",0.5), ("xilofone","Xilofone",25,"po",5.0)]),
  ("kit_de_disfarce","Kit de Disfarce","CAR",25,1.5,None),
  ("kit_de_falsificacao","Kit de Falsificação","DES",15,2.5,None),
  ("kit_de_herbalismo","Kit de Herbalismo","INT",5,1.5,None),
- ("kit_de_jogos","Kit de Jogos","SAB",None,None,["Dados","Xadrez-do-Dragão","Baralho","Conjunto do Jogo dos Três Dragões"]),
+ # O livro imprime o custo das variantes do Kit de Jogos, mas não o peso (p. 221).
+ ("kit_de_jogos","Kit de Jogos","SAB",None,None,
+  [("dados","Dados",1,"pp",None), ("xadrez_do_dragao","Xadrez-do-Dragão",1,"po",None),
+   ("baralho","Baralho",5,"pp",None),
+   ("conjunto_do_jogo_dos_tres_dragoes","Conjunto do Jogo dos Três Dragões",1,"po",None)]),
  ("kit_de_veneno","Kit de Veneno","INT",50,1.0,None)]
 itens = [{"id":i,"nome":n,"grupo":"artesao","atributo":a,"custo_po":c,"peso_kg":p,
           "proficiencia_separada":True,"fonte":f(6,220)} for i,n,a,c,p in ART]
 for i,n,a,c,p,v in OUTRAS:
     d = {"id":i,"nome":n,"grupo":"outras","atributo":a,"custo_po":c,"peso_kg":p,"fonte":f(6,221)}
-    if v: d["variantes"] = v; d["nota"] = "Custo e peso variam conforme a variante."
+    if v:
+        FATOR = {"po": 100, "pp": 10, "pc": 1}
+        d["variantes"] = [
+            {"id": vid, "nome": vnome,
+             "custo": {"valor": val, "moeda": moeda, "em_pc": val * FATOR[moeda]},
+             "peso_kg": peso}
+            for vid, vnome, val, moeda, peso in v]
+        d["nota"] = "Custo e peso variam conforme a variante."
     itens.append(d)
 w('catalogos/ferramentas.json', {"catalogo":"ferramentas","nome":"Ferramentas","fonte":f(6,220),
   "total":len(itens),"itens":itens,

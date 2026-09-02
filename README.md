@@ -9,11 +9,19 @@ uma regra sem abrir o livro, guardar o histórico do personagem, consultar rápi
 
 ## Estado
 
-A extração está **completa**: capítulos 3 a 7 do livro, com 12 classes, 48 subclasses, 16
-antecedentes, 10 espécies, 391 magias, 170 itens e 75 talentos. Fora do escopo por decisão:
-criaturas (Apêndice B), multiclasse e o Apêndice A.
+O vocabulário de runtime — predicado, gatilho, duração, custo — é **lista fechada** desde a
+fase 13, em `dados/vocabulario_de_runtime.json`: token que ninguém declarou é erro de build.
+É o que impede o mesmo efeito de existir escrito de dois jeitos.
 
-O próximo passo não é mais o PDF — é o motor de efeitos. Ver `PLANO-APP.md`.
+A extração está **completa**: capítulos 3 a 7 e o Apêndice B, com 12 classes, 48 subclasses, 16
+antecedentes, 10 espécies, 391 magias, 170 itens, 75 talentos e 51 blocos de estatísticas de
+criatura. Fora do escopo por decisão: multiclasse e o Apêndice A.
+
+O motor está em `motor/` — TypeScript, biblioteca pura, zero dependências. Uma chamada,
+`montar(construcao, estado)`, devolve a ficha com proveniência, o checklist de escolhas em
+aberto **com as opções**, e as queixas do que foi escolhido errado. Fecha contra três
+personagens de ouro: um Monge 1, um Bárbaro 5 e uma Clériga 5 — com armadura, escudo, armas e
+magia. Falta o backend. Ver `PLANO-MOTOR.md` (como) e `PLANO-APP.md` (o quê).
 
 ## Por onde começar a ler
 
@@ -21,9 +29,11 @@ O próximo passo não é mais o PDF — é o motor de efeitos. Ver `PLANO-APP.md
 |---|---|
 | `esquema-v1.md` | **o contrato.** Como o dado é modelado e por quê. Comece aqui. |
 | `PLANO-APP.md` | o que o app vai ser, em fases |
+| `PLANO-MOTOR.md` | como o motor de efeitos e o backend vão funcionar — ler antes de escrever código |
+| `motor/README.md` | o motor em si: como rodar, o que já existe, os personagens de ouro |
 | `PENDENCIAS.md` | registro vivo: o que ficou de fora, o que depende de decisão, divergências do livro |
 | `BACKLOG.md` | dívida técnica, escrita para quem for consertar |
-| `revisao-fase*.md` | um por lote de extração: o que entrou, o que foi decidido, o que ficou aberto |
+| `revisoes/` | um arquivo por fase: o que entrou, o que foi decidido, o que ficou aberto |
 
 ## A ideia central
 
@@ -40,9 +50,19 @@ build**, não bug silencioso.
 ```bash
 pip install -U "jsonschema>=4" --break-system-packages   # a do sistema é 3.2.0 e não serve
 
-python3 validar.py            # semântica: referências, filtros, coerência entre entidades
-python3 checar_schema.py      # forma: campos obrigatórios, tipos, padrões de id
-python3 teste_negativo_*.py   # planta defeitos e cobra que o validador os pegue
+python3 testes/rodar_todos.py           # a conferência inteira, na ordem que faz sentido
+python3 testes/rodar_todos.py --rapido  # sem a reconstrução, que é a demorada
+```
+
+São 14 passos: forma, semântica, derivação, auditoria das descrições, os oito testes negativos, o
+motor e a reconstrução. Cada um também roda sozinho:
+
+```bash
+python3 validar.py                    # semântica: referências, filtros, coerência entre entidades
+python3 checar_schema.py              # forma: campos obrigatórios, tipos, padrões de id
+python3 testes/teste_negativo_*.py    # planta defeitos e cobra que o validador os pegue
+python3 inventariar_vocabulario.py    # o vocabulário de runtime: o que existe e onde
+cd motor && npm run teste             # o motor: fórmula, personagens de ouro, negativo
 ```
 
 Os dois primeiros precisam sair limpos. Os testes negativos são o que dá sentido ao "0 erros": sem
@@ -69,6 +89,8 @@ hora desfaz correção posterior. Por isso não se roda gerador antigo isolado c
   globalmente (ver `esquema-v1.md` §4.0).
 - A página do PDF é a do livro **+ 4**.
 - `intermediarios/` é texto extraído do PDF: derivado, regenerável, fora do git.
+- A raiz guarda só ferramenta e documento de entrada. O resto mora em pasta:
+  `geradores/` (a fonte do dado), `dados/` (a saída), `schema/`, `testes/`, `revisoes/`, `motor/`.
 
 ## O PDF
 

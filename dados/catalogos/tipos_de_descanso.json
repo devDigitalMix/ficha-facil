@@ -11,7 +11,12 @@
     {
       "id": "descanso_curto",
       "nome": "Descanso Curto",
-      "duracao": "1 hora",
+      "duracao": {
+        "quantidade": [
+          "1"
+        ],
+        "unidade": "hora"
+      },
       "fonte": {
         "capitulo": "ap_c",
         "pagina_livro": 365,
@@ -26,7 +31,12 @@
     {
       "id": "descanso_longo",
       "nome": "Descanso Longo",
-      "duracao": "8 horas",
+      "duracao": {
+        "quantidade": [
+          "8"
+        ],
+        "unidade": "hora"
+      },
       "fonte": {
         "capitulo": "ap_c",
         "pagina_livro": 366,

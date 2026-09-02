@@ -1,0 +1,208 @@
+{
+  "id": "clerigo-5",
+  "nome": "Irmã Vesna, Clériga de nível 5 (Domínio da Vida)",
+  "por_que_existe": "Os dois primeiros goldens não conjuram, e conjurar é metade do jogo. Este cobre o que eles não tocavam: espaços por círculo, magias preparadas, CD para evitar a magia, jogada de ataque mágico, e o filtro 'de um círculo para o qual você possui espaços' — que até a fase 16 voltava como não avaliado. E ele é o único que exercita, na ficha inteira, a melhoria de característica: Fulminar Mortos-Vivos (nível 5) melhora o Canalizar Divindade (nível 2), e o efeito de dano dela tem de incidir SEM porta nenhuma. Era esse o defeito que as portas escondiam.",
+  "construcao": {
+    "especie": "humano",
+    "antecedente": "acolito",
+    "niveis": [
+      {
+        "classe": "clerigo",
+        "nivel": 5
+      }
+    ],
+    "atributos_base": {
+      "FOR": 12,
+      "DES": 13,
+      "CON": 14,
+      "INT": 10,
+      "SAB": 15,
+      "CAR": 8
+    },
+    "escolhas": {
+      "acolito_aumento": {
+        "escolhido": "um_em_2_e_outro_em_1",
+        "distribuicao": {
+          "SAB": 2,
+          "INT": 1
+        }
+      },
+      "humano_habil": "percepcao",
+      "humano_versatil": "sortudo",
+      "iniciado_em_magia_atributo": "SAB",
+      "iniciado_em_magia_truques": [
+        "orientacao",
+        "taumaturgia"
+      ],
+      "iniciado_em_magia_magia_1": "bencao",
+      "clerigo_pericias_iniciais": [
+        "medicina",
+        "persuasao"
+      ],
+      "clerigo_ordem_divina": "protetor",
+      "clerigo_truques": [
+        "chama_sagrada",
+        "luz",
+        "acudir_os_moribundos",
+        "resistencia"
+      ],
+      "clerigo_preparadas": [
+        "curar_ferimentos",
+        "palavra_curativa",
+        "escudo_da_fe",
+        "raio_guia",
+        "santuario",
+        "arma_espiritual",
+        "aprimorar_atributo",
+        "restauracao_menor",
+        "dissipar_magia"
+      ],
+      "clerigo_escolha_de_subclasse": "dominio_da_vida",
+      "asi_escolha_de_talento": "aumento_no_valor_de_atributo",
+      "avatributo_modo": "dois_atributos_em_1",
+      "avatributo_dois": [
+        "SAB",
+        "CON"
+      ]
+    },
+    "equipamento_equipado": [
+      "cota_de_malha_parcial",
+      "escudo",
+      "maca"
+    ],
+    "nota_do_equipamento": "Cota de Malha Parcial e Escudo: ela tem treinamento com armadura Média e Escudo pela Ordem Divina Protetora. É o único golden que exercita CA com armadura — base da peça mais Destreza ATÉ O TETO dela — e o único que põe um Escudo na conta. A Maça é arma Simples, e o Clérigo é proficiente com Simples; serve para provar que a proficiência sai do filtro da classe e não de uma lista de armas."
+  },
+  "estado": {
+    "predicados_ativos": [],
+    "portas_abertas": []
+  },
+  "esperado": {
+    "modificadores": {
+      "FOR": 1,
+      "DES": 1,
+      "CON": 2,
+      "INT": 0,
+      "SAB": 4,
+      "CAR": -1
+    },
+    "bonus_de_proficiencia": 3,
+    "atributos_finais": {
+      "FOR": 12,
+      "DES": 13,
+      "CON": 15,
+      "INT": 11,
+      "SAB": 18,
+      "CAR": 8
+    },
+    "proveniencia_dos_atributos": "Sabedoria 18 = 15 de base + 2 do Acólito + 1 do Aumento no Valor de Atributo do nível 4. Constituição 15 = 14 + 1 do mesmo Aumento. Inteligência 11 = 10 + 1 do Acólito.",
+    "classe_de_armadura": {
+      "valor": 16,
+      "proveniencia": "CA 16 = 13 (Cota de Malha Parcial) + 1 (Destreza, com teto 2) + 2 (Escudo)",
+      "calculo_de_base_usado": "ca_cota_de_malha_parcial",
+      "nota": "O cálculo padrão daria 11. A armadura CONCORRE com ele, não soma — e o Escudo soma por fora, porque ele não é cálculo de base: é o `soma_se segurando:escudo` da fórmula de CA (p. 363), que até esta fase nunca ficava verdadeiro."
+    },
+    "pontos_de_vida_maximos": {
+      "valor": 38,
+      "proveniencia": "PV 38 = 10 no nível 1 (8 do d8 + 2 de Constituição) + 28 nos níveis 2 a 5 (4 × (5 + 2))"
+    },
+    "iniciativa": {
+      "valor": 1,
+      "dados": [
+        "1d20"
+      ]
+    },
+    "percepcao_passiva": {
+      "valor": 17,
+      "nota": "10 + 4 de Sabedoria + 3 de Bônus de Proficiência. A proficiência em Percepção veio do traço Hábil do Humano, não da classe."
+    },
+    "salvaguardas": {
+      "FOR": 1,
+      "DES": 1,
+      "CON": 2,
+      "INT": 0,
+      "SAB": 7,
+      "CAR": 2
+    },
+    "testes_de_pericia": {
+      "religiao": 3,
+      "intuicao": 7,
+      "medicina": 7,
+      "persuasao": 2,
+      "percepcao": 7,
+      "atletismo": 1
+    },
+    "deslocamento_m": 9,
+    "conjuracao": {
+      "atributo": "SAB",
+      "cd_para_evitar_sua_magia": 15,
+      "proveniencia_da_cd": "8 + 4 (Sabedoria) + 3 (Bônus de Proficiência)",
+      "jogada_de_ataque_magico": 7,
+      "espacos": {
+        "1": 4,
+        "2": 3,
+        "3": 2
+      },
+      "magias_preparadas": 9,
+      "truques": 4,
+      "nota": "Os espaços, as preparadas e os truques saem da linha 5 da tabela de Clérigo (p. 82), não de conta nenhuma."
+    },
+    "opcoes_para_preparar": {
+      "quantidade": 53,
+      "nota": "As magias de Clérigo do 1º ao 3º círculo (15 + 17 + 21). Sem o filtro do círculo seriam as 108 da lista inteira, incluindo as de 9º círculo que uma Clériga de nível 5 não pode preparar."
+    },
+    "melhoria_de_caracteristica": {
+      "efeitos_sem_porta": 1,
+      "nota": "Fulminar Mortos-Vivos melhora o Canalizar Divindade. O efeito de dano dela tem de incidir com ZERO portas: melhoria não é condição. Enquanto o motor adivinhava pelo formato, este efeito — e outros 55 — ficava desligado."
+    },
+    "escolhas_em_aberto": [],
+    "nota_das_escolhas_em_aberto": "Nenhuma: esta ficha está completa de propósito. Os outros dois goldens cobrem o checklist com pendências; este cobre o outro extremo, que é o motor não inventar pendência onde não há.",
+    "ataques": [
+      {
+        "arma": "ataque_desarmado",
+        "atributo": "FOR",
+        "proficiente": true,
+        "jogada": 4,
+        "dano_valor": 2,
+        "dano_dados": [],
+        "proveniencia": "+4 = 1 (Força) + 3 (Bônus de Proficiência); dano 1 + 1 de Força"
+      },
+      {
+        "arma": "maca",
+        "atributo": "FOR",
+        "proficiente": true,
+        "jogada": 4,
+        "dano_valor": 1,
+        "dano_dados": [
+          "1d6"
+        ],
+        "proveniencia": "+4 = 1 (Força) + 3 (Bônus de Proficiência); dano 1d6 + 1 de Força"
+      }
+    ]
+  },
+  "fonte": [
+    {
+      "o_que": "Tabela de Clérigo, linha 5: BP +3, Canalizar Divindade 2, 4 truques, 9 preparadas, espaços 4/3/2",
+      "pagina_livro": 82
+    },
+    {
+      "o_que": "Fulminar Mortos-Vivos (nível 5)",
+      "pagina_livro": 83
+    },
+    {
+      "o_que": "Conjuração de Clérigo: Sabedoria, preparar da lista de classe",
+      "pagina_livro": 81
+    },
+    {
+      "o_que": "CD para Evitar sua Magia e Jogada de Ataque Mágico",
+      "pagina_livro": 237
+    },
+    {
+      "o_que": "Antecedente Acólito: Inteligência, Sabedoria, Carisma; Iniciado em Magia (Clérigo)",
+      "pagina_livro": 178
+    },
+    {
+      "o_que": "Aumento de atributo do antecedente: um em 2 e outro em 1, ou os três em 1",
+      "pagina_livro": 177
+    }
+  ]
+}

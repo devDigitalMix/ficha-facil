@@ -28,17 +28,20 @@
               "prof"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "repete_salvaguarda": {
             "quando": "fim_do_turno_do_alvo",
             "encerra_em_sucesso": true
           },
           "pre_requisitos": [
             {
-              "tipo": "item",
-              "chave": "kit_de_veneno",
-              "revisao": "duvida",
-              "nota": "id depende do cap. 6"
+              "tipo": "ferramenta",
+              "chave": "kit_de_veneno"
             }
           ]
         }
@@ -71,7 +74,7 @@
             }
           ],
           "sem_provocar_ataques_de_oportunidade": true,
-          "momento": "imediatamente_apos_o_ataque"
+          "gatilho": "imediatamente_apos_o_ataque"
         }
       ],
       "fonte": {
@@ -132,7 +135,7 @@
               "prof"
             ]
           },
-          "duracao": "proximo_turno_do_alvo",
+          "duracao": "ate_o_fim_do_proximo_turno_do_beneficiario",
           "limite": {
             "escolher": 1,
             "entre": [
@@ -170,7 +173,7 @@
               "prof"
             ]
           },
-          "duracao": "ate_o_fim_do_proximo_turno_do_alvo"
+          "duracao": "ate_o_fim_do_proximo_turno_do_beneficiario"
         }
       ],
       "fonte": {
@@ -199,10 +202,15 @@
               "prof"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
-              "gatilho": "alvo_sofre_qualquer_dano"
+              "gatilho": "alvo_sofre_dano"
             }
           ],
           "repete_salvaguarda": {

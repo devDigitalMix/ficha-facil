@@ -24,11 +24,15 @@
           "custo": "acao_bonus",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo",
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              },
               {
                 "alguma": [
-                  "desarmado",
+                  "sem_arma_na_mao",
                   "empunhando_apenas:armas_de_monge"
                 ]
               }
@@ -54,11 +58,15 @@
           "modo": "substitui_se_maior_a_criterio_do_jogador",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo",
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              },
               {
                 "alguma": [
-                  "desarmado",
+                  "sem_arma_na_mao",
                   "empunhando_apenas:armas_de_monge"
                 ]
               }
@@ -80,11 +88,15 @@
           ],
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo",
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              },
               {
                 "alguma": [
-                  "desarmado",
+                  "sem_arma_na_mao",
                   "empunhando_apenas:armas_de_monge"
                 ]
               }
@@ -125,8 +137,12 @@
           "permite_escudo": false,
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo"
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           },
           "empilha": "substitui",
@@ -261,8 +277,12 @@
           "empilha": "soma",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo"
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           }
         }
@@ -397,7 +417,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma subclasse de Monge",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -430,7 +450,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um talento",
           "quantidade": 1,
-          "momento": "nivel_da_caracteristica",
+          "gatilho": "nivel_da_caracteristica",
           "de": {
             "catalogo": "talentos",
             "filtro": {
@@ -507,7 +527,7 @@
           "condicao_id": "atordoado",
           "custo_em_foco": 1,
           "frequencia": "uma_vez_por_turno",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "salvaguarda": {
             "atributo": "CON",
             "cd": [
@@ -529,14 +549,14 @@
               },
               "beneficiario": "alvo",
               "empilha": "substitui",
-              "duracao": "ate_inicio_do_seu_proximo_turno"
+              "duracao": "ate_o_inicio_do_seu_proximo_turno"
             },
             {
               "tipo": "vantagem",
               "alvo": "jogada_de_ataque_contra_voce",
               "modo": "vantagem",
               "beneficiario": "proximo_atacante_do_alvo",
-              "duracao": "ate_inicio_do_seu_proximo_turno"
+              "duracao": "ate_o_inicio_do_seu_proximo_turno"
             }
           ]
         }
@@ -625,8 +645,12 @@
           "chave": "movimento_acrobatico",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo"
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           },
           "texto": "Move-se por superfícies verticais e sobre líquidos durante o turno sem cair."
@@ -657,7 +681,7 @@
             "envenenado"
           ],
           "quantidade": 1,
-          "momento": "fim_do_seu_turno"
+          "gatilho": "fim_do_seu_turno"
         },
         {
           "tipo": "imunidade_a_risco",
@@ -825,7 +849,15 @@
           "ate": 4,
           "condicao": {
             "todas": [
-              "recurso:pontos_de_foco.atual<=3",
+              {
+                "comparar": [
+                  "recurso:pontos_de_foco.atual"
+                ],
+                "op": "lte",
+                "com": [
+                  "3"
+                ]
+              },
               {
                 "nao": "usou:metabolismo_incomum"
               }
@@ -859,13 +891,18 @@
             "energetico"
           ],
           "custo_em_foco": 3,
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "condicao_id": "incapacitado"
             }
           ],
-          "momento": "inicio_do_seu_turno"
+          "gatilho": "inicio_do_seu_turno"
         }
       ]
     },
@@ -954,7 +991,6 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito da técnica",
           "quantidade": 1,
-          "momento": "no_acerto",
           "gatilho": "acerto_com_torrente_de_golpes",
           "de": {
             "catalogo": "efeitos_da_mao_espalmada",
@@ -994,7 +1030,7 @@
               "tipo": "impedir",
               "alvo": "ataque_de_oportunidade_provocado_por_voce",
               "beneficiario": "alvo",
-              "duracao": "ate_inicio_do_proximo_turno_do_alvo"
+              "duracao": "ate_o_inicio_do_proximo_turno_do_beneficiario"
             }
           ]
         },
@@ -1524,7 +1560,7 @@
                 "1"
               ],
               "tipo_ataque": "desarmado",
-              "momento": "imediatamente_apos_o_teleporte"
+              "gatilho": "imediatamente_apos_o_teleporte"
             }
           ]
         }
@@ -1553,7 +1589,12 @@
           "custo": "acao",
           "acao_id": "usar_magia",
           "custo_em_foco": 3,
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "requisitos": [
             "voce_em:meia_luz_ou_escuridao"
           ],
@@ -1639,8 +1680,13 @@
             "por_ativacao"
           ],
           "custo_em_foco": 1,
-          "duracao": "10 minutos",
-          "momento": "inicio_do_seu_turno",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
+          "gatilho": "inicio_do_seu_turno",
           "encerra_se": [
             {
               "condicao_id": "incapacitado"
@@ -1843,7 +1889,7 @@
               ],
               "unidade": "m",
               "empilha": "soma",
-              "duracao": "ate_o_fim_do_turno"
+              "duracao": "ate_o_fim_do_turno_atual"
             },
             {
               "tipo": "dano",
@@ -1865,7 +1911,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de dano para Resistência",
           "quantidade": 1,
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "reescolhivel": true,
           "de": {
             "catalogo": "tipos_de_dano",
@@ -1934,7 +1980,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um talento de Estilo de Luta",
           "quantidade": 1,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_guerreiro",
           "de": {
@@ -1971,7 +2017,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha os tipos de arma com maestria",
           "quantidade": "coluna:maestria_em_arma",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
@@ -2062,7 +2108,7 @@
           ],
           "empilha": "soma",
           "gatilho": "falha",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "consome_recurso": "recuperar_folego",
           "devolve_recurso_se": "o teste continuar falhando"
         }
@@ -2141,7 +2187,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma subclasse de Guerreiro",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -2430,7 +2476,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha outro talento de Estilo de Luta",
           "quantidade": 1,
-          "momento": "nivel_7",
+          "gatilho": "nivel_7",
           "de": {
             "catalogo": "talentos",
             "filtro": {
@@ -2464,7 +2510,7 @@
         {
           "tipo": "efeito_narrativo",
           "chave": "inspiracao_heroica_automatica",
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "texto": "Em combate, ganha Inspiração Heroica sempre que iniciar o turno sem ela."
         }
       ],
@@ -2533,11 +2579,19 @@
             "5",
             "mod:CON"
           ],
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "condicao": {
             "todas": [
               "estado:sangrando",
-              "pv_atual >= 1"
+              {
+                "comparar": [
+                  "pv_atual"
+                ],
+                "op": "gte",
+                "com": [
+                  "1"
+                ]
+              }
             ]
           }
         }
@@ -2588,7 +2642,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques da lista do Mago",
           "quantidade": 2,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_guerreiro",
           "quantidade_por_nivel": {
@@ -2618,7 +2672,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de 1º círculo ou superior da lista do Mago",
           "quantidade": "coluna_conjuracao:magias_preparadas",
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_guerreiro",
           "reescolha_quantidade": 1,
@@ -2849,7 +2903,12 @@
       "subclasse": "cavaleiro_mistico",
       "limite_de_vinculos": 2,
       "ritual": {
-        "duracao": "1 hora",
+        "duracao": {
+          "quantidade": [
+            "1"
+          ],
+          "unidade": "hora"
+        },
         "pode_ocorrer_em": "descanso_curto",
         "falha_se": [
           "outro Guerreiro já vinculado à arma",
@@ -2933,7 +2992,7 @@
             "destino_desocupado",
             "destino_a_vista"
           ],
-          "momento": "antes_ou_depois_da_acao_adicional"
+          "fase": "antes_ou_depois_da_acao_adicional"
         }
       ],
       "subclasse": "cavaleiro_mistico"
@@ -3175,7 +3234,7 @@
             "enfeiticado"
           ],
           "quantidade": "todas",
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "consome_recurso": "dados_de_energia_psionica",
           "nota": "Encerra também os efeitos que estavam impondo essas condições."
         }
@@ -3213,7 +3272,12 @@
             },
             "inclui_voce": true
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "condicao_id": "incapacitado"
@@ -3306,7 +3370,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha Ferramentas de Artesão",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "ferramentas",
             "filtro": {
@@ -3325,7 +3389,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia de Guerreiro",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -3385,7 +3449,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha manobras",
           "quantidade": 3,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_que_concede_manobras",
           "reescolha_quantidade": 1,
@@ -3704,7 +3768,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques de Mago",
           "quantidade": "coluna:truques",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
@@ -3732,7 +3796,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias do seu livro de magias",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "descanso_longo",
+          "gatilho": "descanso_longo",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -3835,7 +3899,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a perícia para Especialização",
           "quantidade": 1,
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -3880,7 +3944,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma subclasse de Mago",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -3940,7 +4004,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma magia de 1º círculo",
           "quantidade": 1,
-          "momento": "nivel_18",
+          "gatilho": "nivel_18",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -3964,7 +4028,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma magia de 2º círculo",
           "quantidade": 1,
-          "momento": "nivel_18",
+          "gatilho": "nivel_18",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -4006,7 +4070,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha duas magias de 3º círculo",
           "quantidade": 2,
-          "momento": "nivel_20",
+          "gatilho": "nivel_20",
           "de": {
             "catalogo": "magias",
             "filtro": {
@@ -4048,7 +4112,7 @@
           "tipo": "adicionar_magia_ao_livro",
           "quantidade": 2,
           "gratuito": true,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "filtro": {
             "lista": "mago",
             "escola": "abjuracao",
@@ -4089,7 +4153,7 @@
           "tipo": "adicionar_magia_ao_livro",
           "quantidade": 2,
           "gratuito": true,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "filtro": {
             "lista": "mago",
             "escola": "adivinhacao",
@@ -4130,7 +4194,7 @@
           "tipo": "adicionar_magia_ao_livro",
           "quantidade": 2,
           "gratuito": true,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "filtro": {
             "lista": "mago",
             "escola": "evocacao",
@@ -4171,7 +4235,7 @@
           "tipo": "adicionar_magia_ao_livro",
           "quantidade": 2,
           "gratuito": true,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "filtro": {
             "lista": "mago",
             "escola": "ilusao",
@@ -4222,7 +4286,7 @@
             "mod:INT"
           ],
           "gatilho_de_criacao": "conjurar_magia_de_abjuracao_com_espaco",
-          "duracao": "ate_o_descanso_longo",
+          "duracao": "ate_o_proximo_descanso_longo",
           "recarga": [
             "descanso_longo"
           ],
@@ -4403,7 +4467,7 @@
             "teste_d20",
             "teste_d20_de_criatura_a_vista"
           ],
-          "momento": "antes_da_jogada",
+          "fase": "antes_da_jogada",
           "perde_nao_usados_em": "descanso_longo"
         }
       ],
@@ -4430,7 +4494,15 @@
           "gatilho": "conjurar_magia_de_adivinhacao",
           "condicao": {
             "todas": [
-              "espaco_usado_circulo >= 2"
+              {
+                "comparar": [
+                  "circulo_do_espaco_usado"
+                ],
+                "op": "gte",
+                "com": [
+                  "2"
+                ]
+              }
             ]
           },
           "formula_circulos": [
@@ -4475,7 +4547,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o benefício do Terceiro Olho",
           "quantidade": 1,
-          "momento": "ao_usar",
+          "gatilho": "ao_usar",
           "custo": "acao_bonus",
           "de": {
             "catalogo": "beneficios_do_terceiro_olho",
@@ -4683,7 +4755,7 @@
           "condicao": {
             "todas": [
               "magia_da_escola:ilusao",
-              "alcance >= 3m"
+              "alcance_minimo_m:3"
             ]
           }
         },
@@ -4818,7 +4890,12 @@
           "tipo": "efeito_narrativo",
           "chave": "objeto_ilusorio_real",
           "custo": "acao_bonus",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "texto": "Torna real um objeto inanimado e não mágico da ilusão; ele não causa dano nem impõe condições."
         }
       ],
@@ -4875,7 +4952,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha suas Invocações Místicas",
           "quantidade": "coluna:invocacoes",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_bruxo",
           "reescolha_quantidade": 1,
@@ -4943,7 +5020,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques de Bruxo",
           "quantidade": "coluna:truques",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_bruxo",
           "reescolha_quantidade": 1,
@@ -4970,7 +5047,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de Bruxo",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_bruxo",
           "reescolha_quantidade": 1,
@@ -5062,7 +5139,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um patrono",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -5132,7 +5209,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a magia de arcanum",
           "quantidade": 1,
-          "momento": "nivel_da_caracteristica",
+          "gatilho": "nivel_da_caracteristica",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_bruxo",
           "circulo_por_nivel": {
@@ -5305,7 +5382,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito do Passo",
           "quantidade": 1,
-          "momento": "ao_conjurar",
+          "gatilho": "ao_conjurar",
           "de": {
             "catalogo": "efeitos_dos_passos_feericos",
             "todo_o_catalogo": true
@@ -5443,8 +5520,8 @@
         {
           "tipo": "conjurar_sem_espaco",
           "magia": "passo_nebuloso",
-          "momento": "apos_magia_de_encantamento_ou_ilusao",
-          "custo": "nenhum",
+          "gatilho": "apos_magia_de_encantamento_ou_ilusao",
+          "custo": "livre",
           "frequencia": "a_vontade"
         }
       ],
@@ -5859,7 +5936,12 @@
               }
             ]
           },
-          "duracao": "minutos iguais ao nível de Bruxo",
+          "duracao": {
+            "quantidade": [
+              "nivel_classe:bruxo"
+            ],
+            "unidade": "minuto"
+          },
           "texto": "Exige idioma comum usado mentalmente. Encerra antes se você conectar com outra criatura."
         }
       ],
@@ -6174,7 +6256,7 @@
             "1d10"
           ],
           "empilha": "soma",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "frequencia": "uma_vez_por_jogada",
           "consome_recurso": "sorte_do_tenebroso"
         },
@@ -6185,7 +6267,7 @@
             "1d10"
           ],
           "empilha": "soma",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "frequencia": "uma_vez_por_jogada",
           "consome_recurso": "sorte_do_tenebroso"
         }
@@ -6213,7 +6295,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um tipo de dano",
           "quantidade": 1,
-          "momento": "descanso_curto_ou_longo",
+          "gatilho": "descanso_curto_ou_longo",
           "reescolhivel": true,
           "de": {
             "catalogo": "tipos_de_dano",
@@ -6282,7 +6364,7 @@
         {
           "tipo": "dano",
           "frequencia": "uma_vez_por_turno",
-          "gatilho": "acerto_com_jogada_de_ataque",
+          "gatilho": "acerto",
           "formula_dado": "8d10",
           "tipo_dano": "psiquico",
           "salvaguarda": {
@@ -6365,7 +6447,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques de Druida",
           "quantidade": "coluna:truques",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_druida",
           "reescolha_quantidade": 1,
@@ -6392,7 +6474,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de Druida",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": "qualquer",
@@ -6485,7 +6567,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha sua Ordem Primal",
           "quantidade": 1,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "de": {
             "catalogo": "ordens_primais",
             "todo_o_catalogo": true
@@ -6538,7 +6620,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha um truque de Druida adicional",
               "quantidade": 1,
-              "momento": "nivel_1",
+              "gatilho": "nivel_1",
               "de": {
                 "catalogo": "magias",
                 "filtro": {
@@ -6604,7 +6686,7 @@
       },
       "revisao": {
         "status": "ok",
-        "notas": "Decisão do usuário em 2026-09-01: criaturas e blocos de estatísticas ficam FORA do escopo por enquanto. O app não oferece seletor de formas — ao subir de nível ele só informa quantas formas, o ND máximo e se já pode voar (campo `aviso_ao_subir_de_nivel`), e o jogador escolhe as Feras fora do app. O filtro está escrito e pronto: se o Apêndice B for extraído depois, o seletor passa a funcionar sem reeditar o Druida. Registrado em PENDENCIAS.md."
+        "notas": "O Apêndice B foi extraído em 2026-09-02 e o seletor de formas ligou: a escolha resolve contra as 43 Feras do catálogo `criaturas`, filtradas por ND máximo e por Deslocamento de Voo conforme a tabela Formas de Feras. O aviso ao subir de nível continua, porque o Mestre pode liberar Fera de fora do apêndice."
       },
       "descricao_curta": "Ação Bônus para multimorfar numa forma Animal conhecida, por horas iguais à metade do seu nível de Druida. Usos conforme a coluna Forma Selvagem, recuperando um em Descanso Curto e todos no Longo. As formas conhecidas e o ND máximo crescem pela tabela Formas de Feras.",
       "efeitos": [
@@ -6629,6 +6711,7 @@
         },
         {
           "tipo": "forma_selvagem",
+          "id": "forma_selvagem",
           "recurso_id": "forma_selvagem",
           "custo": "acao_bonus",
           "duracao": {
@@ -6708,7 +6791,7 @@
                 "nivel_classe:druida"
               ],
               "beneficiario": "voce",
-              "momento": "ao_assumir_a_forma",
+              "gatilho": "ao_assumir_a_forma",
               "nota": "Antes isto era um campo solto dentro de regras_enquanto_multimorfado; virou efeito para o backend não precisar conhecer o nome do campo. O Círculo da Lua substitui esta fórmula por três vezes o nível de Druida."
             }
           ]
@@ -6717,21 +6800,19 @@
           "id": "druida_formas_conhecidas",
           "tipo": "escolha",
           "rotulo": "Formas Animais conhecidas",
-          "resolucao": "manual",
           "quantidade": "tabela:formas_de_feras.formas_conhecidas",
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
           "recomendadas": [
-            "Aranha",
-            "Cavalo de Montaria",
-            "Lobo",
-            "Rato"
+            "aranha",
+            "cavalo_de_montaria",
+            "lobo",
+            "rato"
           ],
           "de": {
             "catalogo": "criaturas",
-            "pendente": true,
             "filtro": {
               "tipo_de_criatura": "fera",
               "nd_maximo": "tabela:formas_de_feras.nd_maximo",
@@ -6740,7 +6821,7 @@
           },
           "aviso_ao_subir_de_nivel": {
             "quando": "o nível de Druida atinge 2, 4 ou 8",
-            "texto": "Você conhece {formas_conhecidas} formas Animais, de Nível de Desafio até {nd_maximo}{voo}. Escolha-as entre os blocos de estatísticas de Fera do Apêndice B ou do Livro dos Monstros, com o aval do Mestre.",
+            "texto": "Você conhece {formas_conhecidas} formas Animais, de Nível de Desafio até {nd_maximo}{voo}. O app oferece as Feras do Apêndice B; o Mestre pode liberar outras, do Livro dos Monstros.",
             "variaveis": {
               "voo": {
                 "true": ", podendo ter Deslocamento de Voo",
@@ -6749,9 +6830,10 @@
             }
           },
           "efeito_por_item_escolhido": {
-            "tipo": "efeito_narrativo",
-            "chave": "forma_conhecida",
-            "criatura": "{{escolhido}}"
+            "tipo": "assumir_bloco_de_estatisticas",
+            "criatura": "{{escolhido}}",
+            "catalogo": "criaturas",
+            "modo": "forma_selvagem"
           }
         }
       ]
@@ -6777,7 +6859,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um círculo",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -6815,7 +6897,15 @@
           "frequencia": "uma_vez_por_turno",
           "condicao": {
             "todas": [
-              "recurso:forma_selvagem.atual == 0"
+              {
+                "comparar": [
+                  "recurso:forma_selvagem.atual"
+                ],
+                "op": "eq",
+                "com": [
+                  "0"
+                ]
+              }
             ]
           }
         },
@@ -6853,7 +6943,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a Fúria Elemental",
           "quantidade": 1,
-          "momento": "nivel_7",
+          "gatilho": "nivel_7",
           "de": {
             "catalogo": "opcoes_de_furia_elemental",
             "todo_o_catalogo": true
@@ -6977,7 +7067,15 @@
           "gatilho": "jogar_iniciativa",
           "condicao": {
             "todas": [
-              "recurso:forma_selvagem.atual == 0"
+              {
+                "comparar": [
+                  "recurso:forma_selvagem.atual"
+                ],
+                "op": "eq",
+                "com": [
+                  "0"
+                ]
+              }
             ]
           }
         },
@@ -7151,7 +7249,7 @@
             "radiante",
             "tipo_normal"
           ],
-          "momento": "a_cada_acerto"
+          "gatilho": "acerto"
         },
         {
           "tipo": "modificador",
@@ -7340,7 +7438,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o tipo de terreno",
           "quantidade": 1,
-          "momento": "descanso_longo",
+          "gatilho": "descanso_longo",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -7661,7 +7759,12 @@
             "lado_m": 4.5,
             "alcance_m": 36
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "alvos": {
             "voce_e_aliados_na_area": true
           },
@@ -7718,7 +7821,12 @@
           "modo": "forma_alternativa",
           "custo": "acao_bonus",
           "consome_recurso": "forma_selvagem",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "mantem_estatisticas": true,
           "luz": {
             "plena_m": 3,
@@ -7741,7 +7849,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a constelação",
           "quantidade": 1,
-          "momento": "ao_assumir_a_forma",
+          "gatilho": "ao_assumir_a_forma",
           "reescolhivel": true,
           "de": {
             "catalogo": "constelacoes",
@@ -8020,10 +8128,15 @@
           "tamanho_m": 1.5,
           "custo": "acao_bonus",
           "consome_recurso": "forma_selvagem",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
-              "gatilho": "dispersar"
+              "gatilho": "dispensar"
             },
             {
               "gatilho": "manifestar_de_novo"
@@ -8322,7 +8435,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques de Clérigo",
           "quantidade": "coluna:truques",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_clerigo",
           "reescolha_quantidade": 1,
@@ -8345,7 +8458,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de Clérigo",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -8394,7 +8507,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha sua Ordem Divina",
           "quantidade": 1,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "de": {
             "catalogo": "ordens_divinas",
             "todo_o_catalogo": true
@@ -8447,7 +8560,7 @@
               "tipo": "escolha",
               "rotulo": "Escolha um truque de Clérigo adicional",
               "quantidade": 1,
-              "momento": "nivel_1",
+              "gatilho": "nivel_1",
               "de": {
                 "catalogo": "magias",
                 "filtro": {
@@ -8582,18 +8695,28 @@
                   "prof"
                 ]
               },
-              "duracao": "1 minuto"
+              "duracao": {
+                "quantidade": [
+                  "1"
+                ],
+                "unidade": "minuto"
+              }
             },
             {
               "tipo": "conceder_condicao",
               "condicao_id": "incapacitado",
               "beneficiario": "mortos_vivos_a_escolha",
-              "duracao": "1 minuto"
+              "duracao": {
+                "quantidade": [
+                  "1"
+                ],
+                "unidade": "minuto"
+              }
             }
           ],
           "encerra_se": [
             {
-              "gatilho": "a_criatura_sofre_dano"
+              "gatilho": "alvo_sofre_dano"
             },
             {
               "condicao_id": "incapacitado"
@@ -8626,7 +8749,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um domínio",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -8708,7 +8831,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha os Golpes Abençoados",
           "quantidade": 1,
-          "momento": "nivel_7",
+          "gatilho": "nivel_7",
           "de": {
             "catalogo": "opcoes_de_golpes_abencoados",
             "todo_o_catalogo": true
@@ -8788,7 +8911,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha a magia da Intervenção Divina",
           "quantidade": 1,
-          "momento": "ao_usar",
+          "gatilho": "ao_usar",
           "custo": "acao",
           "acao_id": "usar_magia",
           "de": {
@@ -8957,7 +9080,7 @@
           ],
           "empilha": "soma",
           "gatilho": "erro",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "consome_recurso": "canalizar_divindade",
           "beneficiario": "voce_ou_criatura_a_ate_9m",
           "custo_para_outro": "reacao"
@@ -9038,7 +9161,12 @@
           ],
           "consome_recurso": "canalizar_divindade",
           "dispensa_concentracao": true,
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "reconjurar"
@@ -9322,7 +9450,12 @@
           "beneficiario": "inimigos_na_luz_plena",
           "custo": "acao",
           "acao_id": "usar_magia",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "coroa_de_luz",
           "condicao": {
             "alguma": [
@@ -9427,7 +9560,7 @@
           "custo": "acao",
           "acao_id": "usar_magia",
           "beneficiario": "voce_ou_criatura_voluntaria_a_ate_9m",
-          "duracao": "ate_o_descanso_longo_ou_novo_uso"
+          "duracao": "ate_o_proximo_descanso_longo_ou_novo_uso"
         }
       ],
       "subclasse": "dominio_da_trapaca"
@@ -9453,7 +9586,12 @@
           "id": "invocar_duplicidade",
           "custo": "acao_bonus",
           "consome_recurso": "canalizar_divindade",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "condicao_id": "incapacitado"
@@ -9798,6 +9936,7 @@
         },
         {
           "tipo": "furia",
+          "id": "furia",
           "recurso_id": "furia",
           "custo": "acao_bonus",
           "pre_requisitos": [
@@ -9897,7 +10036,9 @@
           "permite_escudo": true,
           "condicao": {
             "todas": [
-              "flag:sem_armadura"
+              {
+                "nao": "armadura:qualquer"
+              }
             ]
           },
           "empilha": "substitui",
@@ -9928,7 +10069,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha os tipos de arma com maestria",
           "quantidade": "coluna:maestria_em_arma",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
@@ -9976,13 +10117,13 @@
               "ataque_com_forca"
             ]
           },
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         },
         {
           "tipo": "vantagem",
           "alvo": "jogada_de_ataque_contra_voce",
           "modo": "vantagem",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ]
     },
@@ -10033,7 +10174,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha mais uma perícia",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -10095,7 +10236,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma trilha",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -10158,7 +10299,7 @@
         {
           "tipo": "efeito_narrativo",
           "chave": "movimento_ao_entrar_em_furia",
-          "gatilho": "entrar_em_furia",
+          "gatilho": "ao_entrar_em_furia",
           "texto": "Move até metade do Deslocamento como parte da mesma Ação Bônus."
         }
       ]
@@ -10222,7 +10363,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito de Golpe Brutal",
           "quantidade": 1,
-          "momento": "no_acerto",
+          "gatilho": "acerto",
           "reescolhivel": true,
           "de": {
             "catalogo": "efeitos_de_golpe_brutal",
@@ -10264,7 +10405,7 @@
             }
           ],
           "modo": "define_pv",
-          "gatilho": "chegar_a_0_pv",
+          "gatilho": "reduzido_a_0_pontos_de_vida",
           "condicao": {
             "todas": [
               "ativo:furia"
@@ -10388,7 +10529,12 @@
           "efeitos": [
             {
               "tipo": "furia",
-              "duracao": "10 minutos",
+              "duracao": {
+                "quantidade": [
+                  "10"
+                ],
+                "unidade": "minuto"
+              },
               "modo": "substitui_duracao",
               "encerra_se": [
                 {
@@ -10477,7 +10623,7 @@
           "formula": [
             "nivel_classe:barbaro"
           ],
-          "gatilho": "entrar_em_furia"
+          "gatilho": "ao_entrar_em_furia"
         },
         {
           "tipo": "pontos_de_vida_temporarios",
@@ -10491,7 +10637,7 @@
               ]
             }
           ],
-          "momento": "inicio_do_seu_turno",
+          "gatilho": "inicio_do_seu_turno",
           "condicao": {
             "todas": [
               "ativo:furia"
@@ -10723,7 +10869,7 @@
             "enfeiticado"
           ],
           "quantidade": "todas",
-          "gatilho": "entrar_em_furia"
+          "gatilho": "ao_entrar_em_furia"
         }
       ],
       "subclasse": "trilha_do_berserker"
@@ -10803,7 +10949,12 @@
               "prof"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "repete_salvaguarda": "fim_de_cada_turno_do_alvo",
           "consome_recurso": "presenca_intimidante"
         }
@@ -10860,7 +11011,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o animal da Fúria",
           "quantidade": 1,
-          "momento": "ao_entrar_em_furia",
+          "gatilho": "ao_entrar_em_furia",
           "reescolhivel": true,
           "de": {
             "catalogo": "opcoes_de_furia_dos_selvagens",
@@ -10895,7 +11046,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o aspecto",
           "quantidade": 1,
-          "momento": "nivel_6",
+          "gatilho": "nivel_6",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -10959,7 +11110,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o poder da Fúria",
           "quantidade": 1,
-          "momento": "ao_entrar_em_furia",
+          "gatilho": "ao_entrar_em_furia",
           "reescolhivel": true,
           "de": {
             "catalogo": "opcoes_de_poder_dos_selvagens",
@@ -11129,7 +11280,7 @@
           "modo": "vantagem",
           "custo": "acao_bonus",
           "beneficiario": "ate_10_criaturas_a_ate_18m",
-          "duracao": "ate_inicio_do_seu_proximo_turno",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno",
           "consome_recurso": "presenca_zelosa"
         },
         {
@@ -11137,7 +11288,7 @@
           "alvo": "salvaguarda",
           "modo": "vantagem",
           "beneficiario": "ate_10_criaturas_a_ate_18m",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "subclasse": "trilha_do_fanatico"
@@ -11281,7 +11432,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha perícias para Especialização",
           "quantidade": 2,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "quantidade_por_nivel": {
             "1": 2,
             "6": 4
@@ -11351,7 +11502,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha mais um idioma",
           "quantidade": 1,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "de": {
             "catalogo": "idiomas",
             "todo_o_catalogo": true
@@ -11387,7 +11538,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha dois tipos de arma",
           "quantidade": 2,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -11460,7 +11611,7 @@
               "chave": "nao_se_moveu_neste_turno"
             }
           ],
-          "duracao": "proxima_jogada_de_ataque_do_turno"
+          "duracao": "ate_a_proxima_jogada_de_ataque_do_turno"
         },
         {
           "tipo": "modificador",
@@ -11494,7 +11645,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma subclasse",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "subclasses",
             "filtro": {
@@ -11529,7 +11680,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito de Golpe Astuto",
           "quantidade": 1,
-          "momento": "ao_causar_dano_de_ataque_furtivo",
+          "gatilho": "ao_causar_dano_de_ataque_furtivo",
           "reescolhivel": true,
           "de": {
             "catalogo": "efeitos_de_golpe_astuto",
@@ -11636,7 +11787,7 @@
           "minimo": 10,
           "condicao": {
             "todas": [
-              "com_proficiencia_em_pericia_ou_ferramenta"
+              "proficiente_em:pericia_ou_ferramenta_do_teste"
             ]
           }
         }
@@ -11908,10 +12059,10 @@
           ],
           "empilha": "soma",
           "gatilho": "falha",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "condicao": {
             "todas": [
-              "com_proficiencia_em_pericia_ou_ferramenta"
+              "proficiente_em:pericia_ou_ferramenta_do_teste"
             ]
           },
           "consome_recurso": "dados_de_energia_psionica_ladino",
@@ -11991,7 +12142,7 @@
           ],
           "empilha": "soma",
           "gatilho": "erro",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "condicao": {
             "todas": [
               "ataque_com_lamina_psiquica"
@@ -12056,7 +12207,12 @@
           "condicao_id": "invisivel",
           "custo": "acao",
           "acao_id": "usar_magia",
-          "duracao": "1 hora",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "hora"
+          },
           "consome_recurso": "veu_psiquico",
           "encerra_se": [
             {
@@ -12118,7 +12274,12 @@
               "prof"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "repete_salvaguarda": "fim_de_cada_turno_do_alvo",
           "consome_recurso": "rasgar_mente"
         }
@@ -12270,7 +12431,7 @@
           "condicao": {
             "todas": [
               "usou:envenenar",
-              "alvo_falhou_na_salvaguarda"
+              "falhou_na_salvaguarda"
             ]
           }
         }
@@ -12537,7 +12698,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha truques da lista do Mago",
           "quantidade": 2,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "quantidade_por_nivel": {
             "3": 2,
             "10": 3
@@ -12567,7 +12728,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de 1º círculo ou superior",
           "quantidade": "coluna_conjuracao:magias_preparadas",
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": "cada_nivel_de_ladino",
           "reescolha_quantidade": 1,
@@ -12813,7 +12974,7 @@
               "voce_invisivel_ao_conjurar"
             ]
           },
-          "duracao": "mesmo_turno"
+          "duracao": "ate_o_fim_do_turno_atual"
         }
       ],
       "subclasse": "trapaceiro_arcano"
@@ -12942,7 +13103,7 @@
               "tipo": "escolha",
               "rotulo": "Como o dado de Inspiração pode ser gasto",
               "quantidade": 1,
-              "momento": "ao_gastar_o_dado",
+              "gatilho": "ao_gastar_o_dado",
               "reescolhivel": true,
               "de": {
                 "catalogo": "usos_da_inspiracao_de_bardo",
@@ -12954,7 +13115,12 @@
                 "tipo": "aplicar_efeito_nomeado",
                 "chave": "{{escolhido}}"
               },
-              "duracao": "1 hora",
+              "duracao": {
+                "quantidade": [
+                  "1"
+                ],
+                "unidade": "hora"
+              },
               "limite": {
                 "por_criatura": 1,
                 "nota": "Uma criatura só carrega um dado por vez."
@@ -13130,7 +13296,9 @@
           "empilha": "soma",
           "condicao": {
             "todas": [
-              "nao_proficiente_na_pericia",
+              {
+                "nao": "proficiente_em:pericia_do_teste"
+              },
               {
                 "nao": "ja_soma_bonus_de_proficiencia"
               }
@@ -13302,7 +13470,15 @@
           "ate_o_total_de": 2,
           "condicao": {
             "todas": [
-              "usos_atuais_menores_que:2"
+              {
+                "comparar": [
+                  "usos_atuais"
+                ],
+                "op": "lt",
+                "com": [
+                  "2"
+                ]
+              }
             ]
           }
         }
@@ -13445,7 +13621,7 @@
           "modo": "ataque_extra",
           "condicao": {
             "todas": [
-              "executou:atacar"
+              "na_acao_atacar"
             ]
           }
         },
@@ -13517,8 +13693,12 @@
           "modo": "vantagem",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo",
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              },
               "envolve_dancar"
             ]
           }
@@ -13531,8 +13711,12 @@
           "usa": "DES",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo"
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           }
         },
@@ -13546,8 +13730,12 @@
           "tipo_dano": "contundente",
           "condicao": {
             "todas": [
-              "flag:sem_armadura",
-              "flag:sem_escudo"
+              {
+                "nao": "armadura:qualquer"
+              },
+              {
+                "nao": "segurando:escudo"
+              }
             ]
           }
         }
@@ -13620,7 +13808,7 @@
           "sem_provocar_ataques_de_oportunidade": true,
           "condicao": {
             "todas": [
-              "inimigo_a_vista_terminou_turno_a_ate:1.5m"
+              "inimigo_a_vista_terminou_turno_a_ate:1_5m"
             ]
           }
         },
@@ -13830,7 +14018,7 @@
             "coluna:dados_de_inspiracao"
           ],
           "empilha": "soma",
-          "momento": "apos_falhar",
+          "gatilho": "falha",
           "recurso_id": "inspiracao_de_bardo",
           "consumo_condicional": "so_gasta_se_virar_sucesso"
         }
@@ -13869,7 +14057,7 @@
           "tipo": "escolha",
           "rotulo": "Amedrontado ou Enfeitiçado",
           "quantidade": 1,
-          "momento": "ao_usar",
+          "gatilho": "ao_usar",
           "de": {
             "catalogo": "condicoes",
             "chaves": [
@@ -13895,7 +14083,12 @@
               "cd_para_evitar_sua_magia"
             ]
           },
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "repete_salvaguarda": {
             "quando": "fim_do_turno_do_alvo",
             "encerra_em_sucesso": true
@@ -13998,7 +14191,12 @@
           "tipo": "conjurar_sem_espaco",
           "magia": "comando",
           "custo": "acao_bonus",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "gatilho": "concentracao_quebrada"
@@ -14049,7 +14247,12 @@
             ]
           },
           "frequencia": "primeira_vez_por_turno_por_atacante",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "encerra_se": [
             {
               "condicao_id": "incapacitado"
@@ -14185,7 +14388,12 @@
           "id": "ativar_feiticaria_inata",
           "custo": "acao_bonus",
           "recurso_id": "feiticaria_inata_usos",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "concede_flag": "feiticaria_inata_ativa",
           "efeitos": [
             {
@@ -14452,7 +14660,15 @@
               "custo": "acao_bonus",
               "condicao": {
                 "todas": [
-                  "recurso:feiticaria_inata_usos.atual == 0"
+                  {
+                    "comparar": [
+                      "recurso:feiticaria_inata_usos.atual"
+                    ],
+                    "op": "eq",
+                    "com": [
+                      "0"
+                    ]
+                  }
                 ]
               }
             }
@@ -14469,7 +14685,7 @@
               "novo_valor": 2,
               "condicao": {
                 "todas": [
-                  "flag:feiticaria_inata_ativa"
+                  "ativo:feiticaria_inata"
                 ]
               }
             }
@@ -14507,7 +14723,7 @@
               "frequencia": "uma_vez_por_turno",
               "condicao": {
                 "todas": [
-                  "flag:feiticaria_inata_ativa"
+                  "ativo:feiticaria_inata"
                 ]
               }
             }
@@ -14537,7 +14753,12 @@
           "custo": "acao_bonus",
           "alcance_m": 9,
           "alvo_requerido": "criatura_a_vista",
-          "duracao": "nivel de Feiticeiro em minutos",
+          "duracao": {
+            "quantidade": [
+              "nivel_classe:feiticeiro"
+            ],
+            "unidade": "minuto"
+          },
           "duracao_em_minutos": [
             "nivel_classe:feiticeiro"
           ],
@@ -14751,8 +14972,13 @@
             "quantidade": 1
           },
           "custo": "acao_bonus",
-          "duracao": "10 minutos",
-          "momento": "ao_ativar",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
+          "gatilho": "ao_ativar",
           "reescolhivel": true,
           "reescolha_em": "cada_ativacao",
           "de": {
@@ -14948,7 +15174,9 @@
           "concorre_como": "calculo_de_ca_base",
           "condicao": {
             "todas": [
-              "flag:sem_armadura"
+              {
+                "nao": "armadura:qualquer"
+              }
             ]
           },
           "permite_escudo": true,
@@ -15148,7 +15376,12 @@
           "id": "abrir_asas_de_dragao",
           "custo": "acao_bonus",
           "recurso_id": "asas_de_dragao_usos",
-          "duracao": "1 hora",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "hora"
+          },
           "encerra_se": [
             {
               "gatilho": "encerrar_voluntariamente",
@@ -15206,7 +15439,7 @@
             "invocar_dragao"
           ],
           "opcional": true,
-          "momento": "ao_comecar_a_conjurar",
+          "gatilho": "ao_comecar_a_conjurar",
           "duracao_substituta": "1 minuto"
         }
       ],
@@ -15335,7 +15568,7 @@
           "alcance_m": 18,
           "custo": "reacao",
           "recurso_id": "restaurar_equilibrio_usos",
-          "momento": "antes_da_jogada"
+          "fase": "antes_da_jogada"
         }
       ],
       "subclasse": "feiticaria_mecanica"
@@ -15436,7 +15669,12 @@
           "id": "entrar_em_transe_da_ordem",
           "custo": "acao_bonus",
           "recurso_id": "transe_da_ordem_usos",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "efeitos": [
             {
               "tipo": "impedir",
@@ -15548,11 +15786,19 @@
           "recarga": [
             "descanso_longo",
             {
-              "gatilho": "conjurar_magia_de_feiticeiro_com_espaco",
+              "gatilho": "apos_conjurar_magia_de_feiticeiro_com_espaco",
               "quantidade": "todos",
               "condicao": {
                 "todas": [
-                  "recurso:mares_do_caos_usos.atual == 0"
+                  {
+                    "comparar": [
+                      "recurso:mares_do_caos_usos.atual"
+                    ],
+                    "op": "eq",
+                    "com": [
+                      "0"
+                    ]
+                  }
                 ]
               },
               "efeito_colateral": {
@@ -15568,7 +15814,7 @@
           "tipo": "vantagem",
           "alvo": "teste_d20",
           "modo": "vantagem",
-          "momento": "antes_da_jogada",
+          "fase": "antes_da_jogada",
           "recurso_id": "mares_do_caos_usos"
         }
       ],
@@ -15637,7 +15883,7 @@
           "empilha": "soma",
           "sinal": "a_sua_escolha",
           "custo": "reacao",
-          "momento": "apos_a_jogada",
+          "fase": "apos_a_jogada",
           "custo_em_recurso": {
             "recurso_id": "pontos_de_feiticaria",
             "quantidade": 1
@@ -15709,7 +15955,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito do Surto de Magia Selvagem",
           "quantidade": 1,
-          "momento": "apos_conjurar_magia_de_feiticeiro_com_espaco",
+          "gatilho": "apos_conjurar_magia_de_feiticeiro_com_espaco",
           "reescolhivel": true,
           "reescolha_em": "cada_uso",
           "recurso_id": "surto_controlado_usos",
@@ -15777,7 +16023,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de Guardião",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
@@ -15871,7 +16117,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha os tipos de arma com maestria",
           "quantidade": 2,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -15913,7 +16159,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um talento de Estilo de Luta",
           "quantidade": 1,
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "de": {
             "catalogo": "talentos",
             "filtro": {
@@ -15957,7 +16203,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia para ganhar Especialização",
           "quantidade": 1,
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "de": {
             "catalogo": "pericias",
             "filtro": {
@@ -15977,7 +16223,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 idiomas",
           "quantidade": 2,
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "de": {
             "catalogo": "idiomas",
             "todo_o_catalogo": true
@@ -16016,7 +16262,7 @@
           "unidade": "metros",
           "empilha": "soma",
           "condicao": {
-            "nao": "usando:armadura_pesada"
+            "nao": "armadura:pesada"
           }
         },
         {
@@ -16026,7 +16272,7 @@
             "deslocamento"
           ],
           "condicao": {
-            "nao": "usando:armadura_pesada"
+            "nao": "armadura:pesada"
           }
         },
         {
@@ -16036,7 +16282,7 @@
             "deslocamento"
           ],
           "condicao": {
-            "nao": "usando:armadura_pesada"
+            "nao": "armadura:pesada"
           }
         }
       ]
@@ -16062,7 +16308,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha 2 perícias para ganhar Especialização",
           "quantidade": 2,
-          "momento": "nivel_9",
+          "gatilho": "nivel_9",
           "de": {
             "catalogo": "pericias",
             "filtro": {
@@ -16322,7 +16568,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma perícia",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "de": {
             "catalogo": "pericias",
             "chaves": [
@@ -16442,7 +16688,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha ou sorteie sua Dádiva de Faéria",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "aleatoria_permitida": true,
           "dado": "1d6",
           "de": {
@@ -16506,7 +16752,12 @@
             "repete": "fim_de_cada_turno_do_alvo",
             "em_sucesso": "encerra"
           },
-          "duracao": "1 minuto"
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "subclasse": "andarilho_feerico"
@@ -16559,7 +16810,7 @@
             "magia": "convocar_feerico"
           },
           "opcional": true,
-          "momento": "ao_comecar_a_conjurar"
+          "gatilho": "ao_comecar_a_conjurar"
         },
         {
           "tipo": "alterar_duracao_da_magia",
@@ -16671,7 +16922,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma opção de Presa do Caçador",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": [
             "descanso_curto",
@@ -16711,7 +16962,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha uma opção de Táticas Defensivas",
           "quantidade": 1,
-          "momento": "nivel_7",
+          "gatilho": "nivel_7",
           "reescolhivel": true,
           "reescolha_em": [
             "descanso_curto",
@@ -16805,7 +17056,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o bloco de estatísticas da sua fera",
           "quantidade": 1,
-          "momento": "nivel_3",
+          "gatilho": "nivel_3",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -17026,7 +17277,7 @@
           ],
           "unidade": "metros",
           "empilha": "soma",
-          "duracao": "ate_o_fim_deste_turno",
+          "duracao": "ate_o_fim_do_turno_atual",
           "gatilho": "inicio_do_seu_primeiro_turno_do_combate"
         }
       ],
@@ -17161,10 +17412,10 @@
           "tipo": "escolha",
           "rotulo": "Já é proficiente em salvaguardas de Sabedoria: escolha Carisma ou Inteligência",
           "quantidade": 1,
-          "momento": "nivel_7",
+          "gatilho": "nivel_7",
           "condicao": {
             "todas": [
-              "ja_proficiente_em_salvaguarda:SAB"
+              "proficiente_em:salvaguarda:SAB"
             ]
           },
           "de": {
@@ -17218,7 +17469,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito adicional do Golpe Terrível",
           "quantidade": 1,
-          "momento": "cada_uso",
+          "gatilho": "cada_uso",
           "reescolhivel": true,
           "reescolha_em": "cada_uso",
           "de": {
@@ -17316,7 +17567,7 @@
           "tipo": "escolha",
           "rotulo": "Prepare magias de Paladino",
           "quantidade": "coluna:magias_preparadas",
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "reescolha_quantidade": 1,
@@ -17369,7 +17620,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha os tipos de arma com maestria",
           "quantidade": 2,
-          "momento": "nivel_1",
+          "gatilho": "nivel_1",
           "reescolhivel": true,
           "reescolha_em": "descanso_longo",
           "de": {
@@ -17506,7 +17757,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha um talento de Estilo de Luta",
           "quantidade": 1,
-          "momento": "nivel_2",
+          "gatilho": "nivel_2",
           "de": {
             "catalogo": "talentos",
             "filtro": {
@@ -17588,7 +17839,7 @@
           "tipo": "escolha",
           "rotulo": "Escolha o efeito de Canalizar Divindade",
           "quantidade": 1,
-          "momento": "cada_uso",
+          "gatilho": "cada_uso",
           "reescolhivel": true,
           "reescolha_em": "cada_uso",
           "de": {
@@ -18055,7 +18306,12 @@
           "tipo": "melhorar_caracteristica",
           "alvo": "aura_de_protecao",
           "custo": "acao_bonus",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "resplendor_sagrado",
           "efeitos": [
             {
@@ -18251,7 +18507,7 @@
               "empilha": "soma",
               "beneficiario": "aliado",
               "gatilho": "entrar_na_emanacao_pela_primeira_vez_no_turno_ou_comecar_o_turno_nela",
-              "duracao": "ate_o_fim_do_proximo_turno_do_aliado"
+              "duracao": "ate_o_fim_do_proximo_turno_do_beneficiario"
             }
           ]
         }
@@ -18357,22 +18613,37 @@
           "modo": "vantagem",
           "atributo": "CAR",
           "custo": "acao_bonus",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "lenda_viva"
         },
         {
           "tipo": "transformar_erro_em_acerto",
           "frequencia": "uma_vez_por_turno",
           "escopo": "jogada_de_ataque_com_arma",
-          "duracao": "10 minutos"
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          }
         },
         {
           "tipo": "rolar_novamente",
           "alvo": "salvaguarda",
           "custo": "reacao",
-          "gatilho": "falhar_em_salvaguarda",
+          "gatilho": "falha",
           "usa_o_novo_resultado": true,
-          "duracao": "10 minutos"
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          }
         }
       ],
       "subclasse": "juramento_da_gloria"
@@ -18578,7 +18849,12 @@
           "tipo": "melhorar_caracteristica",
           "alvo": "aura_de_protecao",
           "custo": "acao_bonus",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "anjo_vingador",
           "efeitos": [
             {
@@ -18594,7 +18870,12 @@
                   "prof"
                 ]
               },
-              "duracao": "1 minuto",
+              "duracao": {
+                "quantidade": [
+                  "1"
+                ],
+                "unidade": "minuto"
+              },
               "encerra_se": [
                 {
                   "gatilho": "alvo_sofre_dano"
@@ -18623,7 +18904,12 @@
           "unidade": "metros",
           "pode_pairar": true,
           "custo": "acao_bonus",
-          "duracao": "10 minutos",
+          "duracao": {
+            "quantidade": [
+              "10"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "anjo_vingador"
         }
       ],
@@ -18857,7 +19143,12 @@
           "tipo": "melhorar_caracteristica",
           "alvo": "aura_de_protecao",
           "custo": "acao_bonus",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "campeao_ancestral",
           "efeitos": [
             {
@@ -18875,7 +19166,12 @@
           "custo_original": "acao",
           "novo_custo": "acao_bonus",
           "escopo": "magia_com_tempo_de_conjuracao_de_uma_acao",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "campeao_ancestral"
         },
         {
@@ -18885,7 +19181,12 @@
           ],
           "beneficiario": "voce",
           "gatilho": "inicio_do_seu_turno",
-          "duracao": "1 minuto",
+          "duracao": {
+            "quantidade": [
+              "1"
+            ],
+            "unidade": "minuto"
+          },
           "consome_recurso": "campeao_ancestral"
         }
       ],

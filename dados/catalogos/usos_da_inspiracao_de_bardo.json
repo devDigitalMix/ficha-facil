@@ -22,7 +22,7 @@
             "coluna:dados_de_inspiracao"
           ],
           "empilha": "soma",
-          "momento": "apos_falhar"
+          "gatilho": "falha"
         }
       ],
       "fonte": {
@@ -67,7 +67,7 @@
             "coluna:dados_de_inspiracao"
           ],
           "empilha": "soma",
-          "momento": "apos_acertar"
+          "gatilho": "acerto"
         }
       ],
       "fonte": {

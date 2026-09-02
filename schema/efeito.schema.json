@@ -38,7 +38,8 @@
         "soma",
         "maior_valor",
         "unico",
-        "substitui"
+        "substitui",
+        "substitui_se_maior"
       ]
     },
     "ativacao": {
@@ -59,6 +60,9 @@
         },
         {
           "$ref": "#/$defs/formula"
+        },
+        {
+          "$ref": "#/$defs/duracao_de_tempo"
         }
       ]
     },
@@ -161,8 +165,60 @@
           },
           "minProperties": 1,
           "maxProperties": 1
+        },
+        {
+          "$ref": "#/$defs/comparacao"
         }
       ]
+    },
+    "duracao_de_tempo": {
+      "type": "object",
+      "required": [
+        "quantidade",
+        "unidade"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "quantidade": {
+          "$ref": "#/$defs/formula"
+        },
+        "unidade": {
+          "enum": [
+            "minuto",
+            "hora",
+            "dia"
+          ]
+        }
+      },
+      "description": "duração de tempo, depois da fase 13: a quantidade é fórmula, para caber 'minutos iguais ao nível de Bruxo'"
+    },
+    "comparacao": {
+      "type": "object",
+      "required": [
+        "comparar",
+        "op",
+        "com"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "comparar": {
+          "$ref": "#/$defs/formula"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte"
+          ]
+        },
+        "com": {
+          "$ref": "#/$defs/formula"
+        }
+      },
+      "description": "comparação de condição, depois da fase 13: os dois lados são fórmula, no lugar do texto solto que havia dentro do id"
     }
   },
   "allOf": [

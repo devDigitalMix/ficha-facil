@@ -504,3 +504,86 @@ geradores de origem, que é dívida paga mas ainda mal endereçada.
 | `revisao: duvida` | 4 | Aeronau, Kit de Explorador do Druida, instrumentos do Bardo, Compreensão Superior |
 | `pendente: true` | 1 (Forma Selvagem) + `criaturas` vazio | seção 1 |
 | `conflito_2014` | 0 | — |
+
+---
+
+## Revisão externa — 2026-09-02
+
+**Consertado**
+
+- **Reprodutibilidade (B10).** `reconstruir.py --comparar` acusava 1 diferença de conteúdo: Raio
+  Guia e Dominar Fera saíam com `nivel: null` numa reconstrução do zero, e o validador reprovava.
+  Causa em dois geradores (`gerar_bruxo_magias.py` gravando `'nivel': None`, e
+  `gerar_magias_detalhadas.py` não tratando o círculo como autoridade da entrada do cap. 7).
+  Agora: 58/58 geradores, **0 diferenças de conteúdo**.
+- **Golpe Astuto / Envenenar (B11).** A `revisao: duvida` com "id depende do cap. 6" era dívida
+  vencida desde a fase 4. Virou `pre_requisitos: [{"tipo": "ferramenta", "chave":
+  "kit_de_veneno"}]`, e o validador passou a resolver chave de pré-requisito.
+- **Instrumentos musicais do Bardo.** A dúvida dizia que o livro não enumerava; **enumera** — linha
+  "Variantes:" da entrada de Instrumento Musical (p. 221), com custo e peso. As dez variantes
+  ganharam custo e peso, e Bardo e Músico passaram a escolher 3 de 10 com `de_variantes: true`. O
+  contorno `quantidade_de_instrumentos` foi removido. Kit de Jogos ganhou as 4 variantes do mesmo
+  jeito.
+
+**Conferido, sem mudança**
+
+- **Kit do Druida: estava errado, corrigido.** O Druida apontava para
+  `kit_de_explorador_de_masmorras`; o certo é **`kit_de_aventureiro`**. O conteúdo dos dois kits
+  (p. 226) resolve: Kit de Aventureiro = Saco de Dormir, sem Pé de Cabra nem Estrepes (Explorer's
+  Pack, que é o que o Druida recebe); Kit de Explorador de Masmorras = Pé de Cabra e Estrepes, sem
+  Saco de Dormir (Dungeoneer's Pack). E o livro escreve o nome inteiro sempre que quer o segundo
+  numa linha de classe (Feiticeiro p. 103, Guerreiro p. 127). A `revisao` do equipamento do Druida
+  deixou de ser `duvida`.
+  Junto veio outro defeito: a nota dessa divergência estava presa ao ITEM, então o Guerreiro
+  carregava uma explicação sobre a linha do Druida. Agora a nota é por (classe, item).
+- A revisão da fase 10 diz que sobraram "dois" `substituir_regra`; há **um**
+  (`beneficios_do_terceiro_olho/compreensao_superior`), como o BACKLOG já registra.
+
+**Checagens novas no validador**
+
+| checagem | o que pega |
+|---|---|
+| `de_variantes` numa escolha | item sem `variantes`, mais de uma chave, ou quantidade maior que o número de variantes |
+| `variante` num efeito | variante que o item apontado não declara |
+| `pre_requisitos` de item/ferramenta | chave que não existe no catálogo |
+
+---
+
+## Fase 12 — Apêndice B, criaturas (ver `revisao-fase12-apendice-b.md`)
+
+**Fechado nesta fase**
+
+- **51 blocos de estatísticas** (43 Feras + Diabrete, Quasit, Esqueleto, Zumbi, Esfinge
+  Maravilhosa, Pseudodragão, Slaad Girino, Sprite), com 112 traços e ações.
+- `criaturas.json` sai de `preenchida: false` e passa a ser catálogo de BLOCO DE ESTATÍSTICAS
+  no validador, com nove checagens novas.
+- **O seletor de formas da Forma Selvagem ligou**: o filtro que estava escrito desde a fase 2
+  agora resolve — 26 formas no nível 2, 33 no 4 e 42 no 8. Tipo de efeito novo
+  `assumir_bloco_de_estatisticas`.
+- A decisão de escopo "criaturas ficam fora" (Fase 0, decisão 5) está **revogada pelo usuário**.
+
+**Divergências do livro encontradas**
+
+Quatro modificadores de atributo que não correspondem ao valor impresso, em dois sabores:
+Alce (Car 6, mod −4 mas SG −2) e Camelo (Des 8, mod −4 mas SG −1) — o SG confirma a conta, e
+cheira a ruído de coluna na extração; Cabra (Int 2, mod e SG −5) e Cavalo Marinho Gigante
+(For 16, mod e SG +2) — as duas colunas concordam entre si e discordam do valor, ou seja, o
+livro discorda de si mesmo. Nos quatro o modificador é recalculado pela regra, o impresso fica
+em `modificadores_impressos` e o caso vira entrada em `divergencias_do_livro`.
+
+**Corrigido de lote anterior**
+
+- O Golpe da Fera das três feras do Guardião não tinha `descricao_curta`; a checagem nova de
+  bloco de estatísticas acusou. Passou a ter descrição derivada.
+
+**Defeitos de parser corrigidos (não reintroduzir)**
+
+17. Entrada fantasma recortada do meio de uma frase ("Ponto de Vida", no Zumbi) — o nome de
+    traço/ação só vale se a frase anterior terminou. 15 entradas fantasma a menos.
+18. Valor de campo que continua na linha seguinte era truncado (Idiomas do Zumbi).
+19. "Morto-Vivo" × "Morto-vivo" no cabeçalho: o casador de tipo perdia o Zumbi. Achado
+    contando `ND (XP` — 51 — contra os 50 cabeçalhos casados.
+
+**Ainda fora do escopo**
+
+- Apêndice A (o multiverso) e multiclasse.

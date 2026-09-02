@@ -533,7 +533,15 @@ def golpe_da_fera(dado, bonus, tipos, extra=None):
         ("alcance_m", 1.5),
         ("dano", {"formula_dado": dado, "somar": [str(bonus), "mod:SAB"],
                   "tipos_de_dano": tipos,
-                  "escolha_do_tipo": "ao_invocar_a_fera" if len(tipos) > 1 else None})])
+                  "escolha_do_tipo": "ao_invocar_a_fera" if len(tipos) > 1 else None}),
+        # A descrição sai do próprio dado, como nas criaturas do Apêndice B. Faltava:
+        # a checagem de bloco de estatísticas acusou quando o Ap. B chegou.
+        ("descricao_curta",
+         "Ataque corpo a corpo, alcance 1,5 m, usando o bônus de ataque mágico do "
+         "Guardião: " + dado + " + " + str(bonus) + " + modificador de Sabedoria de "
+         "dano " + (" ou ".join(tipos) if len(tipos) > 1 else tipos[0]) +
+         ("; o tipo é escolhido ao invocar a fera." if len(tipos) > 1 else ".")),
+        ("descricao_derivada", True)])
     if extra:
         a.update(extra)
     return a

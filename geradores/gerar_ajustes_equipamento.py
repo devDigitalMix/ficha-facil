@@ -27,13 +27,18 @@ ALTERNATIVOS = {
     'placas': ["Armadura de Placas"],
     'flechas': ["Flecha"],
     'virotes': ["Virote"],
-    'kit_de_explorador_de_masmorras': ["Kit de Explorador"],
+    'kit_de_aventureiro': ["Kit de Explorador"],
 }
 
 NOTA_EXPLORADOR = (
-    "A página do Druida (p. 92) escreve 'Kit de Explorador'; o capítulo 6 só tem "
-    "'Kit de Explorador de Masmorras' (p. 226). Tratei como o mesmo kit — "
-    "confira se concorda."
+    "A linha do Druida (p. 91) escreve só 'Kit de Explorador'. É este kit, e não o "
+    "'Kit de Explorador de Masmorras': o conteúdo do Kit de Aventureiro (Saco de "
+    "Dormir, sem Pé de Cabra nem Estrepes, p. 226) é o do Explorer's Pack, que é o "
+    "que o Druida recebe; o Kit de Explorador de Masmorras é o Dungeoneer's Pack. "
+    "E quando o livro quer esse último numa linha de classe ele escreve o nome "
+    "inteiro (Feiticeiro p. 103, Guerreiro p. 127). É deslize do tradutor, que "
+    "verteu 'Explorer's' ao pé da letra na linha do Druida em vez de usar o nome da "
+    "tabela."
 )
 
 NOVOS = [
@@ -62,16 +67,19 @@ RENOMEAR = {
     'foco_arcano_cajado': 'cajado',
     'foco_arcano_orbe': 'orbe',
     'foco_druidico_cajado': 'cajado_de_madeira',
-    'kit_de_explorador': 'kit_de_explorador_de_masmorras',
+    'kit_de_explorador': 'kit_de_aventureiro',
     'livro_conhecimento_oculto': 'livro',
 }
 COMO = {
     'cajado': 'foco_arcano', 'orbe': 'foco_arcano',
     'cajado_de_madeira': 'foco_druidico',
 }
+# A nota do Kit de Explorador é sobre a LINHA DO DRUIDA, não sobre o item: se ficar
+# presa ao id, todo mundo que leva o Kit de Aventureiro (Bárbaro, Guardião, Monge)
+# herda uma explicação que não é sobre ele. Por isso a chave é (classe, item).
 NOTAS_DE_ITEM = {
-    'livro': "O livro do Bruxo é de conhecimento oculto (p. 70).",
-    'kit_de_explorador_de_masmorras': NOTA_EXPLORADOR,
+    (None, 'livro'): "O livro do Bruxo é de conhecimento oculto (p. 70).",
+    ('druida', 'kit_de_aventureiro'): NOTA_EXPLORADOR,
 }
 
 
@@ -126,13 +134,17 @@ def main():
                     trocados += 1
                 if it['item'] in COMO:
                     it['como'] = COMO[it['item']]
-                if it['item'] in NOTAS_DE_ITEM:
-                    it['nota'] = NOTAS_DE_ITEM[it['item']]
+                nota = (NOTAS_DE_ITEM.get((c['id'], it['item']))
+                        or NOTAS_DE_ITEM.get((None, it['item'])))
+                if nota:
+                    it['nota'] = nota
                 novos_itens.append(it)
             op['itens'] = novos_itens
         eq['revisao'] = {"status": "ok", "notas": ""}
         if c['id'] == 'druida':
-            eq['revisao'] = {"status": "duvida", "notas": NOTA_EXPLORADOR}
+            # Foi dúvida até 2026-09-02, quando o conteúdo dos dois kits (p. 226)
+            # resolveu qual é qual. Deixa de ser dúvida e vira nota.
+            eq['revisao'] = {"status": "ok", "notas": NOTA_EXPLORADOR}
     with open(CLASSES, 'w', encoding='utf-8') as f:
         json.dump(cl, f, ensure_ascii=False, indent=2)
 

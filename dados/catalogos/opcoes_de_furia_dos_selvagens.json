@@ -21,7 +21,7 @@
             "correr",
             "desengajar"
           ],
-          "momento": "ao_ativar_a_furia"
+          "gatilho": "ao_entrar_em_furia"
         },
         {
           "tipo": "conceder_acao",
@@ -58,7 +58,7 @@
           "condicao": {
             "todas": [
               "ativo:furia",
-              "alvo_inimigo_a_ate:1.5m_de_voce"
+              "alvo_inimigo_a_ate:1_5m"
             ]
           }
         }

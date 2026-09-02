@@ -8,58 +8,6 @@
   },
   "nota": "As contas de base da ficha, para o backend calcular a partir do dado em vez de chumbar regra em código. Cada derivado traz a fórmula em árvore e as parcelas rotuladas, para o log de proveniência sair pronto. As operações válidas em qualquer fórmula da base estão declaradas em 'operacoes' — o validador não aceita op fora dessa lista.",
   "total": 19,
-  "operacoes": [
-    {
-      "id": "soma",
-      "aridade": "n",
-      "descricao_curta": "Soma os argumentos."
-    },
-    {
-      "id": "menos",
-      "aridade": "n",
-      "descricao_curta": "Subtrai os argumentos do valor acumulado."
-    },
-    {
-      "id": "mult",
-      "aridade": "n",
-      "descricao_curta": "Multiplica os argumentos."
-    },
-    {
-      "id": "max",
-      "aridade": "n",
-      "descricao_curta": "O maior dos argumentos."
-    },
-    {
-      "id": "min",
-      "aridade": "n",
-      "descricao_curta": "O menor dos argumentos."
-    },
-    {
-      "id": "div_arred_baixo",
-      "aridade": 2,
-      "descricao_curta": "Divide e arredonda para baixo."
-    },
-    {
-      "id": "div_arred_cima",
-      "aridade": 2,
-      "descricao_curta": "Divide e arredonda para cima."
-    },
-    {
-      "id": "menor_ou_igual",
-      "aridade": 2,
-      "descricao_curta": "Comparação; devolve verdadeiro ou falso."
-    },
-    {
-      "id": "soma_se",
-      "aridade": "n",
-      "descricao_curta": "Soma os argumentos apenas se a condição do campo 'condicao' valer."
-    },
-    {
-      "id": "max_entre_calculos_de_base",
-      "aridade": "n",
-      "descricao_curta": "Entre cálculos de base concorrentes, o jogador escolhe um; não se somam."
-    }
-  ],
   "itens": [
     {
       "id": "modificador_de_atributo",
@@ -136,7 +84,7 @@
         "mod:atributo_relevante",
         {
           "op": "soma_se",
-          "condicao": "proficiente_na_pericia_ou_ferramenta",
+          "condicao": "proficiente_em:pericia_ou_ferramenta_do_teste",
           "args": [
             "prof"
           ]
@@ -156,7 +104,7 @@
         {
           "rotulo": "bônus de proficiência",
           "chave": "prof",
-          "condicao": "proficiente_na_pericia_ou_ferramenta"
+          "condicao": "proficiente_em:pericia_ou_ferramenta_do_teste"
         },
         {
           "rotulo": "outros bônus e penalidades",
@@ -179,7 +127,7 @@
         "mod:atributo_da_salvaguarda",
         {
           "op": "soma_se",
-          "condicao": "proficiente_na_salvaguarda",
+          "condicao": "proficiente_em:salvaguarda_do_teste",
           "args": [
             "prof"
           ]
@@ -199,7 +147,7 @@
         {
           "rotulo": "bônus de proficiência",
           "chave": "prof",
-          "condicao": "proficiente_na_salvaguarda"
+          "condicao": "proficiente_em:salvaguarda_do_teste"
         },
         {
           "rotulo": "outros bônus e penalidades",
@@ -222,7 +170,7 @@
         "mod:atributo_de_ataque_da_arma",
         {
           "op": "soma_se",
-          "condicao": "proficiente_com_a_arma",
+          "condicao": "proficiente_em:arma_do_ataque",
           "args": [
             "prof"
           ]
@@ -242,7 +190,7 @@
         {
           "rotulo": "bônus de proficiência",
           "chave": "prof",
-          "condicao": "proficiente_com_a_arma"
+          "condicao": "proficiente_em:arma_do_ataque"
         },
         {
           "rotulo": "bônus mágico da arma",
@@ -392,7 +340,7 @@
         },
         {
           "op": "soma_se",
-          "condicao": "usando_escudo",
+          "condicao": "segurando:escudo",
           "args": [
             "bonus_do_escudo"
           ]
@@ -418,7 +366,7 @@
         {
           "rotulo": "escudo",
           "chave": "bonus_do_escudo",
-          "condicao": "usando_escudo"
+          "condicao": "segurando:escudo"
         },
         {
           "rotulo": "outros bônus",
@@ -505,7 +453,7 @@
         "mod:SAB",
         {
           "op": "soma_se",
-          "condicao": "proficiente_em:percepcao",
+          "condicao": "proficiente_em:pericia:percepcao",
           "args": [
             "prof"
           ]
@@ -624,7 +572,15 @@
         {
           "rotulo": "piso de 1 por nível",
           "chave": "minimo_1",
-          "condicao": "soma_menor_que_1"
+          "condicao": {
+            "comparar": [
+              "soma_do_calculo"
+            ],
+            "op": "lt",
+            "com": [
+              "1"
+            ]
+          }
         }
       ],
       "tabela_por_classe": [
@@ -781,7 +737,15 @@
         {
           "rotulo": "Pontos de Vida dos níveis seguintes",
           "chave": "soma_dos_niveis_seguintes",
-          "condicao": "nivel_maior_que_1"
+          "condicao": {
+            "comparar": [
+              "nivel_do_personagem"
+            ],
+            "op": "gt",
+            "com": [
+              "1"
+            ]
+          }
         },
         {
           "rotulo": "bônus de características",
@@ -921,6 +885,58 @@
         "pagina_livro": 28,
         "pagina_pdf": 32
       }
+    }
+  ],
+  "operacoes": [
+    {
+      "id": "soma",
+      "aridade": "n",
+      "descricao_curta": "Soma os argumentos."
+    },
+    {
+      "id": "menos",
+      "aridade": "n",
+      "descricao_curta": "Subtrai os argumentos do valor acumulado."
+    },
+    {
+      "id": "mult",
+      "aridade": "n",
+      "descricao_curta": "Multiplica os argumentos."
+    },
+    {
+      "id": "max",
+      "aridade": "n",
+      "descricao_curta": "O maior dos argumentos."
+    },
+    {
+      "id": "min",
+      "aridade": "n",
+      "descricao_curta": "O menor dos argumentos."
+    },
+    {
+      "id": "div_arred_baixo",
+      "aridade": 2,
+      "descricao_curta": "Divide e arredonda para baixo."
+    },
+    {
+      "id": "div_arred_cima",
+      "aridade": 2,
+      "descricao_curta": "Divide e arredonda para cima."
+    },
+    {
+      "id": "menor_ou_igual",
+      "aridade": 2,
+      "descricao_curta": "Comparação; devolve verdadeiro ou falso."
+    },
+    {
+      "id": "soma_se",
+      "aridade": "n",
+      "descricao_curta": "Soma os argumentos apenas se a condição do campo 'condicao' valer."
+    },
+    {
+      "id": "max_entre_calculos_de_base",
+      "aridade": "n",
+      "descricao_curta": "Entre cálculos de base concorrentes, o jogador escolhe um; não se somam."
     }
   ]
 }

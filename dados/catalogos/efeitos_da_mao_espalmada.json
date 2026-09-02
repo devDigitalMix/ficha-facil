@@ -44,7 +44,7 @@
           "alvo": "reacao",
           "beneficiario": "alvo",
           "restrito_a": "ataque_de_oportunidade",
-          "duracao": "ate_o_inicio_do_proximo_turno_do_alvo"
+          "duracao": "ate_o_inicio_do_proximo_turno_do_beneficiario"
         }
       ],
       "fonte": {

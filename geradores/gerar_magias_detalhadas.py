@@ -106,6 +106,14 @@ def main():
         alvo['fonte'] = {"capitulo": 7, "pagina_livro": e['pagina_livro'],
                          "pagina_pdf": e['pagina_livro'] + 4}
 
+        # o círculo também sai da ENTRADA, não da tabela da lista de classe. Sem isto,
+        # magia que entrou no catálogo como stub com 'nivel': None (gerar_bruxo_magias.py
+        # grava None quando a raspagem do cabeçalho falha) ficava sem círculo para sempre:
+        # o setdefault dos geradores de lista não substitui chave que já existe com None.
+        # Numa reconstrução do zero isso derrubava Raio Guia e Dominar Fera.
+        if alvo.get('nivel') != e['circulo']:
+            alvo['nivel'] = e['circulo']
+
         # escola: a entrada do capítulo 7 é a autoridade
         esc = ALIAS_ESCOLA.get(norm(e['escola']), norm(e['escola']))
         if alvo.get('escola') != esc:

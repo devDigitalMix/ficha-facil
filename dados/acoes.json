@@ -26,7 +26,7 @@
               "modo": "vantagem",
               "beneficiario": "aliado",
               "requer": "proficiencia_sua_na_pericia_ou_ferramenta",
-              "duracao": "ate_inicio_do_seu_proximo_turno"
+              "duracao": "ate_o_inicio_do_seu_proximo_turno"
             }
           ]
         },
@@ -39,7 +39,7 @@
               "modo": "vantagem",
               "beneficiario": "aliado",
               "alcance_m": 1.5,
-              "duracao": "ate_inicio_do_seu_proximo_turno"
+              "duracao": "ate_o_inicio_do_seu_proximo_turno"
             }
           ]
         },
@@ -162,7 +162,7 @@
         {
           "tipo": "impedir",
           "alvo": "ataque_de_oportunidade_provocado_por_voce",
-          "duracao": "resto_do_turno"
+          "duracao": "ate_o_fim_do_turno_atual"
         }
       ]
     },
@@ -215,7 +215,7 @@
           "gatilho": "inimigo_encontra_voce"
         },
         {
-          "gatilho": "voce_realiza_jogada_de_ataque"
+          "gatilho": "realizar_jogada_de_ataque"
         },
         {
           "gatilho": "conjura_magia_com_componente_verbal"
@@ -246,13 +246,13 @@
               "voce_pode_ver_o_atacante"
             ]
           },
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         },
         {
           "tipo": "vantagem",
           "alvo": "salvaguarda:DES",
           "modo": "vantagem",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "perde_beneficio_se": [
@@ -336,7 +336,7 @@
           "tipo": "conceder_acao",
           "id": "reacao_preparada",
           "custo": "reacao",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "regras_de_magia": {

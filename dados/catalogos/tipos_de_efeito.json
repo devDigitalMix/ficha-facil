@@ -1,7 +1,7 @@
 {
   "catalogo": "tipos_de_efeito",
   "nome": "Tipos de Efeito",
-  "total": 102,
+  "total": 103,
   "itens": [
     {
       "id": "modificador",
@@ -147,7 +147,9 @@
         "efeitos"
       ],
       "nota": "Concede uma ação/reação nova.",
-      "nome": "Conceder acao"
+      "nome": "Conceder acao",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Os efeitos são o que a ação FAZ; valem ao executá-la, não passivamente."
     },
     {
       "id": "ca_base",
@@ -431,7 +433,9 @@
         "custo_em_foco",
         "condicao"
       ],
-      "nota": "Altera outra característica já concedida, em vez de duplicá-la."
+      "nota": "Altera outra característica já concedida, em vez de duplicá-la.",
+      "efeitos_aninhados": "estruturais",
+      "nota_dos_aninhados": "O campo `alvo` diz a qual característica os efeitos se aplicam. É redirecionamento, não condição: quem tem a melhoria tem os efeitos."
     },
     {
       "id": "pontos_de_vida_temporarios",
@@ -636,7 +640,9 @@
         "recarga",
         "gasto_maximo_por_uso"
       ],
-      "nota": "Reserva de dados gastáveis (Luz Medicinal do Celestial)."
+      "nota": "Reserva de dados gastáveis (Luz Medicinal do Celestial).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Só quando um dado da reserva é gasto."
     },
     {
       "id": "magias_de_patrono",
@@ -676,7 +682,9 @@
         "tabela_de_formas",
         "regras_enquanto_multimorfado"
       ],
-      "nota": "Multimorfia em forma Animal (Forma Selvagem do Druida)."
+      "nota": "Multimorfia em forma Animal (Forma Selvagem do Druida).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Enquanto multimorfado."
     },
     {
       "id": "converter_recurso",
@@ -700,7 +708,9 @@
         "efeitos",
         "encerra_se"
       ],
-      "nota": "Área que acompanha o personagem (Ira do Mar)."
+      "nota": "Área que acompanha o personagem (Ira do Mar).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Enquanto a emanação existe."
     },
     {
       "id": "tratar_resultado_minimo",
@@ -733,7 +743,9 @@
         "encerra_se",
         "extensao"
       ],
-      "nota": "Estado de Fúria do Bárbaro: recurso + pacote de efeitos enquanto ativo."
+      "nota": "Estado de Fúria do Bárbaro: recurso + pacote de efeitos enquanto ativo.",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Enquanto a Fúria está ativa. Tem custo, duração e encerra_se."
     },
     {
       "id": "expandir_opcoes_de_escolha",
@@ -858,7 +870,9 @@
     {
       "id": "redirecionar_dano",
       "nome": "Redirecionar dano para outra criatura",
-      "descricao_curta": "Manda para outro alvo dano do mesmo tipo recebido (Dádiva da Resistência à Energia)."
+      "descricao_curta": "Manda para outro alvo dano do mesmo tipo recebido (Dádiva da Resistência à Energia).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Só quando a Reação é usada."
     },
     {
       "id": "redirecionar_ataque",
@@ -868,7 +882,9 @@
     {
       "id": "aplicar_veneno",
       "nome": "Aplicar veneno numa arma ou munição",
-      "descricao_curta": "Prepara o item envenenado, com duração e efeito ao causar dano (Envenenador)."
+      "descricao_curta": "Prepara o item envenenado, com duração e efeito ao causar dano (Envenenador).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Enquanto o veneno aplicado dura."
     },
     {
       "id": "ignorar_propriedade_de_arma",
@@ -898,12 +914,19 @@
     {
       "id": "alterar_tamanho",
       "nome": "Alterar tamanho",
-      "descricao_curta": "Muda o tamanho da criatura por uma duração, com efeitos próprios enquanto durar. Forma Grande (Golias)."
+      "descricao_curta": "Muda o tamanho da criatura por uma duração, com efeitos próprios enquanto durar. Forma Grande (Golias).",
+      "efeitos_aninhados": "condicionados",
+      "nota_dos_aninhados": "Enquanto o tamanho alterado dura."
     },
     {
       "id": "alterar_descanso",
       "nome": "Alterar descanso",
       "descricao_curta": "Muda a duração ou os requisitos de um tipo de descanso. Transe (Elfo) completa um Descanso Longo em 4 horas, sem dormir."
+    },
+    {
+      "id": "assumir_bloco_de_estatisticas",
+      "nome": "Assumir o bloco de estatísticas de uma criatura",
+      "descricao_curta": "Troca as estatísticas do personagem pelas de um bloco do catálogo indicado. Quais estatísticas são mantidas é regra de quem concede — a Forma Selvagem declara isso em `regras_enquanto_multimorfado`."
     },
     {
       "id": "emitir_luz",
@@ -915,5 +938,6 @@
     "capitulo": "engine",
     "pagina_livro": 0,
     "pagina_pdf": 0
-  }
+  },
+  "nota_dos_aninhados": "Um efeito pode trazer outros dentro. `efeitos_aninhados` diz o que isso significa: 'condicionados' = só valem enquanto o pai estiver ativo (e o pai precisa de `id`, que nomeia a condição); 'estruturais' = valem sempre, o pai só diz onde aplicá-los. Sem esta declaração o motor teria de adivinhar pelo formato — e adivinhava errado nos 56 `melhorar_caracteristica`."
 }

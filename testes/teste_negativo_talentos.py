@@ -2,7 +2,7 @@
 """Teste negativo do lote do capítulo 5 (Talentos)."""
 import json, os, shutil, subprocess, sys, tempfile
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # os testes moram em testes/; a raiz do projeto é um nível acima
 
 
 def carregar(b, rel):

@@ -7,7 +7,7 @@ filtro nunca era acusado.
 """
 import json, os, shutil, subprocess, sys, tempfile
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # os testes moram em testes/; a raiz do projeto é um nível acima
 
 
 def carregar(b, rel):
@@ -61,7 +61,39 @@ def maestria_apontando_para_arma_inexistente(b):
     gravar(b, C, d)
 
 
+def pre_requisito_de_ferramenta_inexistente(b):
+    """A dúvida do Golpe Astuto ('Envenenar exige Kit de Veneno, id depende do cap. 6')
+    ficou anos calada porque ninguém conferia a chave. Agora confere."""
+    d = carregar(b, 'catalogos/efeitos_de_golpe_astuto.json')
+    for e in item(d, 'envenenar')['efeitos']:
+        for pr in (e.get('pre_requisitos') or []):
+            pr['chave'] = 'kit_de_venenos'
+    gravar(b, 'catalogos/efeitos_de_golpe_astuto.json', d)
+
+
+def escolha_de_variante_alem_das_que_existem(b):
+    """Escolher 3 de 10 instrumentos é válido; escolher 12 não é."""
+    d = carregar(b, 'classes.json')
+    for e in item(d, 'bardo')['proficiencias_iniciais']:
+        if e.get('id') == 'bardo_instrumentos':
+            e['quantidade'] = 12
+    gravar(b, 'classes.json', d)
+
+
+def variante_inexistente_no_efeito(b):
+    d = carregar(b, 'classes.json')
+    for e in item(d, 'bardo')['proficiencias_iniciais']:
+        if e.get('id') == 'bardo_instrumentos':
+            e['efeito_por_item_escolhido']['variante'] = 'sanfona'
+    gravar(b, 'classes.json', d)
+
+
 DEFEITOS = [
+    ("pré-requisito apontando para ferramenta que não existe",
+     pre_requisito_de_ferramenta_inexistente),
+    ("escolha de mais variantes do que o item declara",
+     escolha_de_variante_alem_das_que_existem),
+    ("efeito citando variante que o item não tem", variante_inexistente_no_efeito),
     ("filtro com chave digitada errado ('categoira')", filtro_com_chave_digitada_errado),
     ("filtro com chave inventada", filtro_com_chave_inventada),
     ("efeito com tipo inexistente dentro de melhoria", emitir_luz_com_alvo_de_jogada_invalido),

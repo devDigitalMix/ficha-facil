@@ -3,9 +3,26 @@
 Arquivo de trabalho. Denso de propósito: cada item tem evidência, comando de reprodução e ação.
 Ao resolver, apagar o item e registrar em `PENDENCIAS.md`.
 
-**Estado em 2026-09-02, depois da rodada de conserto:**
+**Estado em 2026-09-02, depois da revisão externa:**
 `validar.py` 0/0 · `checar_schema.py` 75/75 · seis testes negativos (18+11+16+18+26+4) ·
-`reconstruir.py --comparar` = **58/58 geradores, 0 diferenças de conteúdo**.
+`reconstruir.py --comparar` = **59/59 geradores, 0 diferenças de conteúdo**.
+Sete testes negativos desde a fase 12 (17 do Apêndice B).
+
+**B10 — reprodutibilidade quebrada, achada e consertada (2026-09-02).** `--comparar` acusava 1
+diferença: numa reconstrução do zero, **Raio Guia e Dominar Fera saíam com `nivel: null`** e o
+validador reprovava com 2 erros — o `dados/` versionado estava certo, então só quem rebuildasse
+via. Causa: `gerar_bruxo_magias.py` gravava `'nivel': None` quando a raspagem do cabeçalho falhava,
+e **chave presente com None é pior que chave ausente** (o `setdefault` dos geradores de lista não a
+substitui); `gerar_magias_detalhadas.py` atualizava `fonte` e `escola` a partir da entrada do
+cap. 7, mas nunca o `nivel`. Consertado nos dois: a entrada do capítulo 7 passou a ser autoridade
+também para o círculo, e o stub deixou de gravar None. **Lição: validador limpo não prova
+reprodutibilidade — `reconstruir.py --comparar` entra na conferência de todo lote.**
+
+**B11 — dúvida vencida que ninguém reabriu (2026-09-02).** O Golpe Astuto "Envenenar" carregava
+`revisao: duvida` com a nota "id depende do cap. 6" desde a fase 2. O capítulo 6 entrou na fase 4 e
+`kit_de_veneno` existe — mas nada conferia chave de pré-requisito, então a dúvida sobreviveu calada
+por sete fases. Agora `pre_requisitos` de tipo `item` e `ferramenta` são resolvidos contra o
+catálogo, e o teste negativo planta `kit_de_venenos`.
 
 ---
 
@@ -49,15 +66,38 @@ Ao resolver, apagar o item e registrar em `PENDENCIAS.md`.
 
 Não resolver sozinho. Perguntar quando houver ocasião:
 
-1. `itens/aeronau` — "Aeronau" (p. 230) parece "Aeronave"; a legenda da p. 212 usa a palavra no
-   mesmo sentido. O app mostra como impresso?
-2. `classes/druida` — o Druida (p. 92) pede "Kit de Explorador"; o cap. 6 só tem "Kit de Explorador
-   de Masmorras" (p. 226). Tratado como o mesmo.
-3. `classes/bardo` — o livro não enumera os instrumentos musicais; a lista teria de vir de fora.
-4. `beneficios_do_terceiro_olho/compreensao_superior` — "ler qualquer idioma" é o **último**
-   `substituir_regra` do dataset. Vira primitivo (`compreender_idioma_escrito`)?
+1. ~~`itens/aeronau` — "Aeronau" (p. 230) parece "Aeronave"~~ **FECHADO em 2026-09-02 pelo João:
+   está escrito Aeronau mesmo, e é assim que fica.** O dado reproduz o livro, e o app mostra o que
+   o livro imprime. Vale a regra geral do projeto: o PDF é a verdade, inclusive quando parece
+   deslize — se for erro de edição, é erro de edição do livro, e corrigir por conta própria seria
+   inventar.
+2. ~~`classes/druida` — "Kit de Explorador"~~ **FECHADO em 2026-09-02, e o dado estava ERRADO.**
+   O Druida apontava para `kit_de_explorador_de_masmorras`; o certo é **`kit_de_aventureiro`**.
+   Quem viu foi o João. O que fecha a questão é o CONTEÚDO dos dois kits (p. 226): Kit de
+   Aventureiro tem Saco de Dormir e não tem Pé de Cabra nem Estrepes — é o Explorer's Pack; Kit de
+   Explorador de Masmorras tem Pé de Cabra e Estrepes e não tem Saco de Dormir — é o Dungeoneer's
+   Pack. O Druida recebe o Explorer's Pack. Some-se a isso que, quando o livro quer o Dungeoneer's
+   numa linha de classe, ele escreve o nome inteiro (Feiticeiro p. 103, Guerreiro p. 127). É
+   deslize do tradutor, que verteu "Explorer's" ao pé da letra só na linha do Druida.
+   Nota de método: eu tinha "confirmado" o contrário procurando a palavra "Pacote" no livro — a
+   pergunta certa não era como o kit se chama, e sim **qual kit o Druida recebe**. Conferir pelo
+   conteúdo, não pelo nome.
+3. ~~`classes/bardo` — o livro não enumera os instrumentos~~ **ERA FALSO. FECHADO em 2026-09-02.**
+   Ele enumera, na linha "Variantes:" da própria entrada de Instrumento Musical (p. 221), com custo
+   e peso: Alaúde, Flauta, Flauta de Pan, Gaita de Foles, Lira, Oboé, Tambor, Trombeta, Violino,
+   Xilofone. Os nomes já estavam em `ferramentas.json`; faltava custo e peso, e faltava a escolha
+   apontar para eles. Bardo e Músico agora escolhem 3 de 10 com `de_variantes: true`, e o contorno
+   `quantidade_de_instrumentos` sumiu. O mesmo valeu para o Kit de Jogos (4 variantes, p. 221).
+4. ~~`beneficios_do_terceiro_olho/compreensao_superior` — vira primitivo?~~ **FECHADO em
+   2026-09-02 pelo João: fica como regra declarada.** O `substituir_regra` continua sendo o
+   último do dataset, e continua sozinho — o critério de promover a primitivo é o mesmo dos
+   `efeito_narrativo` (a mesma coisa aparecer em três lugares), e esta aparece em um. Criar um
+   primitivo para um caso só é ganhar um tipo de efeito e não ganhar nada.
 5. Releitura das 391 magias contra a paráfrase, uma a uma. `auditar_descricoes.py` só pega fato
    verificável por termo; inversão de sucesso/falha e erro de duração passam.
+   **Adiada de novo em 2026-09-02 pelo João** — leva muito tempo e não bloqueia o motor. O
+   argumento de por que ela não bloqueia está no `PLANO-MOTOR.md` §10: o motor lê o campo
+   estruturado, não a paráfrase. As três ressalvas de lá continuam valendo.
 6. Regra da mesa pendente: +2 de Maestria em Arma no nível 20 do Guardião e do Paladino. Fora do
    dado até existir a camada de overrides (PENDENCIAS §8).
 

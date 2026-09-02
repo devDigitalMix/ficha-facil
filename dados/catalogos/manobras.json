@@ -47,7 +47,7 @@
         "pagina_livro": 134,
         "pagina_pdf": 138
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Sabedoria ou fica Amedrontado até o fim do seu próximo turno.",
       "efeitos": [
@@ -81,7 +81,7 @@
         "pagina_livro": 134,
         "pagina_pdf": 138
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Ao acertar corpo a corpo, escolhe outra criatura a até 1,5 m do alvo e ao seu alcance: se a jogada original a atingiria, ela sofre dano igual ao Dado de Superioridade, do mesmo tipo.",
       "efeitos": [
@@ -139,7 +139,7 @@
         "pagina_livro": 134,
         "pagina_pdf": 138
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; a próxima jogada de ataque contra o alvo por outro atacante tem Vantagem, se for antes do início do seu próximo turno.",
       "efeitos": [
@@ -154,7 +154,7 @@
           "alvo": "jogada_de_ataque",
           "modo": "vantagem",
           "beneficiario": "outro_atacante",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ]
     },
@@ -166,7 +166,7 @@
         "pagina_livro": 134,
         "pagina_pdf": 138
       },
-      "custo": "no_erro",
+      "gatilho": "erro",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Ao errar, soma o Dado de Superioridade à jogada de ataque, podendo transformá-la em acerto.",
       "efeitos": [
@@ -178,7 +178,7 @@
           ],
           "empilha": "soma",
           "gatilho": "erro",
-          "momento": "apos_a_jogada"
+          "fase": "apos_a_jogada"
         }
       ]
     },
@@ -190,7 +190,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Sabedoria ou tem Desvantagem em ataques contra qualquer alvo que não seja você até o fim do seu próximo turno.",
       "efeitos": [
@@ -228,7 +228,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_teste",
+      "gatilho": "teste_de_atributo",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade a um teste de Inteligência (História ou Investigação) ou de Sabedoria (Intuição).",
       "efeitos": [
@@ -297,7 +297,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; o alvo faz salvaguarda de Força ou solta um objeto à sua escolha, que cai no espaço dele.",
       "efeitos": [
@@ -330,7 +330,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_teste",
+      "gatilho": "teste_de_atributo",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade a um teste de Destreza (Furtividade) ou à jogada de Iniciativa, salvo se você estiver Incapacitado.",
       "efeitos": [
@@ -374,7 +374,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; se o alvo for Grande ou menor, salvaguarda de Força ou é empurrado até 4,5 m para longe.",
       "efeitos": [
@@ -415,7 +415,7 @@
           "tipo": "vantagem",
           "alvo": "jogada_de_ataque",
           "modo": "vantagem",
-          "duracao": "neste_turno"
+          "duracao": "ate_o_fim_do_turno_atual"
         },
         {
           "tipo": "dano",
@@ -454,7 +454,7 @@
           ],
           "empilha": "soma",
           "beneficiario": "voce_ou_a_criatura",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ],
       "revisao": {
@@ -503,7 +503,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano e escolhe um aliado que possa vê-lo ou ouvi-lo: ele usa a Reação dele para mover metade do Deslocamento sem provocar Ataque de Oportunidade do alvo do seu ataque.",
       "efeitos": [
@@ -547,7 +547,7 @@
             "dado:superioridade"
           ],
           "empilha": "soma",
-          "duracao": "ate_inicio_do_seu_proximo_turno"
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
         }
       ]
     },
@@ -559,7 +559,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_teste",
+      "gatilho": "teste_de_atributo",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade a um teste de Carisma (Atuação, Intimidação ou Persuasão).",
       "efeitos": [
@@ -591,7 +591,7 @@
         "pagina_livro": 135,
         "pagina_pdf": 139
       },
-      "custo": "no_acerto",
+      "gatilho": "acerto",
       "consome_dado_de_superioridade": true,
       "descricao_curta": "Soma o Dado de Superioridade ao dano; se o alvo for Grande ou menor, salvaguarda de Força ou fica Caído.",
       "efeitos": [
@@ -615,7 +615,7 @@
           },
           "condicao": {
             "todas": [
-              "alvo_grande_ou_menor"
+              "alvo_de_tamanho_ate:grande"
             ]
           }
         }

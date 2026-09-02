@@ -29,7 +29,7 @@
             "DES"
           ],
           "mesmo_nas_duas_jogadas": true,
-          "momento": "ao_equipar"
+          "gatilho": "ao_equipar"
         }
       ]
     },
@@ -153,14 +153,14 @@
           "custo": "acao_bonus",
           "condicao": {
             "todas": [
-              "executou:atacar_no_turno",
+              "executou:atacar_neste_turno",
               "empunhando:arma_leve"
             ]
           },
           "exige_outra_arma_leve": true,
           "sem_modificador_no_dano": true,
           "excecao": "modificador negativo continua sendo somado",
-          "momento": "mais_tarde_no_mesmo_turno"
+          "gatilho": "mais_tarde_no_mesmo_turno"
         }
       ]
     },
@@ -207,8 +207,34 @@
           "modo": "desvantagem",
           "condicao": {
             "alguma": [
-              "arma_corpo_a_corpo_e_forca_menor_que:13",
-              "arma_a_distancia_e_destreza_menor_que:13"
+              {
+                "todas": [
+                  "arma:corpo_a_corpo",
+                  {
+                    "comparar": [
+                      "valor_de_atributo:FOR"
+                    ],
+                    "op": "lt",
+                    "com": [
+                      "13"
+                    ]
+                  }
+                ]
+              },
+              {
+                "todas": [
+                  "arma:a_distancia",
+                  {
+                    "comparar": [
+                      "valor_de_atributo:DES"
+                    ],
+                    "op": "lt",
+                    "com": [
+                      "13"
+                    ]
+                  }
+                ]
+              }
             ]
           }
         }

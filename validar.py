@@ -26,9 +26,15 @@ for nome in sorted(os.listdir(cat_dir)):
     if nome.endswith('.json'):
         d = carregar(os.path.join(cat_dir, nome))
         catalogos[d['catalogo']] = d
+VOCAB = {}
 for nome in sorted(os.listdir(BASE)):
     if nome.endswith('.json'):
         d = carregar(os.path.join(BASE, nome))
+        # o vocabulário de runtime não é coleção de itens: é a lista fechada do
+        # que o motor sabe interpretar (fase 13)
+        if d.get('vocabulario_de_runtime'):
+            VOCAB = d
+            continue
         colecoes[d['colecao']] = d
 
 CHAVES = {cid: {i['id'] for i in c['itens']} for cid, c in catalogos.items()}
@@ -341,7 +347,25 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
                     if k not in CHAVES[cat]:
                         erros.append(f"[chave inexistente] {ctx}: '{k}' não está em '{cat}'")
                 q = e.get('quantidade', 0)
-                if isinstance(q, int) and q > len(de['chaves']):
+                if de.get('de_variantes'):
+                    # A escolha não é entre as CHAVES, e sim entre as VARIANTES do item
+                    # apontado — os dez Instrumentos Musicais da p. 221, por exemplo.
+                    # Sem isto, "escolha 3 instrumentos" com uma chave só parecia erro,
+                    # e por isso vivia com um contorno em `quantidade_de_instrumentos`.
+                    if len(de['chaves']) != 1:
+                        erros.append(f"[de_variantes com mais de uma chave] {ctx}: "
+                                     "aponte para um item só")
+                    for k in de['chaves']:
+                        alvo = next((i for i in (catalogos.get(cat) or {}).get('itens', [])
+                                     if i['id'] == k), None)
+                        vs = (alvo or {}).get('variantes') or []
+                        if not vs:
+                            erros.append(f"[item sem variantes] {ctx}: '{k}' não declara "
+                                         "'variantes', mas a escolha diz de_variantes")
+                        elif isinstance(q, int) and q > len(vs):
+                            erros.append(f"[quantidade > opções] {ctx}: {q} de "
+                                         f"{len(vs)} variantes de '{k}'")
+                elif isinstance(q, int) and q > len(de['chaves']):
                     erros.append(f"[quantidade > opções] {ctx}: {e.get('quantidade')} de {len(de['chaves'])}")
             elif 'filtro' not in de and not de.get('todo_o_catalogo'):
                 erros.append(f"[escolha sem chaves, filtro ou todo_o_catalogo] {ctx}")
@@ -830,10 +854,12 @@ if magias_cat:
 # 'efeitos' ali é ou defeito, ou pendência — e pendência precisa estar declarada.
 CATALOGOS_DE_VOCABULARIO = {
     'alvos', 'alvos_de_impedimento', 'areas_de_efeito', 'atitudes', 'atributos',
-    'categorias_de_arma', 'categorias_de_armadura', 'criaturas', 'custos_de_acao',
+    'categorias_de_arma', 'categorias_de_armadura', 'custos_de_acao',
     'escolas_de_magia', 'estados', 'ferramentas', 'graus_de_cobertura', 'idiomas',
     'itens', 'listas_de_iniciado_em_magia', 'listas_de_magia',
-    'magias', 'manifestacoes_da_ordem', 'pericias', 'riscos', 'sentidos', 'tamanhos',
+    'magias', 'manifestacoes_da_ordem', 'modos_de_aumento_de_atributo',
+    'modos_de_aumento_do_antecedente',
+    'pericias', 'riscos', 'sentidos', 'tamanhos',
     'tipos_de_criatura', 'tipos_de_dano', 'tipos_de_descanso',
     'tipos_de_deslocamento', 'tipos_de_efeito',
 }
@@ -844,7 +870,9 @@ CATALOGOS_DE_FORMULA = {'valores_derivados'}
 # em atributos, pontos de vida, traços e ações — como no bloco impresso do livro.
 # Cobrar 'efeitos' aqui empurraria a ficha da criatura para dentro de um campo que
 # não foi feito para ela; o que se cobra é o bloco estar completo.
-CATALOGOS_DE_BLOCO_DE_ESTATISTICAS = {'feras_companheiras'}
+# `criaturas` era VOCABULÁRIO enquanto estava vazio. Com o Apêndice B extraído ele
+# passa a ser o que sempre foi: bloco de estatísticas, e as checagens do bloco valem.
+CATALOGOS_DE_BLOCO_DE_ESTATISTICAS = {'feras_companheiras', 'criaturas'}
 # Quinta família: espécies. A mecânica mora em 'tracos', cada um com nome e página,
 # porque a ficha mostra o TRAÇO, não uma lista solta de efeitos. O que se cobra é o
 # cabeçalho da espécie (tipo, tamanho, deslocamento) e que todo traço tenha efeitos.
@@ -1154,6 +1182,13 @@ OPS = {o['id'] for o in catalogos.get('valores_derivados', {}).get('operacoes', 
 
 def checar_ops(ctx, obj):
     if isinstance(obj, dict):
+        # a comparação de condição também usa a chave 'op', mas do vocabulário de
+        # comparação (fase 13), não do catálogo de operações de fórmula
+        if 'comparar' in obj:
+            for k, v in obj.items():
+                if k != 'op':
+                    checar_ops(f"{ctx}/{k}", v)
+            return
         op = obj.get('op')
         if isinstance(op, str) and OPS and op not in OPS:
             erros.append(f"[operação desconhecida] {ctx}: '{op}' não está em "
@@ -1269,6 +1304,346 @@ for ctx, e in EFEITOS_VISTOS:
     for d in tipos:
         if d not in DANOS and d != PLACEHOLDER:
             erros.append(f"[tipo de dano inexistente] {ctx}: '{d}'")
+
+# ------------------------------- pré-requisito de item/ferramenta tem de resolver
+# O Golpe Astuto "Envenenar" exigia o Kit de Veneno e ficou anos com `revisao: duvida`
+# e a nota "id depende do cap. 6" — o capítulo entrou e ninguém voltou para conferir.
+# Agora a chave é cobrada, então dúvida assim não sobrevive calada.
+CAT_DE_PRE_REQUISITO = {'item': 'itens', 'ferramenta': 'ferramentas'}
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        def checar_pre(obj, ctx):
+            if isinstance(obj, dict):
+                for pr in (obj.get('pre_requisitos') or []):
+                    if not isinstance(pr, dict):
+                        continue
+                    destino = CAT_DE_PRE_REQUISITO.get(pr.get('tipo'))
+                    if destino and pr.get('chave') not in CHAVES.get(destino, set()):
+                        erros.append(f"[pré-requisito inexistente] {ctx}: "
+                                     f"'{pr.get('chave')}' não está em '{destino}'")
+                for k, v in obj.items():
+                    checar_pre(v, f"{ctx}/{k}")
+            elif isinstance(obj, list):
+                for n, v in enumerate(obj):
+                    checar_pre(v, f"{ctx}[{n}]")
+        checar_pre(i, f"{cid}/{i['id']}")
+
+# ----------------------------------------- variante declarada tem de existir no item
+for ctx, e in EFEITOS_VISTOS:
+    var = e.get('variante')
+    if not isinstance(var, str) or var == PLACEHOLDER:
+        continue
+    chave = e.get('chave')
+    alvo = next((i for i in catalogos.get('ferramentas', {}).get('itens', [])
+                 if i['id'] == chave), None)
+    if alvo is None:
+        continue
+    ids = {v['id'] if isinstance(v, dict) else v for v in (alvo.get('variantes') or [])}
+    if var not in ids:
+        erros.append(f"[variante inexistente] {ctx}: '{var}' não é variante de "
+                     f"'{chave}'")
+
+# ------------------------------------------- bloco de estatísticas: coerência interna
+# O próprio bloco traz números que se conferem entre si: a Iniciativa passiva é
+# 10 + o bônus, e o modificador é derivado do valor do atributo. Foi essa segunda
+# conta que pegou quatro divergências do Apêndice B na extração.
+PERICIAS_VALIDAS = CHAVES.get('pericias', set())
+for cid in CATALOGOS_DE_BLOCO_DE_ESTATISTICAS:
+    c = catalogos.get(cid)
+    if not c:
+        continue
+    for i in c['itens']:
+        ctx = f"{cid}/{i['id']}"
+        ini = i.get('iniciativa')
+        if isinstance(ini, dict) and 'bonus' in ini and 'passiva' in ini:
+            if ini['passiva'] != 10 + ini['bonus']:
+                erros.append(f"[iniciativa incoerente] {ctx}: passiva {ini['passiva']} "
+                             f"não é 10 + bônus {ini['bonus']:+d}")
+        for a_, valor in (i.get('atributos') or {}).items():
+            esperado = (valor - 10) // 2
+            if a_ in (i.get('modificadores') or {}) and i['modificadores'][a_] != esperado:
+                erros.append(f"[modificador incoerente] {ctx}/{a_}: valor {valor} dá "
+                             f"{esperado:+d}, mas o dado diz "
+                             f"{i['modificadores'][a_]:+d}")
+        for p_ in (i.get('pericias') or []):
+            # feras_companheiras lista perícia como string; criaturas, como
+            # {pericia, bonus}. As duas formas valem — o que se cobra é a chave.
+            chave_p = p_.get('pericia') if isinstance(p_, dict) else p_
+            if chave_p not in PERICIAS_VALIDAS:
+                erros.append(f"[perícia inexistente] {ctx}: '{chave_p}'")
+        for campo in ('resistencias_a_dano', 'imunidades_a_dano',
+                      'vulnerabilidades_a_dano'):
+            for d_ in (i.get(campo) or []):
+                if d_ not in DANOS:
+                    erros.append(f"[tipo de dano inexistente] {ctx}/{campo}: '{d_}'")
+        for campo in ('resistencias_a_condicao', 'imunidades_a_condicao',
+                      'vulnerabilidades_a_condicao'):
+            for d_ in (i.get(campo) or []):
+                if d_ not in CONDICOES:
+                    erros.append(f"[condição inexistente] {ctx}/{campo}: '{d_}'")
+        nd = i.get('nivel_de_desafio')
+        if nd is not None:
+            for campo in ('texto', 'xp', 'bonus_de_proficiencia'):
+                if campo not in nd:
+                    erros.append(f"[nível de desafio incompleto] {ctx}: falta '{campo}'")
+        for secao in ('tracos', 'acoes', 'acoes_bonus', 'reacoes'):
+            for e_ in (i.get(secao) or []):
+                sub = f"{ctx}/{secao}/{e_.get('id')}"
+                if not e_.get('descricao_curta'):
+                    erros.append(f"[entrada sem descrição] {sub}")
+                if 'tipo_de_ataque' in e_:
+                    if 'bonus_de_ataque' not in e_:
+                        erros.append(f"[ataque sem bônus] {sub}")
+                    if not e_.get('dano'):
+                        erros.append(f"[ataque sem dano] {sub}")
+                    # 'dano' é lista de parcelas em criaturas e objeto único em
+                    # feras_companheiras; as duas formas passam pela mesma checagem
+                    dano = e_.get('dano')
+                    for d_ in (dano if isinstance(dano, list) else [dano]):
+                        if not isinstance(d_, dict):
+                            continue
+                        tipos = (d_.get('tipos_de_dano')
+                                 or ([d_['tipo_dano']] if d_.get('tipo_dano') else []))
+                        for td in tipos:
+                            if td not in DANOS and td not in DANOS_DERIVADOS:
+                                erros.append(f"[tipo de dano inexistente] {sub}: '{td}'")
+
+# ---------------------------- assumir bloco de estatísticas aponta para bloco real
+for ctx, e in EFEITOS_VISTOS:
+    if e.get('tipo') != 'assumir_bloco_de_estatisticas':
+        continue
+    cat = e.get('catalogo')
+    if cat not in CATALOGOS_DE_BLOCO_DE_ESTATISTICAS:
+        erros.append(f"[catálogo não é de blocos de estatísticas] {ctx}: '{cat}'")
+    elif (isinstance(e.get('criatura'), str) and e['criatura'] != PLACEHOLDER
+          and e['criatura'] not in CHAVES.get(cat, set())):
+        erros.append(f"[criatura inexistente] {ctx}: '{e['criatura']}'")
+
+
+# --------------------------------- vocabulário de runtime: lista fechada (fase 13)
+# Os tipos de efeito sempre foram catálogo validado; o que aparece DENTRO deles
+# não era. Sem esta checagem, `entrar_em_furia` e `ao_entrar_em_furia` convivem
+# calados, e no motor um dos dois nunca dispara.
+if not VOCAB:
+    erros.append("[vocabulário de runtime ausente] falta dados/vocabulario_de_runtime.json")
+else:
+    V_PRED = set(VOCAB['predicados'])
+    V_FAM = VOCAB['familias_de_predicado']
+    V_GAT = set(VOCAB['gatilhos'])
+    V_FASE = set(VOCAB['fases'])
+    V_DUR = set(VOCAB['duracoes'])
+    V_CUSTO = set(VOCAB['custos'])
+    V_EMP = set(VOCAB['empilhamentos'])
+    V_UNI = set(VOCAB['unidades_de_duracao'])
+    V_LOG = set(VOCAB['operadores_logicos'])
+    V_CMP = set(VOCAB['operadores_de_comparacao'])
+
+    def checar_predicado(ctx, o):
+        if isinstance(o, str):
+            if o in V_PRED:
+                return
+            prefixo, _, arg = o.partition(':')
+            if prefixo in V_FAM:
+                cat = V_FAM[prefixo]
+                if cat and arg not in CHAVES.get(cat, set()):
+                    erros.append(f"[argumento de predicado inexistente] {ctx}: "
+                                 f"'{o}' (esperado id de {cat})")
+                return
+            erros.append(f"[predicado não declarado] {ctx}: '{o}'")
+        elif isinstance(o, list):
+            for x in o:
+                checar_predicado(ctx, x)
+        elif isinstance(o, dict):
+            if 'comparar' in o:
+                if o.get('op') not in V_CMP:
+                    erros.append(f"[operador de comparação desconhecido] {ctx}: "
+                                 f"'{o.get('op')}'")
+                if 'com' not in o:
+                    erros.append(f"[comparação sem lado direito] {ctx}")
+                return
+            for k, v in o.items():
+                if k not in V_LOG:
+                    erros.append(f"[operador lógico desconhecido] {ctx}: '{k}'")
+                    continue
+                checar_predicado(ctx, v)
+
+    def checar_vocabulario(ctx, obj):
+        if isinstance(obj, list):
+            for x in obj:
+                checar_vocabulario(ctx, x)
+            return
+        if not isinstance(obj, dict):
+            return
+        ctx = obj.get('id') and f"{ctx}/{obj['id']}" or ctx
+        for campo in ('condicao', 'condicional', 'condicao_do_alvo'):
+            if campo in obj:
+                checar_predicado(ctx, obj[campo])
+        if 'momento' in obj:
+            erros.append(f"[campo 'momento' revogado] {ctx}: use 'gatilho' ou 'fase'")
+        g = obj.get('gatilho')
+        if isinstance(g, str) and g not in V_GAT:
+            erros.append(f"[gatilho não declarado] {ctx}: '{g}'")
+        f_ = obj.get('fase')
+        if isinstance(f_, str) and f_ not in V_FASE:
+            erros.append(f"[fase não declarada] {ctx}: '{f_}'")
+        for campo in ('duracao', 'duracao_do_efeito'):
+            d_ = obj.get(campo)
+            if isinstance(d_, str) and d_ not in V_DUR:
+                erros.append(f"[duração não declarada] {ctx}: '{d_}'")
+            elif isinstance(d_, dict) and 'quantidade' in d_:
+                if d_.get('unidade') not in V_UNI:
+                    erros.append(f"[unidade de duração desconhecida] {ctx}: "
+                                 f"'{d_.get('unidade')}'")
+        c_ = obj.get('custo')
+        if isinstance(c_, str) and c_ not in V_CUSTO:
+            erros.append(f"[custo não declarado] {ctx}: '{c_}'")
+        e_ = obj.get('empilha')
+        if isinstance(e_, str) and e_ not in V_EMP:
+            erros.append(f"[modo de empilhamento não declarado] {ctx}: '{e_}'")
+        for v in obj.values():
+            checar_vocabulario(ctx, v)
+
+    for _cid, _c in list(catalogos.items()) + list(colecoes.items()):
+        checar_vocabulario(_cid, _c)
+
+
+# ------------------------- efeito aninhado: condição ou estrutura (fase 15)
+# Um efeito pode trazer outros dentro. O que isso significa não pode ser adivinhado
+# pelo formato — foi assim que os 56 `melhorar_caracteristica` viraram condição e
+# ficaram desligados por padrão. O tipo declara; aqui se cobra a declaração.
+ANINHADOS = {i['id']: i.get('efeitos_aninhados')
+             for i in catalogos.get('tipos_de_efeito', {}).get('itens', [])}
+PORTAS_VISTAS = {}
+
+
+def checar_aninhados(ctx, obj):
+    if isinstance(obj, list):
+        for n, x in enumerate(obj):
+            checar_aninhados(f"{ctx}[{n}]", x)
+        return
+    if not isinstance(obj, dict):
+        return
+    tipo = obj.get('tipo')
+    if tipo == 'escolha' and not obj.get('id'):
+        # sem id a escolha não pode ser resolvida (a construção guarda a resposta
+        # POR id) nem entrar no checklist de subir de nível
+        erros.append(f"[escolha sem id] {ctx}: '{obj.get('rotulo')}'")
+    if tipo and isinstance(obj.get('efeitos'), list):
+        modo = ANINHADOS.get(tipo)
+        if modo is None:
+            erros.append(f"[aninhamento não declarado] {ctx}: o tipo '{tipo}' traz "
+                         "efeitos dentro e não diz em tipos_de_efeito.json se eles são "
+                         "'condicionados' ou 'estruturais'")
+        elif modo not in ('condicionados', 'estruturais'):
+            erros.append(f"[aninhamento com valor inválido] {ctx}: '{tipo}' declara "
+                         f"efeitos_aninhados='{modo}'")
+        elif modo == 'condicionados':
+            # o id é o nome da condição; sem ele o motor não tem como ligá-la nem
+            # distinguir uma da outra
+            eid = obj.get('id')
+            if not eid:
+                erros.append(f"[efeito condicionante sem id] {ctx}: '{tipo}' condiciona "
+                             "o que traz dentro, então precisa de 'id' para nomear a "
+                             "condição")
+            elif eid in PORTAS_VISTAS and PORTAS_VISTAS[eid] != ctx:
+                erros.append(f"[duas condições com o mesmo id] '{eid}': "
+                             f"{PORTAS_VISTAS[eid]} e {ctx} — abrir uma abriria a outra")
+            elif eid:
+                PORTAS_VISTAS[eid] = ctx
+    for k, v in obj.items():
+        checar_aninhados(f"{ctx}/{k}", v)
+
+
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        checar_aninhados(f"{cid}/{i['id']}", i)
+
+
+# --------------------------- escolha tem de ter o que escolher (fase 16)
+# Regra que teria pego sozinha os quatro antecedentes que ofereciam "Escolha um tipo
+# de Kit de Jogos" com UMA opção: a categoria, em vez das quatro variantes dela.
+# O validador já cobrava "o filtro devolve algo"; devolvia — devolvia a categoria.
+def contar_opcoes(e):
+    """Quantas opções a escolha oferece, ou None quando o validador não sabe."""
+    de = e.get('de') or {}
+    cat = de.get('catalogo')
+    if not cat:
+        return None
+    fonte = catalogos.get(cat, colecoes.get(cat, {}))
+    itens = fonte.get('itens', [])
+    if not itens:
+        return None                     # catálogo pendente: já tem checagem própria
+    if de.get('de_variantes'):
+        alvo = (de.get('filtro') or {}).get('id')
+        escolhidos = [i for i in itens if i['id'] == alvo] if alvo else itens
+        return sum(len(i.get('variantes') or []) for i in escolhidos) or None
+    if isinstance(de.get('chaves'), list):
+        return len(de['chaves'])
+    if de.get('todo_o_catalogo'):
+        return len(itens)
+    if de.get('filtro'):
+        n, motivo = resolver_filtro(cat, de['filtro'])
+        return n if motivo == 'ok' else None
+    return None
+
+
+def checar_tem_o_que_escolher(ctx, obj):
+    if isinstance(obj, list):
+        for n, x in enumerate(obj):
+            checar_tem_o_que_escolher(f"{ctx}[{n}]", x)
+        return
+    if not isinstance(obj, dict):
+        return
+    if obj.get('tipo') == 'escolha':
+        q = obj.get('quantidade')
+        n = contar_opcoes(obj)
+        if isinstance(q, int) and n is not None:
+            if n < q:
+                erros.append(f"[escolha impossível] {ctx}/{obj.get('id')}: pede {q} e "
+                             f"oferece {n}")
+            elif n == q and not obj.get('reescolhivel'):
+                # reescolhível com uma opção hoje pode ter mais adiante — a
+                # Inspiração de Bardo ganha usos novos por melhoria de característica
+                avisos.append(f"[escolha sem escolha] {ctx}/{obj.get('id')}: pede {q} e "
+                              f"oferece exatamente {n} — confira se não é uma "
+                              f"categoria no lugar das variantes dela")
+    for v in obj.values():
+        checar_tem_o_que_escolher(ctx, v)
+
+
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        checar_tem_o_que_escolher(f"{cid}/{i['id']}", i)
+
+
+# ------------------- subclasse: o nível de cada característica é dela (fase 17)
+# `niveis_de_caracteristica` é o RESUMO de em que níveis a subclasse dá algo — não o
+# mapa de qual característica chega quando. Em 42 das 48 subclasses há mais
+# características que níveis, e o motor que casasse os dois por posição erraria (o
+# primeiro coletor errou). O nível de verdade está na própria característica; esta
+# checagem tranca a invariante de que o resumo não mente.
+CARS_POR_ID = {i['id']: i for i in colecoes.get('caracteristicas', {}).get('itens', [])}
+
+for s_ in colecoes.get('subclasses', {}).get('itens', []):
+    ctx = f"subclasses/{s_['id']}"
+    niveis_reais = set()
+    for idc in (s_.get('caracteristicas') or []):
+        car = CARS_POR_ID.get(idc)
+        if car is None:
+            erros.append(f"[característica inexistente] {ctx}: '{idc}'")
+            continue
+        if not isinstance(car.get('nivel'), int):
+            erros.append(f"[característica de subclasse sem nível] {ctx}/{idc}: sem ela o "
+                         "motor não sabe quando a característica chega")
+            continue
+        niveis_reais.add(car['nivel'])
+        if car.get('subclasse') and car['subclasse'] != s_['id']:
+            erros.append(f"[característica de outra subclasse] {ctx}/{idc}: declara "
+                         f"subclasse '{car['subclasse']}'")
+    declarados = set(s_.get('niveis_de_caracteristica') or [])
+    if niveis_reais and declarados != niveis_reais:
+        erros.append(f"[resumo de níveis não bate] {ctx}: declara "
+                     f"{sorted(declarados)} e as características dizem {sorted(niveis_reais)}")
 
 # ------------------------------------------------------------------ saída
 erros = list(dict.fromkeys(erros))

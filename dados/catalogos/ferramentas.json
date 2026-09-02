@@ -708,16 +708,106 @@
         "pagina_pdf": 224
       },
       "variantes": [
-        "Alaúde",
-        "Flauta",
-        "Flauta de Pan",
-        "Gaita de Foles",
-        "Lira",
-        "Oboé",
-        "Tambor",
-        "Trombeta",
-        "Violino",
-        "Xilofone"
+        {
+          "id": "alaude",
+          "nome": "Alaúde",
+          "custo": {
+            "valor": 35,
+            "moeda": "po",
+            "em_pc": 3500
+          },
+          "peso_kg": 1.0
+        },
+        {
+          "id": "flauta",
+          "nome": "Flauta",
+          "custo": {
+            "valor": 2,
+            "moeda": "po",
+            "em_pc": 200
+          },
+          "peso_kg": 0.5
+        },
+        {
+          "id": "flauta_de_pan",
+          "nome": "Flauta de Pan",
+          "custo": {
+            "valor": 12,
+            "moeda": "po",
+            "em_pc": 1200
+          },
+          "peso_kg": 1.0
+        },
+        {
+          "id": "gaita_de_foles",
+          "nome": "Gaita de Foles",
+          "custo": {
+            "valor": 30,
+            "moeda": "po",
+            "em_pc": 3000
+          },
+          "peso_kg": 3.0
+        },
+        {
+          "id": "lira",
+          "nome": "Lira",
+          "custo": {
+            "valor": 30,
+            "moeda": "po",
+            "em_pc": 3000
+          },
+          "peso_kg": 1.0
+        },
+        {
+          "id": "obo",
+          "nome": "Oboé",
+          "custo": {
+            "valor": 2,
+            "moeda": "po",
+            "em_pc": 200
+          },
+          "peso_kg": 0.5
+        },
+        {
+          "id": "tambor",
+          "nome": "Tambor",
+          "custo": {
+            "valor": 6,
+            "moeda": "po",
+            "em_pc": 600
+          },
+          "peso_kg": 1.5
+        },
+        {
+          "id": "trombeta",
+          "nome": "Trombeta",
+          "custo": {
+            "valor": 3,
+            "moeda": "po",
+            "em_pc": 300
+          },
+          "peso_kg": 1.0
+        },
+        {
+          "id": "violino",
+          "nome": "Violino",
+          "custo": {
+            "valor": 30,
+            "moeda": "po",
+            "em_pc": 3000
+          },
+          "peso_kg": 0.5
+        },
+        {
+          "id": "xilofone",
+          "nome": "Xilofone",
+          "custo": {
+            "valor": 25,
+            "moeda": "po",
+            "em_pc": 2500
+          },
+          "peso_kg": 5.0
+        }
       ],
       "nota": "Custo e peso variam conforme a variante.",
       "custo": null,
@@ -830,10 +920,46 @@
         "pagina_pdf": 224
       },
       "variantes": [
-        "Dados",
-        "Xadrez-do-Dragão",
-        "Baralho",
-        "Conjunto do Jogo dos Três Dragões"
+        {
+          "id": "dados",
+          "nome": "Dados",
+          "custo": {
+            "valor": 1,
+            "moeda": "pp",
+            "em_pc": 10
+          },
+          "peso_kg": null
+        },
+        {
+          "id": "xadrez_do_dragao",
+          "nome": "Xadrez-do-Dragão",
+          "custo": {
+            "valor": 1,
+            "moeda": "po",
+            "em_pc": 100
+          },
+          "peso_kg": null
+        },
+        {
+          "id": "baralho",
+          "nome": "Baralho",
+          "custo": {
+            "valor": 5,
+            "moeda": "pp",
+            "em_pc": 50
+          },
+          "peso_kg": null
+        },
+        {
+          "id": "conjunto_do_jogo_dos_tres_dragoes",
+          "nome": "Conjunto do Jogo dos Três Dragões",
+          "custo": {
+            "valor": 1,
+            "moeda": "po",
+            "em_pc": 100
+          },
+          "peso_kg": null
+        }
       ],
       "nota": "Custo e peso variam conforme a variante.",
       "custo": null,

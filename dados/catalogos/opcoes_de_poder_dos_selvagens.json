@@ -17,7 +17,7 @@
           "tipo": "conceder_condicao",
           "condicao_id": "caido",
           "beneficiario": "alvo",
-          "momento": "ao_acertar_ataque_corpo_a_corpo",
+          "gatilho": "acerto_corpo_a_corpo",
           "condicao": {
             "todas": [
               "ativo:furia",
@@ -48,7 +48,9 @@
           "condicao": {
             "todas": [
               "ativo:furia",
-              "flag:sem_armadura"
+              {
+                "nao": "armadura:qualquer"
+              }
             ]
           }
         }
