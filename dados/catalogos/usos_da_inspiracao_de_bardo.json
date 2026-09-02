@@ -24,7 +24,13 @@
           "empilha": "soma",
           "momento": "apos_falhar"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "fonte_herdada": true
     },
     {
       "id": "defensivo",
@@ -41,7 +47,13 @@
           "custo": "reacao",
           "duracao": "contra_o_ataque_que_disparou"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "fonte_herdada": true
     },
     {
       "id": "ofensivo",
@@ -57,7 +69,13 @@
           "empilha": "soma",
           "momento": "apos_acertar"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 64,
+        "pagina_pdf": 68
+      },
+      "fonte_herdada": true
     }
   ]
 }

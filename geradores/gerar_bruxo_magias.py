@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Lista do Bruxo (91) + as magias de patrono que ainda faltavam no catálogo."""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import pypdf, warnings, re, json, os, unicodedata
 warnings.filterwarnings('ignore')
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
-PDF = '/mnt/user-data/uploads/ficha-facil/DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf'
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
+PDF = caminhos.pdf()
 def slug(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii','ignore').decode()
     return re.sub(r'[^a-z0-9]+','_', s.lower()).strip('_')
@@ -12,7 +15,7 @@ m = json.load(open(os.path.join(D,'catalogos/magias.json'), encoding='utf-8'))
 por = {i['id']: i for i in m['itens']}
 
 # 1) lista do Bruxo
-for x in json.load(open('/tmp/lista_bruxo.json', encoding='utf-8')):
+for x in json.load(open(caminhos.exigir('lista_bruxo.json', 'gerar_bruxo_magias.py'), encoding='utf-8')):
     x.pop('_escola_no_livro', None)
     if x['id'] in por:
         alvo = por[x['id']]

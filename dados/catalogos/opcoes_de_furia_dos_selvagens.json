@@ -37,7 +37,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "lobo",
@@ -56,7 +62,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "urso",
@@ -79,7 +91,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     }
   ]
 }

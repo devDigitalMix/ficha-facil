@@ -34,7 +34,13 @@
           "chave": "respirar_agua",
           "texto": "Você pode respirar debaixo d'água."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "fonte_herdada": true
     },
     {
       "id": "movimento_vermiforme",
@@ -57,7 +63,13 @@
             "restricoes_nao_magicas"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "fonte_herdada": true
     },
     {
       "id": "ver_o_invisivel",
@@ -74,7 +86,13 @@
             "atras_de_cobertura_total"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "fonte_herdada": true
     },
     {
       "id": "voo_reluzente",
@@ -91,7 +109,13 @@
           ],
           "pode_pairar": true
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 110,
+        "pagina_pdf": 114
+      },
+      "fonte_herdada": true
     }
   ],
   "recurso": "pontos_de_feiticaria"

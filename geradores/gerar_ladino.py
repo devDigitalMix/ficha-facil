@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Fase 2g — Ladino (cap. 3, p. 137-145)."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D,p),encoding='utf-8'))
@@ -109,7 +109,7 @@ car("maestria_em_arma_ladino","Maestria em Arma",1,137,
  "Usa as propriedades de maestria de dois tipos de armas com que tenha proficiência. Troca a cada Descanso Longo.",
  [{"id":"ladino_maestrias","tipo":"escolha","rotulo":"Escolha dois tipos de arma","quantidade":2,
    "momento":"nivel_1","reescolhivel":True,"reescolha_em":"descanso_longo",
-   "de":{"catalogo":"itens","pendente":True,"filtro":{"categoria":"arma","com_proficiencia":True}},
+   "de":{"catalogo":"itens","filtro":{"categoria":"arma","com_proficiencia":True}},
    "efeito_por_item_escolhido":{"tipo":"efeito_narrativo","chave":"maestria_liberada","arma":"{{escolhido}}"}}])
 
 car("acao_ardilosa","Ação Ardilosa",2,137,

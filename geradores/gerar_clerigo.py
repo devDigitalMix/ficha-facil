@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Fase 2f — Classe Clérigo (cap. 3, p. 81-89), Canalizar Divindade e os 4 domínios."""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
@@ -36,7 +39,7 @@ wr('catalogos/opcoes_de_golpes_abencoados.json', {"catalogo":"opcoes_de_golpes_a
 
 # ------------------------------------------------------------ lista (117)
 m = rd('catalogos/magias.json'); por = {i['id']: i for i in m['itens']}
-for x in json.load(open('/tmp/lista_clerigo.json', encoding='utf-8')):
+for x in json.load(open(caminhos.exigir('lista_clerigo.json', 'gerar_clerigo.py'), encoding='utf-8')):
     x.pop('_escola_no_livro', None)
     if x['id'] in por:
         a = por[x['id']]; a.setdefault('listas', [])

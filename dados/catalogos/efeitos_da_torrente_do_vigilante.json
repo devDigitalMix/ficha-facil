@@ -1,0 +1,57 @@
+{
+  "catalogo": "efeitos_da_torrente_do_vigilante",
+  "nome": "Efeitos da Torrente do Vigilante",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 125,
+    "pagina_pdf": 129
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "golpe_repentino",
+      "nome": "Golpe Repentino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "descricao_curta": "Outro ataque com a mesma arma contra criatura diferente a até 1,5 m do alvo original e dentro do alcance da arma.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "restricao": "mesma arma, contra criatura diferente a até 1,5 m do alvo original e dentro do alcance da arma"
+        }
+      ]
+    },
+    {
+      "id": "medo_em_massa",
+      "nome": "Medo em Massa",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "descricao_curta": "O alvo e cada criatura a até 3 m dele fazem salvaguarda de Sabedoria ou ficam Amedrontadas até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "alvo": "o_alvo_e_criaturas_a_ate_3m_dele",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:SAB",
+              "prof"
+            ]
+          },
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
+        }
+      ]
+    }
+  ]
+}

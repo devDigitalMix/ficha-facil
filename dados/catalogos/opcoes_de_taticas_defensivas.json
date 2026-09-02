@@ -1,0 +1,49 @@
+{
+  "catalogo": "opcoes_de_taticas_defensivas",
+  "nome": "Opções de Táticas Defensivas",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 122,
+    "pagina_pdf": 126
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "defesa_contra_ataques_multiplos",
+      "nome": "Defesa Contra Ataques Múltiplos",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "descricao_curta": "Ao ser atingido por uma jogada de ataque, aquela criatura tem Desvantagem em todas as outras jogadas de ataque contra você neste turno.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque_contra_voce",
+          "modo": "desvantagem",
+          "gatilho": "ser_atingido_por_jogada_de_ataque",
+          "escopo": "demais_ataques_da_mesma_criatura_neste_turno"
+        }
+      ]
+    },
+    {
+      "id": "escapar_de_hordas",
+      "nome": "Escapar de Hordas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "descricao_curta": "Ataques de Oportunidade contra você têm Desvantagem.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque_contra_voce",
+          "modo": "desvantagem",
+          "escopo": "ataques_de_oportunidade"
+        }
+      ]
+    }
+  ]
+}

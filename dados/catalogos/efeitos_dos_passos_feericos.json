@@ -30,7 +30,13 @@
           },
           "duracao": "ate_inicio_do_seu_proximo_turno"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 75,
+        "pagina_pdf": 79
+      },
+      "fonte_herdada": true
     },
     {
       "id": "passo_revigorante",
@@ -46,7 +52,13 @@
           "beneficiario": "voce_ou_criatura_a_vista_a_ate_3m",
           "momento": "imediatamente_apos_o_teleporte"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 75,
+        "pagina_pdf": 79
+      },
+      "fonte_herdada": true
     },
     {
       "id": "passo_desvanecedor",
@@ -71,7 +83,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 75,
+        "pagina_pdf": 79
+      },
+      "fonte_herdada": true
     },
     {
       "id": "passo_terrivel",
@@ -96,7 +114,13 @@
             "em_sucesso": "nenhum_dano"
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 75,
+        "pagina_pdf": 79
+      },
+      "fonte_herdada": true
     }
   ]
 }

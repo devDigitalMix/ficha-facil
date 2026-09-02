@@ -67,11 +67,12 @@ Quando a Fase C entrar na fila, esta é a primeira coisa a decidir. Está anotad
 
 ## Ordem sugerida
 
-1. Terminar a base: seis classes restantes, capítulo 6 (equipamento), capítulo 7 (magias),
-   capítulos 4 e 5 (origens e talentos).
+1. ~~Terminar a base.~~ **Feita em 2026-09-01.** Capítulos 3 (as 12 classes), 4 (origens),
+   5 (talentos), 6 (equipamento) e 7 (magias) estão fechados.
 2. Fase A.
 3. Fase B.
 4. Fase C — decidindo antes o que fazer com criaturas.
 
-O capítulo 6 pode ser antecipado se a Fase A começar antes: ele destrava as armas na ficha e fecha as
-cinco dúvidas de equipamento inicial que estão abertas hoje.
+A base terminou em 2026-09-01. A Fase A não depende mais de extração nenhuma: espécie, antecedente,
+classe, equipamento, magia e talento estão todos no dataset, e a criação de personagem do começo ao
+fim é escolha declarada como dado. O primeiro passo agora é o motor de efeitos, não o PDF.

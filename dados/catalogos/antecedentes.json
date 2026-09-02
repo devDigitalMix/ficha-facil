@@ -1,0 +1,1949 @@
+{
+  "catalogo": "antecedentes",
+  "nome": "Antecedentes de Personagem",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 177,
+    "pagina_pdf": 181
+  },
+  "nota": "Os 16 do capítulo 4. Todo antecedente tem a mesma forma: três atributos com dois modos de aumento, um talento de Origem, duas perícias, uma ferramenta e um pacote de equipamento contra 50 PO.",
+  "preenchida": true,
+  "total": 16,
+  "itens": [
+    {
+      "id": "acolito",
+      "nome": "Acólito",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 178,
+        "pagina_pdf": 182
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Serviu num templo, aprendendo religião sob a orientação de um sacerdote e canalizando um pouco do poder divino para o local de culto.",
+      "atributos": [
+        "INT",
+        "SAB",
+        "CAR"
+      ],
+      "talento_de_origem": "iniciado_em_magia",
+      "pericias": [
+        "intuicao",
+        "religiao"
+      ],
+      "efeitos": [
+        {
+          "id": "acolito_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "INT",
+            "SAB",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "INT",
+              "SAB",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "iniciado_em_magia",
+          "escolhas_predefinidas": {
+            "iniciado_em_magia_lista": "clerigo"
+          },
+          "nota": "O antecedente fixa a lista; o atributo de conjuração e os truques continuam sendo escolha do jogador."
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "intuicao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "religiao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "suprimentos_de_caligrafo",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "suprimentos_de_caligrafo"
+              },
+              {
+                "item": "livro",
+                "nota": "Livro de orações."
+              },
+              {
+                "id": "acolito_simbolo_sagrado",
+                "tipo": "escolha",
+                "rotulo": "Escolha a forma do seu Símbolo Sagrado",
+                "quantidade": 1,
+                "de": {
+                  "catalogo": "itens",
+                  "chaves": [
+                    "amuleto",
+                    "emblema",
+                    "relicario"
+                  ]
+                },
+                "efeito_por_item_escolhido": {
+                  "tipo": "conceder_proficiencia",
+                  "categoria": "item",
+                  "chave": "{{escolhido}}"
+                },
+                "nota": "No capítulo 6 (p. 225) 'Símbolo Sagrado' é uma categoria com três formas, não um item — mesma resolução do Clérigo e do Paladino."
+              },
+              {
+                "item": "pergaminho",
+                "quantidade": 10
+              },
+              {
+                "item": "tunica"
+              }
+            ],
+            "moedas": {
+              "po": 8
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 178,
+          "pagina_pdf": 182
+        }
+      }
+    },
+    {
+      "id": "andarilho",
+      "nome": "Andarilho",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 178,
+        "pagina_pdf": 182
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Cresceu nas ruas, dormindo onde dava e fazendo bicos por comida — às vezes furtando, nunca perdendo o orgulho.",
+      "atributos": [
+        "DES",
+        "SAB",
+        "CAR"
+      ],
+      "talento_de_origem": "sortudo",
+      "pericias": [
+        "furtividade",
+        "intuicao"
+      ],
+      "efeitos": [
+        {
+          "id": "andarilho_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "DES",
+            "SAB",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "DES",
+              "SAB",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "sortudo"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "furtividade",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "intuicao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_ladrao",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "adaga",
+                "quantidade": 2
+              },
+              {
+                "item": "ferramentas_de_ladrao"
+              },
+              {
+                "item": "kit_de_jogos",
+                "nota": "Qualquer um."
+              },
+              {
+                "item": "algibeira",
+                "quantidade": 2
+              },
+              {
+                "item": "roupas_viagem"
+              },
+              {
+                "item": "saco_de_dormir"
+              }
+            ],
+            "moedas": {
+              "po": 16
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 178,
+          "pagina_pdf": 182
+        }
+      }
+    },
+    {
+      "id": "artesao",
+      "nome": "Artesão",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 179,
+        "pagina_pdf": 183
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Foi aprendiz numa oficina desde criança: aprendeu a fabricar, a lidar com cliente exigente e a reparar em detalhe.",
+      "atributos": [
+        "FOR",
+        "DES",
+        "INT"
+      ],
+      "talento_de_origem": "artifista",
+      "pericias": [
+        "investigacao",
+        "persuasao"
+      ],
+      "efeitos": [
+        {
+          "id": "artesao_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "DES",
+            "INT"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "DES",
+              "INT"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "artifista"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "investigacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "persuasao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "artesao_ferramenta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um tipo de Ferramentas de Artesão",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "ferramentas",
+            "filtro": {
+              "grupo": "artesao"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "ferramenta",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          },
+          "define_variavel": "ferramenta_do_antecedente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "referencia": "ferramenta_do_antecedente",
+                "nota": "As mesmas Ferramentas de Artesão escolhidas acima."
+              },
+              {
+                "item": "algibeira",
+                "quantidade": 2
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 32
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 179,
+          "pagina_pdf": 183
+        }
+      }
+    },
+    {
+      "id": "artista",
+      "nome": "Artista",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 179,
+        "pagina_pdf": 183
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Passou a juventude em feiras e festivais, trocando bicos por aulas de corda bamba, alaúde e dicção.",
+      "atributos": [
+        "FOR",
+        "DES",
+        "CAR"
+      ],
+      "talento_de_origem": "musico",
+      "pericias": [
+        "acrobacia",
+        "atuacao"
+      ],
+      "efeitos": [
+        {
+          "id": "artista_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "DES",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "DES",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "musico"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "acrobacia",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "atuacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "artista_ferramenta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um tipo de Instrumento Musical",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "ferramentas",
+            "filtro": {
+              "id": "instrumento_musical"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "ferramenta",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          },
+          "define_variavel": "ferramenta_do_antecedente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "referencia": "ferramenta_do_antecedente",
+                "nota": "O mesmo Instrumento Musical escolhido acima."
+              },
+              {
+                "item": "espelho"
+              },
+              {
+                "item": "roupas_fantasia",
+                "quantidade": 2
+              },
+              {
+                "item": "perfume"
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 11
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 179,
+          "pagina_pdf": 183
+        }
+      }
+    },
+    {
+      "id": "charlatao",
+      "nome": "Charlatão",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 180,
+        "pagina_pdf": 184
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Fez o circuito de tavernas aprendendo a vender mentira reconfortante — poção falsa, árvore genealógica forjada.",
+      "atributos": [
+        "DES",
+        "CON",
+        "CAR"
+      ],
+      "talento_de_origem": "habilidoso",
+      "pericias": [
+        "enganacao",
+        "prestidigitacao"
+      ],
+      "efeitos": [
+        {
+          "id": "charlatao_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "DES",
+            "CON",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "DES",
+              "CON",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "habilidoso"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "enganacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "prestidigitacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "kit_de_falsificacao",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "kit_de_falsificacao"
+              },
+              {
+                "item": "roupas_fantasia"
+              },
+              {
+                "item": "roupas_finas"
+              }
+            ],
+            "moedas": {
+              "po": 15
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 180,
+          "pagina_pdf": 184
+        }
+      }
+    },
+    {
+      "id": "criminoso",
+      "nome": "Criminoso",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 180,
+        "pagina_pdf": 184
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sobreviveu em becos, furtando e assaltando — em gangue pequena ou como lobo solitário contra a guilda dos ladrões.",
+      "atributos": [
+        "DES",
+        "CON",
+        "INT"
+      ],
+      "talento_de_origem": "alerta",
+      "pericias": [
+        "furtividade",
+        "prestidigitacao"
+      ],
+      "efeitos": [
+        {
+          "id": "criminoso_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "DES",
+            "CON",
+            "INT"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "DES",
+              "CON",
+              "INT"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "alerta"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "furtividade",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "prestidigitacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_ladrao",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "adaga",
+                "quantidade": 2
+              },
+              {
+                "item": "ferramentas_de_ladrao"
+              },
+              {
+                "item": "algibeira",
+                "quantidade": 2
+              },
+              {
+                "item": "pe_de_cabra"
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 16
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 180,
+          "pagina_pdf": 184
+        }
+      }
+    },
+    {
+      "id": "eremita",
+      "nome": "Eremita",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 181,
+        "pagina_pdf": 185
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Passou os primeiros anos isolado numa cabana ou mosteiro, com as criaturas da floresta por companhia e horas de sobra para ponderar.",
+      "atributos": [
+        "CON",
+        "SAB",
+        "CAR"
+      ],
+      "talento_de_origem": "curandeiro",
+      "pericias": [
+        "medicina",
+        "religiao"
+      ],
+      "efeitos": [
+        {
+          "id": "eremita_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "CON",
+            "SAB",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "CON",
+              "SAB",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "curandeiro"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "medicina",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "religiao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "kit_de_herbalismo",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "cajado"
+              },
+              {
+                "item": "kit_de_herbalismo"
+              },
+              {
+                "item": "lampada"
+              },
+              {
+                "item": "livro",
+                "nota": "Livro de filosofia."
+              },
+              {
+                "item": "oleo",
+                "quantidade": 3
+              },
+              {
+                "item": "roupas_viagem"
+              },
+              {
+                "item": "saco_de_dormir"
+              }
+            ],
+            "moedas": {
+              "po": 16
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 181,
+          "pagina_pdf": 185
+        }
+      }
+    },
+    {
+      "id": "escriba",
+      "nome": "Escriba",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 181,
+        "pagina_pdf": 185
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Formou-se num scriptorium copiando tomos e documentos, com mão firme e atenção cuidadosa ao detalhe.",
+      "atributos": [
+        "DES",
+        "INT",
+        "SAB"
+      ],
+      "talento_de_origem": "habilidoso",
+      "pericias": [
+        "investigacao",
+        "percepcao"
+      ],
+      "efeitos": [
+        {
+          "id": "escriba_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "DES",
+            "INT",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "DES",
+              "INT",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "habilidoso"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "investigacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "percepcao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "suprimentos_de_caligrafo",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "suprimentos_de_caligrafo"
+              },
+              {
+                "item": "lampada"
+              },
+              {
+                "item": "oleo",
+                "quantidade": 3
+              },
+              {
+                "item": "pergaminho",
+                "quantidade": 12
+              },
+              {
+                "item": "roupas_finas"
+              }
+            ],
+            "moedas": {
+              "po": 23
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 181,
+          "pagina_pdf": 185
+        }
+      }
+    },
+    {
+      "id": "fazendeiro",
+      "nome": "Fazendeiro",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 182,
+        "pagina_pdf": 186
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Cresceu perto da terra: anos de lavoura e criação renderam paciência, boa saúde e respeito pela ira da natureza.",
+      "atributos": [
+        "FOR",
+        "CON",
+        "SAB"
+      ],
+      "talento_de_origem": "vigoroso",
+      "pericias": [
+        "lidar_com_animais",
+        "natureza"
+      ],
+      "efeitos": [
+        {
+          "id": "fazendeiro_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "CON",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "CON",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "vigoroso"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "lidar_com_animais",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "natureza",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_carpinteiro",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "foice"
+              },
+              {
+                "item": "ferramentas_de_carpinteiro"
+              },
+              {
+                "item": "kit_de_curandeiro"
+              },
+              {
+                "item": "balde",
+                "nota": "Balde de ferro."
+              },
+              {
+                "item": "pa"
+              }
+            ],
+            "moedas": {
+              "po": 30
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 182,
+          "pagina_pdf": 186
+        }
+      }
+    },
+    {
+      "id": "guarda",
+      "nome": "Guarda",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 182,
+        "pagina_pdf": 186
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Passou horas incontáveis no posto da torre, um olho na floresta atrás de saqueadores e o outro na muralha atrás de encrenqueiro.",
+      "atributos": [
+        "FOR",
+        "INT",
+        "SAB"
+      ],
+      "talento_de_origem": "alerta",
+      "pericias": [
+        "atletismo",
+        "percepcao"
+      ],
+      "efeitos": [
+        {
+          "id": "guarda_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "INT",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "INT",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "alerta"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "atletismo",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "percepcao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "guarda_ferramenta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um tipo de Kit de Jogos",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "ferramentas",
+            "filtro": {
+              "id": "kit_de_jogos"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "ferramenta",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          },
+          "define_variavel": "ferramenta_do_antecedente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "lanca"
+              },
+              {
+                "item": "besta_leve"
+              },
+              {
+                "item": "virotes",
+                "quantidade": 20
+              },
+              {
+                "referencia": "ferramenta_do_antecedente",
+                "nota": "O mesmo Kit de Jogos escolhido acima."
+              },
+              {
+                "item": "aljava"
+              },
+              {
+                "item": "grilhoes"
+              },
+              {
+                "item": "lanterna_coberta"
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 12
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 182,
+          "pagina_pdf": 186
+        }
+      }
+    },
+    {
+      "id": "guia",
+      "nome": "Guia",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 183,
+        "pagina_pdf": 187
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Cresceu ao ar livre, longe de terra povoada, aprendendo a se defender enquanto explorava — e guiando sacerdotes da natureza que o instruíram.",
+      "atributos": [
+        "DES",
+        "CON",
+        "SAB"
+      ],
+      "talento_de_origem": "iniciado_em_magia",
+      "pericias": [
+        "furtividade",
+        "sobrevivencia"
+      ],
+      "efeitos": [
+        {
+          "id": "guia_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "DES",
+            "CON",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "DES",
+              "CON",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "iniciado_em_magia",
+          "escolhas_predefinidas": {
+            "iniciado_em_magia_lista": "druida"
+          },
+          "nota": "O antecedente fixa a lista; o atributo de conjuração e os truques continuam sendo escolha do jogador."
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "furtividade",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "sobrevivencia",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_cartografo",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "arco_curto"
+              },
+              {
+                "item": "flechas",
+                "quantidade": 20
+              },
+              {
+                "item": "ferramentas_de_cartografo"
+              },
+              {
+                "item": "aljava"
+              },
+              {
+                "item": "roupas_viagem"
+              },
+              {
+                "item": "saco_de_dormir"
+              },
+              {
+                "item": "tenda"
+              }
+            ],
+            "moedas": {
+              "po": 3
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 183,
+          "pagina_pdf": 187
+        }
+      }
+    },
+    {
+      "id": "marinheiro",
+      "nome": "Marinheiro",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 183,
+        "pagina_pdf": 187
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Viveu com o vento nas costas e o convés balançando: mais portos do que consegue lembrar, e tempestade que conta história.",
+      "atributos": [
+        "FOR",
+        "DES",
+        "SAB"
+      ],
+      "talento_de_origem": "valentao_de_taverna",
+      "pericias": [
+        "acrobacia",
+        "percepcao"
+      ],
+      "efeitos": [
+        {
+          "id": "marinheiro_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "DES",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "DES",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "valentao_de_taverna"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "acrobacia",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "percepcao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_navegador",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "adaga"
+              },
+              {
+                "item": "ferramentas_de_navegador"
+              },
+              {
+                "item": "corda"
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 20
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 183,
+          "pagina_pdf": 187
+        }
+      }
+    },
+    {
+      "id": "mercador",
+      "nome": "Mercador",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 184,
+        "pagina_pdf": 188
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Foi aprendiz de comerciante ou mestre de caravana, viajando muito e vivendo de comprar matéria-prima e vender trabalho acabado.",
+      "atributos": [
+        "CON",
+        "INT",
+        "CAR"
+      ],
+      "talento_de_origem": "sortudo",
+      "pericias": [
+        "lidar_com_animais",
+        "persuasao"
+      ],
+      "efeitos": [
+        {
+          "id": "mercador_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "CON",
+            "INT",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "CON",
+              "INT",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "sortudo"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "lidar_com_animais",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "persuasao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "ferramentas_de_navegador",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "ferramentas_de_navegador"
+              },
+              {
+                "item": "algibeira",
+                "quantidade": 2
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 22
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 184,
+          "pagina_pdf": 188
+        }
+      }
+    },
+    {
+      "id": "nobre",
+      "nome": "Nobre",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 184,
+        "pagina_pdf": 188
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Criado num castelo entre riqueza e privilégio, com educação de primeira e muitas horas observando a família na corte.",
+      "atributos": [
+        "FOR",
+        "INT",
+        "CAR"
+      ],
+      "talento_de_origem": "habilidoso",
+      "pericias": [
+        "historia",
+        "persuasao"
+      ],
+      "efeitos": [
+        {
+          "id": "nobre_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "INT",
+            "CAR"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "INT",
+              "CAR"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "habilidoso"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "historia",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "persuasao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "nobre_ferramenta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um tipo de Kit de Jogos",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "ferramentas",
+            "filtro": {
+              "id": "kit_de_jogos"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "ferramenta",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          },
+          "define_variavel": "ferramenta_do_antecedente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "referencia": "ferramenta_do_antecedente",
+                "nota": "O mesmo Kit de Jogos escolhido acima."
+              },
+              {
+                "item": "perfume"
+              },
+              {
+                "item": "roupas_finas"
+              }
+            ],
+            "moedas": {
+              "po": 29
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 184,
+          "pagina_pdf": 188
+        }
+      }
+    },
+    {
+      "id": "sabio",
+      "nome": "Sábio",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 185,
+        "pagina_pdf": 189
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Viajou entre mansões e mosteiros trocando serviço por acesso à biblioteca, estudando até os rudimentos da magia.",
+      "atributos": [
+        "CON",
+        "INT",
+        "SAB"
+      ],
+      "talento_de_origem": "iniciado_em_magia",
+      "pericias": [
+        "arcanismo",
+        "historia"
+      ],
+      "efeitos": [
+        {
+          "id": "sabio_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "CON",
+            "INT",
+            "SAB"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "CON",
+              "INT",
+              "SAB"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "iniciado_em_magia",
+          "escolhas_predefinidas": {
+            "iniciado_em_magia_lista": "mago"
+          },
+          "nota": "O antecedente fixa a lista; o atributo de conjuração e os truques continuam sendo escolha do jogador."
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "arcanismo",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "historia",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "ferramenta",
+          "chave": "suprimentos_de_caligrafo",
+          "nivel_dominio": "proficiente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "cajado"
+              },
+              {
+                "item": "suprimentos_de_caligrafo"
+              },
+              {
+                "item": "livro",
+                "nota": "Livro de história."
+              },
+              {
+                "item": "pergaminho",
+                "quantidade": 8
+              },
+              {
+                "item": "tunica"
+              }
+            ],
+            "moedas": {
+              "po": 8
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 185,
+          "pagina_pdf": 189
+        }
+      }
+    },
+    {
+      "id": "soldado",
+      "nome": "Soldado",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 185,
+        "pagina_pdf": 189
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Treinou para a guerra assim que virou adulto; a batalha está no sangue, e os exercícios básicos ainda saem por reflexo.",
+      "atributos": [
+        "FOR",
+        "DES",
+        "CON"
+      ],
+      "talento_de_origem": "atacante_selvagem",
+      "pericias": [
+        "atletismo",
+        "intimidacao"
+      ],
+      "efeitos": [
+        {
+          "id": "soldado_aumento",
+          "tipo": "escolha",
+          "rotulo": "Escolha como distribuir o aumento de atributo",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "modos_de_aumento_de_atributo",
+            "todo_o_catalogo": true
+          },
+          "atributos_disponiveis": [
+            "FOR",
+            "DES",
+            "CON"
+          ],
+          "efeito_por_item_escolhido": {
+            "tipo": "aumento_atributo",
+            "modo": "{{escolhido}}",
+            "atributos": [
+              "FOR",
+              "DES",
+              "CON"
+            ],
+            "limite": 20
+          }
+        },
+        {
+          "tipo": "conceder_talento",
+          "talento_id": "atacante_selvagem"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "atletismo",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "pericia",
+          "chave": "intimidacao",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "soldado_ferramenta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um tipo de Kit de Jogos",
+          "quantidade": 1,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "ferramentas",
+            "filtro": {
+              "id": "kit_de_jogos"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "ferramenta",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          },
+          "define_variavel": "ferramenta_do_antecedente"
+        }
+      ],
+      "equipamento": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "lanca"
+              },
+              {
+                "item": "arco_curto"
+              },
+              {
+                "item": "flechas",
+                "quantidade": 20
+              },
+              {
+                "item": "kit_de_curandeiro"
+              },
+              {
+                "referencia": "ferramenta_do_antecedente",
+                "nota": "O mesmo Kit de Jogos escolhido acima."
+              },
+              {
+                "item": "aljava"
+              },
+              {
+                "item": "roupas_viagem"
+              }
+            ],
+            "moedas": {
+              "po": 14
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 50
+            }
+          }
+        ],
+        "fonte": {
+          "capitulo": 4,
+          "pagina_livro": 185,
+          "pagina_pdf": 189
+        }
+      }
+    }
+  ]
+}

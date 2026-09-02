@@ -2,7 +2,7 @@
 """Lote 2: catálogos fechados que as Classes referenciam (idiomas, ferramentas,
 propriedades e maestrias de arma, escolas de magia). Corrige também a ação Ajudar."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(cap, livro): return {"capitulo": cap, "pagina_livro": livro, "pagina_pdf": livro + 4}
 def w(p, o):
     json.dump(o, open(os.path.join(D, p), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)

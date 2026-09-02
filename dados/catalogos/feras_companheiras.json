@@ -1,0 +1,433 @@
+{
+  "catalogo": "feras_companheiras",
+  "nome": "Feras Companheiras (Companheiro Primal)",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 122,
+    "pagina_pdf": 126
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "fera_do_ceu",
+      "nome": "Fera do Céu",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 123,
+        "pagina_pdf": 127
+      },
+      "tipo_de_criatura": "fera",
+      "tamanho": "pequeno",
+      "atitude": "neutra",
+      "classe_de_armadura": {
+        "formula": [
+          "13",
+          "mod:SAB"
+        ]
+      },
+      "iniciativa": 2,
+      "pontos_de_vida": {
+        "formula": {
+          "op": "soma",
+          "args": [
+            "4",
+            {
+              "op": "mult",
+              "args": [
+                "5",
+                "nivel_classe:guardiao"
+              ]
+            }
+          ]
+        },
+        "dado_de_vida": "d6",
+        "quantidade_de_dados": [
+          "nivel_classe:guardiao"
+        ]
+      },
+      "deslocamentos": [
+        {
+          "tipo": "caminhada",
+          "metros": 3
+        },
+        {
+          "tipo": "voo",
+          "metros": 18
+        }
+      ],
+      "atributos": {
+        "FOR": 6,
+        "DES": 16,
+        "CON": 13,
+        "INT": 8,
+        "SAB": 14,
+        "CAR": 11
+      },
+      "sentidos": [
+        {
+          "sentido": "visao_no_escuro",
+          "alcance_m": 18
+        },
+        {
+          "sentido": "percepcao_passiva",
+          "valor": 12
+        }
+      ],
+      "idiomas_texto": "Compreende os idiomas que você fala",
+      "nivel_de_desafio": {
+        "texto": "Nenhum",
+        "xp": 0,
+        "bonus_de_proficiencia": "prof_do_guardiao"
+      },
+      "tracos": [
+        {
+          "id": "sobrevoo",
+          "nome": "Sobrevoo",
+          "descricao_curta": "Não provoca Ataques de Oportunidade ao voar para fora do alcance de um inimigo.",
+          "efeitos": [
+            {
+              "tipo": "impedir",
+              "alvo": "ataque_de_oportunidade_provocado_por_voce",
+              "condicao": {
+                "todas": [
+                  "voando"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "vinculo_primal",
+          "nome": "Vínculo Primal",
+          "descricao_curta": "Some seu Bônus de Proficiência a qualquer teste de atributo ou salvaguarda que a fera realizar.",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "teste_de_atributo",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "salvaguarda",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            }
+          ]
+        }
+      ],
+      "acoes": [
+        {
+          "id": "golpe_da_fera",
+          "nome": "Golpe da Fera",
+          "tipo_de_ataque": "corpo_a_corpo",
+          "bonus_de_ataque": [
+            "jogada_de_ataque_magico_do_guardiao"
+          ],
+          "alcance_m": 1.5,
+          "dano": {
+            "formula_dado": "1d4",
+            "somar": [
+              "3",
+              "mod:SAB"
+            ],
+            "tipos_de_dano": [
+              "cortante"
+            ],
+            "escolha_do_tipo": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "fera_do_mar",
+      "nome": "Fera do Mar",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "tipo_de_criatura": "fera",
+      "tamanho": "medio",
+      "atitude": "neutra",
+      "classe_de_armadura": {
+        "formula": [
+          "13",
+          "mod:SAB"
+        ]
+      },
+      "iniciativa": 3,
+      "pontos_de_vida": {
+        "formula": {
+          "op": "soma",
+          "args": [
+            "5",
+            {
+              "op": "mult",
+              "args": [
+                "5",
+                "nivel_classe:guardiao"
+              ]
+            }
+          ]
+        },
+        "dado_de_vida": "d8",
+        "quantidade_de_dados": [
+          "nivel_classe:guardiao"
+        ]
+      },
+      "deslocamentos": [
+        {
+          "tipo": "caminhada",
+          "metros": 1.5
+        },
+        {
+          "tipo": "natacao",
+          "metros": 18
+        }
+      ],
+      "atributos": {
+        "FOR": 14,
+        "DES": 14,
+        "CON": 15,
+        "INT": 8,
+        "SAB": 14,
+        "CAR": 11
+      },
+      "sentidos": [
+        {
+          "sentido": "visao_no_escuro",
+          "alcance_m": 18
+        },
+        {
+          "sentido": "percepcao_passiva",
+          "valor": 12
+        }
+      ],
+      "idiomas_texto": "Compreende os idiomas que você fala",
+      "nivel_de_desafio": {
+        "texto": "Nenhum",
+        "xp": 0,
+        "bonus_de_proficiencia": "prof_do_guardiao"
+      },
+      "tracos": [
+        {
+          "id": "anfibio",
+          "nome": "Anfíbio",
+          "descricao_curta": "Respira ar e água.",
+          "efeitos": [
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "respira_ar_e_agua",
+              "texto": "A fera pode respirar ar e água."
+            }
+          ]
+        },
+        {
+          "id": "vinculo_primal",
+          "nome": "Vínculo Primal",
+          "descricao_curta": "Some seu Bônus de Proficiência a qualquer teste de atributo ou salvaguarda que a fera realizar.",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "teste_de_atributo",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "salvaguarda",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            }
+          ]
+        }
+      ],
+      "acoes": [
+        {
+          "id": "golpe_da_fera",
+          "nome": "Golpe da Fera",
+          "tipo_de_ataque": "corpo_a_corpo",
+          "bonus_de_ataque": [
+            "jogada_de_ataque_magico_do_guardiao"
+          ],
+          "alcance_m": 1.5,
+          "dano": {
+            "formula_dado": "1d6",
+            "somar": [
+              "2",
+              "mod:SAB"
+            ],
+            "tipos_de_dano": [
+              "contundente",
+              "perfurante"
+            ],
+            "escolha_do_tipo": "ao_invocar_a_fera"
+          },
+          "efeito_adicional": [
+            {
+              "tipo": "conceder_condicao",
+              "condicao_id": "imobilizado",
+              "cd_para_escapar": [
+                "cd_para_evitar_sua_magia"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fera_da_terra",
+      "nome": "Fera da Terra",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "tipo_de_criatura": "fera",
+      "tamanho": "medio",
+      "atitude": "neutra",
+      "classe_de_armadura": {
+        "formula": [
+          "13",
+          "mod:SAB"
+        ]
+      },
+      "iniciativa": 2,
+      "pontos_de_vida": {
+        "formula": {
+          "op": "soma",
+          "args": [
+            "5",
+            {
+              "op": "mult",
+              "args": [
+                "5",
+                "nivel_classe:guardiao"
+              ]
+            }
+          ]
+        },
+        "dado_de_vida": "d8",
+        "quantidade_de_dados": [
+          "nivel_classe:guardiao"
+        ]
+      },
+      "deslocamentos": [
+        {
+          "tipo": "caminhada",
+          "metros": 12
+        },
+        {
+          "tipo": "escalada",
+          "metros": 12
+        }
+      ],
+      "atributos": {
+        "FOR": 14,
+        "DES": 14,
+        "CON": 15,
+        "INT": 8,
+        "SAB": 14,
+        "CAR": 11
+      },
+      "sentidos": [
+        {
+          "sentido": "visao_no_escuro",
+          "alcance_m": 18
+        },
+        {
+          "sentido": "percepcao_passiva",
+          "valor": 12
+        }
+      ],
+      "idiomas_texto": "Compreende os idiomas que você fala",
+      "nivel_de_desafio": {
+        "texto": "Nenhum",
+        "xp": 0,
+        "bonus_de_proficiencia": "prof_do_guardiao"
+      },
+      "tracos": [
+        {
+          "id": "vinculo_primal",
+          "nome": "Vínculo Primal",
+          "descricao_curta": "Some seu Bônus de Proficiência a qualquer teste de atributo ou salvaguarda que a fera realizar.",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "teste_de_atributo",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            },
+            {
+              "tipo": "modificador",
+              "alvo": "salvaguarda",
+              "valor": [
+                "prof"
+              ],
+              "empilha": "soma"
+            }
+          ]
+        }
+      ],
+      "acoes": [
+        {
+          "id": "golpe_da_fera",
+          "nome": "Golpe da Fera",
+          "tipo_de_ataque": "corpo_a_corpo",
+          "bonus_de_ataque": [
+            "jogada_de_ataque_magico_do_guardiao"
+          ],
+          "alcance_m": 1.5,
+          "dano": {
+            "formula_dado": "1d8",
+            "somar": [
+              "2",
+              "mod:SAB"
+            ],
+            "tipos_de_dano": [
+              "contundente",
+              "cortante",
+              "perfurante"
+            ],
+            "escolha_do_tipo": "ao_invocar_a_fera"
+          },
+          "efeito_adicional": [
+            {
+              "tipo": "dano",
+              "formula_dado": "1d6",
+              "tipo_dano": "mesmo_do_ataque",
+              "condicao": {
+                "todas": [
+                  "a_fera_moveu_ao_menos_6m_ate_o_alvo"
+                ]
+              }
+            },
+            {
+              "tipo": "conceder_condicao",
+              "condicao_id": "caido",
+              "restricao_de_tamanho": "grande_ou_menor",
+              "condicao": {
+                "todas": [
+                  "a_fera_moveu_ao_menos_6m_ate_o_alvo"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nota": "Blocos de estatísticas impressos no capítulo 3, dentro da subclasse Senhor das Feras. NÃO é o Apêndice B: 'criaturas' continua adiado e vazio. CA, PV e Golpe da Fera derivam do nível e do modificador de Sabedoria do Guardião.",
+  "preenchida": true
+}

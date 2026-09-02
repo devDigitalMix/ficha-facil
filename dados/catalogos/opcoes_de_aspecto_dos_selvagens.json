@@ -20,7 +20,13 @@
           "empilha": "soma",
           "nota": "Se já tiver Visão no Escuro, o alcance aumenta em 18 m."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "pantera",
@@ -34,7 +40,13 @@
             "deslocamento"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "salmao",
@@ -48,7 +60,13 @@
             "deslocamento"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     }
   ]
 }

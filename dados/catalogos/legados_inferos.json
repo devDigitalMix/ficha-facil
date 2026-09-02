@@ -1,0 +1,107 @@
+{
+  "catalogo": "legados_inferos",
+  "nome": "Legado Ínfero",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 197,
+    "pagina_pdf": 201
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "abissal",
+      "nome": "Abissal",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 197,
+        "pagina_pdf": 201
+      },
+      "descricao_curta": "Nível 1: Resistência a dano Venenoso e o truque Rajada de Veneno. Nível 3: Raio Nauseante. Nível 5: Paralisar Pessoa.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "venenoso",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "rajada_de_veneno",
+          "circulo": 0
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "raio_nauseante"
+        ],
+        "5": [
+          "paralisar_pessoa"
+        ]
+      }
+    },
+    {
+      "id": "ctonico",
+      "nome": "Ctônico",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 197,
+        "pagina_pdf": 201
+      },
+      "descricao_curta": "Nível 1: Resistência a dano Necrótico e o truque Toque Necrótico. Nível 3: Vitalidade Vazia. Nível 5: Raio do Enfraquecimento.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "necrotico",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "toque_necrotico",
+          "circulo": 0
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "vitalidade_vazia"
+        ],
+        "5": [
+          "raio_do_enfraquecimento"
+        ]
+      }
+    },
+    {
+      "id": "infernal",
+      "nome": "Infernal",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 197,
+        "pagina_pdf": 201
+      },
+      "descricao_curta": "Nível 1: Resistência a dano Ígneo e o truque Raio de Fogo. Nível 3: Repreensão Diabólica. Nível 5: Escuridão.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "igneo",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "raio_de_fogo",
+          "circulo": 0
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "repreensao_diabolica"
+        ],
+        "5": [
+          "escuridao"
+        ]
+      }
+    }
+  ],
+  "nota": "As magias de nível 3 e 5 ficam sempre preparadas, conjuráveis uma vez por Descanso Longo sem espaço, ou com qualquer espaço do círculo correspondente. O atributo (INT, SAB ou CAR) é escolhido junto com o legado e vale também para Presença Sobrenatural.",
+  "preenchida": true
+}

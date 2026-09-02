@@ -13,6 +13,9 @@ Faz três coisas:
 Magia detalhada leva `detalhada: true`; o validador cobra os campos obrigatórios
 só dessas, para o resto do capítulo poder entrar em lotes.
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import json, sys, unicodedata, collections, re
 
 sys.path.insert(0, '.')

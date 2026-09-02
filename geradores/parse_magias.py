@@ -14,10 +14,13 @@ Uso:
     python3 parse_magias.py            # relatório do que o parser enxerga
     python3 parse_magias.py --json X   # despeja as N primeiras em JSON
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import re, json, sys, unicodedata
 
-TXT = '/tmp/claude-0/cap7.txt'
-PAGINAS = '/tmp/claude-0/cap7_paginas.json'
+TXT = caminhos.exigir('cap7.txt', 'parse_magias.py')
+PAGINAS = caminhos.exigir('cap7_paginas.json', 'parse_magias.py')
 CATALOGO = 'dados/catalogos/magias.json'
 
 # o livro usa 'º' quase sempre e '°' em Animar Mortos (p. 244) — aceitamos os dois

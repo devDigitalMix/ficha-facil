@@ -10,12 +10,15 @@
 O que a Fabricação cita e ainda não tem id vira `nao_resolvidos`, com nota — em
 vez de sumir ou virar uma chave inventada.
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import json, sys, re, collections
 
 sys.path.insert(0, '.')
 import parse_equipamento as P                                   # noqa: E402
 
-TXT = '/tmp/claude-0/cap6.txt'
+TXT = caminhos.exigir('cap6.txt', 'gerar_equipamento.py')
 
 # nome no singular da tabela de Armas -> id na tabela de Munição
 MUNICAO = {'flecha': 'flechas', 'virote': 'virotes', 'agulha': 'agulhas'}

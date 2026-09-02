@@ -1,0 +1,8 @@
+# Texto extraído do PDF por geradores/extrair_texto.py. Derivado, regenerável — não é fonte.
+/intermediarios/
+
+# Saída da extensão VS Code Counter: relatório de ferramenta, não dado do projeto.
+/.VSCodeCounter/
+
+__pycache__/
+*.pyc

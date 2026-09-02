@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 
 TIPOS = [
  # (id, origem, campos, nota)

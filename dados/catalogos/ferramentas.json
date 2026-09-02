@@ -43,7 +43,9 @@
           "escada",
           "tocha"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Força; Usar Objeto: Selar ou abrir uma porta ou recipiente (CD 20); fabrica 9 itens; 8 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_cartografo",
@@ -72,7 +74,9 @@
         "itens": [
           "mapa"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Sabedoria; Usar Objeto: Elaborar o mapa de uma pequena área (CD 15); fabrica 1 item; 15 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_coureiro",
@@ -112,7 +116,9 @@
           "mochila",
           "pergaminho"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Moldar a estética de um item de couro (CD 10); fabrica 12 itens; 5 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_entalhador",
@@ -161,7 +167,9 @@
             "motivo": "descrição genérica, não é um item único"
           }
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Entalhar um padrão em madeira (CD 10); fabrica 7 itens; 1 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_ferreiro",
@@ -213,7 +221,9 @@
             "motivo": "descrição genérica, não é um item único"
           }
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Força; Usar Objeto: Forçar a abertura de uma porta ou recipiente (CD 20); fabrica 10 itens; 20 PO · 4 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_funileiro",
@@ -254,7 +264,9 @@
           "pote",
           "sino"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Monte um item Minúsculo composto de sucata, que se desfaz em 1 minuto (CD 20); fabrica 13 itens; 50 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_joalheiro",
@@ -291,7 +303,9 @@
             "motivo": "descrição genérica, não é um item único"
           }
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Inteligência; Usar Objeto: Discernir o valor de uma gema (CD 15); 25 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_oleiro",
@@ -321,7 +335,9 @@
           "jarro",
           "lampada"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Inteligência; Usar Objeto: Discernir como um objeto de cerâmica foi manuseado nas últimas 24 horas (CD 15); fabrica 2 itens; 10 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_pedreiro",
@@ -350,7 +366,9 @@
         "itens": [
           "roldana_e_polias"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Força; Usar Objeto: Cinzelar um símbolo ou buraco na pedra (CD 10); fabrica 1 item; 10 PO · 4 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_sapateiro",
@@ -379,7 +397,9 @@
         "itens": [
           "kit_de_escalada"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Modificar calçado para conceder Vantagem no próximo teste de Destreza (Acrobacia) do usuário (CD 10); fabrica 1 item; 5 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_tecelao",
@@ -419,7 +439,9 @@
           "tenda",
           "roupas_viagem"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Reparar um rasgo em uma roupa (CD 10) ou costurar um ornamento Minúsculo (CD 10); fabrica 12 itens; 1 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_vidreiro",
@@ -451,7 +473,9 @@
           "luneta",
           "lupa"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Inteligência; Usar Objeto: Discernir como um objeto de vidro foi manuseado nas últimas 24 horas (CD 15); fabrica 4 itens; 30 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "suprimentos_de_alquimista",
@@ -485,7 +509,9 @@
           "papel",
           "perfume"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Inteligência; Usar Objeto: Identificar uma substância (CD 15) ou iniciar um incêndio (CD 15); fabrica 6 itens; 50 PO · 4 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "suprimentos_de_caligrafo",
@@ -520,7 +546,9 @@
             "motivo": "descrição genérica, não é um item único"
           }
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Destreza; Usar Objeto: Escrever texto com uma caligrafia que protege contra falsificação (CD 15); fabrica 1 item; 10 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "suprimentos_de_cervejeiro",
@@ -549,7 +577,9 @@
         "itens": [
           "antitoxina"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Inteligência; Usar Objeto: Detectar bebida envenenada (CD 15) ou identificar álcool (CD 15); fabrica 1 item; 20 PO · 4,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "suprimentos_de_pintor",
@@ -582,7 +612,9 @@
             "motivo": "descrição genérica, não é um item único"
           }
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Sabedoria; 10 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "utensilios_de_cozinheiro",
@@ -611,7 +643,9 @@
         "itens": [
           "racoes"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta de Artesão, usada com Sabedoria; Usar Objeto: Melhorar o sabor dos alimentos (CD 10) ou detectar alimentos estragados ou envenenados (CD 10); fabrica 1 item; 1 PO · 4 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_ladrao",
@@ -633,7 +667,9 @@
       "usar_objeto": {
         "acao": "Abrir uma fechadura (CD 15) ou desarmar uma armadilha",
         "cd": 15
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Destreza; Usar Objeto: Abrir uma fechadura (CD 15) ou desarmar uma armadilha (CD 15); 25 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ferramentas_de_navegador",
@@ -655,7 +691,9 @@
       "usar_objeto": {
         "acao": "Traçar uma rota (CD 10) ou determinar a posição observando as estrelas",
         "cd": 10
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Sabedoria; Usar Objeto: Traçar uma rota (CD 10) ou determinar a posição observando as estrelas (CD 10); 25 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "instrumento_musical",
@@ -688,7 +726,9 @@
       "usar_objeto": {
         "acao": "Tocar uma música conhecida (CD 10) ou improvisar uma música",
         "cd": 10
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Carisma; Usar Objeto: Tocar uma música conhecida (CD 10) ou improvisar uma música (CD 10).",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_disfarce",
@@ -716,7 +756,9 @@
         "itens": [
           "roupas_fantasia"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Carisma; Usar Objeto: Aplicar maquiagem (CD 10); fabrica 1 item; 25 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_falsificacao",
@@ -738,7 +780,9 @@
       "usar_objeto": {
         "acao": "Imitar 10 ou menos palavras escritas de outra pessoa (CD 15) ou duplicar um selo de cera",
         "cd": 15
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Destreza; Usar Objeto: Imitar 10 ou menos palavras escritas de outra pessoa (CD 15) ou duplicar um selo de cera (CD 15); 15 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_herbalismo",
@@ -769,7 +813,9 @@
           "pocao_de_cura",
           "vela"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Inteligência; Usar Objeto: Identificar uma planta (CD 10); fabrica 4 itens; 5 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_jogos",
@@ -795,7 +841,9 @@
       "usar_objeto": {
         "acao": "Discernir se alguém está trapaceando (CD 10) ou ganhar o jogo",
         "cd": 10
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Sabedoria; Usar Objeto: Discernir se alguém está trapaceando (CD 10) ou ganhar o jogo (CD 10).",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_veneno",
@@ -823,7 +871,9 @@
         "itens": [
           "veneno_basico"
         ]
-      }
+      },
+      "descricao_curta": "Ferramenta, usada com Inteligência; Usar Objeto: Detectar um objeto envenenado (CD 10); fabrica 1 item; 50 PO · 1 kg.",
+      "descricao_derivada": true
     }
   ],
   "nota": "As 25 ferramentas do capítulo 6 (p. 220-222), com atributo, peso, custo, o teste de Usar Objeto e a lista de Fabricação.",

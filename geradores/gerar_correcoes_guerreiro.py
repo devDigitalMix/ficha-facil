@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Corrige os quatro erros que o validador apontou no lote do Guerreiro."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
 def wr(p, o): json.dump(o, open(os.path.join(D, p), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 def f(cap, livro): return {"capitulo": cap, "pagina_livro": livro, "pagina_pdf": livro + 4}

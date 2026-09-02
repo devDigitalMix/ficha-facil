@@ -30,7 +30,13 @@
             "15": "2d8"
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      },
+      "fonte_herdada": true
     },
     {
       "id": "conjuracao_poderosa",
@@ -66,7 +72,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 94,
+        "pagina_pdf": 98
+      },
+      "fonte_herdada": true
     }
   ]
 }

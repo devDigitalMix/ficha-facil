@@ -26,7 +26,13 @@
           },
           "nota": "Sem salvaguarda: o livro impõe a condição direto (p. 56)."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "falcao",
@@ -46,7 +52,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     },
     {
       "id": "leao",
@@ -68,7 +80,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 56,
+        "pagina_pdf": 60
+      },
+      "fonte_herdada": true
     }
   ]
 }

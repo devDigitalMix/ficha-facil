@@ -55,7 +55,13 @@
           "nao_conta_para_o_limite": true
         }
       ],
-      "descricao_curta": "Magias de Círculo Druídico de deserto e vulcão; Resistência a dano Ígneo pela Proteção Natural."
+      "descricao_curta": "Magias de Círculo Druídico de deserto e vulcão; Resistência a dano Ígneo pela Proteção Natural.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     },
     {
       "id": "polar",
@@ -104,7 +110,13 @@
           "nao_conta_para_o_limite": true
         }
       ],
-      "descricao_curta": "Magias de Círculo Druídico de gelo e tundra; Resistência a dano Gélido pela Proteção Natural."
+      "descricao_curta": "Magias de Círculo Druídico de gelo e tundra; Resistência a dano Gélido pela Proteção Natural.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     },
     {
       "id": "temperado",
@@ -153,7 +165,13 @@
           "nao_conta_para_o_limite": true
         }
       ],
-      "descricao_curta": "Magias de Círculo Druídico de floresta e campo; Resistência a dano Elétrico pela Proteção Natural."
+      "descricao_curta": "Magias de Círculo Druídico de floresta e campo; Resistência a dano Elétrico pela Proteção Natural.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     },
     {
       "id": "tropical",
@@ -202,7 +220,13 @@
           "nao_conta_para_o_limite": true
         }
       ],
-      "descricao_curta": "Magias de Círculo Druídico de selva e pântano; Resistência a dano Venenoso pela Proteção Natural."
+      "descricao_curta": "Magias de Círculo Druídico de selva e pântano; Resistência a dano Venenoso pela Proteção Natural.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     }
   ]
 }

@@ -73,7 +73,9 @@
         "resistencia",
         "imunidade",
         "vulnerabilidade",
-        "bonus"
+        "bonus",
+        "reducao_de_nivel",
+        "reduzir_nivel"
       ]
     }
   },
@@ -187,6 +189,53 @@
         "required": [
           "modo"
         ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tipo": {
+            "const": "alterar_dano"
+          }
+        },
+        "required": [
+          "tipo"
+        ]
+      },
+      "then": {
+        "properties": {
+          "operacao": {
+            "enum": [
+              "resistencia",
+              "imunidade",
+              "vulnerabilidade",
+              "bonus"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tipo": {
+            "const": "alterar_condicao"
+          }
+        },
+        "required": [
+          "tipo"
+        ]
+      },
+      "then": {
+        "properties": {
+          "operacao": {
+            "enum": [
+              "imunidade",
+              "vulnerabilidade",
+              "reduzir_nivel"
+            ]
+          }
+        }
       }
     }
   ]

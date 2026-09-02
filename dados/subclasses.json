@@ -1,6 +1,6 @@
 {
   "colecao": "subclasses",
-  "total": 40,
+  "total": 48,
   "itens": [
     {
       "id": "combatente_da_mao_espalmada",
@@ -1115,6 +1115,232 @@
         "distorcer_a_sorte",
         "caos_controlado",
         "surto_controlado"
+      ]
+    },
+    {
+      "id": "andarilho_feerico",
+      "nome": "Andarilho Feérico",
+      "classe": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 120,
+        "pagina_pdf": 124
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Mística feérica: bônus de Carisma, dano Psíquico nos golpes, magias de Faéria e teleporte que leva companheiro junto.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "caracteristicas": [
+        "glamour_transcendental",
+        "golpes_terriveis",
+        "magias_do_andarilho_feerico",
+        "detalhe_sedutor",
+        "reforcos_feericos",
+        "andarilho_nebuloso"
+      ]
+    },
+    {
+      "id": "cacador",
+      "nome": "Caçador",
+      "classe": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Especialista em presa: lê Imunidades e Resistências do alvo marcado e escolhe pares de opções ofensivas e defensivas, trocáveis a cada descanso.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "caracteristicas": [
+        "conhecimento_do_cacador",
+        "presa_do_cacador",
+        "taticas_defensivas",
+        "presa_do_cacador_superior",
+        "defesa_do_cacador_superior"
+      ]
+    },
+    {
+      "id": "senhor_das_feras",
+      "nome": "Senhor das Feras",
+      "classe": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vínculo com uma fera primal — Terra, Céu ou Mar — que age em combate sob seu comando.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "caracteristicas": [
+        "companheiro_primal",
+        "treinamento_excepcional",
+        "furia_bestial",
+        "compartilhar_magias"
+      ]
+    },
+    {
+      "id": "vigilante_das_sombras",
+      "nome": "Vigilante das Sombras",
+      "classe": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magia do Sombral: emboscada com dano Psíquico, Visão no Escuro ampliada e invisibilidade na Escuridão.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "caracteristicas": [
+        "emboscador_das_sombras",
+        "magias_do_vigilante_das_sombras",
+        "visao_umbrosa",
+        "mente_de_ferro",
+        "torrente_do_vigilante",
+        "esquiva_sombria"
+      ]
+    },
+    {
+      "id": "juramento_da_devocao",
+      "nome": "Juramento da Devoção",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 171,
+        "pagina_pdf": 175
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Justiça e ordem: arma imbuída de energia positiva, aura contra Enfeitiçado e destruição que também protege.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        15,
+        20
+      ],
+      "caracteristicas": [
+        "magias_do_juramento_da_devocao",
+        "arma_sagrada",
+        "aura_de_devocao",
+        "destruicao_protetora",
+        "resplendor_sagrado"
+      ]
+    },
+    {
+      "id": "juramento_da_gloria",
+      "nome": "Juramento da Glória",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Heroísmo e feito: atletismo sobrenatural, PV temporários distribuídos e aura que acelera os aliados.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        15,
+        20
+      ],
+      "caracteristicas": [
+        "atleta_inigualavel",
+        "destruicao_inspiradora",
+        "magias_do_juramento_da_gloria",
+        "aura_de_vivacidade",
+        "defesa_gloriosa",
+        "lenda_viva"
+      ]
+    },
+    {
+      "id": "juramento_da_vinganca",
+      "nome": "Juramento da Vingança",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Punição: voto que dá Vantagem contra um alvo, perseguição implacável e asas espectrais no nível 20.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        15,
+        20
+      ],
+      "caracteristicas": [
+        "magias_do_juramento_da_vinganca",
+        "voto_de_inimizade",
+        "vingador_implacavel",
+        "alma_vingativa",
+        "anjo_vingador"
+      ]
+    },
+    {
+      "id": "juramento_dos_anciaos",
+      "nome": "Juramento dos Anciões",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vida e luz: videiras espectrais, aura de Resistência a dano Necrótico, Psíquico e Radiante, e imortalidade prática.",
+      "niveis_de_caracteristica": [
+        3,
+        7,
+        15,
+        20
+      ],
+      "caracteristicas": [
+        "a_ira_da_natureza",
+        "magias_do_juramento_dos_anciaos",
+        "aura_de_resistencia",
+        "sentinela_imortal",
+        "campeao_ancestral"
       ]
     }
   ]

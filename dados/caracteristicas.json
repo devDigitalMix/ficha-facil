@@ -1,6 +1,6 @@
 {
   "colecao": "caracteristicas",
-  "total": 320,
+  "total": 388,
   "itens": [
     {
       "id": "artes_marciais",
@@ -1961,8 +1961,8 @@
         "pagina_pdf": 131
       },
       "revisao": {
-        "status": "duvida",
-        "notas": "A escolha aponta para o catálogo 'itens' (armas), que só existe a partir do cap. 6. Declarado como filtro, não como lista de chaves, justamente para resolver sozinho quando o catálogo chegar."
+        "status": "ok",
+        "notas": "Era dúvida enquanto o catálogo de itens não existia. O capítulo 6 entrou na fase 4 e o filtro resolveu sozinho, como o esquema previa — 38 armas Simples e Marciais. Resolvido na auditoria de 2026-09-02."
       },
       "descricao_curta": "Você pode usar as propriedades de maestria de um número de tipos de armas Simples ou Marciais à sua escolha, conforme a coluna Maestria em Armas. A cada Descanso Longo pode trocar uma dessas escolhas.",
       "efeitos": [
@@ -1986,9 +1986,7 @@
             }
           },
           "efeito_por_item_escolhido": {
-            "tipo": "efeito_narrativo",
-            "chave": "maestria_liberada",
-            "texto": "Libera a propriedade de maestria da arma escolhida.",
+            "tipo": "conceder_maestria_de_arma",
             "arma": "{{escolhido}}"
           }
         }
@@ -3579,6 +3577,16 @@
           "classe": "guerreiro",
           "nivel": 5,
           "pagina_livro": 128
+        },
+        {
+          "classe": "guardiao",
+          "nivel": 5,
+          "pagina_livro": 118
+        },
+        {
+          "classe": "paladino",
+          "nivel": 5,
+          "pagina_livro": 169
         }
       ],
       "efeitos": [
@@ -9926,7 +9934,6 @@
           "reescolha_quantidade": 1,
           "de": {
             "catalogo": "itens",
-            "pendente": true,
             "filtro": {
               "categoria": "arma",
               "grupo": [
@@ -9934,11 +9941,11 @@
                 "marcial"
               ],
               "alcance": "corpo_a_corpo"
-            }
+            },
+            "nota_da_auditoria": "A marca 'pendente' saiu em 2026-09-02: existia porque o catálogo de itens ainda não tinha chegado, e estava desligando a checagem de filtro vazio."
           },
           "efeito_por_item_escolhido": {
-            "tipo": "efeito_narrativo",
-            "chave": "maestria_liberada",
+            "tipo": "conceder_maestria_de_arma",
             "arma": "{{escolhido}}"
           }
         }
@@ -11385,15 +11392,14 @@
           "reescolha_em": "descanso_longo",
           "de": {
             "catalogo": "itens",
-            "pendente": true,
             "filtro": {
               "categoria": "arma",
               "com_proficiencia": true
-            }
+            },
+            "nota_da_auditoria": "A marca 'pendente' saiu em 2026-09-02: existia porque o catálogo de itens ainda não tinha chegado, e estava desligando a checagem de filtro vazio."
           },
           "efeito_por_item_escolhido": {
-            "tipo": "efeito_narrativo",
-            "chave": "maestria_liberada",
+            "tipo": "conceder_maestria_de_arma",
             "arma": "{{escolhido}}"
           }
         }
@@ -15720,6 +15726,3170 @@
         }
       ],
       "subclasse": "feiticaria_selvagem"
+    },
+    {
+      "id": "conjuracao_guardiao",
+      "nome": "Conjuração",
+      "classe": "guardiao",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 117,
+        "pagina_pdf": 121
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura pela lista de Guardião, com Sabedoria. Prepara da lista inteira conforme a coluna Magias Preparadas, trocando uma a cada Descanso Longo. Usa Foco Druídico.",
+      "efeitos": [
+        {
+          "tipo": "conceder_slot",
+          "tabela_progressao_id": "guardiao",
+          "colunas": [
+            "espacos_1",
+            "espacos_2",
+            "espacos_3",
+            "espacos_4",
+            "espacos_5"
+          ],
+          "recarga": "descanso_longo"
+        },
+        {
+          "tipo": "preparar_magias",
+          "formula_quantidade": [
+            "coluna:magias_preparadas"
+          ],
+          "atributo_conjuracao": "SAB",
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "guardiao",
+          "restricao": "de um círculo para o qual você possui espaços de magia",
+          "magias_sempre_preparadas_nao_contam": true
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "guardiao",
+          "modo": "disponivel_para_preparar",
+          "atributo_conjuracao": "SAB"
+        },
+        {
+          "id": "guardiao_preparadas",
+          "tipo": "escolha",
+          "rotulo": "Prepare magias de Guardião",
+          "quantidade": "coluna:magias_preparadas",
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "reescolha_quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel_minimo": 1,
+              "lista": "guardiao",
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "guardiao",
+            "modo": "preparada",
+            "magia": "{{escolhido}}"
+          }
+        }
+      ],
+      "foco_de_conjuracao": [
+        "ramo_de_visco"
+      ],
+      "cd_para_evitar_sua_magia": [
+        "8",
+        "mod:SAB",
+        "prof"
+      ],
+      "nota_do_livro": "Sem truques: o Guardião não tem coluna de truques. Os dois truques de Druida do Combatente Druídico são a única porta para truques na classe."
+    },
+    {
+      "id": "inimigo_favorito",
+      "nome": "Inimigo Favorito",
+      "classe": "guardiao",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 117,
+        "pagina_pdf": 121
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Marca do Predador sempre preparada, e conjurável sem gastar espaço um número de vezes igual à coluna Inimigo Favorito. Todos os usos voltam no Descanso Longo.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "guardiao",
+          "modo": "sempre_preparada",
+          "magias": [
+            "marca_do_predador"
+          ]
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "inimigo_favorito",
+          "nome": "Inimigo Favorito",
+          "formula_maximo": [
+            "coluna:inimigo_favorito"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "marca_do_predador",
+          "consome_recurso": "inimigo_favorito"
+        }
+      ]
+    },
+    {
+      "id": "maestria_em_arma_guardiao",
+      "nome": "Maestria em Arma",
+      "classe": "guardiao",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 118,
+        "pagina_pdf": 122
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usa as propriedades de maestria de dois tipos de arma à escolha entre aquelas com que tem proficiência. Troca as escolhas a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "guardiao_maestrias",
+          "tipo": "escolha",
+          "rotulo": "Escolha os tipos de arma com maestria",
+          "quantidade": 2,
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": [
+                "simples",
+                "marcial"
+              ]
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_maestria_de_arma",
+            "arma": "{{escolhido}}"
+          }
+        }
+      ],
+      "nota_do_livro": "O livro não dá coluna de progressão aqui: são dois tipos de arma, fixos, do nível 1 ao 20. Diferente do Guerreiro, que sobe pela coluna."
+    },
+    {
+      "id": "estilo_de_luta_guardiao",
+      "nome": "Estilo de Luta",
+      "classe": "guardiao",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 118,
+        "pagina_pdf": 122
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Adquire um talento de Estilo de Luta à escolha; em vez dele, pode pegar Combatente Druídico, que dá dois truques de Druida conjurados com Sabedoria.",
+      "efeitos": [
+        {
+          "id": "guardiao_estilo_de_luta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um talento de Estilo de Luta",
+          "quantidade": 1,
+          "momento": "nivel_2",
+          "de": {
+            "catalogo": "talentos",
+            "filtro": {
+              "categoria": "estilo_de_luta"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_talento",
+            "talento_id": "{{escolhido}}"
+          }
+        },
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "guardiao_estilo_de_luta",
+          "catalogo": "opcoes_de_estilo_de_luta_de_classe",
+          "chaves": [
+            "combatente_druidico"
+          ],
+          "nota": "A opção da classe entra na mesma escolha do talento, não numa escolha à parte: o livro diz 'em vez de escolher um desses talentos'."
+        }
+      ]
+    },
+    {
+      "id": "explorador_habil",
+      "nome": "Explorador Hábil",
+      "classe": "guardiao",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 118,
+        "pagina_pdf": 122
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Especialização em uma perícia em que já é proficiente, e dois idiomas à escolha.",
+      "efeitos": [
+        {
+          "id": "guardiao_especialista_nivel_2",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma perícia para ganhar Especialização",
+          "quantidade": 1,
+          "momento": "nivel_2",
+          "de": {
+            "catalogo": "pericias",
+            "filtro": {
+              "proficiente": true,
+              "ainda_nao_especialista": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "especialista"
+          }
+        },
+        {
+          "id": "guardiao_idiomas",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 idiomas",
+          "quantidade": 2,
+          "momento": "nivel_2",
+          "de": {
+            "catalogo": "idiomas",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "idioma",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ]
+    },
+    {
+      "id": "errante",
+      "nome": "Errante",
+      "classe": "guardiao",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 118,
+        "pagina_pdf": 122
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Deslocamento +3 m sem Armadura Pesada, e Deslocamentos de Escalada e de Natação iguais ao seu Deslocamento.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "3"
+          ],
+          "unidade": "metros",
+          "empilha": "soma",
+          "condicao": {
+            "nao": "usando:armadura_pesada"
+          }
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "escalada",
+          "formula": [
+            "deslocamento"
+          ],
+          "condicao": {
+            "nao": "usando:armadura_pesada"
+          }
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "natacao",
+          "formula": [
+            "deslocamento"
+          ],
+          "condicao": {
+            "nao": "usando:armadura_pesada"
+          }
+        }
+      ]
+    },
+    {
+      "id": "especialista_guardiao",
+      "nome": "Especialista",
+      "classe": "guardiao",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Especialização em duas perícias em que já é proficiente.",
+      "efeitos": [
+        {
+          "id": "guardiao_especialista_nivel_9",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 perícias para ganhar Especialização",
+          "quantidade": 2,
+          "momento": "nivel_9",
+          "de": {
+            "catalogo": "pericias",
+            "filtro": {
+              "proficiente": true,
+              "ainda_nao_especialista": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "especialista"
+          }
+        }
+      ]
+    },
+    {
+      "id": "incansavel",
+      "nome": "Incansável",
+      "classe": "guardiao",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia para ganhar 1d8 + modificador de Sabedoria de Pontos de Vida Temporários, com usos iguais ao modificador de Sabedoria. E cada Descanso Curto reduz a Exaustão em 1.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "incansavel",
+          "nome": "Incansável",
+          "formula_maximo": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:SAB"
+            ]
+          },
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "formula": {
+            "op": "max",
+            "args": [
+              "1",
+              {
+                "op": "soma",
+                "args": [
+                  "1d8",
+                  "mod:SAB"
+                ]
+              }
+            ]
+          },
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "beneficiario": "voce",
+          "consome_recurso": "incansavel"
+        },
+        {
+          "tipo": "alterar_condicao",
+          "condicao_id": "exaustao",
+          "operacao": "reduzir_nivel",
+          "quantidade": 1,
+          "gatilho": "descanso_curto"
+        }
+      ]
+    },
+    {
+      "id": "predador_implacavel",
+      "nome": "Predador Implacável",
+      "classe": "guardiao",
+      "nivel": 13,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": "Era substituir_regra (remendo, e por isso dúvida) até 2026-09-01. Virou primitivo próprio: o motor agora sabe dizer que uma fonte de quebra de Concentração não se aplica, em vez de receber um remendo da regra do cap. 7."
+      },
+      "descricao_curta": "Sofrer dano não quebra sua Concentração na Marca do Predador.",
+      "efeitos": [
+        {
+          "tipo": "imunidade_a_quebra_de_concentracao",
+          "causa": "dano",
+          "escopo": {
+            "magia": "marca_do_predador"
+          }
+        }
+      ]
+    },
+    {
+      "id": "veu_da_natureza",
+      "nome": "Véu da Natureza",
+      "classe": "guardiao",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus para ficar Invisível até o fim do seu próximo turno, com usos iguais ao modificador de Sabedoria.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "veu_da_natureza",
+          "nome": "Véu da Natureza",
+          "formula_maximo": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:SAB"
+            ]
+          },
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "invisivel",
+          "beneficiario": "voce",
+          "custo": "acao_bonus",
+          "duracao": "ate_o_fim_do_seu_proximo_turno",
+          "consome_recurso": "veu_da_natureza"
+        }
+      ]
+    },
+    {
+      "id": "cacador_preciso",
+      "nome": "Caçador Preciso",
+      "classe": "guardiao",
+      "nivel": 17,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vantagem em jogadas de ataque contra a criatura marcada pela sua Marca do Predador.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "condicao": {
+            "todas": [
+              "alvo_marcado_por:marca_do_predador"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sentidos_selvagens",
+      "nome": "Sentidos Selvagens",
+      "classe": "guardiao",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 119,
+        "pagina_pdf": 123
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Visão às Cegas com alcance de 9 metros.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_as_cegas",
+          "alcance_m": 9
+        }
+      ]
+    },
+    {
+      "id": "matador_de_inimigos_favoritos",
+      "nome": "Matador de Inimigos Favoritos",
+      "classe": "guardiao",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 120,
+        "pagina_pdf": 124
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "O dado de dano da sua Marca do Predador passa a ser d10 em vez de d6.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "dado_de_dano_da_magia",
+          "modo": "substitui",
+          "valor": [
+            "d10"
+          ],
+          "escopo": {
+            "magia": "marca_do_predador"
+          },
+          "empilha": "substitui"
+        }
+      ]
+    },
+    {
+      "id": "glamour_transcendental",
+      "nome": "Glamour Transcendental",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 120,
+        "pagina_pdf": 124
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Bônus igual ao modificador de Sabedoria (mínimo +1) em testes de Carisma, e proficiência em Atuação, Enganação ou Persuasão.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "teste_de_atributo",
+          "atributo": "CAR",
+          "valor": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:SAB"
+            ]
+          },
+          "empilha": "soma"
+        },
+        {
+          "id": "andarilho_feerico_pericia",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma perícia",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "de": {
+            "catalogo": "pericias",
+            "chaves": [
+              "atuacao",
+              "enganacao",
+              "persuasao"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "golpes_terriveis",
+      "nome": "Golpes Terríveis",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 120,
+        "pagina_pdf": 124
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Uma vez por turno, ao atingir com uma arma, causa 1d4 de dano Psíquico adicional — 1d6 a partir do nível 11 de Guardião.",
+      "efeitos": [
+        {
+          "tipo": "dado_de_impacto",
+          "formula_dado": "1d4",
+          "tipo_dano": "psiquico",
+          "frequencia": "uma_vez_por_turno",
+          "escalonamento_por_nivel": {
+            "11": "1d6"
+          },
+          "condicao": {
+            "todas": [
+              "acerto_com_arma"
+            ]
+          }
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "magias_do_andarilho_feerico",
+      "nome": "Magias do Andarilho Feérico",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 120,
+        "pagina_pdf": 124
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Andarilho Feérico, sem contar para o limite. Também recebe uma Dádiva de Faéria, escolhida ou sorteada em 1d6.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Andarilho Feérico",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 120,
+              "pagina_pdf": 124
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "enfeiticar_pessoa"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "passo_nebuloso"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "convocar_feerico"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "porta_dimensional"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "despistar"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "guardiao",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        },
+        {
+          "id": "dadiva_de_faeria",
+          "tipo": "escolha",
+          "rotulo": "Escolha ou sorteie sua Dádiva de Faéria",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "aleatoria_permitida": true,
+          "dado": "1d6",
+          "de": {
+            "catalogo": "dadivas_de_faeria",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "efeito_narrativo",
+            "chave": "dadiva_de_faeria",
+            "dadiva": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "detalhe_sedutor",
+      "nome": "Detalhe Sedutor",
+      "classe": "guardiao",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Vantagem em salvaguardas contra Amedrontado e Enfeitiçado. Além disso, quando você ou uma criatura à vista a até 36 m passa numa dessas salvaguardas, Reação para forçar outra criatura a uma salvaguarda de Sabedoria ou ficar Amedrontada ou Enfeitiçada por 1 minuto.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "salvaguarda",
+          "modo": "vantagem",
+          "condicao": {
+            "alguma": [
+              "contra_condicao:amedrontado",
+              "contra_condicao:enfeiticado"
+            ]
+          }
+        },
+        {
+          "tipo": "conceder_condicao",
+          "escolher_condicao": [
+            "amedrontado",
+            "enfeiticado"
+          ],
+          "condicao_id": "amedrontado",
+          "custo": "reacao",
+          "alcance_m": 36,
+          "alvo": "criatura_a_vista_diferente",
+          "gatilho": "voce_ou_criatura_a_vista_a_ate_36m_passa_em_salvaguarda_contra_amedrontado_ou_enfeiticado",
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:SAB",
+              "prof"
+            ],
+            "repete": "fim_de_cada_turno_do_alvo",
+            "em_sucesso": "encerra"
+          },
+          "duracao": "1 minuto"
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "reforcos_feericos",
+      "nome": "Reforços Feéricos",
+      "classe": "guardiao",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Convocar Feérico sem componente Material; uma vez por Descanso Longo sem gastar espaço; e pode conjurá-la sem Concentração, com duração de 1 minuto.",
+      "efeitos": [
+        {
+          "tipo": "dispensar_componentes",
+          "componentes": [
+            "material"
+          ],
+          "escopo": {
+            "magia": "convocar_feerico"
+          }
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "reforcos_feericos",
+          "nome": "Reforços Feéricos",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "convocar_feerico",
+          "consome_recurso": "reforcos_feericos"
+        },
+        {
+          "tipo": "dispensar_concentracao",
+          "escopo": {
+            "magia": "convocar_feerico"
+          },
+          "opcional": true,
+          "momento": "ao_comecar_a_conjurar"
+        },
+        {
+          "tipo": "alterar_duracao_da_magia",
+          "escopo": {
+            "magia": "convocar_feerico"
+          },
+          "nova_duracao": "1 minuto",
+          "junto_com": "dispensar_concentracao"
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "andarilho_nebuloso",
+      "nome": "Andarilho Nebuloso",
+      "classe": "guardiao",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura Passo Nebuloso sem gastar espaço, com usos iguais ao modificador de Sabedoria. E cada conjuração pode levar junto uma criatura voluntária a até 1,5 m.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "andarilho_nebuloso",
+          "nome": "Andarilho Nebuloso",
+          "formula_maximo": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:SAB"
+            ]
+          },
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "passo_nebuloso",
+          "consome_recurso": "andarilho_nebuloso"
+        },
+        {
+          "tipo": "alterar_alvos_da_magia",
+          "escopo": {
+            "magia": "passo_nebuloso"
+          },
+          "alvos_adicionais": 1,
+          "restricao": "criatura voluntária a até 1,5 m de você",
+          "destino": "espaço desocupado a até 1,5 m do seu destino"
+        }
+      ],
+      "subclasse": "andarilho_feerico"
+    },
+    {
+      "id": "conhecimento_do_cacador",
+      "nome": "Conhecimento do Caçador",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Enquanto uma criatura está marcada pela sua Marca do Predador, você sabe se ela tem Imunidades, Resistências ou Vulnerabilidades — e quais são.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "revelar_imunidades_resistencias_vulnerabilidades",
+          "texto": "Revela Imunidades, Resistências e Vulnerabilidades do alvo marcado.",
+          "condicao": {
+            "todas": [
+              "alvo_marcado_por:marca_do_predador"
+            ]
+          }
+        }
+      ],
+      "subclasse": "cacador"
+    },
+    {
+      "id": "presa_do_cacador",
+      "nome": "Presa do Caçador",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe Assassino de Colossos ou Destruidor de Hordas, trocando a opção a cada Descanso Curto ou Longo.",
+      "efeitos": [
+        {
+          "id": "cacador_presa",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma opção de Presa do Caçador",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "reescolhivel": true,
+          "reescolha_em": [
+            "descanso_curto",
+            "descanso_longo"
+          ],
+          "de": {
+            "catalogo": "opcoes_de_presa_do_cacador",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "catalogo": "opcoes_de_presa_do_cacador",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "cacador"
+    },
+    {
+      "id": "taticas_defensivas",
+      "nome": "Táticas Defensivas",
+      "classe": "guardiao",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Escolhe Defesa Contra Ataques Múltiplos ou Escapar de Hordas, trocando a opção a cada Descanso Curto ou Longo.",
+      "efeitos": [
+        {
+          "id": "cacador_taticas",
+          "tipo": "escolha",
+          "rotulo": "Escolha uma opção de Táticas Defensivas",
+          "quantidade": 1,
+          "momento": "nivel_7",
+          "reescolhivel": true,
+          "reescolha_em": [
+            "descanso_curto",
+            "descanso_longo"
+          ],
+          "de": {
+            "catalogo": "opcoes_de_taticas_defensivas",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "catalogo": "opcoes_de_taticas_defensivas",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "cacador"
+    },
+    {
+      "id": "presa_do_cacador_superior",
+      "nome": "Presa do Caçador Superior",
+      "classe": "guardiao",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Uma vez por turno, ao causar dano a uma criatura marcada pela Marca do Predador, repete o dano adicional dessa magia numa segunda criatura à vista a até 9 m da primeira.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "dado_de_dano_da_magia:marca_do_predador",
+          "tipo_dano": "energetico",
+          "frequencia": "uma_vez_por_turno",
+          "alvo": "criatura_a_vista_a_ate_9m_da_primeira",
+          "gatilho": "causar_dano_a_criatura_marcada_por:marca_do_predador"
+        }
+      ],
+      "subclasse": "cacador"
+    },
+    {
+      "id": "defesa_do_cacador_superior",
+      "nome": "Defesa do Caçador Superior",
+      "classe": "guardiao",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao sofrer dano, Reação para ganhar Resistência a esse dano e a todo dano do mesmo tipo até o fim do turno atual.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "mesmo_do_ataque",
+          "operacao": "resistencia",
+          "custo": "reacao",
+          "gatilho": "sofrer_dano",
+          "duracao": "ate_o_fim_do_turno_atual"
+        }
+      ],
+      "subclasse": "cacador"
+    },
+    {
+      "id": "companheiro_primal",
+      "nome": "Companheiro Primal",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Invoca uma fera primal — Fera da Terra, do Céu ou do Mar — Amigável e obediente. Em combate ela só executa Esquivar, a menos que você gaste uma Ação Bônus para comandá-la ou sacrifique um ataque para mandá-la usar Golpe da Fera. Some se você morrer; volta com um espaço de magia até 1 hora depois, e pode ser trocada a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "senhor_das_feras_companheira",
+          "tipo": "escolha",
+          "rotulo": "Escolha o bloco de estatísticas da sua fera",
+          "quantidade": 1,
+          "momento": "nivel_3",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "feras_companheiras",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_companheiro",
+            "catalogo": "feras_companheiras",
+            "chave": "{{escolhido}}",
+            "atitude": "amigavel",
+            "some_se": [
+              "voce_morre",
+              "nova_fera_invocada"
+            ]
+          }
+        },
+        {
+          "tipo": "conceder_acao",
+          "id": "comandar_fera_companheira",
+          "custo": "acao_bonus",
+          "descricao_curta": "Ordena à fera executar uma ação do bloco dela; sem o comando, a única ação padrão dela é Esquivar. Incapacitado, ela age sozinha.",
+          "efeitos": [
+            {
+              "tipo": "efeito_narrativo",
+              "chave": "comando_da_fera",
+              "texto": "A fera executa a ação ordenada no turno dela."
+            }
+          ]
+        },
+        {
+          "tipo": "substituir_ataque_por_magia",
+          "modo": "sacrificar_ataque",
+          "substitui_por": "golpe_da_fera",
+          "nota": "Não é magia: reaproveita o primitivo de trocar um ataque da ação Atacar por outra coisa. O livro chama de 'sacrificar um ataque para ordenar o Golpe da Fera'."
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "restaurar_fera_companheira",
+          "texto": "Ação Usar Magia e um espaço de magia para reviver a fera morta na última hora; ela volta com todos os Pontos de Vida após 1 minuto.",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "consome": "espaco_de_magia"
+        }
+      ],
+      "subclasse": "senhor_das_feras"
+    },
+    {
+      "id": "treinamento_excepcional",
+      "nome": "Treinamento Excepcional",
+      "classe": "guardiao",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "A Ação Bônus que comanda a fera também deixa ela usar Ajudar, Correr, Desengajar ou Esquivar com a Ação Bônus dela. E os acertos dela podem causar dano Energético em vez do tipo normal.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "comandar_fera_companheira",
+          "efeitos": [
+            {
+              "tipo": "acao_adicional",
+              "beneficiario": "fera_companheira",
+              "custo": "acao_bonus",
+              "acoes": [
+                "ajudar",
+                "correr",
+                "desengajar",
+                "esquivar"
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "beneficiario": "fera_companheira",
+          "opcoes": [
+            "energetico",
+            "mesmo_da_arma"
+          ],
+          "gatilho": "acerto_da_fera_que_causa_dano"
+        }
+      ],
+      "subclasse": "senhor_das_feras"
+    },
+    {
+      "id": "furia_bestial",
+      "nome": "Fúria Bestial",
+      "classe": "guardiao",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ordenado o Golpe da Fera, ela o usa duas vezes. E na primeira vez por turno em que acerta uma criatura sob Marca do Predador, causa o dano adicional dessa magia também.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "beneficiario": "fera_companheira",
+          "quantidade": [
+            "2"
+          ],
+          "modo": "define_total_da_acao_atacar",
+          "escopo": {
+            "acao": "golpe_da_fera"
+          }
+        },
+        {
+          "tipo": "dano",
+          "beneficiario": "fera_companheira",
+          "formula_dado": "dado_de_dano_da_magia:marca_do_predador",
+          "tipo_dano": "energetico",
+          "frequencia": "uma_vez_por_turno",
+          "gatilho": "a_fera_atinge_criatura_marcada_por:marca_do_predador"
+        }
+      ],
+      "subclasse": "senhor_das_feras"
+    },
+    {
+      "id": "compartilhar_magias",
+      "nome": "Compartilhar Magias",
+      "classe": "guardiao",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao conjurar uma magia em si mesmo, pode afetar também a fera Companheira Primal, se ela estiver a até 9 m.",
+      "efeitos": [
+        {
+          "tipo": "alterar_alvos_da_magia",
+          "alvos_adicionais": 1,
+          "restricao": "a sua fera Companheira Primal, a até 9 m de você",
+          "condicao": {
+            "todas": [
+              "magia_com_alvo:voce_mesmo"
+            ]
+          }
+        }
+      ],
+      "subclasse": "senhor_das_feras"
+    },
+    {
+      "id": "emboscador_das_sombras",
+      "nome": "Emboscador das Sombras",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Três benefícios: soma o modificador de Sabedoria na Iniciativa; Golpe Terrível com 2d6 de dano Psíquico adicional, uma vez por turno, com usos iguais ao modificador de Sabedoria; e +3 m de Deslocamento no seu primeiro turno de cada combate.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "iniciativa",
+          "valor": [
+            "mod:SAB"
+          ],
+          "empilha": "soma"
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "golpe_terrivel",
+          "nome": "Golpe Terrível",
+          "formula_maximo": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:SAB"
+            ]
+          },
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "dado_de_impacto",
+          "id": "golpe_terrivel",
+          "formula_dado": "2d6",
+          "tipo_dano": "psiquico",
+          "frequencia": "uma_vez_por_turno",
+          "consome_recurso": "golpe_terrivel",
+          "condicao": {
+            "todas": [
+              "acerto_com_arma"
+            ]
+          }
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "3"
+          ],
+          "unidade": "metros",
+          "empilha": "soma",
+          "duracao": "ate_o_fim_deste_turno",
+          "gatilho": "inicio_do_seu_primeiro_turno_do_combate"
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "magias_do_vigilante_das_sombras",
+      "nome": "Magias do Vigilante das Sombras",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 124,
+        "pagina_pdf": 128
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Vigilante das Sombras, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Vigilante das Sombras",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 124,
+              "pagina_pdf": 128
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "disfarcar_se"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "corda_extradimensional"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "medo"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "invisibilidade_maior"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "similaridade"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "guardiao",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "visao_umbrosa",
+      "nome": "Visão Umbrosa",
+      "classe": "guardiao",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Visão no Escuro de 18 m — somando 18 m se já tiver. E, inteiramente na Escuridão, você fica Invisível para quem depende de Visão no Escuro para enxergar ali.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_no_escuro",
+          "alcance_m": 18,
+          "empilha": "soma"
+        },
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "invisivel",
+          "beneficiario": "voce",
+          "escopo": "apenas_para_quem_depende_de_visao_no_escuro",
+          "condicao": {
+            "todas": [
+              "inteiramente_na_escuridao"
+            ]
+          }
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "mente_de_ferro",
+      "nome": "Mente de Ferro",
+      "classe": "guardiao",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Proficiência em salvaguardas de Sabedoria — ou, se já tiver, de Carisma ou Inteligência.",
+      "efeitos": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "SAB",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "id": "mente_de_ferro_alternativa",
+          "tipo": "escolha",
+          "rotulo": "Já é proficiente em salvaguardas de Sabedoria: escolha Carisma ou Inteligência",
+          "quantidade": 1,
+          "momento": "nivel_7",
+          "condicao": {
+            "todas": [
+              "ja_proficiente_em_salvaguarda:SAB"
+            ]
+          },
+          "de": {
+            "catalogo": "atributos",
+            "chaves": [
+              "CAR",
+              "INT"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "salvaguarda",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "torrente_do_vigilante",
+      "nome": "Torrente do Vigilante",
+      "classe": "guardiao",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "O dano do Golpe Terrível vira 2d8, e cada uso pode acrescentar Golpe Repentino (outro ataque contra criatura a até 1,5 m do alvo) ou Medo em Massa (alvo e criaturas a até 3 m fazem salvaguarda de Sabedoria ou ficam Amedrontadas).",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "emboscador_das_sombras",
+          "efeitos": [
+            {
+              "tipo": "dado_de_impacto",
+              "id": "golpe_terrivel",
+              "formula_dado": "2d8",
+              "tipo_dano": "psiquico",
+              "empilha": "substitui"
+            }
+          ]
+        },
+        {
+          "id": "torrente_do_vigilante_efeito",
+          "tipo": "escolha",
+          "rotulo": "Escolha o efeito adicional do Golpe Terrível",
+          "quantidade": 1,
+          "momento": "cada_uso",
+          "reescolhivel": true,
+          "reescolha_em": "cada_uso",
+          "de": {
+            "catalogo": "efeitos_da_torrente_do_vigilante",
+            "todo_o_catalogo": true
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "catalogo": "efeitos_da_torrente_do_vigilante",
+            "chave": "{{escolhido}}"
+          }
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "esquiva_sombria",
+      "nome": "Esquiva Sombria",
+      "classe": "guardiao",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 125,
+        "pagina_pdf": 129
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reação para impor Desvantagem numa jogada de ataque contra você; acertando ou errando, você pode se teleportar até 9 m para um espaço desocupado à vista.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque_contra_voce",
+          "modo": "desvantagem",
+          "custo": "reacao",
+          "gatilho": "criatura_realiza_jogada_de_ataque_contra_voce"
+        },
+        {
+          "tipo": "teleporte",
+          "distancia_m": 9,
+          "destino": "espaco_desocupado_a_vista",
+          "junto_com": "a mesma Reação, tenha o ataque acertado ou errado"
+        }
+      ],
+      "subclasse": "vigilante_das_sombras"
+    },
+    {
+      "id": "conjuracao_paladino",
+      "nome": "Conjuração",
+      "classe": "paladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 167,
+        "pagina_pdf": 171
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Conjura pela lista de Paladino, com Carisma. Prepara da lista inteira conforme a coluna Magias Preparadas, trocando uma a cada Descanso Longo. Usa Símbolo Sagrado.",
+      "efeitos": [
+        {
+          "tipo": "conceder_slot",
+          "tabela_progressao_id": "paladino",
+          "colunas": [
+            "espacos_1",
+            "espacos_2",
+            "espacos_3",
+            "espacos_4",
+            "espacos_5"
+          ],
+          "recarga": "descanso_longo"
+        },
+        {
+          "tipo": "preparar_magias",
+          "formula_quantidade": [
+            "coluna:magias_preparadas"
+          ],
+          "atributo_conjuracao": "CAR",
+          "fonte_das_magias": "lista_de_classe",
+          "lista_id": "paladino",
+          "restricao": "de um círculo para o qual você possui espaços de magia",
+          "magias_sempre_preparadas_nao_contam": true
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "paladino",
+          "modo": "disponivel_para_preparar",
+          "atributo_conjuracao": "CAR"
+        },
+        {
+          "id": "paladino_preparadas",
+          "tipo": "escolha",
+          "rotulo": "Prepare magias de Paladino",
+          "quantidade": "coluna:magias_preparadas",
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "reescolha_quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel_minimo": 1,
+              "lista": "paladino",
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "paladino",
+            "modo": "preparada",
+            "magia": "{{escolhido}}"
+          }
+        }
+      ],
+      "foco_de_conjuracao": [
+        "amuleto",
+        "emblema",
+        "relicario"
+      ],
+      "cd_para_evitar_sua_magia": [
+        "8",
+        "mod:CAR",
+        "prof"
+      ],
+      "nota_do_livro": "Sem truques, como o Guardião. Os dois truques de Clérigo do Combatente Abençoado são a única porta para truques na classe."
+    },
+    {
+      "id": "maestria_em_arma_paladino",
+      "nome": "Maestria em Arma",
+      "classe": "paladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Usa as propriedades de maestria de dois tipos de arma à escolha entre aquelas com que tem proficiência. Troca as escolhas a cada Descanso Longo.",
+      "efeitos": [
+        {
+          "id": "paladino_maestrias",
+          "tipo": "escolha",
+          "rotulo": "Escolha os tipos de arma com maestria",
+          "quantidade": 2,
+          "momento": "nivel_1",
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": [
+                "simples",
+                "marcial"
+              ]
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_maestria_de_arma",
+            "arma": "{{escolhido}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maos_consagradas",
+      "nome": "Mãos Consagradas",
+      "classe": "paladino",
+      "nivel": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reserva de cura igual a cinco vezes o seu nível de Paladino, que volta no Descanso Longo. Ação Bônus para tocar uma criatura e gastar quanto quiser da reserva em Pontos de Vida; ou gastar 5 pontos para remover a condição Envenenado, sem curar.",
+      "efeitos": [
+        {
+          "tipo": "reserva_de_cura",
+          "id": "maos_consagradas",
+          "nome": "Mãos Consagradas",
+          "formula_maximo": {
+            "op": "mult",
+            "args": [
+              "5",
+              "nivel_classe:paladino"
+            ]
+          },
+          "unidade": "pontos_de_vida",
+          "recarga": [
+            "descanso_longo"
+          ]
+        },
+        {
+          "tipo": "cura",
+          "consome_reserva": "maos_consagradas",
+          "quantidade": "a_escolha_do_jogador",
+          "custo": "acao_bonus",
+          "alcance": "toque",
+          "beneficiario": "criatura_tocada_ou_voce"
+        },
+        {
+          "tipo": "remover_condicao",
+          "condicoes": [
+            "envenenado"
+          ],
+          "quantidade": 1,
+          "consome_reserva": "maos_consagradas",
+          "custo_na_reserva": 5,
+          "nao_restaura_pv": true,
+          "custo": "acao_bonus"
+        }
+      ]
+    },
+    {
+      "id": "destruicao_do_paladino",
+      "nome": "Destruição do Paladino",
+      "classe": "paladino",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Destruição Divina sempre preparada, e conjurável uma vez por Descanso Longo sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "paladino",
+          "modo": "sempre_preparada",
+          "magias": [
+            "destruicao_divina"
+          ]
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "destruicao_do_paladino",
+          "nome": "Destruição do Paladino",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "destruicao_divina",
+          "consome_recurso": "destruicao_do_paladino"
+        }
+      ]
+    },
+    {
+      "id": "estilo_de_luta_paladino",
+      "nome": "Estilo de Luta",
+      "classe": "paladino",
+      "nivel": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Adquire um talento de Estilo de Luta à escolha; em vez dele, pode pegar Combatente Abençoado, que dá dois truques de Clérigo conjurados com Carisma.",
+      "efeitos": [
+        {
+          "id": "paladino_estilo_de_luta",
+          "tipo": "escolha",
+          "rotulo": "Escolha um talento de Estilo de Luta",
+          "quantidade": 1,
+          "momento": "nivel_2",
+          "de": {
+            "catalogo": "talentos",
+            "filtro": {
+              "categoria": "estilo_de_luta"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_talento",
+            "talento_id": "{{escolhido}}"
+          }
+        },
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "paladino_estilo_de_luta",
+          "catalogo": "opcoes_de_estilo_de_luta_de_classe",
+          "chaves": [
+            "combatente_abencoado"
+          ],
+          "nota": "Mesma construção do Combatente Druídico do Guardião: a opção da classe entra na escolha do talento, não numa escolha à parte."
+        }
+      ]
+    },
+    {
+      "id": "canalizar_divindade_paladino",
+      "nome": "Canalizar Divindade",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": "Recurso separado do Canalizar Divindade do Clérigo: id próprio, coluna própria e opções próprias. Só o nome é compartilhado."
+      },
+      "descricao_curta": "Recurso próprio do Paladino: dois usos, três a partir do nível 11, com um recuperado no Descanso Curto e todos no Longo. Começa com Sentido Divino; outras características de classe e as subclasses acrescentam opções. A CD é a mesma da sua Conjuração.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "canalizar_divindade_paladino",
+          "nome": "Canalizar Divindade",
+          "formula_maximo": [
+            "coluna:canalizar_divindade"
+          ],
+          "recarga": [
+            {
+              "gatilho": "descanso_curto",
+              "quantidade": 1
+            },
+            {
+              "gatilho": "descanso_longo",
+              "quantidade": "todos"
+            }
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "canalizar_divindade",
+          "recurso_id": "canalizar_divindade_paladino",
+          "opcoes": {
+            "catalogo": "efeitos_de_canalizar_divindade",
+            "base": [
+              "sentido_divino"
+            ],
+            "expansivel_por_subclasse": true,
+            "filtro": {
+              "classe": "paladino"
+            }
+          },
+          "cd": [
+            "8",
+            "mod:CAR",
+            "prof"
+          ]
+        },
+        {
+          "id": "canalizar_divindade_paladino_opcao",
+          "tipo": "escolha",
+          "rotulo": "Escolha o efeito de Canalizar Divindade",
+          "quantidade": 1,
+          "momento": "cada_uso",
+          "reescolhivel": true,
+          "reescolha_em": "cada_uso",
+          "de": {
+            "catalogo": "efeitos_de_canalizar_divindade",
+            "filtro": {
+              "classe": "paladino"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "aplicar_efeito_nomeado",
+            "catalogo": "efeitos_de_canalizar_divindade",
+            "chave": "{{escolhido}}"
+          },
+          "nota": "É esta escolha que as características de classe e de subclasse expandem: Repudiar Inimigos, Arma Sagrada, Voto de Inimizade e as demais entram aqui."
+        }
+      ]
+    },
+    {
+      "id": "montaria_fiel",
+      "nome": "Montaria Fiel",
+      "classe": "paladino",
+      "nivel": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Convocar Montaria sempre preparada, e conjurável uma vez por Descanso Longo sem gastar espaço de magia.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "lista_id": "paladino",
+          "modo": "sempre_preparada",
+          "magias": [
+            "convocar_montaria"
+          ]
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "montaria_fiel",
+          "nome": "Montaria Fiel",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "convocar_montaria",
+          "consome_recurso": "montaria_fiel"
+        }
+      ]
+    },
+    {
+      "id": "aura_de_protecao",
+      "nome": "Aura de Proteção",
+      "classe": "paladino",
+      "nivel": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Emanação de 3 metros: você e seus aliados dentro dela ganham bônus em salvaguardas igual ao seu modificador de Carisma (mínimo +1). Inativa enquanto você estiver Incapacitado, e uma criatura só se beneficia de uma Aura de Proteção por vez.",
+      "efeitos": [
+        {
+          "tipo": "emanacao",
+          "id": "aura_de_protecao",
+          "tamanho_m": 3,
+          "origem": "voce",
+          "ativacao": "passiva",
+          "inativa_se": [
+            {
+              "condicao_id": "incapacitado"
+            }
+          ],
+          "beneficiarios": "voce_e_aliados_na_emanacao",
+          "empilha": "unico",
+          "nota_de_empilhamento": "Com outro Paladino presente, a criatura escolhe de qual aura se beneficia enquanto está nela.",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "salvaguarda",
+              "valor": {
+                "op": "max",
+                "args": [
+                  "1",
+                  "mod:CAR"
+                ]
+              },
+              "empilha": "soma"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repudiar_inimigos",
+      "nome": "Repudiar Inimigos",
+      "classe": "paladino",
+      "nivel": 9,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Usar Magia e um uso de Canalizar Divindade: criaturas à vista a até 18 m, em número igual ao modificador de Carisma, fazem salvaguarda de Sabedoria ou ficam Amedrontadas por 1 minuto ou até sofrerem dano — e, enquanto isso, só podem mover-se, agir ou usar uma Ação Bônus no turno, nunca as três.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "repudiar_inimigos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aura_de_coragem",
+      "nome": "Aura de Coragem",
+      "classe": "paladino",
+      "nivel": 10,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Você e seus aliados têm Imunidade à condição Amedrontado dentro da Aura de Proteção — e um aliado que entre Amedrontado não sofre a condição enquanto estiver nela.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "alterar_condicao",
+              "condicao_id": "amedrontado",
+              "operacao": "imunidade",
+              "beneficiarios": "voce_e_aliados_na_emanacao",
+              "nota": "Suspende a condição já existente enquanto o aliado estiver na aura."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "golpes_radiantes",
+      "nome": "Golpes Radiantes",
+      "classe": "paladino",
+      "nivel": 11,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao atingir com uma arma Corpo a Corpo ou Ataque Desarmado, o alvo sofre 1d8 de dano Radiante adicional.",
+      "efeitos": [
+        {
+          "tipo": "dado_de_impacto",
+          "formula_dado": "1d8",
+          "tipo_dano": "radiante",
+          "condicao": {
+            "alguma": [
+              "acerto_com_arma_corpo_a_corpo",
+              "acerto_com_ataque_desarmado"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "toque_restaurador",
+      "nome": "Toque Restaurador",
+      "classe": "paladino",
+      "nivel": 14,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao usar Mãos Consagradas, pode gastar 5 pontos da reserva por condição para remover Amedrontado, Atordoado, Cego, Enfeitiçado, Paralisado ou Surdo. Esses pontos não curam.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "maos_consagradas",
+          "efeitos": [
+            {
+              "tipo": "remover_condicao",
+              "condicoes": [
+                "amedrontado",
+                "atordoado",
+                "cego",
+                "enfeiticado",
+                "paralisado",
+                "surdo"
+              ],
+              "quantidade": "a_escolha_do_jogador",
+              "consome_reserva": "maos_consagradas",
+              "custo_na_reserva": 5,
+              "custo_por": "condicao_removida",
+              "nao_restaura_pv": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aura_expandida",
+      "nome": "Aura Expandida",
+      "classe": "paladino",
+      "nivel": 18,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Sua Aura de Proteção passa a ser uma Emanação de 9 metros.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "tamanho_da_emanacao",
+              "valor": 9,
+              "empilha": "substitui",
+              "escopo": {
+                "emanacao": "aura_de_protecao"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magias_do_juramento_da_devocao",
+      "nome": "Magias do Juramento da Devoção",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 171,
+        "pagina_pdf": 175
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Juramento da Devoção, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Juramento da Devoção",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 171,
+              "pagina_pdf": 175
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "escudo_da_fe",
+                  "protecao_contra_o_bem_e_o_mal"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "auxilio",
+                  "zona_da_verdade"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "dissipar_magia",
+                  "sinal_de_esperanca"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "defensor_da_fe",
+                  "movimentacao_livre"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "coluna_de_chamas",
+                  "comunhao"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "paladino",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "juramento_da_devocao"
+    },
+    {
+      "id": "arma_sagrada",
+      "nome": "Arma Sagrada",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Opção de Canalizar Divindade na ação Atacar: por 10 minutos, a arma Corpo a Corpo empunhada soma o modificador de Carisma às jogadas de ataque (mínimo +1), pode causar dano Radiante no lugar do tipo normal e emite Luz Plena em 6 m e Meia-luz por mais 6 m.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "arma_sagrada"
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_devocao"
+    },
+    {
+      "id": "aura_de_devocao",
+      "nome": "Aura de Devoção",
+      "classe": "paladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Você e seus aliados têm Imunidade à condição Enfeitiçado dentro da Aura de Proteção.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "alterar_condicao",
+              "condicao_id": "enfeiticado",
+              "operacao": "imunidade",
+              "beneficiarios": "voce_e_aliados_na_emanacao"
+            }
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_devocao"
+    },
+    {
+      "id": "destruicao_protetora",
+      "nome": "Destruição Protetora",
+      "classe": "paladino",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao conjurar Destruição Divina, você e seus aliados na Aura de Proteção ganham Cobertura Parcial até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "conceder_cobertura",
+              "grau": "parcial",
+              "alvos": {
+                "voce_e_aliados_na_emanacao": true
+              },
+              "gatilho": "conjurar:destruicao_divina",
+              "duracao": "ate_o_inicio_do_seu_proximo_turno"
+            }
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_devocao"
+    },
+    {
+      "id": "resplendor_sagrado",
+      "nome": "Resplendor Sagrado",
+      "classe": "paladino",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus, uma vez por Descanso Longo (ou gastando um espaço de 5º círculo): por 10 minutos a Aura de Proteção causa dano Radiante igual ao modificador de Carisma mais o Bônus de Proficiência a inimigos que comecem o turno nela, enche-se de Luz Plena que é luz solar, e você tem Vantagem em salvaguardas forçadas por Ínferos e Mortos-Vivos.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "resplendor_sagrado",
+          "nome": "Resplendor Sagrado",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome": "espaco_de_magia",
+            "circulo": 5,
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "custo": "acao_bonus",
+          "duracao": "10 minutos",
+          "consome_recurso": "resplendor_sagrado",
+          "efeitos": [
+            {
+              "tipo": "dano",
+              "formula": [
+                "mod:CAR",
+                "prof"
+              ],
+              "tipo_dano": "radiante",
+              "alvo": "inimigo_na_emanacao",
+              "gatilho": "inicio_do_turno_do_inimigo_na_emanacao"
+            },
+            {
+              "tipo": "emitir_luz",
+              "luz_solar": true
+            },
+            {
+              "tipo": "vantagem",
+              "alvo": "salvaguarda",
+              "modo": "vantagem",
+              "condicao": {
+                "todas": [
+                  "forcada_por:infero_ou_morto_vivo"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_devocao"
+    },
+    {
+      "id": "atleta_inigualavel",
+      "nome": "Atleta Inigualável",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Opção de Canalizar Divindade, Ação Bônus: por 1 hora, Vantagem em testes de Força (Atletismo) e Destreza (Acrobacia), e +3 m na distância dos Saltos Longo e em Altura.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "atleta_inigualavel"
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "destruicao_inspiradora",
+      "nome": "Destruição Inspiradora",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Opção de Canalizar Divindade logo após conjurar Destruição Divina: 2d8 mais o seu nível de Paladino em Pontos de Vida Temporários, divididos como quiser entre criaturas à escolha a até 9 m, você incluído.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "destruicao_inspiradora"
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "magias_do_juramento_da_gloria",
+      "nome": "Magias do Juramento da Glória",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Juramento da Glória, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Juramento da Glória",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 173,
+              "pagina_pdf": 177
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "heroismo",
+                  "raio_guia"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "aprimorar_atributo",
+                  "arma_magica"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "celeridade",
+                  "protecao_contra_energia"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "compulsao",
+                  "movimentacao_livre"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "lendas_e_historias",
+                  "presenca_regia_de_yolande"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "paladino",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "aura_de_vivacidade",
+      "nome": "Aura de Vivacidade",
+      "classe": "paladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Seu Deslocamento aumenta em 3 m. E o aliado que entra na Aura de Proteção pela primeira vez no turno, ou começa o turno nela, ganha +3 m de Deslocamento até o fim do próximo turno dele.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "3"
+          ],
+          "unidade": "metros",
+          "empilha": "soma"
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "modificador",
+              "alvo": "deslocamento",
+              "valor": [
+                "3"
+              ],
+              "unidade": "metros",
+              "empilha": "soma",
+              "beneficiario": "aliado",
+              "gatilho": "entrar_na_emanacao_pela_primeira_vez_no_turno_ou_comecar_o_turno_nela",
+              "duracao": "ate_o_fim_do_proximo_turno_do_aliado"
+            }
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "defesa_gloriosa",
+      "nome": "Defesa Gloriosa",
+      "classe": "paladino",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Quando você ou criatura à vista a até 3 m é atingida por um ataque, Reação para dar bônus de CA igual ao modificador de Carisma (mínimo +1) contra ele — e, se o ataque errar, você pode atacar o atacante na mesma Reação. Usos iguais ao modificador de Carisma.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "defesa_gloriosa",
+          "nome": "Defesa Gloriosa",
+          "formula_maximo": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:CAR"
+            ]
+          },
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "ca_total",
+          "valor": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:CAR"
+            ]
+          },
+          "empilha": "soma",
+          "custo": "reacao",
+          "consome_recurso": "defesa_gloriosa",
+          "beneficiario": "voce_ou_criatura_a_vista_a_ate_3m",
+          "gatilho": "ser_atingido_por_jogada_de_ataque",
+          "escopo": "apenas_contra_esse_ataque"
+        },
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "alvo_do_ataque": "o_atacante",
+          "junto_com": "a mesma Reação, se o ataque passar a errar e o atacante estiver no alcance da sua arma"
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "lenda_viva",
+      "nome": "Lenda Viva",
+      "classe": "paladino",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus, uma vez por Descanso Longo (ou gastando um espaço de 5º círculo): por 10 minutos, Vantagem em todos os testes de Carisma; uma vez por turno pode transformar um erro de ataque com arma em acerto; e pode rolar de novo uma salvaguarda falha, valendo o novo resultado.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "lenda_viva",
+          "nome": "Lenda Viva",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome": "espaco_de_magia",
+            "circulo": 5,
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "vantagem",
+          "alvo": "teste_de_atributo",
+          "modo": "vantagem",
+          "atributo": "CAR",
+          "custo": "acao_bonus",
+          "duracao": "10 minutos",
+          "consome_recurso": "lenda_viva"
+        },
+        {
+          "tipo": "transformar_erro_em_acerto",
+          "frequencia": "uma_vez_por_turno",
+          "escopo": "jogada_de_ataque_com_arma",
+          "duracao": "10 minutos"
+        },
+        {
+          "tipo": "rolar_novamente",
+          "alvo": "salvaguarda",
+          "custo": "reacao",
+          "gatilho": "falhar_em_salvaguarda",
+          "usa_o_novo_resultado": true,
+          "duracao": "10 minutos"
+        }
+      ],
+      "subclasse": "juramento_da_gloria"
+    },
+    {
+      "id": "magias_do_juramento_da_vinganca",
+      "nome": "Magias do Juramento da Vingança",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": "A tabela do livro imprime 'Marca do Caçador' no nível 3. Essa magia não existe no cap. 7: a entrada é Marca do Predador (p. 303), nome 2024 da Hunter's Mark. Resolvido pelo id real."
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Juramento da Vingança, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Juramento da Vingança",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 174,
+              "pagina_pdf": 178
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "marca_do_predador",
+                  "perdicao"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "paralisar_pessoa",
+                  "passo_nebuloso"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "celeridade",
+                  "protecao_contra_energia"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "banimento",
+                  "porta_dimensional"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "paralisar_monstro",
+                  "videncia"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "paladino",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "juramento_da_vinganca"
+    },
+    {
+      "id": "voto_de_inimizade",
+      "nome": "Voto de Inimizade",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Opção de Canalizar Divindade na ação Atacar: Vantagem em jogadas de ataque contra uma criatura à vista a até 9 m por 1 minuto. Se ela cair a 0 Pontos de Vida antes do fim, o voto passa para outra criatura a até 9 m.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "voto_de_inimizade"
+          ]
+        }
+      ],
+      "subclasse": "juramento_da_vinganca"
+    },
+    {
+      "id": "vingador_implacavel",
+      "nome": "Vingador Implacável",
+      "classe": "paladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ao atingir com um Ataque de Oportunidade, reduz o Deslocamento do alvo a 0 até o fim do turno e pode mover metade do seu Deslocamento na mesma Reação, sem provocar Ataques de Oportunidade.",
+      "efeitos": [
+        {
+          "tipo": "travar_deslocamento",
+          "alvo": "criatura_atingida",
+          "valor": 0,
+          "gatilho": "acertar_ataque_de_oportunidade",
+          "duracao": "ate_o_fim_do_turno_atual"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "movimento_na_reacao",
+          "texto": "Move até metade do seu Deslocamento como parte da mesma Reação, sem provocar Ataques de Oportunidade.",
+          "fracao_do_deslocamento": 0.5,
+          "provoca_ataque_de_oportunidade": false
+        }
+      ],
+      "subclasse": "juramento_da_vinganca"
+    },
+    {
+      "id": "alma_vingativa",
+      "nome": "Alma Vingativa",
+      "classe": "paladino",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Logo depois de a criatura sob seu Voto de Inimizade acertar ou errar uma jogada de ataque, Reação para atacá-la corpo a corpo, se ela estiver ao seu alcance.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "tipo_ataque": "corpo_a_corpo",
+          "custo": "reacao",
+          "gatilho": "criatura_sob:voto_de_inimizade_realiza_jogada_de_ataque",
+          "condicao": {
+            "todas": [
+              "alvo_ao_alcance_da_sua_arma"
+            ]
+          }
+        }
+      ],
+      "subclasse": "juramento_da_vinganca"
+    },
+    {
+      "id": "anjo_vingador",
+      "nome": "Anjo Vingador",
+      "classe": "paladino",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus, uma vez por Descanso Longo (ou gastando um espaço de 5º círculo): por 10 minutos, inimigos que comecem o turno na sua Aura de Proteção fazem salvaguarda de Sabedoria ou ficam Amedrontados por 1 minuto, com Vantagem nos ataques contra eles; e você ganha asas espectrais com Deslocamento de Voo de 18 m, podendo pairar.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "anjo_vingador",
+          "nome": "Anjo Vingador",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome": "espaco_de_magia",
+            "circulo": 5,
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "custo": "acao_bonus",
+          "duracao": "10 minutos",
+          "consome_recurso": "anjo_vingador",
+          "efeitos": [
+            {
+              "tipo": "conceder_condicao",
+              "condicao_id": "amedrontado",
+              "alvo": "inimigo_na_emanacao",
+              "gatilho": "inicio_do_turno_do_inimigo_na_emanacao",
+              "salvaguarda": {
+                "atributo": "SAB",
+                "cd": [
+                  "8",
+                  "mod:CAR",
+                  "prof"
+                ]
+              },
+              "duracao": "1 minuto",
+              "encerra_se": [
+                {
+                  "gatilho": "alvo_sofre_dano"
+                }
+              ]
+            },
+            {
+              "tipo": "vantagem",
+              "alvo": "jogada_de_ataque",
+              "modo": "vantagem",
+              "condicao": {
+                "todas": [
+                  "alvo_amedrontado_por:anjo_vingador"
+                ]
+              },
+              "beneficiario": "qualquer_atacante"
+            }
+          ]
+        },
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "voo",
+          "formula": [
+            "18"
+          ],
+          "unidade": "metros",
+          "pode_pairar": true,
+          "custo": "acao_bonus",
+          "duracao": "10 minutos",
+          "consome_recurso": "anjo_vingador"
+        }
+      ],
+      "subclasse": "juramento_da_vinganca"
+    },
+    {
+      "id": "a_ira_da_natureza",
+      "nome": "A Ira da Natureza",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Opção de Canalizar Divindade, ação Usar Magia: cada criatura à escolha à vista a até 4,5 m faz salvaguarda de Força ou fica Contida por 1 minuto, repetindo a salvaguarda no fim de cada turno dela.",
+      "efeitos": [
+        {
+          "tipo": "expandir_opcoes_de_escolha",
+          "escolha_id": "canalizar_divindade_paladino_opcao",
+          "catalogo": "efeitos_de_canalizar_divindade",
+          "chaves": [
+            "a_ira_da_natureza"
+          ]
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos"
+    },
+    {
+      "id": "magias_do_juramento_dos_anciaos",
+      "nome": "Magias do Juramento dos Anciões",
+      "classe": "paladino",
+      "nivel": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 175,
+        "pagina_pdf": 179
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Magias sempre preparadas pela tabela Magias do Juramento dos Anciões, sem contar para o limite.",
+      "efeitos": [
+        {
+          "tipo": "magias_de_patrono",
+          "tabela": {
+            "nome": "Magias do Juramento dos Anciões",
+            "fonte": {
+              "capitulo": 3,
+              "pagina_livro": 175,
+              "pagina_pdf": 179
+            },
+            "linhas": [
+              {
+                "nivel": 3,
+                "magias": [
+                  "falar_com_animais",
+                  "golpe_constritor"
+                ]
+              },
+              {
+                "nivel": 5,
+                "magias": [
+                  "passo_nebuloso",
+                  "raio_lunar"
+                ]
+              },
+              {
+                "nivel": 9,
+                "magias": [
+                  "crescimento_de_plantas",
+                  "protecao_contra_energia"
+                ]
+              },
+              {
+                "nivel": 13,
+                "magias": [
+                  "pele_rocha",
+                  "tempestade_glacial"
+                ]
+              },
+              {
+                "nivel": 17,
+                "magias": [
+                  "comunhao_com_a_natureza",
+                  "passo_arboreo"
+                ]
+              }
+            ]
+          },
+          "modo": "sempre_preparada",
+          "lista_id": "paladino",
+          "acesso_concedido_pela_subclasse": true,
+          "nao_conta_para_o_limite": true
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos"
+    },
+    {
+      "id": "aura_de_resistencia",
+      "nome": "Aura de Resistência",
+      "classe": "paladino",
+      "nivel": 7,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 175,
+        "pagina_pdf": 179
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Você e seus aliados têm Resistência a dano Necrótico, Psíquico e Radiante dentro da Aura de Proteção.",
+      "efeitos": [
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "efeitos": [
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "necrotico",
+              "operacao": "resistencia",
+              "beneficiarios": "voce_e_aliados_na_emanacao"
+            },
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "psiquico",
+              "operacao": "resistencia",
+              "beneficiarios": "voce_e_aliados_na_emanacao"
+            },
+            {
+              "tipo": "alterar_dano",
+              "tipo_dano": "radiante",
+              "operacao": "resistencia",
+              "beneficiarios": "voce_e_aliados_na_emanacao"
+            }
+          ]
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos"
+    },
+    {
+      "id": "sentinela_imortal",
+      "nome": "Sentinela Imortal",
+      "classe": "paladino",
+      "nivel": 15,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 175,
+        "pagina_pdf": 179
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Reduzido a 0 Pontos de Vida sem morrer na hora, você fica com 1 Ponto de Vida e recupera três vezes o seu nível de Paladino. Uma vez por Descanso Longo. Além disso, não envelhece magicamente e sua aparência não envelhece.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "sentinela_imortal",
+          "nome": "Sentinela Imortal",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "cura",
+          "formula": {
+            "op": "mult",
+            "args": [
+              "3",
+              "nivel_classe:paladino"
+            ]
+          },
+          "beneficiario": "voce",
+          "consome_recurso": "sentinela_imortal",
+          "gatilho": "reduzido_a_0_pontos_de_vida_sem_morrer",
+          "nota": "Você fica com 1 Ponto de Vida e então recupera a quantia curada."
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "nao_envelhece",
+          "texto": "Não pode ser envelhecido magicamente, e sua aparência não envelhece."
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos"
+    },
+    {
+      "id": "campeao_ancestral",
+      "nome": "Campeão Ancestral",
+      "classe": "paladino",
+      "nivel": 20,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 175,
+        "pagina_pdf": 179
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Ação Bônus, uma vez por Descanso Longo (ou gastando um espaço de 5º círculo): por 1 minuto, inimigos na Aura de Proteção têm Desvantagem em salvaguardas contra suas magias e opções de Canalizar Divindade; magias de tempo de conjuração de uma ação podem ser conjuradas com Ação Bônus; e você recupera 10 Pontos de Vida no início de cada turno seu.",
+      "efeitos": [
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "campeao_ancestral",
+          "nome": "Campeão Ancestral",
+          "formula_maximo": [
+            "1"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso",
+          "recuperacao_alternativa": {
+            "consome": "espaco_de_magia",
+            "circulo": 5,
+            "custo": "livre"
+          }
+        },
+        {
+          "tipo": "melhorar_caracteristica",
+          "alvo": "aura_de_protecao",
+          "custo": "acao_bonus",
+          "duracao": "1 minuto",
+          "consome_recurso": "campeao_ancestral",
+          "efeitos": [
+            {
+              "tipo": "vantagem",
+              "alvo": "salvaguarda",
+              "modo": "desvantagem",
+              "beneficiario": "inimigo_na_emanacao",
+              "escopo": "contra suas magias e opções de Canalizar Divindade"
+            }
+          ]
+        },
+        {
+          "tipo": "alterar_custo_de_acao",
+          "acao_id": "usar_magia",
+          "custo_original": "acao",
+          "novo_custo": "acao_bonus",
+          "escopo": "magia_com_tempo_de_conjuracao_de_uma_acao",
+          "duracao": "1 minuto",
+          "consome_recurso": "campeao_ancestral"
+        },
+        {
+          "tipo": "cura",
+          "formula": [
+            "10"
+          ],
+          "beneficiario": "voce",
+          "gatilho": "inicio_do_seu_turno",
+          "duracao": "1 minuto",
+          "consome_recurso": "campeao_ancestral"
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos"
     }
   ]
 }

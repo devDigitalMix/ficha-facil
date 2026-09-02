@@ -26,7 +26,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 162,
+        "pagina_pdf": 166
+      },
+      "fonte_herdada": true
     },
     {
       "id": "desorientar",
@@ -40,7 +46,13 @@
           "restrito_a": "ataque_de_oportunidade",
           "duracao": "ate_o_inicio_do_proximo_turno_do_alvo"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 162,
+        "pagina_pdf": 166
+      },
+      "fonte_herdada": true
     },
     {
       "id": "empurrar",
@@ -62,7 +74,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 162,
+        "pagina_pdf": 166
+      },
+      "fonte_herdada": true
     }
   ]
 }

@@ -6,7 +6,7 @@ personagem conhece?' Estava, mas só implicitamente e de forma desigual — o Ma
 declarava `fonte_das_magias`, o Cavaleiro Místico não, e o Mago não tinha uma
 `escolha` explícita para as magias preparadas (só para os truques)."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 p = os.path.join(D, 'caracteristicas.json')
 d = json.load(open(p, encoding='utf-8'))
 por = {i['id']: i for i in d['itens']}

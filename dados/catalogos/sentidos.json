@@ -6,7 +6,7 @@
     "pagina_livro": 377,
     "pagina_pdf": 381
   },
-  "total": 6,
+  "total": 7,
   "itens": [
     {
       "id": "visao_as_cegas",
@@ -41,6 +41,11 @@
       "id": "ver_invisivel",
       "nome": "Ver o Invisível",
       "descricao_curta": "Enxerga criaturas com a condição Invisível dentro do alcance indicado."
+    },
+    {
+      "id": "sismiconsciencia",
+      "nome": "Sismiconsciência",
+      "descricao_curta": "Percebe e localiza criaturas e objetos em movimento pelas vibrações, dentro do alcance, desde que ambos estejam em contato com a mesma superfície. Conhecimento de Pedras (Anão)."
     }
   ]
 }

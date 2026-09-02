@@ -1,7 +1,7 @@
 {
   "catalogo": "tipos_de_efeito",
   "nome": "Tipos de Efeito",
-  "total": 96,
+  "total": 102,
   "itens": [
     {
       "id": "modificador",
@@ -167,7 +167,8 @@
         "valor_minimo"
       ],
       "nota": "Não usado nesta fase.",
-      "nome": "Travar atributo"
+      "nome": "Travar atributo",
+      "reservado_para": "Itens mágicos que fixam um atributo num valor mínimo (esquema v1 §3). Itens mágicos estão fora do escopo atual."
     },
     {
       "id": "conceder_proficiencia",
@@ -878,6 +879,36 @@
       "id": "alterar_teto_de_modificador_na_ca",
       "nome": "Alterar o teto do modificador somado na CA",
       "descricao_curta": "Muda quanto do modificador de Destreza a armadura deixa somar (Mestre em Armaduras Médias)."
+    },
+    {
+      "id": "conceder_companheiro",
+      "nome": "Conceder companheiro",
+      "descricao_curta": "Vincula ao personagem uma criatura de bloco próprio, cujos valores derivam do nível e dos modificadores dele. Usado pelo Companheiro Primal do Senhor das Feras."
+    },
+    {
+      "id": "reserva_de_cura",
+      "nome": "Reserva de cura",
+      "descricao_curta": "Pote de Pontos de Vida gasto livremente em cura ou, a um custo fixo por vez, em remover condições. Diferente de recurso com usos e de reserva de dados. Mãos Consagradas do Paladino."
+    },
+    {
+      "id": "imunidade_a_quebra_de_concentracao",
+      "nome": "Imunidade a quebra de Concentração",
+      "descricao_curta": "Declara que uma causa de perda de Concentração não se aplica, opcionalmente restrita a uma magia. Sofrer dano não quebra a Marca do Predador do Predador Implacável (Guardião 13)."
+    },
+    {
+      "id": "alterar_tamanho",
+      "nome": "Alterar tamanho",
+      "descricao_curta": "Muda o tamanho da criatura por uma duração, com efeitos próprios enquanto durar. Forma Grande (Golias)."
+    },
+    {
+      "id": "alterar_descanso",
+      "nome": "Alterar descanso",
+      "descricao_curta": "Muda a duração ou os requisitos de um tipo de descanso. Transe (Elfo) completa um Descanso Longo em 4 horas, sem dormir."
+    },
+    {
+      "id": "emitir_luz",
+      "nome": "Emitir luz",
+      "descricao_curta": "A fonte passa a emitir Luz Plena num raio, e opcionalmente Meia-luz por mais um trecho; `luz_solar` marca a luz que conta como luz solar. Arma Sagrada, Resplendor Sagrado e Transfiguração Radiante."
     }
   ],
   "fonte": {

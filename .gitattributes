@@ -1,0 +1,11 @@
+# Os arquivos do projeto foram parar no disco com CRLF, e o índice do git tem LF.
+# Sem esta declaração o git mostrava o repositório INTEIRO como modificado, e o
+# `git diff` de um lote ficava ilegível.
+#
+# `text=auto eol=lf`: o git guarda tudo com LF e normaliza na comparação, então o
+# CRLF que já está no disco para de contar como diferença.
+* text=auto eol=lf
+
+# Binários: nunca normalizar.
+*.pdf binary
+*.zip binary

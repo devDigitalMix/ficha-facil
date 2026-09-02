@@ -30,7 +30,13 @@
           },
           "momento": "ao_ativar_e_nos_turnos_seguintes"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     },
     {
       "id": "dragao",
@@ -57,7 +63,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     },
     {
       "id": "taca",
@@ -73,7 +85,13 @@
           "beneficiario": "voce_ou_criatura_a_ate_9m",
           "gatilho": "conjurar_magia_com_espaco_que_restaure_pontos_de_vida"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 98,
+        "pagina_pdf": 102
+      },
+      "fonte_herdada": true
     }
   ]
 }

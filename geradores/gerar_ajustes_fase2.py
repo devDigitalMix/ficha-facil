@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Ajustes decididos pelo usuário em 2026-08-31 sobre o lote do Monge."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 p = os.path.join(D, 'caracteristicas.json')
 d = json.load(open(p, encoding='utf-8'))
 por_id = {i['id']: i for i in d['itens']}

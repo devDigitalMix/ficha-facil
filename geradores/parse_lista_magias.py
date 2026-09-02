@@ -4,10 +4,13 @@
 Uso: python3 parse_lista_magias.py <lista_id> <idx_inicial> <idx_final> <pagina_livro>
 Generalizado a partir do parser da lista do Mago. Imprime o que não casou.
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import pypdf, warnings, re, json, unicodedata, sys, os
 from collections import Counter
 warnings.filterwarnings('ignore')
-PDF = '/mnt/user-data/uploads/ficha-facil/DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf'
+PDF = caminhos.pdf()
 
 ESCOLAS = {"Abjuração":"abjuracao","Adivinhação":"adivinhacao","Encantamento":"encantamento",
  "Evocação":"evocacao","Ilusão":"ilusao","Invocação":"invocacao","Necromancia":"necromancia",
@@ -126,4 +129,4 @@ if __name__ == '__main__':
     print("\nnão reconhecidas (revisar):")
     for n, l in nao:
         if l.strip(): print("  ", n, "|", l[:90])
-    json.dump(saida, open(f'/tmp/lista_{lista_id}.json','w',encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(saida, open(caminhos.intermediario(f'lista_{lista_id}.json'),'w',encoding='utf-8'), ensure_ascii=False, indent=1)

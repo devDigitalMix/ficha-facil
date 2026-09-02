@@ -74,6 +74,25 @@ Fonte: `DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf` (393 página
 Sua condição: **os itens disponíveis têm que estar certinhos.** Isso vira regra estrutural, não
 boa intenção. Três mecanismos:
 
+### 4.0 Ids são escopados por catálogo
+
+Um id é único **dentro do seu catálogo**, não no dataset inteiro. Duas entidades diferentes podem
+ter o mesmo id em catálogos diferentes, e isso é comum: `protetor` é uma Ordem Divina e também uma
+Ordem Primal; `anao`, `orc` e `pequenino` são espécies e também idiomas; `escudo` é categoria de
+armadura e item.
+
+O caso que mais confunde é o das opções de Canalizar Divindade do Paladino. `arma_sagrada`,
+`atleta_inigualavel`, `destruicao_inspiradora`, `voto_de_inimizade`, `a_ira_da_natureza` e
+`repudiar_inimigos` existem ao mesmo tempo em duas coleções, com papéis distintos:
+
+- em `caracteristicas`, é o que a classe ou a subclasse **concede** ao subir de nível;
+- em `efeitos_de_canalizar_divindade`, é o **efeito** que o jogador escolhe ao gastar um uso.
+
+São entidades diferentes com o mesmo nome no livro, e por isso o mesmo id. Toda referência a
+opção de catálogo carrega o catálogo junto (`aplicar_efeito_nomeado` tem `catalogo` e `chave`;
+`expandir_opcoes_de_escolha` também), então a resolução nunca é por id global. **Nenhum código do
+motor deve indexar entidades por id sem o catálogo.**
+
 ### 4.1 Catálogos fechados
 
 Enumerações extraídas do PDF **antes** de qualquer coisa que as referencie. Cada uma vira um

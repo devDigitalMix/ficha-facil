@@ -1,0 +1,131 @@
+{
+  "catalogo": "linhagens_elficas",
+  "nome": "Linhagem Élfica",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 190,
+    "pagina_pdf": 194
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "alto_elfo",
+      "nome": "Alto Elfo",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 190,
+        "pagina_pdf": 194
+      },
+      "descricao_curta": "Nível 1: truque Prestidigitação Arcana, trocável por outro truque de Mago a cada Descanso Longo. Nível 3: Detectar Magia. Nível 5: Passo Nebuloso.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "prestidigitacao_arcana",
+          "circulo": 0,
+          "nota": "Trocável por outro truque da lista de Mago a cada Descanso Longo."
+        },
+        {
+          "id": "alto_elfo_troca_de_truque",
+          "tipo": "escolha",
+          "rotulo": "Troque o truque de Alto Elfo",
+          "quantidade": 1,
+          "reescolhivel": true,
+          "reescolha_em": "descanso_longo",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0,
+              "lista": "mago"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}",
+            "circulo": 0
+          }
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "detectar_magia"
+        ],
+        "5": [
+          "passo_nebuloso"
+        ]
+      }
+    },
+    {
+      "id": "drow",
+      "nome": "Drow",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 190,
+        "pagina_pdf": 194
+      },
+      "descricao_curta": "Nível 1: alcance da Visão no Escuro sobe para 36 m, e você conhece Luzes Dançantes. Nível 3: Fogo das Fadas. Nível 5: Escuridão.",
+      "efeitos": [
+        {
+          "tipo": "conceder_sentido",
+          "sentido": "visao_no_escuro",
+          "alcance_m": 36,
+          "empilha": "maior_valor",
+          "nota": "O livro diz 'aumenta para 36 metros', não 'soma 36'."
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "luzes_dancantes",
+          "circulo": 0
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "fogo_das_fadas"
+        ],
+        "5": [
+          "escuridao"
+        ]
+      }
+    },
+    {
+      "id": "elfo_silvestre",
+      "nome": "Elfo Silvestre",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 190,
+        "pagina_pdf": 194
+      },
+      "descricao_curta": "Nível 1: Deslocamento sobe para 10,5 m, e você conhece Arte Druídica. Nível 3: Passos Largos. Nível 5: Passo Sem Rastro.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "caminhada",
+          "formula": [
+            "10.5"
+          ],
+          "unidade": "metros",
+          "empilha": "maior_valor",
+          "nota": "O livro diz 'aumenta para 10,5 metros'."
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "arte_druidica",
+          "circulo": 0
+        }
+      ],
+      "magias_por_nivel": {
+        "3": [
+          "passos_largos"
+        ],
+        "5": [
+          "passo_sem_rastro"
+        ]
+      }
+    }
+  ],
+  "nota": "As magias de nível 3 e 5 ficam sempre preparadas, podem ser conjuradas uma vez por Descanso Longo sem espaço, ou com qualquer espaço apropriado. O atributo de conjuração (INT, SAB ou CAR) é escolhido junto com a linhagem.",
+  "preenchida": true
+}

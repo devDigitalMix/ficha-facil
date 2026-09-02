@@ -1,0 +1,94 @@
+{
+  "catalogo": "opcoes_de_estilo_de_luta_de_classe",
+  "nome": "Opções de Estilo de Luta concedidas por classe",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 118,
+    "pagina_pdf": 122
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "combatente_druidico",
+      "nome": "Combatente Druídico",
+      "classe": "guardiao",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 118,
+        "pagina_pdf": 122
+      },
+      "descricao_curta": "Em vez de um talento de Estilo de Luta: dois truques de Druida à escolha, contados como magias de Guardião, com Sabedoria. Troca um deles a cada nível de Guardião.",
+      "efeitos": [
+        {
+          "id": "combatente_druidico_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 truques de Druida",
+          "quantidade": 2,
+          "reescolhivel": true,
+          "reescolha_em": "cada_nivel_de_guardiao",
+          "reescolha_quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0,
+              "lista": "druida"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "guardiao",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}",
+            "atributo_conjuracao": "SAB"
+          }
+        }
+      ],
+      "recomendadas": [
+        "fagulha_estelar",
+        "orientacao"
+      ]
+    },
+    {
+      "id": "combatente_abencoado",
+      "nome": "Combatente Abençoado",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 168,
+        "pagina_pdf": 172
+      },
+      "descricao_curta": "Em vez de um talento de Estilo de Luta: dois truques de Clérigo à escolha, contados como magias de Paladino, com Carisma. Troca um deles a cada nível de Paladino.",
+      "efeitos": [
+        {
+          "id": "combatente_abencoado_truques",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 truques de Clérigo",
+          "quantidade": 2,
+          "reescolhivel": true,
+          "reescolha_em": "cada_nivel_de_paladino",
+          "reescolha_quantidade": 1,
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "nivel": 0,
+              "lista": "clerigo"
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "paladino",
+            "modo": "conhecida",
+            "magia": "{{escolhido}}",
+            "atributo_conjuracao": "CAR"
+          }
+        }
+      ],
+      "recomendadas": [
+        "chama_sagrada",
+        "orientacao"
+      ]
+    }
+  ],
+  "nota": "Opções que o livro oferece NO LUGAR de um talento de Estilo de Luta. As duas do livro estão aqui: Combatente Druídico (Guardião) e Combatente Abençoado (Paladino).",
+  "parcial": false
+}

@@ -1,6 +1,6 @@
 {
   "colecao": "classes",
-  "total": 10,
+  "total": 12,
   "itens": [
     {
       "id": "monge",
@@ -5041,6 +5041,1080 @@
         },
         "nota": "O bloco de multiclasse do Feiticeiro (p. 103) só manda pegar o Dado de Ponto de Vida e as características de nível 1; não concede proficiências novas."
       }
+    },
+    {
+      "id": "guardiao",
+      "nome": "Guardião",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 117,
+        "pagina_pdf": 121
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Meio-conjurador dos ermos: Sabedoria, Marca do Predador de graça pelo Inimigo Favorito, Estilo de Luta e maestria em duas armas. Rastreia, se move e some pelo terreno.",
+      "dado_de_vida": 10,
+      "atributo_primario": [
+        "DES",
+        "SAB"
+      ],
+      "salvaguardas_primarias": [
+        "FOR",
+        "DES"
+      ],
+      "nivel_subclasse": 3,
+      "niveis_de_caracteristica_de_subclasse": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "conjuracao": {
+        "atributo": "SAB",
+        "modo": "lista_de_classe",
+        "lista_id": "guardiao",
+        "preparadas_por_nivel": true,
+        "meio_conjurador": true,
+        "circulo_maximo": 5,
+        "truques": false
+      },
+      "subclasses": [
+        "andarilho_feerico",
+        "cacador",
+        "senhor_das_feras",
+        "vigilante_das_sombras"
+      ],
+      "proficiencias_iniciais": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "FOR",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "DES",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "nivel_dominio": "proficiente",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": "simples"
+            }
+          }
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "nivel_dominio": "proficiente",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": "marcial"
+            }
+          }
+        },
+        {
+          "id": "guardiao_pericias_iniciais",
+          "tipo": "escolha",
+          "rotulo": "Escolha 3 perícias",
+          "quantidade": 3,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "pericias",
+            "chaves": [
+              "atletismo",
+              "furtividade",
+              "intuicao",
+              "investigacao",
+              "lidar_com_animais",
+              "natureza",
+              "percepcao",
+              "sobrevivencia"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "treinamento_com_armadura": [
+        "leve",
+        "media",
+        "escudo"
+      ],
+      "equipamento_inicial": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "couro_batido"
+              },
+              {
+                "item": "cimitarra"
+              },
+              {
+                "item": "espada_curta"
+              },
+              {
+                "item": "arco_longo"
+              },
+              {
+                "item": "flechas",
+                "quantidade": 20
+              },
+              {
+                "item": "aljava"
+              },
+              {
+                "item": "ramo_de_visco",
+                "nota": "Foco Druídico (ramo de visco)."
+              },
+              {
+                "item": "kit_de_aventureiro"
+              }
+            ],
+            "moedas": {
+              "po": 7
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 150
+            }
+          }
+        ],
+        "revisao": {
+          "status": "ok",
+          "notas": ""
+        }
+      },
+      "colunas_da_tabela": {
+        "inimigo_favorito": {
+          "nome": "Inimigo Favorito",
+          "tipo": "inteiro"
+        },
+        "magias_preparadas": {
+          "nome": "Magias Preparadas",
+          "tipo": "inteiro"
+        },
+        "espacos_1": {
+          "nome": "Espaços de 1º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_2": {
+          "nome": "Espaços de 2º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_3": {
+          "nome": "Espaços de 3º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_4": {
+          "nome": "Espaços de 4º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_5": {
+          "nome": "Espaços de 5º Círculo",
+          "tipo": "inteiro"
+        }
+      },
+      "multiclasse": {
+        "adquire": [
+          "dado_de_vida",
+          "proficiencia:arma:categoria:marcial",
+          "proficiencia:pericia:uma_da_lista_do_guardiao",
+          "treinamento_armadura:leve",
+          "treinamento_armadura:media",
+          "treinamento_armadura:escudo"
+        ],
+        "fonte": {
+          "capitulo": 3,
+          "pagina_livro": 117,
+          "pagina_pdf": 121
+        },
+        "nota": "Registrado para a fase de multiclasse; não aplicado agora."
+      },
+      "progressao": [
+        {
+          "nivel": 1,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "conjuracao_guardiao",
+            "inimigo_favorito",
+            "maestria_em_arma_guardiao"
+          ],
+          "colunas": {
+            "inimigo_favorito": 2,
+            "magias_preparadas": 2,
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 2,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "estilo_de_luta_guardiao",
+            "explorador_habil"
+          ],
+          "colunas": {
+            "inimigo_favorito": 2,
+            "magias_preparadas": 3,
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 3,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "inimigo_favorito": 2,
+            "magias_preparadas": 4,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 4,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "inimigo_favorito": 2,
+            "magias_preparadas": 5,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 5,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "ataque_extra"
+          ],
+          "colunas": {
+            "inimigo_favorito": 3,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 6,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "errante"
+          ],
+          "colunas": {
+            "inimigo_favorito": 3,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 7,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "inimigo_favorito": 3,
+            "magias_preparadas": 7,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 8,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "inimigo_favorito": 3,
+            "magias_preparadas": 7,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 9,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "especialista_guardiao"
+          ],
+          "colunas": {
+            "inimigo_favorito": 4,
+            "magias_preparadas": 9,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 10,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "incansavel"
+          ],
+          "colunas": {
+            "inimigo_favorito": 4,
+            "magias_preparadas": 9,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 11,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "inimigo_favorito": 4,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 12,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "inimigo_favorito": 4,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 13,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "predador_implacavel"
+          ],
+          "colunas": {
+            "inimigo_favorito": 5,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 14,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "veu_da_natureza"
+          ],
+          "colunas": {
+            "inimigo_favorito": 5,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 15,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "inimigo_favorito": 5,
+            "magias_preparadas": 12,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 16,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "inimigo_favorito": 5,
+            "magias_preparadas": 12,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 17,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "cacador_preciso"
+          ],
+          "colunas": {
+            "inimigo_favorito": 6,
+            "magias_preparadas": 14,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1
+          }
+        },
+        {
+          "nivel": 18,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "sentidos_selvagens"
+          ],
+          "colunas": {
+            "inimigo_favorito": 6,
+            "magias_preparadas": 14,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1
+          }
+        },
+        {
+          "nivel": 19,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "dadiva_epica"
+          ],
+          "colunas": {
+            "inimigo_favorito": 6,
+            "magias_preparadas": 15,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2
+          }
+        },
+        {
+          "nivel": 20,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "matador_de_inimigos_favoritos"
+          ],
+          "colunas": {
+            "inimigo_favorito": 6,
+            "magias_preparadas": 15,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "paladino",
+      "nome": "Paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 167,
+        "pagina_pdf": 171
+      },
+      "revisao": {
+        "status": "ok",
+        "notas": ""
+      },
+      "descricao_curta": "Meio-conjurador de armadura pesada, movido por juramento: Carisma na magia e nas auras, reserva de cura no toque, Destruição Divina de graça e Canalizar Divindade próprio.",
+      "dado_de_vida": 10,
+      "atributo_primario": [
+        "FOR",
+        "CAR"
+      ],
+      "salvaguardas_primarias": [
+        "SAB",
+        "CAR"
+      ],
+      "nivel_subclasse": 3,
+      "niveis_de_caracteristica_de_subclasse": [
+        3,
+        7,
+        15,
+        20
+      ],
+      "conjuracao": {
+        "atributo": "CAR",
+        "modo": "lista_de_classe",
+        "lista_id": "paladino",
+        "preparadas_por_nivel": true,
+        "meio_conjurador": true,
+        "circulo_maximo": 5,
+        "truques": false
+      },
+      "subclasses": [
+        "juramento_da_devocao",
+        "juramento_da_gloria",
+        "juramento_da_vinganca",
+        "juramento_dos_anciaos"
+      ],
+      "proficiencias_iniciais": [
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "SAB",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "salvaguarda",
+          "chave": "CAR",
+          "nivel_dominio": "proficiente"
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "nivel_dominio": "proficiente",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": "simples"
+            }
+          }
+        },
+        {
+          "tipo": "conceder_proficiencia",
+          "categoria": "arma",
+          "nivel_dominio": "proficiente",
+          "de": {
+            "catalogo": "itens",
+            "filtro": {
+              "categoria": "arma",
+              "grupo": "marcial"
+            }
+          }
+        },
+        {
+          "id": "paladino_pericias_iniciais",
+          "tipo": "escolha",
+          "rotulo": "Escolha 2 perícias",
+          "quantidade": 2,
+          "momento": "criacao",
+          "de": {
+            "catalogo": "pericias",
+            "chaves": [
+              "atletismo",
+              "intimidacao",
+              "intuicao",
+              "medicina",
+              "persuasao",
+              "religiao"
+            ]
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "conceder_proficiencia",
+            "categoria": "pericia",
+            "chave": "{{escolhido}}",
+            "nivel_dominio": "proficiente"
+          }
+        }
+      ],
+      "treinamento_com_armadura": [
+        "leve",
+        "media",
+        "pesada",
+        "escudo"
+      ],
+      "equipamento_inicial": {
+        "opcoes": [
+          {
+            "id": "A",
+            "itens": [
+              {
+                "item": "cota_de_malha"
+              },
+              {
+                "item": "escudo"
+              },
+              {
+                "item": "espada_longa"
+              },
+              {
+                "item": "azagaia",
+                "quantidade": 6
+              },
+              {
+                "id": "paladino_simbolo_sagrado",
+                "tipo": "escolha",
+                "rotulo": "Escolha a forma do seu Símbolo Sagrado",
+                "quantidade": 1,
+                "de": {
+                  "catalogo": "itens",
+                  "chaves": [
+                    "amuleto",
+                    "emblema",
+                    "relicario"
+                  ]
+                },
+                "efeito_por_item_escolhido": {
+                  "tipo": "conceder_proficiencia",
+                  "categoria": "item",
+                  "chave": "{{escolhido}}"
+                },
+                "nota": "No capítulo 6 (p. 225) 'Símbolo Sagrado' é uma categoria com três formas, não um item — mesma resolução do Clérigo."
+              },
+              {
+                "item": "kit_de_sacerdote"
+              }
+            ],
+            "moedas": {
+              "po": 9
+            }
+          },
+          {
+            "id": "B",
+            "itens": [],
+            "moedas": {
+              "po": 150
+            }
+          }
+        ],
+        "revisao": {
+          "status": "ok",
+          "notas": ""
+        }
+      },
+      "colunas_da_tabela": {
+        "canalizar_divindade": {
+          "nome": "Canalizar Divindade",
+          "tipo": "inteiro"
+        },
+        "magias_preparadas": {
+          "nome": "Magias Preparadas",
+          "tipo": "inteiro"
+        },
+        "espacos_1": {
+          "nome": "Espaços de 1º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_2": {
+          "nome": "Espaços de 2º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_3": {
+          "nome": "Espaços de 3º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_4": {
+          "nome": "Espaços de 4º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_5": {
+          "nome": "Espaços de 5º Círculo",
+          "tipo": "inteiro"
+        }
+      },
+      "multiclasse": {
+        "adquire": [
+          "dado_de_vida",
+          "proficiencia:arma:categoria:marcial",
+          "treinamento_armadura:leve",
+          "treinamento_armadura:media",
+          "treinamento_armadura:escudo"
+        ],
+        "fonte": {
+          "capitulo": 3,
+          "pagina_livro": 167,
+          "pagina_pdf": 171
+        },
+        "nota": "Registrado para a fase de multiclasse; não aplicado agora."
+      },
+      "progressao": [
+        {
+          "nivel": 1,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "conjuracao_paladino",
+            "maestria_em_arma_paladino",
+            "maos_consagradas"
+          ],
+          "colunas": {
+            "canalizar_divindade": 0,
+            "magias_preparadas": 2,
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 2,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "destruicao_do_paladino",
+            "estilo_de_luta_paladino"
+          ],
+          "colunas": {
+            "canalizar_divindade": 0,
+            "magias_preparadas": 3,
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 3,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "canalizar_divindade_paladino",
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 4,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 4,
+          "bonus_de_proficiencia": 2,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 5,
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 5,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "ataque_extra",
+            "montaria_fiel"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 6,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "aura_de_protecao"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 6,
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 7,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 7,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 8,
+          "bonus_de_proficiencia": 3,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 7,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 9,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "repudiar_inimigos"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 9,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 10,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "aura_de_coragem"
+          ],
+          "colunas": {
+            "canalizar_divindade": 2,
+            "magias_preparadas": 9,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 11,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "golpes_radiantes"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 12,
+          "bonus_de_proficiencia": 4,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 10,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 13,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 14,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "toque_restaurador"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 11,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 15,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 12,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 16,
+          "bonus_de_proficiencia": 5,
+          "caracteristicas": [
+            "aumento_no_valor_de_atributo"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 12,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0
+          }
+        },
+        {
+          "nivel": 17,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 14,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1
+          }
+        },
+        {
+          "nivel": 18,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "aura_expandida"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 14,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1
+          }
+        },
+        {
+          "nivel": 19,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "dadiva_epica"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 15,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2
+          }
+        },
+        {
+          "nivel": 20,
+          "bonus_de_proficiencia": 6,
+          "caracteristicas": [
+            "caracteristica_de_subclasse"
+          ],
+          "colunas": {
+            "canalizar_divindade": 3,
+            "magias_preparadas": 15,
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2
+          }
+        }
+      ]
     }
   ]
 }

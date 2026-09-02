@@ -1,0 +1,274 @@
+{
+  "catalogo": "heranca_draconica",
+  "nome": "Herança Dracônica",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 188,
+    "pagina_pdf": 192
+  },
+  "total": 10,
+  "itens": [
+    {
+      "id": "dragao_azul",
+      "nome": "Dragão Azul",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Azul: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo eletrico.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "eletrico",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "eletrico"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "eletrico"
+    },
+    {
+      "id": "dragao_branco",
+      "nome": "Dragão Branco",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Branco: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo gelido.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "gelido",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "gelido"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "gelido"
+    },
+    {
+      "id": "dragao_bronze",
+      "nome": "Dragão Bronze",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Bronze: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo eletrico.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "eletrico",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "eletrico"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "eletrico"
+    },
+    {
+      "id": "dragao_cobre",
+      "nome": "Dragão Cobre",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Cobre: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo acido.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "acido",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "acido"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "acido"
+    },
+    {
+      "id": "dragao_latao",
+      "nome": "Dragão Latão",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Latão: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo igneo.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "igneo",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "igneo"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "igneo"
+    },
+    {
+      "id": "dragao_negro",
+      "nome": "Dragão Negro",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Negro: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo acido.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "acido",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "acido"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "acido"
+    },
+    {
+      "id": "dragao_ouro",
+      "nome": "Dragão Ouro",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Ouro: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo igneo.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "igneo",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "igneo"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "igneo"
+    },
+    {
+      "id": "dragao_prata",
+      "nome": "Dragão Prata",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Prata: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo gelido.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "gelido",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "gelido"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "gelido"
+    },
+    {
+      "id": "dragao_verde",
+      "nome": "Dragão Verde",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Verde: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo venenoso.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "venenoso",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "venenoso"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "venenoso"
+    },
+    {
+      "id": "dragao_vermelho",
+      "nome": "Dragão Vermelho",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 188,
+        "pagina_pdf": 192
+      },
+      "descricao_curta": "Progenitor dracônico Vermelho: o dano do Ataque de Sopro e a Resistência a Dano passam a ser do tipo igneo.",
+      "efeitos": [
+        {
+          "tipo": "alterar_dano",
+          "tipo_dano": "igneo",
+          "operacao": "resistencia"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "igneo"
+          ],
+          "escopo": "ataque_de_sopro",
+          "define": "tipo_de_dano_do_sopro"
+        }
+      ],
+      "tipo_de_dano": "igneo"
+    }
+  ],
+  "nota": "Dez dragões, cinco tipos de dano. A escolha define o sopro E a resistência.",
+  "preenchida": true
+}

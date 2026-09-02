@@ -4,10 +4,13 @@
 Parser em vez de transcrição manual: menos chance de eu errar um nome ou uma escola.
 Tudo que não casar é impresso para revisão em vez de ser descartado em silêncio.
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import pypdf, warnings, re, json, unicodedata, os
 warnings.filterwarnings('ignore')
-PDF = '/mnt/user-data/uploads/ficha-facil/DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf'
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+PDF = caminhos.pdf()
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 
 ESCOLAS = {"Abjuração":"abjuracao","Adivinhação":"adivinhacao","Encantamento":"encantamento",
  "Evocação":"evocacao","Ilusão":"ilusao","Invocação":"invocacao","Necromancia":"necromancia",
@@ -71,4 +74,4 @@ for k in sorted(c): print(f"  círculo {k}: {c[k]}")
 print("TOTAL:", len(saida))
 print("\nlinhas não reconhecidas (revisar):")
 for n, l in nao_casou: print("  ", n, "|", l[:90])
-json.dump(saida, open('/tmp/lista_mago.json','w',encoding='utf-8'), ensure_ascii=False, indent=1)
+json.dump(saida, open(caminhos.intermediario('lista_mago.json'),'w',encoding='utf-8'), ensure_ascii=False, indent=1)

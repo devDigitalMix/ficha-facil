@@ -1,0 +1,4893 @@
+{
+ "caracteristicas.json": {
+  "acrescentar": [
+   {
+    "id": "prodigio_maior",
+    "nome": "Prodígio Maior",
+    "classe": "mago",
+    "subclasse": "adivinhador",
+    "nivel": 14,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 155,
+     "pagina_pdf": 159
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "Tem título próprio no livro ('Nível 14: Prodígio Maior'), então entra como característica separada que melhora Prodígio — e não como nível repetido dentro dele."
+    },
+    "descricao_curta": "Joga três d20 para o Prodígio, em vez de dois.",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "prodigio",
+      "efeitos": [
+       {
+        "tipo": "substituir_resultado_de_d20",
+        "quantidade_de_jogadas": 3,
+        "modo": "substitui_quantidade"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "golpe_brutal_fortalecido_13",
+    "nome": "Golpe Brutal Fortalecido",
+    "classe": "barbaro",
+    "nivel": 13,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 53,
+     "pagina_pdf": 57
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "A tabela (p. 52) chama os níveis 13 e 17 de 'Golpe Brutal Aprimorado'; os títulos do corpo do texto dizem 'Golpe Brutal Fortalecido' nos dois. Adotei o título do corpo. São duas seções tituladas distintas com o mesmo nome, então viraram duas características, com id sufixado pelo nível."
+    },
+    "descricao_curta": "Golpe Atordoante e Golpe Destruidor entram nas opções de Golpe Brutal.",
+    "nome_na_tabela": "Golpe Brutal Aprimorado",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "golpe_brutal",
+      "efeitos": [
+       {
+        "tipo": "expandir_opcoes_de_escolha",
+        "escolha_id": "barbaro_golpe_brutal",
+        "catalogo": "efeitos_de_golpe_brutal",
+        "chaves": [
+         "golpe_atordoante",
+         "golpe_destruidor"
+        ],
+        "nota": "As duas opções já constam do catálogo com nivel_minimo 13; esta característica é o que as libera."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "golpe_brutal_fortalecido_17",
+    "nome": "Golpe Brutal Fortalecido",
+    "classe": "barbaro",
+    "nivel": 17,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 53,
+     "pagina_pdf": 57
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "A tabela (p. 52) chama os níveis 13 e 17 de 'Golpe Brutal Aprimorado'; os títulos do corpo do texto dizem 'Golpe Brutal Fortalecido' nos dois. Adotei o título do corpo. São duas seções tituladas distintas com o mesmo nome, então viraram duas características, com id sufixado pelo nível."
+    },
+    "descricao_curta": "O dano adicional do Golpe Brutal passa a 2d10 e você aplica dois efeitos diferentes por uso.",
+    "nome_na_tabela": "Golpe Brutal Aprimorado",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "golpe_brutal",
+      "efeitos": [
+       {
+        "tipo": "dano",
+        "formula_dado": "2d10",
+        "tipo_dano": "mesmo_do_ataque",
+        "modo": "substitui_dado_da_caracteristica"
+       },
+       {
+        "tipo": "alterar_quantidade_de_escolha",
+        "escolha_id": "barbaro_golpe_brutal",
+        "quantidade": 2,
+        "modo": "substitui_quantidade",
+        "restricao": "efeitos_diferentes"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "remover": [
+   "golpe_brutal_fortalecido"
+  ],
+  "substituir": {
+   "ataque_furtivo": {
+    "id": "ataque_furtivo",
+    "nome": "Ataque Furtivo",
+    "classe": "ladino",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 137,
+     "pagina_pdf": 141
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Uma vez por turno, ao acertar com arma de Acuidade ou à Distância tendo Vantagem, causa dano extra conforme a coluna Ataque Furtivo. Dispensa a Vantagem se um aliado não Incapacitado estiver a até 1,5 m do alvo e você não tiver Desvantagem.",
+    "efeitos": [
+     {
+      "tipo": "dado_de_impacto",
+      "coluna": "ataque_furtivo",
+      "tipo_dano": "mesmo_da_arma",
+      "frequencia": "uma_vez_por_turno",
+      "condicao": {
+       "todas": [
+        "arma:acuidade_ou_a_distancia",
+        {
+         "alguma": [
+          "vantagem_na_jogada",
+          "aliado_nao_incapacitado_a_ate_1_5m_do_alvo_e_sem_desvantagem"
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "magias_psiquicas": {
+    "id": "magias_psiquicas",
+    "nome": "Magias Psíquicas",
+    "classe": "bruxo",
+    "nivel": 3,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 78,
+     "pagina_pdf": 82
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "Confirmado pelo usuário em 2026-09-01: pertence ao Patrono O Grande Antigo. No PDF aparece sob o título do Patrono Ínfero por quebra de coluna; a referência cruzada de Combatente Clarividente (Grande Antigo nv.6) a Mente Desperta confirma a atribuição."
+    },
+    "descricao_curta": "Pode mudar para Psíquico o tipo de dano de uma magia de Bruxo, e conjurar magias de Bruxo de Encantamento ou Ilusão sem componentes Verbais nem Somáticos.",
+    "efeitos": [
+     {
+      "tipo": "alterar_tipo_de_dano_da_magia",
+      "opcoes": [
+       "psiquico"
+      ],
+      "escopo": {
+       "lista": "bruxo",
+       "causa_dano": true
+      }
+     },
+     {
+      "tipo": "dispensar_componentes",
+      "componentes": [
+       "V",
+       "S"
+      ],
+      "escopo": {
+       "lista": "bruxo",
+       "escola": [
+        "encantamento",
+        "ilusao"
+       ]
+      }
+     }
+    ],
+    "subclasse": "patrono_grande_antigo"
+   },
+   "maestria_em_arma_ladino": {
+    "id": "maestria_em_arma_ladino",
+    "nome": "Maestria em Arma",
+    "classe": "ladino",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 137,
+     "pagina_pdf": 141
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Usa as propriedades de maestria de dois tipos de armas com que tenha proficiência. Troca a cada Descanso Longo.",
+    "efeitos": [
+     {
+      "id": "ladino_maestrias",
+      "tipo": "escolha",
+      "rotulo": "Escolha dois tipos de arma",
+      "quantidade": 2,
+      "momento": "nivel_1",
+      "reescolhivel": true,
+      "reescolha_em": "descanso_longo",
+      "de": {
+       "catalogo": "itens",
+       "filtro": {
+        "categoria": "arma",
+        "com_proficiencia": true
+       },
+       "nota_da_auditoria": "A marca 'pendente' saiu em 2026-09-02: existia porque o catálogo de itens ainda não tinha chegado, e estava desligando a checagem de filtro vazio."
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "efeito_narrativo",
+       "chave": "maestria_liberada",
+       "arma": "{{escolhido}}"
+      }
+     }
+    ]
+   },
+   "maestria_em_arma_barbaro": {
+    "id": "maestria_em_arma_barbaro",
+    "nome": "Maestria em Arma",
+    "classe": "barbaro",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 51,
+     "pagina_pdf": 55
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Usa as propriedades de maestria de tipos de armas Corpo a Corpo Simples ou Marciais à escolha, conforme a coluna Maestria em Armas. Troca uma escolha a cada Descanso Longo.",
+    "efeitos": [
+     {
+      "id": "barbaro_maestrias",
+      "tipo": "escolha",
+      "rotulo": "Escolha os tipos de arma com maestria",
+      "quantidade": "coluna:maestria_em_arma",
+      "momento": "nivel_1",
+      "reescolhivel": true,
+      "reescolha_em": "descanso_longo",
+      "reescolha_quantidade": 1,
+      "de": {
+       "catalogo": "itens",
+       "filtro": {
+        "categoria": "arma",
+        "grupo": [
+         "simples",
+         "marcial"
+        ],
+        "alcance": "corpo_a_corpo"
+       },
+       "nota_da_auditoria": "A marca 'pendente' saiu em 2026-09-02: existia porque o catálogo de itens ainda não tinha chegado, e estava desligando a checagem de filtro vazio."
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "efeito_narrativo",
+       "chave": "maestria_liberada",
+       "arma": "{{escolhido}}"
+      }
+     }
+    ]
+   },
+   "golpe_brutal": {
+    "id": "golpe_brutal",
+    "nome": "Golpe Brutal",
+    "classe": "barbaro",
+    "nivel": 9,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 53,
+     "pagina_pdf": 57
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Usando Ataque Imprudente, abre mão da Vantagem numa jogada de ataque com Força (que não tenha Desvantagem): acertando, causa 1d10 extra do tipo da arma e aplica um efeito de Golpe Brutal à escolha.",
+    "efeitos": [
+     {
+      "tipo": "dano",
+      "formula_dado": "1d10",
+      "tipo_dano": "mesmo_do_ataque",
+      "modo": "dano_adicional",
+      "condicao": {
+       "todas": [
+        "usou:ataque_imprudente",
+        "abriu_mao_da_vantagem",
+        {
+         "nao": "desvantagem_na_jogada"
+        }
+       ]
+      }
+     },
+     {
+      "id": "barbaro_golpe_brutal",
+      "tipo": "escolha",
+      "rotulo": "Escolha o efeito de Golpe Brutal",
+      "quantidade": 1,
+      "momento": "no_acerto",
+      "reescolhivel": true,
+      "de": {
+       "catalogo": "efeitos_de_golpe_brutal",
+       "todo_o_catalogo": true,
+       "respeitar_nivel_minimo": true
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "aplicar_efeito_nomeado",
+       "chave": "{{escolhido}}"
+      }
+     }
+    ]
+   },
+   "furtividade_suprema": {
+    "id": "furtividade_suprema",
+    "nome": "Furtividade Suprema",
+    "classe": "ladino",
+    "nivel": 9,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 143,
+     "pagina_pdf": 147
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Ganha a opção de Golpe Astuto Ataque Escondido (1d6).",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "golpe_astuto",
+      "efeitos": [
+       {
+        "tipo": "expandir_opcoes_de_escolha",
+        "escolha_id": "ladino_golpe_astuto",
+        "catalogo": "efeitos_de_golpe_astuto",
+        "chaves": [
+         "ataque_escondido"
+        ]
+       }
+      ]
+     }
+    ],
+    "subclasse": "ladrao"
+   },
+   "magias_de_dominio_da_guerra": {
+    "id": "magias_de_dominio_da_guerra",
+    "nome": "Magias de Domínio da Guerra",
+    "classe": "clerigo",
+    "nivel": 3,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 85,
+     "pagina_pdf": 89
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "Manto do Cruzado é magia da lista de Paladino (p. 302); o Domínio da Guerra concede acesso, como o Ilusionista faz com Invocar Fera."
+    },
+    "descricao_curta": "Magias sempre preparadas pela tabela Magias de Domínio da Guerra, sem contar para o limite.",
+    "efeitos": [
+     {
+      "tipo": "magias_de_patrono",
+      "tabela": {
+       "nome": "Magias de Domínio da Guerra",
+       "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 85,
+        "pagina_pdf": 89
+       },
+       "linhas": [
+        {
+         "nivel": 3,
+         "magias": [
+          "arma_espiritual",
+          "arma_magica",
+          "escudo_da_fe",
+          "raio_guia"
+         ]
+        },
+        {
+         "nivel": 5,
+         "magias": [
+          "guardioes_espirituais",
+          "manto_do_cruzado"
+         ]
+        },
+        {
+         "nivel": 7,
+         "magias": [
+          "escudo_ardente",
+          "movimentacao_livre"
+         ]
+        },
+        {
+         "nivel": 9,
+         "magias": [
+          "golpe_de_arco",
+          "paralisar_monstro"
+         ]
+        }
+       ]
+      },
+      "modo": "sempre_preparada",
+      "nao_conta_para_o_limite": true
+     }
+    ],
+    "subclasse": "dominio_da_guerra"
+   },
+   "prodigio": {
+    "id": "prodigio",
+    "nome": "Prodígio",
+    "classe": "mago",
+    "nivel": 3,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 155,
+     "pagina_pdf": 159
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Ao terminar um Descanso Longo, joga dois d20 e guarda os resultados. Pode trocar por um deles qualquer Teste de D20 seu ou de criatura à vista, decidindo antes da jogada, uma vez por turno. Cada resultado guardado serve uma vez e some no próximo Descanso Longo.",
+    "efeitos": [
+     {
+      "tipo": "substituir_resultado_de_d20",
+      "quantidade_de_jogadas": 2,
+      "recarga": [
+       "descanso_longo"
+      ],
+      "frequencia": "uma_vez_por_turno",
+      "alvo": [
+       "teste_d20",
+       "teste_d20_de_criatura_a_vista"
+      ],
+      "momento": "antes_da_jogada",
+      "perde_nao_usados_em": "descanso_longo"
+     }
+    ],
+    "subclasse": "adivinhador"
+   },
+   "criaturas_espectrais": {
+    "id": "criaturas_espectrais",
+    "nome": "Criaturas Espectrais",
+    "classe": "mago",
+    "nivel": 6,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 157,
+     "pagina_pdf": 161
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "Confirmado pelo usuário em 2026-09-01: a subclasse Ilusionista concede acesso a Invocar Fera, que não pertence à lista do Mago (é de Druida/Guardião, p. 294). Acesso concedido pela subclasse, não erro de edição."
+    },
+    "descricao_curta": "Tem sempre Convocar Feérico e Invocar Fera preparadas e pode trocar a escola delas para Ilusão, deixando a criatura espectral. Pode conjurar a versão Ilusão sem espaço de magia, com metade dos PV da criatura; depois disso precisa de um Descanso Longo para repetir daquela forma.",
+    "efeitos": [
+     {
+      "tipo": "desbloquear_magias",
+      "lista_id": "mago",
+      "modo": "sempre_preparada",
+      "magias": [
+       "convocar_feerico",
+       "invocar_fera"
+      ]
+     },
+     {
+      "tipo": "conjurar_sem_espaco",
+      "magias": [
+       "convocar_feerico",
+       "invocar_fera"
+      ],
+      "frequencia": "uma_vez_por_descanso_longo",
+      "recarga": [
+       "descanso_longo"
+      ],
+      "efeito_colateral": "os Pontos de Vida da criatura invocada caem pela metade",
+      "muda_escola_para": "ilusao"
+     }
+    ],
+    "subclasse": "ilusionista"
+   },
+   "especialista": {
+    "id": "especialista",
+    "nome": "Especialista",
+    "classe": "ladino",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 137,
+     "pagina_pdf": 141
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Especialização em duas perícias em que já é proficiente. Mais duas no nível 6.",
+    "efeitos": [
+     {
+      "id": "ladino_especializacao",
+      "tipo": "escolha",
+      "rotulo": "Escolha perícias para Especialização",
+      "quantidade": 2,
+      "momento": "nivel_1",
+      "quantidade_por_nivel": {
+       "1": 2,
+       "6": 4
+      },
+      "recomendadas": [
+       "furtividade",
+       "prestidigitacao"
+      ],
+      "de": {
+       "catalogo": "pericias",
+       "chaves": [
+        "acrobacia",
+        "atletismo",
+        "enganacao",
+        "furtividade",
+        "intimidacao",
+        "intuicao",
+        "investigacao",
+        "percepcao",
+        "persuasao",
+        "prestidigitacao"
+       ],
+       "filtro_adicional": {
+        "ja_proficiente": true
+       }
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "conceder_proficiencia",
+       "categoria": "pericia",
+       "chave": "{{escolhido}}",
+       "nivel_dominio": "especialista"
+      }
+     }
+    ],
+    "niveis": [
+     1,
+     6
+    ],
+    "repetivel": true,
+    "tipo_de_repeticao": "nova_escolha",
+    "nome_na_tabela": "Especialização"
+   },
+   "magias_de_dominio_da_luz": {
+    "id": "magias_de_dominio_da_luz",
+    "nome": "Magias de Domínio da Luz",
+    "classe": "clerigo",
+    "nivel": 3,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 87,
+     "pagina_pdf": 91
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "A tabela do domínio (p. 87) grafa 'Mãos Ardentes', mas essa magia não existe no capítulo 7: a entrada é 'Mãos Flamejantes' (1º círculo, Evocação, p. 303). Apontei para o id correto e registrei 'Mãos Ardentes' em nomes_alternativos da magia."
+    },
+    "descricao_curta": "Magias sempre preparadas pela tabela Magias de Domínio da Luz.",
+    "efeitos": [
+     {
+      "tipo": "magias_de_patrono",
+      "tabela": {
+       "nome": "Magias de Domínio da Luz",
+       "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 87,
+        "pagina_pdf": 91
+       },
+       "linhas": [
+        {
+         "nivel": 3,
+         "magias": [
+          "fogo_das_fadas",
+          "maos_flamejantes",
+          "raio_ardente",
+          "ver_o_invisivel"
+         ]
+        },
+        {
+         "nivel": 5,
+         "magias": [
+          "bola_de_fogo",
+          "luz_do_dia"
+         ]
+        },
+        {
+         "nivel": 7,
+         "magias": [
+          "muralha_de_fogo",
+          "olho_arcano"
+         ]
+        },
+        {
+         "nivel": 9,
+         "magias": [
+          "coluna_de_chamas",
+          "videncia"
+         ]
+        }
+       ]
+      },
+      "modo": "sempre_preparada",
+      "nao_conta_para_o_limite": true
+     }
+    ],
+    "subclasse": "dominio_da_luz"
+   },
+   "giria_do_ladrao": {
+    "id": "giria_do_ladrao",
+    "nome": "Gíria do Ladrão",
+    "classe": "ladino",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 137,
+     "pagina_pdf": 141
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Conhece a Gíria dos Ladrões e mais um idioma à escolha.",
+    "efeitos": [
+     {
+      "tipo": "conceder_proficiencia",
+      "categoria": "idioma",
+      "chave": "giria_dos_ladroes",
+      "nivel_dominio": "proficiente"
+     },
+     {
+      "id": "ladino_idioma",
+      "tipo": "escolha",
+      "rotulo": "Escolha mais um idioma",
+      "quantidade": 1,
+      "momento": "nivel_1",
+      "de": {
+       "catalogo": "idiomas",
+       "todo_o_catalogo": true
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "conceder_proficiencia",
+       "categoria": "idioma",
+       "chave": "{{escolhido}}",
+       "nivel_dominio": "proficiente"
+      }
+     }
+    ],
+    "nome_na_tabela": "Gíria dos Ladrões"
+   },
+   "golpes_sujos": {
+    "id": "golpes_sujos",
+    "nome": "Golpes Sujos",
+    "classe": "ladino",
+    "nivel": 14,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 141,
+     "pagina_pdf": 145
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Aturdir, Nocaute e Obscurecer entram nas opções de Golpe Astuto.",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "golpe_astuto",
+      "efeitos": [
+       {
+        "tipo": "expandir_opcoes_de_escolha",
+        "escolha_id": "ladino_golpe_astuto",
+        "catalogo": "efeitos_de_golpe_astuto",
+        "chaves": [
+         "aturdir",
+         "nocaute",
+         "obscurecer"
+        ],
+        "nota": "As três já constam do catálogo com nivel_minimo 14; esta característica é o que as libera."
+       }
+      ]
+     }
+    ]
+   },
+   "golpe_astuto_aprimorado": {
+    "id": "golpe_astuto_aprimorado",
+    "nome": "Golpe Astuto Aprimorado",
+    "classe": "ladino",
+    "nivel": 11,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 141,
+     "pagina_pdf": 145
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Aplica até dois efeitos de Golpe Astuto por Ataque Furtivo, pagando o custo de cada um.",
+    "efeitos": [
+     {
+      "tipo": "melhorar_caracteristica",
+      "alvo": "golpe_astuto",
+      "efeitos": [
+       {
+        "tipo": "alterar_quantidade_de_escolha",
+        "escolha_id": "ladino_golpe_astuto",
+        "quantidade": 2,
+        "modo": "substitui_quantidade",
+        "restricao": "efeitos_diferentes",
+        "nota": "Paga-se o custo em dados de cada efeito escolhido (p. 139)."
+       }
+      ]
+     }
+    ]
+   },
+   "mente_desperta": {
+    "id": "mente_desperta",
+    "nome": "Mente Desperta",
+    "classe": "bruxo",
+    "nivel": 3,
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 78,
+     "pagina_pdf": 82
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": "Confirmado pelo usuário em 2026-09-01: pertence ao Patrono O Grande Antigo. No PDF aparece sob o título do Patrono Ínfero por quebra de coluna; a referência cruzada de Combatente Clarividente (Grande Antigo nv.6) a Mente Desperta confirma a atribuição."
+    },
+    "descricao_curta": "Ação Bônus para abrir conexão telepática com criatura à vista a até 9 m, alcançando 1,5 km vezes o modificador de Carisma, por minutos iguais ao seu nível de Bruxo.",
+    "efeitos": [
+     {
+      "tipo": "efeito_narrativo",
+      "chave": "conexao_telepatica",
+      "custo": "acao_bonus",
+      "alcance_de_uso_m": 9,
+      "alcance_da_conexao_km": {
+       "op": "max",
+       "args": [
+        "1.5",
+        {
+         "op": "mult",
+         "args": [
+          "1.5",
+          "mod:CAR"
+         ]
+        }
+       ]
+      },
+      "duracao": "minutos iguais ao nível de Bruxo",
+      "texto": "Exige idioma comum usado mentalmente. Encerra antes se você conectar com outra criatura."
+     }
+    ],
+    "subclasse": "patrono_grande_antigo"
+   }
+  },
+  "ordem": [
+   "artes_marciais",
+   "defesa_sem_armadura",
+   "foco_do_monge",
+   "movimento_sem_armadura",
+   "metabolismo_incomum",
+   "defletir_ataques",
+   "subclasse_de_monge",
+   "aumento_no_valor_de_atributo",
+   "queda_lenta",
+   "golpe_atordoante",
+   "golpes_potencializados",
+   "evasao",
+   "movimento_acrobatico",
+   "restauro_pessoal",
+   "foco_aprimorado",
+   "defletir_energia",
+   "sobrevivente_disciplinado",
+   "foco_perfeito",
+   "defesa_superior",
+   "dadiva_epica",
+   "corpo_e_mente",
+   "tecnica_da_mao_espalmada",
+   "integridade_corporal",
+   "passo_veloz",
+   "palma_vibrante",
+   "implementos_de_misericordia",
+   "mao_de_cura",
+   "mao_de_dolo",
+   "toque_de_medico",
+   "torrente_de_cura_e_dolo",
+   "mao_da_misericordia_final",
+   "artes_das_sombras",
+   "passo_da_sombra",
+   "passo_da_sombra_aprimorado",
+   "manto_da_sombra",
+   "manipular_elementos",
+   "sintonia_elemental",
+   "explosao_elemental",
+   "passo_dos_elementos",
+   "apice_elemental",
+   "caracteristica_de_subclasse",
+   "estilo_de_luta",
+   "maestria_em_arma",
+   "recuperar_folego",
+   "mente_tatica",
+   "surto_de_acao",
+   "subclasse_de_guerreiro",
+   "ajuste_tatico",
+   "indomavel",
+   "mestre_tatico",
+   "dois_ataques_extras",
+   "ataques_estudados",
+   "tres_ataques_extras",
+   "atleta_extraordinario",
+   "critico_aprimorado",
+   "estilo_de_luta_adicional",
+   "combatente_heroico",
+   "critico_superior",
+   "sobrevivente",
+   "conjuracao_cavaleiro_mistico",
+   "vinculo_com_arma",
+   "magia_de_guerra",
+   "golpe_mistico",
+   "investida_mistica",
+   "magia_de_guerra_aprimorada",
+   "poder_psionico",
+   "adepto_telecinetico",
+   "resguardo_mental",
+   "baluarte_de_energia",
+   "mestre_telecinetico",
+   "estudioso_da_guerra",
+   "superioridade_em_combate",
+   "conheca_seu_inimigo",
+   "superioridade_em_combate_aprimorada",
+   "implacavel",
+   "superioridade_em_combate_suprema",
+   "ataque_extra",
+   "adepto_de_ritual",
+   "conjuracao_mago",
+   "recuperacao_arcana",
+   "academico",
+   "subclasse_de_mago",
+   "memorizar_magia",
+   "maestria_de_magias",
+   "assinatura_magica",
+   "versado_em_abjuracao",
+   "versado_em_adivinhacao",
+   "versado_em_evocacao",
+   "versado_em_ilusao",
+   "protecao_arcana",
+   "protecao_projetada",
+   "rompe_magia",
+   "resistencia_a_magia",
+   "prodigio",
+   "perito_em_adivinhacao",
+   "o_terceiro_olho",
+   "truque_potente",
+   "esculpir_magias",
+   "evocacao_potencializada",
+   "sobrecarga",
+   "ilusoes_aprimoradas",
+   "criaturas_espectrais",
+   "autoimagem_ilusoria",
+   "realidade_ilusoria",
+   "prodigio_maior",
+   "invocacoes_misticas",
+   "magia_de_pacto",
+   "astucia_magica",
+   "subclasse_de_bruxo",
+   "contatar_patrono",
+   "arcana_mistica",
+   "mestre_mistico",
+   "magias_de_pacto_da_arquifada",
+   "passos_feericos",
+   "fuga_em_nevoa",
+   "defesas_sedutoras",
+   "magia_sedutora",
+   "luz_medicinal",
+   "magias_de_pacto_do_celestial",
+   "alma_radiante",
+   "resiliencia_celestial",
+   "vinganca_calcinante",
+   "magias_de_pacto_do_grande_antigo",
+   "magias_psiquicas",
+   "mente_desperta",
+   "combatente_clarividente",
+   "danacao_mistica",
+   "escudo_mental",
+   "criar_servo",
+   "bencao_do_tenebroso",
+   "magias_de_pacto_do_infero",
+   "a_sorte_do_proprio_tenebroso",
+   "resistencia_infera",
+   "lancar_no_inferno",
+   "conjuracao_druida",
+   "idioma_druidico",
+   "ordem_primal",
+   "companheiro_selvagem",
+   "forma_selvagem",
+   "subclasse_de_druida",
+   "ressurgimento_selvagem",
+   "furia_elemental",
+   "furia_elemental_aprimorada",
+   "magias_bestiais",
+   "arquidruida",
+   "formas_animais_dos_circulos_druidicos",
+   "magias_do_circulo_da_lua",
+   "formas_animais_dos_circulos_druidicos_aprimorada",
+   "passo_lunar",
+   "forma_lunar",
+   "auxilio_da_terra",
+   "magias_do_circulo_da_terra",
+   "recuperacao_natural",
+   "protecao_natural",
+   "santuario_natural",
+   "forma_estrelada",
+   "mapa_estelar",
+   "pressagio_cosmico",
+   "constelacoes_cintilantes",
+   "repleto_de_estrelas",
+   "ira_do_mar",
+   "magias_do_circulo_do_mar",
+   "afinidade_aquatica",
+   "filho_da_tempestade",
+   "manifestacao_oceanica",
+   "conjuracao_clerigo",
+   "ordem_divina",
+   "canalizar_divindade",
+   "subclasse_de_clerigo",
+   "fulminar_mortos_vivos",
+   "golpes_abencoados",
+   "intervencao_divina",
+   "golpes_abencoados_aprimorados",
+   "intervencao_divina_maior",
+   "magias_de_dominio_da_guerra",
+   "ataque_direcionado",
+   "sacerdote_da_guerra",
+   "bencao_do_deus_da_guerra",
+   "avatar_da_guerra",
+   "brilho_do_amanhecer",
+   "labareda_protetora",
+   "magias_de_dominio_da_luz",
+   "labareda_protetora_aprimorada",
+   "coroa_de_luz",
+   "magias_de_dominio_da_trapaca",
+   "bencao_do_trapaceiro",
+   "invocar_duplicidade",
+   "transposicao_do_trapaceiro",
+   "duplicidade_aprimorada",
+   "magias_de_dominio_da_vida",
+   "discipulo_da_vida",
+   "preservar_a_vida",
+   "curandeiro_abencoado",
+   "cura_suprema",
+   "furia",
+   "defesa_sem_armadura_barbaro",
+   "maestria_em_arma_barbaro",
+   "ataque_imprudente",
+   "sentido_de_perigo",
+   "conhecimento_primordial",
+   "subclasse_de_barbaro",
+   "movimento_rapido",
+   "bote_instintivo",
+   "instintos_primitivos",
+   "golpe_brutal",
+   "furia_implacavel",
+   "golpe_brutal_fortalecido_13",
+   "golpe_brutal_fortalecido_17",
+   "furia_persistente",
+   "forca_indomavel",
+   "campeao_primitivo",
+   "vitalidade_da_arvore",
+   "ramos_da_arvore",
+   "raizes_devastadoras",
+   "percorrer_a_arvore",
+   "frenesi",
+   "furia_irracional",
+   "retaliacao",
+   "presenca_intimidante",
+   "arauto_da_fauna",
+   "furia_dos_selvagens",
+   "aspecto_dos_selvagens",
+   "arauto_da_natureza",
+   "poder_dos_selvagens",
+   "campeao_dos_deuses",
+   "furia_divina",
+   "concentracao_fanatica",
+   "presenca_zelosa",
+   "furia_dos_deuses",
+   "ataque_furtivo",
+   "especialista",
+   "giria_do_ladrao",
+   "maestria_em_arma_ladino",
+   "acao_ardilosa",
+   "mira_firme",
+   "subclasse_de_ladino",
+   "golpe_astuto",
+   "esquiva_sobrenatural",
+   "evasao_ladino",
+   "talento_confiavel",
+   "golpe_astuto_aprimorado",
+   "golpes_sujos",
+   "mente_escorregadia",
+   "elusivo",
+   "golpe_de_sorte",
+   "laminas_psiquicas",
+   "poder_psionico_ladino",
+   "laminas_da_alma",
+   "veu_psiquico",
+   "rasgar_mente",
+   "assassinar",
+   "ferramentas_de_assassino",
+   "especialista_em_infiltracao",
+   "armas_venenosas",
+   "golpe_mortal",
+   "andarilho_de_telhados",
+   "mao_leve",
+   "furtividade_suprema",
+   "usar_dispositivo_magico",
+   "reflexos_de_ladrao",
+   "conjuracao_trapaceiro_arcano",
+   "maos_magicas_ligeiras",
+   "emboscada_magica",
+   "trapaceiro_versatil",
+   "ladrao_de_magias",
+   "inspiracao_de_bardo",
+   "conjuracao_bardo",
+   "especialista_bardo",
+   "pau_pra_toda_obra",
+   "subclasse_de_bardo",
+   "fonte_de_inspiracao",
+   "contra_encantamento",
+   "segredos_magicos",
+   "inspiracao_superior",
+   "palavras_de_criacao",
+   "inspiracao_em_combate",
+   "treinamento_marcial",
+   "ataque_extra_bardo",
+   "magia_de_batalha",
+   "ginga_fascinante",
+   "gingado_coordenado",
+   "movimento_inspirador",
+   "evasao_liderada",
+   "palavras_de_interrupcao",
+   "proficiencias_bonus",
+   "descobertas_magicas",
+   "pericia_inigualavel",
+   "magia_fascinante",
+   "manto_de_inspiracao",
+   "manto_de_majestade",
+   "majestade_inquebravel",
+   "conjuracao_feiticeiro",
+   "feiticaria_inata",
+   "fonte_de_magia",
+   "metamagia",
+   "subclasse_de_feiticeiro",
+   "restauracao_feiticeira",
+   "feiticaria_encarnada",
+   "apoteose_arcana",
+   "fala_telepatica",
+   "magias_psionicas",
+   "defesas_psiquicas",
+   "feiticaria_psionica",
+   "revelacao_em_carne",
+   "implosao_de_distorcao",
+   "magias_draconicas",
+   "resiliencia_draconica",
+   "afinidade_elemental",
+   "asas_de_dragao",
+   "companheiro_draconico",
+   "magias_mecanicas",
+   "restaurar_equilibrio",
+   "bastiao_da_lei",
+   "transe_da_ordem",
+   "cavalgada_mecanica",
+   "mares_do_caos",
+   "surto_de_magia_selvagem",
+   "distorcer_a_sorte",
+   "caos_controlado",
+   "surto_controlado",
+   "conjuracao_guardiao",
+   "inimigo_favorito",
+   "maestria_em_arma_guardiao",
+   "estilo_de_luta_guardiao",
+   "explorador_habil",
+   "errante",
+   "especialista_guardiao",
+   "incansavel",
+   "predador_implacavel",
+   "veu_da_natureza",
+   "cacador_preciso",
+   "sentidos_selvagens",
+   "matador_de_inimigos_favoritos",
+   "glamour_transcendental",
+   "golpes_terriveis",
+   "magias_do_andarilho_feerico",
+   "detalhe_sedutor",
+   "reforcos_feericos",
+   "andarilho_nebuloso",
+   "conhecimento_do_cacador",
+   "presa_do_cacador",
+   "taticas_defensivas",
+   "presa_do_cacador_superior",
+   "defesa_do_cacador_superior",
+   "companheiro_primal",
+   "treinamento_excepcional",
+   "furia_bestial",
+   "compartilhar_magias",
+   "emboscador_das_sombras",
+   "magias_do_vigilante_das_sombras",
+   "visao_umbrosa",
+   "mente_de_ferro",
+   "torrente_do_vigilante",
+   "esquiva_sombria",
+   "conjuracao_paladino",
+   "maestria_em_arma_paladino",
+   "maos_consagradas",
+   "destruicao_do_paladino",
+   "estilo_de_luta_paladino",
+   "canalizar_divindade_paladino",
+   "montaria_fiel",
+   "aura_de_protecao",
+   "repudiar_inimigos",
+   "aura_de_coragem",
+   "golpes_radiantes",
+   "toque_restaurador",
+   "aura_expandida",
+   "magias_do_juramento_da_devocao",
+   "arma_sagrada",
+   "aura_de_devocao",
+   "destruicao_protetora",
+   "resplendor_sagrado",
+   "atleta_inigualavel",
+   "destruicao_inspiradora",
+   "magias_do_juramento_da_gloria",
+   "aura_de_vivacidade",
+   "defesa_gloriosa",
+   "lenda_viva",
+   "magias_do_juramento_da_vinganca",
+   "voto_de_inimizade",
+   "vingador_implacavel",
+   "alma_vingativa",
+   "anjo_vingador",
+   "a_ira_da_natureza",
+   "magias_do_juramento_dos_anciaos",
+   "aura_de_resistencia",
+   "sentinela_imortal",
+   "campeao_ancestral"
+  ]
+ },
+ "classes.json": {
+  "substituir": {
+   "barbaro": {
+    "id": "barbaro",
+    "nome": "Bárbaro",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 51,
+     "pagina_pdf": 55
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Combatente movido por uma Fúria primitiva que lhe dá resistência, dano extra e vantagem com Força. Não conjura magias.",
+    "dado_de_vida": 12,
+    "atributo_primario": [
+     "FOR"
+    ],
+    "salvaguardas_primarias": [
+     "FOR",
+     "CON"
+    ],
+    "nivel_subclasse": 3,
+    "conjuracao": null,
+    "subclasses": [
+     "trilha_da_arvore_do_mundo",
+     "trilha_do_berserker",
+     "trilha_do_coracao_selvagem",
+     "trilha_do_fanatico"
+    ],
+    "proficiencias_iniciais": [
+     {
+      "tipo": "conceder_proficiencia",
+      "categoria": "salvaguarda",
+      "chave": "FOR",
+      "nivel_dominio": "proficiente"
+     },
+     {
+      "tipo": "conceder_proficiencia",
+      "categoria": "salvaguarda",
+      "chave": "CON",
+      "nivel_dominio": "proficiente"
+     },
+     {
+      "id": "barbaro_pericias_iniciais",
+      "tipo": "escolha",
+      "rotulo": "Escolha 2 perícias",
+      "quantidade": 2,
+      "momento": "criacao",
+      "de": {
+       "catalogo": "pericias",
+       "chaves": [
+        "atletismo",
+        "intimidacao",
+        "lidar_com_animais",
+        "natureza",
+        "percepcao",
+        "sobrevivencia"
+       ]
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "conceder_proficiencia",
+       "categoria": "pericia",
+       "chave": "{{escolhido}}",
+       "nivel_dominio": "proficiente"
+      }
+     },
+     {
+      "tipo": "conceder_proficiencia",
+      "categoria": "arma",
+      "nivel_dominio": "proficiente",
+      "de": {
+       "catalogo": "itens",
+       "filtro": {
+        "categoria": "arma",
+        "grupo": "simples"
+       }
+      },
+      "chave_antiga": "categoria:simples"
+     },
+     {
+      "tipo": "conceder_proficiencia",
+      "categoria": "arma",
+      "nivel_dominio": "proficiente",
+      "de": {
+       "catalogo": "itens",
+       "filtro": {
+        "categoria": "arma",
+        "grupo": "marcial"
+       }
+      },
+      "chave_antiga": "categoria:marcial"
+     }
+    ],
+    "treinamento_com_armadura": [
+     "leve",
+     "media",
+     "escudo"
+    ],
+    "equipamento_inicial": {
+     "opcoes": [
+      {
+       "id": "A",
+       "itens": [
+        {
+         "item": "machadinha",
+         "quantidade": 4
+        },
+        {
+         "item": "machado_grande"
+        },
+        {
+         "item": "kit_de_aventureiro"
+        }
+       ],
+       "moedas": {
+        "po": 15
+       }
+      },
+      {
+       "id": "B",
+       "moedas": {
+        "po": 75
+       },
+       "itens": []
+      }
+     ],
+     "revisao": {
+      "status": "ok",
+      "notas": ""
+     }
+    },
+    "progressao": [
+     {
+      "nivel": 1,
+      "bonus_de_proficiencia": 2,
+      "caracteristicas": [
+       "defesa_sem_armadura_barbaro",
+       "furia",
+       "maestria_em_arma_barbaro"
+      ],
+      "colunas": {
+       "furias": 2,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 2
+      }
+     },
+     {
+      "nivel": 2,
+      "bonus_de_proficiencia": 2,
+      "caracteristicas": [
+       "ataque_imprudente",
+       "sentido_de_perigo"
+      ],
+      "colunas": {
+       "furias": 2,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 2
+      }
+     },
+     {
+      "nivel": 3,
+      "bonus_de_proficiencia": 2,
+      "caracteristicas": [
+       "conhecimento_primordial",
+       "subclasse_de_barbaro"
+      ],
+      "colunas": {
+       "furias": 3,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 2
+      }
+     },
+     {
+      "nivel": 4,
+      "bonus_de_proficiencia": 2,
+      "caracteristicas": [
+       "aumento_no_valor_de_atributo"
+      ],
+      "colunas": {
+       "furias": 3,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 5,
+      "bonus_de_proficiencia": 3,
+      "caracteristicas": [
+       "ataque_extra",
+       "movimento_rapido"
+      ],
+      "colunas": {
+       "furias": 3,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 6,
+      "bonus_de_proficiencia": 3,
+      "caracteristicas": [
+       "caracteristica_de_subclasse"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 7,
+      "bonus_de_proficiencia": 3,
+      "caracteristicas": [
+       "bote_instintivo",
+       "instintos_primitivos"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 8,
+      "bonus_de_proficiencia": 3,
+      "caracteristicas": [
+       "aumento_no_valor_de_atributo"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 2,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 9,
+      "bonus_de_proficiencia": 4,
+      "caracteristicas": [
+       "golpe_brutal"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 3
+      }
+     },
+     {
+      "nivel": 10,
+      "bonus_de_proficiencia": 4,
+      "caracteristicas": [
+       "caracteristica_de_subclasse"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 11,
+      "bonus_de_proficiencia": 4,
+      "caracteristicas": [
+       "furia_implacavel"
+      ],
+      "colunas": {
+       "furias": 4,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 12,
+      "bonus_de_proficiencia": 4,
+      "caracteristicas": [
+       "aumento_no_valor_de_atributo"
+      ],
+      "colunas": {
+       "furias": 5,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 13,
+      "bonus_de_proficiencia": 5,
+      "caracteristicas": [
+       "golpe_brutal_fortalecido_13"
+      ],
+      "colunas": {
+       "furias": 5,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 14,
+      "bonus_de_proficiencia": 5,
+      "caracteristicas": [
+       "caracteristica_de_subclasse"
+      ],
+      "colunas": {
+       "furias": 5,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 15,
+      "bonus_de_proficiencia": 5,
+      "caracteristicas": [
+       "furia_persistente"
+      ],
+      "colunas": {
+       "furias": 5,
+       "dano_da_furia": 3,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 16,
+      "bonus_de_proficiencia": 5,
+      "caracteristicas": [
+       "aumento_no_valor_de_atributo"
+      ],
+      "colunas": {
+       "furias": 5,
+       "dano_da_furia": 4,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 17,
+      "bonus_de_proficiencia": 6,
+      "caracteristicas": [
+       "golpe_brutal_fortalecido_17"
+      ],
+      "colunas": {
+       "furias": 6,
+       "dano_da_furia": 4,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 18,
+      "bonus_de_proficiencia": 6,
+      "caracteristicas": [
+       "forca_indomavel"
+      ],
+      "colunas": {
+       "furias": 6,
+       "dano_da_furia": 4,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 19,
+      "bonus_de_proficiencia": 6,
+      "caracteristicas": [
+       "dadiva_epica"
+      ],
+      "colunas": {
+       "furias": 6,
+       "dano_da_furia": 4,
+       "maestria_em_arma": 4
+      }
+     },
+     {
+      "nivel": 20,
+      "bonus_de_proficiencia": 6,
+      "caracteristicas": [
+       "campeao_primitivo"
+      ],
+      "colunas": {
+       "furias": 6,
+       "dano_da_furia": 4,
+       "maestria_em_arma": 4
+      }
+     }
+    ],
+    "colunas_da_tabela": {
+     "furias": {
+      "nome": "Fúrias",
+      "tipo": "inteiro"
+     },
+     "dano_da_furia": {
+      "nome": "Dano da Fúria",
+      "tipo": "inteiro"
+     },
+     "maestria_em_arma": {
+      "nome": "Maestria em Armas",
+      "tipo": "inteiro"
+     }
+    },
+    "multiclasse": {
+     "adquire": [
+      "dado_de_vida",
+      "proficiencia:arma:categoria:marcial",
+      "treinamento_armadura:escudo"
+     ],
+     "fonte": {
+      "capitulo": 3,
+      "pagina_livro": 51,
+      "pagina_pdf": 55
+     },
+     "nota": "Registrado para a fase de multiclasse."
+    }
+   }
+  },
+  "ordem": [
+   "monge",
+   "guerreiro",
+   "mago",
+   "bruxo",
+   "druida",
+   "clerigo",
+   "barbaro",
+   "ladino",
+   "bardo",
+   "feiticeiro",
+   "guardiao",
+   "paladino"
+  ]
+ },
+ "subclasses.json": {
+  "substituir": {
+   "adivinhador": {
+    "id": "adivinhador",
+    "nome": "Adivinhador",
+    "classe": "mago",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 155,
+     "pagina_pdf": 159
+    },
+    "revisao": {
+     "status": "ok",
+     "notas": ""
+    },
+    "descricao_curta": "Desvenda passado, presente e futuro com discernimento, visão remota e previsão.",
+    "niveis_de_caracteristica": [
+     3,
+     6,
+     10,
+     14
+    ],
+    "caracteristicas": [
+     "prodigio",
+     "versado_em_adivinhacao",
+     "perito_em_adivinhacao",
+     "o_terceiro_olho",
+     "prodigio_maior"
+    ]
+   }
+  },
+  "ordem": [
+   "combatente_da_mao_espalmada",
+   "combatente_da_misericordia",
+   "combatente_das_sombras",
+   "combatente_dos_elementos",
+   "campeao",
+   "cavaleiro_mistico",
+   "combatente_psiquico",
+   "mestre_da_batalha",
+   "abjurador",
+   "adivinhador",
+   "evocador",
+   "ilusionista",
+   "patrono_arquifada",
+   "patrono_celestial",
+   "patrono_grande_antigo",
+   "patrono_infero",
+   "circulo_da_lua",
+   "circulo_da_terra",
+   "circulo_das_estrelas",
+   "circulo_do_mar",
+   "dominio_da_guerra",
+   "dominio_da_luz",
+   "dominio_da_trapaca",
+   "dominio_da_vida",
+   "trilha_da_arvore_do_mundo",
+   "trilha_do_berserker",
+   "trilha_do_coracao_selvagem",
+   "trilha_do_fanatico",
+   "adaga_espiritual",
+   "assassino",
+   "ladrao",
+   "trapaceiro_arcano",
+   "colegio_da_bravura",
+   "colegio_da_danca",
+   "colegio_do_conhecimento",
+   "colegio_do_glamour",
+   "feiticaria_aberrante",
+   "feiticaria_draconica",
+   "feiticaria_mecanica",
+   "feiticaria_selvagem",
+   "andarilho_feerico",
+   "cacador",
+   "senhor_das_feras",
+   "vigilante_das_sombras",
+   "juramento_da_devocao",
+   "juramento_da_gloria",
+   "juramento_da_vinganca",
+   "juramento_dos_anciaos"
+  ]
+ },
+ "catalogos/alvos.json": {
+  "acrescentar": [
+   {
+    "id": "movimento_do_turno",
+    "nome": "Movimento disponível no turno"
+   },
+   {
+    "id": "ataque_com_arma",
+    "nome": "Jogada de ataque com arma",
+    "nota": "Recorte de jogada_de_ataque. Usado pelo Crítico Aprimorado do Campeão (p. 129)."
+   },
+   {
+    "id": "ataque_desarmado",
+    "nome": "Jogada de ataque de Ataque Desarmado",
+    "nota": "Recorte de jogada_de_ataque. Usado pelo Crítico Aprimorado do Campeão (p. 129)."
+   },
+   {
+    "id": "teste_d20_de_criatura_a_vista",
+    "nome": "Teste de D20 de uma criatura à vista",
+    "nota": "Teste de outra criatura, não seu. Usado pelo Prodígio do Adivinhador (p. 155)."
+   }
+  ],
+  "ordem": [
+   "teste_d20",
+   "jogada_de_ataque",
+   "jogada_de_ataque_contra_voce",
+   "teste_de_atributo",
+   "salvaguarda",
+   "iniciativa",
+   "ca_total",
+   "deslocamento",
+   "interacao_social_contra_voce",
+   "movimento_do_turno",
+   "alcance_do_ataque_desarmado",
+   "jogada_de_dano",
+   "salvaguarda_contra_morte",
+   "teste_de_atributo_de_outro",
+   "alcance_de_magia",
+   "teste_de_dissipar",
+   "ataque_com_arma",
+   "ataque_desarmado",
+   "teste_d20_de_criatura_a_vista",
+   "cd_para_evitar_sua_magia",
+   "jogada_de_ataque_magico",
+   "pontos_de_vida_maximos",
+   "custo_de_metamagia",
+   "rolagem_na_tabela",
+   "dado_de_dano_da_magia",
+   "pontos_de_vida_temporarios",
+   "dado_de_dano_da_arma",
+   "dado_de_dano_do_ataque_desarmado",
+   "dado_de_cura",
+   "tamanho_da_emanacao",
+   "capacidade_de_carga"
+  ]
+ },
+ "catalogos/alvos_de_impedimento.json": {
+  "acrescentar": [
+   {
+    "id": "vantagem_em_ataque_contra_voce",
+    "nome": "Ter Vantagem numa jogada de ataque contra você",
+    "nota": "Usado pelo Elusivo do Ladino (nível 18, p. 141). Impede que atacantes obtenham Vantagem contra o personagem."
+   }
+  ],
+  "ordem": [
+   "acao",
+   "acao_bonus",
+   "reacao",
+   "concentracao",
+   "falar",
+   "atacar_ou_alvejar",
+   "aproximar_voluntariamente_de",
+   "ataque_de_oportunidade_provocado_por_voce",
+   "vantagem_em_ataque_contra_voce",
+   "vantagem_ou_desvantagem_em_teste_d20",
+   "desvantagem_por_inimigo_adjacente",
+   "desvantagem_por_alcance_maximo"
+  ]
+ },
+ "catalogos/efeitos_de_golpe_astuto.json": {
+  "substituir": {
+   "ataque_escondido": {
+    "id": "ataque_escondido",
+    "nome": "Ataque Escondido",
+    "custo_em_dados": 1,
+    "origem": "subclasse:ladrao",
+    "descricao_curta": "Estando Invisível pela ação Esconder, o ataque não encerra a condição se você terminar o turno atrás de Cobertura de Três Quartos ou Total.",
+    "apenas_se_concedido": true,
+    "nota": "Não é liberado por nível: vem da Furtividade Suprema do Ladrão (nível 9 da subclasse, p. 143).",
+    "efeitos": [
+     {
+      "tipo": "alterar_condicao",
+      "condicao_id": "invisivel",
+      "operacao": "impedir_encerramento",
+      "gatilho_impedido": "atacar",
+      "condicao": {
+       "todas": [
+        "condicao_obtida_por:esconder",
+        {
+         "alguma": [
+          "termina_o_turno_atras_de:cobertura_tres_quartos",
+          "termina_o_turno_atras_de:cobertura_total"
+         ]
+        }
+       ]
+      },
+      "nota": "O ataque normalmente encerra a Invisibilidade da ação Esconder; aqui não encerra."
+     }
+    ]
+   }
+  },
+  "ordem": [
+   "envenenar",
+   "retirada",
+   "tropeco",
+   "aturdir",
+   "obscurecer",
+   "nocaute",
+   "ataque_escondido"
+  ]
+ },
+ "catalogos/ferramentas.json": {
+  "substituir": {
+   "ferramentas_de_sapateiro": {
+    "id": "ferramentas_de_sapateiro",
+    "nome": "Ferramentas de Sapateiro",
+    "grupo": "artesao",
+    "atributo": "DES",
+    "custo_po": 5,
+    "peso_kg": 2.5,
+    "proficiencia_separada": true,
+    "fonte": {
+     "capitulo": 6,
+     "pagina_livro": 220,
+     "pagina_pdf": 224
+    },
+    "custo": {
+     "valor": 5,
+     "moeda": "po",
+     "em_pc": 500
+    },
+    "usar_objeto": {
+     "acao": "Modificar calçado para conceder Vantagem no próximo teste de Destreza (Acrobacia) do usuário",
+     "cd": 10
+    },
+    "fabricacao": {
+     "texto": "Kit de Escalada",
+     "itens": [
+      "kit_de_escalada"
+     ]
+    }
+   }
+  },
+  "ordem": [
+   "ferramentas_de_carpinteiro",
+   "ferramentas_de_cartografo",
+   "ferramentas_de_coureiro",
+   "ferramentas_de_entalhador",
+   "ferramentas_de_ferreiro",
+   "ferramentas_de_funileiro",
+   "ferramentas_de_joalheiro",
+   "ferramentas_de_oleiro",
+   "ferramentas_de_pedreiro",
+   "ferramentas_de_sapateiro",
+   "ferramentas_de_tecelao",
+   "ferramentas_de_vidreiro",
+   "suprimentos_de_alquimista",
+   "suprimentos_de_caligrafo",
+   "suprimentos_de_cervejeiro",
+   "suprimentos_de_pintor",
+   "utensilios_de_cozinheiro",
+   "ferramentas_de_ladrao",
+   "ferramentas_de_navegador",
+   "instrumento_musical",
+   "kit_de_disfarce",
+   "kit_de_falsificacao",
+   "kit_de_herbalismo",
+   "kit_de_jogos",
+   "kit_de_veneno"
+  ]
+ },
+ "catalogos/itens.json": {
+  "substituir": {
+   "lanca_de_montaria": {
+    "id": "lanca_de_montaria",
+    "nome": "Lança de Montaria",
+    "categoria": "arma",
+    "grupo": "marcial",
+    "alcance": "corpo_a_corpo",
+    "dano": {
+     "formula_dado": "1d10",
+     "valor_fixo": null,
+     "tipo_dano": "perfurante"
+    },
+    "maestria": "derrubar",
+    "peso_kg": 3.0,
+    "custo": {
+     "valor": 10,
+     "moeda": "po",
+     "em_pc": 1000
+    },
+    "propriedades": [
+     {
+      "propriedade": "duas_maos",
+      "texto": "Duas Mãos (a menos que montado)",
+      "condicional": "duas_maos_exceto_montado"
+     },
+     {
+      "propriedade": "extensao",
+      "texto": "Extensão"
+     },
+     {
+      "propriedade": "pesada",
+      "texto": "Pesada"
+     }
+    ],
+    "fonte": {
+     "capitulo": 6,
+     "pagina_livro": 215,
+     "pagina_pdf": 219
+    },
+    "maos_ocupadas": 2
+   },
+   "arco_longo": {
+    "id": "arco_longo",
+    "nome": "Arco Longo",
+    "categoria": "arma",
+    "grupo": "marcial",
+    "alcance": "a_distancia",
+    "dano": {
+     "formula_dado": "1d8",
+     "valor_fixo": null,
+     "tipo_dano": "perfurante"
+    },
+    "maestria": "lentidao",
+    "peso_kg": 1.0,
+    "custo": {
+     "valor": 50,
+     "moeda": "po",
+     "em_pc": 5000
+    },
+    "propriedades": [
+     {
+      "propriedade": "duas_maos",
+      "texto": "Duas Mãos"
+     },
+     {
+      "propriedade": "municao",
+      "texto": "Munição (Alcance 45/180; Flecha)",
+      "alcance_normal_m": 45.0,
+      "alcance_longo_m": 180.0,
+      "municao": "flechas"
+     },
+     {
+      "propriedade": "pesada",
+      "texto": "Pesada"
+     }
+    ],
+    "fonte": {
+     "capitulo": 6,
+     "pagina_livro": 215,
+     "pagina_pdf": 219
+    },
+    "maos_ocupadas": 2,
+    "consumo": {
+     "item": "flechas",
+     "por_ataque": 1,
+     "recuperacao_apos_o_combate": {
+      "fracao": "metade",
+      "arredondamento": "baixo",
+      "tempo": "1 minuto"
+     }
+    }
+   },
+   "besta_leve": {
+    "id": "besta_leve",
+    "nome": "Besta Leve",
+    "categoria": "arma",
+    "grupo": "simples",
+    "alcance": "a_distancia",
+    "dano": {
+     "formula_dado": "1d8",
+     "valor_fixo": null,
+     "tipo_dano": "perfurante"
+    },
+    "maestria": "lentidao",
+    "peso_kg": 2.5,
+    "custo": {
+     "valor": 25,
+     "moeda": "po",
+     "em_pc": 2500
+    },
+    "propriedades": [
+     {
+      "propriedade": "duas_maos",
+      "texto": "Duas Mãos"
+     },
+     {
+      "propriedade": "municao",
+      "texto": "Munição (Alcance 24/96; Virote)",
+      "alcance_normal_m": 24.0,
+      "alcance_longo_m": 96.0,
+      "municao": "virotes"
+     },
+     {
+      "propriedade": "recarga",
+      "texto": "Recarga"
+     }
+    ],
+    "fonte": {
+     "capitulo": 6,
+     "pagina_livro": 215,
+     "pagina_pdf": 219
+    },
+    "maos_ocupadas": 2,
+    "consumo": {
+     "item": "virotes",
+     "por_ataque": 1,
+     "recuperacao_apos_o_combate": {
+      "fracao": "metade",
+      "arredondamento": "baixo",
+      "tempo": "1 minuto"
+     }
+    },
+    "limite_por_acao": {
+     "disparos": 1,
+     "vale_para": [
+      "acao",
+      "acao_bonus",
+      "reacao"
+     ],
+     "nota": "Vale mesmo com Ataque Extra (p. 217)."
+    }
+   },
+   "besta_pesada": {
+    "id": "besta_pesada",
+    "nome": "Besta Pesada",
+    "categoria": "arma",
+    "grupo": "marcial",
+    "alcance": "a_distancia",
+    "dano": {
+     "formula_dado": "1d10",
+     "valor_fixo": null,
+     "tipo_dano": "perfurante"
+    },
+    "maestria": "empurrar",
+    "peso_kg": 9.0,
+    "custo": {
+     "valor": 50,
+     "moeda": "po",
+     "em_pc": 5000
+    },
+    "propriedades": [
+     {
+      "propriedade": "duas_maos",
+      "texto": "Duas Mãos"
+     },
+     {
+      "propriedade": "municao",
+      "texto": "Munição (Alcance 30/120; Virote)",
+      "alcance_normal_m": 30.0,
+      "alcance_longo_m": 120.0,
+      "municao": "virotes"
+     },
+     {
+      "propriedade": "pesada",
+      "texto": "Pesada"
+     },
+     {
+      "propriedade": "recarga",
+      "texto": "Recarga"
+     }
+    ],
+    "fonte": {
+     "capitulo": 6,
+     "pagina_livro": 215,
+     "pagina_pdf": 219
+    },
+    "maos_ocupadas": 2,
+    "consumo": {
+     "item": "virotes",
+     "por_ataque": 1,
+     "recuperacao_apos_o_combate": {
+      "fracao": "metade",
+      "arredondamento": "baixo",
+      "tempo": "1 minuto"
+     }
+    },
+    "limite_por_acao": {
+     "disparos": 1,
+     "vale_para": [
+      "acao",
+      "acao_bonus",
+      "reacao"
+     ],
+     "nota": "Vale mesmo com Ataque Extra (p. 217)."
+    }
+   }
+  },
+  "ordem": [
+   "adaga",
+   "alabarda",
+   "arco_curto",
+   "arco_longo",
+   "azagaia",
+   "besta_de_mao",
+   "besta_leve",
+   "besta_pesada",
+   "cajado",
+   "chicote",
+   "cimitarra",
+   "clava",
+   "clava_grande",
+   "dardo",
+   "espada_curta",
+   "espada_grande",
+   "espada_longa",
+   "foice",
+   "funda",
+   "glaive",
+   "lanca",
+   "lanca_de_montaria",
+   "lanca_longa",
+   "maca",
+   "maca_estrela",
+   "machadinha",
+   "machado_de_batalha",
+   "machado_grande",
+   "malho",
+   "mangual",
+   "martelo_de_guerra",
+   "martelo_leve",
+   "mosquete",
+   "picareta_de_guerra",
+   "pistola",
+   "rapieira",
+   "tridente",
+   "zarabatana",
+   "acolchoada",
+   "armadura_de_tala",
+   "cota_de_aneis",
+   "cota_de_malha",
+   "cota_de_malha_parcial",
+   "couraca_peitoral",
+   "couro",
+   "couro_batido",
+   "escudo",
+   "gibao_de_peles",
+   "loriga_de_escamas",
+   "placas",
+   "placas_parcial",
+   "alimentacao_por_dia",
+   "biga",
+   "carroca",
+   "carruagem",
+   "estabulo_por_dia",
+   "sela_exotica",
+   "sela_militar",
+   "sela_viagem",
+   "treno",
+   "vagao",
+   "acido",
+   "agua_benta",
+   "algibeira",
+   "aljava",
+   "antitoxina",
+   "apito_sinalizador",
+   "ariete_portavel",
+   "armadilha_de_caca",
+   "arpeu",
+   "balde",
+   "baliza",
+   "barril",
+   "bau",
+   "bolsa_de_componentes",
+   "cadeado",
+   "caixa_para_fogo",
+   "caneta_tinteiro",
+   "cantil",
+   "cesta",
+   "cobertor",
+   "corda",
+   "cordao",
+   "corrente",
+   "escada",
+   "esferas_de_metal",
+   "espelho",
+   "estacas_de_ferro",
+   "estojo_mapa_ou_pergaminho",
+   "estojo_virote_de_besta",
+   "estrepes",
+   "fogo_alquimico",
+   "frasco",
+   "garrafa_de_vidro",
+   "grilhoes",
+   "jarro",
+   "kit_de_artista",
+   "kit_de_assaltante",
+   "kit_de_aventureiro",
+   "kit_de_curandeiro",
+   "kit_de_diplomata",
+   "kit_de_erudito",
+   "kit_de_escalada",
+   "kit_de_explorador_de_masmorras",
+   "kit_de_sacerdote",
+   "lampada",
+   "lanterna_coberta",
+   "lanterna_foca_facho",
+   "livro",
+   "livro_de_magias",
+   "luneta",
+   "lupa",
+   "mapa",
+   "mochila",
+   "oleo",
+   "pa",
+   "papel",
+   "pe_de_cabra",
+   "perfume",
+   "pergaminho",
+   "pergaminho_magico_1_circulo",
+   "pergaminho_magico_truque",
+   "pocao_de_cura",
+   "pote",
+   "pote_ferro",
+   "racoes",
+   "rede",
+   "roldana_e_polias",
+   "roupas_fantasia",
+   "roupas_finas",
+   "roupas_viagem",
+   "saca",
+   "saco_de_dormir",
+   "sino",
+   "tenda",
+   "tinta",
+   "tocha",
+   "tunica",
+   "vela",
+   "veneno_basico",
+   "amuleto",
+   "cajado_de_madeira",
+   "cetro",
+   "cristal",
+   "emblema",
+   "orbe",
+   "ramo_de_visco",
+   "relicario",
+   "varinha",
+   "varinha_de_teixo",
+   "camelo",
+   "cavalo_de_carga",
+   "cavalo_de_guerra",
+   "cavalo_de_montaria",
+   "elefante",
+   "mastim",
+   "mula",
+   "ponei",
+   "agulhas",
+   "balas_arma_de_fogo",
+   "balas_funda",
+   "flechas",
+   "virotes",
+   "aeronau",
+   "barco_a_remo",
+   "barco_de_quilha",
+   "dracar",
+   "galera",
+   "navio_de_guerra",
+   "veleiro"
+  ]
+ },
+ "catalogos/magias.json": {
+  "remover": [
+   "de_jallarzi",
+   "de_tasha",
+   "e_o_mal",
+   "o_mal"
+  ],
+  "substituir": {
+   "invocar_fera": {
+    "id": "invocar_fera",
+    "nome": "Invocar Fera",
+    "nivel": 2,
+    "escola": "invocacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "druida",
+     "guardiao"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 294,
+     "pagina_pdf": 298
+    },
+    "nota": "Não pertence à lista do Mago. Está aqui porque a subclasse Ilusionista (Criaturas Espectrais, p. 157) concede acesso a ela.",
+    "descricao_curta": "Invoca um Espírito Bestial de Água, Ar ou Terra, com o bloco próprio, por até 1 hora. Aliado, age no seu turno, obedece a comandos verbais.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "27 metros",
+     "tipo": "distancia",
+     "metros": 27.0
+    },
+    "componentes": {
+     "texto": "V, S, M (uma pluma, tufo de pele e rabo de peixe dentro de uma bolota dourada no valor de 200 ou mais PO)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma pluma, tufo de pele e rabo de peixe dentro de uma bolota dourada no valor de 200 ou mais PO",
+     "material_custo_po": 200,
+     "material_custo_minimo": true,
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": false,
+     "regra": "Material com custo ou consumido: precisa ser fornecido de verdade (p. 237)."
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 hora",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 60
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Use o círculo do espaço de magia para o círculo da magia no bloco de estatísticas."
+    },
+    "detalhada": true
+   },
+   "destruicao_colerica": {
+    "id": "destruicao_colerica",
+    "nome": "Destruição Colérica",
+    "nivel": 1,
+    "escola": "necromancia",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "paladino"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 270,
+     "pagina_pdf": 274
+    },
+    "descricao_curta": "Golpe: +1d6 de dano Necrótico e salvaguarda de Sabedoria ou o alvo fica Amedrontado, repetindo a salvaguarda no fim de cada turno dele.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação Bônus, que você realiza",
+     "ritual": false,
+     "tipo": "acao_bonus"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "1 minuto",
+     "concentracao": false,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "dano": {
+     "formula_dado": "1d6",
+     "tipo_dano": "necrotico"
+    },
+    "salvaguarda": {
+     "atributo": "SAB"
+    },
+    "condicoes_citadas": [
+     "amedrontado"
+    ],
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano aumenta em 1d6 pontos para cada círculo de espaço de magia acima de 1."
+    },
+    "detalhada": true
+   },
+   "convocar_elemental": {
+    "id": "convocar_elemental",
+    "nome": "Convocar Elemental",
+    "nivel": 4,
+    "escola": "invocacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "druida",
+     "guardiao",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 260,
+     "pagina_pdf": 264
+    },
+    "descricao_curta": "Invoca um Espírito Elemental de Água, Ar, Fogo ou Terra por até 1 hora, com o bloco de estatísticas próprio. Aliado, age no seu turno, obedece a comandos verbais.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "27 metros",
+     "tipo": "distancia",
+     "metros": 27.0
+    },
+    "componentes": {
+     "texto": "V, S, M (ar, uma pedra, cinzas e água dentro de um frasco incrustado de ouro no valor de 400 ou mais PO)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "ar, uma pedra, cinzas e água dentro de um frasco incrustado de ouro no valor de 400 ou mais PO",
+     "material_custo_po": 400,
+     "material_custo_minimo": true,
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": false,
+     "regra": "Material com custo ou consumido: precisa ser fornecido de verdade (p. 237)."
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 hora",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 60
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Use o círculo do espaço de magia para o círculo da magia no bloco de estatísticas. Espírito Celestial (Vingador) Espírito Elemental Elemental Médio, Neutro CA 11 + o círculo da magia PV 50 + 10 para cada círculo de magia acima de 4 Deslocamento 12 m; Escavação 12 m (apenas Terra); Natação 12 m (apenas Água); Voo 12 m (pairar; apenas Ar) For 18 +4 +4 Des 15 +2 +2 Con 17 +3 +3 Int 4 –3 –3 Sab 10 +0 "
+    },
+    "detalhada": true
+   },
+   "inseto_gigante": {
+    "id": "inseto_gigante",
+    "nome": "Inseto Gigante",
+    "nivel": 4,
+    "escola": "invocacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "druida"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 289,
+     "pagina_pdf": 293
+    },
+    "descricao_curta": "Invoca uma aranha, centopeia ou vespa gigante com o bloco Inseto Gigante, por até 10 minutos. Aliada, age no seu turno, obedece a comandos verbais.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "18 metros",
+     "tipo": "distancia",
+     "metros": 18.0
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Concentração, até 10 minutos",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 10
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Use o círculo do espaço de magia para o círculo da magia no bloco de estatísticas. Imagem Silenciosa pode criar ilusões mundanas e excêntricas."
+    },
+    "detalhada": true
+   },
+   "criar_mortos_vivos": {
+    "id": "criar_mortos_vivos",
+    "nome": "Criar Mortos-Vivos",
+    "nivel": 6,
+    "escola": "necromancia",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "bruxo",
+     "clerigo",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 265,
+     "pagina_pdf": 269
+    },
+    "descricao_curta": "Só à noite. Até três cadáveres Humanoides Médios ou Pequenos viram Carniçais sob seu comando (Ação Bônus, a até 36 m). O controle dura 24 horas e precisa ser renovado.",
+    "tempo_de_conjuracao": {
+     "texto": "1 minuto",
+     "ritual": false,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "alcance": {
+     "texto": "3 metros",
+     "tipo": "distancia",
+     "metros": 3.0
+    },
+    "componentes": {
+     "texto": "V, S, M (uma pedra de ônix preto de 150 ou mais PO para cada cadáver)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma pedra de ônix preto de 150 ou mais PO para cada cadáver",
+     "material_custo_po": 150,
+     "material_custo_minimo": true,
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": false,
+     "regra": "Material com custo ou consumido: precisa ser fornecido de verdade (p. 237)."
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Se você usar um espaço de magia de 7º círculo, você pode animar ou reafirmar o controle sobre quatro Carniçais. Se você usar um espaço de magia de 8º círculo, você pode animar ou reafirmar o controle sobre dois Carneçais ou Inumanos ou cinco Carniçais . Se você usar um espaço de magia de 9º círculo, poderá animar ou reafirmar o controle sobre seis Carniçais , três Carneçais ou Inumanos , ou duas M"
+    },
+    "detalhada": true
+   },
+   "remeter": {
+    "id": "remeter",
+    "nome": "Remeter",
+    "nivel": 3,
+    "escola": "adivinhacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "bardo",
+     "clerigo",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 326,
+     "pagina_pdf": 330
+    },
+    "nota": "Divergência do livro: a lista do Clérigo (p. 84) grafa a escola como 'Evocação'; a entrada do capítulo 7 (p. 326) e a lista do Mago (p. 151) dizem 'Adivinhação'. Mantida Adivinhação, que é o que a entrada da magia diz.",
+    "descricao_curta": "Manda uma mensagem de até 25 palavras a alguém que você já encontrou, a qualquer distância, e recebe uma resposta imediata. Entre planos, 5% de chance de não chegar.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Ilimitado",
+     "tipo": "ilimitado"
+    },
+    "componentes": {
+     "texto": "V, S, M (um fio de cobre)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "um fio de cobre",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "detalhada": true
+   },
+   "dissipar_magia": {
+    "id": "dissipar_magia",
+    "nome": "Dissipar Magia",
+    "nivel": 3,
+    "escola": "abjuracao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bardo",
+     "bruxo",
+     "clerigo",
+     "druida",
+     "feiticeiro",
+     "guardiao",
+     "mago",
+     "paladino"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 273,
+     "pagina_pdf": 277
+    },
+    "descricao_curta": "Encerra magias de 3º círculo ou inferior no alvo. Para as de 4º ou superior, teste de atributo de conjuração contra CD 10 + o círculo da magia. Usando espaço superior, encerra automaticamente tudo de círculo igual ou menor ao espaço gasto.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Você encerra automaticamente uma magia no alvo se o círculo da magia for igual ou inferior ao círculo do espaço de magia que você usa. Um Mago Vermelho de Thay ordena que servos esqueléticos empilhem tesouros no disco do Disco Flutuante de Tenser ."
+    },
+    "detalhada": true
+   },
+   "manto_do_cruzado": {
+    "id": "manto_do_cruzado",
+    "nome": "Manto do Cruzado",
+    "nivel": 3,
+    "escola": "evocacao",
+    "listas": [
+     "paladino"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 302,
+     "pagina_pdf": 306
+    },
+    "nota": "Não pertence à lista do Clérigo. Está aqui porque o Domínio da Guerra (p. 85) a concede sempre preparada.",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "descricao_curta": "Emanação de 9 m: você e seus aliados causam +1d4 de dano Radiante ao acertar com arma ou Ataque Desarmado.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "dano": {
+     "formula_dado": "1d4",
+     "tipo_dano": "radiante"
+    },
+    "area": {
+     "forma": "emanacao",
+     "metros": 9.0,
+     "medida": null
+    },
+    "detalhada": true
+   },
+   "palavra_curativa": {
+    "id": "palavra_curativa",
+    "nome": "Palavra Curativa",
+    "nivel": 1,
+    "escola": "abjuracao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bardo",
+     "clerigo",
+     "druida"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 313,
+     "pagina_pdf": 317
+    },
+    "descricao_curta": "Ação Bônus, a 18 m: o alvo recupera 2d4 + seu modificador de conjuração em Pontos de Vida.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação Bônus",
+     "ritual": false,
+     "tipo": "acao_bonus"
+    },
+    "alcance": {
+     "texto": "18 metros",
+     "tipo": "distancia",
+     "metros": 18.0
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "cura": {
+     "formula_dado": "2d4"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "A cura aumenta em 2d4 para cada círculo de espaço de magia acima de 1. Um humano Feiticeiro repreende carniçais com a energia imprevisível do Orbe Cromático ."
+    },
+    "detalhada": true
+   },
+   "sopro_de_dragao": {
+    "id": "sopro_de_dragao",
+    "nome": "Sopro de Dragão",
+    "nivel": 2,
+    "escola": "transmutacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 333,
+     "pagina_pdf": 337
+    },
+    "descricao_curta": "Toque: por até 1 minuto, o alvo pode gastar uma ação Usar Magia para exalar um Cone de 4,5 m — salvaguarda de Destreza, 3d6 de dano Ácido, Elétrico, Gélido, Ígneo ou Venenoso à sua escolha, metade se passar.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação Bônus",
+     "ritual": false,
+     "tipo": "acao_bonus"
+    },
+    "alcance": {
+     "texto": "Toque",
+     "tipo": "toque"
+    },
+    "componentes": {
+     "texto": "V, S, M (uma pimenta)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma pimenta",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "salvaguarda": {
+     "atributo": "DES"
+    },
+    "area": {
+     "forma": "cone",
+     "metros": 4.5,
+     "medida": null
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano aumenta em 1d6 para cada círculo de espaço de magia acima de 2."
+    },
+    "detalhada": true
+   },
+   "golpe_certeiro": {
+    "id": "golpe_certeiro",
+    "nome": "Golpe Certeiro",
+    "nivel": 0,
+    "escola": "adivinhacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "bardo",
+     "bruxo",
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 286,
+     "pagina_pdf": 290
+    },
+    "descricao_curta": "Um ataque com a arma da conjuração usando o atributo de conjuração no ataque e no dano, e podendo trocar o tipo de dano por Radiante.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "S, M (uma arma com a qual você tem proficiência e que vale 1 ou mais PP)",
+     "verbal": false,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma arma com a qual você tem proficiência e que vale 1 ou mais PP",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "aprimoramento": {
+     "tipo": "truque",
+     "texto": "Seja o dano Radiante ou o tipo de dano normal da arma, o ataque causa dano Radiante adicional quando você atinge os níveis 5 (1d6), 11 (2d6) e 17 (3d6)."
+    },
+    "detalhada": true
+   },
+   "animar_objetos": {
+    "id": "animar_objetos",
+    "nome": "Animar Objetos",
+    "nivel": 5,
+    "escola": "transmutacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bardo",
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 241,
+     "pagina_pdf": 245
+    },
+    "descricao_curta": "Anima objetos não mágicos soltos, até o seu modificador de conjuração (Grande conta 2, Enorme conta 3). Viram Constructos com o bloco Objeto Animado sob seu controle. Comanda todos com Ação Bônus.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano de Pancada da criatura aumenta em 1d4 (Médio ou menor), 1d6 (Grande) ou 1d12 (Enorme) para cada círculo de espaço de magia acima de 5. Um Braseiro Afetado pela Magia Animar ObjetosDAVID Objetos Animados Construto Grande ou Menor, Sem Alinhamento CA 15 PV 10 (Médio ou menor), 20 (Grande), 40 (Enorme) Deslocamento 9 m For 16 +3 +3 Des 10 +0 +0 Con 10 +0 +0 Int 3 –4 –4 Sab 3 –4 –4 Car 1 –5 –5 "
+    },
+    "detalhada": true
+   },
+   "destruicao_radiante": {
+    "id": "destruicao_radiante",
+    "nome": "Destruição Radiante",
+    "nivel": 2,
+    "escola": "transmutacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "paladino"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 271,
+     "pagina_pdf": 275
+    },
+    "descricao_curta": "Golpe: +2d6 de dano Radiante. O alvo passa a emitir Luz Plena em 1,5 m, sofre ataques com Vantagem e não se beneficia da condição Invisível.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação Bônus, que você realiza",
+     "ritual": false,
+     "tipo": "acao_bonus"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "dano": {
+     "formula_dado": "2d6",
+     "tipo_dano": "radiante"
+    },
+    "condicoes_citadas": [
+     "invisivel"
+    ],
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano aumenta em 1d6 para cada círculo de espaço de magia acima de 2. Uma anã Paladina fortalece sua arma com Destruição Divina , desencadeando a ira sagrada em ínferos Mezzoloths."
+    },
+    "detalhada": true
+   },
+   "santuario_particular_de_mordenkainen": {
+    "id": "santuario_particular_de_mordenkainen",
+    "nome": "Santuário Particular de Mordenkainen",
+    "nivel": 4,
+    "escola": "abjuracao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 330,
+     "pagina_pdf": 334
+    },
+    "descricao_curta": "Um Cubo de 1,5 a 30 m protegido por 24 horas, com as propriedades que você escolher: som não atravessa, não dá para ver de fora, luz não entra nem sai, sensores de Adivinhação barrados, e teleporte e viagem planar bloqueados.",
+    "tempo_de_conjuracao": {
+     "texto": "10 minutos",
+     "ritual": false,
+     "tipo": "tempo",
+     "minutos": 10
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V, S, M (uma folha fina de chumbo)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma folha fina de chumbo",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "24 horas",
+     "concentracao": false,
+     "tipo": "tempo",
+     "minutos": 1440
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Você pode aumentar o tamanho do Cubo em 30 metros para cada círculo de espaço de magia acima de 4."
+    },
+    "detalhada": true
+   },
+   "raio_de_bruxa": {
+    "id": "raio_de_bruxa",
+    "nome": "Raio de Bruxa",
+    "nivel": 1,
+    "escola": "evocacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "bruxo",
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 322,
+     "pagina_pdf": 326
+    },
+    "descricao_curta": "Ataque mágico à distância por 2d12 de dano Elétrico e, nos turnos seguintes, Ação Bônus para repetir o dano automaticamente enquanto o alvo estiver à vista e no alcance.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "18 metros",
+     "tipo": "distancia",
+     "metros": 18.0
+    },
+    "componentes": {
+     "texto": "V, S, M (um galho atingido por um raio)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "um galho atingido por um raio",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "dano": {
+     "formula_dado": "2d12",
+     "tipo_dano": "eletrico"
+    },
+    "dano_adicional_citado": [
+     {
+      "formula_dado": "1d12",
+      "tipo_dano": "eletrico"
+     }
+    ],
+    "ataque": "a_distancia",
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano inicial aumenta em 1d12 para cada círculo de espaço de magia acima de 1. Um pequenino Bruxo atinge um zumbi com o arco elétrico do Raio de Bruxa . HELGE C BALZER"
+    },
+    "detalhada": true
+   },
+   "missao": {
+    "id": "missao",
+    "nome": "Missão",
+    "nivel": 5,
+    "escola": "encantamento",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bardo",
+     "clerigo",
+     "druida",
+     "mago",
+     "paladino"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 305,
+     "pagina_pdf": 309
+    },
+    "descricao_curta": "Ordena um serviço a uma criatura à vista que entenda você: salvaguarda de Sabedoria ou fica Enfeitiçada por 30 dias e obedece. Desobedecer custa 5d10 de dano Psíquico, uma vez por dia. Ordem claramente suicida cancela a magia.",
+    "tempo_de_conjuracao": {
+     "texto": "1 minuto",
+     "ritual": false,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "alcance": {
+     "texto": "18 metros",
+     "tipo": "distancia",
+     "metros": 18.0
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "30 dias",
+     "concentracao": false,
+     "tipo": "tempo",
+     "minutos": 43200
+    },
+    "dano": {
+     "formula_dado": "5d10",
+     "tipo_dano": "psiquico"
+    },
+    "salvaguarda": {
+     "atributo": "SAB"
+    },
+    "condicoes_citadas": [
+     "enfeiticado"
+    ],
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Se você usar um espaço de magia de 7º ou 8º círculo, a duração é de 365 dias. Se você usar um espaço de magia de 9º círculo, a magia dura até que seja encerrada por uma das magias mencionadas acima. Magos rivais usam Metamorfose para se transformar em um Observador e um Beír durante um duelo mágico."
+    },
+    "detalhada": true
+   },
+   "curar_ferimentos": {
+    "id": "curar_ferimentos",
+    "nome": "Curar Ferimentos",
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 266,
+     "pagina_pdf": 270
+    },
+    "nota": "Referenciada por característica de classe/subclasse; detalhes vêm com o cap. 7.",
+    "nivel": 1,
+    "listas": [
+     "bardo",
+     "clerigo",
+     "druida",
+     "guardiao",
+     "paladino"
+    ],
+    "escola": "abjuracao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "descricao_curta": "Toque: restaura 2d8 + seu modificador de conjuração em Pontos de Vida.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Toque",
+     "tipo": "toque"
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "cura": {
+     "formula_dado": "2d8"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "A cura aumenta em 2d8 para cada círculo de espaço de magia acima de 1."
+    },
+    "detalhada": true
+   },
+   "cegueira_surdez": {
+    "id": "cegueira_surdez",
+    "nome": "Cegueira/Surdez",
+    "nivel": 2,
+    "escola": "transmutacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bardo",
+     "clerigo",
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 252,
+     "pagina_pdf": 256
+    },
+    "descricao_curta": "Uma criatura à vista faz salvaguarda de Constituição ou fica Cega ou Surda (você escolhe) por 1 minuto, repetindo a salvaguarda no fim de cada turno dela.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "1 minuto",
+     "concentracao": false,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "salvaguarda": {
+     "atributo": "CON"
+    },
+    "condicoes_citadas": [
+     "cego",
+     "surdo"
+    ],
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Você pode escolher uma criatura adicional para cada círculo de espaço de magia acima de 2."
+    },
+    "detalhada": true
+   },
+   "explosao_elemental": {
+    "id": "explosao_elemental",
+    "nome": "Explosão Elemental",
+    "nivel": 0,
+    "escola": "evocacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "feiticeiro"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 280,
+     "pagina_pdf": 284
+    },
+    "descricao_curta": "Ataque mágico à distância: 1d8 de dano de um tipo à sua escolha entre Ácido, Elétrico, Gélido, Ígneo, Psíquico, Trovejante e Venenoso. Cada 8 no dado permite rolar outro d8 e somar, até um teto que cresce com o nível.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "aprimoramento": {
+     "tipo": "truque",
+     "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+    },
+    "detalhada": true
+   },
+   "talho_mental": {
+    "id": "talho_mental",
+    "nome": "Talho Mental",
+    "nivel": 0,
+    "escola": "encantamento",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "bruxo",
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 334,
+     "pagina_pdf": 338
+    },
+    "descricao_curta": "Salvaguarda de Inteligência ou 1d6 de dano Psíquico e −1d4 na próxima salvaguarda do alvo até o fim do seu próximo turno.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "18 metros",
+     "tipo": "distancia",
+     "metros": 18.0
+    },
+    "componentes": {
+     "texto": "V",
+     "verbal": true,
+     "somatico": false,
+     "material": false
+    },
+    "duracao": {
+     "texto": "1 rodada",
+     "concentracao": false,
+     "tipo": "tempo",
+     "minutos": 0.1
+    },
+    "dano": {
+     "formula_dado": "1d6",
+     "tipo_dano": "psiquico"
+    },
+    "salvaguarda": {
+     "atributo": "INT"
+    },
+    "aprimoramento": {
+     "tipo": "truque",
+     "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+    },
+    "detalhada": true
+   },
+   "esfera_vitriolica": {
+    "id": "esfera_vitriolica",
+    "nome": "Esfera Vitriólica",
+    "nivel": 4,
+    "escola": "evocacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 279,
+     "pagina_pdf": 283
+    },
+    "descricao_curta": "Esfera de 6 m de raio: salvaguarda de Destreza, 10d4 de dano Ácido mais 5d4 no fim do próximo turno do alvo; passando, só metade do dano inicial.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "45 metros",
+     "tipo": "distancia",
+     "metros": 45.0
+    },
+    "componentes": {
+     "texto": "V, S, M (uma gota de bile)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma gota de bile",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "dano": {
+     "formula_dado": "10d4",
+     "tipo_dano": "acido"
+    },
+    "dano_adicional_citado": [
+     {
+      "formula_dado": "5d4",
+      "tipo_dano": "acido"
+     }
+    ],
+    "salvaguarda": {
+     "atributo": "DES",
+     "em_sucesso": "metade_do_dano"
+    },
+    "area": {
+     "forma": "esfera",
+     "metros": 6.0,
+     "medida": "raio"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano inicial aumenta em 2d4 para cada círculo de espaço de magia acima de 4. Um tiferino Feiticeiro libera a Esfera Vitriólica em nóticos."
+    },
+    "detalhada": true
+   },
+   "vitalidade_vazia": {
+    "id": "vitalidade_vazia",
+    "nome": "Vitalidade Vazia",
+    "nivel": 1,
+    "escola": "necromancia",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "feiticeiro",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 342,
+     "pagina_pdf": 346
+    },
+    "descricao_curta": "2d4 + 4 Pontos de Vida Temporários.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "V, S, M (uma gota de álcool)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma gota de álcool",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "Você obtém 5 Pontos de Vida Temporários adicionais para cada círculo de espaço de magia acima de 1."
+    },
+    "detalhada": true,
+    "pontos_de_vida": {
+     "temporarios": {
+      "formula": [
+       "2d4",
+       "4"
+      ],
+      "beneficiario": "voce",
+      "aprimoramento_por_circulo_acima": [
+       "5"
+      ]
+     }
+    }
+   },
+   "tempestade_radiante_de_jallarzi": {
+    "id": "tempestade_radiante_de_jallarzi",
+    "nome": "Tempestade Radiante de Jallarzi",
+    "nivel": 5,
+    "escola": "evocacao",
+    "concentracao": true,
+    "ritual": false,
+    "componente_material_especifico": true,
+    "listas": [
+     "bruxo",
+     "mago"
+    ],
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 337,
+     "pagina_pdf": 341
+    },
+    "nomes_alternativos": [
+     "Tempestade Radiante de Jallazar"
+    ],
+    "nota_de_divergencia": "A lista do Mago (p. 152) grafa 'Jallazar'; a entrada (p. 342) e a lista do Bruxo (p. 74) grafam 'Jallarzi'. Vale a entrada. As duas grafias tinham criado duas magias no catálogo; foram fundidas.",
+    "descricao_curta": "Cilindro de 3 m de raio e 12 m de altura: quem está dentro fica Cego e Surdo e não conjura com componente Verbal. Ao aparecer e a cada Ação Bônus sua, salvaguarda de Destreza por 2d10 de dano Radiante mais 2d10 Trovejante, metade se passar.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "36 metros",
+     "tipo": "distancia",
+     "metros": 36.0
+    },
+    "componentes": {
+     "texto": "V, S, M (uma pitada de fósforo)",
+     "verbal": true,
+     "somatico": true,
+     "material": true,
+     "material_descricao": "uma pitada de fósforo",
+     "material_consumido": false,
+     "substituivel_por_foco_ou_bolsa": true,
+     "regra": "Sem custo declarado e sem consumo: vale Bolsa de Componentes ou Foco de Conjuração (p. 237)."
+    },
+    "duracao": {
+     "texto": "Concentração, até 1 minuto",
+     "concentracao": true,
+     "tipo": "tempo",
+     "minutos": 1
+    },
+    "dano": {
+     "formula_dado": "2d10",
+     "tipo_dano": "radiante"
+    },
+    "dano_adicional_citado": [
+     {
+      "formula_dado": "2d10",
+      "tipo_dano": "trovejante"
+     }
+    ],
+    "salvaguarda": {
+     "atributo": "CON"
+    },
+    "area": {
+     "forma": "cilindro",
+     "metros": 3.0,
+     "medida": "raio"
+    },
+    "condicoes_citadas": [
+     "cego",
+     "surdo"
+    ],
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano Radiante e Trovejante aumentam em 1d10 para cada círculo de espaço de magia acima de 5. Com sua magia Tempestade Radiante de Jallarzi , a Bruxa Jallarzi faz vrocks se arrependerem de deixar o Abismo."
+    },
+    "detalhada": true
+   },
+   "maos_flamejantes": {
+    "id": "maos_flamejantes",
+    "nome": "Mãos Flamejantes",
+    "nivel": 1,
+    "fonte": {
+     "capitulo": 7,
+     "pagina_livro": 303,
+     "pagina_pdf": 307
+    },
+    "escola": "evocacao",
+    "concentracao": false,
+    "ritual": false,
+    "componente_material_especifico": false,
+    "listas": [
+     "feiticeiro",
+     "mago"
+    ],
+    "nomes_alternativos": [
+     "Mãos Ardentes"
+    ],
+    "nota": "A tabela Magias de Domínio da Luz (p. 87) chama esta magia de 'Mãos Ardentes'; a entrada do capítulo 7 (p. 303) e a lista do Mago usam 'Mãos Flamejantes'. Mesma magia, nome inconsistente no livro.",
+    "descricao_curta": "Cone de 4,5 m: salvaguarda de Destreza, 3d6 de dano Ígneo, metade se passar. Objetos inflamáveis soltos pegam fogo.",
+    "tempo_de_conjuracao": {
+     "texto": "Ação",
+     "ritual": false,
+     "tipo": "acao"
+    },
+    "alcance": {
+     "texto": "Pessoal",
+     "tipo": "pessoal"
+    },
+    "componentes": {
+     "texto": "V, S",
+     "verbal": true,
+     "somatico": true,
+     "material": false
+    },
+    "duracao": {
+     "texto": "Instantânea",
+     "concentracao": false,
+     "tipo": "instantanea"
+    },
+    "dano": {
+     "formula_dado": "3d6",
+     "tipo_dano": "igneo"
+    },
+    "salvaguarda": {
+     "atributo": "DES"
+    },
+    "area": {
+     "forma": "cone",
+     "metros": 4.5,
+     "medida": null
+    },
+    "aprimoramento": {
+     "tipo": "espaco_superior",
+     "texto": "O dano aumenta em 1d6 pontos para cada círculo de espaço de magia acima de 1."
+    },
+    "detalhada": true
+   }
+  },
+  "ordem": [
+   "acudir_os_moribundos",
+   "amigos",
+   "arte_druidica",
+   "badalar_funebre",
+   "bolha_acida",
+   "bordao_mistico",
+   "chama_sagrada",
+   "chicote_de_espinhos",
+   "criar_chamas",
+   "elementalismo",
+   "fagulha_estelar",
+   "golpe_certeiro",
+   "ilusao_menor",
+   "luz",
+   "luzes_dancantes",
+   "maos_magicas",
+   "mensagem",
+   "orientacao",
+   "palavra_de_radiancia",
+   "prestidigitacao_arcana",
+   "protecao_contra_laminas",
+   "raio_de_fogo",
+   "raio_de_gelo",
+   "raio_mistico",
+   "rajada_de_veneno",
+   "reparar",
+   "resistencia",
+   "talho_mental",
+   "taumaturgia",
+   "toque_chocante",
+   "toque_necrotico",
+   "trovao",
+   "alarme",
+   "amizade_animal",
+   "armadura_arcana",
+   "armadura_de_agathys",
+   "bencao",
+   "bom_fruto",
+   "bracos_de_hadar",
+   "comando",
+   "compreender_idiomas",
+   "convocar_familiar",
+   "criar_ou_destruir_agua",
+   "curar_ferimentos",
+   "danacao",
+   "detectar_magia",
+   "detectar_o_bem_e_o_mal",
+   "detectar_veneno_e_doenca",
+   "disco_flutuante_de_tenser",
+   "disfarcar_se",
+   "emaranhar",
+   "enfeiticar_pessoa",
+   "escrita_ilusoria",
+   "escudo_arcano",
+   "escudo_da_fe",
+   "faca_de_gelo",
+   "falar_com_animais",
+   "fogo_das_fadas",
+   "gargalhada_nefasta_de_tasha",
+   "graxa",
+   "identificar",
+   "imagem_silenciosa",
+   "infligir_ferimentos",
+   "leque_cromatico",
+   "maos_flamejantes",
+   "misseis_magicos",
+   "nevoa_obscurecente",
+   "onda_trovejante",
+   "orbe_cromatico",
+   "palavra_curativa",
+   "passos_largos",
+   "perdicao",
+   "protecao_contra_o_bem_e_o_mal",
+   "purificar_alimentos_e_bebidas",
+   "queda_suave",
+   "raio_de_bruxa",
+   "raio_guia",
+   "raio_nauseante",
+   "repreensao_diabolica",
+   "retirada_acelerada",
+   "salto",
+   "santuario",
+   "servo_invisivel",
+   "sono",
+   "sussurros_dissonantes",
+   "vitalidade_vazia",
+   "acalmar_emocoes",
+   "alterar_se",
+   "aprimorar_atributo",
+   "arma_espiritual",
+   "arma_magica",
+   "arrombar",
+   "augurio",
+   "aumentar_reduzir",
+   "aura_magica_de_nystul",
+   "auxilio",
+   "boca_encantada",
+   "cativar",
+   "cegueira_surdez",
+   "chama_continua",
+   "corda_extradimensional",
+   "coroa_da_loucura",
+   "crescer_espinhos",
+   "despedacar",
+   "detectar_pensamentos",
+   "encontrar_armadilhas",
+   "escalada_de_aranha",
+   "escuridao",
+   "esfera_flamejante",
+   "espinho_mental",
+   "esquentar_metal",
+   "flecha_acida_de_melf",
+   "forca_espectral",
+   "invisibilidade",
+   "invocar_fera",
+   "lamina_flamejante",
+   "levitacao",
+   "localizar_animais_ou_plantas",
+   "localizar_objeto",
+   "lufada_de_vento",
+   "mensageiro_animal",
+   "nuvem_de_adagas",
+   "oracao_de_cura",
+   "paralisar_pessoa",
+   "passo_nebuloso",
+   "passo_sem_rastro",
+   "pele_casca",
+   "protecao_contra_veneno",
+   "raio_ardente",
+   "raio_do_enfraquecimento",
+   "raio_lunar",
+   "reflexos",
+   "repouso_tranquilo",
+   "restauracao_menor",
+   "sentido_feral",
+   "silencio",
+   "sopro_de_dragao",
+   "sugestao",
+   "teia",
+   "tranca_arcana",
+   "turvar",
+   "ver_o_invisivel",
+   "vigor_arcano",
+   "vinculo_de_protecao",
+   "visao_no_escuro",
+   "zona_da_verdade",
+   "animar_mortos",
+   "arma_elemental",
+   "aura_de_vitalidade",
+   "bola_de_fogo",
+   "caminhar_sobre_as_aguas",
+   "celeridade",
+   "circulo_magico",
+   "clarividencia",
+   "contramagia",
+   "convocar_feerico",
+   "convocar_relampagos",
+   "crescimento_de_plantas",
+   "criar_comida_e_agua",
+   "dissipar_magia",
+   "falar_com_mortos",
+   "falar_com_plantas",
+   "fome_de_hadar",
+   "forma_gasosa",
+   "glifo_de_protecao",
+   "guardioes_espirituais",
+   "imagem_maior",
+   "indetectavel",
+   "invocar_animais",
+   "invocar_morto_vivo",
+   "lentidao",
+   "linguas",
+   "luz_do_dia",
+   "manto_do_cruzado",
+   "medo",
+   "mesclar_se_as_rochas",
+   "montaria_fantasmagorica",
+   "muralha_de_vento",
+   "nevasca",
+   "nuvem_fetida",
+   "padrao_hipnotico",
+   "palavra_curativa_em_massa",
+   "pequeno_refugio_de_leomund",
+   "piscar",
+   "protecao_contra_energia",
+   "relampago",
+   "remeter",
+   "remover_maldicao",
+   "respirar_na_agua",
+   "revivificar",
+   "rogar_maldicao",
+   "simular_morte",
+   "sinal_de_esperanca",
+   "toque_vampirico",
+   "voo",
+   "arca_secreta_de_leomund",
+   "assassino_fantasmagorico",
+   "aura_de_pureza",
+   "aura_de_vida",
+   "banimento",
+   "cao_fiel_de_mordenkainen",
+   "confusao",
+   "controlar_agua",
+   "convocar_elemental",
+   "defensor_da_fe",
+   "dominar_fera",
+   "enfeiticar_monstro",
+   "escudo_ardente",
+   "esfera_resiliente_de_otiluke",
+   "esfera_vitriolica",
+   "fabricar",
+   "fonte_do_luar",
+   "inseto_gigante",
+   "invisibilidade_maior",
+   "invocar_aberracao",
+   "invocar_constructo",
+   "invocar_elementais_menores",
+   "invocar_seres_da_floresta",
+   "localizar_criatura",
+   "malogro",
+   "moldar_rochas",
+   "movimentacao_livre",
+   "muralha_de_fogo",
+   "olho_arcano",
+   "pele_rocha",
+   "polimorfia",
+   "porta_dimensional",
+   "pressagio",
+   "protecao_contra_a_morte",
+   "santuario_particular_de_mordenkainen",
+   "tempestade_glacial",
+   "tentaculos_negros_de_evard",
+   "terreno_alucinatorio",
+   "vinha_agarradora",
+   "ancora_planar",
+   "animar_objetos",
+   "circulo_de_poder",
+   "circulo_de_teleporte",
+   "coluna_de_chamas",
+   "comunhao",
+   "comunhao_com_a_natureza",
+   "cone_de_frio",
+   "consagrar",
+   "contagio",
+   "contato_extraplanar",
+   "convocar_celestial",
+   "criacao",
+   "criar_passagem",
+   "cupula_antivida",
+   "curar_ferimentos_em_massa",
+   "despertar",
+   "despistar",
+   "dissipar_o_bem_e_o_mal",
+   "dominar_pessoa",
+   "estatica_sinaptica",
+   "golpe_de_arco",
+   "invocar_dragao",
+   "invocar_elemental",
+   "lendas_e_historias",
+   "ligacao_telepatica_de_rary",
+   "mao_de_bigby",
+   "missao",
+   "modificar_memoria",
+   "muralha_de_energia",
+   "muralha_de_pedra",
+   "nevoa_mortal",
+   "paralisar_monstro",
+   "passo_arboreo",
+   "praga_de_insetos",
+   "presenca_regia_de_yolande",
+   "reencarnar",
+   "restauracao_maior",
+   "reviver_os_mortos",
+   "similaridade",
+   "sonho",
+   "telecinese",
+   "tempestade_radiante_de_jallarzi",
+   "videncia",
+   "aliado_extraplanar",
+   "banquete_de_herois",
+   "barreira_de_laminas",
+   "caldeirao_borbulhante_de_tasha",
+   "caminhar_no_vento",
+   "circulo_da_morte",
+   "contingencia",
+   "corrente_de_relampagos",
+   "criar_mortos_vivos",
+   "cura_completa",
+   "danca_irresistivel_de_otto",
+   "de_carne_para_pedra",
+   "desintegrar",
+   "encontrar_o_caminho",
+   "esfera_congelante_de_otiluke",
+   "globo_de_invulnerabilidade",
+   "ilusao_programada",
+   "invocacao_instantanea_de_drawmij",
+   "invocar_feerico",
+   "invocar_infero",
+   "mau_olhado",
+   "molestia",
+   "mover_terra",
+   "muralha_de_espinhos",
+   "muralha_de_gelo",
+   "palavra_de_regresso",
+   "portais_arcanos",
+   "proibicao",
+   "proteger_fortaleza",
+   "raio_solar",
+   "receptaculo_arcano",
+   "sugestao_em_massa",
+   "transporte_via_plantas",
+   "visao_da_verdade",
+   "bola_de_fogo_adiavel",
+   "carcere_de_energia",
+   "dedo_da_morte",
+   "espada_de_mordenkainen",
+   "forma_eterea",
+   "inverter_a_gravidade",
+   "invocar_celestial",
+   "mansao_magnifica_de_mordenkainen",
+   "miragem_arcana",
+   "palavra_de_poder_fortificar",
+   "palavra_sagrada",
+   "projetar_imagem",
+   "rajada_prismatica",
+   "refugiar",
+   "regeneracao",
+   "ressurreicao",
+   "simbolo",
+   "simulacro",
+   "teleporte",
+   "tempestade_de_fogo",
+   "transicao_planar",
+   "antipatia_simpatia",
+   "aura_sagrada",
+   "campo_antimagia",
+   "clone",
+   "controlar_o_clima",
+   "dominar_monstro",
+   "explosao_solar",
+   "formas_animais",
+   "labirinto",
+   "limpar_a_mente",
+   "loquacidade",
+   "nuvem_incendiaria",
+   "palavra_de_poder_atordoar",
+   "semiplano",
+   "suplicio",
+   "telepatia",
+   "terremoto",
+   "tsunami",
+   "aprisionamento",
+   "chuva_de_meteoros",
+   "cura_completa_em_massa",
+   "desejo",
+   "encarnacao_fantasmagorica",
+   "metamorfose",
+   "muralha_prismatica",
+   "palavra_de_poder_matar",
+   "palavra_de_poder_salvar",
+   "parar_o_tempo",
+   "polimorfia_total",
+   "portal",
+   "projecao_astral",
+   "ressurreicao_verdadeira",
+   "sexto_sentido",
+   "tempestade_da_vinganca",
+   "aljava_veloz",
+   "compulsao",
+   "convocar_montaria",
+   "cordao_de_flechas",
+   "destruicao_atordoante",
+   "destruicao_banidora",
+   "destruicao_cauterizante",
+   "destruicao_cegante",
+   "destruicao_colerica",
+   "destruicao_divina",
+   "destruicao_estrondosa",
+   "destruicao_radiante",
+   "duelo_compelido",
+   "explosao_elemental",
+   "favor_divino",
+   "flecha_relampago",
+   "golpe_constritor",
+   "heroismo",
+   "invocar_barragem",
+   "invocar_saraivada",
+   "marca_do_predador",
+   "onda_destrutiva",
+   "saraivada_de_espinhos",
+   "zombaria_perversa"
+  ],
+  "cabecalho": {
+   "parcial": false,
+   "nota": "391 das 391 magias estão detalhadas com os campos do capítulo 7 (marcadas com 'detalhada': true). As demais têm só nome, círculo, escola e listas."
+  }
+ },
+ "catalogos/manobras.json": {
+  "substituir": {
+   "gato_por_lebre": {
+    "id": "gato_por_lebre",
+    "nome": "Gato Por Lebre",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 135,
+     "pagina_pdf": 139
+    },
+    "custo": "movimento",
+    "consome_dado_de_superioridade": true,
+    "descricao_curta": "Troca de lugar com uma criatura voluntária e não Incapacitada a até 1,5 m, gastando ao menos 1,5 m de movimento e sem provocar Ataques de Oportunidade. Até o início do seu próximo turno, você ou ela (à sua escolha) ganha bônus de CA igual ao resultado do dado.",
+    "efeitos": [
+     {
+      "tipo": "efeito_narrativo",
+      "chave": "troca_de_lugar",
+      "texto": "Troca de posição com a criatura; o movimento não provoca Ataques de Oportunidade."
+     },
+     {
+      "tipo": "modificador",
+      "alvo": "ca_total",
+      "valor": [
+       "dado:superioridade"
+      ],
+      "empilha": "soma",
+      "beneficiario": "voce_ou_a_criatura",
+      "duracao": "ate_inicio_do_seu_proximo_turno"
+     }
+    ],
+    "revisao": {
+     "status": "ok",
+     "notas": "Confirmado pelo usuário em 2026-09-01: o parágrafo 'Jogue o Dado de Superioridade... bônus de CA igual ao número do resultado' é parte de Gato Por Lebre. Ele aparecia solto na extração por causa da quebra de coluna do PDF."
+    }
+   }
+  },
+  "ordem": [
+   "aparar",
+   "ataque_ameacador",
+   "ataque_de_varredura",
+   "ataque_estendido",
+   "ataque_para_distrair",
+   "ataque_preciso",
+   "ataque_provocante",
+   "avaliacao_tatica",
+   "contra_ataque",
+   "desarme",
+   "emboscada",
+   "encontrao",
+   "finta",
+   "gato_por_lebre",
+   "golpe_do_comandante",
+   "manobrar",
+   "movimentacao_evasiva",
+   "presenca_de_autoridade",
+   "prostrar",
+   "recuperar_energia"
+  ]
+ },
+ "catalogos/talentos.json": {
+  "remover": [
+   "dadiva_epica"
+  ],
+  "substituir": {
+   "dadiva_da_proeza_em_combate": {
+    "id": "dadiva_da_proeza_em_combate",
+    "nome": "Dádiva da Proeza em Combate",
+    "categoria": "epico",
+    "pre_requisitos": [
+     {
+      "tipo": "nivel_de_personagem",
+      "minimo": 19
+     }
+    ],
+    "repetivel": false,
+    "descricao_curta": "Quando você erra uma jogada de ataque, ela acerta — no máximo uma vez até o início do seu próximo turno.",
+    "efeitos": [
+     {
+      "tipo": "escolha",
+      "rotulo": "Escolha o atributo a aumentar",
+      "quantidade": 1,
+      "momento": "ao_adquirir_o_talento",
+      "de": {
+       "catalogo": "atributos",
+       "todo_o_catalogo": true
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "aumento_atributo",
+       "atributo": "{{escolhido}}",
+       "valor": 1,
+       "limite": 30
+      }
+     },
+     {
+      "tipo": "transformar_erro_em_acerto",
+      "alvo": "jogada_de_ataque",
+      "frequencia": "uma_vez_ate_o_inicio_do_seu_proximo_turno"
+     }
+    ],
+    "fonte": {
+     "capitulo": 5,
+     "pagina_livro": 210,
+     "pagina_pdf": 214
+    },
+    "nota_anterior": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
+   },
+   "dadiva_do_ataque_irresistivel": {
+    "id": "dadiva_do_ataque_irresistivel",
+    "nome": "Dádiva do Ataque Irresistível",
+    "categoria": "epico",
+    "pre_requisitos": [
+     {
+      "tipo": "nivel_de_personagem",
+      "minimo": 19
+     }
+    ],
+    "repetivel": false,
+    "descricao_curta": "Seu dano Contundente, Cortante e Perfurante sempre ignora Resistência. E num 20 no d20 de ataque, causa dano adicional igual ao VALOR do atributo aumentado por este talento, do mesmo tipo do ataque.",
+    "efeitos": [
+     {
+      "tipo": "escolha",
+      "rotulo": "Escolha o atributo a aumentar",
+      "quantidade": 1,
+      "momento": "ao_adquirir_o_talento",
+      "de": {
+       "catalogo": "atributos",
+       "chaves": [
+        "FOR",
+        "DES"
+       ]
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "aumento_atributo",
+       "atributo": "{{escolhido}}",
+       "valor": 1,
+       "limite": 30
+      }
+     },
+     {
+      "tipo": "ignorar_resistencia",
+      "tipos_de_dano": [
+       "contundente",
+       "cortante",
+       "perfurante"
+      ]
+     },
+     {
+      "tipo": "alterar_dano",
+      "tipo_dano": "mesmo_do_ataque",
+      "operacao": "dano_adicional",
+      "valor": [
+       "valor_do_atributo_aumentado_pelo_talento"
+      ],
+      "condicao": {
+       "todas": [
+        "resultado_20_no_d20_de_ataque"
+       ]
+      },
+      "nota": "É o VALOR do atributo, não o modificador."
+     }
+    ],
+    "fonte": {
+     "capitulo": 5,
+     "pagina_livro": 211,
+     "pagina_pdf": 215
+    },
+    "nota_anterior": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
+   },
+   "aumento_no_valor_de_atributo": {
+    "id": "aumento_no_valor_de_atributo",
+    "nome": "Aumento no Valor de Atributo",
+    "categoria": "geral",
+    "pre_requisitos": [
+     {
+      "tipo": "nivel_de_personagem",
+      "minimo": 4
+     }
+    ],
+    "repetivel": true,
+    "descricao_curta": "Aumenta um valor de atributo em 2, ou dois valores em 1 cada. Nenhum passa de 20.",
+    "efeitos": [
+     {
+      "id": "avatributo_modo",
+      "tipo": "escolha",
+      "rotulo": "Como distribuir o aumento",
+      "quantidade": 1,
+      "momento": "ao_adquirir_o_talento",
+      "de": {
+       "catalogo": "modos_de_aumento_de_atributo",
+       "todo_o_catalogo": true
+      },
+      "efeito_por_item_escolhido": {
+       "tipo": "aplicar_efeito_nomeado",
+       "chave": "{{escolhido}}"
+      }
+     }
+    ],
+    "fonte": {
+     "capitulo": 5,
+     "pagina_livro": 203,
+     "pagina_pdf": 207
+    },
+    "efeitos_nomeados": {
+     "um_atributo_em_2": {
+      "efeitos": [
+       {
+        "tipo": "escolha",
+        "id": "avatributo_um",
+        "quantidade": 1,
+        "rotulo": "Escolha o atributo a aumentar em 2",
+        "de": {
+         "catalogo": "atributos",
+         "todo_o_catalogo": true
+        },
+        "efeito_por_item_escolhido": {
+         "tipo": "aumento_atributo",
+         "atributo": "{{escolhido}}",
+         "valor": 2,
+         "limite": 20
+        }
+       }
+      ]
+     },
+     "dois_atributos_em_1": {
+      "efeitos": [
+       {
+        "tipo": "escolha",
+        "id": "avatributo_dois",
+        "quantidade": 2,
+        "rotulo": "Escolha 2 atributos para aumentar em 1 cada",
+        "de": {
+         "catalogo": "atributos",
+         "todo_o_catalogo": true
+        },
+        "efeito_por_item_escolhido": {
+         "tipo": "aumento_atributo",
+         "atributo": "{{escolhido}}",
+         "valor": 1,
+         "limite": 20
+        }
+       }
+      ]
+     }
+    },
+    "nota_anterior": "Declarado como referência para as classes poderem apontar; os efeitos entram com o capítulo 5."
+   }
+  },
+  "ordem": [
+   "dadiva_da_fortitude",
+   "dadiva_da_proeza_em_combate",
+   "dadiva_da_proficiencia_em_pericia",
+   "dadiva_da_recordacao_de_magia",
+   "dadiva_da_recuperacao",
+   "dadiva_da_resistencia_a_energia",
+   "dadiva_da_velocidade",
+   "dadiva_da_viagem_dimensional",
+   "dadiva_da_visao_verdadeira",
+   "dadiva_do_ataque_irresistivel",
+   "dadiva_do_destino",
+   "dadiva_do_espirito_da_noite",
+   "arquearia",
+   "combate_com_armas_de_arremesso",
+   "combate_com_armas_grandes",
+   "combate_com_duas_armas",
+   "combate_desarmado",
+   "defensivo",
+   "duelismo",
+   "intercepcao",
+   "luta_as_cegas",
+   "protetivo",
+   "adepto_elemental",
+   "agressor",
+   "analitico",
+   "atirador_arcano",
+   "atleta",
+   "ator",
+   "aumento_no_valor_de_atributo",
+   "chef",
+   "combatente_montado",
+   "conjurador_belico",
+   "conjurador_ritualista",
+   "duelista_defensivo",
+   "envenenador",
+   "esmagador",
+   "especialista_ambidestro",
+   "especialista_em_armaduras_leves",
+   "especialista_em_armaduras_medias",
+   "especialista_em_armaduras_pesadas",
+   "especialista_em_besta",
+   "especialista_em_pericia",
+   "exterminador_de_conjuradores",
+   "imobilizador",
+   "lider_inspirador",
+   "mente_agucada",
+   "mestre_atirador",
+   "mestre_das_armas",
+   "mestre_em_armaduras_medias",
+   "mestre_em_armaduras_pesadas",
+   "mestre_em_armas_de_haste",
+   "mestre_em_armas_grandes",
+   "mestre_em_escudos",
+   "perfurador",
+   "resiliente",
+   "resistente",
+   "sentinela",
+   "sorrateiro",
+   "talhador",
+   "telecinetico",
+   "telepatico",
+   "tocado_pelas_sombras",
+   "tocado_por_fadas",
+   "treinamento_com_armas_marciais",
+   "velocista",
+   "alerta",
+   "artifista",
+   "atacante_selvagem",
+   "curandeiro",
+   "habilidoso",
+   "iniciado_em_magia",
+   "musico",
+   "sortudo",
+   "valentao_de_taverna",
+   "vigoroso"
+  ]
+ },
+ "catalogos/tipos_de_efeito.json": {
+  "acrescentar": [
+   {
+    "id": "expandir_opcoes_de_escolha",
+    "nome": "Expandir opções de uma escolha existente",
+    "descricao_curta": "Libera novas chaves de catálogo para uma escolha já concedida, sem duplicar a característica. Usado pelo Golpe Brutal Fortalecido (nível 13 do Bárbaro)."
+   },
+   {
+    "id": "alterar_quantidade_de_escolha",
+    "nome": "Alterar a quantidade de uma escolha existente",
+    "descricao_curta": "Muda quantos itens uma escolha já concedida permite escolher. Usado pelo Golpe Brutal Fortalecido (nível 17 do Bárbaro), que passa a aplicar dois efeitos por uso."
+   },
+   {
+    "id": "declara_campo_no_item",
+    "nome": "Declara um campo no item que tem esta propriedade",
+    "descricao_curta": "A propriedade não muda nada sozinha: ela diz que todo item que a possui traz um campo próprio com o valor (mãos ocupadas, consumo de munição, teto de disparos). O validador confere que o campo existe."
+   },
+   {
+    "id": "alterar_alvos_da_magia",
+    "nome": "Alterar quantos alvos uma magia atinge",
+    "descricao_curta": "Acrescenta ou muda o número de alvos de magias específicas, com a distância permitida em relação ao primeiro alvo. Usado pelas Palavras de Criação do Bardo (nível 20)."
+   },
+   {
+    "id": "substituir_ataque_por_magia",
+    "nome": "Trocar um ataque da ação Atacar por uma magia",
+    "descricao_curta": "Permite gastar um dos ataques da ação Atacar para conjurar uma magia que atenda ao filtro (em geral, truque de tempo de conjuração de uma ação). Usado pelo Ataque Extra do Colégio da Bravura."
+   }
+  ],
+  "substituir": {
+   "vantagem": {
+    "id": "vantagem",
+    "origem": "v1",
+    "campos": [
+     "alvo",
+     "modo",
+     "condicao",
+     "duracao",
+     "beneficiario"
+    ],
+    "nota": "modo: vantagem | desvantagem.",
+    "nome": "Vantagem"
+   },
+   "dado_de_impacto": {
+    "id": "dado_de_impacto",
+    "origem": "v1",
+    "campos": [
+     "formula_dado",
+     "escalonamento_por_nivel"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Dado de impacto"
+   },
+   "remocao": {
+    "id": "remocao",
+    "origem": "NOVO",
+    "campos": [
+     "gatilho",
+     "quantidade"
+    ],
+    "nota": "Remove níveis/instâncias da própria condição (Exaustão em Descanso Longo).",
+    "nome": "Remocao"
+   },
+   "conceder_condicao": {
+    "id": "conceder_condicao",
+    "origem": "NOVO",
+    "campos": [
+     "condicao_id",
+     "persiste_apos_encerrar"
+    ],
+    "nota": "Impõe outra condição (Paralisado concede Incapacitado).",
+    "nome": "Conceder condicao"
+   },
+   "conceder_velocidade": {
+    "id": "conceder_velocidade",
+    "origem": "v1",
+    "campos": [
+     "tipo",
+     "formula"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Conceder velocidade"
+   },
+   "ca_base": {
+    "id": "ca_base",
+    "origem": "v1",
+    "campos": [
+     "formula",
+     "permite_escudo"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Ca base"
+   },
+   "recurso_com_recarga": {
+    "id": "recurso_com_recarga",
+    "origem": "v1",
+    "campos": [
+     "id",
+     "formula_maximo",
+     "recarga",
+     "consumo"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Recurso com recarga"
+   },
+   "conceder_slot": {
+    "id": "conceder_slot",
+    "origem": "v1",
+    "campos": [
+     "tabela_progressao_id"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Conceder slot"
+   },
+   "falha_automatica": {
+    "id": "falha_automatica",
+    "origem": "NOVO",
+    "campos": [
+     "alvo",
+     "condicao"
+    ],
+    "nota": "Falha automática em salvaguarda ou teste.",
+    "nome": "Falha automatica"
+   },
+   "modificador": {
+    "id": "modificador",
+    "origem": "v1",
+    "campos": [
+     "alvo",
+     "valor",
+     "empilha"
+    ],
+    "nota": "Soma/subtrai um valor de um alvo de rolagem.",
+    "nome": "Modificador"
+   },
+   "restringir_movimento": {
+    "id": "restringir_movimento",
+    "origem": "NOVO",
+    "campos": [
+     "opcoes",
+     "custo_para_levantar",
+     "condicao"
+    ],
+    "nota": "Caído: só rastejar ou levantar.",
+    "nome": "Restringir movimento"
+   },
+   "alterar_condicao": {
+    "id": "alterar_condicao",
+    "origem": "NOVO",
+    "campos": [
+     "condicao_id",
+     "operacao"
+    ],
+    "nota": "operacao: imunidade. Ex.: Petrificado dá Imunidade a Envenenado.",
+    "nome": "Alterar condicao"
+   },
+   "travar_deslocamento": {
+    "id": "travar_deslocamento",
+    "origem": "NOVO",
+    "campos": [
+     "valor",
+     "impede_aumento"
+    ],
+    "nota": "Deslocamento fixado (0) e impedido de aumentar.",
+    "nome": "Travar deslocamento"
+   },
+   "acerto_critico_automatico": {
+    "id": "acerto_critico_automatico",
+    "origem": "NOVO",
+    "campos": [
+     "condicao"
+    ],
+    "nota": "Ataques que acertam viram crítico sob a condição.",
+    "nome": "Acerto critico automatico"
+   },
+   "preparar_magias": {
+    "id": "preparar_magias",
+    "origem": "v1",
+    "campos": [
+     "formula_quantidade",
+     "atributo_conjuracao"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Preparar magias"
+   },
+   "escolha": {
+    "id": "escolha",
+    "origem": "v1",
+    "campos": [
+     "rotulo",
+     "quantidade",
+     "de",
+     "momento",
+     "efeito_por_item_escolhido"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Escolha"
+   },
+   "alterar_dano": {
+    "id": "alterar_dano",
+    "origem": "v1",
+    "campos": [
+     "tipo_dano",
+     "operacao"
+    ],
+    "nota": "operacao: resistencia | imunidade | vulnerabilidade | bonus. tipo_dano aceita 'todos'.",
+    "nome": "Alterar dano"
+   },
+   "conceder_ataque": {
+    "id": "conceder_ataque",
+    "origem": "NOVO",
+    "campos": [
+     "quantidade"
+    ],
+    "nota": "Ação Atacar.",
+    "nome": "Conceder ataque"
+   },
+   "conceder_proficiencia": {
+    "id": "conceder_proficiencia",
+    "origem": "v1",
+    "campos": [
+     "categoria",
+     "chave",
+     "nivel_dominio"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Conceder proficiencia"
+   },
+   "aumento_atributo": {
+    "id": "aumento_atributo",
+    "origem": "v1",
+    "campos": [
+     "distribuicao",
+     "limite"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Aumento atributo"
+   },
+   "conceder_sentido": {
+    "id": "conceder_sentido",
+    "origem": "v1",
+    "campos": [
+     "sentido",
+     "alcance"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Conceder sentido"
+   },
+   "conceder_talento": {
+    "id": "conceder_talento",
+    "origem": "v1",
+    "campos": [
+     "talento_id"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Conceder talento"
+   },
+   "substituir_regra": {
+    "id": "substituir_regra",
+    "origem": "v1",
+    "campos": [
+     "regra_id",
+     "novo_valor"
+    ],
+    "nota": "Último recurso; exige revisao.status='duvida'.",
+    "nome": "Substituir regra"
+   },
+   "impedir": {
+    "id": "impedir",
+    "origem": "NOVO",
+    "campos": [
+     "alvo",
+     "referencia",
+     "duracao"
+    ],
+    "nota": "Bloqueia ação, reação, fala, concentração, aproximação etc.",
+    "nome": "Impedir"
+   },
+   "conceder_acao": {
+    "id": "conceder_acao",
+    "origem": "v1",
+    "campos": [
+     "id",
+     "custo",
+     "duracao",
+     "efeitos"
+    ],
+    "nota": "Concede uma ação/reação nova.",
+    "nome": "Conceder acao"
+   },
+   "desbloquear_magias": {
+    "id": "desbloquear_magias",
+    "origem": "v1",
+    "campos": [
+     "lista_id",
+     "modo"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Desbloquear magias"
+   },
+   "efeito_narrativo": {
+    "id": "efeito_narrativo",
+    "origem": "NOVO",
+    "campos": [
+     "chave",
+     "texto"
+    ],
+    "nota": "Sem efeito mecânico; o app só exibe. Mantido para não perder regra.",
+    "nome": "Efeito narrativo"
+   },
+   "travar_atributo": {
+    "id": "travar_atributo",
+    "origem": "v1",
+    "campos": [
+     "atributo",
+     "valor_minimo"
+    ],
+    "nota": "Não usado nesta fase.",
+    "nome": "Travar atributo"
+   }
+  },
+  "ordem": [
+   "modificador",
+   "vantagem",
+   "alterar_dano",
+   "conceder_condicao",
+   "alterar_condicao",
+   "travar_deslocamento",
+   "restringir_movimento",
+   "falha_automatica",
+   "impedir",
+   "acerto_critico_automatico",
+   "remocao",
+   "efeito_narrativo",
+   "conceder_ataque",
+   "conceder_acao",
+   "ca_base",
+   "travar_atributo",
+   "conceder_proficiencia",
+   "conceder_talento",
+   "aumento_atributo",
+   "conceder_slot",
+   "desbloquear_magias",
+   "preparar_magias",
+   "recurso_com_recarga",
+   "dado_de_impacto",
+   "conceder_sentido",
+   "conceder_velocidade",
+   "escolha",
+   "substituir_regra",
+   "dado_de_dano",
+   "substituir_atributo",
+   "restaurar_recurso",
+   "cura",
+   "reducao_de_dano",
+   "dano",
+   "escolher_tipo_de_dano",
+   "alterar_resultado_de_salvaguarda",
+   "remover_condicao",
+   "imunidade_a_risco",
+   "melhorar_caracteristica",
+   "pontos_de_vida_temporarios",
+   "rolar_novamente",
+   "teleporte",
+   "conceder_subclasse",
+   "aplicar_efeito_nomeado",
+   "alterar_faixa_de_critico",
+   "acao_adicional",
+   "substituir_maestria",
+   "conceder_cobertura",
+   "livro_de_magias",
+   "conjurar_como_ritual",
+   "recuperar_espacos_de_magia",
+   "adicionar_magia_ao_livro",
+   "conjurar_sem_espaco",
+   "trocar_magia_preparada",
+   "barreira_de_dano",
+   "substituir_resultado_de_d20",
+   "dano_maximizado",
+   "reserva_de_dados",
+   "magias_de_patrono",
+   "alterar_tipo_de_dano_da_magia",
+   "dispensar_componentes",
+   "forma_selvagem",
+   "converter_recurso",
+   "emanacao",
+   "tratar_resultado_minimo",
+   "canalizar_divindade",
+   "furia",
+   "expandir_opcoes_de_escolha",
+   "alterar_quantidade_de_escolha",
+   "declara_campo_no_item",
+   "alterar_alvos_da_magia",
+   "substituir_ataque_por_magia",
+   "alterar_tempo_de_conjuracao",
+   "alterar_alcance_da_magia",
+   "alterar_duracao_da_magia",
+   "alterar_circulo_efetivo",
+   "dispensar_concentracao",
+   "dissipar_magias",
+   "rolar_na_tabela",
+   "movimento_forcado",
+   "tratar_dado_de_dano_minimo",
+   "ignorar_resistencia",
+   "ignorar_cobertura",
+   "alterar_custo_de_acao",
+   "fabricar_item",
+   "desconto_em_compra",
+   "conceder_inspiracao_heroica",
+   "trocar_iniciativa",
+   "transformar_erro_em_acerto",
+   "conceder_maestria_de_arma",
+   "nao_gastar_espaco_de_magia",
+   "redirecionar_dano",
+   "redirecionar_ataque",
+   "aplicar_veneno",
+   "ignorar_propriedade_de_arma",
+   "alterar_teto_de_modificador_na_ca",
+   "conceder_companheiro",
+   "reserva_de_cura",
+   "imunidade_a_quebra_de_concentracao",
+   "alterar_tamanho",
+   "alterar_descanso"
+  ],
+  "cabecalho": {
+   "fonte": {
+    "capitulo": "engine",
+    "pagina_livro": 0,
+    "pagina_pdf": 0
+   }
+  }
+ },
+ "catalogos/listas_de_magia.json": {
+  "substituir": {
+   "mago": {
+    "id": "mago",
+    "nome": "Lista de magias do Mago",
+    "classe_de_origem": "mago",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 150,
+     "pagina_pdf": 154
+    },
+    "preenchida": true,
+    "total_de_magias": 242,
+    "por_circulo": {
+     "0": 20,
+     "1": 31,
+     "2": 39,
+     "3": 32,
+     "4": 29,
+     "5": 29,
+     "6": 22,
+     "7": 15,
+     "8": 13,
+     "9": 12
+    },
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "clerigo": {
+    "id": "clerigo",
+    "nome": "Lista de magias do Clérigo",
+    "classe_de_origem": "clerigo",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 83,
+     "pagina_pdf": 87
+    },
+    "preenchida": true,
+    "total_de_magias": 117,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "druida": {
+    "id": "druida",
+    "nome": "Lista de magias do Druida",
+    "classe_de_origem": "druida",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 94,
+     "pagina_pdf": 98
+    },
+    "preenchida": true,
+    "total_de_magias": 135,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "bardo": {
+    "id": "bardo",
+    "nome": "Lista de magias do Bardo",
+    "classe_de_origem": "bardo",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 59,
+     "pagina_pdf": 63
+    },
+    "preenchida": true,
+    "total_de_magias": 140,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "feiticeiro": {
+    "id": "feiticeiro",
+    "nome": "Lista de magias do Feiticeiro",
+    "classe_de_origem": "feiticeiro",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 103,
+     "pagina_pdf": 107
+    },
+    "preenchida": true,
+    "total_de_magias": 150,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "bruxo": {
+    "id": "bruxo",
+    "nome": "Lista de magias do Bruxo",
+    "classe_de_origem": "bruxo",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 73,
+     "pagina_pdf": 77
+    },
+    "preenchida": true,
+    "total_de_magias": 91,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "guardiao": {
+    "id": "guardiao",
+    "nome": "Lista de magias do Guardião",
+    "classe_de_origem": "guardiao",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 117,
+     "pagina_pdf": 121
+    },
+    "preenchida": true,
+    "total_de_magias": 61,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   },
+   "paladino": {
+    "id": "paladino",
+    "nome": "Lista de magias do Paladino",
+    "classe_de_origem": "paladino",
+    "fonte": {
+     "capitulo": 3,
+     "pagina_livro": 167,
+     "pagina_pdf": 171
+    },
+    "preenchida": true,
+    "total_de_magias": 51,
+    "fonte_do_preenchimento": "capítulo 7: a entrada de cada magia declara as classes que a têm; conferido contra a tabela de lista da própria classe"
+   }
+  },
+  "ordem": [
+   "mago",
+   "clerigo",
+   "druida",
+   "bardo",
+   "feiticeiro",
+   "bruxo",
+   "guardiao",
+   "paladino"
+  ]
+ },
+ "catalogos/valores_derivados.json": {
+  "cabecalho": {
+   "nota": "As contas de base da ficha, para o backend calcular a partir do dado em vez de chumbar regra em código. Cada derivado traz a fórmula em árvore e as parcelas rotuladas, para o log de proveniência sair pronto. As operações válidas em qualquer fórmula da base estão declaradas em 'operacoes' — o validador não aceita op fora dessa lista.",
+   "operacoes": [
+    {
+     "id": "soma",
+     "aridade": "n",
+     "descricao_curta": "Soma os argumentos."
+    },
+    {
+     "id": "menos",
+     "aridade": "n",
+     "descricao_curta": "Subtrai os argumentos do valor acumulado."
+    },
+    {
+     "id": "mult",
+     "aridade": "n",
+     "descricao_curta": "Multiplica os argumentos."
+    },
+    {
+     "id": "max",
+     "aridade": "n",
+     "descricao_curta": "O maior dos argumentos."
+    },
+    {
+     "id": "min",
+     "aridade": "n",
+     "descricao_curta": "O menor dos argumentos."
+    },
+    {
+     "id": "div_arred_baixo",
+     "aridade": 2,
+     "descricao_curta": "Divide e arredonda para baixo."
+    },
+    {
+     "id": "div_arred_cima",
+     "aridade": 2,
+     "descricao_curta": "Divide e arredonda para cima."
+    },
+    {
+     "id": "menor_ou_igual",
+     "aridade": 2,
+     "descricao_curta": "Comparação; devolve verdadeiro ou falso."
+    },
+    {
+     "id": "soma_se",
+     "aridade": "n",
+     "descricao_curta": "Soma os argumentos apenas se a condição do campo 'condicao' valer."
+    },
+    {
+     "id": "max_entre_calculos_de_base",
+     "aridade": "n",
+     "descricao_curta": "Entre cálculos de base concorrentes, o jogador escolhe um; não se somam."
+    }
+   ]
+  }
+ }
+}

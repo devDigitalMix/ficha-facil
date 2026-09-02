@@ -2,7 +2,7 @@
 """Registra no catálogo de engine os tipos de efeito e alvos que a Fase 2 introduziu,
 e cria os catálogos parciais que as escolhas do Monge referenciam."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
 def wr(p, o): json.dump(o, open(os.path.join(D, p), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Fase 2b — Classe Guerreiro (cap. 3, p. 127-135) e suas 4 subclasses."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
@@ -103,7 +103,7 @@ car("maestria_em_arma", "Maestria em Arma", 1, 127,
    "de": {"catalogo": "itens", "filtro": {"categoria": "arma", "grupo": ["simples", "marcial"]}},
    "efeito_por_item_escolhido": {"tipo": "efeito_narrativo", "chave": "maestria_liberada",
      "texto": "Libera a propriedade de maestria da arma escolhida.", "arma": "{{escolhido}}"}}],
- revisao={"status": "duvida", "notas": "A escolha aponta para o catálogo 'itens' (armas), que só existe a partir do cap. 6. Declarado como filtro, não como lista de chaves, justamente para resolver sozinho quando o catálogo chegar."})
+ revisao={"status": "ok", "notas": "Era dúvida enquanto o catálogo de itens não existia. O capítulo 6 entrou na fase 4 e o filtro resolveu sozinho, como o esquema previa — 38 armas Simples e Marciais. Resolvido na auditoria de 2026-09-02."})
 
 car("recuperar_folego", "Recuperar Fôlego", 1, 127,
  "Ação Bônus para recuperar Pontos de Vida iguais a 1d10 mais seu nível de Guerreiro. Usos conforme a coluna Recuperar Fôlego: recupera um uso em Descanso Curto e todos em Descanso Longo.",

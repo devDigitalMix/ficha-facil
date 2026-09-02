@@ -29,7 +29,13 @@
             "resolucao": "mais_recente_prevalece"
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "fonte_herdada": true
     },
     {
       "id": "golpe_poderoso",
@@ -60,7 +66,13 @@
           "direcao": "em_direcao_ao_alvo",
           "sem_provocar_ataques_de_oportunidade": true
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "fonte_herdada": true
     },
     {
       "id": "golpe_atordoante",
@@ -82,7 +94,13 @@
           "restrito_a": "ataque_de_oportunidade",
           "duracao": "ate_inicio_do_seu_proximo_turno"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "fonte_herdada": true
     },
     {
       "id": "golpe_destruidor",
@@ -103,7 +121,13 @@
             "nota": "Uma jogada só recebe um bônus de Golpe Destruidor por vez."
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 53,
+        "pagina_pdf": 57
+      },
+      "fonte_herdada": true
     }
   ]
 }

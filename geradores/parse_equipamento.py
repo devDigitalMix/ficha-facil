@@ -9,9 +9,12 @@ As tabelas do PDF quebram linha no meio de uma célula e às vezes colam a colun
 seguinte no fim da anterior ('Recarga' + 'Lentidão' virando 'RecargaLentidão').
 Cada leitor abaixo trata isso explicitamente.
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import re, json, unicodedata
 
-TXT = '/tmp/claude-0/cap6.txt'
+TXT = caminhos.exigir('cap6.txt', 'parse_equipamento.py')
 
 MAESTRIAS = ['Afligir', 'Ágil', 'Derrubar', 'Drenar', 'Empurrar', 'Garantido',
              'Lentidão', 'Trespassar']

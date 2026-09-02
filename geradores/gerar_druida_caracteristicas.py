@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Características do Druida e os 4 círculos."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))

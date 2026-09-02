@@ -111,6 +111,38 @@ LISTAS_PREENCHIDAS = {i['id'] for i in catalogos.get('listas_de_magia', {}).get(
 LISTAS_DECLARADAS = CHAVES.get('listas_de_magia', set())
 
 
+# Chaves de filtro que só o motor resolve, em tempo de execução: dependem do
+# personagem, não do catálogo. Estão aqui para que o validador saiba a diferença
+# entre "não sei avaliar isto" e "isto é erro de digitação". Antes da auditoria de
+# 2026-09-02 as duas coisas eram a mesma: chave desconhecida era ignorada em
+# silêncio, e um filtro escrito errado nunca era acusado.
+FILTROS_DE_RUNTIME = {
+    'circulo_com_espaco_disponivel',   # depende dos espaços que o personagem tem
+    'proficiente',                     # depende das proficiências do personagem
+    'ainda_nao_especialista',
+    'com_proficiencia',
+    'pre_requisitos_atendidos',        # depende dos atributos e do nível
+    'nd_maximo',                       # Forma Selvagem: depende do nível de Druida
+    'sem_deslocamento_de_voo',
+    'exceto',                          # exclusão declarada na própria escolha
+    'alguma',                          # árvore booleana dentro do filtro
+    'id',                              # seleção direta por id
+    'no_livro',                        # recorte editorial: só o que o livro lista ali
+}
+
+
+def chaves_de_filtro_desconhecidas(cat, filtro):
+    """Chaves que nem o catálogo declara nem o motor promete resolver."""
+    fonte_cat = catalogos.get(cat, colecoes.get(cat, {}))
+    itens = fonte_cat.get('itens', [])
+    campos = {k for it in itens for k in it}
+    estruturais = {'nivel', 'nivel_minimo', 'nivel_maximo', 'lista', 'escola', 'categoria',
+                   'grupo', 'classe', 'alguma_propriedade', 'circulo_maximo',
+                   'tipo_de_criatura', 'alcance', 'ritual', 'tempo_de_conjuracao'}
+    return sorted(k for k in filtro
+                  if k not in campos and k not in estruturais and k not in FILTROS_DE_RUNTIME)
+
+
 def resolver_filtro(cat, filtro):
     """Conta quantos itens do catálogo sobrevivem ao filtro.
 
@@ -198,8 +230,11 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
         # o valor real vem do catálogo da escolha, já validado — não checar chaves aqui
         return
     if t == 'impedir':
-        if e.get('alvo') not in ALVOS_IMP:
-            erros.append(f"[alvo de impedimento inexistente] {ctx}: '{e.get('alvo')}'")
+        # o esquema do efeito sempre permitiu 'alvo' como LISTA; este ramo só olhava
+        # string, e uma lista estourava o validador em vez de ser conferida item a item
+        for a in (e['alvo'] if isinstance(e.get('alvo'), list) else [e.get('alvo')]):
+            if a not in ALVOS_IMP:
+                erros.append(f"[alvo de impedimento inexistente] {ctx}: '{a}'")
     elif t in TIPOS_COM_ALVO_DE_JOGADA and 'alvo' in e:
         # 'alvo' aqui é uma jogada/valor da ficha: sai de catalogos/alvos.json
         for a in (e['alvo'] if isinstance(e['alvo'], list) else [e['alvo']]):
@@ -313,6 +348,12 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
             elif (de.get('todo_o_catalogo') and isinstance(e.get('quantidade'), int)
                   and e['quantidade'] > len(CHAVES[cat])):
                 erros.append(f"[quantidade > opções] {ctx}: {e.get('quantidade')} de {len(CHAVES[cat])} em '{cat}'")
+            if 'filtro' in de:
+                for k in chaves_de_filtro_desconhecidas(cat, de['filtro']):
+                    erros.append(
+                        f"[chave de filtro desconhecida] {ctx}: '{k}' não é campo de "
+                        f"'{cat}' nem filtro de runtime declarado. Se o motor resolve, "
+                        f"declare em FILTROS_DE_RUNTIME; se não, é erro de digitação.")
             # regra 5 do esquema: filtro não pode resolver para conjunto vazio
             if 'filtro' in de and not de.get('pendente'):
                 n, motivo = resolver_filtro(cat, de['filtro'])
@@ -799,6 +840,156 @@ CATALOGOS_DE_VOCABULARIO = {
 # Terceira família: catálogos de FÓRMULA, cujos itens são contas da ficha e não
 # opções que o jogador escolhe. Ali o obrigatório é a fórmula, não os efeitos.
 CATALOGOS_DE_FORMULA = {'valores_derivados'}
+# Quarta família: BLOCOS DE ESTATÍSTICAS. A mecânica não mora em 'efeitos', e sim
+# em atributos, pontos de vida, traços e ações — como no bloco impresso do livro.
+# Cobrar 'efeitos' aqui empurraria a ficha da criatura para dentro de um campo que
+# não foi feito para ela; o que se cobra é o bloco estar completo.
+CATALOGOS_DE_BLOCO_DE_ESTATISTICAS = {'feras_companheiras'}
+# Quinta família: espécies. A mecânica mora em 'tracos', cada um com nome e página,
+# porque a ficha mostra o TRAÇO, não uma lista solta de efeitos. O que se cobra é o
+# cabeçalho da espécie (tipo, tamanho, deslocamento) e que todo traço tenha efeitos.
+# Linhagens e legados concedem magia por NÍVEL DE PERSONAGEM, num campo próprio
+# (`magias_por_nivel`) que não é um efeito — então o andador de efeitos nunca passava
+# por ele, e um id de magia errado ali entrava calado. Este é o furo que o teste
+# negativo do capítulo 4 encontrou.
+MAGIAS = CHAVES.get('magias', set())
+
+
+def checar_magias_por_nivel(ctx, obj):
+    if isinstance(obj, dict):
+        mpn = obj.get('magias_por_nivel')
+        if isinstance(mpn, dict):
+            for nivel, lista in mpn.items():
+                try:
+                    n_ = int(nivel)
+                except (TypeError, ValueError):
+                    erros.append(f"[nível não numérico] {ctx}/magias_por_nivel: '{nivel}'")
+                    continue
+                if not (1 <= n_ <= 20):
+                    erros.append(f"[nível fora da faixa] {ctx}/magias_por_nivel: {n_}")
+                for mg in (lista or []):
+                    if mg not in MAGIAS:
+                        erros.append(f"[magia inexistente] {ctx}/magias_por_nivel[{nivel}]: "
+                                     f"'{mg}'")
+        for k, v in obj.items():
+            if k != 'magias_por_nivel':
+                checar_magias_por_nivel(f"{ctx}/{k}", v)
+    elif isinstance(obj, list):
+        for n, v in enumerate(obj):
+            checar_magias_por_nivel(f"{ctx}[{n}]", v)
+
+
+for _cid, _c in list(catalogos.items()) + list(colecoes.items()):
+    for _i in _c['itens']:
+        checar_magias_por_nivel(f"{_cid}/{_i['id']}", _i)
+
+CATALOGOS_DE_ESPECIE = {'especies'}
+for cid in CATALOGOS_DE_ESPECIE:
+    c = catalogos.get(cid)
+    if not c:
+        continue
+    for i in c['itens']:
+        ctx = f"{cid}/{i['id']}"
+        if i.get('tipo_de_criatura') not in CHAVES.get('tipos_de_criatura', set()):
+            erros.append(f"[tipo de criatura inexistente] {ctx}: '{i.get('tipo_de_criatura')}'")
+        tam = i.get('tamanho') or {}
+        opcoes_de_tamanho = ([tam['fixo']] if 'fixo' in tam else list(tam.get('escolha') or []))
+        if not opcoes_de_tamanho:
+            erros.append(f"[espécie sem tamanho] {ctx}: declare 'fixo' ou 'escolha'")
+        for t_ in opcoes_de_tamanho:
+            if t_ not in CHAVES.get('tamanhos', set()):
+                erros.append(f"[tamanho inexistente] {ctx}: '{t_}'")
+        desl = i.get('deslocamento') or {}
+        if desl.get('tipo') not in DESLOCAMENTOS:
+            erros.append(f"[tipo de deslocamento inexistente] {ctx}: '{desl.get('tipo')}'")
+        if not isinstance(desl.get('metros'), (int, float)):
+            erros.append(f"[espécie sem deslocamento em metros] {ctx}")
+        if not i.get('tracos'):
+            erros.append(f"[espécie sem traços] {ctx}")
+        for tr in (i.get('tracos') or []):
+            tctx = f"{ctx}/{tr.get('id')}"
+            if not tr.get('id') or not tr.get('nome'):
+                erros.append(f"[traço sem id ou nome] {ctx}")
+            if not tr.get('descricao_curta'):
+                erros.append(f"[traço sem descrição] {tctx}")
+            if not tem_fonte(tr):
+                erros.append(f"[traço sem fonte] {tctx}")
+            if not tr.get('efeitos') and not tr.get('pendente'):
+                erros.append(f"[traço sem efeitos] {tctx}: todo traço precisa de efeitos "
+                             "executáveis, ou de 'pendente': true")
+            n_ = tr.get('nivel_de_personagem')
+            if n_ is not None and not (1 <= n_ <= 20):
+                erros.append(f"[nível de personagem fora da faixa] {tctx}: {n_}")
+        ids_ = [tr.get('id') for tr in (i.get('tracos') or [])]
+        if len(ids_) != len(set(ids_)):
+            erros.append(f"[traços com id repetido] {ctx}")
+
+# Sexta família: antecedentes. Forma fixa do livro — três atributos, um talento de
+# Origem, DUAS perícias, uma ferramenta e o pacote contra 50 PO. O erro que esta
+# regra existe para pegar é o de digitação: uma perícia a menos, um item que não
+# existe, o pacote sem a alternativa em dinheiro.
+CATALOGOS_DE_ANTECEDENTE = {'antecedentes'}
+TALENTOS_DE_ORIGEM = {i['id'] for i in catalogos.get('talentos', {}).get('itens', [])
+                      if i.get('categoria') == 'origem'}
+for cid in CATALOGOS_DE_ANTECEDENTE:
+    c = catalogos.get(cid)
+    if not c:
+        continue
+    for i in c['itens']:
+        ctx = f"{cid}/{i['id']}"
+        atrs = i.get('atributos') or []
+        if len(atrs) != 3:
+            erros.append(f"[antecedente sem três atributos] {ctx}: {len(atrs)}")
+        for a_ in atrs:
+            if a_ not in ATRIBUTOS:
+                erros.append(f"[atributo inexistente] {ctx}: '{a_}'")
+        tal = i.get('talento_de_origem')
+        if tal not in TALENTOS_DE_ORIGEM:
+            erros.append(f"[talento de Origem inexistente] {ctx}: '{tal}' não é um talento "
+                         "da categoria 'origem'")
+        pers = i.get('pericias') or []
+        if len(pers) != 2:
+            erros.append(f"[antecedente sem duas perícias] {ctx}: {len(pers)}")
+        for p_ in pers:
+            if p_ not in PERICIAS:
+                erros.append(f"[perícia inexistente] {ctx}: '{p_}'")
+        eq = i.get('equipamento') or {}
+        ops = {o.get('id') for o in eq.get('opcoes', [])}
+        if ops != {'A', 'B'}:
+            erros.append(f"[antecedente sem as duas opções de equipamento] {ctx}: {sorted(ops)}")
+        for o in eq.get('opcoes', []):
+            for it_ in (o.get('itens') or []):
+                if "item" in it_ and it_["item"] not in ITENS | FERRAMENTAS:
+                    erros.append(f"[item inexistente] {ctx}/equipamento: '{it_['item']}'")
+        if not any(o.get('id') == 'B' and (o.get('moedas') or {}).get('po') == 50
+                   for o in eq.get('opcoes', [])):
+            erros.append(f"[antecedente sem a alternativa de 50 PO] {ctx}")
+for cid in CATALOGOS_DE_BLOCO_DE_ESTATISTICAS:
+    c = catalogos.get(cid)
+    if not c:
+        continue
+    for i in c['itens']:
+        for campo in ('atributos', 'pontos_de_vida', 'classe_de_armadura',
+                      'deslocamentos', 'acoes'):
+            if not i.get(campo):
+                erros.append(f"[bloco de estatísticas incompleto] {cid}/{i['id']}: "
+                             f"falta '{campo}'")
+        for a_ in (i.get('atributos') or {}):
+            if a_ not in ATRIBUTOS:
+                erros.append(f"[atributo inexistente] {cid}/{i['id']}: '{a_}'")
+        if i.get('tamanho') and i['tamanho'] not in CHAVES.get('tamanhos', set()):
+            erros.append(f"[tamanho inexistente] {cid}/{i['id']}: '{i['tamanho']}'")
+        if (i.get('tipo_de_criatura')
+                and i['tipo_de_criatura'] not in CHAVES.get('tipos_de_criatura', set())):
+            erros.append(f"[tipo de criatura inexistente] {cid}/{i['id']}: "
+                         f"'{i['tipo_de_criatura']}'")
+        for d_ in (i.get('deslocamentos') or []):
+            if d_.get('tipo') not in DESLOCAMENTOS:
+                erros.append(f"[tipo de deslocamento inexistente] {cid}/{i['id']}: "
+                             f"'{d_.get('tipo')}'")
+        for s_ in (i.get('sentidos') or []):
+            if s_.get('sentido') not in SENTIDOS:
+                erros.append(f"[sentido inexistente] {cid}/{i['id']}: '{s_.get('sentido')}'")
 for cid in CATALOGOS_DE_FORMULA:
     c = catalogos.get(cid)
     if not c:
@@ -820,7 +1011,9 @@ for cid in CATALOGOS_DE_FORMULA:
                              "parcela que não é 'sempre' precisa dizer quando entra")
 
 for cid, c in catalogos.items():
-    if cid in CATALOGOS_DE_VOCABULARIO or cid in CATALOGOS_DE_FORMULA:
+    if (cid in CATALOGOS_DE_VOCABULARIO or cid in CATALOGOS_DE_FORMULA
+            or cid in CATALOGOS_DE_BLOCO_DE_ESTATISTICAS
+            or cid in CATALOGOS_DE_ESPECIE):
         continue
     for i in c['itens']:
         if not i.get('efeitos') and not i.get('pendente'):

@@ -3,7 +3,8 @@
 Registro vivo do que ficou de fora de propósito, do que depende de capítulo futuro e do que depende
 de decisão sua. Atualizado a cada lote.
 
-Última atualização: **2026-09-01**, após o capítulo 7 completo e os quatro primitivos.
+Última atualização: **2026-09-02**, após a auditoria e a rodada de conserto. Antes disso, o capítulo 4 — **o escopo do dataset está fechado**. O que
+resta são as coisas adiadas de propósito, listadas abaixo.
 
 ---
 
@@ -17,6 +18,7 @@ de decisão sua. Atualizado a cada lote.
 |---|---|
 | Druida — Forma Selvagem | O app **não oferece seletor de formas**. Ao subir de nível ele apenas informa quantas formas o personagem conhece, o ND máximo e se já pode voar. O jogador escolhe as Feras fora do app. |
 | Bruxo — Pacto da Corrente | As formas especiais de familiar (Diabrete, Pseudodragão, Quasit, Sprite…) estão citadas como texto, sem bloco de estatísticas. |
+| Guardião — Senhor das Feras | **Não afeta.** Os três blocos (Fera da Terra, do Céu e do Mar) são impressos no capítulo 3 e foram extraídos para o catálogo próprio `feras_companheiras`. Não são bestiário: derivam do nível e do modificador de Sabedoria do Guardião. |
 | Ap. B inteiro | Não extraído. |
 
 **Como está preparado para o futuro.** O catálogo `dados/catalogos/criaturas.json` existe, declarado
@@ -85,6 +87,58 @@ p. 237: cada magia agora declara `substituivel_por_foco_ou_bolsa` (44 sim, 25 ex
 
 ---
 
+## 3b. Capítulo 3 (Classes) — RESOLVIDO
+
+Fechado em 2026-09-01 com o Guardião e o Paladino (ver `revisao-fase10-guardiao-paladino.md`).
+**12 classes, 48 subclasses, 388 características.** Não sobrou classe do livro.
+
+- As listas de magia das duas já estavam preenchidas desde o capítulo 7 (guardião 61, paladino 51):
+  nenhuma magia precisou ser extraída, e todos os ids das tabelas de magia de subclasse resolveram.
+- Catálogos novos: `feras_companheiras` (3), `dadivas_de_faeria` (6), `opcoes_de_presa_do_cacador`
+  (2), `opcoes_de_taticas_defensivas` (2), `efeitos_da_torrente_do_vigilante` (2) e
+  `opcoes_de_estilo_de_luta_de_classe` (2, completo: Combatente Druídico e Combatente Abençoado).
+- `efeitos_de_canalizar_divindade` foi de 2 para 9 itens e ganhou o campo `classe`: o recurso do
+  Paladino é separado do recurso do Clérigo, só o nome é comum.
+- Tipos de efeito novos: `conceder_companheiro` e `reserva_de_cura`. Alvo novo:
+  `tamanho_da_emanacao`.
+- O validador ganhou a quarta família de catálogo, `CATALOGOS_DE_BLOCO_DE_ESTATISTICAS`, que cobra
+  bloco completo em vez de `efeitos`.
+
+**As duas decisões suas, já tomadas em 2026-09-01:**
+
+- **Predador Implacável** (Guardião 13) — **resolvido.** Saiu de `substituir_regra` (remendo, e por
+  isso dúvida) para o primitivo próprio `imunidade_a_quebra_de_concentracao`, com `causa: "dano"` e
+  escopo na Marca do Predador. `caracteristicas.json` ficou **sem nenhum `substituir_regra`**; os
+  dois que restam no dataset estão em catálogos de fases anteriores.
+- **Maestria em Arma do Guardião e do Paladino** — **fica como o livro: 2 tipos de arma fixos, do
+  nível 1 ao 20.** Conferido três vezes: as tabelas das p. 118 e 168 não têm coluna de Maestria (o
+  Guerreiro tem, indo de 3 a 5), e os níveis 20 das duas classes são Matador de Inimigos Favoritos
+  e Característica de Subclasse. **Regra da mesa pendente:** o João considera dar +2 no nível 20.
+  Não entra no dado; espera a camada de `overrides` da mesa, que o esquema prevê (§1.5) e que ainda
+  não existe como arquivo — ver seção 8.
+
+---
+
+## 3c. Capítulo 4 (Origens) — RESOLVIDO
+
+Fechado em 2026-09-01 (ver `revisao-fase11-capitulo4.md`). **16 antecedentes e 10 espécies, com 38
+traços.** Era o último capítulo do escopo, e o que bloqueava a criação de personagem.
+
+- Catálogos novos: `antecedentes` (16), `especies` (10), e seis de linhagem — `heranca_draconica`
+  (10), `linhagens_elficas` (3), `linhagens_gnomicas` (2), `ancestralidades_gigantes` (6),
+  `revelacoes_celestiais` (3), `legados_inferos` (3).
+- Campo novo `nivel_de_personagem`: até aqui todo nível do dataset era de classe. Três traços
+  dependem do nível de personagem (Revelação Celestial 3, Voo Dracônico 5, Forma Grande 5) — e num
+  futuro multiclasse essa conta não é a mesma.
+- Tamanho pode ser escolha do jogador (Aasimar, Humano, Tiferino: Médio ou Pequeno).
+- Sentido novo: `sismiconsciencia`. Tipos de efeito novos: `alterar_tamanho`, `alterar_descanso`.
+  Alvo novo: `capacidade_de_carga`.
+- Duas famílias novas no validador, `CATALOGOS_DE_ESPECIE` e `CATALOGOS_DE_ANTECEDENTE`, que cobram
+  a forma fixa do antecedente e o cabeçalho + traços da espécie.
+- Conferência que passou: **as 18 perícias do livro aparecem em algum antecedente.**
+
+---
+
 ## 4. Fases adiadas
 
 - **Multiclasse** — decisão da Fase 0. Os dados de multiclasse já vêm sendo gravados no campo
@@ -144,6 +198,13 @@ Ficam aqui como histórico — todas com nota dentro do dado.
 | Veículos | a tabela imprime "Aeronau" (p. 230) | mantido como impresso, marcado como dúvida |
 | Bárbaro, níveis 13 e 17 | tabela diz "Golpe Brutal Aprimorado"; títulos dizem "Fortalecido" | vale o título; duas seções tituladas ⇒ duas características (`_13` e `_17`) |
 | Ladino, nível 1 | tabela diz "Especialização" e "Gíria dos Ladrões"; títulos dizem "Especialista" e "Gíria do Ladrão" | vale o título; nome da tabela em `nome_na_tabela` |
+| Paladino, Juramento da Vingança, nível 3 | a tabela concede "Marca do Caçador", magia inexistente no cap. 7 | é Marca do Predador (p. 303), nome 2024 da Hunter's Mark; resolvido pelo id real, com nota |
+| Guardião e Paladino, magias de subclasse | 41 das magias concedidas não estão na lista da própria classe | é o desenho: a subclasse concede acesso, como o Ilusionista com Invocar Fera. Marcado com `acesso_concedido_pela_subclasse` |
+| Paladino, níveis 13 e 17 | a tabela imprime "—" | níveis sem característica; `caracteristicas: []`, e a progressão mantém as 20 linhas |
+| Gnomo das Rochas (p. 191) | o traço cita o truque "Consertar" | a entrada do cap. 7 é Reparar; resolvido pelo id real, com nota |
+| Elfo Silvestre (p. 190) | a tabela diz "Passos Sem Rastro" (plural) | a magia é Passo Sem Rastro, como no cap. 7 e na lista do Guardião |
+| Fazendeiro (p. 182) | o pacote diz "Balde de Ferro" | no cap. 6 o item é Balde; id real, nome impresso na nota |
+| Drow e Elfo Silvestre (p. 190) | "aumenta para 36 m" / "aumenta para 10,5 m" | é substituição, não soma: `empilha: maior_valor` |
 
 ---
 
@@ -190,10 +251,10 @@ Ficam aqui como histórico — todas com nota dentro do dado.
 - 6 das 25 linhas do Surto de Magia Selvagem dependem de decisão do Mestre ou de subtabela
   aleatória, e trazem `efeito_narrativo` com os dados estruturados junto.
 
-**Falta do livro**
+**Falta do livro** (registro da época; capítulo 5 fechou na fase 9 e as duas classes na fase 10)
 
-- Classes: **Guardião** (p. 117) e **Paladino** (p. 167).
-- **Capítulos 4 e 5**: origens, espécies, antecedentes e talentos.
+- ~~Classes: **Guardião** (p. 117) e **Paladino** (p. 167).~~
+- ~~**Capítulos 4 e 5**: origens, espécies, antecedentes e talentos.~~
 
 ---
 
@@ -269,5 +330,177 @@ Ficam aqui como histórico — todas com nota dentro do dado.
 
 **Falta do livro**
 
-- Classes: **Guardião** (p. 117) e **Paladino** (p. 167).
-- **Capítulo 4**: origens, espécies e antecedentes.
+- ~~Classes: **Guardião** (p. 117) e **Paladino** (p. 167).~~ Fechadas na fase 10.
+- **Capítulo 4**: origens, espécies e antecedentes. **É o único capítulo do escopo que falta.**
+
+---
+
+## Fase 10 — Guardião e Paladino (ver `revisao-fase10-guardiao-paladino.md`)
+
+**Fechado nesta fase**
+
+- Guardião (p. 117-125): 34 características, 4 subclasses. Paladino (p. 167-175): 34 e 4.
+  **Capítulo 3 completo.**
+- Paladino é a primeira classe com característica de subclasse no **nível 20** (3, 7, 15, 20) e a
+  única com níveis vazios na tabela (13 e 17).
+- Feras do Companheiro Primal em catálogo próprio, sem reabrir o Apêndice B.
+- Canalizar Divindade do Paladino como recurso separado do Clérigo, no catálogo compartilhado.
+- `reserva_de_cura` (Mãos Consagradas) e `conceder_companheiro` como tipos novos.
+- Aura de Proteção como emanação única que as demais características só engrossam.
+- `teste_negativo_guardiao_paladino.py`: 18 de 18 defeitos plantados pegos.
+
+**Corrigido de lotes anteriores**
+
+- **`impedir` com `alvo` em lista derrubava o validador** (`TypeError: unhashable type: 'list'`),
+  em vez de conferir item a item — o esquema sempre permitiu array ali.
+- **`operacao` era um enum só de dano**, e `alterar_condicao` usa o mesmo campo. Ampliado, com
+  `allOf` condicional separando o que vale para dano e o que vale para condição.
+- **`jsonschema` do ambiente era 3.2.0**, sem `Draft202012Validator`: `checar_schema.py` vinha
+  falhando em silêncio desde que virou script do projeto. Atualizado para 4.26.
+
+**Aberto**
+
+- 10 efeitos como `efeito_narrativo` (7 nas características, 3 nas opções de Canalizar Divindade).
+- As duas decisões da seção 3b foram tomadas no mesmo dia: Predador Implacável virou primitivo, e a
+  Maestria fica como o livro.
+
+**Falta do livro**
+
+- ~~**Capítulo 4**: origens, espécies e antecedentes.~~ Fechado na fase 11.
+
+---
+
+## 8. Camada de overrides da mesa — ainda não existe
+
+O esquema declara desde a v0 que toda entidade aceita `override` da mesa, aplicado **por último**,
+sem tocar no dado original (esquema-v1 §1.5, e a ordem de resolução em §6). Isso nunca virou
+arquivo nem regra de validação: hoje é só princípio.
+
+A primeira regra da mesa a esperar por ela já apareceu (2026-09-01): **+2 tipos de arma na Maestria
+do Guardião e do Paladino no nível 20**. O dado continua como o livro; a regra fica aqui até a
+camada existir.
+
+Quando for construída, decidir de saída:
+
+- onde mora — arquivo de campanha, ou campo no personagem (o esquema-v0 desenhou como
+  `overrides[]` na ficha, o que resolve o caso do personagem mas não o da mesa inteira);
+- o que pode ser sobrescrito — só valores derivados, ou também colunas de progressão e quantidade
+  de escolha (a regra acima é justamente uma quantidade de escolha, o caso mais difícil);
+- se o log de proveniência mostra o override ("Maestria 4 = 2 do livro + 2 da regra da mesa"), que
+  é o que impede a mesa de esquecer o que combinou.
+
+---
+
+## Fase 11 — Capítulo 4, origens (ver `revisao-fase11-capitulo4.md`)
+
+**Fechado nesta fase**
+
+- 16 antecedentes e 10 espécies, com 38 traços. **Escopo do dataset fechado.**
+- Antecedente escrito como tabela montada por função, não 16 blocos copiados — e a forma fixa do
+  livro virou regra do validador.
+- Quatro espécies com linhagem, cada uma em catálogo de opção próprio.
+- `teste_negativo_origens.py`: 26 de 26 defeitos plantados pegos.
+
+**Corrigido de lotes anteriores**
+
+- **`magias_por_nivel` não era conferido por ninguém.** Linhagens e legados declaram as magias dos
+  níveis 3 e 5 nesse campo, que **não é um efeito** — então o andador de efeitos nunca passava por
+  ele, e um id de magia errado entrava calado. O teste negativo plantou `detectar_magias` (com S) e
+  o validador deixou passar. Agora existe varredura própria, em todos os catálogos e coleções.
+
+**Aberto**
+
+- 2 traços como `efeito_narrativo` (Agilidade Pequenina e Furtividade Natural), ambos dependendo de
+  geometria de combate que a base não modela.
+- "Magia não pode forçá-lo a dormir" (Transe) continua narrativo: não é imunidade à condição
+  Inconsciente, e não há "sono mágico" como categoria.
+- O dispositivo mecânico do Gnomo das Rochas só resolve quando o motor souber enumerar os efeitos
+  de Prestidigitação Arcana.
+
+---
+
+## 9. O que sobrou, e é tudo adiado de propósito
+
+Com o capítulo 4, nenhum capítulo do escopo está em aberto. O que resta:
+
+| o quê | por quê | onde está registrado |
+|---|---|---|
+| Criaturas (Ap. B) | decisão de escopo; a Fase C do mestre reabre | seção 1 |
+| Multiclasse | decisão da Fase 0; os dados já vêm sendo gravados em `multiclasse` | seção 4 |
+| Apêndice A (Multiverso) | fora do escopo | seção 4 |
+| Camada de overrides da mesa | princípio declarado, nunca construído | seção 8 |
+| Releitura das 391 magias contra a paráfrase | proposta minha, decisão sua | fase 8 |
+| Pente-fino no glossário (Ap. C) | termos sem marcador entre colchetes | seção 5 |
+
+**A Fase A do app está destravada.**
+
+---
+
+## 10. Auditoria de 2026-09-02 — o que a varredura achou
+
+Varri o dataset inteiro atrás de marcas de pendência: `revisao: duvida`, `pendente: true`,
+`substituir_regra`, catálogo declarado vazio e `efeito_narrativo`.
+
+**Resolvido na hora (ver `geradores/gerar_ajustes_maestria.py`)**
+
+Três marcas eram **restos da fase 2**, de quando o catálogo de itens ainda não existia:
+
+- `maestria_em_arma` (Guerreiro) com `revisao: duvida` dizendo que o catálogo "só existe a partir do
+  cap. 6". O capítulo 6 entrou na fase 4; o filtro resolve 38 armas.
+- `maestria_em_arma_barbaro` e `maestria_em_arma_ladino` com `pendente: true` no bloco `de`.
+
+A segunda não era cosmética: **`pendente: true` no bloco `de` desliga a checagem de filtro vazio**
+(regra 5 do esquema). Enquanto estivesse lá, um filtro que parasse de devolver itens viraria
+silêncio em vez de erro. Conferido antes de remover: sem as marcas, o validador segue limpo.
+
+**Também resolvido: os 29 geradores que não rodavam**
+
+Ancoravam o caminho em `<pasta do script>/dados`; os dados vivem em `dados/`, na raiz. Todos
+reancorados. Junto veio o `reconstruir.py`, que declara a **ordem** de execução e reconstrói o
+dataset num diretório separado — nunca em `dados/` — com `--comparar` para conferir contra o
+versionado.
+
+**O que a reconstrução revelou — e que foi consertado no mesmo dia**
+
+Com o caminho corrigido, 37 dos 51 geradores rodavam e **22 arquivos saíam diferentes** do
+versionado: o dataset não era reproduzível a partir das próprias fontes. As causas e o conserto:
+
+| causa | conserto |
+|---|---|
+| seis geradores liam intermediários de sessões antigas (`/tmp/claude-0/cap6.txt`, `/tmp/lista_druida.json`) | `geradores/extrair_texto.py` regera o texto do PDF em `intermediarios/`, e `caminhos.py` resolve tudo pela raiz |
+| três apontavam o PDF por caminho absoluto de outra máquina | `caminhos.pdf()` acha por glob na raiz |
+| `beneficios_do_terceiro_olho.json` não tinha gerador nenhum | `gerar_beneficios_do_terceiro_olho.py` |
+| correções das fases 2 a 9 feitas à mão, sem virar código | `gerar_ajustes_historicos.py` + `ajustes_historicos.json` |
+
+Hoje: **58 de 58 geradores rodam e a comparação dá 0 diferenças de conteúdo.** O comando é
+`python3 reconstruir.py /tmp/rb --comparar`, e ele nunca escreve em `dados/`.
+
+Vale registrar um detalhe: os totais de `listas_de_magia` não são copiados pelo patch — são
+recalculados a partir de `magias.json` e conferidos. A conferência falhou na primeira execução
+(117 contra 118, porque o patch das magias ainda não tinha removido as quatro entradas espúrias do
+parser), o que é a prova de que ela serve para alguma coisa.
+
+**Também fechado na mesma rodada**
+
+- 169 itens e 25 ferramentas ganharam `descricao_curta` derivada do próprio dado — o Compêndio do
+  app prometia texto que não existia.
+- 97 itens em 21 catálogos de opção passaram a declarar `fonte`, como manda o princípio 3.
+- `emite_luz` virou o primitivo `emitir_luz`; `maestria_liberada` foi migrado para
+  `conceder_maestria_de_arma`, que já existia — havia duas maneiras de dizer a mesma coisa.
+- O validador ganhou `FILTROS_DE_RUNTIME`: chave de filtro fora da lista agora é erro, em vez de
+  ser ignorada em silêncio. `teste_negativo_auditoria.py` cobra.
+- `.gitignore`, `README.md`, `esquema-v0.md` marcado como histórico, `.VSCodeCounter` e o zip de
+  515 KB fora da árvore.
+
+O que sobrou está em **`BACKLOG.md`** — principalmente B11, migrar os ajustes históricos para os
+geradores de origem, que é dívida paga mas ainda mal endereçada.
+
+**Deliberadamente aberto, e já registrado em outras seções**
+
+| o quê | quantos | onde |
+|---|---|---|
+| `efeito_narrativo` no dataset | 132 | fases 9, 10 e 11 — cada um marcado, nenhum escondido |
+| `substituir_regra` | 1 (Compreensão Superior) | seção 3 |
+| `revisao: duvida` | 4 | Aeronau, Kit de Explorador do Druida, instrumentos do Bardo, Compreensão Superior |
+| `pendente: true` | 1 (Forma Selvagem) + `criaturas` vazio | seção 1 |
+| `conflito_2014` | 0 | — |

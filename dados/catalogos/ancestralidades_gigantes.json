@@ -1,0 +1,140 @@
+{
+  "catalogo": "ancestralidades_gigantes",
+  "nome": "Ancestralidade Gigante",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 192,
+    "pagina_pdf": 196
+  },
+  "total": 6,
+  "itens": [
+    {
+      "id": "arrepio_do_gelo",
+      "nome": "Arrepio do Gelo (Gigante do Gelo)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ao atingir e causar dano com uma jogada de ataque, também causa 1d6 de dano Gélido e reduz o Deslocamento do alvo em 3 m até o início do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d6",
+          "tipo_dano": "gelido",
+          "gatilho": "acertar_e_causar_dano_com_jogada_de_ataque"
+        },
+        {
+          "tipo": "modificador",
+          "alvo": "deslocamento",
+          "valor": [
+            "-3"
+          ],
+          "unidade": "metros",
+          "empilha": "soma",
+          "beneficiario": "alvo",
+          "duracao": "ate_o_inicio_do_seu_proximo_turno"
+        }
+      ]
+    },
+    {
+      "id": "queimadura_de_fogo",
+      "nome": "Queimadura de Fogo (Gigante de Fogo)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ao atingir e causar dano com uma jogada de ataque, também causa 1d10 de dano Ígneo.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d10",
+          "tipo_dano": "igneo",
+          "gatilho": "acertar_e_causar_dano_com_jogada_de_ataque"
+        }
+      ]
+    },
+    {
+      "id": "resistencia_da_pedra",
+      "nome": "Resistência da Pedra (Gigante da Pedra)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ao sofrer dano, Reação para jogar 1d12, somar o modificador de Constituição e reduzir o dano nesse total.",
+      "efeitos": [
+        {
+          "tipo": "reducao_de_dano",
+          "formula": [
+            "1d12",
+            "mod:CON"
+          ],
+          "custo": "reacao",
+          "gatilho": "sofrer_dano"
+        }
+      ]
+    },
+    {
+      "id": "salto_da_nuvem",
+      "nome": "Salto da Nuvem (Gigante das Nuvens)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ação Bônus para se teleportar até 9 m para um espaço desocupado à vista.",
+      "efeitos": [
+        {
+          "tipo": "teleporte",
+          "distancia_m": 9,
+          "custo": "acao_bonus",
+          "destino": "espaco_desocupado_a_vista"
+        }
+      ]
+    },
+    {
+      "id": "tombo_da_colina",
+      "nome": "Tombo da Colina (Gigante da Colina)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ao atingir e causar dano a uma criatura Grande ou menor com uma jogada de ataque, pode impor a ela a condição Caído.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "caido",
+          "alvo": "criatura_atingida",
+          "restricao_de_tamanho": "grande_ou_menor",
+          "gatilho": "acertar_e_causar_dano_com_jogada_de_ataque"
+        }
+      ]
+    },
+    {
+      "id": "trovao_da_tempestade",
+      "nome": "Trovão da Tempestade (Gigante da Tempestade)",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 192,
+        "pagina_pdf": 196
+      },
+      "descricao_curta": "Ao sofrer dano de uma criatura a até 18 m, Reação para causar 1d8 de dano Trovejante nela.",
+      "efeitos": [
+        {
+          "tipo": "dano",
+          "formula_dado": "1d8",
+          "tipo_dano": "trovejante",
+          "custo": "reacao",
+          "alcance_m": 18,
+          "alvo": "a_criatura_que_causou_o_dano",
+          "gatilho": "sofrer_dano_de_criatura_a_ate_18m"
+        }
+      ]
+    }
+  ],
+  "nota": "Escolhe-se UMA na criação. Os usos são iguais ao Bônus de Proficiência e voltam no Descanso Longo — o recurso vive no traço Ancestralidade Gigante, não aqui.",
+  "preenchida": true
+}

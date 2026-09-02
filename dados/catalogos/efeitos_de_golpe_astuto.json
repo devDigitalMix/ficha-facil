@@ -42,7 +42,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "retirada",
@@ -67,7 +73,13 @@
           "sem_provocar_ataques_de_oportunidade": true,
           "momento": "imediatamente_apos_o_ataque"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "tropeco",
@@ -94,7 +106,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "aturdir",
@@ -125,7 +143,13 @@
           },
           "nota": "No próximo turno o alvo faz apenas UMA das três coisas."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "obscurecer",
@@ -148,7 +172,13 @@
           },
           "duracao": "ate_o_fim_do_proximo_turno_do_alvo"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "nocaute",
@@ -180,7 +210,13 @@
             "encerra_em_sucesso": true
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     },
     {
       "id": "ataque_escondido",
@@ -209,7 +245,13 @@
           },
           "nota": "O ataque normalmente encerra a Invisibilidade da ação Esconder; aqui não encerra."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 141,
+        "pagina_pdf": 145
+      },
+      "fonte_herdada": true
     }
   ]
 }

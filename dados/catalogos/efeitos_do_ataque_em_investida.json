@@ -22,7 +22,13 @@
           ],
           "empilha": "soma"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 202,
+        "pagina_pdf": 206
+      },
+      "fonte_herdada": true
     },
     {
       "id": "empurrar",
@@ -43,7 +49,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 5,
+        "pagina_livro": 202,
+        "pagina_pdf": 206
+      },
+      "fonte_herdada": true
     }
   ]
 }

@@ -13,37 +13,73 @@
       "id": "engrenagens_espectrais",
       "nome": "Engrenagens espectrais pairam atrás de você",
       "resultado_1d6": 1,
-      "descricao_curta": "Engrenagens espectrais pairam atrás de você."
+      "descricao_curta": "Engrenagens espectrais pairam atrás de você.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     },
     {
       "id": "ponteiros_nos_olhos",
       "nome": "Os ponteiros de um relógio giram em seus olhos",
       "resultado_1d6": 2,
-      "descricao_curta": "Os ponteiros de um relógio giram em seus olhos."
+      "descricao_curta": "Os ponteiros de um relógio giram em seus olhos.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     },
     {
       "id": "reflexo_acobreado",
       "nome": "Sua pele brilha com um reflexo acobreado",
       "resultado_1d6": 3,
-      "descricao_curta": "Sua pele brilha com um reflexo acobreado."
+      "descricao_curta": "Sua pele brilha com um reflexo acobreado.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     },
     {
       "id": "equacoes_flutuantes",
       "nome": "Equações flutuantes e objetos geométricos se sobrepõem ao seu corpo",
       "resultado_1d6": 4,
-      "descricao_curta": "Equações flutuantes e objetos geométricos se sobrepõem ao seu corpo."
+      "descricao_curta": "Equações flutuantes e objetos geométricos se sobrepõem ao seu corpo.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     },
     {
       "id": "foco_de_relojoaria",
       "nome": "Seu Foco de Conjuração assume temporariamente a forma de um mecanismo de relógio Minúsculo",
       "resultado_1d6": 5,
-      "descricao_curta": "Seu Foco de Conjuração assume temporariamente a forma de um mecanismo de relógio Minúsculo."
+      "descricao_curta": "Seu Foco de Conjuração assume temporariamente a forma de um mecanismo de relógio Minúsculo.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     },
     {
       "id": "tique_taque",
       "nome": "O tique-taque das engrenagens ou o toque de um relógio podem ser ouvidos por você e por quem é afetado por sua magia",
       "resultado_1d6": 6,
-      "descricao_curta": "O tique-taque das engrenagens ou o toque de um relógio podem ser ouvidos por você e por quem é afetado por sua magia."
+      "descricao_curta": "O tique-taque das engrenagens ou o toque de um relógio podem ser ouvidos por você e por quem é afetado por sua magia.",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 111,
+        "pagina_pdf": 115
+      },
+      "fonte_herdada": true
     }
   ]
 }

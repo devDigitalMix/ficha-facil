@@ -1,0 +1,102 @@
+{
+  "catalogo": "linhagens_gnomicas",
+  "nome": "Linhagem Gnômica",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 191,
+    "pagina_pdf": 195
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "gnomo_das_rochas",
+      "nome": "Gnomo das Rochas",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 191,
+        "pagina_pdf": 195
+      },
+      "descricao_curta": "Truques Reparar e Prestidigitação Arcana. Além disso, 10 minutos conjurando Prestidigitação Arcana fabricam um dispositivo mecânico Minúsculo (CA 5, 1 PV) com um efeito da magia à escolha, ativado por Ação Bônus ao toque. Até três dispositivos ao mesmo tempo; cada um dura 8 horas ou até ser desmontado.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "reparar",
+          "circulo": 0,
+          "nota": "O traço imprime 'Consertar'; a entrada do cap. 7 é 'Reparar'."
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "prestidigitacao_arcana",
+          "circulo": 0
+        },
+        {
+          "tipo": "fabricar_item",
+          "id": "dispositivo_mecanico",
+          "tempo": "10 minutos",
+          "conjurando": "prestidigitacao_arcana",
+          "tamanho": "minusculo",
+          "classe_de_armadura": 5,
+          "pontos_de_vida": 1,
+          "maximo_simultaneo": 3,
+          "duracao": "8 horas",
+          "desmontagem": {
+            "custo": "acao",
+            "acao_id": "usar_objeto"
+          },
+          "ativacao": {
+            "custo": "acao_bonus",
+            "requer": "toque"
+          },
+          "nota": "O efeito do dispositivo é um efeito de Prestidigitação Arcana escolhido na fabricação; se o efeito tiver opções, uma delas é fixada ali."
+        }
+      ]
+    },
+    {
+      "id": "gnomo_do_bosque",
+      "nome": "Gnomo do Bosque",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 191,
+        "pagina_pdf": 195
+      },
+      "descricao_curta": "Truque Ilusão Menor, e Falar com Animais sempre preparada — conjurável sem espaço um número de vezes igual ao Bônus de Proficiência, ou com qualquer espaço que você tenha.",
+      "efeitos": [
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "conhecida",
+          "magia": "ilusao_menor",
+          "circulo": 0
+        },
+        {
+          "tipo": "desbloquear_magias",
+          "modo": "sempre_preparada",
+          "magias": [
+            "falar_com_animais"
+          ]
+        },
+        {
+          "tipo": "recurso_com_recarga",
+          "id": "gnomo_do_bosque_falar_com_animais",
+          "nome": "Falar com Animais (Gnomo do Bosque)",
+          "formula_maximo": [
+            "prof"
+          ],
+          "recarga": [
+            "descanso_longo"
+          ],
+          "consumo": "por_uso"
+        },
+        {
+          "tipo": "conjurar_sem_espaco",
+          "magia": "falar_com_animais",
+          "consome_recurso": "gnomo_do_bosque_falar_com_animais",
+          "tambem_com_espaco": true
+        }
+      ]
+    }
+  ],
+  "nota": "A linhagem determina se o atributo de conjuração é INT, SAB ou CAR — escolhido junto.",
+  "preenchida": true
+}

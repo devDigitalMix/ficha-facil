@@ -6,7 +6,7 @@
     "pagina_livro": 360,
     "pagina_pdf": 364
   },
-  "total": 29,
+  "total": 31,
   "itens": [
     {
       "id": "teste_d20",
@@ -66,7 +66,8 @@
     },
     {
       "id": "teste_de_atributo_de_outro",
-      "nome": "Teste de atributo de outra criatura"
+      "nome": "Teste de atributo de outra criatura",
+      "reservado_para": "Efeitos que alteram o teste de OUTRA criatura, e não o seu. Nenhuma entidade do escopo atual precisa disso."
     },
     {
       "id": "alcance_de_magia",
@@ -144,6 +145,17 @@
       "id": "dado_de_cura",
       "nome": "Dado de cura",
       "descricao_curta": "Os dados jogados para determinar Pontos de Vida recuperados. Alvo da rejogada do Curandeiro."
+    },
+    {
+      "id": "tamanho_da_emanacao",
+      "nome": "Tamanho da emanação",
+      "descricao_curta": "O raio, em metros, de uma emanação já concedida. Aura Expandida troca 3 m por 9 m sem recriar a Aura de Proteção."
+    },
+    {
+      "id": "capacidade_de_carga",
+      "nome": "Capacidade de carga",
+      "descricao_curta": "O quanto o personagem consegue carregar. Já existe como valor derivado; passa a ser alvo para que um efeito possa alterá-la — Porte Poderoso (Golias) conta um tamanho maior.",
+      "derivado_id": "capacidade_de_carga"
     }
   ],
   "nota": "Catálogo de engine: nomes de alvo aceitos em 'modificador' e 'vantagem'. Sufixos permitidos: ':FOR'..':CAR' e ':<pericia>'."

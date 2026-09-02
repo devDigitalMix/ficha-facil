@@ -48,7 +48,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Perfurante; propriedades: Acuidade, Arremesso (Alcance 6/18), Leve; maestria Ágil; 2 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "alabarda",
@@ -87,7 +89,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Cortante; propriedades: Duas Mãos, Extensão, Pesada; maestria Trespassar; 20 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "arco_curto",
@@ -134,7 +138,9 @@
           "arredondamento": "baixo",
           "tempo": "1 minuto"
         }
-      }
+      },
+      "descricao_curta": "Arma Simples à Distância, dano 1d6 Perfurante; propriedades: Duas Mãos, Munição (Alcance 24/96; Flecha); maestria Afligir; 25 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "arco_longo",
@@ -185,7 +191,9 @@
           "arredondamento": "baixo",
           "tempo": "1 minuto"
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância, dano 1d8 Perfurante; propriedades: Duas Mãos, Munição (Alcance 45/180; Flecha), Pesada; maestria Lentidão; 50 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "azagaia",
@@ -218,7 +226,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Perfurante; propriedades: Arremesso (Alcance 9/36); maestria Lentidão; 5 PP · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "besta_de_mao",
@@ -278,7 +288,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância, dano 1d6 Perfurante; propriedades: Leve, Munição (Alcance 9/36; Virote), Recarga; maestria Afligir; 75 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "besta_leve",
@@ -338,7 +350,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Simples à Distância, dano 1d8 Perfurante; propriedades: Duas Mãos, Munição (Alcance 24/96; Virote), Recarga; maestria Lentidão; 25 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "besta_pesada",
@@ -402,7 +416,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância, dano 1d10 Perfurante; propriedades: Duas Mãos, Munição (Alcance 30/120; Virote), Pesada, Recarga; maestria Empurrar; 50 PO · 9 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cajado",
@@ -444,7 +460,9 @@
           "dado_de_dano": "1d8",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Contundente; propriedades: Versátil (1d8); maestria Derrubar; 2 PP · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "chicote",
@@ -479,7 +497,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d4 Cortante; propriedades: Acuidade, Extensão; maestria Lentidão; 2 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cimitarra",
@@ -514,7 +534,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d6 Cortante; propriedades: Acuidade, Leve; maestria Ágil; 25 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "clava",
@@ -545,7 +567,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Contundente; propriedades: Leve; maestria Lentidão; 1 PP · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "clava_grande",
@@ -576,7 +600,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d8 Contundente; propriedades: Duas Mãos; maestria Empurrar; 2 PP · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "dardo",
@@ -613,7 +639,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples à Distância, dano 1d4 Perfurante; propriedades: Acuidade, Arremesso (Alcance 6/18); maestria Afligir; 5 PC · 0,15 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "espada_curta",
@@ -648,7 +676,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d6 Perfurante; propriedades: Acuidade, Leve; maestria Afligir; 10 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "espada_grande",
@@ -683,7 +713,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 2d6 Cortante; propriedades: Duas Mãos, Pesada; maestria Garantido; 50 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "espada_longa",
@@ -721,7 +753,9 @@
           "dado_de_dano": "1d10",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Cortante; propriedades: Versátil (1d10); maestria Drenar; 15 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "foice",
@@ -752,7 +786,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Cortante; propriedades: Leve; maestria Ágil; 1 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "funda",
@@ -795,7 +831,9 @@
           "arredondamento": "baixo",
           "tempo": "1 minuto"
         }
-      }
+      },
+      "descricao_curta": "Arma Simples à Distância, dano 1d4 Contundente; propriedades: Munição (Alcance 9/36; Bala); maestria Lentidão; 1 PP.",
+      "descricao_derivada": true
     },
     {
       "id": "glaive",
@@ -834,7 +872,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Cortante; propriedades: Duas Mãos, Extensão, Pesada; maestria Garantido; 20 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lanca",
@@ -878,7 +918,9 @@
           "dado_de_dano": "1d8",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Perfurante; propriedades: Arremesso (Alcance 6/18), Versátil (1d8); maestria Drenar; 1 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lanca_de_montaria",
@@ -918,7 +960,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Perfurante; propriedades: Duas Mãos (a menos que montado), Extensão, Pesada; maestria Derrubar; 10 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lanca_longa",
@@ -957,7 +1001,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Perfurante; propriedades: Duas Mãos, Extensão, Pesada; maestria Empurrar; 5 PO · 9 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "maca",
@@ -983,7 +1029,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Contundente; maestria Drenar; 5 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "maca_estrela",
@@ -1009,7 +1057,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; maestria Drenar; 15 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "machadinha",
@@ -1046,7 +1096,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Cortante; propriedades: Arremesso (Alcance 6/18), Leve; maestria Afligir; 5 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "machado_de_batalha",
@@ -1084,7 +1136,9 @@
           "dado_de_dano": "1d10",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Cortante; propriedades: Versátil (1d10); maestria Derrubar; 10 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "machado_grande",
@@ -1119,7 +1173,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d12 Cortante; propriedades: Duas Mãos, Pesada; maestria Trespassar; 30 PO · 3,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "malho",
@@ -1154,7 +1210,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 2
+      "maos_ocupadas": 2,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 2d6 Contundente; propriedades: Duas Mãos, Pesada; maestria Derrubar; 10 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "mangual",
@@ -1180,7 +1238,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Contundente; maestria Drenar; 10 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "martelo_de_guerra",
@@ -1218,7 +1278,9 @@
           "dado_de_dano": "1d10",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Contundente; propriedades: Versátil (1d10); maestria Empurrar; 15 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "martelo_leve",
@@ -1255,7 +1317,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Contundente; propriedades: Arremesso (Alcance 6/18), Leve; maestria Ágil; 2 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "mosquete",
@@ -1315,7 +1379,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância, dano 1d12 Perfurante; propriedades: Duas Mãos, Munição (Alcance 12/36; Bala), Recarga; maestria Lentidão; 500 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "picareta_de_guerra",
@@ -1353,7 +1419,9 @@
           "dado_de_dano": "1d10",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Versátil (1d10); maestria Drenar; 5 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "pistola",
@@ -1409,7 +1477,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância, dano 1d10 Perfurante; propriedades: Munição (Alcance 9/27; Bala), Recarga; maestria Afligir; 250 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "rapieira",
@@ -1440,7 +1510,9 @@
         "pagina_livro": 215,
         "pagina_pdf": 219
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Acuidade; maestria Afligir; 25 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "tridente",
@@ -1484,7 +1556,9 @@
           "dado_de_dano": "1d10",
           "nota": "Empunhada com as duas mãos, usa o dado Versátil."
         }
-      }
+      },
+      "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Arremesso (Alcance 6/18), Versátil (1d10); maestria Derrubar; 5 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "zarabatana",
@@ -1540,7 +1614,9 @@
           "reacao"
         ],
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
-      }
+      },
+      "descricao_curta": "Arma Marcial à Distância; propriedades: Munição (Alcance 7,5/30; Agulha), Recarga; maestria Afligir; 10 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "acolchoada",
@@ -1570,7 +1646,9 @@
       },
       "nomes_alternativos": [
         "Armadura Acolchoada"
-      ]
+      ],
+      "descricao_curta": "Armadura Leve, CA 11 + modificador de Destreza; Desvantagem em Furtividade; 1 min para vestir; 5 PO · 4 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "armadura_de_tala",
@@ -1597,7 +1675,9 @@
         "capitulo": 6,
         "pagina_livro": 219,
         "pagina_pdf": 223
-      }
+      },
+      "descricao_curta": "Armadura Pesada, CA 17; exige Força 15; Desvantagem em Furtividade; 10 min para vestir; 200 PO · 30 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cota_de_aneis",
@@ -1624,7 +1704,9 @@
         "capitulo": 6,
         "pagina_livro": 219,
         "pagina_pdf": 223
-      }
+      },
+      "descricao_curta": "Armadura Pesada, CA 14; Desvantagem em Furtividade; 10 min para vestir; 30 PO · 20 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cota_de_malha",
@@ -1651,7 +1733,9 @@
         "capitulo": 6,
         "pagina_livro": 219,
         "pagina_pdf": 223
-      }
+      },
+      "descricao_curta": "Armadura Pesada, CA 16; exige Força 13; Desvantagem em Furtividade; 10 min para vestir; 75 PO · 27 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cota_de_malha_parcial",
@@ -1682,7 +1766,9 @@
       },
       "nomes_alternativos": [
         "Malha Parcial"
-      ]
+      ],
+      "descricao_curta": "Armadura Média, CA 13 + modificador de Destreza (máx. +2); 5 min para vestir; 50 PO · 10 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "couraca_peitoral",
@@ -1710,7 +1796,9 @@
         "capitulo": 6,
         "pagina_livro": 219,
         "pagina_pdf": 223
-      }
+      },
+      "descricao_curta": "Armadura Média, CA 14 + modificador de Destreza (máx. +2); 5 min para vestir; 400 PO · 10 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "couro",
@@ -1740,7 +1828,9 @@
       },
       "nomes_alternativos": [
         "Armadura de Couro"
-      ]
+      ],
+      "descricao_curta": "Armadura Leve, CA 11 + modificador de Destreza; 1 min para vestir; 10 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "couro_batido",
@@ -1770,7 +1860,9 @@
       },
       "nomes_alternativos": [
         "Armadura de Couro Batido"
-      ]
+      ],
+      "descricao_curta": "Armadura Leve, CA 12 + modificador de Destreza; 1 min para vestir; 45 PO · 6,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "escudo",
@@ -1793,7 +1885,9 @@
         "pagina_livro": 219,
         "pagina_pdf": 223
       },
-      "maos_ocupadas": 1
+      "maos_ocupadas": 1,
+      "descricao_curta": "Escudo, CA +2; 10 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "gibao_de_peles",
@@ -1824,7 +1918,9 @@
       },
       "nomes_alternativos": [
         "Gibão de Pele"
-      ]
+      ],
+      "descricao_curta": "Armadura Média, CA 12 + modificador de Destreza (máx. +2); 5 min para vestir; 10 PO · 6 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "loriga_de_escamas",
@@ -1852,7 +1948,9 @@
         "capitulo": 6,
         "pagina_livro": 219,
         "pagina_pdf": 223
-      }
+      },
+      "descricao_curta": "Armadura Média, CA 14 + modificador de Destreza (máx. +2); Desvantagem em Furtividade; 5 min para vestir; 50 PO · 22 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "placas",
@@ -1882,7 +1980,9 @@
       },
       "nomes_alternativos": [
         "Armadura de Placas"
-      ]
+      ],
+      "descricao_curta": "Armadura Pesada, CA 18; exige Força 15; Desvantagem em Furtividade; 10 min para vestir; 1500 PO · 32 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "placas_parcial",
@@ -1913,7 +2013,9 @@
       },
       "nomes_alternativos": [
         "Armadura de Placas Parcial"
-      ]
+      ],
+      "descricao_curta": "Armadura Média, CA 15 + modificador de Destreza (máx. +2); Desvantagem em Furtividade; 5 min para vestir; 750 PO · 20 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "alimentacao_por_dia",
@@ -1929,7 +2031,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 5 PC · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "biga",
@@ -1945,7 +2049,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 250 PO · 50 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "carroca",
@@ -1961,7 +2067,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 15 PO · 100 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "carruagem",
@@ -1977,7 +2085,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 100 PO · 300 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "estabulo_por_dia",
@@ -1993,7 +2103,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 5 PP.",
+      "descricao_derivada": true
     },
     {
       "id": "sela_exotica",
@@ -2009,7 +2121,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 60 PO · 20 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "sela_militar",
@@ -2025,7 +2139,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 20 PO · 15 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "sela_viagem",
@@ -2041,7 +2157,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 10 PO · 12,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "treno",
@@ -2057,7 +2175,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 20 PO · 150 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "vagao",
@@ -2073,7 +2193,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Arreio ou veículo de tração; 35 PO · 200 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "acido",
@@ -2089,7 +2211,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 25 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "agua_benta",
@@ -2105,7 +2229,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 25 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "algibeira",
@@ -2121,7 +2247,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PP · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "aljava",
@@ -2137,7 +2265,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "antitoxina",
@@ -2153,7 +2283,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 50 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "apito_sinalizador",
@@ -2169,7 +2301,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PC.",
+      "descricao_derivada": true
     },
     {
       "id": "ariete_portavel",
@@ -2185,7 +2319,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 4 PO · 16,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "armadilha_de_caca",
@@ -2201,7 +2337,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 12,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "arpeu",
@@ -2217,7 +2355,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "balde",
@@ -2233,7 +2373,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PC · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "baliza",
@@ -2249,7 +2391,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PC · 3,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "barril",
@@ -2265,7 +2409,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 35 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "bau",
@@ -2281,7 +2427,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 12,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "bolsa_de_componentes",
@@ -2297,7 +2445,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 25 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cadeado",
@@ -2313,7 +2463,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 10 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "caixa_para_fogo",
@@ -2329,7 +2481,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PP · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "caneta_tinteiro",
@@ -2345,7 +2499,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PC.",
+      "descricao_derivada": true
     },
     {
       "id": "cantil",
@@ -2361,7 +2517,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PP · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cesta",
@@ -2377,7 +2535,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 4 PP · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cobertor",
@@ -2393,7 +2553,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PP · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "corda",
@@ -2409,7 +2571,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cordao",
@@ -2425,7 +2589,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PP.",
+      "descricao_derivada": true
     },
     {
       "id": "corrente",
@@ -2441,7 +2607,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "escada",
@@ -2457,7 +2625,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PP · 12,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "esferas_de_metal",
@@ -2473,7 +2643,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "espelho",
@@ -2489,7 +2661,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 0,25 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "estacas_de_ferro",
@@ -2505,7 +2679,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "estojo_mapa_ou_pergaminho",
@@ -2521,7 +2697,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "estojo_virote_de_besta",
@@ -2537,7 +2715,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "estrepes",
@@ -2553,7 +2733,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "fogo_alquimico",
@@ -2569,7 +2751,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 50 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "frasco",
@@ -2585,7 +2769,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "garrafa_de_vidro",
@@ -2601,7 +2787,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "grilhoes",
@@ -2617,7 +2805,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "jarro",
@@ -2633,7 +2823,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PC · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_artista",
@@ -2649,7 +2841,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 40 PO · 29 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_assaltante",
@@ -2665,7 +2859,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 16 PO · 21 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_aventureiro",
@@ -2681,7 +2877,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 10 PO · 27,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_curandeiro",
@@ -2697,7 +2895,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_diplomata",
@@ -2713,7 +2913,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 39 PO · 19,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_erudito",
@@ -2729,7 +2931,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 40 PO · 11 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_escalada",
@@ -2745,7 +2949,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 25 PO · 6 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_explorador_de_masmorras",
@@ -2764,7 +2970,9 @@
       },
       "nomes_alternativos": [
         "Kit de Explorador"
-      ]
+      ],
+      "descricao_curta": "Equipamento de aventura; 12 PO · 27,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "kit_de_sacerdote",
@@ -2780,7 +2988,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 33 PO · 14,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lampada",
@@ -2796,7 +3006,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PP · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lanterna_coberta",
@@ -2812,7 +3024,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lanterna_foca_facho",
@@ -2828,7 +3042,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 10 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "livro",
@@ -2844,7 +3060,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 25 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "livro_de_magias",
@@ -2875,7 +3093,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1000 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "lupa",
@@ -2891,7 +3111,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 100 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "mapa",
@@ -2907,7 +3129,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "mochila",
@@ -2923,7 +3147,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "oleo",
@@ -2939,7 +3165,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PP · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "pa",
@@ -2955,7 +3183,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "papel",
@@ -2971,7 +3201,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PP.",
+      "descricao_derivada": true
     },
     {
       "id": "pe_de_cabra",
@@ -2987,7 +3219,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "perfume",
@@ -3003,7 +3237,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "pergaminho",
@@ -3019,7 +3255,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PP.",
+      "descricao_derivada": true
     },
     {
       "id": "pergaminho_magico_1_circulo",
@@ -3035,7 +3273,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 50 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "pergaminho_magico_truque",
@@ -3051,7 +3291,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 30 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "pocao_de_cura",
@@ -3067,7 +3309,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 50 PO · 0,25 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "pote",
@@ -3083,7 +3327,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PC · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "pote_ferro",
@@ -3099,7 +3345,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "racoes",
@@ -3115,7 +3363,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PP · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "rede",
@@ -3131,7 +3381,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "roldana_e_polias",
@@ -3147,7 +3399,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 2,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "roupas_fantasia",
@@ -3163,7 +3417,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 5 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "roupas_finas",
@@ -3179,7 +3435,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 15 PO · 3 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "roupas_viagem",
@@ -3195,7 +3453,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "saca",
@@ -3211,7 +3471,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PC · 0,25 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "saco_de_dormir",
@@ -3227,7 +3489,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 3,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "sino",
@@ -3243,7 +3507,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "tenda",
@@ -3259,7 +3525,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 2 PO · 10 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "tinta",
@@ -3275,7 +3543,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 10 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "tocha",
@@ -3291,7 +3561,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PC · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "tunica",
@@ -3307,7 +3579,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "vela",
@@ -3323,7 +3597,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 1 PC.",
+      "descricao_derivada": true
     },
     {
       "id": "veneno_basico",
@@ -3339,7 +3615,9 @@
         "capitulo": 6,
         "pagina_livro": 222,
         "pagina_pdf": 226
-      }
+      },
+      "descricao_curta": "Equipamento de aventura; 100 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "amuleto",
@@ -3358,7 +3636,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 5 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cajado_de_madeira",
@@ -3377,7 +3657,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 5 PO · 2 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cetro",
@@ -3396,7 +3678,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 10 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "cristal",
@@ -3415,7 +3699,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "emblema",
@@ -3434,7 +3720,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 5 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "orbe",
@@ -3453,7 +3741,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 20 PO · 1,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "ramo_de_visco",
@@ -3472,7 +3762,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 1 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "relicario",
@@ -3491,7 +3783,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 5 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "varinha",
@@ -3510,7 +3804,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "varinha_de_teixo",
@@ -3529,7 +3825,9 @@
         "pagina_pdf": 229
       },
       "maos_ocupadas": 1,
-      "deve_ser_segurado": true
+      "deve_ser_segurado": true,
+      "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "camelo",
@@ -3545,7 +3843,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 225 kg; 50 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "cavalo_de_carga",
@@ -3561,7 +3861,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 270 kg; 50 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "cavalo_de_guerra",
@@ -3577,7 +3879,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 270 kg; 400 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "cavalo_de_montaria",
@@ -3593,7 +3897,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 240 kg; 75 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "elefante",
@@ -3609,7 +3915,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 660 kg; 200 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "mastim",
@@ -3625,7 +3933,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 93 kg; 25 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "mula",
@@ -3641,7 +3951,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 210 kg; 8 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "ponei",
@@ -3657,7 +3969,9 @@
         "capitulo": 6,
         "pagina_livro": 229,
         "pagina_pdf": 233
-      }
+      },
+      "descricao_curta": "Montaria; carrega até 112 kg; 30 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "agulhas",
@@ -3675,7 +3989,9 @@
         "capitulo": 6,
         "pagina_livro": 227,
         "pagina_pdf": 231
-      }
+      },
+      "descricao_curta": "Munição; vendida em lotes de 50, guardada em algibeira; 1 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "balas_arma_de_fogo",
@@ -3693,7 +4009,9 @@
         "capitulo": 6,
         "pagina_livro": 227,
         "pagina_pdf": 231
-      }
+      },
+      "descricao_curta": "Munição; vendida em lotes de 10, guardada em algibeira; 3 PO · 1 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "balas_funda",
@@ -3711,7 +4029,9 @@
         "capitulo": 6,
         "pagina_livro": 227,
         "pagina_pdf": 231
-      }
+      },
+      "descricao_curta": "Munição; vendida em lotes de 20, guardada em algibeira; 4 PC · 0,75 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "flechas",
@@ -3732,7 +4052,9 @@
       },
       "nomes_alternativos": [
         "Flecha"
-      ]
+      ],
+      "descricao_curta": "Munição; vendida em lotes de 20, guardada em aljava; 1 PO · 0,5 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "virotes",
@@ -3753,7 +4075,9 @@
       },
       "nomes_alternativos": [
         "Virote"
-      ]
+      ],
+      "descricao_curta": "Munição; vendida em lotes de 20, guardada em estojo virote de besta; 1 PO · 0,75 kg.",
+      "descricao_derivada": true
     },
     {
       "id": "aeronau",
@@ -3779,7 +4103,9 @@
       "revisao": {
         "status": "duvida",
         "notas": "O livro imprime 'Aeronau' (p. 230). Parece 'Aeronave' truncado, mas mantive como está impresso."
-      }
+      },
+      "descricao_curta": "Veículo; 40000 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "barco_a_remo",
@@ -3801,7 +4127,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 50 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "barco_de_quilha",
@@ -3823,7 +4151,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 3000 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "dracar",
@@ -3845,7 +4175,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 10000 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "galera",
@@ -3867,7 +4199,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 30000 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "navio_de_guerra",
@@ -3889,7 +4223,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 25000 PO.",
+      "descricao_derivada": true
     },
     {
       "id": "veleiro",
@@ -3911,7 +4247,9 @@
         "capitulo": 6,
         "pagina_livro": 230,
         "pagina_pdf": 234
-      }
+      },
+      "descricao_curta": "Veículo; 10000 PO.",
+      "descricao_derivada": true
     }
   ]
 }

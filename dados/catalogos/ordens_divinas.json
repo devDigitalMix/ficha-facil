@@ -25,7 +25,13 @@
           "chave": "pesada",
           "nivel_dominio": "treinado"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 82,
+        "pagina_pdf": 86
+      },
+      "fonte_herdada": true
     },
     {
       "id": "taumaturgo",
@@ -78,7 +84,13 @@
           ],
           "empilha": "soma"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 82,
+        "pagina_pdf": 86
+      },
+      "fonte_herdada": true
     }
   ]
 }

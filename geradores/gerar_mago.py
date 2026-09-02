@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Fase 2c — Classe Mago (cap. 3, p. 147-157), suas 4 subclasses e a lista de magias."""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import json, os, subprocess, sys
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
@@ -33,7 +36,7 @@ for i, n in [("alcance_de_magia", "Alcance das suas magias"),
 a['total'] = len(a['itens']); wr('catalogos/alvos.json', a)
 
 # --------------------------------------------- lista de magias do Mago (242)
-magias_mago = json.load(open('/tmp/lista_mago.json', encoding='utf-8'))
+magias_mago = json.load(open(caminhos.exigir('lista_mago.json', 'gerar_mago.py'), encoding='utf-8'))
 m = rd('catalogos/magias.json')
 por_id = {i['id']: i for i in m['itens']}
 for x in magias_mago:

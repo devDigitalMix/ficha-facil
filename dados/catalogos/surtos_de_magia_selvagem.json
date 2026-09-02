@@ -32,7 +32,13 @@
             ]
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "criatura_amigavel",
@@ -57,7 +63,13 @@
             "Unicórnio"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "cura_no_inicio_do_turno",
@@ -77,7 +89,13 @@
           "momento": "inicio_do_seu_turno",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "desvantagem_na_proxima_magia",
@@ -96,7 +114,13 @@
           "beneficiario": "alvos_da_proxima_magia_com_salvaguarda",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "efeito_cosmetico_1d8",
@@ -127,7 +151,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "acao_vira_acao_bonus",
@@ -149,7 +179,13 @@
           },
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "plano_astral",
@@ -167,7 +203,13 @@
           "texto": "Transportado para o Plano Astral até o fim do seu próximo turno; retorna ao espaço anterior ou ao desocupado mais próximo.",
           "duracao": "ate_o_fim_do_seu_proximo_turno"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "dano_maximo_na_proxima_magia",
@@ -186,7 +228,13 @@
           },
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "resistencia_a_tudo",
@@ -204,7 +252,13 @@
           "operacao": "resistencia",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "vaso_de_plantas",
@@ -233,7 +287,13 @@
           "chave": "vaso_quebra",
           "texto": "Se chegar a 0 Pontos de Vida enquanto é planta, o vaso quebra e você reverte à forma original."
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "teleporte_por_turno",
@@ -252,7 +312,13 @@
           "frequencia": "uma_vez_por_turno",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "invisibilidade_do_grupo",
@@ -282,7 +348,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "escudo_espectral",
@@ -308,7 +380,13 @@
           "risco": "magia:misseis_magicos",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "acao_adicional",
@@ -325,7 +403,13 @@
           "frequencia": "uma_vez",
           "duracao": "este_turno"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_aleatoria",
@@ -389,7 +473,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "toque_incendiario",
@@ -408,7 +498,13 @@
           "alvo": "objeto_inflamavel_tocado",
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "reencarnar_ao_morrer",
@@ -427,7 +523,13 @@
           "magia_de_referencia": "reencarnar",
           "duracao": "1 hora"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "medo_subito",
@@ -445,7 +547,13 @@
           "beneficiario": "voce",
           "duracao": "ate_o_fim_do_seu_proximo_turno"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "teleporte_18m",
@@ -465,7 +573,13 @@
             "destino_a_vista"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "veneno_aleatorio",
@@ -488,7 +602,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "luz_plena_ofuscante",
@@ -514,7 +634,13 @@
           "duracao": "ate_o_fim_do_proximo_turno_dela",
           "duracao_do_efeito": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "dreno_necrotico",
@@ -540,7 +666,13 @@
           ],
           "beneficiario": "voce"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "descarga_eletrica",
@@ -559,7 +691,13 @@
           "alvo": "ate_3_criaturas_a_sua_escolha",
           "alcance_m": 9
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "vulnerabilidade_perfurante",
@@ -579,7 +717,13 @@
           "alcance_m": 9,
           "duracao": "1 minuto"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     },
     {
       "id": "beneficio_aleatorio_1d6",
@@ -666,7 +810,13 @@
             }
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 114,
+        "pagina_pdf": 118
+      },
+      "fonte_herdada": true
     }
   ],
   "dado_da_tabela": "1d100",

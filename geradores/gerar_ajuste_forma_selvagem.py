@@ -5,7 +5,7 @@ O app não oferece seletor de formas; ao subir de nível ele apenas AVISA quanta
 formas o personagem conhece, o ND máximo e se já pode voar. A escolha em si fica
 com o jogador, fora do app, até o Apêndice B ser extraído — se for."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 p = os.path.join(D, 'caracteristicas.json')
 d = json.load(open(p, encoding='utf-8'))
 por = {i['id']: i for i in d['itens']}

@@ -24,7 +24,13 @@
       "revisao": {
         "status": "duvida",
         "notas": "Ler qualquer idioma não tem primitivo próprio no esquema; fica como substituir_regra até existir um efeito de compreensão de idiomas (provável no cap. 5, com os talentos)."
-      }
+      },
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 155,
+        "pagina_pdf": 159
+      },
+      "fonte_herdada": true
     },
     {
       "id": "ver_o_invisivel",
@@ -35,7 +41,13 @@
           "tipo": "conjurar_sem_espaco",
           "magia": "ver_o_invisivel"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 155,
+        "pagina_pdf": 159
+      },
+      "fonte_herdada": true
     },
     {
       "id": "visao_no_escuro",
@@ -49,7 +61,13 @@
           "empilha": "substitui_se_maior",
           "duracao": "ate_o_proximo_descanso"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 155,
+        "pagina_pdf": 159
+      },
+      "fonte_herdada": true
     }
   ]
 }

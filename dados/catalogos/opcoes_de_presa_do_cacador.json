@@ -1,0 +1,56 @@
+{
+  "catalogo": "opcoes_de_presa_do_cacador",
+  "nome": "Opções de Presa do Caçador",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 122,
+    "pagina_pdf": 126
+  },
+  "total": 2,
+  "itens": [
+    {
+      "id": "assassino_de_colossos",
+      "nome": "Assassino de Colossos",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "descricao_curta": "Ao atingir com arma uma criatura que não está com os Pontos de Vida no máximo, causa 1d8 de dano adicional, uma vez por turno.",
+      "efeitos": [
+        {
+          "tipo": "dado_de_impacto",
+          "formula_dado": "1d8",
+          "tipo_dano": "mesmo_da_arma",
+          "frequencia": "uma_vez_por_turno",
+          "condicao": {
+            "todas": [
+              "acerto_com_arma",
+              "alvo_com_pv_abaixo_do_maximo"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "destruidor_de_hordas",
+      "nome": "Destruidor de Hordas",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 122,
+        "pagina_pdf": 126
+      },
+      "descricao_curta": "Uma vez por turno, ao atacar com uma arma, faz outro ataque com a mesma arma contra outra criatura a até 1,5 m do alvo original.",
+      "efeitos": [
+        {
+          "tipo": "conceder_ataque",
+          "quantidade": [
+            "1"
+          ],
+          "frequencia": "uma_vez_por_turno",
+          "restricao": "mesma arma, contra criatura diferente a até 1,5 m do alvo original, dentro do alcance da arma e ainda não atacada neste turno"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Fase 2e — Classe Druida (cap. 3, p. 91-101), Forma Selvagem e os 4 círculos."""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import caminhos
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p, cap=3): return {"capitulo": cap, "pagina_livro": p, "pagina_pdf": p + 4}
 OK = {"status": "ok", "notas": ""}
 def rd(p): return json.load(open(os.path.join(D, p), encoding='utf-8'))
@@ -53,7 +56,7 @@ wr('catalogos/ordens_primais.json', {"catalogo":"ordens_primais","nome":"Ordem P
 
 # ----------------------------------------------------- lista de magias (135)
 m = rd('catalogos/magias.json'); por = {i['id']: i for i in m['itens']}
-for x in json.load(open('/tmp/lista_druida.json', encoding='utf-8')):
+for x in json.load(open(caminhos.exigir('lista_druida.json', 'gerar_druida.py'), encoding='utf-8')):
     x.pop('_escola_no_livro', None)
     if x['id'] in por:
         alvo = por[x['id']]; alvo.setdefault('listas', [])

@@ -6,9 +6,9 @@
     "pagina_livro": 82,
     "pagina_pdf": 86
   },
-  "total": 2,
+  "total": 9,
   "parcial": true,
-  "nota": "Efeitos básicos da classe. Subclasses acrescentam os seus (ver características de domínio).",
+  "nota": "Efeitos básicos e de subclasse das duas classes que têm Canalizar Divindade. O campo 'classe' separa: os recursos são independentes, só o nome é comum.",
   "itens": [
     {
       "id": "centelha_divina",
@@ -59,7 +59,8 @@
             "18": "4d8"
           }
         }
-      ]
+      ],
+      "classe": "clerigo"
     },
     {
       "id": "expulsar_mortos_vivos",
@@ -121,7 +122,265 @@
             }
           ]
         }
+      ],
+      "classe": "clerigo"
+    },
+    {
+      "id": "sentido_divino",
+      "nome": "Sentido Divino",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "descricao_curta": "Ação Bônus: por 10 minutos ou até ficar Incapacitado, você sabe a localização e o tipo de qualquer Celestial, Ínfero ou Morto-Vivo a até 18 m, e detecta lugares e objetos consagrados ou profanados no mesmo raio.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "detectar_tipos_de_criatura",
+          "texto": "Revela localização e tipo de Celestiais, Ínferos e Mortos-Vivos a até 18 m, e lugares ou objetos consagrados ou profanados como na magia Consagrar.",
+          "custo": "acao_bonus",
+          "alcance_m": 18,
+          "duracao": "10 minutos",
+          "tipos_de_criatura": [
+            "celestial",
+            "infero",
+            "morto_vivo"
+          ],
+          "encerra_se": [
+            {
+              "condicao_id": "incapacitado"
+            }
+          ]
+        }
       ]
+    },
+    {
+      "id": "repudiar_inimigos",
+      "nome": "Repudiar Inimigos",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 169,
+        "pagina_pdf": 173
+      },
+      "descricao_curta": "Ação Usar Magia: criaturas à vista a até 18 m, em número igual ao modificador de Carisma, fazem salvaguarda de Sabedoria ou ficam Amedrontadas por 1 minuto ou até sofrerem dano; Amedrontadas assim, só fazem uma coisa por turno.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "alcance_m": 18,
+          "alvo": "criaturas_a_vista",
+          "quantidade_de_alvos": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:CAR"
+            ]
+          },
+          "salvaguarda": {
+            "atributo": "SAB",
+            "cd": [
+              "8",
+              "mod:CAR",
+              "prof"
+            ]
+          },
+          "duracao": "1 minuto",
+          "encerra_se": [
+            {
+              "gatilho": "alvo_sofre_dano"
+            }
+          ]
+        },
+        {
+          "tipo": "impedir",
+          "alvo": [
+            "acao",
+            "acao_bonus"
+          ],
+          "modo": "apenas_uma_das_tres",
+          "nota": "Amedrontado por esta característica, o alvo escolhe UMA por turno: mover-se, executar uma ação ou executar uma Ação Bônus.",
+          "condicao": {
+            "todas": [
+              "amedrontado_por:repudiar_inimigos"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "arma_sagrada",
+      "nome": "Arma Sagrada",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 172,
+        "pagina_pdf": 176
+      },
+      "descricao_curta": "Na ação Atacar, imbui uma arma Corpo a Corpo empunhada por 10 minutos ou até usar de novo: +modificador de Carisma nas jogadas de ataque (mínimo +1), dano Radiante à escolha e Luz Plena em 6 m mais Meia-luz por 6 m. Encerra se largar a arma.",
+      "efeitos": [
+        {
+          "tipo": "modificador",
+          "alvo": "jogada_de_ataque",
+          "valor": {
+            "op": "max",
+            "args": [
+              "1",
+              "mod:CAR"
+            ]
+          },
+          "empilha": "soma",
+          "escopo": "arma_imbuida"
+        },
+        {
+          "tipo": "escolher_tipo_de_dano",
+          "opcoes": [
+            "mesmo_da_arma",
+            "radiante"
+          ],
+          "escopo": "arma_imbuida"
+        },
+        {
+          "tipo": "emitir_luz",
+          "luz_plena_m": 6,
+          "meia_luz_m": 6
+        }
+      ],
+      "subclasse": "juramento_da_devocao",
+      "apenas_se_concedido": true
+    },
+    {
+      "id": "atleta_inigualavel",
+      "nome": "Atleta Inigualável",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "descricao_curta": "Ação Bônus: por 1 hora, Vantagem em testes de Força (Atletismo) e Destreza (Acrobacia), e a distância dos seus Saltos Longo e em Altura aumenta em 3 m — a distância adicional custa movimento padrão.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "teste_de_atributo",
+          "modo": "vantagem",
+          "pericias": [
+            "atletismo",
+            "acrobacia"
+          ],
+          "custo": "acao_bonus",
+          "duracao": "1 hora"
+        },
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "aumentar_salto",
+          "texto": "Saltos Longo e em Altura aumentam em 3 m; a distância adicional custa movimento padrão.",
+          "distancia_adicional_m": 3,
+          "duracao": "1 hora"
+        }
+      ],
+      "subclasse": "juramento_da_gloria",
+      "apenas_se_concedido": true
+    },
+    {
+      "id": "destruicao_inspiradora",
+      "nome": "Destruição Inspiradora",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 173,
+        "pagina_pdf": 177
+      },
+      "descricao_curta": "Imediatamente após conjurar Destruição Divina: 2d8 mais o seu nível de Paladino em Pontos de Vida Temporários, divididos como preferir entre criaturas à sua escolha a até 9 m, incluindo você.",
+      "efeitos": [
+        {
+          "tipo": "pontos_de_vida_temporarios",
+          "formula": {
+            "op": "soma",
+            "args": [
+              "2d8",
+              "nivel_classe:paladino"
+            ]
+          },
+          "distribuivel": true,
+          "alcance_m": 9,
+          "inclui_voce": true,
+          "gatilho": "imediatamente_apos_conjurar:destruicao_divina"
+        }
+      ],
+      "subclasse": "juramento_da_gloria",
+      "apenas_se_concedido": true
+    },
+    {
+      "id": "voto_de_inimizade",
+      "nome": "Voto de Inimizade",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "descricao_curta": "Na ação Atacar: Vantagem em jogadas de ataque contra uma criatura à vista a até 9 m por 1 minuto ou até usar de novo. Reduzida a 0 Pontos de Vida antes disso, o voto se transfere para outra criatura a até 9 m, sem gastar ação.",
+      "efeitos": [
+        {
+          "tipo": "vantagem",
+          "alvo": "jogada_de_ataque",
+          "modo": "vantagem",
+          "alcance_m": 9,
+          "duracao": "1 minuto",
+          "gatilho": "acao_atacar",
+          "encerra_se": [
+            {
+              "gatilho": "usar_a_caracteristica_de_novo"
+            }
+          ],
+          "transferivel": {
+            "gatilho": "alvo_a_0_pontos_de_vida",
+            "alcance_m": 9,
+            "custo": "livre"
+          }
+        }
+      ],
+      "subclasse": "juramento_da_vinganca",
+      "apenas_se_concedido": true
+    },
+    {
+      "id": "a_ira_da_natureza",
+      "nome": "A Ira da Natureza",
+      "classe": "paladino",
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 174,
+        "pagina_pdf": 178
+      },
+      "descricao_curta": "Ação Usar Magia: videiras espectrais. Cada criatura à sua escolha à vista a até 4,5 m faz salvaguarda de Força ou fica Contida por 1 minuto, repetindo a salvaguarda no fim de cada turno dela.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "contido",
+          "custo": "acao",
+          "acao_id": "usar_magia",
+          "alcance_m": 4.5,
+          "alvo": "criaturas_a_escolha_a_vista",
+          "salvaguarda": {
+            "atributo": "FOR",
+            "cd": [
+              "8",
+              "mod:CAR",
+              "prof"
+            ],
+            "repete": "fim_de_cada_turno_do_alvo",
+            "em_sucesso": "encerra"
+          },
+          "duracao": "1 minuto"
+        }
+      ],
+      "subclasse": "juramento_dos_anciaos",
+      "apenas_se_concedido": true
     }
   ]
 }

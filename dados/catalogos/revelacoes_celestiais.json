@@ -1,0 +1,88 @@
+{
+  "catalogo": "revelacoes_celestiais",
+  "nome": "Revelação Celestial",
+  "fonte": {
+    "capitulo": 4,
+    "pagina_livro": 186,
+    "pagina_pdf": 190
+  },
+  "total": 3,
+  "itens": [
+    {
+      "id": "asas_celestiais",
+      "nome": "Asas Celestiais",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 186,
+        "pagina_pdf": 190
+      },
+      "descricao_curta": "Asas espectrais: Deslocamento de Voo igual ao seu Deslocamento enquanto durar.",
+      "efeitos": [
+        {
+          "tipo": "conceder_velocidade",
+          "tipo_deslocamento": "voo",
+          "formula": [
+            "deslocamento"
+          ]
+        }
+      ],
+      "tipo_de_dano_adicional": "radiante"
+    },
+    {
+      "id": "manto_necrotico",
+      "nome": "Manto Necrótico",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 186,
+        "pagina_pdf": 190
+      },
+      "descricao_curta": "Olhos viram poças de escuridão e asas que não voam brotam: criaturas que não sejam aliadas a até 3 m fazem salvaguarda de Carisma ou ficam Amedrontadas até o fim do seu próximo turno.",
+      "efeitos": [
+        {
+          "tipo": "conceder_condicao",
+          "condicao_id": "amedrontado",
+          "alvo": "criatura_nao_aliada_a_ate_3m",
+          "salvaguarda": {
+            "atributo": "CAR",
+            "cd": [
+              "8",
+              "mod:CAR",
+              "prof"
+            ]
+          },
+          "duracao": "ate_o_fim_do_seu_proximo_turno"
+        }
+      ],
+      "tipo_de_dano_adicional": "necrotico"
+    },
+    {
+      "id": "transfiguracao_radiante",
+      "nome": "Transfiguração Radiante",
+      "fonte": {
+        "capitulo": 4,
+        "pagina_livro": 186,
+        "pagina_pdf": 190
+      },
+      "descricao_curta": "Luz abrasadora nos olhos e na boca: Luz Plena em 3 m e Meia-luz por mais 3 m, e no fim de cada turno seu cada criatura a até 3 m sofre dano Radiante igual ao seu Bônus de Proficiência.",
+      "efeitos": [
+        {
+          "tipo": "emitir_luz",
+          "luz_plena_m": 3,
+          "meia_luz_m": 3
+        },
+        {
+          "tipo": "dano",
+          "formula": [
+            "prof"
+          ],
+          "tipo_dano": "radiante",
+          "alvo": "criatura_a_ate_3m",
+          "gatilho": "fim_de_cada_turno_seu"
+        }
+      ],
+      "tipo_de_dano_adicional": "radiante"
+    }
+  ],
+  "nota": "Escolhida a cada transformação, não na criação. O dano adicional por turno é igual ao Bônus de Proficiência, e o tipo vem da opção escolhida.",
+  "preenchida": true
+}

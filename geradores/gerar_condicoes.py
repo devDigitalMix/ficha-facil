@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, os
-BASE = os.path.dirname(os.path.abspath(__file__)); D = os.path.join(BASE, 'dados')
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = os.path.join(BASE, 'dados')
 def f(p): return {"capitulo": "ap_c", "pagina_livro": p, "pagina_pdf": p + 4}
 def V(alvo, tipo, **kw): return dict({"tipo": "vantagem", "alvo": alvo, "modo": tipo}, **kw)
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Manobras do Mestre da Batalha (cap. 3, p. 134-135)."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 def f(p): return {"capitulo": 3, "pagina_livro": p, "pagina_pdf": p + 4}
 DS = "dado:superioridade"
 CD = ["8", "mod:FOR_ou_DES", "prof"]   # CD das manobras (p. 133)

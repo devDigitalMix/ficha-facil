@@ -1,0 +1,121 @@
+{
+  "catalogo": "dadivas_de_faeria",
+  "nome": "Dádivas de Faéria",
+  "fonte": {
+    "capitulo": 3,
+    "pagina_livro": 121,
+    "pagina_pdf": 125
+  },
+  "total": 6,
+  "itens": [
+    {
+      "id": "borboletas_ilusorias",
+      "nome": "Borboletas ilusórias",
+      "resultado_1d6": 1,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Borboletas ilusórias flutuam ao seu redor durante um Descanso Curto ou Longo.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Borboletas ilusórias flutuam ao seu redor durante um Descanso Curto ou Longo."
+        }
+      ]
+    },
+    {
+      "id": "flores_no_cabelo",
+      "nome": "Flores no cabelo",
+      "resultado_1d6": 2,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Flores desabrocham do seu cabelo a cada amanhecer.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Flores desabrocham do seu cabelo a cada amanhecer."
+        }
+      ]
+    },
+    {
+      "id": "fragrancia_natural",
+      "nome": "Fragrância natural",
+      "resultado_1d6": 3,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Você cheira levemente a canela, lavanda, noz-moscada ou outra erva ou fragrância natural.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Você cheira levemente a canela, lavanda, noz-moscada ou outra erva ou fragrância natural."
+        }
+      ]
+    },
+    {
+      "id": "sombra_dancante",
+      "nome": "Sombra dançante",
+      "resultado_1d6": 4,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Sua sombra dança enquanto ninguém está olhando diretamente para ela.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Sua sombra dança enquanto ninguém está olhando diretamente para ela."
+        }
+      ]
+    },
+    {
+      "id": "chifres_ou_galhadas",
+      "nome": "Chifres ou galhadas",
+      "resultado_1d6": 5,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Chifres ou galhadas brotam da sua cabeça.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Chifres ou galhadas brotam da sua cabeça."
+        }
+      ]
+    },
+    {
+      "id": "cores_mutaveis",
+      "nome": "Cores mutáveis",
+      "resultado_1d6": 6,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 121,
+        "pagina_pdf": 125
+      },
+      "descricao_curta": "Sua pele e cabelo mudam de cor a cada amanhecer.",
+      "efeitos": [
+        {
+          "tipo": "efeito_narrativo",
+          "chave": "dadiva_de_faeria",
+          "texto": "Sua pele e cabelo mudam de cor a cada amanhecer."
+        }
+      ]
+    }
+  ],
+  "nota": "Puramente estética: nenhuma das seis tem efeito mecânico. Escolhida ou sorteada em 1d6."
+}

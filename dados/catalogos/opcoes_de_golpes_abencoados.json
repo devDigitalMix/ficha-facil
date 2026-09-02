@@ -26,7 +26,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      },
+      "fonte_herdada": true
     },
     {
       "id": "golpe_divino",
@@ -47,7 +53,13 @@
             "14": "2d8"
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 83,
+        "pagina_pdf": 87
+      },
+      "fonte_herdada": true
     }
   ]
 }

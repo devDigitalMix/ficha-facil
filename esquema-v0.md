@@ -1,3 +1,10 @@
+> **HISTÓRICO — não implemente a partir deste arquivo.**
+>
+> Este é o rascunho da Fase 0. O documento válido é o `esquema-v1.md`, que traz as decisões
+> aprovadas. O v0 fica versionado porque registra o raciocínio que levou até elas — em especial
+> a ideia de `overrides[]` na ficha do personagem, que continua sendo decisão em aberto
+> (`PENDENCIAS.md` §8) e que o v1 não resolveu.
+
 # Ficha Fácil — Esquema de Dados v0 (proposta para aprovação)
 
 Fonte: `DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf` (393 páginas, edição 2024).

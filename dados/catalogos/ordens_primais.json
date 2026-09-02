@@ -25,7 +25,13 @@
           "chave": "media",
           "nivel_dominio": "treinado"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 92,
+        "pagina_pdf": 96
+      },
+      "fonte_herdada": true
     },
     {
       "id": "xama",
@@ -78,7 +84,13 @@
           ],
           "empilha": "soma"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 92,
+        "pagina_pdf": 96
+      },
+      "fonte_herdada": true
     }
   ]
 }

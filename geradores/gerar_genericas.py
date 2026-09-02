@@ -6,7 +6,7 @@ Antes, `aumento_no_valor_de_atributo`, `dadiva_epica` e o marcador
 O Guerreiro concede as mesmas em níveis diferentes — então os níveis passam a
 viver só na progressão de cada classe, que é a fonte da verdade."""
 import json, os
-D = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dados')
+D = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dados')
 p = os.path.join(D, 'caracteristicas.json')
 d = json.load(open(p, encoding='utf-8'))
 por_id = {i['id']: i for i in d['itens']}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Gera os dados da Fase 1 (Ap. C - Glossario de Regras + tabela de Pericias do Cap. 1)."""
 import json, os
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(BASE, 'dados')
 
 def fonte(livro, pdf=None, cap='ap_c'):

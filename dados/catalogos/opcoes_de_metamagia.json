@@ -28,7 +28,13 @@
             "nenhuma_magia_de_circulo_1_ou_superior_depois_no_turno"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_agravada",
@@ -47,7 +53,13 @@
           },
           "duracao": "contra_esta_magia"
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_buscadora",
@@ -63,7 +75,13 @@
           "usa_novo_resultado": true
         }
       ],
-      "empilha_com_outra_metamagia": true
+      "empilha_com_outra_metamagia": true,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_cautelosa",
@@ -92,7 +110,13 @@
             "forca_salvaguarda": true
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_distante",
@@ -116,7 +140,13 @@
             "tipo_de_alcance": "toque"
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_duplicada",
@@ -132,7 +162,13 @@
             "aprimoramento_atinge_criatura_adicional": true
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_persistente",
@@ -160,7 +196,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_potencializada",
@@ -184,7 +226,13 @@
           "usa_novo_resultado": true
         }
       ],
-      "empilha_com_outra_metamagia": true
+      "empilha_com_outra_metamagia": true,
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_sutil",
@@ -205,7 +253,13 @@
             "material_com_custo"
           ]
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     },
     {
       "id": "magia_transmutada",
@@ -235,7 +289,13 @@
             ]
           }
         }
-      ]
+      ],
+      "fonte": {
+        "capitulo": 3,
+        "pagina_livro": 105,
+        "pagina_pdf": 109
+      },
+      "fonte_herdada": true
     }
   ],
   "recurso": "pontos_de_feiticaria"
