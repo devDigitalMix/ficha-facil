@@ -221,9 +221,13 @@ quais formas de conjurar aquela magia estão disponíveis agora, o que cada uma 
 componente material exige (coberto pelo foco, exige material, custa X PO, é consumido). É a peça
 que o app consulta ao tocar na magia.
 
-**3. Motor — rótulos de proveniência apresentáveis.** As `parcelas` existem e estão certas; falta
-cada uma dizer de onde vem em português, para a tela mostrar "10 base + 2 armadura + 2 escudo + 2
-Destreza" sem o frontend adivinhar.
+**3. Motor — rótulos de proveniência apresentáveis.** **Quase pronto (fase 21).** `calcular()`
+passou a usar os `rotulo` que o `valores_derivados.json` já declarava, e a parcela condicional
+zerada some em vez de virar "+ 0 (reduções do máximo)". `mod:DES` virou "Destreza", e o cálculo de
+CA vencedor sai pelo nome ("Cota de Malha Parcial") em vez do id. Junto veio um defeito que
+ninguém tinha visto: as parcelas de `min`/`max` traziam os DOIS operandos, e a CA da Clériga se
+explicava como 18 valendo 16. **Falta**: o `max_entre_calculos_de_base` emitir uma parcela `ca_base`
+única em vez de despejar as internas do cálculo vencedor — é o que ainda deixa "13 (13)" na tela.
 
 **4. Backend — `ArmazemMongo`.** Implementa a interface que já existe. Os testes de personagem
 rodam contra `ArmazemNaMemoria`; um teste de integração roda contra o Atlas.
@@ -242,6 +246,14 @@ de estado sem evento. Endpoint de leitura paginado.
 **8. Backend — imagens.** URLs assinadas, como acima.
 
 **9. Frontend — Fase A.** Criar personagem, Meus personagens, ficha em sessão, compêndio, histórico.
+**Em andamento.** Já existem: criar personagem (com os atributos pré-distribuídos pelo
+`atributo_primario` da classe), Meus personagens, ficha em sessão com vida, números, espaços,
+**usos**, **magias** e ataques, aba **Detalhes** (características, traços, talentos e
+proficiências), escolhas e histórico. Falta o compêndio pesquisável (passo 6).
+
+**10. Descanso — pronto (fase 21).** `descansar()` no motor e `POST /personagens/:id/descanso`.
+A regra não mora no backend: `tipos_de_descanso.json` declara o que cada descanso recupera, cada
+recurso declara a sua `recarga`, e o `conceder_slot` da classe diz quando os espaços voltam.
 
 **Enquanto o cluster não existe**, os passos 1, 2, 3 e 6 andam inteiros — nenhum deles toca banco.
 

@@ -12,7 +12,7 @@
 
 import type { Contexto, CalculoDeCaBase, Formula, Resultado } from './tipos.ts'
 import { ErroDoMotor } from './tipos.ts'
-import { catalogo } from './dataset.ts'
+import { catalogo, nomeDeEntidade, trilhaLegivel } from './dataset.ts'
 import { derivado, calcular } from './derivados.ts'
 import type { Vocabulario } from './condicao.ts'
 
@@ -96,7 +96,7 @@ export function calculoDaArmadura(armadura: Item): CalculoDeCaBase {
         : 'mod:DES',
     )
   }
-  return { id: ca.id ?? `ca_${armadura.id}`, formula }
+  return { id: ca.id ?? `ca_${armadura.id}`, nome: armadura.nome as string | undefined, formula }
 }
 
 export function bonusDoEscudo(escudo: Item): number {
@@ -244,13 +244,42 @@ export function ataqueComArma(
  * por um `substituir_atributo`, e o dado, por um `dado_de_dano` que vem da coluna
  * Artes Marciais. As duas trocas são efeito no dado — o motor não sabe quem é Monge.
  */
+/**
+ * De onde veio o dado, em uma frase curta.
+ *
+ * `origem` é a trilha que o coletor montou ("classe guerreiro / nível 1 /
+ * estilo_de_luta / …"). O último trecho que não é um id de escolha é o que nomeia a
+ * coisa; na falta de qualquer um, o rótulo genérico é honesto e não inventa nome.
+ */
+function rotuloDoDado(origem?: string): string {
+  if (!origem) return 'dado de dano'
+  // O trecho MAIS ESPECÍFICO da trilha: quem concedeu o dado é a característica,
+  // não a classe que a contém. Aqui, ao contrário da lista de magias, a trilha
+  // inteira só faria a parcela crescer sem dizer nada de novo. Um id que não
+  // nomeia nada não vira rótulo — melhor o genérico do que
+  // 'guerreiro_estilo_de_luta' na cara de quem joga.
+  const nomes = trilhaLegivel(origem)
+  const ultimo = nomes[nomes.length - 1]
+  return ultimo ? `dado de ${ultimo}` : 'dado de dano'
+}
+
 export function ataqueDesarmado(
   ctx: Contexto,
   trocas: { de: string; para: string }[],
-  dadoDeDano: string | undefined,
+  dadoDeDano: { dado: string; origem?: string } | undefined,
   vocabulario?: Vocabulario,
 ): Ataque {
-  const troca = trocas.find((t) => t.de === 'FOR')
+  // Mesmo cuidado do dado: se mais de um efeito troca o atributo do Ataque
+  // Desarmado, quem decide não pode ser a ordem de declaração. Vale o que dá o
+  // maior modificador — que é o que qualquer jogador escolheria.
+  const candidatas = trocas.filter((t) => t.de === 'FOR')
+  const troca = candidatas.reduce<{ de: string; para: string } | undefined>(
+    (melhor, t) =>
+      melhor === undefined || (ctx.atributos[t.para] ?? 0) > (ctx.atributos[melhor.para] ?? 0)
+        ? t
+        : melhor,
+    undefined,
+  )
   const atributo = troca?.para ?? 'FOR'
 
   const ctxDesarmado: Contexto = {
@@ -263,10 +292,14 @@ export function ataqueDesarmado(
   const dano: Resultado = dadoDeDano
     ? {
         valor: modificador,
-        dados: [dadoDeDano],
+        dados: [dadoDeDano.dado],
         parcelas: [
-          { rotulo: 'dado de Artes Marciais', valor: dadoDeDano },
-          { rotulo: atributo, valor: modificador },
+          // O rótulo era 'dado de Artes Marciais' fixo — o nome da característica do
+          // MONGE, aparecendo na ficha de um Guerreiro com Combate Desarmado. Agora
+          // sai de onde o dado veio.
+          { rotulo: rotuloDoDado(dadoDeDano.origem), valor: dadoDeDano.dado },
+          // O NOME do atributo, como na proveniência dos derivados: "Força", não "FOR".
+          { rotulo: nomeDeEntidade(atributo) ?? atributo, valor: modificador },
         ],
       }
     : calcular('dano_desarmado', { ...ctx, atributos: { ...ctx.atributos, FOR: ctx.atributos[atributo] ?? 0 } }, {}, vocabulario)

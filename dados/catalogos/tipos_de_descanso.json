@@ -26,7 +26,12 @@
         "jogar_iniciativa",
         "conjurar_magia_nao_truque",
         "receber_dano"
-      ]
+      ],
+      "recupera": {
+        "pontos_de_vida": "nenhum",
+        "pontos_de_vida_temporarios": "mantem",
+        "dados_de_vida": "nenhum"
+      }
     },
     {
       "id": "descanso_longo",
@@ -48,7 +53,15 @@
         "receber_dano",
         "1h_de_esforco_fisico"
       ],
-      "intervalo_minimo_entre_descansos": "16 horas"
+      "intervalo_minimo_entre_descansos": "16 horas",
+      "recupera": {
+        "pontos_de_vida": "todos",
+        "pontos_de_vida_temporarios": "perde",
+        "dados_de_vida": "todos",
+        "reducoes_de_maximo": "removidas",
+        "reducoes_de_atributo": "removidas",
+        "exaustao": -1
+      }
     }
   ]
 }

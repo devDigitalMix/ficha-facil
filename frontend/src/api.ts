@@ -121,7 +121,12 @@ export const api = {
 export type Parcela = { rotulo: string; valor: number | string }
 export type Resultado = { valor: number; dados: string[]; parcelas: Parcela[] }
 
-export type Opcao = { id: string; nome: string }
+export type Opcao = {
+  id: string
+  nome: string
+  /** Por que o personagem já tem esta opção por outro caminho, quando já tem. */
+  ja_tem?: string
+}
 export type ItemDoChecklist = {
   escolha_id: string
   rotulo: string
@@ -192,7 +197,40 @@ export type Ataque = {
   jogada: Resultado; dano: Resultado; tipo_dano?: string; porque_o_atributo: string
 }
 
+export type MagiaNaFicha = {
+  id: string
+  nome: string
+  /** 0 é truque: é por ele que se sabe qual espaço a magia gasta. */
+  circulo: number
+  modo: string
+  origem: string
+  atributo_de_conjuracao?: string
+  nao_conta_para_o_limite?: boolean
+  pronta_para_conjurar: boolean
+}
+
+export type CaracteristicaNaFicha = {
+  id: string
+  nome: string
+  /** 'caracteristica' | 'traco' | 'talento'. */
+  familia: string
+  descricao_curta?: string
+  fonte?: { capitulo?: number | string; pagina_livro?: number }
+  /** A trilha até ela: "Draconato", "Acólito · Iniciado em Magia". */
+  de: string
+}
+
+export type Recurso = {
+  id: string
+  nome: string
+  maximo: number
+  recarga: { gatilho: string; quantidade: number | 'todos' }[]
+  origem: string
+}
+
 export type Ficha = {
+  /** A pontuação de cada atributo, já com todos os aumentos aplicados. */
+  atributos: Record<string, number>
   modificadores: Record<string, number>
   bonus_de_proficiencia: number
   classe_de_armadura: Resultado
@@ -203,6 +241,9 @@ export type Ficha = {
   testes_de_pericia: Record<string, number>
   deslocamento_m: number
   ataques: Ataque[]
+  magias: MagiaNaFicha[]
+  recursos: Recurso[]
+  caracteristicas: CaracteristicaNaFicha[]
   conjuracao?: { atributo: string; cd_para_evitar_sua_magia: Resultado; espacos: Record<string, number> }
 }
 

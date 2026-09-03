@@ -232,7 +232,9 @@ class Coletor {
       }
 
       if (e.tipo === 'conceder_talento' && typeof e.talento_id === 'string') {
-        this.talento(e.talento_id, `${origem} / talento`, portas, sufixo,
+        // o id do talento entra na trilha: sem ele, a proveniência termina no id da
+        // ESCOLHA ('guerreiro_estilo_de_luta') e não na coisa escolhida
+        this.talento(e.talento_id, `${origem} / talento ${e.talento_id}`, portas, sufixo,
           e.escolhas_predefinidas as Record<string, EscolhaResolvida> | undefined)
       }
 

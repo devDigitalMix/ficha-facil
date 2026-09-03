@@ -116,5 +116,7 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
 }
 
 export { testeDePericia, ehPendencia }
+export { descansar, tiposDeDescanso } from './descanso.ts'
+export type { EfeitoDoDescanso, TipoDeDescanso } from './descanso.ts'
 export type { Construcao, Estado, Ficha, ItemDeChecklist, Problema }
 export type { TipoDeProblema } from './escolha.ts'

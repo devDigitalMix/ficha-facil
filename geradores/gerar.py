@@ -110,12 +110,32 @@ w('catalogos/sentidos.json', cat('sentidos', 'Sentidos', [
     {"id":"percepcao_passiva","nome":"Percepção Passiva","tem_alcance":False,
      "formula":["10","bonus_teste:SAB.percepcao"]}], fonte(377)))
 
+# `recupera` é o que o descanso devolve POR SI, além do que cada recurso e cada
+# espaço de magia já declaram na `recarga` deles.
+#
+# Curto (p. 365-366): nada automático. Quem cura no Descanso Curto é o Dado de Vida
+# que o jogador decide gastar, e decisão de jogador não é efeito de descanso. Os
+# Pontos de Vida Temporários ATRAVESSAM o Curto: eles "duram até se esgotarem ou até
+# você completar um Descanso Longo" (p. 33).
+#
+# Longo (p. 366): "Você recupera todos os Pontos de Vida perdidos e TODOS os Dados de
+# Vida gastos" — em 2024 são todos, não metade como em 2014 —, os Pontos de Vida
+# máximos reduzidos voltam ao normal, os valores de atributo reduzidos voltam ao
+# normal e a Exaustão cai 1 nível.
+#
+# Sem este campo, "o que o descanso faz" ficaria escrito no código do backend, que é
+# exatamente o que este projeto não faz com regra de livro.
 w('catalogos/tipos_de_descanso.json', cat('tipos_de_descanso', 'Tipos de Descanso', [
     {"id":"descanso_curto","nome":"Descanso Curto","duracao":"1 hora","fonte":fonte(365),
-     "interrompido_por":["jogar_iniciativa","conjurar_magia_nao_truque","receber_dano"]},
+     "interrompido_por":["jogar_iniciativa","conjurar_magia_nao_truque","receber_dano"],
+     "recupera":{"pontos_de_vida":"nenhum","pontos_de_vida_temporarios":"mantem",
+                 "dados_de_vida":"nenhum"}},
     {"id":"descanso_longo","nome":"Descanso Longo","duracao":"8 horas","fonte":fonte(366),
      "interrompido_por":["jogar_iniciativa","conjurar_magia_nao_truque","receber_dano","1h_de_esforco_fisico"],
-     "intervalo_minimo_entre_descansos":"16 horas"}], fonte(365)))
+     "intervalo_minimo_entre_descansos":"16 horas",
+     "recupera":{"pontos_de_vida":"todos","pontos_de_vida_temporarios":"perde",
+                 "dados_de_vida":"todos","reducoes_de_maximo":"removidas",
+                 "reducoes_de_atributo":"removidas","exaustao":-1}}], fonte(365)))
 
 w('catalogos/custos_de_acao.json', cat('custos_de_acao', 'Custos de Ação', [
     {"id":"acao","nome":"Ação"},{"id":"acao_bonus","nome":"Ação Bônus"},

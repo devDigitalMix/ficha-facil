@@ -348,7 +348,7 @@ ESPECIES = [
         traco("tenacidade_ana", "Tenacidade Anã", 187,
               "Seus Pontos de Vida máximos aumentam em 1, e mais 1 a cada nível de personagem.",
               [{"tipo": "modificador", "alvo": "pontos_de_vida_maximos",
-                "valor": ["nivel_de_personagem"], "empilha": "soma",
+                "valor": ["nivel_do_personagem"], "empilha": "soma",
                 "nota": "1 no nível 1 e mais 1 por nível: o total é igual ao nível de "
                         "personagem."}]),
         traco("conhecimento_de_pedras", "Conhecimento de Pedras", 187,

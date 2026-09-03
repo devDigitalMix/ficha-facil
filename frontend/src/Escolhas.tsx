@@ -113,10 +113,10 @@ function etiquetas(i: ItemDoCompendio): string[] {
 }
 
 function Opcao({
-  id, nome, detalhe, marcado, recomendada, desabilitado, aoClicar,
+  id, nome, detalhe, marcado, recomendada, jaTem, desabilitado, aoClicar,
 }: {
   id: string; nome: string; detalhe?: ItemDoCompendio; marcado: boolean
-  recomendada: boolean; desabilitado: boolean; aoClicar: () => void
+  recomendada: boolean; jaTem?: string; desabilitado: boolean; aoClicar: () => void
 }) {
   const tags = detalhe ? etiquetas(detalhe) : []
   return (
@@ -126,8 +126,13 @@ function Opcao({
     >
       <div className="espalha">
         <strong>{nome}</strong>
-        {recomendada && <span className="marca reserva">recomendada</span>}
+        {/* AVISO, não bloqueio: pegar de novo continua permitido — às vezes é
+            mesmo o que se quer —, mas gastar as duas escolhas de um talento em
+            truques que a classe já dava é um erro que não dá para desfazer. */}
+        {jaTem && <span className="marca ja-tem">você já tem</span>}
+        {recomendada && !jaTem && <span className="marca reserva">recomendada</span>}
       </div>
+      {jaTem && <div className="etiquetas">já vem de: {jaTem}</div>}
       {tags.length > 0 && <div className="etiquetas">{tags.join(' · ')}</div>}
       {detalhe?.descricao_curta && <p className="descricao">{detalhe.descricao_curta}</p>}
     </button>
@@ -258,6 +263,7 @@ function EscolherDaLista({
           <Opcao
             key={o.id} id={o.id} nome={o.nome} detalhe={detalhes?.get(o.id)}
             marcado={marcados.includes(o.id)} recomendada={recomendados.has(o.id)}
+            jaTem={o.ja_tem}
             desabilitado={
               !marcados.includes(o.id) && marcados.length >= item.quantidade && item.quantidade > 1
             }

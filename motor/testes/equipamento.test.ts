@@ -139,3 +139,104 @@ test('folga: equipar uma mochila não muda CA nem ataque', () => {
   )
   assert.equal(comMochila.ficha.ataques.length, semNada.ficha.ataques.length)
 })
+
+test('o Ataque Desarmado usa o MAIOR dado disponível, não o primeiro da lista', () => {
+  // O Combate Desarmado dá 1d6, e 1d8 com as mãos livres — e com as mãos livres os
+  // dois passam na condição. Pegar o primeiro mostrava 1d6 a quem tinha direito a
+  // 1d8. A ordem na lista é a de declaração no dado, que não quer dizer nada.
+  const base = {
+    especie: 'humano',
+    antecedente: 'soldado',
+    niveis: [{ classe: 'guerreiro', nivel: 1 }],
+    atributos_base: { FOR: 16, DES: 13, CON: 14, INT: 10, SAB: 12, CAR: 8 },
+    escolhas: {
+      humano_habil: 'atletismo',
+      humano_versatil: 'alerta',
+      guerreiro_pericias_iniciais: ['atletismo', 'percepcao'],
+      guerreiro_estilo_de_luta: 'combate_desarmado',
+      guerreiro_maestrias: ['espada_longa', 'azagaia', 'clava'],
+    },
+  }
+  const desarmado = (equipado: string[]) =>
+    montar({ ...base, equipamento_equipado: equipado }, {}).ficha.ataques.find(
+      (a) => a.arma === 'ataque_desarmado',
+    )!
+
+  assert.deepEqual(desarmado([]).dano.dados, ['1d8'], 'mãos livres: 1d8')
+  assert.deepEqual(desarmado(['espada_longa']).dano.dados, ['1d6'], 'com arma: 1d6')
+  assert.deepEqual(desarmado(['escudo']).dano.dados, ['1d6'], 'com Escudo: 1d6')
+})
+
+test('a parcela do dado diz de onde ele vem, e não o nome de outra classe', () => {
+  // O rótulo era 'dado de Artes Marciais' fixo — a característica do MONGE — e
+  // aparecia assim na ficha de um Guerreiro com Combate Desarmado.
+  const OURO = join(dirname(fileURLToPath(import.meta.url)), '..', 'ouro')
+  const g = JSON.parse(readFileSync(join(OURO, 'monge-1.json'), 'utf-8'))
+  const monge = montar(g.construcao, g.estado ?? {}).ficha.ataques.find(
+    (a: { arma: string }) => a.arma === 'ataque_desarmado',
+  )!
+  assert.equal(monge.dano.parcelas?.[0].rotulo, 'dado de Artes Marciais')
+
+  const guerreiro = montar(
+    {
+      especie: 'humano',
+      antecedente: 'soldado',
+      niveis: [{ classe: 'guerreiro', nivel: 1 }],
+      atributos_base: { FOR: 16, DES: 13, CON: 14, INT: 10, SAB: 12, CAR: 8 },
+      escolhas: {
+        humano_habil: 'atletismo',
+        humano_versatil: 'alerta',
+        guerreiro_pericias_iniciais: ['atletismo', 'percepcao'],
+        guerreiro_estilo_de_luta: 'combate_desarmado',
+        guerreiro_maestrias: ['espada_longa', 'azagaia', 'clava'],
+      },
+    },
+    {},
+  ).ficha.ataques.find((a) => a.arma === 'ataque_desarmado')!
+  assert.equal(guerreiro.dano.parcelas?.[0].rotulo, 'dado de Combate Desarmado')
+})
+
+
+// ------------------------------------------- o resto da regra do Combate Desarmado
+
+const GUERREIRO_DESARMADO: Construcao = {
+  especie: 'humano',
+  antecedente: 'soldado',
+  niveis: [{ classe: 'guerreiro', nivel: 1 }],
+  atributos_base: { FOR: 16, DES: 13, CON: 14, INT: 10, SAB: 12, CAR: 8 },
+  escolhas: {
+    humano_habil: 'atletismo',
+    humano_versatil: 'alerta',
+    guerreiro_pericias_iniciais: ['atletismo', 'percepcao'],
+    guerreiro_estilo_de_luta: 'combate_desarmado',
+    guerreiro_maestrias: ['espada_longa', 'azagaia', 'clava'],
+  },
+}
+
+const socoCom = (equipamento_equipado: string[]) =>
+  montar({ ...GUERREIRO_DESARMADO, equipamento_equipado }, {}).ficha.ataques.find(
+    (a) => a.arma === 'ataque_desarmado',
+  )!
+
+/**
+ * "…se você não estiver segurando nenhuma arma OU Escudo" (p. 195).
+ *
+ * O teste acima já cobre arma sozinha e Escudo sozinho. Falta o caso das duas
+ * juntas — que é o normal de um Guerreiro em mesa, e o único em que as duas
+ * condições reprovam ao mesmo tempo. Uma condição que só é testada isolada pode
+ * estar sendo avaliada com `ou` onde devia ser `e` sem ninguém perceber.
+ */
+test('arma E Escudo juntos continuam dando d6, não d8', () => {
+  assert.deepEqual(socoCom(['espada_longa', 'escudo']).dano.dados, ['1d6'])
+})
+
+test('o Ataque Desarmado soma Força e nomeia o atributo por extenso', () => {
+  const soco = socoCom([])
+  assert.equal(soco.tipo_dano, 'contundente')
+  assert.equal(soco.dano.valor, 3, 'Força 16 dá +3')
+  assert.deepEqual(
+    soco.dano.parcelas.map((p) => p.rotulo),
+    ['dado de Combate Desarmado', 'Força'],
+    'a proveniência usa o nome do atributo, como no resto da ficha',
+  )
+})

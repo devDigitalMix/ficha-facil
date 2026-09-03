@@ -14,7 +14,7 @@
 
 import type { Contexto } from './tipos.ts'
 import { ErroDoMotor } from './tipos.ts'
-import { catalogo, lerJson } from './dataset.ts'
+import { catalogo, lerJson, trilhaLegivel } from './dataset.ts'
 import type { Efeito, Pendencia } from './colecao.ts'
 import { avaliar } from './formula.ts'
 
@@ -34,7 +34,22 @@ function itensDe(cat: string): Item[] {
   return cache.get(cat)!
 }
 
-export type Opcao = { id: string; nome?: string }
+/** O catálogo de onde saem as magias; ver a nota em `oferta()`. */
+const CATALOGO_DE_MAGIAS = 'magias'
+
+export type Opcao = {
+  id: string
+  nome?: string
+  /**
+   * Por que o personagem JÁ tem esta opção, quando já tem.
+   *
+   * Existe por um erro que só dá para cometer uma vez e custa caro: pegar
+   * Iniciado em Magia e gastar as duas escolhas em truques que a classe já dava.
+   * A opção continua oferecível — o livro não a proíbe, e às vezes ela é mesmo a
+   * escolha certa —, mas quem escolhe merece ver o aviso antes, e não depois.
+   */
+  ja_tem?: string
+}
 
 export type Oferta = {
   escolha_id: string
@@ -376,6 +391,31 @@ export function opcoesDe(
   )
 }
 
+/**
+ * Marca as opções que o personagem já tem por OUTRO caminho.
+ *
+ * "Outro" é a palavra que faz a coisa funcionar: numa escolha reescolhível — as
+ * magias que o Mago prepara a cada Descanso Longo — o que ele escolheu da última
+ * vez veio desta mesma escolha, e marcá-lo como repetido seria marcar a lista
+ * inteira. Só interessa o que veio de outra porta.
+ */
+function marcarJaConhecidas(escolhaId: string, opcoes: Opcao[], ctx: Contexto): Opcao[] {
+  const desbloqueadas = ctx.magias_desbloqueadas ?? []
+  if (!desbloqueadas.length) return opcoes
+  const deOutraPorta = new Map<string, string>()
+  for (const d of desbloqueadas) {
+    if (d.origem.includes(escolhaId)) continue
+    if (!deOutraPorta.has(d.magia)) deOutraPorta.set(d.magia, d.origem)
+  }
+  if (!deOutraPorta.size) return opcoes
+  return opcoes.map((o) => {
+    const origem = deOutraPorta.get(o.id)
+    if (!origem) return o
+    const nomes = trilhaLegivel(origem)
+    return { ...o, ja_tem: nomes.length ? nomes.join(' · ') : origem }
+  })
+}
+
 /** O nome da variável que uma escolha define, quando ela define alguma. */
 export function nomeDaVariavelDe(escolhaId: string): string {
   return escolhaId
@@ -383,6 +423,13 @@ export function nomeDaVariavelDe(escolhaId: string): string {
 
 function oferta(e: Efeito, ctx: Contexto, opcoes: Opcao[], naoAvaliados: string[]): Oferta {
   const de = (e.de ?? {}) as Record<string, unknown>
+  // O nome do CATÁLOGO, não um id de conteúdo: o motor já trata catálogo como
+  // chave genérica em todo este arquivo. A comparação é necessária porque id só é
+  // único DENTRO de um catálogo — 'visao_no_escuro' é magia e também é sentido —,
+  // e sem ela um sentido apareceria marcado como "magia que você já conhece".
+  if (de.catalogo === CATALOGO_DE_MAGIAS) {
+    opcoes = marcarJaConhecidas(e.id as string, opcoes, ctx)
+  }
   const recomendados = (e.recomendados ?? e.recomendadas) as string[] | undefined
   return {
     escolha_id: e.id as string,

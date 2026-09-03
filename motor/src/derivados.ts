@@ -42,7 +42,37 @@ export function calcular(
   const vd = derivado(id)
   if (!vd.formula) throw new ErroDoMotor(`valor derivado sem fórmula: '${id}'`)
   const comExtras: Contexto = { ...ctx, extras: { ...(ctx.extras ?? {}), ...extras } }
-  return avaliar(vd.formula, comExtras, vocabulario)
+  return apresentar(vd, avaliar(vd.formula, comExtras, vocabulario))
+}
+
+/**
+ * Troca o rótulo cru das parcelas pelo que o dataset escreveu.
+ *
+ * O avaliador não tem como saber o nome bonito de um extra: ele recebe a chave
+ * `soma_dos_niveis_seguintes` e é isso que devolve. Mas o catálogo já declara
+ * "Pontos de Vida dos níveis seguintes" em `parcelas`, e é essa a frase que a
+ * ficha deve mostrar. Sem isto, a proveniência dos Pontos de Vida saía como uma
+ * fileira de identificadores.
+ *
+ * A parcela declarada com `condicao` só aparece quando vale alguma coisa — é o
+ * que as condições do catálogo dizem, cada uma à sua maneira ("tem característica
+ * que aumenta o máximo", "nível > 1"). Zerada, ela é ruído: ninguém quer ler
+ * "+ 0 (reduções do máximo)" numa ficha sem dreno nenhum. A marcada `sempre`
+ * aparece mesmo zerada, porque ela É a conta.
+ */
+function apresentar(vd: ValorDerivado, r: Resultado): Resultado {
+  const declaradas = vd.parcelas
+  if (!declaradas?.length) return r
+  const porChave = new Map(declaradas.map((p) => [p.chave, p]))
+  return {
+    ...r,
+    parcelas: r.parcelas.flatMap((parcela) => {
+      const d = porChave.get(parcela.rotulo)
+      if (!d) return [parcela]
+      if (!d.sempre && d.condicao !== undefined && parcela.valor === 0) return []
+      return [{ ...parcela, rotulo: d.rotulo }]
+    }),
+  }
 }
 
 /**

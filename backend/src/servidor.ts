@@ -5,7 +5,10 @@
 // porque o motor é que sabe aplicar regra e o dataset é que sabe qual regra é.
 
 import { createServer, type Server } from 'node:http'
-import { montar, ehPendencia, type Construcao, type Estado } from '../../motor/src/motor.ts'
+import {
+  montar, ehPendencia, descansar, tiposDeDescanso,
+  type Construcao, type Estado,
+} from '../../motor/src/motor.ts'
 import { Roteador, type Pedido, type Resposta } from './http.ts'
 import { ErroHttp, construcaoInvalida, naoEncontrado, pedidoInvalido } from './erros.ts'
 import { indice, lerColecao, lerItem } from './compendio.ts'
@@ -391,6 +394,51 @@ export function criarRoteador(
     }
     conferirTiposDoEstado(corpo)
 
+    return { corpo: await gravarEstado(personagem, corpo, motivo) }
+  })
+
+  /**
+   * Descansar.
+   *
+   * Não é um PATCH com os campos certos porque quem sabe QUAIS são os campos
+   * certos é o motor, lendo o dataset: o Bruxo recupera espaços no Descanso Curto
+   * e o Bárbaro recupera uma Fúria, e nenhuma dessas duas frases pode morar no
+   * cliente. O app diz "descansei"; o que isso significa é resposta do motor.
+   */
+  r.rota('POST', '/personagens/:id/descanso', async (p) => {
+    const personagem = await exigirPersonagem(p)
+    const corpo = exigirObjeto(p.corpo, 'o corpo')
+    const tipo = corpo.tipo
+    if (typeof tipo !== 'string') {
+      throw pedidoInvalido('informe `tipo`: qual descanso foi feito', {
+        aceitos: tiposDeDescanso().map((t) => t.id),
+      })
+    }
+
+    const montado = montarComRegras(personagem.construcao, personagem.estado)
+    const efeito = descansar(tipo, montado.contexto, {
+      pontos_de_vida_maximos: montado.ficha.pontos_de_vida_maximos.valor as number,
+      recursos: montado.ficha.recursos,
+    }, personagem.estado)
+
+    const { o_que_voltou, ...mudanca } = efeito
+    const resposta = await gravarEstado(personagem, mudanca as Partial<Personagem['estado']>)
+    return { corpo: { ...resposta, descanso: { tipo, o_que_voltou } } }
+  })
+
+  /**
+   * Grava uma mudança de estado, com o evento que ela gera.
+   *
+   * Um caminho só para os dois jeitos de mexer no estado (o PATCH campo a campo e
+   * o descanso): a ordem — recalcular, registrar, gravar o personagem, gravar os
+   * eventos — é a parte fácil de errar, e errá-la de dois jeitos diferentes seria
+   * pior ainda.
+   */
+  async function gravarEstado(
+    personagem: Personagem,
+    corpo: Partial<Personagem['estado']>,
+    motivo?: Motivo,
+  ) {
     const antes = personagem.estado
     const depois = { ...personagem.estado, ...corpo }
 
@@ -416,8 +464,8 @@ export function criarRoteador(
       em: agora(),
     })))
 
-    return { corpo: { ...fichaDoPersonagem(personagem), eventos: gravados.map(eventoParaOCliente) } }
-  })
+    return { ...fichaDoPersonagem(personagem), eventos: gravados.map(eventoParaOCliente) }
+  }
 
   r.rota('GET', '/personagens/:id/historico', async (p) => {
     const personagem = await exigirPersonagem(p)

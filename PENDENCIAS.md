@@ -721,3 +721,75 @@ uma não era — e a que não era vale tanto quanto as outras, porque a resposta
   `pendencias_de_escolha`), e não item de checklist. O frontend só desenha o checklist. Some com a
   tela de subir de nível, que ainda não existe.
 - O livro **não cobra lista diferente** a cada Iniciado em Magia repetido (p. 201). Continua aberto.
+
+---
+
+## Fase 21 — as sete queixas do João, e o que elas revelaram
+
+O João usou o app e trouxe sete coisas. Cinco eram pedido de tela; duas eram defeito. Consertar as
+duas destapou outras quatro que ninguém tinha visto, todas da mesma família: **o motor descartava
+em silêncio o que não sabia ler na hora**.
+
+### Os defeitos, na ordem em que apareceram
+
+**1. Modificador com valor de FÓRMULA era jogado fora.** `contexto.ts` fazia
+`Number(e.valor[0])`; para `["nivel_do_personagem"]` isso dá `NaN`, e o efeito ia para
+`nao_consumidos` sem uma palavra. Eram **31 modificadores no dataset inteiro** — a Tenacidade Anã
+(+1 PV por nível), o Vigoroso (+2 por nível), invocações do Bruxo, ordens do Clérigo e do Druida.
+O Anão andava a vida inteira com os Pontos de Vida de um humano e a ficha fechava bonitinho.
+
+Conserto: o modificador cuja fórmula não dá para avaliar no meio da montagem fica pendente e é
+avaliado numa **3ª passada**, com o contexto pronto. Fórmula que o avaliador realmente não conhece
+(`dado:superioridade`, `um_tamanho_acima`) continua indo para `nao_consumidos` — mas agora só ela.
+
+**2. `bonus_de_caracteristicas` estava fixo em `0` em `ficha.ts`.** A fórmula do livro era
+respeitada à risca, com uma parcela sempre vazia. Os dois defeitos juntos faziam a mesma coisa por
+caminhos diferentes, e nenhum dos dois quebrava nada — só davam um número plausível e errado.
+
+**3. `especies.json` escrevia `nivel_de_personagem`** onde a fórmula pede `nivel_do_personagem`.
+Enquanto o valor era descartado, a diferença não aparecia. Corrigido no gerador.
+
+**4. As parcelas de `min`/`max` somavam mais do que o valor.** A CA da Clériga de ouro saía
+`16 = 13 + 1 (Destreza) + 2 + 2 (escudo)`, que dá 18: o teto de Destreza da armadura é
+`min(mod:DES, 2)` e a explicação trazia os **dois** operandos, quando só um entrou na conta.
+Agora `min`/`max` levam só as parcelas do operando escolhido, e `menos` inverte o sinal do que
+subtrai. Teste novo: em toda a ficha, as parcelas numéricas têm de explicar o número.
+
+**5. `desbloquear_magias` nunca era lido.** As magias vindas de talento e antecedente existiam na
+construção, apareciam no histórico e não apareciam em canto nenhum da ficha. Era a queixa 1 do
+João, e a causa não era o filtro das preparáveis: era que ninguém consumia o efeito.
+
+**6. `recurso_com_recarga` nunca era lido.** **88 efeitos** no dataset, zero na ficha. O Ataque de
+Sopro do Draconato existia no livro, existia no JSON, e não existia na tela de quem ia usá-lo.
+
+### O que passou a existir
+
+| na ficha | o que é |
+|---|---|
+| `atributos` | a PONTUAÇÃO, ao lado do modificador — não dava para conferir um aumento só com o modificador |
+| `magias` | todas as magias, de todas as fontes, com `modo`, `origem` legível e `pronta_para_conjurar` |
+| `recursos` | o que se gasta e volta num descanso, com o máximo já calculado |
+| `caracteristicas` | características, traços e talentos que INCIDEM, tiradas das trilhas de origem — sem segunda lista para manter |
+| `opcao.ja_tem` | aviso (não bloqueio) de que a opção já vem por outra porta |
+
+Mais `descansar()` no motor e `POST /personagens/:id/descanso` no backend. **A regra do descanso
+não mora no backend**: `tipos_de_descanso.json` ganhou `recupera`, cada recurso já declarava a sua
+`recarga`, e o `conceder_slot` da classe diz quando os espaços voltam. Por isso não existe nenhum
+`if` sobre Bruxo em lugar nenhum, e ele recupera espaços no Descanso Curto do mesmo jeito.
+
+Duas correções de regra vieram da releitura do livro (p. 33 e p. 366), ambas diferentes do 2014:
+o Descanso Longo devolve **todos** os Dados de Vida (não metade), e os Pontos de Vida Temporários
+**atravessam** o Descanso Curto.
+
+### Aberto
+
+- **Proveniência da CA ainda tem literal cru**: `16 = 13 (13) + 1 (Destreza) + 2 (escudo)`. O "13"
+  é a base da armadura e sai como número porque a fórmula não nomeia os termos literais. O
+  `valores_derivados.json` já declara a parcela `{"rotulo": "base", "chave": "ca_base"}`; falta o
+  `max_entre_calculos_de_base` emitir uma parcela com essa chave em vez de despejar as internas do
+  cálculo vencedor. É o resto do passo 3 do `PLANO-FASE-A.md`.
+- **Recurso cuja fórmula de máximo o avaliador não conhece** (`tabela:dados_de_energia.quantidade`)
+  cai em `nao_consumidos` e some da ficha. São poucos, mas somem calados — a tela não mostra
+  `nao_consumidos` para ninguém.
+- **`conjurar_sem_espaco` continua irregular** (passo 1 do `PLANO-FASE-A.md`). Enquanto isso, o
+  botão "usar" das magias gasta espaço sempre, e não sabe que a Invocação Mística conjura de graça.

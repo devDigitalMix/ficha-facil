@@ -13,6 +13,7 @@
 import type { Contexto, Formula, Operacao, Resultado, Termo } from './tipos.ts'
 import { ErroDoMotor } from './tipos.ts'
 import { condicaoVale, type Vocabulario } from './condicao.ts'
+import { nomeDeEntidade } from './dataset.ts'
 
 const DADO = /^(\d*)d(\d+)$/
 
@@ -69,7 +70,10 @@ function resolverTermo(t: string, ctx: Contexto): Resultado {
     const bruto = ctx.atributos?.[atr]
     if (bruto === undefined) throw new ErroDoMotor(`atributo ausente no contexto: '${atr}'`)
     const m = modificadorDeAtributo(bruto)
-    return { valor: m, dados: [], parcelas: [{ rotulo: `${atr} ${bruto >= 0 ? '' : ''}`.trim() || atr, valor: m }] }
+    // O NOME do atributo, não a sigla: a proveniência é para quem joga ler, e
+    // "+2 (Destreza)" se lê melhor que "+2 (DES)". O nome vem do catálogo — este
+    // arquivo continua sem saber que existem seis atributos e quais são.
+    return { valor: m, dados: [], parcelas: [{ rotulo: nomeDeEntidade(atr) ?? atr, valor: m }] }
   }
 
   if (t === 'prof' || t === 'bonus_de_proficiencia') {
@@ -166,17 +170,45 @@ function aplicarOperacao(o: Operacao, ctx: Contexto, vocabulario?: Vocabulario):
 
   const so = (v: number): Resultado => ({ valor: v, dados, parcelas })
 
+  /**
+   * O que `min` e `max` devolvem é UM dos operandos, não os dois.
+   *
+   * Somar as parcelas de todos era mentira aritmética: o teto de Destreza da armadura
+   * é `min(mod:DES, 2)`, e a CA saía com uma parcela "Destreza +1" E uma parcela "2" —
+   * proveniência que não fecha com o próprio número. Quem perdeu a comparação não
+   * entrou na conta, e por isso não entra na explicação dela.
+   */
+  const soODoIndice = (i: number): Resultado => ({
+    valor: partes[i].valor,
+    dados: partes[i].dados,
+    parcelas: partes[i].parcelas,
+  })
+  const indiceDo = (escolhido: number) => numeros.indexOf(escolhido)
+
   switch (o.op) {
     case 'soma':
       return so(numeros.reduce((a, b) => a + b, 0))
-    case 'menos':
-      return so(numeros.slice(1).reduce((a, b) => a - b, numeros[0] ?? 0))
+    case 'menos': {
+      // O que se subtrai entra com o sinal trocado, senão as parcelas somam mais do
+      // que o valor — o mesmo defeito, pelo outro lado.
+      const valor = numeros.slice(1).reduce((a, b) => a - b, numeros[0] ?? 0)
+      return {
+        valor,
+        dados,
+        parcelas: partes.flatMap((parte, i) =>
+          i === 0
+            ? parte.parcelas
+            : parte.parcelas.map((x) =>
+                typeof x.valor === 'number' ? { ...x, valor: -x.valor } : x),
+        ),
+      }
+    }
     case 'mult':
       return so(numeros.reduce((a, b) => a * b, 1))
     case 'max':
-      return so(Math.max(...numeros))
+      return soODoIndice(indiceDo(Math.max(...numeros)))
     case 'min':
-      return so(Math.min(...numeros))
+      return soODoIndice(indiceDo(Math.min(...numeros)))
     case 'div_arred_baixo':
       exigirDois(o, numeros)
       return so(Math.floor(numeros[0] / numeros[1]))
@@ -207,14 +239,19 @@ function exigirDois(o: Operacao, n: number[]): void {
 function maiorCalculoDeBase(ctx: Contexto, vocabulario?: Vocabulario): Resultado {
   const calculos = ctx.calculos_de_ca_base ?? []
   if (!calculos.length) throw new ErroDoMotor('nenhum cálculo de CA base no contexto')
-  const avaliados = calculos.map((c) => ({ id: c.id, r: avaliar(c.formula, ctx, vocabulario) }))
+  const avaliados = calculos.map((c) => ({
+    id: c.id,
+    // O nome declarado, o do dataset, ou — na falta dos dois — o id. Nunca inventado.
+    nome: c.nome ?? nomeDeEntidade(c.id) ?? c.id,
+    r: avaliar(c.formula, ctx, vocabulario),
+  }))
   const vencedor = avaliados.reduce((a, b) => (b.r.valor > a.r.valor ? b : a))
   return {
     valor: vencedor.r.valor,
     dados: vencedor.r.dados,
     parcelas: [
       ...vencedor.r.parcelas,
-      { rotulo: 'cálculo de base usado', valor: vencedor.id },
+      { rotulo: 'cálculo de base usado', valor: vencedor.nome },
     ],
   }
 }

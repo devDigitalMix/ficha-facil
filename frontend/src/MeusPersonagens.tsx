@@ -6,7 +6,10 @@
 // gerado pelo dataset. Duplicar isso aqui seria escrever à mão o que o motor já sabe.
 
 import { useEffect, useState } from 'react'
-import { api, ATRIBUTOS, ErroDaApi, STATUS, type NaLista, type Opcao, type Personagem } from './api.ts'
+import {
+  api, ATRIBUTOS, ErroDaApi, STATUS,
+  type Atributo, type NaLista, type Opcao, type Personagem,
+} from './api.ts'
 
 const quando = (iso: string) =>
   new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })
@@ -73,6 +76,46 @@ export function MeusPersonagens({ aoAbrir }: { aoAbrir: (id: string) => void }) 
  */
 const PADRAO = [15, 14, 13, 12, 10, 8]
 
+/**
+ * A ordem em que a distribuição padrão é aplicada, para a classe escolhida.
+ *
+ * Quem manda são os campos que a PRÓPRIA classe declara — `atributo_primario`
+ * (p. 38: "seu atributo primário deve ter o valor mais alto") e depois as
+ * salvaguardas em que ela é treinada. Nenhum nome de classe aparece aqui, e uma
+ * classe nova é ordenada certo sem tocar nesta tela.
+ *
+ * Constituição vem logo depois porque Ponto de Vida é de todo mundo; o resto fica
+ * na ordem da ficha. É sugestão, não regra — a tela deixa mudar tudo.
+ */
+function ordemDosAtributos(classe?: Classe): Atributo[] {
+  const ordem: Atributo[] = []
+  const juntar = (lista: readonly string[] = []) => {
+    for (const a of lista) {
+      if (ATRIBUTOS.includes(a as Atributo) && !ordem.includes(a as Atributo)) {
+        ordem.push(a as Atributo)
+      }
+    }
+  }
+  juntar(classe?.atributo_primario)
+  juntar(classe?.salvaguardas_primarias)
+  juntar(['CON'])
+  juntar(ATRIBUTOS)
+  return ordem
+}
+
+/** A distribuição padrão já encaixada na ordem que a classe pede. */
+function recomendados(classe?: Classe): Record<string, number> {
+  const valores: Record<string, number> = {}
+  ordemDosAtributos(classe).forEach((a, i) => { valores[a] = PADRAO[i] })
+  return valores
+}
+
+/** O que esta tela usa de uma classe do compêndio. */
+type Classe = Opcao & {
+  atributo_primario?: string[]
+  salvaguardas_primarias?: string[]
+}
+
 function Novo({ aoCriar, aoCancelar }: { aoCriar: (id: string) => void; aoCancelar: () => void }) {
   const [catalogos, setCatalogos] = useState<Record<string, Opcao[]>>({})
   const [nome, setNome] = useState('')
@@ -80,9 +123,9 @@ function Novo({ aoCriar, aoCancelar }: { aoCriar: (id: string) => void; aoCancel
   const [antecedente, setAntecedente] = useState('')
   const [classe, setClasse] = useState('')
   const [status, setStatus] = useState<Personagem['status']>('ativo')
-  const [valores, setValores] = useState<Record<string, number>>(
-    Object.fromEntries(ATRIBUTOS.map((a, i) => [a, PADRAO[i]])),
-  )
+  const [valores, setValores] = useState<Record<string, number>>(recomendados())
+  /** Enquanto o jogador não mexeu, trocar de classe reordena a sugestão. */
+  const [mexeuNosAtributos, setMexeuNosAtributos] = useState(false)
   const [erro, setErro] = useState('')
   const [ocupado, setOcupado] = useState(false)
 
@@ -95,6 +138,19 @@ function Novo({ aoCriar, aoCancelar }: { aoCriar: (id: string) => void; aoCancel
   }, [])
 
   const pronto = nome.trim() && especie && antecedente && classe
+  const classeEscolhida = (catalogos.classes as Classe[] | undefined)?.find((c) => c.id === classe)
+
+  /**
+   * Escolher a classe já arruma os atributos — mas só enquanto o jogador não os
+   * tiver mexido. Reescrever por cima do que alguém digitou seria pior do que não
+   * sugerir nada.
+   */
+  function escolherClasse(id: string) {
+    setClasse(id)
+    if (mexeuNosAtributos) return
+    const nova = (catalogos.classes as Classe[] | undefined)?.find((c) => c.id === id)
+    setValores(recomendados(nova))
+  }
 
   async function criar() {
     setErro('')
@@ -132,7 +188,7 @@ function Novo({ aoCriar, aoCancelar }: { aoCriar: (id: string) => void; aoCancel
         {([
           ['Espécie', 'especies', especie, setEspecie],
           ['Antecedente', 'antecedentes', antecedente, setAntecedente],
-          ['Classe', 'classes', classe, setClasse],
+          ['Classe', 'classes', classe, escolherClasse],
         ] as const).map(([rotulo, catalogo, valor, definir]) => (
           <label key={catalogo}>
             <span>{rotulo}</span>
@@ -159,10 +215,32 @@ function Novo({ aoCriar, aoCancelar }: { aoCriar: (id: string) => void; aoCancel
               <span style={{ textAlign: 'center' }}>{a}</span>
               <input
                 type="number" min={1} max={20} value={valores[a]} style={{ textAlign: 'center' }}
-                onChange={(e) => setValores({ ...valores, [a]: Number(e.target.value) || 0 })}
+                onChange={(e) => {
+                  setMexeuNosAtributos(true)
+                  setValores({ ...valores, [a]: Number(e.target.value) || 0 })
+                }}
               />
             </label>
           ))}
+        </div>
+        <div className="espalha">
+          <p className="fraco" style={{ margin: 0 }}>
+            {classeEscolhida
+              ? `Sugestão para ${classeEscolhida.nome}: ${PADRAO.join(', ')} na ordem ` +
+                `${ordemDosAtributos(classeEscolhida).join(' › ')}. Pode mudar tudo.`
+              : 'Escolha a classe e a distribuição se arruma sozinha.'}
+          </p>
+          {mexeuNosAtributos && classeEscolhida && (
+            <button
+              className="discreto"
+              onClick={() => {
+                setValores(recomendados(classeEscolhida))
+                setMexeuNosAtributos(false)
+              }}
+            >
+              usar a sugestão
+            </button>
+          )}
         </div>
         <p className="fraco">
           O aumento do antecedente entra depois, como escolha — não some aqui.

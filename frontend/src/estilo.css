@@ -101,6 +101,7 @@ label > span { display: block; font-size: 13px; color: var(--fraco); margin-bott
 }
 .marca.ativo { color: var(--bom); border-color: color-mix(in srgb, var(--bom) 50%, transparent); }
 .marca.morto { color: var(--perigo); border-color: color-mix(in srgb, var(--perigo) 50%, transparent); }
+.marca.ja-tem { color: var(--realce); border-color: color-mix(in srgb, var(--realce) 50%, transparent); }
 
 /* ---------------------------------------------------------------- ficha */
 

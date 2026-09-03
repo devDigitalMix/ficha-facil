@@ -14,8 +14,8 @@
 // que estava na tela no momento, que é o que faz a falha ser diagnosticável.
 
 import { spawn } from 'node:child_process'
-import { mkdtempSync, rmSync } from 'node:fs'
-import { tmpdir } from 'node:os'
+import { mkdtempSync, readdirSync, rmSync } from 'node:fs'
+import { homedir, tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { existsSync } from 'node:fs'
@@ -30,7 +30,58 @@ try {
 
 const AQUI = dirname(fileURLToPath(import.meta.url))
 const RAIZ = join(AQUI, '..')
-const CHROME = process.env.CHROME ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+/**
+ * Onde procurar um navegador.
+ *
+ * A primeira versão olhava um caminho só — o do contêiner em que ela foi escrita —,
+ * então em qualquer outra máquina o teste se pulava dizendo que faltava instalar,
+ * mesmo com o Chrome ali instalado. Agora varre os lugares usuais e aceita
+ * `CHROME=` para o caso que a lista não cobrir.
+ */
+function acharNavegador() {
+  if (process.env.CHROME) return process.env.CHROME
+  const candidatos = [
+    // o que `npx playwright install chromium` deixa, em qualquer versão
+    ...buscarPlaywright(),
+    '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/microsoft-edge',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/Applications/Chromium.app/Contents/MacOS/Chromium',
+    'C:/Program Files/Google/Chrome/Application/chrome.exe',
+    'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+  ]
+  return candidatos.find((c) => existsSync(c)) ?? candidatos[candidatos.length - 1]
+}
+
+/** O cache do Playwright guarda por versão: `chromium-1194/`, `chromium-1201/`… */
+function buscarPlaywright() {
+  const raizes = [
+    process.env.PLAYWRIGHT_BROWSERS_PATH,
+    join(homedir(), '.cache', 'ms-playwright'),
+    join(homedir(), 'Library', 'Caches', 'ms-playwright'),
+    join(process.env.LOCALAPPDATA ?? '', 'ms-playwright'),
+    '/opt/pw-browsers',
+  ].filter(Boolean)
+  const achados = []
+  for (const raiz of raizes) {
+    if (!existsSync(raiz)) continue
+    for (const nome of readdirSync(raiz)) {
+      if (!nome.startsWith('chromium')) continue
+      achados.push(
+        join(raiz, nome, 'chrome-linux', 'chrome'),
+        join(raiz, nome, 'chrome-mac', 'Chromium.app', 'Contents', 'MacOS', 'Chromium'),
+        join(raiz, nome, 'chrome-win', 'chrome.exe'),
+      )
+    }
+  }
+  return achados
+}
+
+const CHROME = acharNavegador()
 const PORTA_BACK = 8899
 const PORTA_FRONT = 5199
 
@@ -38,8 +89,9 @@ const PORTA_FRONT = 5199
 // precisam de Mongo. Um teste que só roda em uma máquina não protege as outras, mas
 // um teste que mente é pior.
 if (!existsSync(CHROME)) {
-  console.log(`fumaça: sem navegador em ${CHROME} — pulando.`)
-  console.log('  para rodar: npx playwright install chromium (ou aponte CHROME=…)')
+  console.log('fumaça: nenhum navegador encontrado — pulando.')
+  console.log('  procurei no cache do Playwright e nos caminhos usuais de Chrome/Chromium.')
+  console.log('  para rodar: npx playwright install chromium — ou CHROME=/caminho/do/chrome')
   process.exit(0)
 }
 

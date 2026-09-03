@@ -98,8 +98,8 @@
     "classe_de_armadura": {
       "valor": 16,
       "proveniencia": "CA 16 = 13 (Cota de Malha Parcial) + 1 (Destreza, com teto 2) + 2 (Escudo)",
-      "calculo_de_base_usado": "ca_cota_de_malha_parcial",
-      "nota": "O cálculo padrão daria 11. A armadura CONCORRE com ele, não soma — e o Escudo soma por fora, porque ele não é cálculo de base: é o `soma_se segurando:escudo` da fórmula de CA (p. 363), que até esta fase nunca ficava verdadeiro."
+      "calculo_de_base_usado": "Cota de Malha Parcial",
+      "nota": "O cálculo padrão daria 11. A armadura CONCORRE com ele, não soma — e o Escudo soma por fora, porque ele não é cálculo de base: é o `soma_se segurando:escudo` da fórmula de CA (p. 363), que até esta fase nunca ficava verdadeiro. A parcela passou a trazer o NOME e não o id `ca_cota_de_malha_parcial`: a proveniência é para quem joga ler, e o nome identifica a mesma armadura sem perder nada — \"Parcial\" continua lá."
     },
     "pontos_de_vida_maximos": {
       "valor": 38,

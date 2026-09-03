@@ -7,11 +7,26 @@ com os tipos apagados — o motor continua sem dependência nenhuma.
 ```bash
 cd backend
 npm install       # só o driver do Mongo
-npm run teste     # 79 testes (4 pulam sem um Mongo — veja abaixo)
+npm run teste     # 82 testes (4 pulam sem um Mongo — veja abaixo)
 npm run servir    # http://localhost:8787, lendo .env se existir
 ```
 
-`PORTA` e `PERSONAGENS` (o diretório onde os personagens ficam) saem do ambiente.
+## Configuração
+
+Tudo sai do ambiente, e **nada é obrigatório**: sem arquivo nenhum o backend sobe, guarda
+os personagens em arquivo e assina a sessão com um segredo gerado na hora. Isso é de
+propósito — dá para clonar e rodar sem cadastrar nada em lugar nenhum.
+
+`.env.exemplo` lista os nomes que existem, com o que cada um muda ao ser preenchido.
+Para começar:
+
+```bash
+cp .env.exemplo .env      # e preencha o que quiser usar
+```
+
+O `.env` não vai para o git; o `.env.exemplo` vai, e é a documentação das variáveis.
+Os dois marcadores dentro dele dizem o que já é lido hoje (servidor, armazém, Mongo e
+contas) e o que ainda não existe no código (as imagens no S3).
 
 ## O que ele faz — e o que ele não faz
 

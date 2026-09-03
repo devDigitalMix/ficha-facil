@@ -279,7 +279,7 @@
               "tipo": "modificador",
               "alvo": "pontos_de_vida_maximos",
               "valor": [
-                "nivel_de_personagem"
+                "nivel_do_personagem"
               ],
               "empilha": "soma",
               "nota": "1 no nível 1 e mais 1 por nível: o total é igual ao nível de personagem."
