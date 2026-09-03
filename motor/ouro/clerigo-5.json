@@ -58,9 +58,9 @@
         "dissipar_magia"
       ],
       "clerigo_escolha_de_subclasse": "dominio_da_vida",
-      "asi_escolha_de_talento": "aumento_no_valor_de_atributo",
-      "avatributo_modo": "dois_atributos_em_1",
-      "avatributo_dois": [
+      "asi_escolha_de_talento@4": "aumento_no_valor_de_atributo",
+      "avatributo_modo@4": "dois_atributos_em_1",
+      "avatributo_dois@4": [
         "SAB",
         "CON"
       ]

@@ -1,0 +1,13 @@
+{
+  "name": "ficha-facil-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend do Ficha Fácil: guarda a construção do personagem, serve o compêndio e chama o motor. Zero dependências.",
+  "engines": { "node": ">=22.6" },
+  "scripts": {
+    "teste": "node --experimental-strip-types --test testes/*.test.ts",
+    "test": "node --experimental-strip-types --test testes/*.test.ts",
+    "servir": "node --experimental-strip-types src/principal.ts"
+  }
+}

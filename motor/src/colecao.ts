@@ -90,7 +90,13 @@ export type Colecao = {
 // `efeitos_nomeados` aparece nas duas formas no dado: uma lista de efeitos, ou um
 // objeto `{ efeitos: [...] }`. As duas dizem a mesma coisa; o motor aceita ambas.
 type Nomeados = Efeito[] | { efeitos?: Efeito[] }
-type Entidade = { id: string; efeitos?: Efeito[]; efeitos_nomeados?: Record<string, Nomeados> }
+type Entidade = {
+  id: string
+  efeitos?: Efeito[]
+  efeitos_nomeados?: Record<string, Nomeados>
+  /** Característica que a classe concede mais de uma vez (o Aumento no Valor de Atributo). */
+  repetivel?: boolean
+}
 
 function listaDeEfeitos(n: Nomeados | undefined): Efeito[] | undefined {
   if (!n) return undefined
@@ -146,10 +152,11 @@ class Coletor {
     origem: string,
     portas: string[] = [],
     dono?: Entidade,
+    sufixo = '',
   ): void {
     for (const e of efeitos ?? []) {
       if (e.tipo === 'escolha') {
-        this.resolverEscolha(e, origem, portas, dono)
+        this.resolverEscolha(e, origem, portas, dono, sufixo)
         continue
       }
 
@@ -165,7 +172,7 @@ class Coletor {
           )
         }
         this.efeitos.push({ efeito: e, origem, portas })
-        this.coletar(nomeados, `${origem} / ${chave}`, portas, dono)
+        this.coletar(nomeados, `${origem} / ${chave}`, portas, dono, sufixo)
         continue
       }
 
@@ -190,15 +197,15 @@ class Coletor {
                 `nomear a condição (${origem})`,
             )
           }
-          this.coletar(dentro, `${origem} / ${porta}`, [...portas, porta], dono)
+          this.coletar(dentro, `${origem} / ${porta}`, [...portas, porta], dono, sufixo)
         } else {
           // estrutural: herda as portas do pai, sem criar uma nova
-          this.coletar(dentro, `${origem} / ${tipo}`, portas, dono)
+          this.coletar(dentro, `${origem} / ${tipo}`, portas, dono, sufixo)
         }
       }
 
       if (e.tipo === 'conceder_talento' && typeof e.talento_id === 'string') {
-        this.talento(e.talento_id, `${origem} / talento`, portas,
+        this.talento(e.talento_id, `${origem} / talento`, portas, sufixo,
           e.escolhas_predefinidas as Record<string, EscolhaResolvida> | undefined)
       }
 
@@ -213,10 +220,16 @@ class Coletor {
     origem: string,
     portas: string[],
     dono?: Entidade,
+    sufixo = '',
   ): void {
-    const id = e.id as string
-    if (!id) throw new ErroDoMotor(`escolha sem id em ${origem}`)
-    this.escolhas.set(id, { efeito: e, origem })
+    const declarado = e.id as string
+    if (!declarado) throw new ErroDoMotor(`escolha sem id em ${origem}`)
+    // Uma característica repetível abre a MESMA escolha em cada nível em que chega.
+    // Sem qualificar, o Aumento no Valor de Atributo do nível 8 sobrescreve o do 4 —
+    // e o personagem nunca consegue pegar dois talentos diferentes. O sufixo é o
+    // nível da concessão, então o id continua legível: 'asi_escolha_de_talento@8'.
+    const id = sufixo ? `${declarado}${sufixo}` : declarado
+    this.escolhas.set(id, { efeito: { ...e, id }, origem })
 
     const resolvida = this.escolhaResolvida(id)
     if (resolvida === undefined) {
@@ -251,7 +264,9 @@ class Coletor {
       // produz pode ser `conceder_talento` ou `conceder_subclasse`, que abrem
       // outra entidade inteira. Empurrar direto os deixava mudos — foi assim que
       // o Aumento no Valor de Atributo do Bárbaro não aumentou nada.
-      this.coletar([concreto], `${origem} / ${id}`, portas, dono)
+      // O sufixo continua: o talento que este Aumento concedeu abre escolhas
+      // próprias, e elas pertencem a ESTE aumento, não ao do nível seguinte.
+      this.coletar([concreto], `${origem} / ${id}`, portas, dono, sufixo)
     }
   }
 
@@ -259,6 +274,7 @@ class Coletor {
     id: string,
     origem: string,
     portas: string[],
+    sufixo = '',
     predefinidas?: Record<string, EscolhaResolvida>,
   ): void {
     const t = porId(catalogo<Entidade>('talentos').itens, id, 'catalogos/talentos.json')
@@ -268,7 +284,9 @@ class Coletor {
     if (predefinidas) {
       this.construcao.escolhas = { ...(this.construcao.escolhas ?? {}), ...predefinidas }
     }
-    this.coletarComNomeados(t, origem, portas)
+    // O sufixo segue para dentro: as escolhas DO TALENTO concedido por um Aumento
+    // no Valor de Atributo também precisam saber de qual dos aumentos vieram.
+    this.coletarComNomeados(t, origem, portas, sufixo)
   }
 
   /**
@@ -296,13 +314,18 @@ class Coletor {
         )
       }
       if (n > this.nivel) continue
-      this.coletarComNomeados(car, `subclasse ${sub.id} / nível ${n} / ${idCar}`, portas)
+      this.coletarComNomeados(
+        car,
+        `subclasse ${sub.id} / nível ${n} / ${idCar}`,
+        portas,
+        car.repetivel ? `@${n}` : '',
+      )
     }
   }
 
   /** Coleta os efeitos de uma entidade, com ela mesma como dona dos nomeados. */
-  coletarComNomeados(ent: Entidade, origem: string, portas: string[] = []): void {
-    this.coletar(ent.efeitos, origem, portas, ent)
+  coletarComNomeados(ent: Entidade, origem: string, portas: string[] = [], sufixo = ''): void {
+    this.coletar(ent.efeitos, origem, portas, ent, sufixo)
   }
 }
 
@@ -384,7 +407,12 @@ export function coletar(c: Construcao): Colecao {
     colunas = { ...colunas, ...(linha.colunas ?? {}) }
     for (const idCar of linha.caracteristicas) {
       const car = carPorId(idCar, `classe ${classe.id} nível ${linha.nivel}`)
-      col.coletarComNomeados(car, `classe ${classe.id} / nível ${linha.nivel} / ${idCar}`)
+      col.coletarComNomeados(
+        car,
+        `classe ${classe.id} / nível ${linha.nivel} / ${idCar}`,
+        [],
+        car.repetivel ? `@${linha.nivel}` : '',
+      )
     }
   }
 

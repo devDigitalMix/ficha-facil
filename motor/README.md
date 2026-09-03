@@ -47,6 +47,20 @@ máximos, Iniciativa, Percepção Passiva, salvaguardas, testes de perícia e De
 **Escolha não resolvida é pendência, não erro.** Ela volta em `col.pendencias`, que é
 o checklist de "subir de nível sem esquecer nada". Um Monge de nível 1 tem seis.
 
+**E escolha INCOMPLETA também é pendência.** `Problema` tem `tipo`: escolher uma opção
+proibida é defeito (`opcao_invalida`), mas ter escolhido menos do que agora se pede é
+`incompleta` — e subir de nível produz isso o tempo todo, porque a Clériga que
+preparava 9 magias no nível 5 passa a preparar 10 no 6. `ehPendencia(p)` separa os
+dois. Sem essa distinção o backend teria de adivinhar pela frase da queixa.
+
+**Característica repetível abre uma escolha POR NÍVEL.** O Aumento no Valor de
+Atributo chega no 4, 8, 12 e 16 com o mesmo id declarado, e `construcao.escolhas` é
+indexado por id — então o do nível 8 sobrescrevia o do 4, e o personagem nunca pegava
+dois talentos diferentes. O id agora leva o nível: `asi_escolha_de_talento@8`. Só as
+cinco características declaradas `repetivel` são qualificadas; as outras duzentas e
+tantas escolhas continuam com o id nu. O sufixo propaga para dentro — o talento que
+aquele aumento concedeu abre escolhas que pertencem **àquele** aumento.
+
 **Efeito aninhado nem sempre é condição.** O que está dentro da Fúria carrega a porta
 `furia` e só incide com ela aberta — achatar faria o Bárbaro andar por aí com
 Resistência a dano Cortante. Mas os 56 `melhorar_caracteristica` aninham por

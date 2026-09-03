@@ -32,9 +32,9 @@
         "percepcao"
       ],
       "barbaro_escolha_de_subclasse": "trilha_da_arvore_do_mundo",
-      "asi_escolha_de_talento": "aumento_no_valor_de_atributo",
-      "avatributo_modo": "um_atributo_em_2",
-      "avatributo_um": "FOR"
+      "asi_escolha_de_talento@4": "aumento_no_valor_de_atributo",
+      "avatributo_modo@4": "um_atributo_em_2",
+      "avatributo_um@4": "FOR"
     },
     "equipamento_equipado": [
       "machado_grande"

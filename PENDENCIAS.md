@@ -587,3 +587,32 @@ em `modificadores_impressos` e o caso vira entrada em `divergencias_do_livro`.
 **Ainda fora do escopo**
 
 - Apêndice A (o multiverso) e multiclasse.
+
+---
+
+## Fase 19 — Backend (ver `revisoes/revisao-fase19-backend.md`)
+
+**Fechado nesta fase**
+
+- `backend/`: os sete endpoints do `PLANO-MOTOR` §7, mais saúde, listar e apagar. Zero
+  dependências, como o motor. 35 testes.
+- O personagem guarda a **construção**, nunca a ficha; o `PATCH` aceita só estado e recusa
+  derivado; a versão do dataset vira ETag do compêndio e carimbo no personagem.
+- `testes/rodar_todos.py` passou a incluir o backend: 16 passos.
+
+**Corrigido no motor, achado pelo backend**
+
+- **Escolha de característica repetível compartilhava id.** O Aumento no Valor de Atributo chega
+  no 4, 8, 12 e 16 com o mesmo id declarado, e `escolhas` é indexado por id — então o do nível 8
+  sobrescrevia o do 4 e o personagem nunca pegava dois talentos diferentes. Cinco características
+  estavam nessa situação. O id passou a levar o nível da concessão (`asi_escolha_de_talento@8`), e
+  o sufixo propaga para as escolhas do talento concedido.
+- **`ErroDoMotor` não definia `name`**, e `porId` lançava `Error` puro: pedir uma espécie que o
+  livro não tem respondia 500 em vez de 422.
+- **Escolha incompleta era tratada como inválida.** `Problema` ganhou `tipo` e `faltam`; subir de
+  nível deixou de ser recusado por produzir pendência.
+- **`dataset.ts` passou a memorizar a leitura**: 49 ms → 2,4 ms por ficha. Um teste monta cada
+  golden duas vezes para garantir que ninguém muta o dado que lê.
+
+**Aberto** — `BACKLOG.md` §B14: autenticação, escrita concorrente (morde na Fase B), CORS, e a
+serialização do catálogo grande.

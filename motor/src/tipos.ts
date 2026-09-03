@@ -75,4 +75,13 @@ export type Resultado = {
 
 export type Parcela = { rotulo: string; valor: number | string }
 
-export class ErroDoMotor extends Error {}
+export class ErroDoMotor extends Error {
+  // `name` precisa ser posto na mão: `class X extends Error {}` deixa name como
+  // 'Error', e quem classifica erro por nome (o backend, para responder 422 em vez
+  // de 500) não enxerga nada. Custou um 500 dizendo que a culpa era do servidor
+  // quando o cliente é que tinha mandado uma espécie que não existe.
+  constructor(mensagem: string) {
+    super(mensagem)
+    this.name = 'ErroDoMotor'
+  }
+}

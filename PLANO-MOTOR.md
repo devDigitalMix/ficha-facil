@@ -257,7 +257,9 @@ ficar em zero é código não testado ou dado que ninguém consome.
 4. ~~**Motor de escolha.** Destrava criar personagem e subir de nível — a Fase A inteira.~~
    **Feito em 2026-09-02** — `revisoes/revisao-fase16-motor-de-escolha.md`. O checklist deixou de
    ser lista de nomes e virou a tela: rótulo, quantidade e as opções de verdade.
-5. **Backend com os endpoints da seção 7.**
+5. ~~**Backend com os endpoints da seção 7.**~~ **Feito em 2026-09-02** — `backend/`, zero
+   dependências, ver `revisoes/revisao-fase19-backend.md`. Ele achou três defeitos no motor, o
+   pior deles em escolha de característica repetível: o Aumento do nível 8 sobrescrevia o do 4.
 6. **Fase A do app.**
 
 A releitura das 391 magias (`BACKLOG.md` §B6.5) roda em paralelo, em lotes. Ela não bloqueia nada

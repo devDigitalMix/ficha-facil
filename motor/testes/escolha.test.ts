@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { montar } from '../src/motor.ts'
+import { montar, ehPendencia } from '../src/motor.ts'
 import { opcoesDe } from '../src/escolha.ts'
 import { catalogo } from '../src/dataset.ts'
 import type { Construcao } from '../src/colecao.ts'
@@ -154,7 +154,9 @@ test('pré-requisito de talento é respeitado na oferta', () => {
   // é que mostrou isso: desligar os pré-requisitos no motor não reprovava.
   const g = ouro('barbaro-5')
   const r = montar(g.construcao, g.estado_sem_furia)
-  const escolhaDeTalento = r.colecao.escolhas.get('asi_escolha_de_talento')
+  // O id leva o nível da concessão: uma característica repetível abre a mesma
+  // escolha em cada nível em que chega, e sem o sufixo elas se sobrescreveriam.
+  const escolhaDeTalento = r.colecao.escolhas.get('asi_escolha_de_talento@4')
   assert.ok(escolhaDeTalento, 'o nível 4 abre uma escolha de talento')
 
   const oferecidos = opcoesDe(escolhaDeTalento.efeito, r.contexto)
@@ -225,5 +227,39 @@ test('folga: resolver uma escolha do checklist tira ela do checklist e não cria
     depois.problemas.filter((p) => p.escolha_id === alvo.escolha_id),
     [],
     'escolher a primeira opção oferecida não pode virar problema',
+  )
+})
+
+test('uma característica repetível abre uma escolha POR NÍVEL, e não uma só', () => {
+  // O defeito que este teste guarda: `escolhas` é indexado por id, e o Aumento no
+  // Valor de Atributo chega no 4, 8, 12 e 16 com o mesmo id declarado. Sem qualificar
+  // pelo nível, o do 8 sobrescrevia o do 4 — e o personagem nunca conseguia dois
+  // talentos diferentes. Apareceu quando o backend tentou subir uma Clériga até o 20
+  // e o motor acusou que a Sabedoria passaria de 20: era o MESMO aumento, aplicado
+  // cinco vezes.
+  const g = ouro('clerigo-5')
+  const c = JSON.parse(JSON.stringify(g.construcao)) as typeof g.construcao
+  c.niveis[0].nivel = 8
+  for (const k of Object.keys(c.escolhas)) {
+    if (k.startsWith('asi_') || k.startsWith('avatributo')) delete c.escolhas[k]
+  }
+  const r = montar(c, {})
+  const asi = r.checklist.filter((x) => x.escolha_id.startsWith('asi_')).map((x) => x.escolha_id)
+  assert.deepEqual(asi, ['asi_escolha_de_talento@4', 'asi_escolha_de_talento@8'])
+
+  // e as duas podem ser respondidas com talentos DIFERENTES
+  c.escolhas['asi_escolha_de_talento@4'] = 'aumento_no_valor_de_atributo'
+  c.escolhas['avatributo_modo@4'] = 'dois_atributos_em_1'
+  c.escolhas['avatributo_dois@4'] = ['SAB', 'CON']
+  c.escolhas['asi_escolha_de_talento@8'] = 'atleta'
+  const r2 = montar(c, {})
+  // Só os DEFEITOS têm de sumir. A Clériga de nível 8 prepara 12 magias e o golden
+  // traz 9: isso é pendência de subir de nível, não construção inválida.
+  const defeitos = r2.problemas.filter((p) => !ehPendencia(p))
+  assert.deepEqual(defeitos, [], 'dois aumentos diferentes é construção válida')
+  assert.equal(
+    r2.checklist.filter((x) => x.escolha_id.startsWith('asi_')).length,
+    0,
+    'nenhum aumento fica pendente depois de respondidos os dois',
   )
 })

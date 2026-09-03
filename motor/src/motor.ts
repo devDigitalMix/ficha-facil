@@ -13,6 +13,7 @@ import {
   checklist,
   type ItemDeChecklist,
   type Problema,
+  ehPendencia,
   type Variaveis,
 } from './escolha.ts'
 import { vocabularioDeRuntime } from './dataset.ts'
@@ -76,6 +77,7 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
     if (!e) {
       problemas.push({
         escolha_id: id,
+        tipo: 'opcao_invalida',
         queixa: 'escolha resolvida que este personagem não tem — sobrou de outra construção?',
       })
       continue
@@ -93,5 +95,6 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
   }
 }
 
-export { testeDePericia }
+export { testeDePericia, ehPendencia }
 export type { Construcao, Estado, Ficha, ItemDeChecklist, Problema }
+export type { TipoDeProblema } from './escolha.ts'

@@ -21,7 +21,14 @@ O motor está em `motor/` — TypeScript, biblioteca pura, zero dependências. U
 `montar(construcao, estado)`, devolve a ficha com proveniência, o checklist de escolhas em
 aberto **com as opções**, e as queixas do que foi escolhido errado. Fecha contra três
 personagens de ouro: um Monge 1, um Bárbaro 5 e uma Clériga 5 — com armadura, escudo, armas e
-magia. Falta o backend. Ver `PLANO-MOTOR.md` (como) e `PLANO-APP.md` (o quê).
+magia.
+
+O backend está em `backend/` — os endpoints do `PLANO-MOTOR.md` §7, também sem dependência
+nenhuma. Ele guarda a **construção** do personagem (nunca a ficha, que se recalcula), serve o
+compêndio com cache pela versão do dataset, e distingue escolha **errada** de escolha **que falta
+fazer** — subir de nível produz a segunda o tempo todo.
+
+O que falta agora é a Fase A do app. Ver `PLANO-MOTOR.md` (como) e `PLANO-APP.md` (o quê).
 
 ## Por onde começar a ler
 
@@ -31,6 +38,7 @@ magia. Falta o backend. Ver `PLANO-MOTOR.md` (como) e `PLANO-APP.md` (o quê).
 | `PLANO-APP.md` | o que o app vai ser, em fases |
 | `PLANO-MOTOR.md` | como o motor de efeitos e o backend vão funcionar — ler antes de escrever código |
 | `motor/README.md` | o motor em si: como rodar, o que já existe, os personagens de ouro |
+| `backend/README.md` | os endpoints, e as quatro decisões que os moldaram |
 | `PENDENCIAS.md` | registro vivo: o que ficou de fora, o que depende de decisão, divergências do livro |
 | `BACKLOG.md` | dívida técnica, escrita para quem for consertar |
 | `revisoes/` | um arquivo por fase: o que entrou, o que foi decidido, o que ficou aberto |
@@ -54,8 +62,8 @@ python3 testes/rodar_todos.py           # a conferência inteira, na ordem que f
 python3 testes/rodar_todos.py --rapido  # sem a reconstrução, que é a demorada
 ```
 
-São 14 passos: forma, semântica, derivação, auditoria das descrições, os oito testes negativos, o
-motor e a reconstrução. Cada um também roda sozinho:
+São 16 passos: forma, semântica, derivação, auditoria das descrições, os dez testes negativos, o
+motor, o backend e a reconstrução. Cada um também roda sozinho:
 
 ```bash
 python3 validar.py                    # semântica: referências, filtros, coerência entre entidades
@@ -63,6 +71,8 @@ python3 checar_schema.py              # forma: campos obrigatórios, tipos, padr
 python3 testes/teste_negativo_*.py    # planta defeitos e cobra que o validador os pegue
 python3 inventariar_vocabulario.py    # o vocabulário de runtime: o que existe e onde
 cd motor && npm run teste             # o motor: fórmula, personagens de ouro, negativo
+cd backend && npm run teste           # o backend: compêndio, personagens, estado, subir de nível
+cd backend && npm run servir          # sobe em http://localhost:8787
 ```
 
 Os dois primeiros precisam sair limpos. Os testes negativos são o que dá sentido ao "0 erros": sem

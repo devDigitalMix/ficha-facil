@@ -37,6 +37,8 @@ def main():
         passos.append(('negativo: ' + os.path.basename(t)[15:-3], [py, t]))
     passos.append(('motor (node --test)',
                    ['npm', '--prefix', os.path.join(RAIZ, 'motor'), 'run', '--silent', 'teste']))
+    passos.append(('backend (node --test)',
+                   ['npm', '--prefix', os.path.join(RAIZ, 'backend'), 'run', '--silent', 'teste']))
     if not rapido:
         passos.append(('reconstrução (reconstruir.py --comparar)',
                        [py, 'reconstruir.py', '--comparar']))

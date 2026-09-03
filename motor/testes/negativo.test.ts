@@ -111,7 +111,7 @@ const DEFEITOS: Defeito[] = [
     nome: 'o Aumento no Valor de Atributo vai para outro atributo',
     golden: 'barbaro-5',
     plantar: (c) => {
-      c.escolhas!.avatributo_um = 'CON'
+      c.escolhas!['avatributo_um@4'] = 'CON'
     },
     campo: (r) => [r.ficha.modificadores.FOR, r.ficha.pontos_de_vida_maximos.valor],
   },

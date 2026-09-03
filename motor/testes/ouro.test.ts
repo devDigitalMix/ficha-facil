@@ -18,6 +18,7 @@ import { coletar, type Construcao } from '../src/colecao.ts'
 import { montarContexto, type Estado } from '../src/contexto.ts'
 import { montarFicha, testeDePericia } from '../src/ficha.ts'
 import { opcoesDe } from '../src/escolha.ts'
+import { montar } from '../src/motor.ts'
 import { catalogo, vocabularioDeRuntime } from '../src/dataset.ts'
 
 const AQUI = dirname(fileURLToPath(import.meta.url))
@@ -211,4 +212,21 @@ test('ouro: o Bárbaro em Fúria não é o mesmo Bárbaro', () => {
   // e o que não depende da Fúria não pode mudar
   assert.equal(furioso.ficha.classe_de_armadura.valor, parado.ficha.classe_de_armadura.valor)
   assert.equal(furioso.ficha.pontos_de_vida_maximos.valor, parado.ficha.pontos_de_vida_maximos.valor)
+})
+
+test('montar duas vezes dá exatamente a mesma ficha', () => {
+  // Guarda o cache de `dados/`: memorizar a leitura devolve o MESMO objeto a cada
+  // chamada, então qualquer código que mutasse uma entidade do dataset envenenaria
+  // a segunda montagem. Este teste é o que faz esse defeito aparecer.
+  for (const g of goldens) {
+    const a = montar(g.construcao, g.estado ?? {})
+    const b = montar(g.construcao, g.estado ?? {})
+    assert.deepEqual(b.ficha, a.ficha, `${g.nome}: a segunda montagem divergiu da primeira`)
+    assert.deepEqual(b.problemas, a.problemas, `${g.nome}: os problemas divergiram`)
+    assert.deepEqual(
+      b.checklist.map((c) => c.escolha_id),
+      a.checklist.map((c) => c.escolha_id),
+      `${g.nome}: o checklist divergiu`,
+    )
+  }
 })

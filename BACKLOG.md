@@ -172,3 +172,26 @@ Comando: agrupar por `.chave` todos os `efeito_narrativo` do dataset.
 - Duas convenções de caminho ainda coexistem: os geradores novos usam caminho relativo ao CWD, os
   antigos resolvem a raiz por `__file__` via `caminhos.py`. Unificar no `caminhos.py` quando tocar
   em cada um.
+
+---
+
+## B14 — O que o backend deixou aberto (fase 19)
+
+Nenhum destes bloqueia a Fase A do app; todos precisam de decisão ou de desenho maior.
+
+1. **Autenticação.** O `PLANO-MOTOR` §1 lista "autenticar" entre as responsabilidades do backend,
+   e não há nada. Não inventei esquema porque as perguntas são do João: quem usa, de onde, e se
+   mais de uma pessoa mexe no mesmo personagem. Enquanto isso, o serviço só serve local.
+2. **Escrita concorrente.** `PATCH /personagens/{id}/estado` é ler-modificar-gravar sem trava:
+   dois pedidos simultâneos no mesmo personagem perdem um. Não morde hoje (uma pessoa, um
+   cliente); morde na **Fase B**, em que mestre e jogador mexem na mesma ficha. A solução é
+   pequena — número de revisão no personagem e `If-Match` —, mas o lugar dela é junto do desenho
+   da sincronização, não antes dele.
+3. **CORS.** Não há. A Fase A vai precisar, e a resposta depende de onde o app for servido.
+4. **Serialização do catálogo grande.** `magias.json` é serializado a cada pedido novo (~12 ms).
+   Com `ETag` + `immutable` isso acontece uma vez por cliente por versão, o que basta. Se um dia
+   não bastar, guardar o texto já serializado é uma linha.
+
+Fechado ainda na fase 19: `ArmazemEmArquivos` ganhou teste próprio (`armazem.test.ts`) — gravação
+atômica sem lixo temporário, id com travessia de caminho recusado, e sobreviver a reabrir o
+diretório.

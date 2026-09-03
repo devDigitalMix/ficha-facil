@@ -55,7 +55,36 @@ export type Oferta = {
 /** Variáveis que uma escolha resolvida definiu, para outra escolha ler. */
 export type Variaveis = Record<string, string>
 
-export type Problema = { escolha_id: string; queixa: string }
+/**
+ * O que há de errado com uma escolha resolvida.
+ *
+ * `tipo` existe para quem consome distinguir duas coisas que não são a mesma:
+ * escolher uma opção proibida é **defeito** — a construção não pode ser aceita —,
+ * mas ter escolhido menos do que agora se pede é **pendência**. Subir de nível
+ * produz a segunda o tempo todo: a Clériga que preparava 9 magias no nível 5 passa
+ * a preparar 10 no 6, e isso não torna a ficha dela inválida, torna incompleta.
+ *
+ * Sem esta distinção o backend teria de adivinhar pela frase da queixa.
+ */
+export type TipoDeProblema =
+  | 'opcao_invalida'
+  | 'incompleta'
+  | 'excedente'
+  | 'repetida'
+  | 'dependencia_nao_resolvida'
+
+export type Problema = {
+  escolha_id: string
+  tipo: TipoDeProblema
+  queixa: string
+  /** Só em 'incompleta' e 'excedente': quantas faltam (ou sobram, negativo). */
+  faltam?: number
+}
+
+/** Pendência é o que o jogador ainda tem de fazer; o resto é defeito de construção. */
+export function ehPendencia(p: Problema): boolean {
+  return p.tipo === 'incompleta' || p.tipo === 'dependencia_nao_resolvida'
+}
 
 // ------------------------------------------------------------------ quantidade
 
@@ -368,7 +397,11 @@ export function conferirEscolha(
   const problemas: Problema[] = []
   const of = opcoesDe(e, ctx, variaveis)
   if (of.bloqueada_por) {
-    return [{ escolha_id: id, queixa: `depende de '${of.bloqueada_por}', que não foi resolvida` }]
+    return [{
+      escolha_id: id,
+      tipo: 'dependencia_nao_resolvida',
+      queixa: `depende de '${of.bloqueada_por}', que não foi resolvida`,
+    }]
   }
   const validos = new Set(of.opcoes.map((o) => o.id))
 
@@ -383,18 +416,26 @@ export function conferirEscolha(
     if (!validos.has(x)) {
       problemas.push({
         escolha_id: id,
+        tipo: 'opcao_invalida',
         queixa: `'${x}' não está entre as opções de '${of.rotulo}'`,
       })
     }
   }
   if (escolhidos.length !== of.quantidade) {
+    const faltam = of.quantidade - escolhidos.length
     problemas.push({
       escolha_id: id,
+      tipo: faltam > 0 ? 'incompleta' : 'excedente',
+      faltam,
       queixa: `'${of.rotulo}' pede ${of.quantidade} e recebeu ${escolhidos.length}`,
     })
   }
   if (new Set(escolhidos).size !== escolhidos.length) {
-    problemas.push({ escolha_id: id, queixa: `'${of.rotulo}' recebeu a mesma opção duas vezes` })
+    problemas.push({
+      escolha_id: id,
+      tipo: 'repetida',
+      queixa: `'${of.rotulo}' recebeu a mesma opção duas vezes`,
+    })
   }
   return problemas
 }
