@@ -74,7 +74,7 @@
         "pagina_livro": 240,
         "pagina_pdf": 244
       },
-      "descricao_curta": "Uma criatura à vista faz salvaguarda de Sabedoria ou fica Enfeitiçada. Passa automaticamente se não for Humanoide, se estiver lutando com você ou se você já a alvejou nas últimas 24 h. Acaba se ela sofrer dano ou se você atacar — e aí ela sabe que foi enfeitiçada por você.",
+      "descricao_curta": "Uma criatura à vista faz salvaguarda de Sabedoria ou fica Enfeitiçada por 1 minuto. Passa automaticamente se não for Humanoide, se estiver lutando com você, ou se você conjurou esta magia nela nas últimas 24 horas. Acaba se você causar dano a ela, alvejá- la com uma magia prejudicial ou forçá-la a uma salvaguarda. Ao acabar, ela sabe que foi enfeitiçada.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -490,7 +490,7 @@
         "feiticeiro",
         "mago"
       ],
-      "descricao_curta": "Um efeito elemental menor: névoa que umedece um Cubo de 1,5 m ou 1 xícara de água; brisa forte o bastante para mover objetos leves; uma chama que cabe na mão; ou moldar terra e areia num Cubo de 1,5 m.",
+      "descricao_curta": "Um efeito elemental menor por 1 hora, à sua escolha: Convocar Ar (uma brisa constante numa Emanação de 1,5 m), Convocar Água (até 40 litros de água limpa num recipiente), Convocar Fogo (brasas e fumaça perfumada num Cubo de 1,5 m, que acende velas e tochas), Convocar Terra (a terra num Cubo de 1,5 m fica macia), Esculpir Elemento (molda um Cubo de 30 cm de terra, fogo, água ou ar em formas rudimentares) ou Sentido Elemental (percebe elementais e o elemento predominante a até 9 m).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -694,7 +694,7 @@
         "pagina_livro": 299,
         "pagina_pdf": 303
       },
-      "descricao_curta": "Um objeto tocado emite Luz Plena em 6 m e Meia-luz por mais 6 m, na cor que você quiser, por 1 hora. Cobrir bloqueia.",
+      "descricao_curta": "Toque num objeto Grande ou menor que ninguém mais esteja carregando: ele emite Luz Plena em 6 m e Meia-luz por mais 6 m, por 1 hora. Ação Usar Magia para apagar; conjurar de novo transfere a luz.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -980,7 +980,7 @@
         "pagina_livro": 319,
         "pagina_pdf": 323
       },
-      "descricao_curta": "Um truque menor: acender ou apagar chama pequena, limpar ou sujar um objeto, esquentar ou esfriar até 500 g por 1 hora, um sinal ou marca que dura 1 hora, uma bugiganga que some no próximo turno. Até três efeitos não instantâneos ativos ao mesmo tempo.",
+      "descricao_curta": "Um truque mágico menor por até 1 hora: Efeito Sensorial (um som ou imagem inofensiva), Fogo (acende ou apaga uma vela, tocha ou fogueira pequena), Limpar ou Sujar (um objeto de menos de 30 cm cúbicos), Sabor (tempera ou esfria/esquenta comida ou bebida), ou Truque (uma marca ou símbolo inofensivo numa superfície).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -1314,7 +1314,7 @@
         "pagina_livro": 327,
         "pagina_pdf": 331
       },
-      "descricao_curta": "Toque: por até 1 minuto, o alvo reduz em 1d4 o dano da primeira vez que sofrer o tipo de dano que você escolheu.",
+      "descricao_curta": "Toque numa criatura voluntária: por até 1 minuto, uma vez por turno ela soma 1d4 a uma salvaguarda que estiver realizando.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -1408,7 +1408,7 @@
         "pagina_livro": 335,
         "pagina_pdf": 339
       },
-      "descricao_curta": "Uma maravilha menor: fazer chamas piscarem ou mudarem de cor, abrir ou fechar porta ou janela sem tocar, mudar sua voz para triplicar o volume por 1 minuto, um tremor no chão, um som vindo de onde você quiser, ou um sinal ou marca inofensiva. Até três efeitos de 1 minuto ao mesmo tempo.",
+      "descricao_curta": "Um efeito divino menor por até 1 minuto, à sua escolha: Barulho Fantasmagórico (um som sobrenatural, ouvido a até 9 m), Olhos Alterados (seus olhos mudam, e você tem Vantagem em testes de Carisma (Intimidação)) ou Voz Retumbante (sua voz fica três vezes mais alta por 1 minuto).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -1807,7 +1807,7 @@
     },
     {
       "id": "bencao",
-      "nome": "Benção",
+      "nome": "Bênção",
       "nivel": 1,
       "escola": "encantamento",
       "concentracao": true,
@@ -1855,7 +1855,8 @@
         "tipo": "espaco_superior",
         "texto": "Você pode escolher uma criatura adicional para cada círculo de espaço de magia acima de 1."
       },
-      "detalhada": true
+      "detalhada": true,
+      "nota_do_nome": "A grafia é a da entrada do capítulo 7, p. 248, que é onde a magia é definida. A lista de magias da classe imprime diferente, e era ela que estava ganhando."
     },
     {
       "id": "bom_fruto",
@@ -2553,7 +2554,7 @@
         "pagina_livro": 277,
         "pagina_pdf": 281
       },
-      "descricao_curta": "Como Enfeitiçar Monstro, mas contra Humanoides.",
+      "descricao_curta": "Um Humanoide à vista faz salvaguarda de Sabedoria (com Vantagem se você ou seus aliados estiverem lutando com ele) ou fica Enfeitiçado e Amigável por 1 hora, ou até você ou um aliado feri-lo. Ao acabar, ele sabe que foi enfeitiçado por você.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -2903,7 +2904,7 @@
         "pagina_livro": 285,
         "pagina_pdf": 289
       },
-      "descricao_curta": "Salvaguarda de Sabedoria ou o alvo fica Caído e Incapacitado, rindo sem parar e sem poder levantar sozinho. Repete a salvaguarda no fim de cada turno e a cada dano sofrido, com Vantagem se a Inteligência dele for 4 ou menos.",
+      "descricao_curta": "Salvaguarda de Sabedoria ou o alvo fica Caído e Incapacitado, rindo sem parar e sem poder levantar sozinho. Repete a salvaguarda no fim de cada turno e a cada dano sofrido — com Vantagem quando a salvaguarda foi acionada por dano.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -3012,7 +3013,7 @@
         "pagina_livro": 287,
         "pagina_pdf": 291
       },
-      "descricao_curta": "Descobre as propriedades de um item mágico, se exige Sintonização, quantas cargas tem e quais magias o afetam. Numa criatura, revela as magias ativas nela. Não detecta itens amaldiçoados.",
+      "descricao_curta": "Descobre as propriedades de um item mágico, se exige Sintonização, quantas cargas tem, quais magias o afetam e, se foi criado por magia, qual foi. Numa criatura, revela as magias ativas nela.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto ou Ritual",
         "ritual": true,
@@ -3060,7 +3061,7 @@
         "pagina_livro": 289,
         "pagina_pdf": 293
       },
-      "descricao_curta": "Ilusão puramente visual de até um Cubo de 4,5 m, movida com uma ação Usar Magia. Sem som, cheiro ou temperatura. Investigação revela.",
+      "descricao_curta": "Ilusão puramente visual de até um Cubo de 4,5 m, movida com uma ação Usar Magia. Sem som, cheiro ou qualquer outro efeito sensorial. Investigação revela, e quem percebe passa a ver através dela.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -3434,7 +3435,7 @@
         "pagina_livro": 312,
         "pagina_pdf": 316
       },
-      "descricao_curta": "Ataque mágico à distância: 3d8 de dano de um tipo à sua escolha entre Ácido, Elétrico, Gélido, Ígneo, Trovejante e Venenoso. Se dois ou mais dados saírem iguais, o orbe salta para outra criatura a até 9 m.",
+      "descricao_curta": "Ataque mágico à distância: 3d8 de dano de um tipo à sua escolha entre Ácido, Elétrico, Gélido, Ígneo, Trovejante e Venenoso. Se dois ou mais dados saírem iguais, o orbe salta para outra criatura a até 9 m, com nova jogada de ataque e de dano; só salta de novo se a magia for conjurada em 2º círculo ou superior.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -4094,7 +4095,7 @@
         "pagina_livro": 330,
         "pagina_pdf": 334
       },
-      "descricao_curta": "Por 1 minuto, quem tentar atacar o protegido ou alvejá-lo com magia de dano faz salvaguarda de Sabedoria ou precisa trocar de alvo. Não protege de efeitos em área, e acaba se o protegido atacar ou lançar magia prejudicial.",
+      "descricao_curta": "Por 1 minuto, quem tentar atacar o protegido ou alvejá-lo com magia de dano faz salvaguarda de Sabedoria ou precisa trocar de alvo, perdendo o ataque ou a magia. Não protege de efeitos em área, e acaba se o protegido realizar uma jogada de ataque, conjurar uma magia ou causar dano.",
       "tempo_de_conjuracao": {
         "texto": "Ação Bônus",
         "ritual": false,
@@ -4144,7 +4145,7 @@
         "pagina_livro": 331,
         "pagina_pdf": 335
       },
-      "descricao_curta": "Uma força invisível Média com CA 10, 1 Ponto de Vida e Força 2, por 1 hora. Faz tarefas simples com uma Ação Bônus sua; não ataca.",
+      "descricao_curta": "Uma força invisível Média com CA 10, 1 Ponto de Vida e Força 2, por 1 hora. Faz tarefas simples com uma Ação Bônus sua; não ataca. Acaba se a tarefa o levar a mais de 18 m de você.",
       "tempo_de_conjuracao": {
         "texto": "Ação ou Ritual",
         "ritual": true,
@@ -4191,7 +4192,7 @@
         "pagina_livro": 333,
         "pagina_pdf": 337
       },
-      "descricao_curta": "Esfera de 1,5 m de raio: salvaguarda de Sabedoria ou o alvo fica Incapacitado e repete no fim do próximo turno dele; falhando de novo, fica Inconsciente pela duração ou até sofrer dano.",
+      "descricao_curta": "Esfera de 1,5 m de raio: salvaguarda de Sabedoria ou o alvo fica Incapacitado e repete no fim do próximo turno dele; falhando de novo, fica Inconsciente pela duração. Acaba se ele sofrer dano ou se alguém a 1,5 m gastar uma ação para sacudi-lo. Quem não dorme (como elfos) ou tem Imunidade a Exaustão passa automaticamente.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -4419,7 +4420,7 @@
         "pagina_livro": 240,
         "pagina_pdf": 244
       },
-      "descricao_curta": "Muda sua forma; troca de opção com uma ação Usar Magia enquanto durar. Adaptação Aquática: respira sob a água e ganha Deslocamento de Natação igual ao seu. Armas Naturais: Ataque Desarmado passa a 1d6 do tipo da arma criada, com bônus de acerto se for mágico. Mudar de Aparência: altera traços à vontade, sem mudar de tamanho nem de tipo.",
+      "descricao_curta": "Muda sua forma; troca de opção com uma ação Usar Magia enquanto durar. Adaptação Aquática: respira sob a água e ganha Deslocamento de Natação igual ao seu. Armas Naturais: garras, presas, chifres ou cascos — o Ataque Desarmado passa a causar 1d6 do tipo correspondente, e você usa o modificador de conjuração no ataque e no dano, em vez de Força. Mudar Aparência: altera traços à vontade, sem mudar de tamanho nem de forma básica.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -5117,7 +5118,7 @@
         "pagina_livro": 264,
         "pagina_pdf": 268
       },
-      "descricao_curta": "Um Humanoide à vista faz salvaguarda de Sabedoria ou fica Enfeitiçado. A cada turno dele, antes de se mover, ele precisa atacar corpo a corpo alguém que você escolher mentalmente. Se você não escolher, ele age normalmente.",
+      "descricao_curta": "Um Humanoide à vista faz salvaguarda de Sabedoria ou fica Enfeitiçado. A cada turno dele, antes de se mover, precisa gastar a ação atacando corpo a corpo alguém que você escolher mentalmente. Repete a salvaguarda no fim de cada turno dele, e você precisa gastar a ação Usar Magia todo turno para manter o controle.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -5278,7 +5279,7 @@
         "pagina_livro": 272,
         "pagina_pdf": 276
       },
-      "descricao_curta": "Sentir Pensamentos localiza quem pensa a até 9 m e o que está pensando. Sondar Mente escolhe uma criatura à vista a 9 m: salvaguarda de Inteligência ou você lê a superfície da mente dela; insistir permite vasculhar mais fundo, mas ela percebe.",
+      "descricao_curta": "Sentir Pensamentos localiza, a até 9 m, quem conhece idiomas ou é telepático, e o que está pensando. Ler Pensamentos escolhe uma criatura a 9 m e revela o pensamento em destaque, sem salvaguarda; sondar mais fundo no turno seguinte força salvaguarda de Sabedoria, e o alvo percebe a sondagem e pode encerrá-la com um teste de Inteligência (Arcanismo).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -5327,7 +5328,7 @@
         "pagina_livro": 276,
         "pagina_pdf": 280
       },
-      "descricao_curta": "Sente a presença de qualquer armadilha à vista no alcance — mecânica ou mágica —, mas só que existe uma, não onde nem de que tipo. Perigo natural não conta.",
+      "descricao_curta": "Sente a presença de qualquer armadilha à vista no alcance — mecânica ou mágica —, e a natureza geral do perigo de cada uma, mas não onde está. Perigo natural não conta.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -5530,7 +5531,7 @@
         "pagina_livro": 280,
         "pagina_pdf": 284
       },
-      "descricao_curta": "Salvaguarda de Sabedoria: 3d8 de dano Psíquico, metade se passar. Falhando, você sabe onde o alvo está enquanto a magia durar, e ele tem Desvantagem em testes de atributo.",
+      "descricao_curta": "Salvaguarda de Sabedoria: 3d8 de dano Psíquico, metade se passar. Falhando, você sabe onde o alvo está enquanto a magia durar e vocês estiverem no mesmo plano — e, enquanto souber, ele não pode se esconder de você nem se beneficiar de Invisível contra você.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -5703,7 +5704,7 @@
         "pagina_livro": 284,
         "pagina_pdf": 288
       },
-      "descricao_curta": "Salvaguarda de Inteligência ou o alvo passa a perceber uma ilusão de até um cubo de 3 m — com som e temperatura — que só ele vê. Ele pode gastar a ação para estudá-la e repetir a salvaguarda; a ilusão pode causar dano psíquico se for algo perigoso.",
+      "descricao_curta": "Salvaguarda de Inteligência ou o alvo passa a perceber uma ilusão de até um cubo de 3 m — com som, temperatura e outros estímulos — que só ele vê. Ele pode gastar a ação Analisar num teste de Inteligência (Investigação) para desacreditá-la, encerrando a magia; enquanto acreditar, a ilusão pode causar 2d8 de dano Psíquico por turno.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6067,7 +6068,7 @@
         "pagina_livro": 299,
         "pagina_pdf": 303
       },
-      "descricao_curta": "Linha de 18 m por 3 m de vento forte: salvaguarda de Força ou empurrado 4,5 m. Dispersa gás e névoa, apaga chamas expostas e você pode redirecioná-la com uma Ação Bônus.",
+      "descricao_curta": "Linha de 18 m por 3 m de vento forte: salvaguarda de Força ou empurrado 4,5 m, repetida por quem terminar o turno na Linha. Mover-se nela em direção a você custa 3 m por 1,5 m. Dispersa gás e vapor, apaga chamas expostas, e você pode redirecioná-la com uma Ação Bônus.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6116,7 +6117,7 @@
         "pagina_livro": 304,
         "pagina_pdf": 308
       },
-      "descricao_curta": "Uma Fera Minúscula leva uma mensagem de até 25 palavras a um lugar que você já visitou e a um destinatário que você descreva, viajando até 80 km por 24 horas.",
+      "descricao_curta": "Uma Fera Minúscula de ND 0 faz salvaguarda de Carisma ou leva uma mensagem de até 25 palavras a um lugar que você já visitou e a um destinatário que você descreva, viajando cerca de 40 km por 24 horas — 80 km se puder voar.",
       "tempo_de_conjuracao": {
         "texto": "Ação ou Ritual",
         "ritual": true,
@@ -6171,7 +6172,7 @@
         "pagina_livro": 311,
         "pagina_pdf": 315
       },
-      "descricao_curta": "Cubo de 1,5 m de adagas girando: 4d4 de dano Cortante a quem estiver dentro, entrar ou terminar o turno lá, uma vez por turno. Ação Bônus para mover o cubo até 9 m.",
+      "descricao_curta": "Cubo de 1,5 m de adagas girando: 4d4 de dano Cortante a quem estiver dentro, entrar ou terminar o turno lá, uma vez por turno. Ação Usar Magia para teleportar o cubo até 9 m.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6283,7 +6284,7 @@
         "pagina_livro": 315,
         "pagina_pdf": 319
       },
-      "descricao_curta": "Como Paralisar Monstro, mas contra Humanoides.",
+      "descricao_curta": "Um Humanoide à vista faz salvaguarda de Sabedoria ou fica Paralisado por até 1 minuto, repetindo a salvaguarda no fim de cada turno dele.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6415,7 +6416,7 @@
     },
     {
       "id": "pele_casca",
-      "nome": "Pele-casca",
+      "nome": "Pele-Casca",
       "nivel": 2,
       "escola": "transmutacao",
       "concentracao": false,
@@ -6456,7 +6457,8 @@
         "tipo": "tempo",
         "minutos": 60
       },
-      "detalhada": true
+      "detalhada": true,
+      "nota_do_nome": "A grafia é a da entrada do capítulo 7, p. 316, que é onde a magia é definida. A lista de magias da classe imprime diferente, e era ela que estava ganhando."
     },
     {
       "id": "protecao_contra_veneno",
@@ -6571,7 +6573,7 @@
         "pagina_livro": 323,
         "pagina_pdf": 327
       },
-      "descricao_curta": "Salvaguarda de Constituição: falhando, o alvo tem Desvantagem em Testes de D20 e repete a salvaguarda no fim de cada turno dele; passando, só Desvantagem no próximo ataque dele.",
+      "descricao_curta": "Salvaguarda de Constituição: falhando, o alvo tem Desvantagem em Testes de D20 baseados em Força e subtrai 1d8 de todas as jogadas de dano que fizer, repetindo a salvaguarda no fim de cada turno dele; passando, só Desvantagem no próximo ataque dele.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6615,7 +6617,7 @@
         "pagina_livro": 323,
         "pagina_pdf": 327
       },
-      "descricao_curta": "Cilindro de 1,5 m de raio e 12 m de altura com Meia-luz. Quem aparece dentro ou começa o turno lá faz salvaguarda de Constituição: 2d10 de dano Radiante, metade se passar. Ação Usar Magia move o cilindro até 18 m.",
+      "descricao_curta": "Cilindro de 1,5 m de raio e 12 m de altura com Meia-luz. Salvaguarda de Constituição ao Cilindro surgir, ao entrar nele, ao tê-lo movido para o seu espaço ou ao terminar o turno dentro: 2d10 de dano Radiante, metade se passar. Quem falha e está multimorfado reverte à forma verdadeira e não pode se multimorfar até sair. Ação Usar Magia move o cilindro até 18 m.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -6675,7 +6677,7 @@
         "pagina_livro": 325,
         "pagina_pdf": 329
       },
-      "descricao_curta": "Três cópias ilusórias suas por 1 minuto. Ataque contra você pode acertar uma cópia (CA 10 + seu modificador de Destreza), que some. Perde o efeito se você ficar Cego ou o atacante tiver Visão Verdadeira.",
+      "descricao_curta": "Três cópias ilusórias suas por 1 minuto. A cada acerto contra você, role um d6 por cópia restante: em 3 ou mais, uma cópia é atingida no seu lugar e é destruída. A magia acaba quando as três somem. Não afeta quem está Cego nem quem tem Visão às Cegas ou Visão Verdadeira.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -7067,7 +7069,7 @@
         "pagina_livro": 339,
         "pagina_pdf": 343
       },
-      "descricao_curta": "Tranca uma porta, janela ou recipiente até ser dissipada. Só você, quem você designar e quem souber a senha abrem; Arrombar suprime por 10 minutos, e a CD para forçar sobe 10.",
+      "descricao_curta": "Tranca uma porta, janela, portão, contêiner ou escotilha até ser dissipada; meio não mágico não destranca. Você, quem você designar e quem disser a senha (a até 1,5 m, destrancando por 1 minuto) passam. Arrombar suprime a tranca por 10 minutos.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -7392,7 +7394,7 @@
         "pagina_livro": 241,
         "pagina_pdf": 245
       },
-      "descricao_curta": "Anima uma pilha de ossos (Esqueleto) ou um cadáver Humanoide Médio ou Pequeno (Zumbi). Comanda com Ação Bônus a até 18 m; sem ordem, só se defende. O controle dura 24 horas e precisa ser renovado reconjurando a magia no mesmo morto-vivo.",
+      "descricao_curta": "Anima uma pilha de ossos (Esqueleto) ou um cadáver Humanoide Médio ou Pequeno (Zumbi). Comanda com Ação Bônus a até 18 m; sem ordem, só Esquiva. O controle dura 24 horas; reconjurar reafirma o controle sobre até quatro mortos-vivos seus, em vez de animar um novo.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto",
         "ritual": false,
@@ -7912,7 +7914,7 @@
         "pagina_livro": 263,
         "pagina_pdf": 267
       },
-      "descricao_curta": "Nuvem em Cilindro de 18 m de raio e 3 m de altura. Ao conjurar e depois com uma ação Usar Magia, cai um raio num ponto sob ela: quem estiver a 1,5 m faz salvaguarda de Destreza, 3d10 de dano Elétrico, metade se passar. Ao ar livre e sob tempestade, o dano sobe.",
+      "descricao_curta": "Nuvem em Cilindro de 18 m de raio e 3 m de altura. Ao conjurar e depois com uma ação Usar Magia, cai um raio num ponto sob ela: quem estiver a 1,5 m faz salvaguarda de Destreza, 3d10 de dano Elétrico, metade se passar.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -8190,7 +8192,7 @@
         "pagina_pdf": 287
       },
       "nota": "O livro grafa a escola como 'Conjuração' nesta entrada e como 'Invocação' no resto do material. Normalizado para 'invocacao'.",
-      "descricao_curta": "Esfera de Escuridão de 6 m de raio, Terreno Difícil, onde nenhuma luz entra. Quem começa o turno lá sofre 2d6 de dano Gélido; quem termina faz salvaguarda de Destreza ou sofre 2d6 de dano Necrótico.",
+      "descricao_curta": "Esfera de Escuridão de 6 m de raio, Terreno Difícil, onde nenhuma luz entra e quem está totalmente dentro fica Cego. Quem começa o turno lá sofre 2d6 de dano Gélido; quem termina faz salvaguarda de Destreza ou sofre 2d6 de dano Ácido.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -8372,7 +8374,7 @@
         "pagina_livro": 287,
         "pagina_pdf": 291
       },
-      "descricao_curta": "Emanação de 4,5 m em volta de você por até 10 minutos. Inimigos na área têm o Deslocamento reduzido à metade e, ao entrar ou começar o turno nela, fazem salvaguarda de Sabedoria: 3d8 de dano Radiante (ou Necrótico, se você for mau), metade se passar.",
+      "descricao_curta": "Emanação de 4,5 m em volta de você por até 10 minutos. Criaturas que você não excluiu têm o Deslocamento reduzido à metade nela e, ao entrar, ao ter a Emanação movida para o seu espaço ou ao terminar o turno dentro, fazem salvaguarda de Sabedoria: 3d8 de dano Radiante (ou Necrótico, se você for mau), metade se passar. Uma vez por turno.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -8545,7 +8547,7 @@
         "pagina_livro": 291,
         "pagina_pdf": 295
       },
-      "descricao_curta": "Um bando de animais espectrais por até 10 minutos: Vantagem em salvaguardas de Força a 1,5 m dele e, ao invocar e como Ação Bônus, os animais atacam uma criatura a até 1,5 m — salvaguarda de Destreza ou 3d10 de dano Perfurante.",
+      "descricao_curta": "Um bando de animais espectrais por até 10 minutos: Vantagem em salvaguardas de Força a 1,5 m dele, e ele acompanha até 9 m quando você se move. Quando o bando chega a 3 m de uma criatura à vista, ou ela entra ou termina o turno a 3 m dele, salvaguarda de Destreza ou 3d10 de dano Cortante — uma vez por turno.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -8583,7 +8585,7 @@
     },
     {
       "id": "invocar_morto_vivo",
-      "nome": "Invocar Morto-vivo",
+      "nome": "Invocar Morto-Vivo",
       "nivel": 3,
       "escola": "necromancia",
       "concentracao": true,
@@ -8631,7 +8633,8 @@
         "tipo": "espaco_superior",
         "texto": "Use o círculo do espaço de magia para o círculo da magia no bloco de estatísticas. CA 11 + o círculo da magia PV 30 (apenas Fantasmagórico e Pútrido) ou 20 (apenas Esquelético) + 10 para cada círculo de magia acima de 3 Deslocamento 9 m; Voo 12 m (pairar; apenas Fantasmagórico) For 12 +1 +1 Des 16 +3 +3 Con 15 +2 +2 Int 4 –3 –3 Sab 10 +0 +0 Car 9 –1 –1 Imunidades Necrótico, Venenoso; Amedrontado, "
       },
-      "detalhada": true
+      "detalhada": true,
+      "nota_do_nome": "A grafia é a da entrada do capítulo 7, p. 296, que é onde a magia é definida. A lista de magias da classe imprime diferente, e era ela que estava ganhando."
     },
     {
       "id": "lentidao",
@@ -8913,7 +8916,7 @@
         "pagina_livro": 304,
         "pagina_pdf": 308
       },
-      "descricao_curta": "Você se funde a uma rocha grande o bastante por 8 horas, invisível e indetectável por sentidos não mágicos. Sente o que passa a até 3 m e sai gastando 1,5 m de deslocamento.",
+      "descricao_curta": "Você se funde a uma rocha grande o bastante por 8 horas, sem deixar nada visível ou detectável por sentidos não mágicos. Não vê o que acontece fora, e ouve com Desvantagem. Sai gastando 1,5 m de movimento. Destruir parcialmente a rocha o expulsa com 6d6 de dano Energético e a condição Caído; destruí-la de vez, com 50.",
       "tempo_de_conjuracao": {
         "texto": "Ação ou Ritual",
         "ritual": true,
@@ -8960,7 +8963,7 @@
         "pagina_livro": 307,
         "pagina_pdf": 311
       },
-      "descricao_curta": "Uma montaria quase real com sela e rédeas, Deslocamento 30 m, por 1 hora. Viaja 20 km por hora a passo e 40 km a galope. Some se sofrer dano.",
+      "descricao_curta": "Uma montaria quase real com sela e rédeas, usando o bloco do Cavalo de Montaria mas com Deslocamento 30 m, viajando 20 km em uma hora. Dura 1 hora e some se sofrer qualquer dano, dando 1 minuto ao cavaleiro para desmontar.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto ou Ritual",
         "ritual": true,
@@ -9003,7 +9006,7 @@
         "pagina_livro": 310,
         "pagina_pdf": 314
       },
-      "descricao_curta": "Muralha de vento de até 15 m × 4,5 m por 1 minuto. Quem entra ou começa o turno nela faz salvaguarda de Força ou sofre 4d8 de dano Contundente, metade se passar. Barra gás, névoa e projéteis leves.",
+      "descricao_curta": "Muralha de vento de até 15 m × 4,5 m por 1 minuto. Quem está na área quando ela surge faz salvaguarda de Força: 4d8 de dano Contundente, metade se passar. Barra gás, névoa, criaturas e objetos Pequenos ou menores, e desvia projéteis comuns para cima.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -9354,7 +9357,7 @@
     },
     {
       "id": "protecao_contra_energia",
-      "nome": "Proteção contra Energia",
+      "nome": "Proteção Contra Energia",
       "nivel": 3,
       "escola": "abjuracao",
       "concentracao": true,
@@ -9394,7 +9397,8 @@
         "tipo": "tempo",
         "minutos": 60
       },
-      "detalhada": true
+      "detalhada": true,
+      "nota_do_nome": "A grafia é a da entrada do capítulo 7, p. 320, que é onde a magia é definida. A lista de magias da classe imprime diferente, e era ela que estava ganhando."
     },
     {
       "id": "relampago",
@@ -9659,7 +9663,7 @@
         "pagina_livro": 330,
         "pagina_pdf": 334
       },
-      "descricao_curta": "Toque: salvaguarda de Sabedoria ou o alvo fica amaldiçoado por até 1 minuto, com um efeito à sua escolha — Desvantagem num atributo, Desvantagem em ataques contra você, gastar a ação a cada turno sem fazer nada, ou +1d8 de dano Necrótico dos seus ataques contra ele.",
+      "descricao_curta": "Toque: salvaguarda de Sabedoria ou o alvo fica amaldiçoado por até 1 minuto, com um efeito à sua escolha — Desvantagem em testes e salvaguardas de um atributo, Desvantagem em ataques contra você, salvaguarda de Sabedoria no início de cada turno ou é forçado a Esquivar, ou +1d8 de dano Necrótico quando você o fere.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -9713,7 +9717,7 @@
         "pagina_livro": 333,
         "pagina_pdf": 337
       },
-      "descricao_curta": "Toque: o alvo parece morto por 1 hora, mesmo para magia — Cego, Incapacitado, Deslocamento 0, com Resistência a tudo menos Psíquico e imunidade a Envenenado e a doenças, cujo avanço fica suspenso.",
+      "descricao_curta": "Toque: o alvo parece morto por 1 hora, mesmo para magia que determine a situação dele — Cego, Incapacitado, Deslocamento 0, com Resistência a tudo menos Psíquico e Imunidade a Envenenado.",
       "tempo_de_conjuracao": {
         "texto": "Ação ou Ritual",
         "ritual": true,
@@ -10396,7 +10400,7 @@
       "concentracao": false,
       "ritual": false,
       "componente_material_especifico": false,
-      "descricao_curta": "Um defensor espectral Grande, intocável, paira por 8 horas. Inimigo que entrar ou começar o turno a 3 m dele faz salvaguarda de Destreza: 20 de dano Radiante, metade se passar. Ação Bônus para movê-lo até 9 m.",
+      "descricao_curta": "Um defensor espectral Grande, intocável, paira parado por 8 horas. Inimigo que entrar a 3 m dele pela primeira vez no turno ou começar o turno lá faz salvaguarda de Destreza: 20 de dano Radiante, metade se passar. Desaparece ao causar 60 de dano no total.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -10443,7 +10447,7 @@
       "ritual": false,
       "componente_material_especifico": false,
       "nivel": 4,
-      "descricao_curta": "Uma Fera à vista faz salvaguarda de Sabedoria ou fica Enfeitiçada, com vínculo telepático: você comanda e ela obedece; gastando a ação, controla o turno dela por inteiro. Tem Vantagem na salvaguarda se estiver lutando com vocês, e repete a cada dano sofrido.",
+      "descricao_curta": "Uma Fera à vista faz salvaguarda de Sabedoria (com Vantagem se estiver lutando com vocês) ou fica Enfeitiçada, com vínculo telepático enquanto vocês estiverem no mesmo plano: você emite comandos sem gastar ação, e ela obedece o melhor que pode. Mandá-la usar uma Reação gasta a sua. Ela repete a salvaguarda sempre que sofrer dano.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -10551,7 +10555,7 @@
         "pagina_livro": 278,
         "pagina_pdf": 282
       },
-      "descricao_curta": "Chamas ao redor do corpo por 10 minutos, com Luz Plena em 3 m. Escolha quente (Resistência a Gélido) ou frio (Resistência a Ígneo). Quem acertar você corpo a corpo a 1,5 m sofre 2d8 do tipo oposto ao escudo.",
+      "descricao_curta": "Chamas ao redor do corpo por 10 minutos, com Luz Plena em 3 m. Escolha quente (Resistência a Gélido; quem acertar você corpo a corpo a 1,5 m sofre 2d8 Ígneo) ou frio (Resistência a Ígneo; o atacante sofre 2d8 Gélido).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -10768,7 +10772,7 @@
         "pagina_livro": 284,
         "pagina_pdf": 288
       },
-      "descricao_curta": "Luz fria em volta de você por 10 minutos: Resistência a dano Radiante e +2d6 de dano Radiante nos seus ataques corpo a corpo. Reação, depois de sofrer dano de alguém à vista a 18 m: salvaguarda de Constituição do agressor ou 2d6 Radiante e Desvantagem no próximo ataque dele.",
+      "descricao_curta": "Luz fria em volta de você por 10 minutos: Resistência a dano Radiante e +2d6 de dano Radiante nos seus ataques corpo a corpo. Reação, depois de sofrer dano de alguém à vista a 18 m: salvaguarda de Constituição do agressor ou ele fica Cego até o fim do seu próximo turno.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11076,7 +11080,7 @@
         "pagina_livro": 297,
         "pagina_pdf": 301
       },
-      "descricao_curta": "Emanação de 3 m em volta de você por até 10 minutos. Quando ela alcança uma criatura à vista ou alguém entra ou termina o turno nela, salvaguarda de Sabedoria: 5d8 de dano Energético, metade se passar.",
+      "descricao_curta": "Emanação de 3 m em volta de você por até 10 minutos. Quando ela alcança uma criatura à vista, ou alguém entra ou termina o turno nela, salvaguarda de Sabedoria: 5d8 de dano Energético, metade se passar, uma vez por turno. Pela duração, você pode Desengajar como Ação Bônus.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11137,7 +11141,7 @@
         "pagina_livro": 299,
         "pagina_pdf": 303
       },
-      "descricao_curta": "Descobre a direção e a posição de uma criatura que você conhece bem, ou da mais próxima de um tipo, num raio de 300 m. Água corrente de 3 m ou mais bloqueia.",
+      "descricao_curta": "Descobre a direção e a posição de uma criatura que você conhece bem, ou da mais próxima de um tipo que já viu de perto, num raio de 300 m. Não encontra quem está em outra forma (como sob Polimorfia). Qualquer espessura de chumbo bloqueia.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11184,7 +11188,7 @@
         "pagina_livro": 300,
         "pagina_pdf": 304
       },
-      "descricao_curta": "Salvaguarda de Constituição: 8d8 de dano Necrótico, metade se passar. Criatura do tipo Planta falha automaticamente. Também mata e apodrece vegetação não mágica na área.",
+      "descricao_curta": "Salvaguarda de Constituição: 8d8 de dano Necrótico, metade se passar. Criatura do tipo Planta falha automaticamente. Em vez disso, pode ter como alvo uma planta comum que não seja criatura, que murcha e morre sem salvaguarda.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11338,7 +11342,7 @@
         "pagina_livro": 309,
         "pagina_pdf": 313
       },
-      "descricao_curta": "Muralha de fogo de até 18 m × 6 m, ou um círculo de 6 m de diâmetro. Um lado escolhido por você causa 5d8 de dano Ígneo a quem chegar a 3 m ou terminar o turno lá; atravessar custa salvaguarda de Destreza por 5d8.",
+      "descricao_curta": "Muralha de fogo de até 18 m × 6 m, ou um círculo de 6 m de diâmetro, opaca. Quem está na área quando ela surge faz salvaguarda de Destreza por 5d8 de dano Ígneo. Depois, o lado escolhido por você causa 5d8 sem salvaguarda a quem entrar na muralha ou terminar o turno a até 3 m desse lado; o outro lado não causa dano.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11807,7 +11811,7 @@
         "pagina_livro": 338,
         "pagina_pdf": 342
       },
-      "descricao_curta": "Quadrado de 6 m de tentáculos: Terreno Difícil. Salvaguarda de Força ao aparecer e para quem entrar ou começar o turno lá: 3d6 de dano Contundente e a condição Contido, com teste de Força ou Acrobacia para escapar.",
+      "descricao_curta": "Quadrado de 6 m de tentáculos: Terreno Difícil. Salvaguarda de Força ao aparecer e para quem entrar ou terminar o turno lá: 3d6 de dano Contundente e a condição Contido, uma vez por turno. O Contido pode gastar a ação num teste de Força (Atletismo) para se soltar.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -11917,7 +11921,7 @@
         "pagina_livro": 342,
         "pagina_pdf": 346
       },
-      "descricao_curta": "Uma vinha por até 1 minuto: ataque mágico corpo a corpo contra alguém a 9 m dela por 4d8 de dano Contundente, puxando o alvo até 9 m para junto dela. Ação Bônus para repetir.",
+      "descricao_curta": "Uma vinha por até 1 minuto: ataque mágico corpo a corpo contra alguém a 9 m dela por 4d8 de dano Contundente, puxando o alvo até 9 m para junto dela; se ele for Enorme ou menor, fica Imobilizado (CD de escape igual à sua CD de magia). A vinha imobiliza uma criatura por vez, e você pode soltá-la sem gastar ação. Ação Bônus para repetir o ataque.",
       "tempo_de_conjuracao": {
         "texto": "Ação Bônus",
         "ritual": false,
@@ -12490,7 +12494,7 @@
         "pagina_livro": 257,
         "pagina_pdf": 261
       },
-      "descricao_curta": "Faz uma salvaguarda de Inteligência CD 15. Passando, faz até cinco perguntas a uma entidade extraplanar, respondidas em uma palavra. Falhando, sofre 6d6 de dano Psíquico e fica com Desvantagem em testes de Inteligência até terminar um Descanso Longo.",
+      "descricao_curta": "Faz uma salvaguarda de Inteligência CD 15. Passando, faz até cinco perguntas a uma entidade extraplanar, respondidas em uma palavra. Falhando, sofre 6d6 de dano Psíquico e fica Incapacitado até completar um Descanso Longo — ou até receber Restauração Maior.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto ou Ritual",
         "ritual": true,
@@ -12794,7 +12798,7 @@
         "pagina_livro": 269,
         "pagina_pdf": 273
       },
-      "descricao_curta": "Dá Inteligência 10 e fala a uma Fera ou Planta de Inteligência 3 ou menos, ou a uma planta comum (que vira criatura do tipo Planta e passa a se mover). O alvo fica Enfeitiçado por 30 dias e depois guarda a atitude conforme você o tratou.",
+      "descricao_curta": "Dá Inteligência 10 e fala a uma Fera ou Planta de Inteligência 3 ou menos, ou a uma planta comum (que vira criatura do tipo Planta e passa a se mover). O alvo fica Enfeitiçado por 30 dias, ou até você ou seus aliados feri-lo; ao acabar, ele decide a atitude que terá.",
       "tempo_de_conjuracao": {
         "texto": "8 horas",
         "ritual": false,
@@ -12889,7 +12893,7 @@
         "pagina_livro": 274,
         "pagina_pdf": 278
       },
-      "descricao_curta": "Celestiais, Elementais, Feéricos, Ínferos e Mortos-Vivos atacam você com Desvantagem. Pode ser gasta antes do fim para Exorcizar (manda um deles de volta ao plano de origem, salvaguarda de Carisma) ou para Repelir (empurra um a 9 m).",
+      "descricao_curta": "Celestiais, Elementais, Feéricos, Ínferos e Mortos-Vivos atacam você com Desvantagem. Pode ser gasta antes do fim para Exorcizar (uma dessas criaturas a 1,5 m faz salvaguarda de Carisma ou volta ao plano de origem) ou Quebrar Encantamento (toque encerra possessão, medo ou enfeitiçamento causado por elas).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -12938,7 +12942,7 @@
         "pagina_livro": 275,
         "pagina_pdf": 279
       },
-      "descricao_curta": "Como Dominar Fera, mas contra Humanoides.",
+      "descricao_curta": "Um Humanoide à vista faz salvaguarda de Sabedoria (com Vantagem se estiver lutando com vocês) ou fica Enfeitiçado, com vínculo telepático enquanto vocês estiverem no mesmo plano: você emite comandos sem gastar ação. Mandá-lo usar uma Reação gasta a sua. Ele repete a salvaguarda sempre que sofrer dano.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13146,7 +13150,7 @@
         "pagina_livro": 294,
         "pagina_pdf": 298
       },
-      "descricao_curta": "Um espírito elemental Grande e intangível de água (Gélido), ar (Elétrico), fogo (Ígneo) ou terra (Trovejante). Quem entra no espaço dele ou começa o turno lá faz salvaguarda de Destreza ou sofre dano do tipo escolhido.",
+      "descricao_curta": "Um espírito elemental Grande e intangível de água (Gélido), ar (Elétrico), fogo (Ígneo) ou terra (Trovejante). Quem entra no espaço dele ou começa o turno a 1,5 m faz salvaguarda de Destreza ou sofre 8d8 do tipo escolhido e fica Contido; o Contido repete no início de cada turno dele, sofrendo 4d8 a cada falha.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13292,7 +13296,7 @@
         "pagina_livro": 302,
         "pagina_pdf": 306
       },
-      "descricao_curta": "Uma mão Grande de energia com CA 20 e Pontos de Vida iguais ao seu máximo. Ação Usar Magia para: Punho Cerrado (5d8 Energético), Mão Impelidora (empurra), Mão Interposta (Cobertura Total e freia o avanço) ou Mão Agarradora (agarra e esmaga por 2d6 + modificador).",
+      "descricao_curta": "Uma mão Grande de energia com CA 20 e Pontos de Vida iguais ao seu máximo. Ao conjurar e como Ação Bônus depois, move a mão até 18 m e usa um efeito: Punho Cerrado (ataque mágico corpo a corpo por 5d8 Energético), Mão Vigorosa (salvaguarda de Força ou empurra 1,5 m mais 1,5 m por modificador de conjuração), Mão Interposta (Cobertura Parcial para você e Terreno Difícil para inimigos) ou Mão Esmagadora (salvaguarda de Destreza ou Imobilizado; depois, Ação Bônus para esmagar por 4d6 + modificador de conjuração).",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13577,7 +13581,7 @@
         "pagina_livro": 311,
         "pagina_pdf": 315
       },
-      "descricao_curta": "Esfera de 6 m de raio de névoa venenosa que desce e Obscurece Totalmente. Quem começa o turno lá faz salvaguarda de Constituição: 5d8 de dano Venenoso, metade se passar. Vento forte dispersa.",
+      "descricao_curta": "Esfera de 6 m de raio de névoa venenosa, Totalmente Obscurecida, que se afasta 3 m de você no início de cada turno seu. Salvaguarda de Constituição ao entrar, ao ter a Esfera movida para o seu espaço ou ao terminar o turno nela: 5d8 de dano Venenoso, metade se passar. Vento forte dispersa.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13693,7 +13697,7 @@
         "pagina_livro": 315,
         "pagina_pdf": 319
       },
-      "descricao_curta": "Você entra numa árvore viva e sai de outra do mesmo tipo a até 150 m, gastando 1,5 m de movimento para entrar. Sabe onde estão as outras árvores válidas; ficar mais de 1 rodada dentro exige salvaguarda de Destreza ou dano e expulsão.",
+      "descricao_curta": "Você entra numa árvore viva e sai de outra do mesmo tipo a até 150 m, gastando 1,5 m de movimento para entrar e 1,5 m para sair. Sabe onde estão todas as árvores válidas. Uma vez por turno, e você precisa terminar cada turno fora de uma árvore.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13736,7 +13740,7 @@
       "concentracao": true,
       "ritual": false,
       "componente_material_especifico": true,
-      "descricao_curta": "Esfera de 6 m de raio de gafanhotos: Parcialmente Obscurecida e Terreno Difícil. Salvaguarda de Constituição ao aparecer e para quem entrar ou começar o turno: 4d10 de dano Perfurante, metade se passar.",
+      "descricao_curta": "Esfera de 6 m de raio de gafanhotos: Parcialmente Obscurecida e Terreno Difícil. Salvaguarda de Constituição ao aparecer e para quem entrar pela primeira vez no turno ou encerrar o turno lá: 4d10 de dano Perfurante, metade se passar.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -13967,7 +13971,7 @@
         "pagina_livro": 329,
         "pagina_pdf": 333
       },
-      "descricao_curta": "Revive quem morreu há no máximo 10 dias, com 1 Ponto de Vida, neutralizando venenos e fechando ferimentos fatais. Não restaura membros.",
+      "descricao_curta": "Revive quem morreu há no máximo 10 dias e não era Morto-Vivo, com 1 Ponto de Vida, neutralizando venenos e fechando ferimentos fatais. Não restaura membros, e falha se faltar parte essencial do corpo. O alvo fica com −4 em Testes de D20, que diminui 1 a cada Descanso Longo até zerar.",
       "tempo_de_conjuracao": {
         "texto": "1 hora",
         "ritual": false,
@@ -14114,7 +14118,7 @@
         "feiticeiro",
         "mago"
       ],
-      "descricao_curta": "Move e manipula com o pensamento por até 10 minutos: uma criatura Enorme ou menor (salvaguarda de Força) até 9 m em qualquer direção, ou um objeto solto de até 500 kg, podendo manipulá-lo à distância.",
+      "descricao_curta": "Move e manipula com o pensamento por até 10 minutos, com uma ação Usar Magia por turno: uma criatura Enorme ou menor (salvaguarda de Força) até 9 m em qualquer direção, ficando Contida até o fim do seu próximo turno; ou um objeto Enorme ou menor, automaticamente se estiver solto, com salvaguarda de Força de quem o segurar. Permite controle fino: abrir portas, manipular ferramentas simples, despejar um frasco.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -14816,7 +14820,7 @@
         "pagina_livro": 267,
         "pagina_pdf": 271
       },
-      "descricao_curta": "Salvaguarda de Sabedoria. Passando, o alvo dança até o fim do próximo turno dele. Falhando, fica Enfeitiçado, gasta todo o movimento dançando no lugar, tem Desvantagem em salvaguardas de Destreza e em ataques, e quem ataca ele tem Vantagem. Repete a salvaguarda no fim de cada turno dele.",
+      "descricao_curta": "Salvaguarda de Sabedoria. Passando, o alvo dança até o fim do próximo turno dele. Falhando, fica Enfeitiçado, gasta todo o movimento dançando no lugar, tem Desvantagem em salvaguardas de Destreza e em ataques, e quem ataca ele tem Vantagem. Ele pode gastar a ação para se recompor e repetir a salvaguarda.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -14981,7 +14985,7 @@
         "pagina_livro": 277,
         "pagina_pdf": 281
       },
-      "descricao_curta": "Sente a rota física mais direta para um lugar que você conhece, no mesmo plano. Não vale para destino móvel nem inespecífico. Enquanto durar, você sabe a distância e a direção e não pode se perder por meios não mágicos.",
+      "descricao_curta": "Sente a rota física mais direta para um lugar que você conhece, no mesmo plano. Não vale para destino móvel nem inespecífico. Enquanto durar, você sabe a distância e a direção, e em cada bifurcação sabe qual é o caminho mais direto.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto",
         "ritual": false,
@@ -15029,7 +15033,7 @@
         "pagina_livro": 278,
         "pagina_pdf": 282
       },
-      "descricao_curta": "Esfera de 18 m de raio: salvaguarda de Constituição, 10d6 de dano Gélido, metade se passar. Sobre água, congela 15 cm de superfície numa área de 9 m por 1 minuto.",
+      "descricao_curta": "Esfera de 18 m de raio: salvaguarda de Constituição, 10d6 de dano Gélido, metade se passar. Sobre água, congela 15 cm de superfície numa área de 9 m por 1 minuto, prendendo quem nadava (Contido). Você pode não disparar: o globo fica na sua mão, pode ser dado, arremessado a 12 m ou com funda, e explode sozinho em 1 minuto.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -15244,7 +15248,7 @@
         "pagina_livro": 294,
         "pagina_pdf": 298
       },
-      "descricao_curta": "Um espírito feérico Médio que ataca ao aparecer e a cada Ação Bônus: ataque mágico corpo a corpo por 3d12 + seu modificador de conjuração de dano Psíquico. Move-se com você.",
+      "descricao_curta": "Um espírito feérico Médio que ataca ao aparecer e, a cada Ação Bônus, se teleporta até 9 m e ataca de novo: ataque mágico corpo a corpo por 3d12 + seu modificador de conjuração de dano Psíquico, deixando o alvo Amedrontado de você e do espírito até o início do seu próximo turno.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -15360,7 +15364,7 @@
         "pagina_livro": 303,
         "pagina_pdf": 307
       },
-      "descricao_curta": "Seus olhos viram um vazio. A cada turno, ação Usar Magia para atingir uma criatura à vista a 18 m: salvaguarda de Sabedoria ou o efeito escolhido — Doente (Desvantagem em ataques e testes), Medo (Amedrontado) ou Sono (Inconsciente até sofrer dano).",
+      "descricao_curta": "Seus olhos viram um vazio. Ao conjurar e depois com uma ação Usar Magia por turno, atinge uma criatura à vista a 18 m: salvaguarda de Sabedoria ou o efeito escolhido — Adoecer (Envenenado), Adormecer (Inconsciente até sofrer dano ou alguém gastar uma ação para sacudi-la) ou Apavorar (Amedrontado, Correndo para longe de você; acaba se ela ficar a 18 m sem ver você). Quem passou na salvaguarda não pode ser alvejado de novo.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -15517,7 +15521,7 @@
         "pagina_livro": 308,
         "pagina_pdf": 312
       },
-      "descricao_curta": "Muralha de espinhos de até 18 m × 3 m, ou um círculo de 6 m de diâmetro. Quem aparece dentro faz salvaguarda de Destreza (7d8 Perfurante); atravessá-la é Terreno Difícil e custa salvaguarda de Destreza por 7d8 Cortante.",
+      "descricao_curta": "Muralha de espinhos de até 18 m × 3 m, ou um círculo de 6 m de diâmetro, que bloqueia a linha de visão. Quem está na área quando ela surge faz salvaguarda de Destreza por 7d8 Perfurante. Atravessar custa 6 m de movimento por 1,5 m, e entrar nela ou terminar o turno lá pede salvaguarda de Destreza por 7d8 Cortante.",
       "tempo_de_conjuracao": {
         "texto": "Uma ação",
         "ritual": false,
@@ -15724,7 +15728,7 @@
         "pagina_livro": 319,
         "pagina_pdf": 323
       },
-      "descricao_curta": "Por 1 dia, uma área de até 3.700 m² e 9 m de altura fica fechada a teleporte e viagem planar. Você pode escolher um tipo de criatura que atravessa livremente, e nomear uma senha. Criaturas dos tipos que você escolher sofrem 5d10 de dano ao entrar.",
+      "descricao_curta": "Por 1 dia, uma área de até 3.700 m² e 9 m de altura fica fechada a teleporte, portais e viagem planar. Escolha um ou mais tipos entre Aberração, Celestial, Elemental, Feérico, Ínfero e Morto-Vivo: essas criaturas sofrem 5d10 de dano Necrótico ou Radiante (você escolhe) ao entrar pela primeira vez ou ao terminar o turno na área. Quem disser a senha não sofre dano.",
       "tempo_de_conjuracao": {
         "texto": "10 minutos ou Ritual",
         "ritual": true,
@@ -15776,7 +15780,7 @@
         "pagina_livro": 321,
         "pagina_pdf": 325
       },
-      "descricao_curta": "Por 24 horas, uma área de até 225 m² e 6 m de altura fica protegida: nada de teleporte para dentro, e você escolhe efeitos como escuridão, terreno difícil ou dano contra os tipos de criatura que designar.",
+      "descricao_curta": "Por 24 horas, protege até 225 m² de até 6 m de altura, com senha e pessoas isentas à sua escolha: névoa Totalmente Obscurecedora nos corredores (com 50% de errar a direção nas bifurcações), teias nas escadas como a magia Teia, todas as portas trancadas como Tranca Arcana (e até dez disfarçadas de parede), mais um efeito à escolha entre Luzes Dançantes, Boca Encantada, Nuvem Fétida, Lufada de Vento e Sugestão. Cada efeito pode ser dissipado separadamente; dissipando os quatro, a magia acaba.",
       "tempo_de_conjuracao": {
         "texto": "1 hora",
         "ritual": false,
@@ -15992,7 +15996,7 @@
         "pagina_livro": 340,
         "pagina_pdf": 344
       },
-      "descricao_curta": "Liga por 1 minuto uma planta Grande ou maior a outra planta que você já viu ou tocou, em qualquer distância do mesmo plano. Quem entra numa sai da outra em 1 rodada.",
+      "descricao_curta": "Liga por 1 minuto uma planta inanimada Grande ou maior a outra planta que você já viu ou tocou, em qualquer distância do mesmo plano. Quem entra numa sai da outra gastando 1,5 m de movimento.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -16296,7 +16300,7 @@
         "pagina_livro": 285,
         "pagina_pdf": 289
       },
-      "descricao_curta": "Você entra na Fronteira Etérea por até 8 horas: atravessa matéria, vê o plano de origem em cinza a até 9 m, e nada do plano normal o afeta. Terminar dentro de um sólido o joga para fora com dano.",
+      "descricao_curta": "Você entra na Fronteira Etérea por até 8 horas: atravessa matéria, vê o plano de origem em cinza a até 18 m, e só interage com o que está no Plano Etéreo. Terminar dentro de um sólido o joga para o espaço livre mais próximo, com 10 de dano Energético por 1,5 m percorrido.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -16395,7 +16399,7 @@
         "pagina_livro": 292,
         "pagina_pdf": 296
       },
-      "descricao_curta": "Cilindro de 3 m de raio e 12 m de altura. Para cada criatura à vista dentro, escolha Luz Curativa (recupera 4d12 + seu modificador de conjuração) ou Luz Flamejante (salvaguarda de Destreza, 6d12 de dano Radiante, metade se passar).",
+      "descricao_curta": "Cilindro de 3 m de raio e 12 m de altura, preenchido com Luz Plena. Para cada criatura à vista dentro, escolha Luz Curativa (recupera 4d12 + seu modificador de conjuração) ou Luz Ardente (salvaguarda de Destreza, 6d12 de dano Radiante, metade se passar). O Cilindro acompanha até 9 m quando você se move, aplicando uma luz a quem ele alcança; uma vez por turno por criatura.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -16503,7 +16507,7 @@
         "pagina_livro": 304,
         "pagina_pdf": 308
       },
-      "descricao_curta": "Faz até 2,5 km² de terreno parecer, soar, cheirar e ser sentido como outro tipo de terreno, por 10 dias. Não muda o que é sólido de verdade: quem investiga com toque percebe.",
+      "descricao_curta": "Faz até 2,5 km² de terreno parecer, soar, cheirar e ser sentido como outro tipo de terreno, por 10 dias — inclusive ao toque, e podendo transformar terreno livre em Terreno Difícil ou o contrário. Não disfarça criaturas. Só Visão Verdadeira enxerga o terreno verdadeiro, e mesmo assim os outros sentidos da ilusão continuam.",
       "tempo_de_conjuracao": {
         "texto": "10 minutos",
         "ritual": false,
@@ -16594,7 +16598,7 @@
         "pagina_livro": 314,
         "pagina_pdf": 318
       },
-      "descricao_curta": "Criaturas à sua escolha a 9 m fazem salvaguarda de Carisma. Quem falha com 50 Pontos de Vida ou menos sofre um efeito conforme o total — de Surdo a morto, quanto menos vida, pior. Quem falha, independentemente da vida, também fica Cego por 1 minuto.",
+      "descricao_curta": "Criaturas à sua escolha a 9 m fazem salvaguarda de Carisma. Quem falha com 50 Pontos de Vida ou menos sofre um efeito conforme o total — de Surdo por 1 minuto até morrer, quanto menos vida, pior. E, seja qual for a vida, um Celestial, Elemental, Feérico ou Ínfero que falha é mandado de volta ao plano de origem, sem poder voltar por 24 horas salvo por Desejo.",
       "tempo_de_conjuracao": {
         "texto": "Ação Bônus",
         "ritual": false,
@@ -16916,7 +16920,7 @@
         "pagina_livro": 332,
         "pagina_pdf": 336
       },
-      "descricao_curta": "Um glifo escondido que dispara num gatilho definido por você e afeta uma Esfera de 18 m. Escolha o efeito: Adormecer, Amedrontar, Atordoar, Dor, Enlouquecer, Morte ou Discórdia. Dura até ser dissipado ou acionado.",
+      "descricao_curta": "Um glifo escondido numa superfície ou objeto que dispara num gatilho definido por você, enchendo uma Esfera de 18 m de raio por 10 minutos. Escolha o efeito: Atordoamento, Discórdia, Dor (Incapacitado), Medo, Morte (10d10 Necrótico) ou Sono. Atinge quem está na Esfera ao disparar e quem entra ou termina o turno nela, uma vez por turno.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto",
         "ritual": false,
@@ -16980,7 +16984,7 @@
         "pagina_livro": 332,
         "pagina_pdf": 336
       },
-      "descricao_curta": "Uma duplicata de neve de uma Fera ou Humanoide, com metade dos Pontos de Vida do original e sem poder ganhar níveis nem recuperar espaços de magia. Obedece a você e vira neve ao chegar a 0 Pontos de Vida. Só um simulacro por vez.",
+      "descricao_curta": "Uma duplicata de neve de uma Fera ou Humanoide, Constructo, com metade dos Pontos de Vida máximos do original e sem poder conjurar esta magia. Obedece a você, age no seu turno, não ganha níveis nem faz Descanso Curto ou Longo. Curá-la exige repará-la num Descanso Longo, a 100 PO por Ponto de Vida. Vira neve ao chegar a 0 Pontos de Vida, e reconjurar destrói a anterior.",
       "tempo_de_conjuracao": {
         "texto": "12 horas",
         "ritual": false,
@@ -17080,7 +17084,7 @@
         "pagina_livro": 336,
         "pagina_pdf": 340
       },
-      "descricao_curta": "Até dez cubos de 3 m contíguos, dispostos como você quiser: salvaguarda de Destreza, 7d10 de dano Ígneo, metade se passar. Você pode poupar a vegetação da área.",
+      "descricao_curta": "Até dez cubos de 3 m contíguos, dispostos como você quiser: salvaguarda de Destreza, 7d10 de dano Ígneo, metade se passar. Objetos inflamáveis soltos na área pegam fogo.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -17131,7 +17135,7 @@
         "pagina_livro": 339,
         "pagina_pdf": 343
       },
-      "descricao_curta": "Você e até oito criaturas de mãos dadas viajam para outro plano, num destino descrito em termos gerais. Também pode ser usada para banir uma criatura tocada de volta ao plano de origem, com salvaguarda de Carisma.",
+      "descricao_curta": "Você e até oito criaturas de mãos dadas viajam para outro plano, num destino descrito em termos gerais — ou para um círculo de teleporte de outro plano cuja sequência de símbolos você conheça.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -17178,7 +17182,7 @@
         "pagina_livro": 242,
         "pagina_pdf": 246
       },
-      "descricao_curta": "Escolha um alvo Enorme ou menor e um tipo de criatura. Por 10 dias, criaturas desse tipo a até 36 m fazem salvaguarda de Sabedoria. Antipatia: ficam Amedrontadas e fogem do alvo. Simpatia: sentem compulsão de se aproximar e ficar. Repetem a salvaguarda a cada minuto; quem escapa fica imune por 1 minuto.",
+      "descricao_curta": "Escolha um alvo Enorme ou menor e um tipo de criatura. Por 10 dias, criaturas desse tipo a até 36 m fazem salvaguarda de Sabedoria. Antipatia: ficam Amedrontadas e fogem do alvo. Simpatia: ficam Enfeitiçadas e se aproximam, sem poder se afastar de perto dele. Quem termina o turno a mais de 36 m do alvo repete a salvaguarda; quem escapa fica imune por 1 minuto.",
       "tempo_de_conjuracao": {
         "texto": "1 hora",
         "ritual": false,
@@ -17335,7 +17339,7 @@
         "pagina_livro": 254,
         "pagina_pdf": 258
       },
-      "descricao_curta": "Cria uma duplicata inerte de uma criatura tocada, pronta em 120 dias, com a idade que você escolher. Se o original morrer depois disso, a alma passa para o clone, com os Pontos de Vida máximos dele e sem os efeitos que matavam o corpo antigo.",
+      "descricao_curta": "Cria uma duplicata inerte de uma criatura tocada, pronta em 120 dias, com a idade que você escolher. Se o original morrer depois disso, a alma passa para o clone — fisicamente idêntico, com a mesma personalidade, memórias e capacidades, mas sem o equipamento — e os restos antigos ficam inertes.",
       "tempo_de_conjuracao": {
         "texto": "1 hora",
         "ritual": false,
@@ -17723,7 +17727,7 @@
         "pagina_livro": 312,
         "pagina_pdf": 316
       },
-      "descricao_curta": "Esfera de 6 m de raio de brasas, Totalmente Obscurecida. Salvaguarda de Destreza ao aparecer e para quem entrar ou terminar o turno: 10d8 de dano Ígneo, metade se passar. A nuvem se move 3 m para longe de você no fim de cada turno seu.",
+      "descricao_curta": "Esfera de 6 m de raio de brasas, Totalmente Obscurecida, que se afasta 3 m de você no início de cada turno seu. Salvaguarda de Destreza ao aparecer, ao ter a Esfera movida para o seu espaço ou ao terminar o turno nela: 10d8 de dano Ígneo, metade se passar. Vento forte dispersa.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -18028,7 +18032,7 @@
         "pagina_livro": 340,
         "pagina_pdf": 344
       },
-      "descricao_curta": "Muralha de água de até 90 m × 90 m × 15 m que avança e desaba: 6d10 de dano Contundente ao aparecer (salvaguarda de Força), diminuindo 1d10 a cada rodada, por até 6 rodadas.",
+      "descricao_curta": "Muralha de água de até 90 m × 90 m × 15 m: 6d10 de dano Contundente ao aparecer (salvaguarda de Força). No início de cada turno seu ela avança 15 m, causando 5d10 a quem alcança, e perde 15 m de altura e 1d10 de dano. Nadar dentro dela exige teste de Força (Atletismo).",
       "tempo_de_conjuracao": {
         "texto": "1 minuto",
         "ritual": false,
@@ -18084,7 +18088,7 @@
         "pagina_livro": 242,
         "pagina_pdf": 246
       },
-      "descricao_curta": "Uma criatura à vista faz salvaguarda de Sabedoria ou é aprisionada até a magia ser dissipada — sem respirar, comer ou envelhecer, invisível à Adivinhação e sem teleportar. Escolha a forma: acorrentada, enterrada em esfera minúscula, presa em labirinto, adormecida ou encolhida numa gema. Cada forma tem uma condição própria de libertação, definida na conjuração. Quem passa fica imune por 24 horas.",
+      "descricao_curta": "Uma criatura à vista faz salvaguarda de Sabedoria ou é aprisionada até a magia ser dissipada — sem respirar, comer ou envelhecer, invisível à Adivinhação e sem teleportar. Escolha a forma: Acorrentar, Contenção Reduzida (2,5 cm dentro de uma gema), Enterrar, Prisão Cercada (um semiplano) ou Torpor. Na conjuração você define uma única situação observável que encerra a magia; Dissipar Magia só a encerra em 9º círculo. Quem passa fica imune por 24 horas.",
       "tempo_de_conjuracao": {
         "texto": "1 minuto",
         "ritual": false,
@@ -18242,7 +18246,7 @@
         "pagina_livro": 268,
         "pagina_pdf": 272
       },
-      "descricao_curta": "Duplica qualquer magia de 8º círculo ou inferior, sem precisar atender requisitos nem pagar componentes caros. Ou produz um dos efeitos listados — trocar um talento, restaurar Pontos de Vida de até vinte criaturas, conceder Resistência, dar Imunidade a uma magia, desfazer um resultado recente. Usar além da duplicação custa caro: 1d10 de dano Energético por círculo da magia imitada, Exaustão, −4 em Força por dias, e 33% de nunca mais poder conjurá-la.",
+      "descricao_curta": "Duplica qualquer magia de 8º círculo ou inferior, sem precisar atender requisitos nem pagar componentes caros. Ou produz um dos efeitos listados — trocar um talento, criar um objeto não mágico de até 25.000 PO, restaurar todos os Pontos de Vida de até vinte criaturas, conceder Resistência permanente, dar Imunidade a uma magia por 8 horas, refazer uma jogada recente, ou reformular a realidade a critério do Mestre. Usar além da duplicação custa caro: 1d10 de dano Necrótico por círculo de cada magia que você conjurar até o próximo Descanso Longo, Força 3 por 2d4 dias, e 33% de nunca mais poder conjurá-la.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -18350,7 +18354,7 @@
         "pagina_livro": 304,
         "pagina_pdf": 308
       },
-      "descricao_curta": "Você vira outra criatura de ND até o seu nível, que já tenha visto e que não seja Constructo nem Morto-vivo, por até 1 hora. Assume as estatísticas dela, guardando personalidade, INT, SAB, CAR e as próprias características de classe.",
+      "descricao_curta": "Você vira outra criatura de ND até o seu nível, que já tenha visto e que não seja Constructo nem Morto-vivo, por até 1 hora. Assume o bloco dela e ganha Pontos de Vida Temporários iguais aos Pontos de Vida da nova forma, guardando tipo, alinhamento, personalidade, INT, SAB, CAR, Pontos de Vida, Dados de Vida, proficiências, comunicação e a característica Conjuração.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,
@@ -18406,7 +18410,7 @@
         "pagina_livro": 310,
         "pagina_pdf": 314
       },
-      "descricao_curta": "Sete camadas de cor, cada uma com um efeito e uma forma de ser desfeita: Vermelha (12d6 Ígneo), Laranja (12d6 Ácido), Amarela (12d6 Elétrico), Verde (12d6 Venenoso), Azul (12d6 Gélido), Anil (Contido, virando Petrificado) e Violeta (Cego, e teleporta para outro plano). Cada camada pede salvaguarda de Destreza, com metade do dano em caso de sucesso. Atravessar exige vencer camada por camada.",
+      "descricao_curta": "Sete camadas de cor, cada uma com um efeito e uma forma própria de ser destruída: Vermelha (12d6 Ígneo), Laranja (12d6 Ácido), Amarela (12d6 Elétrico), Verde (12d6 Venenoso), Azul (12d6 Gélido), Anil (Contido, virando Petrificado) e Violeta (Cego, e teleporta para outro plano). Atravessar exige uma salvaguarda de Destreza por camada, em ordem. Quem vê a muralha e chega a 6 m dela ou começa o turno ali faz salvaguarda de Constituição ou fica Cego por 1 minuto.",
       "tempo_de_conjuracao": {
         "texto": "Ação",
         "ritual": false,

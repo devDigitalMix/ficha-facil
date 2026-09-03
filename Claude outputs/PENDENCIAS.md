@@ -287,11 +287,11 @@ Ficam aqui como histórico — todas com nota dentro do dado.
 **Aberto**
 
 - ~~`auditar_descricoes.py` só pega fatos verificáveis por termo.~~ **Resolvido em 2026-09-03
-  (fase 20):** as 391 entradas foram relidas uma a uma com `revisar_magias.py`, que põe o corpo do
+  (fase 19):** as 391 entradas foram relidas uma a uma com `revisar_magias.py`, que põe o corpo do
   capítulo 7 ao lado da paráfrase. 89 reescritas, 23 delas com regra de 2014. O `auditar` continua
   como está — ele pega o que dá para pegar por termo — mas ganhou uma **guarda de nome**: falha se
   alguma magia do catálogo não tiver entrada no capítulo 7, que era o buraco por onde quatro
-  magias passavam sem conferência nenhuma.
+  magias passavam sem conferência.
 - Convocar Celestial dá 1d10 PV temporários, mas no bloco de estatísticas do Espírito Celestial —
   fora do escopo enquanto criaturas estiverem adiadas.
 
@@ -590,66 +590,3 @@ em `modificadores_impressos` e o caso vira entrada em `divergencias_do_livro`.
 **Ainda fora do escopo**
 
 - Apêndice A (o multiverso) e multiclasse.
-
----
-
-## Fase 19 — Backend (ver `revisoes/revisao-fase19-backend.md`)
-
-**Fechado nesta fase**
-
-- `backend/`: os sete endpoints do `PLANO-MOTOR` §7, mais saúde, listar e apagar. Zero
-  dependências, como o motor. 35 testes.
-- O personagem guarda a **construção**, nunca a ficha; o `PATCH` aceita só estado e recusa
-  derivado; a versão do dataset vira ETag do compêndio e carimbo no personagem.
-- `testes/rodar_todos.py` passou a incluir o backend: 16 passos.
-
-**Corrigido no motor, achado pelo backend**
-
-- **Escolha de característica repetível compartilhava id.** O Aumento no Valor de Atributo chega
-  no 4, 8, 12 e 16 com o mesmo id declarado, e `escolhas` é indexado por id — então o do nível 8
-  sobrescrevia o do 4 e o personagem nunca pegava dois talentos diferentes. Cinco características
-  estavam nessa situação. O id passou a levar o nível da concessão (`asi_escolha_de_talento@8`), e
-  o sufixo propaga para as escolhas do talento concedido.
-- **`ErroDoMotor` não definia `name`**, e `porId` lançava `Error` puro: pedir uma espécie que o
-  livro não tem respondia 500 em vez de 422.
-- **Escolha incompleta era tratada como inválida.** `Problema` ganhou `tipo` e `faltam`; subir de
-  nível deixou de ser recusado por produzir pendência.
-- **`dataset.ts` passou a memorizar a leitura**: 49 ms → 2,4 ms por ficha. Um teste monta cada
-  golden duas vezes para garantir que ninguém muta o dado que lê.
-
-**Aberto** — `BACKLOG.md` §B14: autenticação, escrita concorrente (morde na Fase B), CORS, e a
-serialização do catálogo grande.
-
----
-
-## Fase 20 — Releitura das 391 magias (ver `revisoes/revisao-fase20-magias.md`)
-
-**Fechado nesta fase**
-
-- **89 paráfrases de magia reescritas de 391**, lendo o corpo do capítulo 7 ao lado de cada uma.
-  **23 delas carregavam regra de 2014** — Reflexos, Telecinese, Localizar Criatura, Mão de Bigby,
-  Passo Arbóreo, Mau Olhado, Dominar Fera, Símbolo, Desejo, entre outras. Os números batiam; a
-  mecânica era de outra edição.
-- **Proteger Fortaleza descrevia outra magia**: o texto que estava lá é o de Proibição.
-- **Nove magias trocavam "começa o turno" por "termina o turno"** na salvaguarda de área — o
-  padrão que mais se repetiu, e o mais fácil de repetir de novo.
-- **Quatro paráfrases por referência** ("Como Dominar Fera, mas…") herdavam o erro da magia
-  referida sem que nada acusasse. Reescritas autônomas.
-- A bancada é `revisar_magias.py`: doze lotes de 35 magias, livro e paráfrase lado a lado. Ela não
-  julga nada — o custo dela é o tempo de leitura, que é o preço, não um problema a contornar.
-
-**Achado pela bancada, e o pior da fase**
-
-- **Quatro magias nunca tiveram corpo extraído, e por isso nunca passaram por conferência
-  nenhuma**: Bênção, Pele-Casca, Invocar Morto-Vivo e Proteção Contra Energia. O nome no catálogo
-  não casava com a entrada do capítulo 7 — `parse_magias.ler_nomes` resolve o nome quebrado pela
-  coluna usando a lista de nomes das **classes**, e quando a lista da classe imprime com outra
-  caixa ou sem circunflexo, é a grafia dela que ganha. Consertado por
-  `gerar_ajustes_nomes_de_magia.py`; as paráfrases estavam certas por sorte, não por processo.
-- Fechado com guarda: `auditar_descricoes.py` agora **falha** se qualquer magia do catálogo ficar
-  sem entrada no capítulo 7. Um nome que não casa deixou de ser silêncio.
-
-**Aberto**
-
-- As **112 paráfrases de criatura** (Apêndice B) nunca passaram por esta releitura. É exatamente o
-  mesmo risco, no mesmo formato, e o `auditar_descricoes.py` não as cobre.

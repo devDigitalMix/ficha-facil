@@ -93,14 +93,14 @@ Não resolver sozinho. Perguntar quando houver ocasião:
    último do dataset, e continua sozinho — o critério de promover a primitivo é o mesmo dos
    `efeito_narrativo` (a mesma coisa aparecer em três lugares), e esta aparece em um. Criar um
    primitivo para um caso só é ganhar um tipo de efeito e não ganhar nada.
-5. ~~Releitura das 391 magias contra a paráfrase, uma a uma.~~ **FEITA em 2026-09-03** — fase 20,
-   `revisoes/revisao-fase20-magias.md`. 89 paráfrases reescritas de 391, **23 delas com regra de
-   2014**. A bancada é `revisar_magias.py` (doze lotes de 35, o corpo do capítulo 7 ao lado da
-   paráfrase). No caminho apareceu um defeito que ninguém veria: quatro magias cujo nome não
-   casava com a entrada do capítulo 7 nunca tiveram corpo extraído e **nunca passaram por
-   conferência nenhuma** — consertado por `gerar_ajustes_nomes_de_magia.py`, e fechado com uma
-   guarda em `auditar_descricoes.py`, que agora falha se alguma magia do catálogo ficar sem
-   entrada. Continua valendo o mesmo para as **112 paráfrases de criatura**, ainda não relidas.
+5. ~~Releitura das 391 magias contra a paráfrase, uma a uma.~~ **FEITA em 2026-09-03** — fase 19,
+   `revisoes/revisao-fase19-magias.md`. 89 paráfrases reescritas de 391, **23 delas com regra de
+   2014**. A bancada é `revisar_magias.py` (doze lotes de 35, livro ao lado da paráfrase). No
+   caminho apareceu um defeito que ninguém veria: quatro magias cujo nome não casava com a
+   entrada do capítulo 7 nunca tiveram corpo extraído e **nunca passaram por conferência
+   nenhuma** — consertado por `gerar_ajustes_nomes_de_magia.py`, e fechado com uma guarda em
+   `auditar_descricoes.py`, que agora falha se alguma magia do catálogo ficar sem entrada.
+   Continua valendo o mesmo para as **112 paráfrases de criatura**, que ainda não foram relidas.
 6. Regra da mesa pendente: +2 de Maestria em Arma no nível 20 do Guardião e do Paladino. Fora do
    dado até existir a camada de overrides (PENDENCIAS §8).
 
@@ -175,26 +175,3 @@ Comando: agrupar por `.chave` todos os `efeito_narrativo` do dataset.
 - Duas convenções de caminho ainda coexistem: os geradores novos usam caminho relativo ao CWD, os
   antigos resolvem a raiz por `__file__` via `caminhos.py`. Unificar no `caminhos.py` quando tocar
   em cada um.
-
----
-
-## B14 — O que o backend deixou aberto (fase 19)
-
-Nenhum destes bloqueia a Fase A do app; todos precisam de decisão ou de desenho maior.
-
-1. **Autenticação.** O `PLANO-MOTOR` §1 lista "autenticar" entre as responsabilidades do backend,
-   e não há nada. Não inventei esquema porque as perguntas são do João: quem usa, de onde, e se
-   mais de uma pessoa mexe no mesmo personagem. Enquanto isso, o serviço só serve local.
-2. **Escrita concorrente.** `PATCH /personagens/{id}/estado` é ler-modificar-gravar sem trava:
-   dois pedidos simultâneos no mesmo personagem perdem um. Não morde hoje (uma pessoa, um
-   cliente); morde na **Fase B**, em que mestre e jogador mexem na mesma ficha. A solução é
-   pequena — número de revisão no personagem e `If-Match` —, mas o lugar dela é junto do desenho
-   da sincronização, não antes dele.
-3. **CORS.** Não há. A Fase A vai precisar, e a resposta depende de onde o app for servido.
-4. **Serialização do catálogo grande.** `magias.json` é serializado a cada pedido novo (~12 ms).
-   Com `ETag` + `immutable` isso acontece uma vez por cliente por versão, o que basta. Se um dia
-   não bastar, guardar o texto já serializado é uma linha.
-
-Fechado ainda na fase 19: `ArmazemEmArquivos` ganhou teste próprio (`armazem.test.ts`) — gravação
-atômica sem lixo temporário, id com travessia de caminho recusado, e sobreviver a reabrir o
-diretório.

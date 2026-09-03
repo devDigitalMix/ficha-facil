@@ -21,10 +21,7 @@ import json, re, sys, unicodedata, warnings
 
 warnings.filterwarnings('ignore')
 
-# O caminho vinha chumbado de outra máquina, que é a mesma classe de defeito que a
-# auditoria de 2026-09-02 tirou dos geradores. Resolve pela raiz do repositório.
-import caminhos
-PDF = caminhos.pdf()
+PDF = '/mnt/user-data/uploads/ficha-facil/DnD 5.5 - Livro do Jogador 2024 [PT] - Herois Anonimos.pdf'
 if '--pdf' in sys.argv:
     PDF = sys.argv[sys.argv.index('--pdf') + 1]
 

@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "description": "Motor de efeitos do Ficha Fácil. Biblioteca pura: mesma entrada, mesma saída, sem relógio, sem aleatório, sem banco.",
-  "engines": { "node": ">=22.6" },
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
-    "teste": "node --experimental-strip-types --test testes/*.test.ts",
-    "test": "node --experimental-strip-types --test testes/*.test.ts"
+    "teste": "node --test testes/*.test.ts",
+    "test": "node --test testes/*.test.ts"
   }
 }

@@ -6,3 +6,16 @@
 
 __pycache__/
 *.pyc
+
+# Segredos: a URI do Atlas leva usuário e senha, e a chave do S3 leva a secreta.
+# `.env.exemplo` VAI para o git — ele documenta os nomes, sem os valores.
+.env
+.env.*
+!.env.exemplo
+
+# Dependências instaladas. O motor continua sem nenhuma; o backend ganhou o driver
+# do Mongo, e `package-lock.json` é que fixa a versão — não a pasta.
+node_modules/
+
+# Personagens gravados pelo armazém em arquivo, quando se roda sem banco.
+/backend/personagens/

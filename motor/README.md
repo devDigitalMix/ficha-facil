@@ -10,11 +10,13 @@ O contrato está no `PLANO-MOTOR.md` da raiz. Este diretório é a implementaç�
 
 ```bash
 cd motor
-npm run teste      # ou: node --experimental-strip-types --test "testes/*.test.ts"
+npm run teste      # ou: node --test "testes/*.test.ts"
 ```
 
 **Zero dependências.** Nada de `npm install`: o Node roda o TypeScript direto,
-apagando os tipos (nativo no Node 24, e no 22.6+ com `--experimental-strip-types`).
+apagando os tipos — nativo do **Node 22.18** em diante, que é o mínimo declarado em
+`engines`. Antes disso era preciso `--experimental-strip-types`, e a flag saiu dos
+scripts quando ela deixou de existir em toda versão suportada.
 Não há passo de build, e não há framework de teste — `node:test` e `node:assert`.
 
 ## O que existe hoje
