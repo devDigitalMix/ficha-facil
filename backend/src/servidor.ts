@@ -481,6 +481,42 @@ export function criarRoteador(
     }
   })
 
+  /**
+   * A prévia: o que ESTA escolha abriria, sem gravar nada.
+   *
+   * O jogador escolhia um talento no escuro. O Iniciado em Magia só revela que pede
+   * lista, atributo e três magias **depois** de gravado — e para descobrir o que ele
+   * faz era preciso primeiro aceitá-lo. A prévia monta a mesma construção com as
+   * escolhas propostas e devolve o checklist resultante, sem tocar no armazém.
+   *
+   * Cabe aqui e não numa tela porque o motor é puro: montar de novo é barato e a
+   * resposta é a verdade, não um palpite do frontend sobre o que o talento faz.
+   *
+   * Pendência não é erro numa prévia — ela é justamente o que se quer ver. Defeito
+   * continua sendo 422: propor o inválido é erro do cliente aqui como em qualquer
+   * outro lugar.
+   */
+  r.rota('POST', '/personagens/:id/escolhas/previa', async (p) => {
+    const personagem = await exigirPersonagem(p)
+    const corpo = exigirObjeto(p.corpo, 'o corpo')
+    const escolhas = exigirObjeto(corpo.escolhas ?? corpo, 'escolhas')
+    const r = montarComRegras(
+      {
+        ...personagem.construcao,
+        escolhas: { ...(personagem.construcao.escolhas ?? {}), ...(escolhas as never) },
+      },
+      personagem.estado,
+    )
+    return {
+      corpo: {
+        checklist: r.checklist,
+        pendencias_de_escolha: r.pendencias_de_escolha,
+        /** O que sumiu do checklist é o que estas escolhas responderam. */
+        respondidas: Object.keys(escolhas),
+      },
+    }
+  })
+
   r.rota('POST', '/personagens/:id/escolhas', async (p) => {
     const personagem = await exigirPersonagem(p)
     const corpo = exigirObjeto(p.corpo, 'o corpo')

@@ -3749,6 +3749,37 @@
           "legivel_por": "apenas você ou quem conjurar Identificar"
         },
         {
+          "id": "mago_livro",
+          "tipo": "escolha",
+          "rotulo": "Escreva magias no seu livro de magias",
+          "quantidade": "coluna:magias_no_livro",
+          "gatilho": "nivel_1",
+          "recomendados": [
+            "armadura_arcana",
+            "detectar_magia",
+            "misseis_magicos",
+            "onda_trovejante",
+            "queda_suave",
+            "sono"
+          ],
+          "alimenta": "livro_de_magias",
+          "de": {
+            "catalogo": "magias",
+            "filtro": {
+              "lista": "mago",
+              "nivel_minimo": 1,
+              "circulo_com_espaco_disponivel": true
+            }
+          },
+          "efeito_por_item_escolhido": {
+            "tipo": "desbloquear_magias",
+            "lista_id": "mago",
+            "modo": "no_livro",
+            "magia": "{{escolhido}}"
+          },
+          "nota": "Seis no nível 1 e duas por nível depois: a coluna já traz o total, e o filtro de círculo já é o mesmo nos dois casos (p. 147)."
+        },
+        {
           "tipo": "preparar_magias",
           "formula_quantidade": [
             "coluna:magias_preparadas"
@@ -3803,10 +3834,10 @@
             "catalogo": "magias",
             "filtro": {
               "lista": "mago",
-              "no_livro": true,
               "nivel_minimo": 1,
               "circulo_com_espaco_disponivel": true
-            }
+            },
+            "fonte": "livro_de_magias"
           },
           "efeito_por_item_escolhido": {
             "tipo": "desbloquear_magias",
@@ -4012,9 +4043,9 @@
             "filtro": {
               "nivel": 1,
               "lista": "mago",
-              "no_livro": true,
               "tempo_de_conjuracao": "acao"
-            }
+            },
+            "fonte": "livro_de_magias"
           },
           "efeito_por_item_escolhido": {
             "tipo": "conjurar_sem_espaco",
@@ -4036,9 +4067,9 @@
             "filtro": {
               "nivel": 2,
               "lista": "mago",
-              "no_livro": true,
               "tempo_de_conjuracao": "acao"
-            }
+            },
+            "fonte": "livro_de_magias"
           },
           "efeito_por_item_escolhido": {
             "tipo": "conjurar_sem_espaco",
@@ -4075,9 +4106,9 @@
             "catalogo": "magias",
             "filtro": {
               "nivel": 3,
-              "lista": "mago",
-              "no_livro": true
-            }
+              "lista": "mago"
+            },
+            "fonte": "livro_de_magias"
           },
           "efeito_por_item_escolhido": {
             "tipo": "conjurar_sem_espaco",

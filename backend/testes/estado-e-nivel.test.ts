@@ -175,3 +175,64 @@ test('escrever continua recusando o que a leitura tolera', async () => {
   const r = await c.pedir('POST', `/personagens/${p.id}/subir-nivel`, {})
   assert.equal(r.status, 422)
 })
+
+/** Um Mago cru: o golden do Clérigo já tem tudo respondido, e prévia precisa de pendência. */
+const magoCru = {
+  especie: 'humano', antecedente: 'acolito',
+  niveis: [{ classe: 'mago', nivel: 1 }],
+  atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 15, SAB: 13, CAR: 8 },
+}
+const criarMago = async () =>
+  (await c.pedir('POST', '/personagens', { nome: 'Nael', construcao: magoCru })).corpo
+
+test('a prévia mostra o que a escolha abre, e não grava nada', async () => {
+  // O jogador escolhia talento no escuro: o Iniciado em Magia só revela que pede
+  // lista, atributo e magias DEPOIS de gravado. A prévia responde antes.
+  const p = await criarMago()
+  const antes = (await c.armazem.ler(p.id))!.construcao.escolhas ?? {}
+  const alvo = p.checklist.find(
+    (x: { escolha_id: string; quantidade: number; opcoes: unknown[] }) =>
+      x.quantidade === 1 && x.opcoes.length > 1,
+  )
+  assert.ok(alvo, 'precisa de uma escolha simples')
+
+  const r = await c.pedir('POST', `/personagens/${p.id}/escolhas/previa`, {
+    escolhas: { [alvo.escolha_id]: alvo.opcoes[0].id },
+  })
+  assert.equal(r.status, 200)
+  assert.deepEqual(r.corpo.respondidas, [alvo.escolha_id])
+  assert.ok(
+    !r.corpo.checklist.some((x: { escolha_id: string }) => x.escolha_id === alvo.escolha_id),
+    'a escolha respondida sai do checklist da prévia',
+  )
+  assert.deepEqual(
+    (await c.armazem.ler(p.id))!.construcao.escolhas ?? {},
+    antes,
+    'prévia não grava — o personagem tem de estar intacto',
+  )
+})
+
+test('a prévia recusa o inválido do mesmo jeito que a gravação', async () => {
+  const p = await criar()
+  const r = await c.pedir('POST', `/personagens/${p.id}/escolhas/previa`, {
+    escolhas: { clerigo_truques: ['bola_de_fogo', 'luz', 'orientacao', 'resistencia'] },
+  })
+  assert.equal(r.status, 422, 'propor o impossível é erro do cliente, com ou sem gravação')
+})
+
+test('a prévia de um talento revela as escolhas que ele traz junto', async () => {
+  // O caso concreto do relato: escolher Iniciado em Magia tem de mostrar, ali mesmo,
+  // que ele vai pedir lista, atributo de conjuração e magias.
+  const p = await criarMago()
+  const talento = p.checklist.find(
+    (x: { opcoes: { id: string }[] }) => x.opcoes.some((o) => o.id === 'iniciado_em_magia'),
+  )
+  assert.ok(talento, 'o Humano oferece talento de Origem à escolha')
+  const r = await c.pedir('POST', `/personagens/${p.id}/escolhas/previa`, {
+    escolhas: { [talento.escolha_id]: 'iniciado_em_magia' },
+  })
+  assert.equal(r.status, 200)
+  const novas = r.corpo.checklist.filter((x: { escolha_id: string }) =>
+    x.escolha_id.startsWith('iniciado_em_magia_'))
+  assert.ok(novas.length > 0, 'as escolhas do talento têm de aparecer na prévia')
+})

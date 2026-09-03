@@ -56,6 +56,7 @@ ORDEM = [
     ('gerar_ajustes_marcador.py', 'fase 2: marcador de subclasse'),
     ('gerar_genericas.py', 'fase 2: características genéricas'),
     ('gerar_ajustes_preparacao.py', 'fase 2: preparação de magias'),
+    ('gerar_livro_de_magias.py', 'fase 2: o livro de magias do Mago como escolha'),
     # fase 3a — magias do capítulo 7
     ('parse_magias.py', 'fase 3a: parse das magias'),
     ('gerar_magias_detalhadas.py', 'fase 3a: magias detalhadas'),

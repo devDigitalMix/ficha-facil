@@ -1014,7 +1014,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 6
           }
         },
         {
@@ -1034,7 +1035,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 8
           }
         },
         {
@@ -1054,7 +1056,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 10
           }
         },
         {
@@ -1074,7 +1077,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 12
           }
         },
         {
@@ -1094,7 +1098,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 14
           }
         },
         {
@@ -1114,7 +1119,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 16
           }
         },
         {
@@ -1132,7 +1138,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 18
           }
         },
         {
@@ -1152,7 +1159,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 20
           }
         },
         {
@@ -1170,7 +1178,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 22
           }
         },
         {
@@ -1190,7 +1199,8 @@
             "espacos_6": 0,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 24
           }
         },
         {
@@ -1208,7 +1218,8 @@
             "espacos_6": 1,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 26
           }
         },
         {
@@ -1228,7 +1239,8 @@
             "espacos_6": 1,
             "espacos_7": 0,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 28
           }
         },
         {
@@ -1246,7 +1258,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 30
           }
         },
         {
@@ -1266,7 +1279,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 0,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 32
           }
         },
         {
@@ -1284,7 +1298,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 1,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 34
           }
         },
         {
@@ -1304,7 +1319,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 1,
-            "espacos_9": 0
+            "espacos_9": 0,
+            "magias_no_livro": 36
           }
         },
         {
@@ -1322,7 +1338,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 1,
-            "espacos_9": 1
+            "espacos_9": 1,
+            "magias_no_livro": 38
           }
         },
         {
@@ -1342,7 +1359,8 @@
             "espacos_6": 1,
             "espacos_7": 1,
             "espacos_8": 1,
-            "espacos_9": 1
+            "espacos_9": 1,
+            "magias_no_livro": 40
           }
         },
         {
@@ -1362,7 +1380,8 @@
             "espacos_6": 2,
             "espacos_7": 1,
             "espacos_8": 1,
-            "espacos_9": 1
+            "espacos_9": 1,
+            "magias_no_livro": 42
           }
         },
         {
@@ -1382,7 +1401,8 @@
             "espacos_6": 2,
             "espacos_7": 2,
             "espacos_8": 1,
-            "espacos_9": 1
+            "espacos_9": 1,
+            "magias_no_livro": 44
           }
         }
       ],
@@ -1430,6 +1450,12 @@
         "espacos_9": {
           "nome": "Espaços de 9º Círculo",
           "tipo": "inteiro"
+        },
+        "magias_no_livro": {
+          "nome": "Magias no Livro",
+          "tipo": "inteiro",
+          "derivada": true,
+          "nota": "Não é coluna impressa no livro: é o total que o texto do Livro de Magias descreve (seis no nível 1, mais duas por nível de Mago). Fica na tabela para ser lida por nível de CLASSE, como as demais."
         }
       },
       "multiclasse": {

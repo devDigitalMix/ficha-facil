@@ -160,19 +160,46 @@ class Coletor {
         continue
       }
 
-      // `aplicar_efeito_nomeado` só faz sentido para a entidade que DECLAROU os
-      // efeitos nomeados. Resolver isso numa varredura de fora fazia o efeito do
-      // talento ser procurado na característica que o concedeu — e não achado.
+      // `aplicar_efeito_nomeado` aponta para efeitos que moram em OUTRO lugar, e há
+      // dois lugares possíveis — que a primeira versão tratava como um só:
+      //
+      // 1. **No próprio dono** (`{ chave }`), quando a entidade declara um bloco
+      //    `efeitos_nomeados`. É o caso das Manobras do Guerreiro, das Invocações do
+      //    Bruxo, dos Golpes Astutos do Ladino: 27 dos 37 usos.
+      // 2. **Num catálogo** (`{ catalogo, chave }`), quando as opções são itens de um
+      //    catálogo próprio e cada item traz os `efeitos` dele. São 10 usos, e é como
+      //    o livro organiza herança, linhagem, ancestralidade e legado.
+      //
+      // Ignorar o `catalogo` fazia o motor procurar no dono uma chave que nunca
+      // esteve lá, e derrubava **cinco das dez espécies** — Draconato, Elfo, Gnomo,
+      // Golias e Tiferino — além do Aasimar, do Guardião, do Paladino e do Vigilante.
+      // O erro dizia "não existe em '(sem dono)'", que é verdade e não ajuda.
       if (e.tipo === 'aplicar_efeito_nomeado') {
         const chave = e.chave as string
-        const nomeados = listaDeEfeitos(dono?.efeitos_nomeados?.[chave])
+        const nomeDoCatalogo = e.catalogo as string | undefined
+
+        const nomeados = nomeDoCatalogo
+          ? listaDeEfeitos(
+              (catalogo<Entidade>(nomeDoCatalogo).itens.find((i) => i.id === chave) as
+                | { efeitos?: Efeito[] }
+                | undefined)?.efeitos,
+            )
+          : listaDeEfeitos(dono?.efeitos_nomeados?.[chave])
+
         if (!nomeados) {
           throw new ErroDoMotor(
-            `efeito nomeado '${chave}' não existe em '${dono?.id ?? '(sem dono)'}' (${origem})`,
+            nomeDoCatalogo
+              ? `'${chave}' não é um item de '${nomeDoCatalogo}', ou não traz efeitos (${origem})`
+              : `efeito nomeado '${chave}' não existe em '${dono?.id ?? '(sem dono)'}' (${origem})`,
           )
         }
         this.efeitos.push({ efeito: e, origem, portas })
-        this.coletar(nomeados, `${origem} / ${chave}`, portas, dono, sufixo)
+        // O dono passa a ser o ITEM do catálogo quando é dele que os efeitos vêm:
+        // um `aplicar_efeito_nomeado` aninhado dentro dele tem de resolver ali.
+        const novoDono = nomeDoCatalogo
+          ? catalogo<Entidade>(nomeDoCatalogo).itens.find((i) => i.id === chave)
+          : dono
+        this.coletar(nomeados, `${origem} / ${chave}`, portas, novoDono, sufixo)
         continue
       }
 
@@ -266,8 +293,35 @@ class Coletor {
       // o Aumento no Valor de Atributo do Bárbaro não aumentou nada.
       // O sufixo continua: o talento que este Aumento concedeu abre escolhas
       // próprias, e elas pertencem a ESTE aumento, não ao do nível seguinte.
-      this.coletar([concreto], `${origem} / ${id}`, portas, dono, sufixo)
+      //
+      // E há um segundo jeito de o mesmo talento chegar duas vezes, que a primeira
+      // versão não previa: **fontes diferentes**. O Humano pega um talento de Origem
+      // pelo traço Versátil, e o antecedente já concede um — escolher Iniciado em
+      // Magia nos dois dava TRÊS escolhas com id repetido, todas gravando na mesma
+      // chave. O livro permite o acúmulo ("pode adquirir este talento mais de uma
+      // vez, mas deve escolher uma lista de magias diferente a cada vez", p. 201),
+      // então recusar seria errado: o que faltava era o id distinguir a fonte.
+      //
+      // O qualificador é o id DESTA escolha, e só entra quando ainda não há sufixo —
+      // quando há, ele já distingue (o Aumento do nível 8 é '@8'). Assim o id não
+      // depende da ordem em que o motor percorre, e nada que já funcionava muda de
+      // nome.
+      this.coletar([concreto], `${origem} / ${id}`, portas, dono,
+        this.sufixoParaTalento(concreto, sufixo, id))
     }
+  }
+
+  /**
+   * Um talento repetível concedido por uma escolha ganha o id dessa escolha como
+   * qualificador. Talento que não é repetível não precisa: se ele chegasse duas
+   * vezes, o problema seria outro, e mascará-lo com um sufixo o esconderia.
+   */
+  private sufixoParaTalento(concreto: Efeito, sufixo: string, idDaEscolha: string): string {
+    if (sufixo) return sufixo
+    if (concreto.tipo !== 'conceder_talento' || typeof concreto.talento_id !== 'string') return sufixo
+    const t = catalogo<Entidade & { repetivel?: boolean }>('talentos').itens
+      .find((x) => x.id === concreto.talento_id)
+    return t?.repetivel ? `@${idDaEscolha}` : sufixo
   }
 
   private talento(
@@ -329,7 +383,7 @@ class Coletor {
   }
 }
 
-function normalizarEscolhidos(r: EscolhaResolvida): string[] {
+export function normalizarEscolhidos(r: EscolhaResolvida): string[] {
   if (typeof r === 'string') return [r]
   if (Array.isArray(r)) return r
   return [r.escolhido]

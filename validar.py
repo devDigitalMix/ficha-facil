@@ -133,7 +133,6 @@ FILTROS_DE_RUNTIME = {
     'exceto',                          # exclusão declarada na própria escolha
     'alguma',                          # árvore booleana dentro do filtro
     'id',                              # seleção direta por id
-    'no_livro',                        # recorte editorial: só o que o livro lista ali
 }
 
 
@@ -1614,6 +1613,42 @@ def checar_tem_o_que_escolher(ctx, obj):
 for cid, c in list(catalogos.items()) + list(colecoes.items()):
     for i in c['itens']:
         checar_tem_o_que_escolher(f"{cid}/{i['id']}", i)
+
+
+# --------------------------- toda fonte é alimentada por alguém (fase 21)
+# "Escolha quatro magias do seu livro de magias" só faz sentido se alguma escolha
+# ESCREVE no livro. O defeito que motivou esta regra ficou meses invisível: o Mago
+# lia de um livro que ninguém enchia, e a tela mostrava a lista vazia sem queixa
+# nenhuma. Fonte declarada e não alimentada é exatamente o mesmo tipo de erro que
+# porta declarada e nunca aberta.
+alimentadas, consumidas = set(), {}
+
+
+def catar_fontes(ctx, obj):
+    if isinstance(obj, list):
+        for x in obj:
+            catar_fontes(ctx, x)
+        return
+    if not isinstance(obj, dict):
+        return
+    if obj.get('tipo') == 'escolha':
+        if isinstance(obj.get('alimenta'), str):
+            alimentadas.add(obj['alimenta'])
+        f = (obj.get('de') or {}).get('fonte')
+        if isinstance(f, str):
+            consumidas.setdefault(f, []).append(f"{ctx}/{obj.get('id')}")
+    for v in obj.values():
+        catar_fontes(ctx, v)
+
+
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        catar_fontes(f"{cid}/{i['id']}", i)
+
+for f, quem in sorted(consumidas.items()):
+    if f not in alimentadas:
+        erros.append(f"[fonte sem quem a alimente] '{f}': lida por {', '.join(quem)} "
+                     f"e nenhuma escolha declara alimenta='{f}'")
 
 
 # ------------------- subclasse: o nível de cada característica é dela (fase 17)

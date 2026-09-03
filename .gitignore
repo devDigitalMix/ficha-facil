@@ -19,3 +19,6 @@ node_modules/
 
 # Personagens gravados pelo armazém em arquivo, quando se roda sem banco.
 /backend/personagens/
+
+# Saída do build do frontend.
+/frontend/dist/

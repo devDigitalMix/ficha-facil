@@ -11,7 +11,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { montar, ehPendencia } from '../src/motor.ts'
-import { opcoesDe } from '../src/escolha.ts'
+import { opcoesDe, checklist } from '../src/escolha.ts'
 import { catalogo } from '../src/dataset.ts'
 import type { Construcao } from '../src/colecao.ts'
 
@@ -262,4 +262,157 @@ test('uma característica repetível abre uma escolha POR NÍVEL, e não uma só
     0,
     'nenhum aumento fica pendente depois de respondidos os dois',
   )
+})
+
+// ------------------------------------------------- fontes: o livro de magias
+
+/** Um Mago cru de nível N, sem escolha nenhuma respondida. */
+function mago(nivel = 1, escolhas: Record<string, unknown> = {}): Construcao {
+  return {
+    especie: 'humano',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'mago', nivel }],
+    atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 15, SAB: 13, CAR: 8 },
+    escolhas,
+  } as unknown as Construcao
+}
+
+const doChecklist = (r: ReturnType<typeof montar>, id: string) =>
+  r.checklist.find((c) => c.escolha_id === id)
+
+test('o livro de magias do Mago é uma escolha, e as preparadas saem DELE', () => {
+  // O defeito relatado: "não estava aparecendo as magias para preparar". O livro
+  // nascia vazio porque as seis magias iniciais nunca viravam escolha, e preparar
+  // filtrava por um campo `no_livro` que magia nenhuma tem.
+  const vazio = montar(mago(), {})
+  const livro = doChecklist(vazio, 'mago_livro')
+  assert.ok(livro, 'o livro tem de aparecer no checklist do nível 1')
+  assert.equal(livro.quantidade, 6, 'seis magias no nível 1 (p. 147)')
+  assert.ok(livro.opcoes.length > 6)
+  assert.ok(
+    livro.opcoes.every((o) =>
+      catalogo<{ id: string; nivel: number }>('magias').itens
+        .find((m) => m.id === o.id)!.nivel === 1),
+    'no nível 1 só há espaço de 1º círculo, então só 1º círculo entra no livro',
+  )
+
+  // Enquanto o livro está vazio, preparar não oferece nada — e DIZ por quê, em vez
+  // de devolver lista vazia calada, que era o sintoma.
+  const preparar = doChecklist(vazio, 'mago_preparadas')
+  assert.ok(preparar)
+  assert.deepEqual(preparar.opcoes, [])
+  assert.equal(preparar.bloqueada_por, 'livro_de_magias')
+
+  // Com o livro escrito, preparar oferece exatamente o que está no livro.
+  const seis = livro.opcoes.slice(0, 6).map((o) => o.id)
+  const cheio = montar(mago(1, { mago_livro: seis }), {})
+  const preparar2 = doChecklist(cheio, 'mago_preparadas')!
+  assert.equal(preparar2.bloqueada_por, undefined)
+  assert.deepEqual(preparar2.opcoes.map((o) => o.id).sort(), [...seis].sort())
+  assert.equal(preparar2.quantidade, 4)
+  assert.deepEqual(cheio.problemas, [], 'livro respondido não é problema nenhum')
+})
+
+test('o livro cresce com o nível de Mago, e junto o círculo que cabe nele', () => {
+  const n3 = montar(mago(3), {})
+  const livro = doChecklist(n3, 'mago_livro')!
+  assert.equal(livro.quantidade, 10, 'seis no 1 mais duas por nível: 6 + 2×2')
+  const circulos = new Set(
+    livro.opcoes.map((o) =>
+      catalogo<{ id: string; nivel: number }>('magias').itens.find((m) => m.id === o.id)!.nivel),
+  )
+  assert.deepEqual([...circulos].sort(), [1, 2], 'no nível 3 o Mago tem espaços de 2º')
+})
+
+test('um filtro `coluna:` é lido da tabela da classe, e não comparado como texto', () => {
+  // O Bruxo prepara magias "de círculo não superior ao mostrado na coluna Círculo de
+  // Magia". A comparação era feita contra a string 'coluna:circulo_dos_espacos', que
+  // não é número nenhum — e a lista de preparadas do Bruxo saía vazia, do mesmo jeito
+  // que a do Mago, por causa completamente diferente.
+  const bruxo = montar(
+    { ...mago(1), niveis: [{ classe: 'bruxo', nivel: 1 }] } as Construcao, {},
+  )
+  const preparar = doChecklist(bruxo, 'bruxo_preparadas')!
+  assert.ok(preparar.opcoes.length > 0, 'o Bruxo de nível 1 tem o que preparar')
+  assert.ok(
+    preparar.opcoes.every((o) =>
+      catalogo<{ id: string; nivel: number }>('magias').itens
+        .find((m) => m.id === o.id)!.nivel === 1),
+    'no nível 1 o círculo dos espaços é 1',
+  )
+})
+
+test('escolha que neste nível pede zero não aparece no checklist', () => {
+  // Não há hoje escolha que peça zero no dado — mas `quantidade_por_nivel` produz
+  // exatamente isso para uma característica que só começa a dar opções mais tarde, e
+  // "escolha 0 de 31" é linha morta na tela do jogador. Testado direto no checklist
+  // porque nenhum personagem do dataset atual chega lá.
+  const ctx = montar(mago(1), {}).contexto
+  const e = {
+    id: 'so_do_nivel_5', tipo: 'escolha', rotulo: 'Escolha uma perícia',
+    quantidade_por_nivel: { 5: 1 },
+    de: { catalogo: 'pericias', todo_o_catalogo: true },
+  } as unknown as Parameters<typeof checklist>[1] extends Map<string, infer E> ? E : never
+  const pendencia = { escolha_id: 'so_do_nivel_5', rotulo: 'x', origem: 'teste' }
+
+  assert.deepEqual(
+    checklist([pendencia], new Map([['so_do_nivel_5', e]]), ctx),
+    [],
+    'quantidade 0 não é pendência',
+  )
+  const ctx5 = montar(mago(5), {}).contexto
+  assert.equal(
+    checklist([pendencia], new Map([['so_do_nivel_5', e]]), ctx5).length,
+    1,
+    'no nível 5 a mesma escolha aparece',
+  )
+})
+
+// ------------------------- efeito nomeado que mora num catálogo (defeito do João)
+
+test('efeito nomeado com `catalogo` sai do catálogo, e não do dono', () => {
+  // "efeito nomeado 'dragao_vermelho' não existe em '(sem dono)'": a herança do
+  // Draconato declara `catalogo: heranca_draconica`, e o coletor procurava em
+  // `dono.efeitos_nomeados`. Dez dos 37 usos faziam isso — seis espécies e três
+  // classes ficavam intransponíveis na hora de responder a escolha.
+  for (const especie of ['draconato', 'elfo', 'gnomo', 'golias', 'tiferino', 'aasimar']) {
+    const cru = montar({ ...mago(), especie } as Construcao, {})
+    const heranca = cru.checklist.find((c) => c.opcoes.length > 1 && /heranca|linhagem|legado|ancestralidade|revelacao/.test(c.escolha_id))
+    if (!heranca) continue
+    const r = montar(
+      { ...mago(1, { [heranca.escolha_id]: heranca.opcoes[0].id }), especie } as Construcao, {},
+    )
+    assert.deepEqual(
+      r.problemas.filter((p) => p.escolha_id === heranca.escolha_id),
+      [],
+      `${especie}: escolher a herança não pode explodir`,
+    )
+  }
+})
+
+test('talento repetível ganho por duas fontes abre duas escolhas, não uma repetida', () => {
+  // React acusou "two children with the same key, iniciado_em_magia_truques": o
+  // Humano concede um talento de Origem e o antecedente concede outro; escolhido o
+  // mesmo talento repetível nos dois, as escolhas dele colidiam no mesmo id e a
+  // gravação nunca terminava. O livro permite o repeat (p. 201) — então o conserto é
+  // qualificar, não recusar.
+  // O antecedente Acólito já concede Iniciado em Magia; o Humano concede outro
+  // talento de Origem à escolha, e escolher o MESMO é o caso do defeito.
+  const r = montar(mago(1, { humano_versatil: 'iniciado_em_magia' }), {})
+  const ids = r.checklist.map((x) => x.escolha_id)
+  assert.equal(new Set(ids).size, ids.length, 'nenhum id repetido no checklist')
+
+  const iniciado = ids.filter((i) => i.startsWith('iniciado_em_magia_'))
+  const doHumano = new Set(iniciado.filter((i) => i.endsWith('@humano_versatil')))
+  const doAntecedente = iniciado.filter((i) => !i.endsWith('@humano_versatil'))
+  assert.ok(doHumano.size > 0, 'o talento vindo do Humano tem escolhas próprias')
+  for (const i of doAntecedente) {
+    assert.ok(
+      doHumano.has(`${i}@humano_versatil`),
+      `'${i}' do antecedente precisa de um par qualificado pelo Humano`,
+    )
+  }
+  // O do Humano abre uma escolha a mais: o Acólito já vem com a lista definida, e o
+  // Humano ainda tem de escolher a dele.
+  assert.ok(doHumano.size >= doAntecedente.length)
 })

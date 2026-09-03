@@ -1,0 +1,161 @@
+/* Celular primeiro, como manda o PLANO-APP: a tela de uso é a que está na mesa. */
+
+:root {
+  color-scheme: dark light;
+  --fundo: #14120f;
+  --painel: #1e1b16;
+  --painel-alto: #272219;
+  --borda: #3a3227;
+  --texto: #ece5d8;
+  --fraco: #a2977f;
+  --realce: #c9a227;
+  --perigo: #c4553d;
+  --bom: #6f9e5c;
+  --raio: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --fundo: #f6f2e8; --painel: #fffdf7; --painel-alto: #efe8d8;
+    --borda: #d9cfb8; --texto: #241f18; --fraco: #6b6152;
+    --realce: #8a6d10; --perigo: #a63d28; --bom: #4a7038;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.pagina { max-width: 720px; margin: 0 auto; padding: 16px 16px 48px; }
+
+/* -------------------------------------------------------------- cabeçalho */
+
+.topo {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-bottom: 1px solid var(--borda);
+  background: var(--painel); position: sticky; top: 0; z-index: 10;
+}
+.topo h1 { font-size: 17px; margin: 0; flex: 1; font-weight: 600; }
+.topo .quem { color: var(--fraco); font-size: 13px; }
+
+/* ----------------------------------------------------------------- peças */
+
+.painel {
+  background: var(--painel); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 14px; margin-bottom: 12px;
+}
+.painel h2 { font-size: 15px; margin: 0 0 10px; letter-spacing: .02em; }
+.painel h3 { font-size: 13px; margin: 14px 0 6px; color: var(--fraco); font-weight: 600; }
+
+button {
+  font: inherit; color: var(--texto); background: var(--painel-alto);
+  border: 1px solid var(--borda); border-radius: 8px;
+  padding: 9px 14px; cursor: pointer; min-height: 40px;
+}
+button:hover:not(:disabled) { border-color: var(--realce); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.principal { background: var(--realce); color: #17140d; border-color: transparent; font-weight: 600; }
+button.discreto { background: none; border-color: transparent; color: var(--fraco); padding: 6px 8px; }
+button.discreto:hover { color: var(--texto); }
+button.perigo { color: var(--perigo); }
+
+input, select {
+  font: inherit; color: var(--texto); background: var(--fundo);
+  border: 1px solid var(--borda); border-radius: 8px; padding: 9px 10px;
+  width: 100%; min-height: 40px;
+}
+label { display: block; margin-bottom: 10px; }
+label > span { display: block; font-size: 13px; color: var(--fraco); margin-bottom: 4px; }
+
+.linha { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.espalha { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.fraco { color: var(--fraco); font-size: 13px; }
+.erro {
+  color: var(--perigo); background: color-mix(in srgb, var(--perigo) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--perigo) 35%, transparent);
+  border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 14px;
+}
+.aviso {
+  color: var(--realce); background: color-mix(in srgb, var(--realce) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--realce) 30%, transparent);
+  border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 14px;
+}
+
+/* ---------------------------------------------------------- personagens */
+
+.cartao {
+  display: block; width: 100%; text-align: left;
+  background: var(--painel); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 14px; margin-bottom: 10px;
+}
+.cartao .nome { font-size: 17px; font-weight: 600; }
+.marca {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid var(--borda); border-radius: 999px; padding: 2px 8px; color: var(--fraco);
+}
+.marca.ativo { color: var(--bom); border-color: color-mix(in srgb, var(--bom) 50%, transparent); }
+.marca.morto { color: var(--perigo); border-color: color-mix(in srgb, var(--perigo) 50%, transparent); }
+
+/* ---------------------------------------------------------------- ficha */
+
+.numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; }
+.numero {
+  background: var(--painel-alto); border: 1px solid var(--borda);
+  border-radius: 8px; padding: 10px 6px; text-align: center;
+}
+.numero .valor { font-size: 22px; font-weight: 600; line-height: 1.1; }
+.numero .rotulo { font-size: 11px; color: var(--fraco); text-transform: uppercase; letter-spacing: .05em; }
+.numero.clicavel { cursor: pointer; }
+
+.barra { height: 8px; background: var(--painel-alto); border-radius: 999px; overflow: hidden; margin: 8px 0; }
+.barra > i { display: block; height: 100%; background: var(--bom); transition: width .2s; }
+.barra > i.baixo { background: var(--perigo); }
+
+.pilulas { display: flex; flex-wrap: wrap; gap: 6px; }
+.pilula {
+  border: 1px solid var(--borda); border-radius: 8px; padding: 6px 10px;
+  background: var(--painel-alto); font-size: 13px; cursor: pointer;
+}
+.pilula[aria-pressed='true'] { border-color: var(--realce); color: var(--realce); }
+.pilula:disabled { opacity: .4; cursor: not-allowed; }
+
+.proveniencia { font-size: 12px; color: var(--fraco); margin-top: 6px; }
+
+/* ------------------------------------------------------------- escolhas
+   Coluna, e não grade de pílulas: escolher magia sem ver alcance, dano e
+   descrição é escolher no escuro. A linha inteira é o botão. */
+
+.opcoes { display: flex; flex-direction: column; gap: 6px; }
+.opcao {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  border: 1px solid var(--borda); border-radius: 10px; padding: 10px 12px;
+  background: var(--painel-alto); color: inherit; font: inherit;
+}
+.opcao[aria-pressed='true'] {
+  border-color: var(--realce);
+  background: color-mix(in srgb, var(--realce) 12%, var(--painel-alto));
+}
+.opcao:disabled { opacity: .45; cursor: not-allowed; }
+.opcao .etiquetas { font-size: 12px; color: var(--fraco); margin-top: 3px; }
+.opcao .descricao { font-size: 13px; margin: 6px 0 0; line-height: 1.45; }
+
+/* O que a escolha marcada abre: mesma tela, um degrau para dentro. */
+.aninhado {
+  border-left: 2px solid var(--realce); padding: 8px 0 8px 10px; margin: 8px 0;
+}
+.aninhado h2 { font-size: 14px; }
+
+/* ------------------------------------------------------------ histórico */
+
+.historico { list-style: none; margin: 0; padding: 0; }
+.historico li { padding: 9px 0; border-bottom: 1px solid var(--borda); font-size: 14px; }
+.historico li:last-child { border-bottom: none; }
+.historico .quando { color: var(--fraco); font-size: 12px; }
+
+.vazio { color: var(--fraco); text-align: center; padding: 28px 12px; font-size: 14px; }

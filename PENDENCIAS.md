@@ -653,3 +653,71 @@ serialização do catálogo grande.
 
 - As **112 paráfrases de criatura** (Apêndice B) nunca passaram por esta releitura. É exatamente o
   mesmo risco, no mesmo formato, e o `auditar_descricoes.py` não as cobre.
+
+---
+
+## Fase 21 — Os cinco achados do primeiro uso de verdade
+
+O João criou um Monge Draconato e um Mago no app e relatou cinco coisas. Quatro eram defeito,
+uma não era — e a que não era vale tanto quanto as outras, porque a resposta veio do livro.
+
+**Fechado nesta fase**
+
+- **`aplicar_efeito_nomeado` ignorava o campo `catalogo`** (`motor/src/colecao.ts`). O efeito era
+  procurado sempre em `dono.efeitos_nomeados`, e **10 dos 37 usos** declaram um catálogo. Resultado:
+  escolher a herança do Draconato explodia com *"efeito nomeado 'dragao_vermelho' não existe em
+  '(sem dono)'"*, e o mesmo valia para Elfo, Gnomo, Golias, Tiferino, Aasimar, Guardião, Paladino e
+  Vigilante — seis espécies e três classes intransponíveis na criação.
+- **Talento repetível vindo de duas fontes colidia no mesmo id.** O Humano concede um talento de
+  Origem e o antecedente já concede outro; escolhido Iniciado em Magia nos dois, as escolhas dele
+  saíam com id repetido — o React acusava chave duplicada e a gravação nunca terminava. O livro
+  **permite** a repetição (p. 201, "deve escolher uma lista de magias diferente a cada vez"), então
+  o conserto é qualificar (`iniciado_em_magia_truques@humano_versatil`), não recusar.
+- **O livro de magias do Mago nunca foi uma escolha.** `conjuracao_mago` declarava
+  `livro_de_magias` com `magias_iniciais: {quantidade: 6}` como texto descritivo, e `mago_preparadas`
+  filtrava por `no_livro: true` — um campo que magia nenhuma tem. O livro nascia vazio e preparar
+  oferecia **zero** opções, que foi exatamente o relato. Agora `gerar_livro_de_magias.py` abre a
+  escolha `mago_livro`, com o total vindo de uma coluna nova da tabela (`magias_no_livro` =
+  6 + 2×(nível−1), lida pelo **nível de Mago**, não do personagem), e o filtro de círculo
+  (`circulo_com_espaco_disponivel`) já produz "seis de 1º círculo" no nível 1 sem regra especial.
+  As quatro escolhas que diziam "do livro" passaram a declarar `de: {fonte: "livro_de_magias"}`.
+- **O Bruxo tinha zero opções pela causa oposta**: `circulo_maximo: "coluna:circulo_dos_espacos"`
+  era comparado como texto. O motor agora resolve `coluna:` dentro de filtro, como já fazia na
+  quantidade. Duas listas vazias, dois defeitos sem parentesco.
+- **A tela das escolhas era um monte de pílulas com um nome cada.** Escolher 6 magias entre 31 sem
+  ver alcance, dano ou descrição é escolher no escuro. Agora cada opção é uma linha com nome,
+  etiquetas (círculo, escola, tempo, alcance, dano, duração — as que o item tiver) e a descrição
+  curta. A tela desenha **campos**, não conteúdo: um catálogo novo com `descricao_curta` aparece
+  descrito sem tocar no arquivo.
+- **O talento era escolhido antes de se saber o que ele faz.** Novo `POST /personagens/:id/escolhas/previa`:
+  monta a construção com a escolha proposta e devolve o checklist resultante **sem gravar nada**.
+  A tela mostra as sub-escolhas ali mesmo, aninhadas, e o Confirmar grava tudo de uma vez. Cabe no
+  backend porque o motor é puro — montar de novo é barato, e a resposta é a verdade em vez de um
+  palpite do frontend sobre o que o talento faz.
+
+**Não era defeito**
+
+- A proficiência com ferramenta do Monge é **escolha do livro**: p. 159, "Proficiências com
+  Ferramentas — Escolha um tipo de Ferramentas de Artesão ou Instrumento Musical". O dataset está
+  certo; a estranheza é do livro.
+
+**Guardas novas**
+
+- `validar.py`: **toda fonte lida tem de ser alimentada por alguém** (`de: {fonte}` exige uma
+  escolha com `alimenta`). É a mesma classe de erro de porta declarada e nunca aberta — e teria
+  pego o livro vazio sozinho.
+- `testes/rodar_todos.py` roda `tsc --noEmit` no frontend. O projeto não tinha **nenhuma**
+  checagem de tipo em lugar nenhum, e foi assim que três testes passaram por engano na fase 19.
+  Motor e backend rodam TS sem build e continuam sem; o frontend já compila, então ali a checagem
+  não custa build novo.
+- Teste de fumaça foi de 10 para **15 passos**: opções em coluna, o livro do Mago oferecendo 31
+  magias descritas, preparar oferecendo exatamente o que está no livro, o talento revelando o que
+  pede antes de gravar, e o talento com as sub-escolhas gravados numa vez só.
+
+**Aberto**
+
+- **Pendência de escolha incompleta não aparece na tela.** Um Mago de nível 3 com 6 magias no livro
+  precisa de 10: isso vira `problema` do tipo `incompleta` (que o backend devolve em
+  `pendencias_de_escolha`), e não item de checklist. O frontend só desenha o checklist. Some com a
+  tela de subir de nível, que ainda não existe.
+- O livro **não cobra lista diferente** a cada Iniciado em Magia repetido (p. 201). Continua aberto.

@@ -5,7 +5,13 @@
 //
 // Continua puro: mesma entrada, mesma saída, sem relógio, sem aleatório, sem banco.
 
-import { coletar, type Construcao, type Colecao, type EfeitoColetado } from './colecao.ts'
+import {
+  coletar,
+  normalizarEscolhidos,
+  type Construcao,
+  type Colecao,
+  type EfeitoColetado,
+} from './colecao.ts'
 import { montarContexto, type Estado } from './contexto.ts'
 import { montarFicha, testeDePericia, type Ficha } from './ficha.ts'
 import {
@@ -15,6 +21,7 @@ import {
   type Problema,
   ehPendencia,
   type Variaveis,
+  type Fontes,
 } from './escolha.ts'
 import { vocabularioDeRuntime } from './dataset.ts'
 import type { Contexto } from './tipos.ts'
@@ -72,6 +79,19 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
     variaveis[id] = valor
     variaveis[`escolhido_em:${id}`] = valor
   }
+  // As FONTES: conjuntos que uma escolha alimenta e outra consome. O livro de magias
+  // do Mago é o caso do livro — "escolha quatro magias do seu livro" (p. 148) só faz
+  // sentido depois que o livro tem magias. Quem alimenta declara `alimenta`; quem
+  // consome declara `de: { fonte }`. Nenhum id de conteúdo entra aqui.
+  const fontes: Fontes = {}
+  for (const [id, { efeito }] of colecao.escolhas) {
+    const alvo = efeito.alimenta as string | undefined
+    if (!alvo) continue
+    const resolvida = construcao.escolhas?.[id]
+    if (resolvida === undefined) continue
+    ;(fontes[alvo] ??= []).push(...normalizarEscolhidos(resolvida))
+  }
+
   for (const [id, resolvida] of Object.entries(construcao.escolhas ?? {})) {
     const e = efeitosDeEscolha.get(id)
     if (!e) {
@@ -82,13 +102,13 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
       })
       continue
     }
-    problemas.push(...conferirEscolha(e, resolvida, contexto, variaveis))
+    problemas.push(...conferirEscolha(e, resolvida, contexto, variaveis, fontes))
   }
 
   return {
     ficha: montarFicha(contexto, vocab, equipado),
     contexto,
-    checklist: checklist(colecao.pendencias, efeitosDeEscolha, contexto, variaveis),
+    checklist: checklist(colecao.pendencias, efeitosDeEscolha, contexto, variaveis, fontes),
     problemas,
     nao_consumidos,
     colecao,

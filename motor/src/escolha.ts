@@ -50,10 +50,24 @@ export type Oferta = {
    * o catálogo inteiro seria oferecer o que o jogador não pode pegar.
    */
   bloqueada_por?: string
+  /** Catálogo de onde saíram as opções, para quem quiser descrever cada uma. */
+  catalogo?: string
+  /** Os que o livro recomenda, na ordem em que ele os lista. */
+  recomendados?: string[]
 }
 
 /** Variáveis que uma escolha resolvida definiu, para outra escolha ler. */
 export type Variaveis = Record<string, string>
+
+/**
+ * O que cada FONTE acumulou.
+ *
+ * Uma fonte é um conjunto que o personagem monta e do qual depois escolhe: o livro
+ * de magias do Mago é o caso do livro (p. 147). Quem alimenta a fonte declara
+ * `alimenta: "<fonte>"` na escolha; quem tira dela declara `de: { fonte: "<fonte>" }`.
+ * Nenhum lado cita o outro por id — é o mesmo desenho das portas.
+ */
+export type Fontes = Record<string, string[]>
 
 /**
  * O que há de errado com uma escolha resolvida.
@@ -137,7 +151,6 @@ const RUNTIME = new Set([
   'exceto',
   'alguma',
   'id',
-  'no_livro',
 ])
 
 /** Casa um item contra uma chave de filtro de catálogo. */
@@ -178,8 +191,6 @@ function casaRuntime(item: Item, k: string, v: unknown, ctx: Contexto): boolean 
       const fora = Array.isArray(v) ? (v as string[]) : [v as string]
       return !fora.includes(item.id)
     }
-    case 'no_livro':
-      return item.no_livro === v
     case 'proficiente':
     case 'com_proficiencia': {
       const tem = proficienteEm(item.id, ctx)
@@ -236,7 +247,12 @@ function proficienteEm(id: string, ctx: Contexto): boolean {
  * recortam a lista — e, por não recortarem, ficam ditas em voz alta em vez de virar
  * uma lista silenciosamente maior do que deveria.
  */
-export function opcoesDe(e: Efeito, ctx: Contexto, variaveis: Variaveis = {}): Oferta {
+export function opcoesDe(
+  e: Efeito,
+  ctx: Contexto,
+  variaveis: Variaveis = {},
+  fontes: Fontes = {},
+): Oferta {
   const id = e.id as string
 
   // Depende de outra escolha que ainda não foi feita: não se oferece nada, e se diz
@@ -251,6 +267,20 @@ export function opcoesDe(e: Efeito, ctx: Contexto, variaveis: Variaveis = {}): O
 
   let itens = itensDe(cat)
   const naoAvaliados: string[] = []
+
+  // 0. a fonte: o conjunto que o personagem montou antes.
+  //
+  // "Escolha quatro magias DO SEU LIVRO DE MAGIAS" (p. 148) não é um recorte do
+  // catálogo: é um recorte do que ficou resolvido nas escolhas que alimentam o
+  // livro. Enquanto o livro está vazio, esta escolha não tem o que oferecer — e
+  // dizer isso é melhor que devolver lista vazia calada, que foi exatamente o
+  // sintoma relatado ("não aparecem as magias para preparar").
+  const fonte = de.fonte as string | undefined
+  if (fonte) {
+    const dentro = new Set(fontes[fonte] ?? [])
+    if (!dentro.size) return { ...oferta(e, ctx, [], []), bloqueada_por: fonte }
+    itens = itens.filter((i) => dentro.has(i.id))
+  }
 
   // 1. seleção direta por chaves
   if (Array.isArray(de.chaves)) {
@@ -272,6 +302,17 @@ export function opcoesDe(e: Efeito, ctx: Contexto, variaveis: Variaveis = {}): O
     if (!fonte || typeof fonte !== 'object') continue
     for (const [k, v] of Object.entries(fonte as Record<string, unknown>)) {
       let valor = v
+      // `coluna:<x>` num filtro é a tabela da classe, exatamente como na quantidade.
+      // Sem resolver aqui, o Bruxo comparava `nivel <= "coluna:circulo_dos_espacos"`
+      // — falso para toda magia — e a lista de preparadas saía vazia.
+      if (typeof v === 'string' && v.startsWith('coluna:')) {
+        const n = ctx.colunas?.[v.slice('coluna:'.length)]
+        if (typeof n !== 'number') {
+          naoAvaliados.push(k)
+          continue
+        }
+        valor = n
+      }
       if (typeof v === 'string' && v.startsWith('$')) {
         const resolvido = variaveis[v.slice(1)]
         if (resolvido === undefined) {
@@ -341,6 +382,8 @@ export function nomeDaVariavelDe(escolhaId: string): string {
 }
 
 function oferta(e: Efeito, ctx: Contexto, opcoes: Opcao[], naoAvaliados: string[]): Oferta {
+  const de = (e.de ?? {}) as Record<string, unknown>
+  const recomendados = (e.recomendados ?? e.recomendadas) as string[] | undefined
   return {
     escolha_id: e.id as string,
     rotulo: (e.rotulo as string) ?? (e.id as string),
@@ -348,6 +391,12 @@ function oferta(e: Efeito, ctx: Contexto, opcoes: Opcao[], naoAvaliados: string[
     opcoes,
     nao_avaliados: [...new Set(naoAvaliados)],
     reescolhivel: Boolean(e.reescolhivel),
+    // De onde vieram as opções, e quais o livro sugere. O motor não descreve magia
+    // nem talento — quem quiser a descrição busca no compêndio, e para isso precisa
+    // saber em que catálogo procurar. Sem este campo a tela teria de adivinhar pelo
+    // id da escolha, que é exatamente o conhecimento de conteúdo que não pode subir.
+    catalogo: typeof de.catalogo === 'string' ? de.catalogo : undefined,
+    ...(recomendados?.length ? { recomendados } : {}),
   }
 }
 
@@ -392,10 +441,11 @@ export function conferirEscolha(
   resolvida: unknown,
   ctx: Contexto,
   variaveis: Variaveis = {},
+  fontes: Fontes = {},
 ): Problema[] {
   const id = e.id as string
   const problemas: Problema[] = []
-  const of = opcoesDe(e, ctx, variaveis)
+  const of = opcoesDe(e, ctx, variaveis, fontes)
   if (of.bloqueada_por) {
     return [{
       escolha_id: id,
@@ -450,12 +500,17 @@ export function checklist(
   escolhasPorId: Map<string, Efeito>,
   ctx: Contexto,
   variaveis: Variaveis = {},
+  fontes: Fontes = {},
 ): ItemDeChecklist[] {
-  return pendencias.map((p) => {
-    const e = escolhasPorId.get(p.escolha_id)
-    if (!e) throw new ErroDoMotor(`pendência sem a escolha correspondente: '${p.escolha_id}'`)
-    return { ...opcoesDe(e, ctx, variaveis), origem: p.origem }
-  })
+  return pendencias
+    .map((p) => {
+      const e = escolhasPorId.get(p.escolha_id)
+      if (!e) throw new ErroDoMotor(`pendência sem a escolha correspondente: '${p.escolha_id}'`)
+      return { ...opcoesDe(e, ctx, variaveis, fontes), origem: p.origem }
+    })
+    // Escolha que neste nível pede zero não é pendência: a expansão do livro de
+    // magias só começa no nível 2, e "escolha 0 magias" no nível 1 é ruído na tela.
+    .filter((i) => i.quantidade > 0)
 }
 
 export { avaliar }

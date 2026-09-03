@@ -35,6 +35,14 @@ def main():
     ]
     for t in sorted(glob.glob(os.path.join(AQUI, 'teste_negativo_*.py'))):
         passos.append(('negativo: ' + os.path.basename(t)[15:-3], [py, t]))
+    # O frontend é a única parte do projeto com etapa de compilação, e por isso a
+    # única onde os tipos podem ser cobrados sem inventar build para o resto. Entrou
+    # depois de três testes passarem por engano: `listar()` sem argumento casava com
+    # `undefined === undefined`, e nada no projeto conferia assinatura.
+    passos.append(('tipos do frontend (tsc --noEmit)',
+                   ['npm', '--prefix', os.path.join(RAIZ, 'frontend'), 'run', '--silent', 'tipos']))
+    passos.append(('fumaça do app (navegador de verdade)',
+                   ['node', os.path.join(RAIZ, 'frontend', 'testes', 'fumaca.mjs')]))
     passos.append(('motor (node --test)',
                    ['npm', '--prefix', os.path.join(RAIZ, 'motor'), 'run', '--silent', 'teste']))
     passos.append(('backend (node --test)',

@@ -1,0 +1,264 @@
+// Teste de fumaça: o app inteiro, num navegador de verdade, contra o backend de verdade.
+//
+// Não é teste de unidade e não tenta ser: é a pergunta "isto funciona ponta a ponta?",
+// que nenhum teste de componente responde. Ele percorre o caminho que o João vai
+// percorrer — criar conta, criar personagem, responder escolha, marcar dano, ver o
+// histórico, sair e voltar — e falha se qualquer passo não acontecer na tela.
+//
+// Sobe backend e frontend sozinho, em portas próprias, com armazém em arquivo num
+// diretório temporário. Não toca em Mongo nem em dado de ninguém.
+//
+//     node testes/fumaca.mjs
+//
+// A saída é uma linha por passo. Qualquer passo que falhe derruba o processo com o
+// que estava na tela no momento, que é o que faz a falha ser diagnosticável.
+
+import { spawn } from 'node:child_process'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { existsSync } from 'node:fs'
+
+let chromium
+try {
+  ;({ chromium } = await import('playwright'))
+} catch {
+  console.log('fumaça: playwright não instalado — pulando (npm install para rodar)')
+  process.exit(0)
+}
+
+const AQUI = dirname(fileURLToPath(import.meta.url))
+const RAIZ = join(AQUI, '..')
+const CHROME = process.env.CHROME ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+const PORTA_BACK = 8899
+const PORTA_FRONT = 5199
+
+// Sem navegador, PULA em vez de fingir que passou — a mesma regra dos testes que
+// precisam de Mongo. Um teste que só roda em uma máquina não protege as outras, mas
+// um teste que mente é pior.
+if (!existsSync(CHROME)) {
+  console.log(`fumaça: sem navegador em ${CHROME} — pulando.`)
+  console.log('  para rodar: npx playwright install chromium (ou aponte CHROME=…)')
+  process.exit(0)
+}
+
+const dados = mkdtempSync(join(tmpdir(), 'ficha-facil-fumaca-'))
+const processos = []
+let passos = 0
+
+const passo = (t) => { passos++; console.log(`  ${passos}. ${t}`) }
+
+function subir(nome, comando, argumentos, ambiente, pronto) {
+  const p = spawn(comando, argumentos, {
+    cwd: RAIZ,
+    env: { ...process.env, ...ambiente },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+  processos.push(p)
+  return new Promise((resolve, reject) => {
+    const prazo = setTimeout(() => reject(new Error(`${nome} não subiu em 60s`)), 60_000)
+    const olhar = (b) => {
+      const texto = String(b)
+      if (process.env.VERBOSO) process.stdout.write(`[${nome}] ${texto}`)
+      if (pronto.test(texto)) { clearTimeout(prazo); resolve() }
+    }
+    p.stdout.on('data', olhar)
+    p.stderr.on('data', olhar)
+    p.on('exit', (c) => reject(new Error(`${nome} morreu com código ${c}`)))
+  })
+}
+
+function encerrar() {
+  for (const p of processos) { try { p.kill('SIGKILL') } catch { /* já morreu */ } }
+  rmSync(dados, { recursive: true, force: true })
+}
+
+const email = `fumaca-${Date.now()}@exemplo.test`
+const SENHA = 'uma senha bem longa'
+
+try {
+  console.log('subindo…')
+  await subir('backend', 'node', [join(RAIZ, '..', 'backend', 'src', 'principal.ts')], {
+    PORTA: String(PORTA_BACK),
+    PERSONAGENS: dados,
+    SESSAO_SEGREDO: 'segredo-do-teste-de-fumaca',
+    MONGODB_URI: '',
+  }, /backend em http/)
+
+  // O binário direto, e não `npx`: o `npx` embrulha o Vite num `sh -c`, e é esse
+  // filho que sobrevive ao encerrar e fica segurando a porta. A execução seguinte
+  // então falhava com "porta em uso", parecendo defeito do app quando era lixo da
+  // anterior. Uma camada a menos é uma camada a menos para vazar.
+  await subir('vite', join(RAIZ, 'node_modules', '.bin', 'vite'),
+    ['--port', String(PORTA_FRONT), '--strictPort'], {
+      BACKEND: `http://localhost:${PORTA_BACK}`,
+    }, /Local:\s+http/)
+
+  const navegador = await chromium.launch({ executablePath: CHROME })
+  const pagina = await navegador.newPage({ viewport: { width: 390, height: 844 } })
+  pagina.on('pageerror', (e) => { throw new Error(`erro de JS na página: ${e.message}`) })
+  const base = `http://localhost:${PORTA_FRONT}`
+
+  console.log('percorrendo:')
+  await pagina.goto(base)
+
+  // ------------------------------------------------------------------ conta
+  await pagina.getByRole('button', { name: 'Criar uma conta' }).click()
+  await pagina.getByLabel(/E-mail/).fill(email)
+  await pagina.getByLabel(/Senha/).fill(SENHA)
+  await pagina.getByRole('button', { name: 'Criar conta' }).click()
+  await pagina.getByText('Meus personagens').waitFor({ timeout: 10_000 })
+  passo('criou conta e entrou')
+
+  await pagina.getByText('Nenhum personagem ainda', { exact: false }).waitFor()
+  passo('lista começa vazia')
+
+  // ------------------------------------------------------------ personagem
+  await pagina.getByRole('button', { name: 'Novo' }).click()
+  await pagina.getByLabel('Nome').fill('Vesna')
+  await pagina.getByLabel('Espécie').selectOption('humano')
+  await pagina.getByLabel('Antecedente').selectOption('acolito')
+  await pagina.getByLabel('Classe').selectOption('clerigo')
+  await pagina.getByRole('button', { name: 'Criar' }).click()
+  await pagina.getByRole('heading', { name: 'Vesna' }).waitFor({ timeout: 10_000 })
+  passo('criou a Vesna e caiu na ficha dela')
+
+  // ------------------------------------------------------------------ vida
+  const pv = pagina.locator('.painel', { hasText: 'Pontos de Vida' })
+  const antes = await pv.locator('strong').first().innerText()
+  await pv.getByRole('button', { name: 'tirar vida' }).click()
+  await pv.locator('strong').first().filter({ hasNotText: antes }).waitFor({ timeout: 5000 })
+  const depois = await pv.locator('strong').first().innerText()
+  if (antes === depois) throw new Error('o PV não mudou ao marcar dano')
+  passo(`marcou dano: ${antes.trim()} → ${depois.trim()}`)
+
+  // ------------------------------------------------------------ histórico
+  await pagina.getByRole('button', { name: 'Histórico' }).click()
+  await pagina.getByText(/sofreu 1 de dano · PV \d+\/\d+/).waitFor({ timeout: 5000 })
+  const linha = await pagina.locator('.historico li').first().innerText()
+  passo(`histórico mostra: ${linha.split('\n')[0]}`)
+
+  // -------------------------------------------------------------- escolhas
+  await pagina.getByRole('button', { name: /^Escolhas/ }).click()
+  const pericia = pagina.locator('.painel', { hasText: 'Escolha uma perícia' }).first()
+
+  // A opção é uma LINHA com nome, etiquetas e descrição — não uma pílula com um
+  // nome só. O jogador reclamou de escolher no escuro; este passo é o que garante
+  // que a descrição está mesmo na tela.
+  const opcao = pericia.locator('.opcao', { hasText: 'Percepção' }).first()
+  await opcao.waitFor({ timeout: 10_000 })
+  const quantas = await pericia.locator('.opcao').count()
+  if (quantas < 2) throw new Error('as opções não vieram em coluna')
+  // Perícia não tem descrição no dataset; tem atributo, e a etiqueta sai dele.
+  await pericia.locator('.opcao .etiquetas').first().waitFor({ timeout: 5000 })
+  passo(`opções em coluna e etiquetadas: ${quantas}`)
+
+  await opcao.click()
+  await pericia.getByRole('button', { name: 'Confirmar' }).click()
+  await pagina.getByRole('button', { name: /^Escolhas \(9\)$/ }).waitFor({ timeout: 10_000 })
+  passo('respondeu uma escolha; o checklist caiu de 10 para 9')
+
+  // A distribuição do antecedente: dois passos, e o segundo só existe depois do
+  // primeiro. É o caso que a tela genérica de "escolha N de uma lista" não cobre.
+  const aumento = pagina.locator('.painel', { hasText: 'distribuir o aumento' }).first()
+  await aumento.getByRole('button', { name: 'Um em +2 e outro em +1' }).click()
+  await aumento.getByLabel('+2 em').selectOption('SAB')
+  await aumento.getByLabel('+1 em').selectOption('INT')
+  await aumento.getByRole('button', { name: 'Confirmar' }).click()
+  await pagina.getByRole('button', { name: /^Escolhas \(8\)$/ }).waitFor({ timeout: 10_000 })
+  passo('distribuiu o aumento do antecedente (+2 SAB, +1 INT)')
+
+  // ------------------------------------------------- o Mago: livro e prévia
+  // Os dois defeitos que o João achou na mão: o livro de magias não existia como
+  // escolha (e por isso não havia o que preparar), e o talento era escolhido antes
+  // de se saber o que ele pede.
+  await pagina.getByRole('button', { name: '← meus personagens' }).click()
+  await pagina.getByRole('button', { name: 'Novo' }).click()
+  await pagina.getByLabel('Nome').fill('Nael')
+  await pagina.getByLabel('Espécie').selectOption('humano')
+  await pagina.getByLabel('Antecedente').selectOption('acolito')
+  await pagina.getByLabel('Classe').selectOption('mago')
+  await pagina.getByRole('button', { name: 'Criar' }).click()
+  await pagina.getByRole('heading', { name: 'Nael' }).waitFor({ timeout: 10_000 })
+  await pagina.getByRole('button', { name: /^Escolhas/ }).click()
+
+  const livro = pagina.locator('.painel', { hasText: 'livro de magias' }).first()
+  await livro.waitFor({ timeout: 10_000 })
+  const magias = await livro.locator('.opcao').count()
+  if (magias < 6) throw new Error(`o livro ofereceu ${magias} magias`)
+  await livro.locator('.opcao .descricao').first().waitFor({ timeout: 10_000 })
+  const recomendadas = await livro.locator('.opcao', { hasText: 'recomendada' }).count()
+  passo(`o livro oferece ${magias} magias descritas (${recomendadas} recomendadas)`)
+
+  for (let i = 0; i < 6; i++) await livro.locator('.opcao').nth(i).click()
+  await livro.getByRole('button', { name: 'Confirmar' }).click()
+  const preparar = pagina.locator('.painel', { hasText: 'Prepare magias' }).first()
+  await preparar.locator('.opcao').first().waitFor({ timeout: 10_000 })
+  const paraPreparar = await preparar.locator('.opcao').count()
+  if (paraPreparar !== 6) throw new Error(`preparar ofereceu ${paraPreparar}, esperado 6`)
+  passo('escrito o livro, preparar magias oferece exatamente o que está nele')
+
+  // A prévia: marcar o talento mostra, ali mesmo, o que ele vai pedir.
+  const talento = pagina.locator('.painel', { hasText: 'talento' }).first()
+  await talento.locator('.opcao', { hasText: 'Iniciado em Magia' }).first().click()
+  await talento.locator('.aninhado').first().waitFor({ timeout: 10_000 })
+  const abre = await talento.locator('.aninhado h2').allInnerTexts()
+  passo(`o talento revela o que pede antes de gravar: ${abre.join('; ')}`)
+
+  // E dá para responder tudo ali dentro, numa gravação só. As sub-escolhas que
+  // dependem de outra (os truques só existem depois da lista) vão aparecendo à
+  // medida que a de cima é respondida — é a prévia rodando de novo.
+  const confirmar = talento.getByRole('button', { name: /Confirmar|faltam/ })
+  // Uma opção por volta, relendo a tela a cada vez: a prévia refaz o checklist a
+  // cada resposta, então o painel de dois cliques atrás pode não existir mais.
+  for (let volta = 0; volta < 30 && !(await confirmar.isEnabled()); volta++) {
+    const livre = talento
+      .locator('.aninhado')
+      .locator('.opcao:not([aria-pressed="true"]):not([disabled])')
+      .first()
+    if (!(await livre.count())) { await pagina.waitForTimeout(400); continue }
+    await livre.click().catch(() => {}) // sumiu entre o ver e o clicar: a volta seguinte reencontra
+    await pagina.waitForTimeout(250)
+  }
+  if (!(await confirmar.isEnabled())) {
+    throw new Error(`não deu para completar o talento na tela: ${await confirmar.innerText()}`)
+  }
+  await confirmar.click()
+  // Some o painel que oferecia o talento. Os outros que falam em "talento" no
+  // rótulo são as sub-escolhas dele, que continuam legítimas: o que a prévia tinha
+  // revelado até o clique foi gravado junto, e o que sobrou virou pendência normal.
+  await pagina
+    .locator('.painel', { hasText: 'Iniciado em Magia' })
+    .first().waitFor({ state: 'detached', timeout: 10_000 })
+  passo('talento e sub-escolhas gravados de uma vez só')
+
+  // ---------------------------------------------------------------- sessão
+  await pagina.getByRole('button', { name: '← meus personagens' }).click()
+  await pagina.getByText('Vesna').click()
+  await pagina.getByRole('heading', { name: 'Vesna' }).waitFor({ timeout: 10_000 })
+  await pagina.reload()
+  await pagina.getByRole('heading', { name: 'Vesna' }).waitFor({ timeout: 10_000 }).catch(async () => {
+    await pagina.getByText('Meus personagens').waitFor({ timeout: 5000 })
+  })
+  passo('recarregou a página e continuou logado')
+
+  await pagina.getByRole('button', { name: 'sair' }).click()
+  await pagina.getByRole('button', { name: 'Entrar' }).waitFor({ timeout: 5000 })
+  passo('saiu e voltou para o login')
+
+  await pagina.getByLabel(/E-mail/).fill(email)
+  await pagina.getByLabel(/Senha/).fill(SENHA)
+  await pagina.getByRole('button', { name: 'Entrar' }).click()
+  await pagina.getByText('Vesna').waitFor({ timeout: 10_000 })
+  passo('entrou de novo e a Vesna continua lá')
+
+  await navegador.close()
+  console.log(`\n${passos} de ${passos} passos passaram.`)
+  encerrar()
+  process.exit(0)
+} catch (e) {
+  console.error(`\nFALHOU no passo ${passos + 1}: ${e.message}`)
+  encerrar()
+  process.exit(1)
+}
