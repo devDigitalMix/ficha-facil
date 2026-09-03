@@ -1,12 +1,14 @@
 // Onde os personagens ficam.
 //
-// Um arquivo JSON por personagem, num diretório. Não é banco porque ainda não
-// precisa ser: o compêndio é estático e o personagem é um documento pequeno que se
-// lê inteiro. A interface existe para que trocar por banco depois seja trocar esta
-// peça, e não reescrever o backend.
+// A interface existe para que trocar o lugar de guardar seja trocar esta peça, e não
+// reescrever o backend. São três implementações: arquivo (rodar sem banco), memória
+// (testes) e Mongo (`mongo.ts`, produção).
 //
-// Escrita é atômica (arquivo temporário + rename): um processo morto no meio de uma
-// gravação deixa o personagem antigo intacto, nunca meio arquivo.
+// **Por que os métodos devolvem Promise.** A primeira versão era síncrona, porque
+// arquivo e memória são síncronos. Mongo não é — e fingir que é significaria bloquear
+// o laço de eventos ou mentir no tipo. O roteador já aceitava manipulador assíncrono
+// (`Manipulador = (p) => Resposta | Promise<Resposta>`), então o custo foi um `await`
+// em cada chamada, e nenhuma mudança de desenho.
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -14,14 +16,22 @@ import { randomUUID } from 'node:crypto'
 import type { Personagem } from './personagem.ts'
 
 export interface Armazem {
-  criar(p: Omit<Personagem, 'id'>): Personagem
-  ler(id: string): Personagem | undefined
-  gravar(p: Personagem): Personagem
-  listar(): Personagem[]
-  apagar(id: string): boolean
+  criar(p: Omit<Personagem, 'id'>): Promise<Personagem>
+  ler(id: string): Promise<Personagem | undefined>
+  gravar(p: Personagem): Promise<Personagem>
+  /** Só os do dono: listar sem dono seria listar os de todo mundo. */
+  listar(usuarioId: string): Promise<Personagem[]>
+  apagar(id: string): Promise<boolean>
+  /** Fecha conexão, quando houver. Arquivo e memória não têm o que fechar. */
+  fechar?(): Promise<void>
 }
 
 const seguro = (id: string) => /^[a-zA-Z0-9_-]{1,64}$/.test(id)
+
+/** "Meus personagens", ordenado por último acesso — o mais recente no topo. */
+export function porUltimoAcesso(a: Personagem, b: Personagem): number {
+  return a.ultimo_acesso < b.ultimo_acesso ? 1 : -1
+}
 
 export class ArmazemEmArquivos implements Armazem {
   raiz: string
@@ -37,37 +47,39 @@ export class ArmazemEmArquivos implements Armazem {
     return join(this.raiz, `${id}.json`)
   }
 
-  criar(p: Omit<Personagem, 'id'>): Personagem {
+  async criar(p: Omit<Personagem, 'id'>): Promise<Personagem> {
     const completo = { ...p, id: randomUUID() } as Personagem
-    this.gravar(completo)
+    await this.gravar(completo)
     return completo
   }
 
-  ler(id: string): Personagem | undefined {
+  async ler(id: string): Promise<Personagem | undefined> {
     if (!seguro(id)) return undefined
     const caminho = this.caminho(id)
     if (!existsSync(caminho)) return undefined
     return JSON.parse(readFileSync(caminho, 'utf-8')) as Personagem
   }
 
-  gravar(p: Personagem): Personagem {
+  async gravar(p: Personagem): Promise<Personagem> {
     const caminho = this.caminho(p.id)
+    // gravação atômica: um processo morto no meio deixa o arquivo antigo intacto,
+    // nunca meio arquivo
     const temporario = `${caminho}.${process.pid}.tmp`
     writeFileSync(temporario, JSON.stringify(p, null, 2), 'utf-8')
     renameSync(temporario, caminho)
     return p
   }
 
-  listar(): Personagem[] {
+  async listar(usuarioId: string): Promise<Personagem[]> {
     if (!existsSync(this.raiz)) return []
-    const todos = readdirSync(this.raiz)
+    return readdirSync(this.raiz)
       .filter((n) => n.endsWith('.json'))
       .map((n) => JSON.parse(readFileSync(join(this.raiz, n), 'utf-8')) as Personagem)
-    // "Meus personagens", ordenado por último acesso — o mais recente no topo
-    return todos.sort((a, b) => (a.ultimo_acesso < b.ultimo_acesso ? 1 : -1))
+      .filter((p) => p.usuario_id === usuarioId)
+      .sort(porUltimoAcesso)
   }
 
-  apagar(id: string): boolean {
+  async apagar(id: string): Promise<boolean> {
     const caminho = this.caminho(id)
     if (!existsSync(caminho)) return false
     rmSync(caminho)
@@ -79,27 +91,27 @@ export class ArmazemEmArquivos implements Armazem {
 export class ArmazemNaMemoria implements Armazem {
   mapa = new Map<string, Personagem>()
 
-  criar(p: Omit<Personagem, 'id'>): Personagem {
+  async criar(p: Omit<Personagem, 'id'>): Promise<Personagem> {
     const completo = { ...p, id: randomUUID() } as Personagem
-    this.mapa.set(completo.id, completo)
+    this.mapa.set(completo.id, JSON.parse(JSON.stringify(completo)) as Personagem)
     return completo
   }
 
-  ler(id: string) {
+  async ler(id: string): Promise<Personagem | undefined> {
     const p = this.mapa.get(id)
     return p ? (JSON.parse(JSON.stringify(p)) as Personagem) : undefined
   }
 
-  gravar(p: Personagem) {
+  async gravar(p: Personagem): Promise<Personagem> {
     this.mapa.set(p.id, JSON.parse(JSON.stringify(p)) as Personagem)
     return p
   }
 
-  listar() {
-    return [...this.mapa.values()].sort((a, b) => (a.ultimo_acesso < b.ultimo_acesso ? 1 : -1))
+  async listar(usuarioId: string): Promise<Personagem[]> {
+    return [...this.mapa.values()].filter((p) => p.usuario_id === usuarioId).sort(porUltimoAcesso)
   }
 
-  apagar(id: string) {
+  async apagar(id: string): Promise<boolean> {
     return this.mapa.delete(id)
   }
 }

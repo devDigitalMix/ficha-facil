@@ -89,20 +89,20 @@ test('completar a escolha pendente zera a pendência', async () => {
 
 test('escolha inválida é recusada E não fica gravada', async () => {
   const p = await criar()
-  const antes = c.armazem.ler(p.id)!.construcao.escolhas!.clerigo_truques
+  const antes = (await c.armazem.ler(p.id))!.construcao.escolhas!.clerigo_truques
   const r = await c.pedir('POST', `/personagens/${p.id}/escolhas`, {
     escolhas: { clerigo_truques: ['bola_de_fogo', 'luz', 'orientacao', 'resistencia'] },
   })
   assert.equal(r.status, 422)
-  const depois = c.armazem.ler(p.id)!.construcao.escolhas!.clerigo_truques
+  const depois = (await c.armazem.ler(p.id))!.construcao.escolhas!.clerigo_truques
   assert.deepEqual(depois, antes, 'o personagem não pode ter mudado')
 })
 
 test('o aviso de versão aparece quando o personagem foi feito contra outra base', async () => {
   const p = await criar()
-  const guardado = c.armazem.ler(p.id)!
+  const guardado = (await c.armazem.ler(p.id))!
   guardado.versao_do_dataset = 'aaaaaaaaaaaa'
-  c.armazem.gravar(guardado)
+  await c.armazem.gravar(guardado)
   const r = await c.pedir('GET', `/personagens/${p.id}`)
   assert.equal(r.status, 200, 'avisa, não quebra')
   assert.match(r.corpo.aviso_de_versao, /aaaaaaaaaaaa/)
@@ -120,7 +120,7 @@ test('o estado tem tipo: valor errado é recusado antes de virar lixo guardado',
     const r = await c.pedir('PATCH', `/personagens/${p.id}/estado`, corpo)
     assert.equal(r.status, 400, `${oQue} deveria dar 400`)
   }
-  const guardado = c.armazem.ler(p.id)!
+  const guardado = (await c.armazem.ler(p.id))!
   assert.equal(guardado.estado.pontos_de_vida_atuais, undefined, 'nada disso pode ter sido gravado')
 })
 
@@ -129,7 +129,7 @@ test('subir de nível recusado não deixa o personagem meio subido', async () =>
   alto.niveis[0].nivel = 20
   const p = (await c.pedir('POST', '/personagens', { nome: 'No teto', construcao: alto })).corpo
   await c.pedir('POST', `/personagens/${p.id}/subir-nivel`, {})
-  assert.equal(c.armazem.ler(p.id)!.construcao.niveis[0].nivel, 20)
+  assert.equal((await c.armazem.ler(p.id))!.construcao.niveis[0].nivel, 20)
 })
 
 test('responder uma escolha não apaga o aviso de versão', async () => {
@@ -137,15 +137,15 @@ test('responder uma escolha não apaga o aviso de versão', async () => {
   // versão ao responder uma escolha qualquer faria ele sumir sem que nada tivesse
   // sido conferido — escondendo exatamente o que ele existe para mostrar.
   const p = await criar()
-  const guardado = c.armazem.ler(p.id)!
+  const guardado = (await c.armazem.ler(p.id))!
   guardado.versao_do_dataset = 'bbbbbbbbbbbb'
-  c.armazem.gravar(guardado)
+  await c.armazem.gravar(guardado)
   const r = await c.pedir('POST', `/personagens/${p.id}/escolhas`, {
     escolhas: { humano_habil: 'atletismo' },
   })
   assert.equal(r.status, 200)
   assert.ok(r.corpo.aviso_de_versao, 'o aviso continua')
-  assert.equal(c.armazem.ler(p.id)!.versao_do_dataset, 'bbbbbbbbbbbb')
+  assert.equal((await c.armazem.ler(p.id))!.versao_do_dataset, 'bbbbbbbbbbbb')
 })
 
 test('personagem que a base não monta mais é AVISADO, não quebrado', async () => {
@@ -153,10 +153,10 @@ test('personagem que a base não monta mais é AVISADO, não quebrado', async ()
   // o app avisar em vez de quebrar. Um 500 aqui faria o jogador perder o personagem
   // de vista justamente quando ele precisa corrigir a escolha.
   const p = await criar()
-  const guardado = c.armazem.ler(p.id)!
+  const guardado = (await c.armazem.ler(p.id))!
   guardado.construcao.especie = 'especie_que_sumiu_da_base'
   guardado.versao_do_dataset = 'cccccccccccc'
-  c.armazem.gravar(guardado)
+  await c.armazem.gravar(guardado)
 
   const r = await c.pedir('GET', `/personagens/${p.id}`)
   assert.equal(r.status, 200, 'ler continua funcionando')
@@ -169,9 +169,9 @@ test('personagem que a base não monta mais é AVISADO, não quebrado', async ()
 test('escrever continua recusando o que a leitura tolera', async () => {
   // A tolerância é só da LEITURA. Propor mudança inválida é erro de quem propõe.
   const p = await criar()
-  const guardado = c.armazem.ler(p.id)!
+  const guardado = (await c.armazem.ler(p.id))!
   guardado.construcao.especie = 'especie_que_sumiu_da_base'
-  c.armazem.gravar(guardado)
+  await c.armazem.gravar(guardado)
   const r = await c.pedir('POST', `/personagens/${p.id}/subir-nivel`, {})
   assert.equal(r.status, 422)
 })

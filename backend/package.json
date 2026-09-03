@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Backend do Ficha Fácil: guarda a construção do personagem, serve o compêndio e chama o motor. Zero dependências.",
-  "engines": { "node": ">=22.6" },
+  "description": "Backend do Ficha Fácil: guarda a construção do personagem, serve o compêndio e chama o motor. Única dependência: o driver oficial do MongoDB — o motor continua sem nenhuma.",
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
-    "teste": "node --experimental-strip-types --test testes/*.test.ts",
-    "test": "node --experimental-strip-types --test testes/*.test.ts",
-    "servir": "node --experimental-strip-types src/principal.ts"
+    "teste": "node --test testes/*.test.ts",
+    "test": "node --test testes/*.test.ts",
+    "servir": "node --env-file-if-exists=.env src/principal.ts"
+  },
+  "dependencies": {
+    "mongodb": "^7.6.0"
   }
 }

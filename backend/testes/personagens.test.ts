@@ -33,7 +33,7 @@ test('cria a partir de uma construção e devolve a ficha do livro', async () =>
 
 test('o personagem guarda a construção, nunca a ficha', async () => {
   const { corpo } = await c.pedir('POST', '/personagens', novo())
-  const guardado = c.armazem.ler(corpo.id)!
+  const guardado = (await c.armazem.ler(corpo.id))!
   assert.ok(guardado.construcao, 'a construção fica')
   assert.equal((guardado as any).ficha, undefined, 'a ficha, não — ela se recalcula')
 })
@@ -52,7 +52,7 @@ test('recusa a construção com escolha inválida, e não grava nada', async () 
   assert.equal(r.status, 422)
   assert.equal(r.corpo.erro, 'construcao_invalida')
   assert.ok(r.corpo.detalhe.some((d: any) => d.tipo === 'opcao_invalida'))
-  assert.ok(!c.armazem.listar().some((p) => p.nome === 'Torto'), 'não pode ter sido gravado')
+  assert.ok(!(await c.armazem.listar(c.usuario.id)).some((p) => p.nome === 'Torto'), 'não pode ter sido gravado')
 })
 
 test('recusa corpo malformado antes de chegar no motor', async () => {

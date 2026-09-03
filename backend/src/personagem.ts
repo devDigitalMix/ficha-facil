@@ -13,6 +13,11 @@ import type { Construcao, Estado } from '../../motor/src/motor.ts'
 
 export type Personagem = {
   id: string
+  /**
+   * Quem é o dono. Todo personagem tem um, sem exceção — não existe personagem
+   * órfão, e é isso que faz "meus personagens" ser meus e não de todo mundo.
+   */
+  usuario_id: string
   nome: string
   /** ativo · reserva · morto · aposentado — a lista do PLANO-APP, seção Fase A. */
   status: StatusDePersonagem

@@ -12,6 +12,13 @@ import { indice, lerColecao, lerItem } from './compendio.ts'
 import { versaoDoDataset } from './versao.ts'
 import { ArmazemEmArquivos, type Armazem } from './armazem.ts'
 import { STATUS, CAMPOS_DE_ESTADO, type Personagem, type StatusDePersonagem } from './personagem.ts'
+import { EmailJaUsado, type ArmazemDeUsuarios } from './usuarios.ts'
+import { aoMudarEstado, LIMITE_PADRAO, type ArmazemDeEventos, type Motivo } from './eventos.ts'
+import { paraOCliente as eventoParaOCliente } from './evento.ts'
+import {
+  conferirTamanhoDaSenha, criarToken, hashDeSenha, lerToken, normalizarEmail,
+  paraOCliente, senhaConfere, type Usuario,
+} from './usuario.ts'
 
 const agora = () => new Date().toISOString()
 
@@ -183,8 +190,97 @@ function conferirTiposDoEstado(corpo: Record<string, unknown>): void {
   }
 }
 
-export function criarRoteador(armazem: Armazem): Roteador {
+/**
+ * O contexto opcional de uma mudança de estado.
+ *
+ * Hoje só carrega a magia conjurada. O nome vem do compêndio na hora de gravar, e
+ * fica congelado no evento junto do id: se a magia for renomeada no dataset — como
+ * as quatro da fase 20 —, a linha antiga continua dizendo o nome de quando aconteceu.
+ * Id que não existe não é erro: o evento fica sem nome e a frase cai para "gastou um
+ * espaço de 3º", que continua verdadeira.
+ */
+function lerMotivo(bruto: unknown): Motivo | undefined {
+  if (!bruto || typeof bruto !== 'object') return undefined
+  const magia_id = (bruto as { magia_id?: unknown }).magia_id
+  if (typeof magia_id !== 'string' || !magia_id) return undefined
+  try {
+    const magia = lerItem('magias', magia_id) as { nome?: string }
+    return { magia_id, magia_nome: magia.nome }
+  } catch {
+    return { magia_id }
+  }
+}
+
+export type OpcoesDeSessao = { segredo: string; horas: number }
+
+export function criarRoteador(
+  armazem: Armazem,
+  usuarios: ArmazemDeUsuarios,
+  eventos: ArmazemDeEventos,
+  sessao: OpcoesDeSessao,
+): Roteador {
   const r = new Roteador()
+
+  // ------------------------------------------------------------------- contas
+
+  /**
+   * Quem está pedindo.
+   *
+   * Sem token, ou com token que não presta, é 401 — e a mensagem é a mesma nos dois
+   * casos, de propósito. Distinguir "assinatura inválida" de "expirado" ajuda mais
+   * quem está tentando adivinhar do que quem esqueceu de entrar.
+   */
+  const exigirUsuario = async (p: Pedido): Promise<Usuario> => {
+    const cabecalho = p.cabecalhos.authorization ?? ''
+    const token = cabecalho.startsWith('Bearer ') ? cabecalho.slice(7).trim() : ''
+    const id = token ? lerToken(token, sessao.segredo) : undefined
+    const usuario = id ? await usuarios.ler(id) : undefined
+    if (!usuario) throw new ErroHttp(401, 'nao_autenticado', 'entre para continuar')
+    return usuario
+  }
+
+  const comToken = (u: Usuario) => ({
+    usuario: paraOCliente(u),
+    token: criarToken(u.id, sessao.segredo, sessao.horas),
+    expira_em_horas: sessao.horas,
+  })
+
+  r.rota('POST', '/contas', async (p) => {
+    const corpo = exigirObjeto(p.corpo, 'o corpo')
+    const email = normalizarEmail(corpo.email)
+    const senha = conferirTamanhoDaSenha(corpo.senha)
+    try {
+      const u = await usuarios.criar({
+        email,
+        senha_hash: hashDeSenha(senha),
+        criado_em: agora(),
+      })
+      return { status: 201, corpo: comToken(u) }
+    } catch (e) {
+      if (e instanceof EmailJaUsado) {
+        throw new ErroHttp(409, 'email_ja_usado', 'já existe uma conta com esse e-mail')
+      }
+      throw e
+    }
+  })
+
+  r.rota('POST', '/sessoes', async (p) => {
+    const corpo = exigirObjeto(p.corpo, 'o corpo')
+    const email = normalizarEmail(corpo.email)
+    const senha = typeof corpo.senha === 'string' ? corpo.senha : ''
+    const u = await usuarios.porEmail(email)
+
+    // A MESMA resposta para "e-mail não existe" e "senha errada". Responder
+    // "essa conta não existe" entrega ao curioso quais e-mails estão cadastrados.
+    const naoConfere = new ErroHttp(401, 'credenciais_invalidas', 'e-mail ou senha não conferem')
+    if (!u || !senhaConfere(senha, u.senha_hash)) throw naoConfere
+
+    u.ultimo_login = agora()
+    await usuarios.gravar(u)
+    return { corpo: comToken(u) }
+  })
+
+  r.rota('GET', '/eu', async (p) => ({ corpo: paraOCliente(await exigirUsuario(p)) }))
 
   r.rota('GET', '/saude', () => ({
     corpo: { ok: true, versao_do_dataset: versaoDoDataset() },
@@ -201,9 +297,9 @@ export function criarRoteador(armazem: Armazem): Roteador {
     respostaDeCompendio(p, lerItem(p.parametros.nome, p.parametros.id)))
 
   // ---------------------------------------------------------------- personagens
-  r.rota('GET', '/personagens', () => ({
+  r.rota('GET', '/personagens', async (pedido) => ({
     corpo: {
-      itens: armazem.listar().map((p) => ({
+      itens: (await armazem.listar((await exigirUsuario(pedido)).id)).map((p) => ({
         id: p.id,
         nome: p.nome,
         status: p.status,
@@ -214,7 +310,8 @@ export function criarRoteador(armazem: Armazem): Roteador {
     },
   }))
 
-  r.rota('POST', '/personagens', (p) => {
+  r.rota('POST', '/personagens', async (p) => {
+    const dono = await exigirUsuario(p)
     const corpo = exigirObjeto(p.corpo, 'o corpo')
     if (typeof corpo.nome !== 'string' || !corpo.nome.trim()) {
       throw pedidoInvalido('nome é obrigatório')
@@ -226,7 +323,8 @@ export function criarRoteador(armazem: Armazem): Roteador {
     }
     const estado = (corpo.estado ?? {}) as Personagem['estado']
     montarComRegras(construcao, estado) // recusa antes de gravar, nunca depois
-    const criado = armazem.criar({
+    const criado = await armazem.criar({
+      usuario_id: dono.id,
       nome: corpo.nome.trim(),
       status,
       construcao,
@@ -238,30 +336,50 @@ export function criarRoteador(armazem: Armazem): Roteador {
     return { status: 201, corpo: fichaDoPersonagem(criado), cabecalhos: { location: `/personagens/${criado.id}` } }
   })
 
-  const exigirPersonagem = (id: string): Personagem => {
-    const p = armazem.ler(id)
-    if (!p) throw naoEncontrado(`personagem '${id}'`)
+  /**
+   * O personagem, se ele existe E é seu.
+   *
+   * Personagem de outra pessoa responde **404, não 403**. Um 403 confirmaria que
+   * aquele id existe, o que transforma a rota num oráculo para descobrir ids
+   * alheios. Para quem não é dono, o personagem simplesmente não existe.
+   */
+  const exigirPersonagem = async (pedido: Pedido): Promise<Personagem> => {
+    const dono = await exigirUsuario(pedido)
+    const id = pedido.parametros.id
+    const p = await armazem.ler(id)
+    if (!p || p.usuario_id !== dono.id) throw naoEncontrado(`personagem '${id}'`)
     return p
   }
 
-  r.rota('GET', '/personagens/:id', (p) => {
-    const personagem = exigirPersonagem(p.parametros.id)
+  r.rota('GET', '/personagens/:id', async (p) => {
+    const personagem = await exigirPersonagem(p)
     // "ordenado por último acesso, o mais recente no topo" (PLANO-APP, Fase A)
     personagem.ultimo_acesso = agora()
-    armazem.gravar(personagem)
+    await armazem.gravar(personagem)
     return { corpo: fichaDoPersonagem(personagem, true) }
   })
 
-  r.rota('DELETE', '/personagens/:id', (p) => {
-    if (!armazem.apagar(p.parametros.id)) throw naoEncontrado(`personagem '${p.parametros.id}'`)
+  r.rota('DELETE', '/personagens/:id', async (p) => {
+    // Passa por `exigirPersonagem` de propósito: apagar direto pelo id apagaria o
+    // personagem de outra pessoa.
+    const personagem = await exigirPersonagem(p)
+    if (!(await armazem.apagar(personagem.id))) throw naoEncontrado(`personagem '${personagem.id}'`)
     return { status: 204 }
   })
 
   // Só ESTADO. Construção não entra aqui: mudar quem o personagem é passa por
   // /escolhas ou /subir-nivel, que conferem contra as regras.
-  r.rota('PATCH', '/personagens/:id/estado', (p) => {
-    const personagem = exigirPersonagem(p.parametros.id)
-    const corpo = exigirObjeto(p.corpo, 'o corpo')
+  r.rota('PATCH', '/personagens/:id/estado', async (p) => {
+    const personagem = await exigirPersonagem(p)
+    const bruto = exigirObjeto(p.corpo, 'o corpo')
+
+    // `motivo` NÃO é estado: ele não é gravado no personagem e não muda ficha
+    // nenhuma. Serve só para o evento poder dizer "conjurou Bola de Fogo" em vez
+    // de "gastou um espaço de 3º". Sai do corpo antes da checagem justamente para
+    // não ser recusado como campo desconhecido — e para não entrar no estado.
+    const { motivo: motivoBruto, ...corpo } = bruto
+    const motivo = lerMotivo(motivoBruto)
+
     const permitidos = new Set<string>(CAMPOS_DE_ESTADO)
     const recusados = Object.keys(corpo).filter((k) => !permitidos.has(k))
     if (recusados.length) {
@@ -272,14 +390,47 @@ export function criarRoteador(armazem: Armazem): Roteador {
       )
     }
     conferirTiposDoEstado(corpo)
-    personagem.estado = { ...personagem.estado, ...corpo }
+
+    const antes = personagem.estado
+    const depois = { ...personagem.estado, ...corpo }
+
+    // O retrato do momento vem da ficha recalculada AGORA, e é ele que o evento
+    // congela: o "26" de "PV 20/26" tem de continuar 26 quando o personagem subir
+    // de nível.
+    const ficha = montar(personagem.construcao, depois).ficha
+    const registros = aoMudarEstado(antes, depois, {
+      pv_maximo: ficha.pontos_de_vida_maximos.valor as number,
+      espacos: ficha.conjuracao?.espacos ?? {},
+    }, motivo)
+
+    personagem.estado = depois
     personagem.ultimo_acesso = agora()
-    armazem.gravar(personagem)
-    return { corpo: fichaDoPersonagem(personagem) }
+    await armazem.gravar(personagem)
+
+    // Grava DEPOIS do personagem: um evento sobre uma mudança que não chegou a
+    // acontecer seria pior do que uma mudança sem evento.
+    const gravados = await eventos.registrar(registros.map((e) => ({
+      ...e,
+      personagem_id: personagem.id,
+      usuario_id: personagem.usuario_id,
+      em: agora(),
+    })))
+
+    return { corpo: { ...fichaDoPersonagem(personagem), eventos: gravados.map(eventoParaOCliente) } }
   })
 
-  r.rota('POST', '/personagens/:id/subir-nivel', (p) => {
-    const personagem = exigirPersonagem(p.parametros.id)
+  r.rota('GET', '/personagens/:id/historico', async (p) => {
+    const personagem = await exigirPersonagem(p)
+    const limite = p.consulta.get('limite')
+    const pagina = await eventos.listar(personagem.id, {
+      limite: limite ? Number(limite) : LIMITE_PADRAO,
+      antesDe: p.consulta.get('antes_de') ?? undefined,
+    })
+    return { corpo: { itens: pagina.itens.map(eventoParaOCliente), proximo: pagina.proximo } }
+  })
+
+  r.rota('POST', '/personagens/:id/subir-nivel', async (p) => {
+    const personagem = await exigirPersonagem(p)
     const corpo = (p.corpo ?? {}) as { classe?: string }
     const niveis = personagem.construcao.niveis
     const classe = corpo.classe ?? (niveis.length === 1 ? niveis[0].classe : undefined)
@@ -305,7 +456,7 @@ export function criarRoteador(armazem: Armazem): Roteador {
     const depois = montarComRegras(rascunho, personagem.estado)
     personagem.construcao = rascunho
     personagem.ultimo_acesso = agora()
-    armazem.gravar(personagem)
+    await armazem.gravar(personagem)
 
     // O que interessa ao jogador é a DIFERENÇA: o que chegou agora e o que abriu
     // para escolher. É o "subir de nível sem esquecer nada" do PLANO-APP.
@@ -330,8 +481,8 @@ export function criarRoteador(armazem: Armazem): Roteador {
     }
   })
 
-  r.rota('POST', '/personagens/:id/escolhas', (p) => {
-    const personagem = exigirPersonagem(p.parametros.id)
+  r.rota('POST', '/personagens/:id/escolhas', async (p) => {
+    const personagem = await exigirPersonagem(p)
     const corpo = exigirObjeto(p.corpo, 'o corpo')
     const escolhas = exigirObjeto(corpo.escolhas ?? corpo, 'escolhas')
     const construcao: Construcao = {
@@ -346,15 +497,20 @@ export function criarRoteador(armazem: Armazem): Roteador {
     // construído. Re-carimbar faria o `aviso_de_versao` sumir ao responder uma
     // escolha qualquer, escondendo justamente o que ele existe para mostrar.
     personagem.ultimo_acesso = agora()
-    armazem.gravar(personagem)
+    await armazem.gravar(personagem)
     return { corpo: fichaDoPersonagem(personagem) }
   })
 
   return r
 }
 
-export function criarServidor(armazem: Armazem): Server {
-  const roteador = criarRoteador(armazem)
+export function criarServidor(
+  armazem: Armazem,
+  usuarios: ArmazemDeUsuarios,
+  eventos: ArmazemDeEventos,
+  sessao: OpcoesDeSessao,
+): Server {
+  const roteador = criarRoteador(armazem, usuarios, eventos, sessao)
   return createServer((req, res) => {
     void roteador.atender(req, res)
   })
