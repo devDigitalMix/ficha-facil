@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url'
 import { montar } from '../src/motor.ts'
 import type { Construcao } from '../src/colecao.ts'
 import { separar } from '../src/equipamento.ts'
+import { catalogo } from '../src/dataset.ts'
 import { ErroDoMotor } from '../src/tipos.ts'
 
 const AQUI = dirname(fileURLToPath(import.meta.url))
@@ -239,4 +240,53 @@ test('o Ataque Desarmado soma Força e nomeia o atributo por extenso', () => {
     ['dado de Combate Desarmado', 'Força'],
     'a proveniência usa o nome do atributo, como no resto da ficha',
   )
+})
+
+test('o foco que também é arma ataca como ela — e continua com o nome dele', () => {
+  // "Cajado de madeira (também um Bastão)" (p. 225). O Druida segura o foco druídico
+  // e conjura Bordão Místico com ele; se o motor não souber que aquilo também é a
+  // arma Cajado, o item não vira ataque nenhum e a magia não tem em que pegar.
+  const druida = montar(
+    {
+      especie: 'humano',
+      antecedente: 'acolito',
+      niveis: [{ classe: 'druida', nivel: 1 }],
+      atributos_base: { FOR: 10, DES: 14, CON: 13, INT: 12, SAB: 16, CAR: 10 },
+    } as unknown as Parameters<typeof montar>[0],
+    { inventario: { cajado_de_madeira: 1 }, equipado: ['cajado_de_madeira'] },
+  )
+
+  const ataque = druida.ficha!.ataques.find((a) => a.arma === 'cajado_de_madeira')
+  assert.ok(ataque, 'o foco que também é arma tem de virar ataque')
+  assert.equal(ataque!.nome, 'Cajado de madeira', 'o nome é o do item que está na mão')
+  assert.deepEqual(ataque!.dano.dados, ['1d6'], 'o dano vem da arma que ele também é')
+  assert.equal(ataque!.proficiente, true, 'arma Simples: o Druida tem proficiência')
+
+  // E os números continuam vindo de um lugar só: são os da arma referida.
+  const comCajado = montar(
+    {
+      especie: 'humano',
+      antecedente: 'acolito',
+      niveis: [{ classe: 'druida', nivel: 1 }],
+      atributos_base: { FOR: 10, DES: 14, CON: 13, INT: 12, SAB: 16, CAR: 10 },
+    } as unknown as Parameters<typeof montar>[0],
+    { inventario: { cajado: 1 }, equipado: ['cajado'] },
+  )
+  const original = comCajado.ficha!.ataques.find((a) => a.arma === 'cajado')!
+  assert.equal(ataque!.jogada.valor, original.jogada.valor)
+  assert.deepEqual(ataque!.dano.dados, original.dano.dados)
+})
+
+test('o que se veste ou segura é o DADO que diz, e não a tela', () => {
+  // A tela decidia por categoria ('arma' ou 'armadura') e o foco de conjuração ficava
+  // de fora — daí "não deixa eu equipar o cajado de madeira". Agora o item declara.
+  const itens = catalogo<{ id: string; categoria?: string; equipavel?: boolean }>('itens').itens
+  const foco = itens.find((i) => i.id === 'cajado_de_madeira')!
+  assert.equal(foco.equipavel, true, 'foco de conjuração se segura')
+
+  for (const i of itens) {
+    if (['arma', 'armadura', 'foco_de_conjuracao'].includes(i.categoria ?? '')) {
+      assert.equal(i.equipavel, true, `${i.id} devia ser equipável`)
+    }
+  }
 })

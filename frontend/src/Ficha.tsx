@@ -743,7 +743,10 @@ function Inventario({ estado, aoMudar }: {
 
       {carregados.map(([id, n]) => {
         const item = itens?.get(id)
-        const equipavel = item?.categoria === 'arma' || item?.categoria === 'armadura'
+        // Quem diz o que se veste ou segura é o item, não esta tela: foco de
+        // conjuração também se segura, e decidir por categoria aqui deixava o
+        // Cajado de madeira do Druida sem botão nenhum.
+        const equipavel = item?.equipavel === true
         return (
           <div key={id} className="item">
             <div className="espalha">

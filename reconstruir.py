@@ -123,6 +123,8 @@ ORDEM = [
      'fase 24: Comum e mais dois idiomas, que todo personagem tem (p. 37)'),
     ('gerar_niveis_de_dominio.py',
      'fase 24: quanto vale proficiência e Especialização, declarado'),
+    ('gerar_ajustes_itens.py',
+     'fase 25: nome inteiro das armaduras, o que é equipável, e o cajado que é foco e arma'),
     # fase 13 — vocabulário de runtime. A normalização reescreve o dado inteiro,
     # então é a ÚLTIMA de todas: qualquer gerador de conteúdo rodado depois dela
     # reintroduz o token antigo, e o validador acusa. A declaração vem em seguida,

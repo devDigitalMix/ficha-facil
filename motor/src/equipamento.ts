@@ -57,11 +57,28 @@ function ehEscudo(i: Item): boolean {
   return i.categoria === 'armadura' && typeof ca?.bonus === 'number' && ca.base === undefined
 }
 
+/**
+ * O item que este item TAMBÉM é.
+ *
+ * A tabela de Focos Druídicos (p. 225) imprime "Cajado de madeira (também um
+ * Bastão)": o foco é, ao mesmo tempo, a arma Cajado — e é por isso que o Druida
+ * conjura Bordão Místico segurando ele. `tambem_e` é uma referência, não uma cópia:
+ * os números continuam vindo de um lugar só.
+ */
+export function comoArma(i: Item): Item {
+  const outro = i.tambem_e
+  if (typeof outro !== 'string') return i
+  const alvo = item(outro)
+  // O nome e o id continuam sendo os do item que está na mão — o jogador equipou o
+  // Cajado de madeira, e é isso que a ficha tem de dizer.
+  return { ...alvo, id: i.id, nome: i.nome, tambem_e: outro }
+}
+
 /** Separa o que está equipado pelo que o próprio item diz ser. */
 export function separar(ids: string[]): Equipado {
   const eq: Equipado = { armas: [], outros: [] }
   for (const id of ids) {
-    const i = item(id)
+    const i = comoArma(item(id))
     if (ehEscudo(i)) {
       if (eq.escudo) throw new ErroDoMotor('duas peças de escudo equipadas ao mesmo tempo')
       eq.escudo = i

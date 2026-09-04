@@ -340,6 +340,16 @@ try {
   await inventario.waitFor({ timeout: 10_000 })
   const caAntes = await numeroDaCA()
 
+  // O foco druídico é o caso que o João achou: ele se segura, e a tela não podia
+  // decidir isso por categoria.
+  await inventario.getByLabel('Adicionar item').fill('cajado de madeira')
+  await inventario.locator('.opcao', { hasText: 'Cajado de madeira' }).first().click()
+  const cajado = inventario.locator('.item', { hasText: 'Cajado de madeira' }).first()
+  await cajado.getByRole('button', { name: 'equipar' }).click()
+  const ataques = pagina.locator('.painel', { hasText: 'Ataques' }).first()
+  await ataques.getByText('Cajado de madeira').waitFor({ timeout: 10_000 })
+  passo('equipou o foco druídico e ele virou ataque — "também um Bastão" (p. 225)')
+
   await inventario.getByLabel('Adicionar item').fill('escudo')
   await inventario.locator('.opcao', { hasText: 'Escudo' }).first().click()
   const linhaDoEscudo = inventario.locator('.item', { hasText: 'Escudo' }).first()
@@ -370,6 +380,17 @@ try {
   const salvas = pagina.locator('.painel', { hasText: 'Salvaguardas' }).first()
   if ((await salvas.locator('.numero').count()) !== 6) throw new Error('faltam salvaguardas')
   passo('as seis salvaguardas na tela')
+
+  // ------------------------------------------------------------- compêndio
+  await pagina.getByRole('button', { name: 'compêndio' }).click()
+  const grupos = pagina.locator('.pagina .painel')
+  await grupos.first().waitFor({ timeout: 10_000 })
+  const categorias = await pagina.locator('.linha-de-pericia').count()
+  if (categorias < 3) throw new Error(`o compêndio veio com ${categorias} categorias`)
+  await pagina.locator('.linha-de-pericia', { hasText: 'Armadura' }).first().click()
+  await pagina.getByText('Armadura de Couro', { exact: true }).first().waitFor({ timeout: 5000 })
+  passo(`compêndio: ${categorias} categorias, e a armadura com o nome inteiro`)
+  await pagina.getByRole('button', { name: '← voltar' }).click()
 
   // ---------------------------------------------------------------- sessão
   await pagina.getByRole('button', { name: 'Ficha' }).click()

@@ -972,3 +972,61 @@ Teste de fumaça em **22 passos**: o escudo entra no inventário, é equipado, e
 - Peso e capacidade de carga não são calculados (o dado tem `peso_kg` em todo item).
 - O que se equipa é decidido pela categoria (arma/armadura) na tela; foco de conjuração e
   munição ainda não têm tratamento próprio.
+
+---
+
+## Fase 25 — o cajado que é duas coisas, os nomes e o compêndio
+
+### O foco druídico é TAMBÉM uma arma, e o livro diz isso
+
+"Não deixa eu equipar o cajado de madeira, mas eu uso ele como um druida para usar o
+Bordão Místico" (2026-09-04). Duas coisas faltavam, e a segunda é a interessante.
+
+A primeira: a tela decidia o que é equipável por categoria (`arma` ou `armadura`), e o
+foco de conjuração — que é justamente algo que se segura — ficava sem botão. Agora
+**o item declara** `equipavel`, e uma categoria nova no livro entra no dado, não em três
+telas.
+
+A segunda estava na tabela de Focos Druídicos (p. 225):
+
+    Cajado de madeira (também um Bastão)   2 kg   5 PO
+
+O "(também um Bastão)" quer dizer que o foco **é** a arma Cajado — e é isso que faz o
+Bordão Místico valer com ele. O dataset tinha perdido essa metade: o foco não tinha dano,
+grupo nem maestria, e o Foco Arcano "Cajado" nem existia como entrada separada, porque
+colide de id com a arma. Agora `cajado_de_madeira` declara `tambem_e: "cajado"` e a arma
+declara `tambem_foco: "arcano"`. **`tambem_e` é referência, não cópia**: os números
+continuam vindo de um lugar só, e o motor os resolve ao equipar, mantendo o nome e o id
+do que está na mão.
+
+### "A armadura de couro só aparece como Couro"
+
+O livro imprime as armaduras de dois jeitos: a **tabela** (p. 219) usa a forma curta
+— "Acolchoada", "Couro", "Couro Batido" — e a **ilustração da mesma seção** (p. 218) usa o
+nome inteiro: "Armadura de Couro", "Armadura de Placas parcial". Os dois são o livro; o
+que serve numa ficha é o inteiro. A forma curta ficou em `nome_curto`.
+
+A regra do gerador é mecânica, e é o que a impede de virar gosto: **usa-se o nome da
+ilustração só quando ele acrescenta o prefixo "Armadura"** — e há um `assert` que recusa
+qualquer troca que não seja isso. Cinco armaduras mudaram; "Gibão de Peles", "Cota de
+Malha" e "Couraça Peitoral" não são tocadas.
+
+Os três focos com minúscula no meio ("Cajado de madeira", "Ramo de visco", "Varinha de
+teixo") **não** foram mexidos: é assim que o livro os imprime na tabela da p. 225.
+
+### Compêndio
+
+Tela nova, e ela não sabe o que é um item: recebe o nome de uma coleção, agrupa pelo
+primeiro campo de agrupamento que aquela coleção usar (`categoria`, `nivel`, `raridade`,
+`escola`, `grupo`) e desenha os campos que cada entrada tiver. Apontar para `magias`
+mostraria as magias por círculo sem uma linha nova. Busca por nome em cima, categorias
+recolhíveis embaixo.
+
+Teste de fumaça em **24 passos**: equipar o foco druídico e vê-lo virar ataque, e o
+compêndio abrindo a categoria de armaduras com o nome inteiro na tela.
+
+### Aberto
+
+- `tambem_foco: "arcano"` está declarado e ninguém o lê ainda: quando o custo de
+  conjuração olhar componentes materiais, é ele que vai dizer que o Cajado serve de foco.
+- Continua sem dinheiro, sem peso carregado e sem munição.

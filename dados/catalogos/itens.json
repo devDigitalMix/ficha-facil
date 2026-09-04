@@ -50,7 +50,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Perfurante; propriedades: Acuidade, Arremesso (Alcance 6/18), Leve; maestria Ágil; 2 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "alabarda",
@@ -91,7 +92,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Cortante; propriedades: Duas Mãos, Extensão, Pesada; maestria Trespassar; 20 PO · 3 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "arco_curto",
@@ -140,7 +142,8 @@
         }
       },
       "descricao_curta": "Arma Simples à Distância, dano 1d6 Perfurante; propriedades: Duas Mãos, Munição (Alcance 24/96; Flecha); maestria Afligir; 25 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "arco_longo",
@@ -193,7 +196,8 @@
         }
       },
       "descricao_curta": "Arma Marcial à Distância, dano 1d8 Perfurante; propriedades: Duas Mãos, Munição (Alcance 45/180; Flecha), Pesada; maestria Lentidão; 50 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "azagaia",
@@ -228,7 +232,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Perfurante; propriedades: Arremesso (Alcance 9/36); maestria Lentidão; 5 PP · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "besta_de_mao",
@@ -290,7 +295,8 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Marcial à Distância, dano 1d6 Perfurante; propriedades: Leve, Munição (Alcance 9/36; Virote), Recarga; maestria Afligir; 75 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "besta_leve",
@@ -352,7 +358,8 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Simples à Distância, dano 1d8 Perfurante; propriedades: Duas Mãos, Munição (Alcance 24/96; Virote), Recarga; maestria Lentidão; 25 PO · 2,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "besta_pesada",
@@ -418,7 +425,8 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Marcial à Distância, dano 1d10 Perfurante; propriedades: Duas Mãos, Munição (Alcance 30/120; Virote), Pesada, Recarga; maestria Empurrar; 50 PO · 9 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cajado",
@@ -462,7 +470,9 @@
         }
       },
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Contundente; propriedades: Versátil (1d8); maestria Derrubar; 2 PP · 2 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true,
+      "tambem_foco": "arcano"
     },
     {
       "id": "chicote",
@@ -499,7 +509,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d4 Cortante; propriedades: Acuidade, Extensão; maestria Lentidão; 2 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cimitarra",
@@ -536,7 +547,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d6 Cortante; propriedades: Acuidade, Leve; maestria Ágil; 25 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "clava",
@@ -569,7 +581,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Contundente; propriedades: Leve; maestria Lentidão; 1 PP · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "clava_grande",
@@ -602,7 +615,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d8 Contundente; propriedades: Duas Mãos; maestria Empurrar; 2 PP · 5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "dardo",
@@ -641,7 +655,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples à Distância, dano 1d4 Perfurante; propriedades: Acuidade, Arremesso (Alcance 6/18); maestria Afligir; 5 PC · 0,15 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "espada_curta",
@@ -678,7 +693,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d6 Perfurante; propriedades: Acuidade, Leve; maestria Afligir; 10 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "espada_grande",
@@ -715,7 +731,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 2d6 Cortante; propriedades: Duas Mãos, Pesada; maestria Garantido; 50 PO · 3 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "espada_longa",
@@ -755,7 +772,8 @@
         }
       },
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Cortante; propriedades: Versátil (1d10); maestria Drenar; 15 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "foice",
@@ -788,7 +806,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Cortante; propriedades: Leve; maestria Ágil; 1 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "funda",
@@ -833,7 +852,8 @@
         }
       },
       "descricao_curta": "Arma Simples à Distância, dano 1d4 Contundente; propriedades: Munição (Alcance 9/36; Bala); maestria Lentidão; 1 PP.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "glaive",
@@ -874,7 +894,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Cortante; propriedades: Duas Mãos, Extensão, Pesada; maestria Garantido; 20 PO · 3 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "lanca",
@@ -920,7 +941,8 @@
         }
       },
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Perfurante; propriedades: Arremesso (Alcance 6/18), Versátil (1d8); maestria Drenar; 1 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "lanca_de_montaria",
@@ -962,7 +984,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Perfurante; propriedades: Duas Mãos (a menos que montado), Extensão, Pesada; maestria Derrubar; 10 PO · 3 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "lanca_longa",
@@ -1003,7 +1026,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d10 Perfurante; propriedades: Duas Mãos, Extensão, Pesada; maestria Empurrar; 5 PO · 9 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "maca",
@@ -1031,7 +1055,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Contundente; maestria Drenar; 5 PO · 2 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "maca_estrela",
@@ -1059,7 +1084,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; maestria Drenar; 15 PO · 2 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "machadinha",
@@ -1098,7 +1124,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d6 Cortante; propriedades: Arremesso (Alcance 6/18), Leve; maestria Afligir; 5 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "machado_de_batalha",
@@ -1138,7 +1165,8 @@
         }
       },
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Cortante; propriedades: Versátil (1d10); maestria Derrubar; 10 PO · 2,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "machado_grande",
@@ -1175,7 +1203,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d12 Cortante; propriedades: Duas Mãos, Pesada; maestria Trespassar; 30 PO · 3,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "malho",
@@ -1212,7 +1241,8 @@
       },
       "maos_ocupadas": 2,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 2d6 Contundente; propriedades: Duas Mãos, Pesada; maestria Derrubar; 10 PO · 5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "mangual",
@@ -1240,7 +1270,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Contundente; maestria Drenar; 10 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "martelo_de_guerra",
@@ -1280,7 +1311,8 @@
         }
       },
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Contundente; propriedades: Versátil (1d10); maestria Empurrar; 15 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "martelo_leve",
@@ -1319,7 +1351,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Simples Corpo a Corpo, dano 1d4 Contundente; propriedades: Arremesso (Alcance 6/18), Leve; maestria Ágil; 2 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "mosquete",
@@ -1381,7 +1414,8 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Marcial à Distância, dano 1d12 Perfurante; propriedades: Duas Mãos, Munição (Alcance 12/36; Bala), Recarga; maestria Lentidão; 500 PO · 5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "picareta_de_guerra",
@@ -1421,7 +1455,8 @@
         }
       },
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Versátil (1d10); maestria Drenar; 5 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "pistola",
@@ -1479,7 +1514,8 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Marcial à Distância, dano 1d10 Perfurante; propriedades: Munição (Alcance 9/27; Bala), Recarga; maestria Afligir; 250 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "rapieira",
@@ -1512,7 +1548,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Acuidade; maestria Afligir; 25 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "tridente",
@@ -1558,7 +1595,8 @@
         }
       },
       "descricao_curta": "Arma Marcial Corpo a Corpo, dano 1d8 Perfurante; propriedades: Arremesso (Alcance 6/18), Versátil (1d10); maestria Derrubar; 5 PO · 2 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "zarabatana",
@@ -1616,11 +1654,12 @@
         "nota": "Vale mesmo com Ataque Extra (p. 217)."
       },
       "descricao_curta": "Arma Marcial à Distância; propriedades: Munição (Alcance 7,5/30; Agulha), Recarga; maestria Afligir; 10 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "acolchoada",
-      "nome": "Acolchoada",
+      "nome": "Armadura Acolchoada",
       "categoria": "armadura",
       "grupo": "leve",
       "ca": {
@@ -1648,7 +1687,10 @@
         "Armadura Acolchoada"
       ],
       "descricao_curta": "Armadura Leve, CA 11 + modificador de Destreza; Desvantagem em Furtividade; 1 min para vestir; 5 PO · 4 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "nome_curto": "Acolchoada",
+      "nota_do_nome": "A tabela de armaduras (p. 219) imprime a forma curta; a ilustração da mesma seção (p. 218) imprime o nome inteiro.",
+      "equipavel": true
     },
     {
       "id": "armadura_de_tala",
@@ -1677,7 +1719,8 @@
         "pagina_pdf": 223
       },
       "descricao_curta": "Armadura Pesada, CA 17; exige Força 15; Desvantagem em Furtividade; 10 min para vestir; 200 PO · 30 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cota_de_aneis",
@@ -1706,7 +1749,8 @@
         "pagina_pdf": 223
       },
       "descricao_curta": "Armadura Pesada, CA 14; Desvantagem em Furtividade; 10 min para vestir; 30 PO · 20 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cota_de_malha",
@@ -1735,7 +1779,8 @@
         "pagina_pdf": 223
       },
       "descricao_curta": "Armadura Pesada, CA 16; exige Força 13; Desvantagem em Furtividade; 10 min para vestir; 75 PO · 27 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cota_de_malha_parcial",
@@ -1768,7 +1813,8 @@
         "Malha Parcial"
       ],
       "descricao_curta": "Armadura Média, CA 13 + modificador de Destreza (máx. +2); 5 min para vestir; 50 PO · 10 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "couraca_peitoral",
@@ -1798,11 +1844,12 @@
         "pagina_pdf": 223
       },
       "descricao_curta": "Armadura Média, CA 14 + modificador de Destreza (máx. +2); 5 min para vestir; 400 PO · 10 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "couro",
-      "nome": "Couro",
+      "nome": "Armadura de Couro",
       "categoria": "armadura",
       "grupo": "leve",
       "ca": {
@@ -1830,11 +1877,14 @@
         "Armadura de Couro"
       ],
       "descricao_curta": "Armadura Leve, CA 11 + modificador de Destreza; 1 min para vestir; 10 PO · 5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "nome_curto": "Couro",
+      "nota_do_nome": "A tabela de armaduras (p. 219) imprime a forma curta; a ilustração da mesma seção (p. 218) imprime o nome inteiro.",
+      "equipavel": true
     },
     {
       "id": "couro_batido",
-      "nome": "Couro Batido",
+      "nome": "Armadura de Couro Batido",
       "categoria": "armadura",
       "grupo": "leve",
       "ca": {
@@ -1862,7 +1912,10 @@
         "Armadura de Couro Batido"
       ],
       "descricao_curta": "Armadura Leve, CA 12 + modificador de Destreza; 1 min para vestir; 45 PO · 6,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "nome_curto": "Couro Batido",
+      "nota_do_nome": "A tabela de armaduras (p. 219) imprime a forma curta; a ilustração da mesma seção (p. 218) imprime o nome inteiro.",
+      "equipavel": true
     },
     {
       "id": "escudo",
@@ -1887,7 +1940,8 @@
       },
       "maos_ocupadas": 1,
       "descricao_curta": "Escudo, CA +2; 10 PO · 3 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "gibao_de_peles",
@@ -1920,7 +1974,8 @@
         "Gibão de Pele"
       ],
       "descricao_curta": "Armadura Média, CA 12 + modificador de Destreza (máx. +2); 5 min para vestir; 10 PO · 6 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "loriga_de_escamas",
@@ -1950,11 +2005,12 @@
         "pagina_pdf": 223
       },
       "descricao_curta": "Armadura Média, CA 14 + modificador de Destreza (máx. +2); Desvantagem em Furtividade; 5 min para vestir; 50 PO · 22 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "placas",
-      "nome": "Placas",
+      "nome": "Armadura de Placas",
       "categoria": "armadura",
       "grupo": "pesada",
       "ca": {
@@ -1982,11 +2038,14 @@
         "Armadura de Placas"
       ],
       "descricao_curta": "Armadura Pesada, CA 18; exige Força 15; Desvantagem em Furtividade; 10 min para vestir; 1500 PO · 32 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "nome_curto": "Placas",
+      "nota_do_nome": "A tabela de armaduras (p. 219) imprime a forma curta; a ilustração da mesma seção (p. 218) imprime o nome inteiro.",
+      "equipavel": true
     },
     {
       "id": "placas_parcial",
-      "nome": "Placas Parcial",
+      "nome": "Armadura de Placas Parcial",
       "categoria": "armadura",
       "grupo": "media",
       "ca": {
@@ -2015,7 +2074,10 @@
         "Armadura de Placas Parcial"
       ],
       "descricao_curta": "Armadura Média, CA 15 + modificador de Destreza (máx. +2); Desvantagem em Furtividade; 5 min para vestir; 750 PO · 20 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "nome_curto": "Placas Parcial",
+      "nota_do_nome": "A tabela de armaduras (p. 219) imprime a forma curta; a ilustração da mesma seção (p. 218) imprime o nome inteiro.",
+      "equipavel": true
     },
     {
       "id": "alimentacao_por_dia",
@@ -3638,7 +3700,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 5 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cajado_de_madeira",
@@ -3659,7 +3722,10 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 5 PO · 2 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true,
+      "tambem_e": "cajado",
+      "nota_do_nome": "A tabela de Focos Druídicos (p. 225) o imprime como \"Cajado de madeira (também um Bastão)\": é foco e é a arma Cajado ao mesmo tempo."
     },
     {
       "id": "cetro",
@@ -3680,7 +3746,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 10 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "cristal",
@@ -3701,7 +3768,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "emblema",
@@ -3722,7 +3790,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 5 PO.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "orbe",
@@ -3743,7 +3812,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 20 PO · 1,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "ramo_de_visco",
@@ -3764,7 +3834,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 1 PO.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "relicario",
@@ -3785,7 +3856,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 5 PO · 1 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "varinha",
@@ -3806,7 +3878,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "varinha_de_teixo",
@@ -3827,7 +3900,8 @@
       "maos_ocupadas": 1,
       "deve_ser_segurado": true,
       "descricao_curta": "Foco de Conjuração; 10 PO · 0,5 kg.",
-      "descricao_derivada": true
+      "descricao_derivada": true,
+      "equipavel": true
     },
     {
       "id": "camelo",

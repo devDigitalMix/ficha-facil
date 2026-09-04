@@ -167,6 +167,11 @@ export type ItemDoCompendio = {
   dano?: { formula_dado?: string; tipo_dano?: string; bonus_fixo?: number }
   grupo?: string
   peso_kg?: number
+  /** O item diz se ele se veste ou se segura; a tela não decide por categoria. */
+  equipavel?: boolean
+  /** O item que este item TAMBÉM é (o foco druídico que é o Cajado). */
+  tambem_e?: string
+  custo?: { valor?: number; moeda?: string }
   [campo: string]: unknown
 }
 
