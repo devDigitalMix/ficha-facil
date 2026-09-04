@@ -416,3 +416,78 @@ test('talento repetível ganho por duas fontes abre duas escolhas, não uma repe
   // Humano ainda tem de escolher a dele.
   assert.ok(doHumano.size >= doAntecedente.length)
 })
+
+test('duas cópias do mesmo talento não roubam a variável uma da outra', () => {
+  // O Acólito concede Iniciado em Magia com a lista já definida; o Humano concede
+  // outro, e o jogador escolhe Mago. As duas escolhas definem `lista_do_talento` —
+  // e, sem qualificar, a segunda sobrescrevia a primeira: os truques oferecidos ao
+  // talento do Humano saíam da lista do Acólito, e a construção era recusada com
+  // "'Raio de Gelo' não está entre as opções".
+  const c = mago(1, {
+    humano_versatil: 'iniciado_em_magia',
+    'iniciado_em_magia_lista@humano_versatil': 'mago',
+  })
+  const r = montar(c, {})
+  const truques = r.checklist.find(
+    (x) => x.escolha_id === 'iniciado_em_magia_truques@humano_versatil',
+  )
+  assert.ok(truques, 'os truques do talento do Humano têm de estar no checklist')
+  assert.ok(
+    truques!.opcoes.some((o) => o.id === 'raio_de_gelo'),
+    'a lista escolhida NESTA porta é a que vale',
+  )
+  assert.equal(truques!.bloqueada_por, undefined)
+})
+
+test('uma escolha não pode invalidar a própria resposta', () => {
+  // "Escolha mais um idioma" filtra pelos que o personagem ainda não fala. Respondida
+  // Dracônico, ele passa a falar Dracônico — e a conferência seguinte recusava a
+  // própria resposta com 422. Na tela isso foi "não me deixou escolher nenhuma
+  // língua". Vale para qualquer escolha que filtre pelo que ela mesma concede.
+  const ladino = {
+    especie: 'humano',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'ladino', nivel: 1 }],
+    atributos_base: { FOR: 10, DES: 16, CON: 12, INT: 13, SAB: 12, CAR: 10 },
+    escolhas: { ladino_idioma: 'draconico' },
+  } as unknown as Parameters<typeof montar>[0]
+
+  const r = montar(ladino)
+  assert.deepEqual(
+    r.problemas.filter((p) => p.escolha_id === 'ladino_idioma'),
+    [],
+    'a língua escolhida não pode virar opção inválida por ter sido escolhida',
+  )
+  assert.ok(r.contexto.proficiencias?.idiomas?.includes('draconico'))
+})
+
+test('todo personagem fala Comum, e a escolha de idioma não o oferece de volta', () => {
+  // p. 37: "O seu personagem sabe pelo menos três idiomas: Comum e mais dois idiomas
+  // que você pode escolher da tabela Idiomas Comuns." Nenhuma espécie concede idioma
+  // em 2024 — é passo da criação, e faltava no dataset.
+  const r = montar({
+    especie: 'anao',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'ladino', nivel: 1 }],
+    atributos_base: { FOR: 10, DES: 16, CON: 14, INT: 12, SAB: 12, CAR: 10 },
+  } as unknown as Parameters<typeof montar>[0])
+
+  assert.ok(r.contexto.proficiencias?.idiomas?.includes('comum'), 'todo personagem fala Comum')
+
+  const iniciais = r.checklist.find((c) => c.escolha_id === 'idiomas_iniciais_escolha')
+  assert.ok(iniciais, 'a criação pede dois idiomas')
+  assert.equal(iniciais!.quantidade, 2)
+  assert.ok(
+    !iniciais!.opcoes.some((o) => o.id === 'comum'),
+    'o Comum já é sabido: oferecê-lo é oferecer nada',
+  )
+  assert.ok(
+    !iniciais!.opcoes.some((o) => o.id === 'druidico' || o.id === 'giria_dos_ladroes'),
+    'a criação escolhe da tabela de idiomas COMUNS; os raros vêm por característica',
+  )
+
+  // …e a escolha da classe também deixa de oferecer o que ele já fala.
+  const daClasse = r.checklist.find((c) => c.escolha_id === 'ladino_idioma')!
+  assert.ok(!daClasse.opcoes.some((o) => o.id === 'comum'))
+  assert.ok(!daClasse.opcoes.some((o) => o.id === 'giria_dos_ladroes'))
+})

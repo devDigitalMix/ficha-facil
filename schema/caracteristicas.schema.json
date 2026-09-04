@@ -81,8 +81,10 @@
           },
           "escopo": {
             "enum": [
-              "generico"
-            ]
+              "generico",
+              "todo_personagem"
+            ],
+            "description": "'generico': a característica é de várias classes, e o nível vive na progressão de cada uma. 'todo_personagem': vem da criação (cap. 2) e não de espécie, antecedente nem classe — é o caso dos idiomas iniciais (p. 37)."
           },
           "tipo_de_entrada": {
             "enum": [
@@ -97,7 +99,10 @@
               "not": {
                 "properties": {
                   "escopo": {
-                    "const": "generico"
+                    "enum": [
+                      "generico",
+                      "todo_personagem"
+                    ]
                   }
                 },
                 "required": [

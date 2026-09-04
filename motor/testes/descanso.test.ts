@@ -97,3 +97,19 @@ test('os dois descansos do livro declaram o que recuperam', () => {
     'em 2024 o Descanso Longo devolve TODOS os Dados de Vida, não metade (p. 366)',
   )
 })
+
+test('o que o descanso recupera e o motor não aplica sai DECLARADO, não em silêncio', () => {
+  // A fase 21 inteira foi sobre efeito descartado sem uma palavra. `recupera` do
+  // Longo declara quatro coisas que não são estado que o app guarde — Dados de
+  // Vida, Exaustão e as duas reduções. Elas não podem simplesmente não acontecer.
+  const { ctx, ficha } = montado('barbaro-5.json')
+  const longo = descansar('descanso_longo', ctx, ficha, {})
+  assert.ok(
+    longo.nao_aplicado.includes('dados_de_vida'),
+    'o livro devolve todos os Dados de Vida (p. 366) e o motor ainda não os guarda',
+  )
+  assert.ok(longo.nao_aplicado.includes('exaustao'))
+
+  // O Curto declara "nenhum"/"mantem": isso É aplicar — não mexer é o que ele faz.
+  assert.deepEqual(descansar('descanso_curto', ctx, ficha, {}).nao_aplicado, [])
+})

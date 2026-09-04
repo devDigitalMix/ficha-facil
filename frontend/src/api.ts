@@ -118,7 +118,8 @@ export const api = {
 
 // ------------------------------------------------------------------- os tipos
 
-export type Parcela = { rotulo: string; valor: number | string }
+/** Uma parcela pode se abrir: os PV do nível 1 são o Dado de Vida mais a Constituição. */
+export type Parcela = { rotulo: string; valor: number | string; parcelas?: Parcela[] }
 export type Resultado = { valor: number; dados: string[]; parcelas: Parcela[] }
 
 export type Opcao = {
@@ -164,6 +165,8 @@ export type ItemDoCompendio = {
   duracao?: { texto?: string }
   componentes?: { texto?: string }
   dano?: { formula_dado?: string; tipo_dano?: string; bonus_fixo?: number }
+  grupo?: string
+  peso_kg?: number
   [campo: string]: unknown
 }
 
@@ -207,7 +210,29 @@ export type MagiaNaFicha = {
   atributo_de_conjuracao?: string
   nao_conta_para_o_limite?: boolean
   pronta_para_conjurar: boolean
+  /** O que gastar para conjurar: nada, um espaço, ou um uso (o recurso do talento). */
+  custo: CustoDeConjuracao
+  /** Os números da mesa, já resolvidos pelo motor. */
+  jogo: {
+    ataque?: string
+    jogada_de_ataque?: Resultado
+    salvaguarda?: { atributo: string; cd: number; em_sucesso?: string }
+    dano?: { formula: string; tipo?: string }
+    cura?: { formula: string }
+    alcance?: string
+    area?: string
+    tempo_de_conjuracao?: string
+    duracao?: string
+    concentracao?: boolean
+    ritual?: boolean
+  }
 }
+
+export type CustoDeConjuracao =
+  | { tipo: 'nenhum'; porque: string }
+  | { tipo: 'espaco'; circulo_minimo: number }
+  | { tipo: 'recurso'; recurso_id: string; porque: string; tambem_com_espaco?: boolean }
+  | { tipo: 'sem_espaco'; porque: string; limite_nao_declarado: true }
 
 export type CaracteristicaNaFicha = {
   id: string
@@ -238,16 +263,35 @@ export type Ficha = {
   iniciativa: Resultado
   percepcao_passiva: Resultado
   salvaguardas: Record<string, number>
-  testes_de_pericia: Record<string, number>
+  testes_de_pericia: Record<string, TesteDePericia>
   deslocamento_m: number
   ataques: Ataque[]
   magias: MagiaNaFicha[]
   recursos: Recurso[]
   caracteristicas: CaracteristicaNaFicha[]
-  conjuracao?: { atributo: string; cd_para_evitar_sua_magia: Resultado; espacos: Record<string, number> }
+  proficiencias?: { idiomas: string[]; ferramentas: string[]; armaduras: string[] }
+  conjuracao?: {
+    atributo: string
+    cd_para_evitar_sua_magia: Resultado
+    jogada_de_ataque_magico: Resultado
+    espacos: Record<string, number>
+  }
+}
+
+export type TesteDePericia = {
+  valor: number
+  atributo: string
+  /** Id do nível de domínio ('proficiente', 'especialista') ou 'nenhum'. */
+  dominio: string
+  parcelas: Parcela[]
+  nome: string
 }
 
 export type Estado = {
+  /** O que o personagem carrega: id do item → quantidade. */
+  inventario?: Record<string, number>
+  /** O que está vestido ou na mão. */
+  equipado?: string[]
   pontos_de_vida_atuais?: number
   pontos_de_vida_temporarios?: number
   espacos_gastos?: Record<string, number>

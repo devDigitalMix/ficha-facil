@@ -9,12 +9,16 @@ import { ErroDoMotor } from './tipos.ts'
 import { condicaoVale, type Vocabulario } from './condicao.ts'
 import { avaliar } from './formula.ts'
 import { derivado } from './derivados.ts'
-import { trilhaLegivel } from './dataset.ts'
+import { catalogo, trilhaLegivel } from './dataset.ts'
 import type { Colecao, Efeito, EfeitoColetado } from './colecao.ts'
 import { separar, calculoDaArmadura, bonusDoEscudo, type Equipado } from './equipamento.ts'
 
 /** O que o jogador está fazendo agora. Não é derivado: é estado de jogo. */
 export type Estado = {
+  /** O que o personagem carrega: id do item → quantidade. */
+  inventario?: Record<string, number>
+  /** O que está vestido ou na mão, dentre o que ele carrega. */
+  equipado?: string[]
   /** Predicados que valem neste instante: 'ativo:furia', 'segurando:escudo'… */
   predicados_ativos?: string[]
   /** Efeitos-pai ligados: a Fúria abre a porta 'furia' para o que está dentro dela. */
@@ -27,10 +31,16 @@ export type ContextoMontado = {
   nao_consumidos: EfeitoColetado[]
 }
 
+// Idioma e armadura estavam FORA deste mapa, e os 14 `conceder_proficiencia` deles
+// caíam calados em `nao_consumidos`: a Gíria dos Ladrões do Ladino existia no dado,
+// no histórico e em lugar nenhum da ficha — e a escolha "mais um idioma" oferecia de
+// volta o que ele já sabia, porque ninguém sabia o que ele já sabia.
 const CATEGORIA_DE_PROFICIENCIA: Record<string, keyof NonNullable<Contexto['proficiencias']>> = {
   salvaguarda: 'salvaguardas',
   pericia: 'pericias',
   ferramenta: 'ferramentas',
+  idioma: 'idiomas',
+  armadura: 'armaduras',
 }
 
 export function montarContexto(
@@ -57,8 +67,11 @@ export function montarContexto(
     salvaguardas: [] as string[],
     pericias: [] as string[],
     ferramentas: [] as string[],
+    idiomas: [] as string[],
+    armaduras: [] as string[],
     armas: [] as Record<string, unknown>[],
   }
+  const comOrigem: NonNullable<Contexto['proficiencias_com_origem']> = []
   const substituicoes: NonNullable<Contexto['substituicoes_de_atributo']> = []
   const dadosDeDano: NonNullable<Contexto['dados_de_dano']> = []
   const calculos: CalculoDeCaBase[] = [calculoPadrao()]
@@ -112,6 +125,10 @@ export function montarContexto(
     empilha?: string
   }[] = []
   let atributoDeConjuracao: string | undefined
+  /** Os Espaços de Pacto do Bruxo: quantos, e de que círculo. */
+  let espacosDePacto: { quantidade: number; circulo: number } | undefined
+  /** Magias que se conjuram sem gastar espaço, e em que condições. */
+  const conjuracoesSemEspaco: NonNullable<Contexto['conjuracoes_sem_espaco']> = []
 
   // O contexto parcial serve para avaliar as condições dos próprios efeitos:
   // o que depende de atributo já tem os atributos, porque os aumentos vêm antes.
@@ -121,9 +138,12 @@ export function montarContexto(
     atributos,
     colunas: col.colunas,
     proficiencias,
+    proficiencias_com_origem: comOrigem,
     predicados_ativos: ativos,
     atributo_de_conjuracao: atributoDeConjuracao,
     substituicoes_de_atributo: substituicoes,
+    espacos_de_pacto: espacosDePacto,
+    conjuracoes_sem_espaco: conjuracoesSemEspaco,
     dados_de_dano: dadosDeDano,
     extras: equipados.escudo ? { bonus_do_escudo: bonusDoEscudo(equipados.escudo) } : undefined,
   })
@@ -165,6 +185,19 @@ export function montarContexto(
           break
         }
         if (!proficiencias[destino].includes(chave)) proficiencias[destino].push(chave)
+        // De ONDE veio, que é o que permite a uma escolha não se contradizer: a
+        // escolha "mais um idioma" filtra pelos que você ainda NÃO fala, e sem a
+        // origem ela passava a recusar a própria resposta um instante depois de
+        // aceitá-la.
+        comOrigem.push({
+          categoria: e.categoria as string,
+          chave,
+          origem: c.origem,
+          // 'especialista' dobra o Bônus de Proficiência (p. 361). Guardar só a
+          // chave jogava fora o nível de domínio — e a Especialização do Ladino, do
+          // Bardo e dos dois talentos não somava nada em lugar nenhum.
+          ...(typeof e.nivel_dominio === 'string' ? { nivel_dominio: e.nivel_dominio } : {}),
+        })
         break
       }
 
@@ -272,10 +305,22 @@ export function montarContexto(
         break
 
       case 'conceder_slot':
-        // Os espaços em si já vêm pela tabela da classe, em `colunas`. O que falta
-        // é QUANDO eles voltam — e isso muda de classe para classe: o Bruxo
-        // recupera no Descanso Curto, todo o resto só no Longo. Sem guardar esta
-        // linha, um botão de descanso teria de saber quem é o Bruxo.
+        // Os espaços em si já vêm pela tabela da classe, em `colunas` — MENOS os do
+        // Bruxo, cuja tabela não tem uma coluna por círculo: tem quantidade e
+        // círculo, e todos os espaços são daquele círculo (p. 121). O efeito diz em
+        // que colunas está a resposta; aqui elas viram o par que a ficha usa.
+        if (e.modo === 'pacto') {
+          const quantidade = col.colunas?.[e.coluna_quantidade as string]
+          const circulo = col.colunas?.[e.coluna_circulo as string]
+          if (typeof quantidade === 'number' && typeof circulo === 'number') {
+            espacosDePacto = { quantidade, circulo }
+          } else {
+            naoConsumidos.push(c)
+          }
+        }
+        // O que falta é QUANDO eles voltam — e isso muda de classe para classe: o
+        // Bruxo recupera no Descanso Curto, todo o resto só no Longo. Sem guardar
+        // esta linha, um botão de descanso teria de saber quem é o Bruxo.
         for (const g of normalizarRecarga(
           Array.isArray(e.recarga) ? e.recarga : [e.recarga],
         )) {
@@ -283,6 +328,37 @@ export function montarContexto(
         }
         naoConsumidos.push(c)
         break
+
+      case 'conjurar_sem_espaco': {
+        // 41 efeitos no dataset, e nenhum chegava à ficha: o botão "usar" gastava
+        // espaço até quando o livro diz que não gasta. É a queixa do João sobre a
+        // magia do talento que ele podia usar uma vez por dia "mas não gastava".
+        //
+        // Aqui só se COLETA o que o dado declara; quem transforma isso em custo é a
+        // ficha, e quem transforma em recurso contável é a passada dos recursos.
+        const quais = Array.isArray(e.magias)
+          ? (e.magias as string[])
+          : typeof e.magia === 'string'
+            ? [e.magia as string]
+            : []
+        if (!quais.length || quais.some((m) => m.startsWith('$') || m.includes('{{'))) {
+          // magia que veio de uma escolha ainda não resolvida: não dá para prometer
+          naoConsumidos.push(c)
+          break
+        }
+        conjuracoesSemEspaco.push({
+          magias: quais,
+          origem: c.origem,
+          ...(typeof e.frequencia === 'string' ? { frequencia: e.frequencia } : {}),
+          ...(e.recarga ? { recarga: normalizarRecarga(Array.isArray(e.recarga) ? e.recarga : [e.recarga]) } : {}),
+          ...(typeof e.consome_recurso === 'string' ? { consome_recurso: e.consome_recurso } : {}),
+          // "…e você também pode conjurá-la usando espaços de magia" (p. 201). Sem
+          // isto o app ofereceria só o uso de graça, e o jogador que já o gastou
+          // ficaria sem poder conjurar uma magia que o livro deixa conjurar.
+          ...(e.tambem_conjuravel_com || e.tambem_com_espaco ? { tambem_com_espaco: true } : {}),
+        })
+        break
+      }
 
       case 'recurso_com_recarga':
         // O máximo é fórmula ('prof', `coluna:furias`, `max(1, mod:SAB)`) e por isso
@@ -315,6 +391,8 @@ export function montarContexto(
     origens_ativas: [...new Set(aplicaveis.map((c) => c.origem))],
     atributo_de_conjuracao: atributoDeConjuracao,
     substituicoes_de_atributo: substituicoes,
+    espacos_de_pacto: espacosDePacto,
+    conjuracoes_sem_espaco: conjuracoesSemEspaco,
     dados_de_dano: dadosDeDano,
     extras: equipados.escudo ? { bonus_do_escudo: bonusDoEscudo(equipados.escudo) } : undefined,
   }
@@ -351,9 +429,36 @@ export function montarContexto(
     else naoConsumidos.push(pen.coletado)
   }
 
+  // A magia que se conjura de graça UMA VEZ por descanso é um recurso como a Fúria:
+  // tem máximo, gasta-se, e volta no descanso que ela mesma declara. Sem isto o app
+  // não teria o que mostrar nem o que gastar — e a alternativa (deixar a tela contar)
+  // seria pôr regra na tela.
+  for (const livre of conjuracoesSemEspaco) {
+    if (!livre.frequencia || !/^uma_vez_por_descanso/.test(livre.frequencia)) continue
+    // A recarga declarada manda; sem ela, o próprio nome da frequência diz qual é.
+    const recarga = livre.recarga?.length
+      ? livre.recarga
+      : normalizarRecarga([
+          livre.frequencia.replace(/^uma_vez_por_/, '').replace(/_para_cada_magia$/, ''),
+        ])
+    for (const magia of livre.magias) {
+      const id = `conjuracao_livre:${magia}`
+      if (recursos.some((r) => r.id === id)) continue
+      recursos.push({
+        id,
+        nome: `${nomeDaMagia(magia)} sem gastar espaço`,
+        maximo: 1,
+        recarga,
+        origem: livre.origem,
+      })
+    }
+  }
+
   proficiencias.salvaguardas.sort()
   proficiencias.pericias.sort()
   proficiencias.ferramentas.sort()
+  proficiencias.idiomas.sort()
+  proficiencias.armaduras.sort()
 
   return { contexto, nao_consumidos: naoConsumidos }
 }
@@ -363,6 +468,12 @@ export function montarContexto(
  * efeito simplesmente não entra, e isso é visível em `nao_consumidos`. A dureza
  * fica onde ela protege — no vocabulário e nos termos de fórmula.
  */
+/** O nome da magia, para o recurso não se chamar `misseis_magicos`. */
+function nomeDaMagia(id: string): string {
+  const m = catalogo<{ id: string; nome?: string }>('magias').itens.find((x) => x.id === id)
+  return m?.nome ?? id
+}
+
 function vale(c: Condicao | undefined, ctx: Contexto, vocabulario?: Vocabulario): boolean {
   try {
     return condicaoVale(c, ctx, vocabulario)

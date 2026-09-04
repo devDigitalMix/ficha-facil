@@ -9,10 +9,10 @@
 // O que este arquivo NÃO faz: coletar efeito (passo 3) e resolver escolha (passo 4).
 // Enquanto isso não existe, o Contexto vem pronto — dos personagens de ouro.
 
-import type { Contexto, Recurso, Resultado } from './tipos.ts'
+import type { Contexto, Parcela, Recurso, Resultado } from './tipos.ts'
 import { ErroDoMotor } from './tipos.ts'
 import { avaliar, bonusDeProficiencia, modificadorDeAtributo } from './formula.ts'
-import { calcular } from './derivados.ts'
+import { calcular, derivado } from './derivados.ts'
 import { catalogo, entidadesDaTrilha, trilhaLegivel } from './dataset.ts'
 import { condicaoVale, type Vocabulario } from './condicao.ts'
 import { separar, ataqueComArma, ataqueDesarmado, type Ataque } from './equipamento.ts'
@@ -26,6 +26,21 @@ const ATRIBUTOS = ['FOR', 'DES', 'CON', 'INT', 'SAB', 'CAR']
  * id, como já faz com talento e item. O que está aqui é o que só o motor sabe —
  * de onde ela veio, em que modo, com que atributo, e se gasta espaço.
  */
+/**
+ * O que conjurar esta magia custa — a pergunta que o jogador faz na mesa.
+ *
+ * Existe porque o botão "usar" gastava espaço de magia sempre, inclusive para
+ * truque (que não gasta nada) e para a magia que um talento dá de graça uma vez por
+ * dia. `porque` é a trilha legível de quem paga a conta, para a tela poder dizer
+ * "de graça pelo Iniciado em Magia" em vez de só "grátis".
+ */
+export type CustoDeConjuracao =
+  | { tipo: 'nenhum'; porque: string }
+  | { tipo: 'espaco'; circulo_minimo: number }
+  | { tipo: 'recurso'; recurso_id: string; porque: string; tambem_com_espaco?: boolean }
+  /** Sem espaço, mas o dado não declarou com que frequência: não se inventa limite. */
+  | { tipo: 'sem_espaco'; porque: string; limite_nao_declarado: true }
+
 export type MagiaNaFicha = {
   id: string
   nome: string
@@ -39,6 +54,31 @@ export type MagiaNaFicha = {
   nao_conta_para_o_limite?: boolean
   /** Truque e magia sempre preparada estão prontos; o resto depende do modo. */
   pronta_para_conjurar: boolean
+  /** O que gastar para conjurá-la. */
+  custo: CustoDeConjuracao
+  /**
+   * O que o jogador precisa para JOGAR a magia, já com os números resolvidos:
+   * a jogada de ataque com o bônus dele, a CD da salvaguarda, o dado de dano ou de
+   * cura já crescido pelo nível, o alcance e a área.
+   *
+   * Existe porque a linha "Mísseis Mágicos" sozinha não serve na mesa — a queixa foi
+   * "eu quero o nome, o número e tipo de dados que lanço, a salvaguarda, a distância
+   * e a área; ao invés de dizer + mod SAB, ele diria já +2".
+   */
+  jogo: {
+    /** 'corpo_a_corpo' | 'a_distancia', quando a magia é um ataque. */
+    ataque?: string
+    jogada_de_ataque?: Resultado
+    salvaguarda?: { atributo: string; cd: number; em_sucesso?: string }
+    dano?: { formula: string; tipo?: string }
+    cura?: { formula: string }
+    alcance?: string
+    area?: string
+    tempo_de_conjuracao?: string
+    duracao?: string
+    concentracao?: boolean
+    ritual?: boolean
+  }
 }
 
 /**
@@ -73,7 +113,13 @@ export type Ficha = {
   iniciativa: Resultado
   percepcao_passiva: Resultado
   salvaguardas: Record<string, number>
-  testes_de_pericia: Record<string, number>
+  /**
+   * O número de cada perícia, com o atributo e o domínio.
+   *
+   * Vinha vazio — "poder ver o número que tenho em arcanismo" era a queixa, e não
+   * havia de onde tirar: a ficha declarava o campo e devolvia `{}`.
+   */
+  testes_de_pericia: Record<string, TesteDePericia>
   deslocamento_m: number
   /** O Ataque Desarmado sempre entra; as armas equipadas, se houver. */
   ataques: Ataque[]
@@ -89,6 +135,8 @@ export type Ficha = {
   recursos: Recurso[]
   /** As características, traços e talentos que este personagem de fato tem. */
   caracteristicas: CaracteristicaNaFicha[]
+  /** O que ele fala, com que ferramentas sabe trabalhar e que armaduras sabe usar. */
+  proficiencias: { idiomas: string[]; ferramentas: string[]; armaduras: string[] }
   /** Só para quem conjura. Fora isso, ausente — e não zero. */
   conjuracao?: {
     atributo: string
@@ -155,10 +203,18 @@ export function montarFicha(
     iniciativa: calcular('iniciativa', ctx, {}, vocabulario),
     percepcao_passiva: calcular('percepcao_passiva', ctx, {}, vocabulario),
     salvaguardas,
-    testes_de_pericia: {},
+    testes_de_pericia: testesDePericia(ctx),
+    // As proficiências que não viram número: idioma, ferramenta, armadura. A ficha
+    // as repassa porque o jogador precisa saber o que fala e o que sabe vestir —
+    // eram justamente as que caíam caladas antes de o contexto guardá-las.
+    proficiencias: {
+      idiomas: [...(ctx.proficiencias?.idiomas ?? [])],
+      ferramentas: [...(ctx.proficiencias?.ferramentas ?? [])],
+      armaduras: [...(ctx.proficiencias?.armaduras ?? [])],
+    },
     deslocamento_m: deslocamento(ctx, vocabulario),
     ataques: ataques(ctx, equipamentoEquipado, vocabulario),
-    magias: magias(ctx),
+    magias: magias(ctx, vocabulario),
     // O contexto já os calculou: a ficha só os repassa, em ordem estável.
     recursos: [...(ctx.recursos ?? [])].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')),
     caracteristicas: caracteristicas(ctx),
@@ -267,12 +323,131 @@ const MODOS_PRONTOS = new Set(['conhecida', 'preparada', 'sempre_preparada'])
  * forte — mas as origens somadas, porque o jogador precisa saber que gastou uma
  * escolha do talento à toa.
  */
-export function magias(ctx: Contexto): MagiaNaFicha[] {
+const circuloDa = (m: { nivel?: number }) => (typeof m.nivel === 'number' ? m.nivel : 0)
+
+/** O id do recurso que conta os usos de uma magia conjurada de graça. */
+export const recursoDeConjuracao = (magia: string) => `conjuracao_livre:${magia}`
+
+/**
+ * O que custa conjurar esta magia.
+ *
+ * A ordem é a da mesa: truque não custa nada; uma concessão de "conjurar sem espaço"
+ * manda no resto; senão, gasta-se um espaço do círculo dela para cima.
+ *
+ * Quando a concessão tem frequência por descanso, o custo é o RECURSO que a passada
+ * de recursos criou para ela — assim o app tem o que mostrar (1/1) e o que gastar, e
+ * o descanso a devolve pela recarga declarada, sem ninguém escrever regra nova.
+ */
+export function custoDeConjuracao(
+  magia: string,
+  circulo: number,
+  ctx: Contexto,
+): CustoDeConjuracao {
+  const livre = (ctx.conjuracoes_sem_espaco ?? []).find((c) => c.magias.includes(magia))
+  if (livre) {
+    const porque = origemLegivel(livre.origem)
+    const tambem = livre.tambem_com_espaco && circulo > 0 ? { tambem_com_espaco: true } : {}
+    if (livre.consome_recurso) {
+      return { tipo: 'recurso', recurso_id: livre.consome_recurso, porque, ...tambem }
+    }
+    if (livre.frequencia && /^uma_vez_por_descanso/.test(livre.frequencia)) {
+      return { tipo: 'recurso', recurso_id: recursoDeConjuracao(magia), porque, ...tambem }
+    }
+    if (livre.frequencia === 'a_vontade' || livre.frequencia === 'sem_limite') {
+      return { tipo: 'nenhum', porque }
+    }
+    // O dado não diz com que frequência: dizer "à vontade" seria inventar permissão,
+    // e cobrar espaço seria cobrar o que o livro dispensou. Fica declarado.
+    return { tipo: 'sem_espaco', porque, limite_nao_declarado: true }
+  }
+  if (circulo === 0) return { tipo: 'nenhum', porque: 'truque' }
+  return { tipo: 'espaco', circulo_minimo: circulo }
+}
+
+/** A magia como o catálogo a guarda — os campos que a linha de mesa usa. */
+type MagiaDoCatalogo = {
+  id: string
+  nome?: string
+  nivel?: number
+  ataque?: string
+  salvaguarda?: { atributo?: string; em_sucesso?: string }
+  dano?: { formula_dado?: string; tipo_dano?: string; bonus_fixo?: number }
+  cura?: { formula_dado?: string }
+  alcance?: { texto?: string }
+  area?: { forma?: string; metros?: number }
+  tempo_de_conjuracao?: { texto?: string }
+  duracao?: { texto?: string }
+  concentracao?: boolean
+  ritual?: boolean
+  aprimoramento?: { tipo?: string; escala_por_nivel?: Record<string, string> }
+}
+
+/**
+ * O dado do truque no nível deste personagem.
+ *
+ * O crescimento é do dado, não uma conta: o catálogo declara `escala_por_nivel`
+ * ({5: '2d8', 11: '3d8', 17: '4d8'}), e aqui se escolhe a faixa. Truque cujo texto
+ * não virou escala continua com o dado-base — mostrar o base é menos errado do que
+ * inventar progressão.
+ */
+function danoDoTruque(m: MagiaDoCatalogo, nivel: number): string | undefined {
+  const escala = m.aprimoramento?.escala_por_nivel
+  const base = m.dano?.formula_dado ?? m.cura?.formula_dado
+  if (!escala || !base) return base
+  const faixas = Object.keys(escala).map(Number).filter((n) => n <= nivel).sort((a, b) => a - b)
+  return faixas.length ? escala[String(faixas[faixas.length - 1])] : base
+}
+
+/** A linha de mesa: os números que o jogador usa, já resolvidos. */
+function jogo(
+  m: MagiaDoCatalogo,
+  ctx: Contexto,
+  conj: Ficha['conjuracao'],
+  vocabulario?: Vocabulario,
+): MagiaNaFicha['jogo'] {
+  const circulo = circuloDa(m)
+  const formula = circulo === 0
+    ? danoDoTruque(m, ctx.nivel_do_personagem)
+    : m.dano?.formula_dado ?? m.cura?.formula_dado
+  const bonus = m.dano?.bonus_fixo ? ` + ${m.dano.bonus_fixo}` : ''
+
+  return {
+    ...(m.ataque ? { ataque: m.ataque } : {}),
+    // O bônus é o da ficha: quem conjura já tem "jogada de ataque mágico" calculada,
+    // e repetir a conta aqui seria ter duas verdades sobre o mesmo número.
+    ...(m.ataque && conj ? { jogada_de_ataque: conj.jogada_de_ataque_magico } : {}),
+    ...(m.salvaguarda?.atributo && conj
+      ? {
+          salvaguarda: {
+            atributo: m.salvaguarda.atributo,
+            cd: conj.cd_para_evitar_sua_magia.valor,
+            ...(m.salvaguarda.em_sucesso ? { em_sucesso: m.salvaguarda.em_sucesso } : {}),
+          },
+        }
+      : {}),
+    ...(m.dano && formula
+      ? { dano: { formula: `${formula}${bonus}`, ...(m.dano.tipo_dano ? { tipo: m.dano.tipo_dano } : {}) } }
+      : {}),
+    ...(m.cura && formula ? { cura: { formula } } : {}),
+    ...(m.alcance?.texto ? { alcance: m.alcance.texto } : {}),
+    ...(m.area?.forma
+      ? { area: `${m.area.forma}${m.area.metros ? ` de ${m.area.metros} m` : ''}` }
+      : {}),
+    ...(m.tempo_de_conjuracao?.texto ? { tempo_de_conjuracao: m.tempo_de_conjuracao.texto } : {}),
+    ...(m.duracao?.texto ? { duracao: m.duracao.texto } : {}),
+    ...(m.concentracao ? { concentracao: true } : {}),
+    ...(m.ritual ? { ritual: true } : {}),
+  }
+  void vocabulario
+}
+
+export function magias(ctx: Contexto, vocabulario?: Vocabulario): MagiaNaFicha[] {
   const desbloqueadas = ctx.magias_desbloqueadas ?? []
   if (!desbloqueadas.length) return []
 
+  const conj = conjuracao(ctx, vocabulario)
   const doCatalogo = new Map(
-    catalogo<{ id: string; nome?: string; nivel?: number }>('magias').itens.map((m) => [m.id, m]),
+    catalogo<MagiaDoCatalogo>('magias').itens.map((m) => [m.id, m]),
   )
 
   const porMagia = new Map<string, MagiaNaFicha>()
@@ -283,12 +458,14 @@ export function magias(ctx: Contexto): MagiaNaFicha[] {
     const nova: MagiaNaFicha = {
       id: d.magia,
       nome: item.nome ?? d.magia,
-      circulo: typeof item.nivel === 'number' ? item.nivel : 0,
+      circulo: circuloDa(item),
       modo: d.modo,
       origem,
       ...(d.atributo_de_conjuracao ? { atributo_de_conjuracao: d.atributo_de_conjuracao } : {}),
       ...(d.nao_conta_para_o_limite ? { nao_conta_para_o_limite: true } : {}),
       pronta_para_conjurar: MODOS_PRONTOS.has(d.modo),
+      custo: custoDeConjuracao(d.magia, circuloDa(item), ctx),
+      jogo: jogo(item, ctx, conj, vocabulario),
     }
 
     const anterior = porMagia.get(d.magia)
@@ -340,6 +517,18 @@ export function conjuracao(ctx: Contexto, vocabulario?: Vocabulario): Ficha['con
     const n = ctx.colunas?.[`espacos_${circulo}`]
     if (typeof n === 'number' && n > 0) espacos[circulo] = n
   }
+
+  // O Bruxo não tem uma coluna por círculo: tem "Espaços de Pacto" e "Círculo de
+  // Magia", e TODOS os espaços dele são do mesmo círculo (p. 121). Ler só
+  // `espacos_<n>` deixava a ficha dele com o painel de espaços vazio — ele
+  // conjurava sem ter o que gastar, e a queixa foi exatamente essa.
+  //
+  // O `conceder_slot` de modo `pacto` já dizia em que colunas está a resposta; era
+  // a ficha que só sabia perguntar de um jeito.
+  const pacto = ctx.espacos_de_pacto
+  if (pacto && pacto.quantidade > 0 && pacto.circulo > 0) {
+    espacos[pacto.circulo] = (espacos[pacto.circulo] ?? 0) + pacto.quantidade
+  }
   const numero = (chave: string) => {
     const v = ctx.colunas?.[chave]
     return typeof v === 'number' ? v : 0
@@ -356,11 +545,105 @@ export function conjuracao(ctx: Contexto, vocabulario?: Vocabulario): Ficha['con
 }
 
 /** O teste de uma perícia: modificador do atributo + Bônus de Proficiência se proficiente. */
+export type TesteDePericia = {
+  valor: number
+  /** O atributo que o livro manda usar nesta perícia. */
+  atributo: string
+  /** Id do nível de domínio (do catálogo), ou 'nenhum'. */
+  dominio: string
+  parcelas: Parcela[]
+  nome: string
+}
+
+/**
+ * Todas as perícias do livro, com o número de cada uma.
+ *
+ * Todas, e não só as proficientes: na mesa se rola Arcanismo mesmo sem proficiência,
+ * e uma ficha que só mostra as treinadas obriga a fazer a conta de cabeça justamente
+ * no caso em que ela não é óbvia.
+ */
+export function testesDePericia(ctx: Contexto): Record<string, TesteDePericia> {
+  const saida: Record<string, TesteDePericia> = {}
+  for (const p of catalogo<{ id: string; nome?: string; atributo: string }>('pericias').itens) {
+    const d = testeDePericiaDetalhado(ctx, p.id, p.atributo)
+    saida[p.id] = { ...d, nome: p.nome ?? p.id }
+  }
+  return saida
+}
+
 export function testeDePericia(ctx: Contexto, pericia: string, atributo: string): number {
+  return testeDePericiaDetalhado(ctx, pericia, atributo).valor
+}
+
+/**
+ * Quanto o Bônus de Proficiência vale em cada nível de domínio.
+ *
+ * Vem do catálogo, não daqui: "Especialização dobra o Bônus de Proficiência" é regra
+ * do livro (p. 361) como qualquer outra, e o motor só a lê.
+ */
+function multiplicadorDoDominio(id: string): number {
+  const n = catalogo<{ id: string; multiplicador_do_bonus?: number }>('niveis_de_dominio')
+    .itens.find((x) => x.id === id)
+  return n?.multiplicador_do_bonus ?? 0
+}
+
+/**
+ * O domínio que o personagem tem numa perícia ou ferramenta, e o que ele multiplica.
+ *
+ * Entre dois graus, vale o que multiplica mais: quem é proficiente por duas portas e
+ * especialista por uma terceira tem Especialização.
+ */
+export function dominioEm(ctx: Contexto, chave: string): { id: string; multiplicador: number } {
+  let melhor = { id: 'nenhum', multiplicador: 0 }
+  const considerar = (nivel: string) => {
+    const m = multiplicadorDoDominio(nivel)
+    if (m > melhor.multiplicador) melhor = { id: nivel, multiplicador: m }
+  }
+  for (const g of ctx.proficiencias_com_origem ?? []) {
+    if (g.chave === chave && g.nivel_dominio) considerar(g.nivel_dominio)
+  }
+  // Proficiência sem nível declarado é proficiência simples — é o caso mais comum.
+  if (
+    melhor.multiplicador === 0 &&
+    ((ctx.proficiencias?.pericias ?? []).includes(chave) ||
+      (ctx.proficiencias?.ferramentas ?? []).includes(chave))
+  ) {
+    const padrao = catalogo<{ id: string; multiplicador_do_bonus?: number }>('niveis_de_dominio')
+      .itens.find((x) => x.multiplicador_do_bonus === 1)
+    if (padrao) melhor = { id: padrao.id, multiplicador: 1 }
+  }
+  return melhor
+}
+
+/**
+ * O teste de uma perícia, com de onde vem o número.
+ *
+ * Especialização **dobra** o Bônus de Proficiência (p. 361), e isso não acontecia:
+ * o nível de domínio era jogado fora ao guardar a proficiência, então a
+ * Especialização do Ladino, a do Bardo e a dos dois talentos não somavam nada.
+ */
+export function testeDePericiaDetalhado(
+  ctx: Contexto,
+  pericia: string,
+  atributo: string,
+): Omit<TesteDePericia, 'nome'> {
   const bruto = ctx.atributos?.[atributo]
   if (bruto === undefined) throw new ErroDoMotor(`atributo ausente no contexto: '${atributo}'`)
-  const proficiente = (ctx.proficiencias?.pericias ?? []).includes(pericia)
-  return modificadorDeAtributo(bruto) + (proficiente ? bonusDeProficiencia(ctx) : 0)
+  const mod = modificadorDeAtributo(bruto)
+  const dominio = dominioEm(ctx, pericia)
+  const extra = bonusDeProficiencia(ctx) * dominio.multiplicador
+  const nomeDoDominio = catalogo<{ id: string; nome?: string }>('niveis_de_dominio')
+    .itens.find((x) => x.id === dominio.id)?.nome
+
+  return {
+    valor: mod + extra,
+    atributo,
+    dominio: dominio.id,
+    parcelas: [
+      { rotulo: atributo, valor: mod },
+      ...(extra ? [{ rotulo: nomeDoDominio ?? dominio.id, valor: extra }] : []),
+    ],
+  }
 }
 
 /**
@@ -379,9 +662,11 @@ export function pontosDeVidaMaximos(ctx: Contexto, vocabulario?: Vocabulario): R
   const modCon = modificadorDeAtributo(ctx.atributos.CON)
 
   const nivel1 = dadoDeVida + modCon
-  const niveisSeguintes = Math.max(0, ctx.nivel_do_personagem - 1) * Math.max(1, porNivel + modCon)
+  const quantosSeguintes = Math.max(0, ctx.nivel_do_personagem - 1)
+  const porNivelComCon = Math.max(1, porNivel + modCon)
+  const niveisSeguintes = quantosSeguintes * porNivelComCon
 
-  return calcular(
+  const r = calcular(
     'pontos_de_vida_maximos',
     ctx,
     {
@@ -399,6 +684,51 @@ export function pontosDeVidaMaximos(ctx: Contexto, vocabulario?: Vocabulario): R
     },
     vocabulario,
   )
+
+  // Cada parcela que é ela mesma uma conta se abre. Os rótulos vêm dos `parcelas`
+  // que o catálogo já declarava para `pontos_de_vida_no_nivel_1` e
+  // `pontos_de_vida_por_nivel` — o motor não escreve frase nenhuma aqui.
+  const rotulos = (id: string) =>
+    Object.fromEntries((derivado(id).parcelas ?? []).map((p) => [p.chave, p.rotulo]))
+  const doNivel1 = rotulos('pontos_de_vida_no_nivel_1')
+  const porNivelRot = rotulos('pontos_de_vida_por_nivel')
+
+  const detalhe: Record<string, Parcela[]> = {
+    pontos_de_vida_no_nivel_1: [
+      { rotulo: doNivel1.dado_de_vida_da_classe ?? 'Dado de Vida', valor: dadoDeVida },
+      { rotulo: doNivel1['mod:CON'] ?? 'Constituição', valor: modCon },
+    ],
+    ...(quantosSeguintes > 0
+      ? {
+          soma_dos_niveis_seguintes: [
+            {
+              rotulo: `${porNivelRot.rolagem_ou_valor_fixo_do_dado_de_vida ?? 'valor fixo por nível'}` +
+                ` × ${quantosSeguintes} ${quantosSeguintes > 1 ? 'níveis' : 'nível'}`,
+              valor: porNivel * quantosSeguintes,
+            },
+            {
+              rotulo: `${porNivelRot['mod:CON'] ?? 'Constituição'} × ${quantosSeguintes}`,
+              valor: modCon * quantosSeguintes,
+            },
+          ],
+        }
+      : {}),
+    // Aqui o detalhe não vem do catálogo: vem de QUEM concedeu, que é a única
+    // resposta útil para "de onde vieram esses 3 pontos".
+    bonus_de_caracteristicas: (ctx.modificadores_ativos?.pontos_de_vida_maximos ?? []).map(
+      (m) => ({ rotulo: trilhaLegivel(m.de).join(' · ') || m.de, valor: m.valor }),
+    ),
+  }
+
+  return {
+    ...r,
+    parcelas: r.parcelas.map((p) => {
+      const chave = (derivado('pontos_de_vida_maximos').parcelas ?? [])
+        .find((d) => d.rotulo === p.rotulo)?.chave
+      const dentro = chave ? detalhe[chave] : undefined
+      return dentro?.length ? { ...p, parcelas: dentro } : p
+    }),
+  }
 }
 
 /**

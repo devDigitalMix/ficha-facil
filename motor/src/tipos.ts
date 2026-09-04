@@ -37,10 +37,42 @@ export type Contexto = {
     salvaguardas?: string[]
     pericias?: string[]
     ferramentas?: string[]
+    idiomas?: string[]
+    armaduras?: string[]
     /** Armas não vêm em lista: a classe concede "Simples" ou "Marciais com Leve",
      *  que no dado são filtros. Guardar o filtro evita explodir 170 itens na ficha. */
     armas?: Record<string, unknown>[]
   }
+  /**
+   * As mesmas proficiências, com a trilha de quem as concedeu.
+   *
+   * Existe para a escolha poder não se contradizer: "escolha um idioma que você
+   * ainda não fala" tem de ignorar o idioma que ELA MESMA acabou de conceder.
+   */
+  proficiencias_com_origem?: {
+    categoria: string
+    chave: string
+    origem: string
+    /** 'proficiente' | 'especialista' — especialista dobra o Bônus de Proficiência. */
+    nivel_dominio?: string
+  }[]
+  /**
+   * Os Espaços de Pacto do Bruxo: quantidade e círculo, porque a tabela dele não
+   * tem uma coluna por círculo como a das outras classes (p. 121).
+   */
+  espacos_de_pacto?: { quantidade: number; circulo: number }
+  /**
+   * Magias que este personagem conjura SEM gastar espaço, como o dado as declara.
+   * Quem decide o que isso custa na mesa é a ficha; aqui é só o que foi declarado.
+   */
+  conjuracoes_sem_espaco?: {
+    magias: string[]
+    origem: string
+    frequencia?: string
+    recarga?: { gatilho: string; quantidade: number | 'todos' }[]
+    consome_recurso?: string
+    tambem_com_espaco?: boolean
+  }[]
   /** Trocas de atributo declaradas por efeito (o Monge põe Destreza no lugar de Força). */
   substituicoes_de_atributo?: { de: string; para: string; aplica_a: string[]; escopo: string[] }[]
   /** Dado de dano que um efeito põe no lugar do padrão, por escopo. */
@@ -136,7 +168,15 @@ export type Resultado = {
   parcelas: Parcela[]
 }
 
-export type Parcela = { rotulo: string; valor: number | string }
+/**
+ * Uma parcela de uma conta.
+ *
+ * `parcelas` aninhadas existem para a pergunta que o João fez: "eu clico na vida e
+ * ele diz 'vida no nível 1 + característica'; eu quero saber POR QUE tenho 11". Uma
+ * parcela que é ela mesma uma conta pode se abrir — e a soma de cima continua sendo
+ * a soma de cima.
+ */
+export type Parcela = { rotulo: string; valor: number | string; parcelas?: Parcela[] }
 
 export class ErroDoMotor extends Error {
   // `name` precisa ser posto na mão: `class X extends Error {}` deixa name como

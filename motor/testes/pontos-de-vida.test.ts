@@ -111,3 +111,50 @@ test('em toda a ficha, as parcelas numéricas explicam o número', () => {
     }
   }
 })
+
+test('a proveniência dos Pontos de Vida diz de onde vem cada ponto', () => {
+  // A queixa do João: "eu clico na vida e no máximo ele diz 'vida no nível 1 +
+  // característica'. Eu quero saber por que tenho 11". Cada parcela que é ela mesma
+  // uma conta passou a se abrir — com os rótulos que o catálogo já declarava.
+  const anao = montar({
+    especie: 'anao',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'clerigo', nivel: 1 }],
+    atributos_base: { FOR: 12, DES: 12, CON: 16, INT: 10, SAB: 15, CAR: 10 },
+  } as unknown as Parameters<typeof montar>[0])
+
+  const pv = anao.ficha!.pontos_de_vida_maximos
+  const nivel1 = pv.parcelas.find((p) => /nível 1/.test(p.rotulo))
+  assert.ok(nivel1?.parcelas?.length, 'os Pontos de Vida do nível 1 têm de se abrir')
+  assert.deepEqual(
+    nivel1!.parcelas!.map((p) => p.valor),
+    [8, 3],
+    'o Dado de Vida do Clérigo (d8) e o modificador de Constituição (+3)',
+  )
+
+  // E o bônus de característica diz QUEM o deu — que é a resposta útil.
+  const bonus = pv.parcelas.find((p) => /caracter/i.test(p.rotulo))
+  assert.ok(bonus?.parcelas?.length, 'o bônus tem de dizer de onde veio')
+  assert.match(bonus!.parcelas![0].rotulo, /Tenacidade/)
+
+  // A soma das parcelas abertas continua sendo a parcela de cima.
+  for (const p of pv.parcelas) {
+    if (!p.parcelas) continue
+    const soma = p.parcelas.reduce((s, x) => s + Number(x.valor), 0)
+    assert.equal(soma, Number(p.valor), `'${p.rotulo}': as partes têm de somar o todo`)
+  }
+})
+
+test('acima do nível 1, a conta separa o que veio de cada nível', () => {
+  const barbaro = montar({
+    especie: 'humano',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'barbaro', nivel: 3 }],
+    atributos_base: { FOR: 16, DES: 14, CON: 16, INT: 10, SAB: 12, CAR: 10 },
+  } as unknown as Parameters<typeof montar>[0])
+
+  const seguintes = barbaro.ficha!.pontos_de_vida_maximos.parcelas
+    .find((p) => /níveis seguintes/.test(p.rotulo))
+  assert.ok(seguintes?.parcelas?.length)
+  assert.deepEqual(seguintes!.parcelas!.map((p) => p.valor), [14, 6])
+})

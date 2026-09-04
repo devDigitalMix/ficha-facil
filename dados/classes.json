@@ -4122,9 +4122,15 @@
             "dados_de_inspiracao": "1d6",
             "truques": 2,
             "magias_preparadas": 4,
-            "espacos_de_magia": [
-              2
-            ]
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4138,9 +4144,15 @@
             "dados_de_inspiracao": "1d6",
             "truques": 2,
             "magias_preparadas": 5,
-            "espacos_de_magia": [
-              3
-            ]
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4153,10 +4165,15 @@
             "dados_de_inspiracao": "1d6",
             "truques": 2,
             "magias_preparadas": 6,
-            "espacos_de_magia": [
-              4,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4169,10 +4186,15 @@
             "dados_de_inspiracao": "1d6",
             "truques": 3,
             "magias_preparadas": 7,
-            "espacos_de_magia": [
-              4,
-              3
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4185,11 +4207,15 @@
             "dados_de_inspiracao": "1d8",
             "truques": 3,
             "magias_preparadas": 9,
-            "espacos_de_magia": [
-              4,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4202,11 +4228,15 @@
             "dados_de_inspiracao": "1d8",
             "truques": 3,
             "magias_preparadas": 10,
-            "espacos_de_magia": [
-              4,
-              3,
-              3
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4219,12 +4249,15 @@
             "dados_de_inspiracao": "1d8",
             "truques": 3,
             "magias_preparadas": 11,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4237,12 +4270,15 @@
             "dados_de_inspiracao": "1d8",
             "truques": 3,
             "magias_preparadas": 12,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4255,13 +4291,15 @@
             "dados_de_inspiracao": "1d8",
             "truques": 3,
             "magias_preparadas": 14,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4274,13 +4312,15 @@
             "dados_de_inspiracao": "1d10",
             "truques": 4,
             "magias_preparadas": 15,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4291,14 +4331,15 @@
             "dados_de_inspiracao": "1d10",
             "truques": 4,
             "magias_preparadas": 16,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4311,14 +4352,15 @@
             "dados_de_inspiracao": "1d10",
             "truques": 4,
             "magias_preparadas": 16,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4329,15 +4371,15 @@
             "dados_de_inspiracao": "1d10",
             "truques": 4,
             "magias_preparadas": 17,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4350,15 +4392,15 @@
             "dados_de_inspiracao": "1d10",
             "truques": 4,
             "magias_preparadas": 17,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4369,16 +4411,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 18,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 0
           }
         },
         {
@@ -4391,16 +4432,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 18,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 0
           }
         },
         {
@@ -4411,17 +4451,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 19,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -4434,17 +4472,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 20,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              1,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -4457,17 +4493,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 21,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 2,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -4480,17 +4514,15 @@
             "dados_de_inspiracao": "1d12",
             "truques": 4,
             "magias_preparadas": 22,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              2,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 2,
+            "espacos_7": 2,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         }
       ],
@@ -4507,9 +4539,41 @@
           "nome": "Magias Preparadas",
           "tipo": "inteiro"
         },
-        "espacos_de_magia": {
-          "nome": "Espaços de Magia por Círculo",
-          "tipo": "lista"
+        "espacos_1": {
+          "nome": "Espaços de 1º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_2": {
+          "nome": "Espaços de 2º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_3": {
+          "nome": "Espaços de 3º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_4": {
+          "nome": "Espaços de 4º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_5": {
+          "nome": "Espaços de 5º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_6": {
+          "nome": "Espaços de 6º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_7": {
+          "nome": "Espaços de 7º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_8": {
+          "nome": "Espaços de 8º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_9": {
+          "nome": "Espaços de 9º Círculo",
+          "tipo": "inteiro"
         }
       },
       "multiclasse": {
@@ -4663,9 +4727,15 @@
             "pontos_de_feiticaria": 0,
             "truques": 4,
             "magias_preparadas": 2,
-            "espacos_de_magia": [
-              2
-            ]
+            "espacos_1": 2,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4679,9 +4749,15 @@
             "pontos_de_feiticaria": 2,
             "truques": 4,
             "magias_preparadas": 4,
-            "espacos_de_magia": [
-              3
-            ]
+            "espacos_1": 3,
+            "espacos_2": 0,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4694,10 +4770,15 @@
             "pontos_de_feiticaria": 3,
             "truques": 4,
             "magias_preparadas": 6,
-            "espacos_de_magia": [
-              4,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 2,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4710,10 +4791,15 @@
             "pontos_de_feiticaria": 4,
             "truques": 5,
             "magias_preparadas": 7,
-            "espacos_de_magia": [
-              4,
-              3
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 0,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4726,11 +4812,15 @@
             "pontos_de_feiticaria": 5,
             "truques": 5,
             "magias_preparadas": 9,
-            "espacos_de_magia": [
-              4,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 2,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4743,11 +4833,15 @@
             "pontos_de_feiticaria": 6,
             "truques": 5,
             "magias_preparadas": 10,
-            "espacos_de_magia": [
-              4,
-              3,
-              3
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 0,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4760,12 +4854,15 @@
             "pontos_de_feiticaria": 7,
             "truques": 5,
             "magias_preparadas": 11,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 1,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4778,12 +4875,15 @@
             "pontos_de_feiticaria": 8,
             "truques": 5,
             "magias_preparadas": 12,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 2,
+            "espacos_5": 0,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4794,13 +4894,15 @@
             "pontos_de_feiticaria": 9,
             "truques": 5,
             "magias_preparadas": 14,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 1,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4813,13 +4915,15 @@
             "pontos_de_feiticaria": 10,
             "truques": 6,
             "magias_preparadas": 15,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 0,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4830,14 +4934,15 @@
             "pontos_de_feiticaria": 11,
             "truques": 6,
             "magias_preparadas": 16,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4850,14 +4955,15 @@
             "pontos_de_feiticaria": 12,
             "truques": 6,
             "magias_preparadas": 16,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 0,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4868,15 +4974,15 @@
             "pontos_de_feiticaria": 13,
             "truques": 6,
             "magias_preparadas": 17,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4889,15 +4995,15 @@
             "pontos_de_feiticaria": 14,
             "truques": 6,
             "magias_preparadas": 17,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 0,
+            "espacos_9": 0
           }
         },
         {
@@ -4908,16 +5014,15 @@
             "pontos_de_feiticaria": 15,
             "truques": 6,
             "magias_preparadas": 18,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 0
           }
         },
         {
@@ -4930,16 +5035,15 @@
             "pontos_de_feiticaria": 16,
             "truques": 6,
             "magias_preparadas": 18,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 0
           }
         },
         {
@@ -4952,17 +5056,15 @@
             "pontos_de_feiticaria": 17,
             "truques": 6,
             "magias_preparadas": 19,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 2,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -4975,17 +5077,15 @@
             "pontos_de_feiticaria": 18,
             "truques": 6,
             "magias_preparadas": 20,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              1,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 1,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -4998,17 +5098,15 @@
             "pontos_de_feiticaria": 19,
             "truques": 6,
             "magias_preparadas": 21,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              2,
-              1,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 2,
+            "espacos_7": 1,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         },
         {
@@ -5021,17 +5119,15 @@
             "pontos_de_feiticaria": 20,
             "truques": 6,
             "magias_preparadas": 22,
-            "espacos_de_magia": [
-              4,
-              3,
-              3,
-              3,
-              3,
-              2,
-              2,
-              1,
-              1
-            ]
+            "espacos_1": 4,
+            "espacos_2": 3,
+            "espacos_3": 3,
+            "espacos_4": 3,
+            "espacos_5": 3,
+            "espacos_6": 2,
+            "espacos_7": 2,
+            "espacos_8": 1,
+            "espacos_9": 1
           }
         }
       ],
@@ -5048,9 +5144,41 @@
           "nome": "Magias Preparadas",
           "tipo": "inteiro"
         },
-        "espacos_de_magia": {
-          "nome": "Espaços de Magia por Círculo",
-          "tipo": "lista"
+        "espacos_1": {
+          "nome": "Espaços de 1º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_2": {
+          "nome": "Espaços de 2º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_3": {
+          "nome": "Espaços de 3º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_4": {
+          "nome": "Espaços de 4º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_5": {
+          "nome": "Espaços de 5º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_6": {
+          "nome": "Espaços de 6º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_7": {
+          "nome": "Espaços de 7º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_8": {
+          "nome": "Espaços de 8º Círculo",
+          "tipo": "inteiro"
+        },
+        "espacos_9": {
+          "nome": "Espaços de 9º Círculo",
+          "tipo": "inteiro"
         }
       },
       "multiclasse": {

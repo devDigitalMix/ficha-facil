@@ -154,15 +154,15 @@
             "catalogo": "pericias",
             "todo_o_catalogo": true,
             "filtro_adicional": {
-              "ja_proficiente": true,
-              "sem_especializacao": true
+              "com_proficiencia": true,
+              "ainda_nao_especialista": true
             }
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
             "categoria": "pericia",
             "chave": "{{escolhido}}",
-            "nivel_dominio": "especializacao"
+            "nivel_dominio": "especialista"
           }
         }
       ],
@@ -1365,7 +1365,8 @@
           },
           "efeito_por_item_escolhido": {
             "tipo": "aplicar_efeito_nomeado",
-            "chave": "{{escolhido}}"
+            "chave": "{{escolhido}}",
+            "catalogo": "efeitos_do_ataque_em_investida"
           }
         }
       ],
@@ -2426,13 +2427,13 @@
           "tipo": "conceder_proficiencia",
           "categoria": "armadura",
           "chave": "leve",
-          "nivel_dominio": "treinado"
+          "nivel_dominio": "proficiente"
         },
         {
           "tipo": "conceder_proficiencia",
           "categoria": "armadura",
           "chave": "escudo",
-          "nivel_dominio": "treinado"
+          "nivel_dominio": "proficiente"
         }
       ],
       "fonte": {
@@ -2482,7 +2483,7 @@
           "tipo": "conceder_proficiencia",
           "categoria": "armadura",
           "chave": "media",
-          "nivel_dominio": "treinado"
+          "nivel_dominio": "proficiente"
         }
       ],
       "fonte": {
@@ -2532,7 +2533,7 @@
           "tipo": "conceder_proficiencia",
           "categoria": "armadura",
           "chave": "pesada",
-          "nivel_dominio": "treinado"
+          "nivel_dominio": "proficiente"
         }
       ],
       "fonte": {
@@ -2671,15 +2672,15 @@
             "catalogo": "pericias",
             "todo_o_catalogo": true,
             "filtro_adicional": {
-              "ja_proficiente": true,
-              "sem_especializacao": true
+              "com_proficiencia": true,
+              "ainda_nao_especialista": true
             }
           },
           "efeito_por_item_escolhido": {
             "tipo": "conceder_proficiencia",
             "categoria": "pericia",
             "chave": "{{escolhido}}",
-            "nivel_dominio": "especializacao"
+            "nivel_dominio": "especialista"
           }
         }
       ],
@@ -3057,7 +3058,7 @@
               "categoria": "arma"
             },
             "filtro_adicional": {
-              "ja_proficiente": true
+              "com_proficiencia": true
             }
           },
           "efeito_por_item_escolhido": {
@@ -3410,7 +3411,8 @@
           },
           "efeito_por_item_escolhido": {
             "tipo": "aplicar_efeito_nomeado",
-            "chave": "{{escolhido}}"
+            "chave": "{{escolhido}}",
+            "catalogo": "efeitos_do_golpe_de_escudo"
           }
         },
         {

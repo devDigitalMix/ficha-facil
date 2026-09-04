@@ -17,6 +17,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { montar } from '../src/motor.ts'
+import { catalogo, lerJson } from '../src/dataset.ts'
 
 const OURO = join(dirname(fileURLToPath(import.meta.url)), '..', 'ouro')
 
@@ -93,4 +94,136 @@ test('escolha reescolhível não marca as próprias opções como repetidas', ()
   assert.ok(item)
   const daPropriaEscolha = item!.opcoes.filter((o) => o.ja_tem?.includes('Conjuração'))
   assert.equal(daPropriaEscolha.length, 0)
+})
+
+test('o MESMO talento vindo de duas portas avisa uma sobre a outra', () => {
+  // É onde o aviso mais vale: pegar Iniciado em Magia duas vezes e gastar as duas
+  // escolhas no mesmo truque é o erro caro. A primeira versão comparava a escolha
+  // com a trilha por `includes`, e `iniciado_em_magia_truques` casava com
+  // `iniciado_em_magia_truques@humano_versatil` — logo o talento repetido achava
+  // que a magia tinha vindo dele mesmo, e não avisava nada.
+  const c = {
+    especie: 'humano',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'mago', nivel: 1 }],
+    atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 15, SAB: 13, CAR: 8 },
+    escolhas: {
+      humano_versatil: 'iniciado_em_magia',
+      'iniciado_em_magia_truques@humano_versatil': ['luz', 'orientacao'],
+    },
+  } as unknown as Parameters<typeof montar>[0]
+
+  const item = montar(c).checklist.find((i) => i.escolha_id === 'iniciado_em_magia_truques')
+  assert.ok(item, 'o talento do antecedente ainda tem truques a escolher')
+  const luz = item!.opcoes.find((o) => o.id === 'luz')
+  assert.ok(luz?.ja_tem, 'Luz já veio pelo talento do Humano e o aviso tem de dizer isso')
+  assert.match(luz!.ja_tem!, /Vers|Humano/)
+})
+
+// -------------------------------------- toda classe que conjura tem bloco de magia
+
+/** As classes que o livro declara conjuradoras, tiradas do próprio dado. */
+function classesQueConjuram(): { id: string; atributo: string }[] {
+  return (lerJson<{ itens: { id: string; conjuracao?: { atributo: string } }[] }>('classes.json')
+    .itens.filter((c) => c.conjuracao)
+    .map((c) => ({ id: c.id, atributo: c.conjuracao!.atributo })))
+}
+
+test('toda classe conjuradora tem espaços e atributo na ficha, já no nível 1', () => {
+  // O Bardo e o Feiticeiro guardavam os espaços como lista numa coluna só, e nenhum
+  // dos dois tinha `preparar_magias`: a ficha devolvia `conjuracao: undefined` e o
+  // jogador não via CD, ataque mágico nem espaço nenhum. O Bruxo tinha o problema
+  // pelo outro lado — a tabela dele é por Pacto, e a ficha só sabia ler
+  // `espacos_<n>`. Três classes, dois defeitos, uma pergunta só: quem conjura tem
+  // com o que conjurar?
+  for (const { id, atributo } of classesQueConjuram()) {
+    const r = montar({
+      especie: 'humano',
+      antecedente: 'acolito',
+      niveis: [{ classe: id, nivel: 1 }],
+      atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 13, SAB: 13, CAR: 15 },
+    } as unknown as Parameters<typeof montar>[0])
+
+    const c = r.ficha!.conjuracao
+    assert.ok(c, `${id}: classe conjuradora sem bloco de conjuração na ficha`)
+    assert.equal(c!.atributo, atributo, `${id}: atributo de conjuração diferente do livro`)
+    assert.ok(
+      Object.values(c!.espacos).some((n) => n > 0),
+      `${id}: conjurador de nível 1 sem espaço de magia nenhum`,
+    )
+  }
+})
+
+test('quem prepara da lista da classe só vê o círculo que cabe nos espaços', () => {
+  // 127 magias de Bardo oferecidas no nível 1 foi a queixa. A causa era o filtro
+  // `circulo_com_espaco_disponivel` não achar coluna nenhuma e, honestamente, se
+  // declarar `nao_avaliado` — o que não recorta nada.
+  for (const { id } of classesQueConjuram()) {
+    const r = montar({
+      especie: 'humano',
+      antecedente: 'acolito',
+      niveis: [{ classe: id, nivel: 1 }],
+      atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 13, SAB: 13, CAR: 15 },
+    } as unknown as Parameters<typeof montar>[0])
+
+    for (const item of r.checklist) {
+      if (!item.escolha_id.endsWith('_preparadas')) continue
+      assert.ok(
+        !item.nao_avaliados.includes('circulo_com_espaco_disponivel'),
+        `${id}: o filtro de círculo ficou sem avaliar — a lista sai inteira`,
+      )
+      const magias = catalogo<{ id: string; nivel: number }>('magias').itens
+      for (const o of item.opcoes) {
+        const nivel = magias.find((m) => m.id === o.id)!.nivel
+        assert.ok(nivel <= 1, `${id}: ofereceu '${o.id}' de ${nivel}º círculo no nível 1`)
+      }
+    }
+  }
+})
+
+// -------------------------------------------------- o que custa conjurar cada uma
+
+test('truque não custa nada, e magia comum custa um espaço do círculo dela', () => {
+  const c = clerigaDeOuro()
+  const ficha = montar(c).ficha!
+  for (const m of ficha.magias) {
+    if (m.circulo === 0) {
+      assert.equal(m.custo.tipo, 'nenhum', `${m.nome}: truque não gasta espaço`)
+    } else if (m.custo.tipo === 'espaco') {
+      assert.equal(m.custo.circulo_minimo, m.circulo)
+    }
+  }
+})
+
+test('a magia que o talento dá de graça custa o USO dela, não um espaço', () => {
+  // A queixa do João: "tem algumas que posso usar uma vez por dia mas não gastam,
+  // por exemplo uma magia que peguei de um talento". O talento declarava isso desde
+  // sempre (`conjurar_sem_espaco`, p. 201) — mas a magia vinha de OUTRA escolha, e
+  // o efeito chegava com `$escolhido_em:iniciado_em_magia_magia_1` no lugar do id.
+  const r = montar({
+    especie: 'humano',
+    antecedente: 'acolito',
+    niveis: [{ classe: 'clerigo', nivel: 1 }],
+    atributos_base: { FOR: 10, DES: 14, CON: 12, INT: 12, SAB: 15, CAR: 13 },
+    escolhas: {
+      humano_versatil: 'iniciado_em_magia',
+      'iniciado_em_magia_lista@humano_versatil': 'mago',
+      'iniciado_em_magia_atributo@humano_versatil': 'INT',
+      'iniciado_em_magia_truques@humano_versatil': ['luz', 'raio_de_gelo'],
+      'iniciado_em_magia_magia_1@humano_versatil': 'misseis_magicos',
+    },
+  } as unknown as Parameters<typeof montar>[0])
+
+  const misseis = r.ficha!.magias.find((m) => m.id === 'misseis_magicos')
+  assert.ok(misseis, 'a magia do talento tem de estar na ficha')
+  assert.equal(misseis!.custo.tipo, 'recurso', 'ela não gasta espaço de magia')
+  if (misseis!.custo.tipo !== 'recurso') return
+  assert.match(misseis!.custo.porque, /Iniciado em Magia/, 'a ficha diz por que é de graça')
+  assert.equal(misseis!.custo.tambem_com_espaco, true, 'o livro deixa gastar espaço também')
+
+  // …e o uso é contável: um recurso de 1, que volta no Descanso Longo.
+  const recurso = r.ficha!.recursos.find((x) => x.id === misseis!.custo.recurso_id)
+  assert.ok(recurso, 'sem recurso o app não teria o que mostrar nem o que gastar')
+  assert.equal(recurso!.maximo, 1)
+  assert.deepEqual(recurso!.recarga, [{ gatilho: 'descanso_longo', quantidade: 'todos' }])
 })

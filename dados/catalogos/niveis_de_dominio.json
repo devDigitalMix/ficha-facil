@@ -1,0 +1,25 @@
+{
+  "catalogo": "niveis_de_dominio",
+  "nome": "Níveis de Domínio",
+  "fonte": {
+    "capitulo": "ap_c",
+    "pagina_livro": 361,
+    "pagina_pdf": 365
+  },
+  "nota": "Quanto o Bônus de Proficiência entra num teste, por nível de domínio. Está aqui, e não no motor, porque é regra do livro como qualquer outra.",
+  "total": 2,
+  "itens": [
+    {
+      "id": "proficiente",
+      "nome": "Proficiente",
+      "multiplicador_do_bonus": 1,
+      "descricao_curta": "Soma o Bônus de Proficiência ao teste."
+    },
+    {
+      "id": "especialista",
+      "nome": "Especialização",
+      "multiplicador_do_bonus": 2,
+      "descricao_curta": "Dobra o Bônus de Proficiência para os testes que usem aquela perícia ou ferramenta (p. 361)."
+    }
+  ]
+}

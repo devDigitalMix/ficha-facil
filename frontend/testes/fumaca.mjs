@@ -192,6 +192,15 @@ try {
   passo(`histórico mostra: ${linha.split('\n')[0]}`)
 
   // -------------------------------------------------------------- escolhas
+  //
+  // O número de escolhas pendentes muda quando o dataset ganha regra (os idiomas da
+  // criação, por exemplo). O teste conta quantas HÁ e cobra que caia uma — o que
+  // interessa é responder tirar do checklist, não o total ser 10.
+  const quantasEscolhas = async () => {
+    const t = await pagina.getByRole('button', { name: /^Escolhas/ }).innerText()
+    return Number(/\((\d+)\)/.exec(t)?.[1] ?? 0)
+  }
+  const antesDeResponder = await quantasEscolhas()
   await pagina.getByRole('button', { name: /^Escolhas/ }).click()
   const pericia = pagina.locator('.painel', { hasText: 'Escolha uma perícia' }).first()
 
@@ -208,8 +217,9 @@ try {
 
   await opcao.click()
   await pericia.getByRole('button', { name: 'Confirmar' }).click()
-  await pagina.getByRole('button', { name: /^Escolhas \(9\)$/ }).waitFor({ timeout: 10_000 })
-  passo('respondeu uma escolha; o checklist caiu de 10 para 9')
+  await pagina.getByRole('button', { name: new RegExp(`^Escolhas \\(${antesDeResponder - 1}\\)$`) })
+    .waitFor({ timeout: 10_000 })
+  passo(`respondeu uma escolha; o checklist caiu de ${antesDeResponder} para ${antesDeResponder - 1}`)
 
   // A distribuição do antecedente: dois passos, e o segundo só existe depois do
   // primeiro. É o caso que a tela genérica de "escolha N de uma lista" não cobre.
@@ -218,7 +228,8 @@ try {
   await aumento.getByLabel('+2 em').selectOption('SAB')
   await aumento.getByLabel('+1 em').selectOption('INT')
   await aumento.getByRole('button', { name: 'Confirmar' }).click()
-  await pagina.getByRole('button', { name: /^Escolhas \(8\)$/ }).waitFor({ timeout: 10_000 })
+  await pagina.getByRole('button', { name: new RegExp(`^Escolhas \\(${antesDeResponder - 2}\\)$`) })
+    .waitFor({ timeout: 10_000 })
   passo('distribuiu o aumento do antecedente (+2 SAB, +1 INT)')
 
   // ------------------------------------------------- o Mago: livro e prévia
@@ -253,6 +264,10 @@ try {
 
   // A prévia: marcar o talento mostra, ali mesmo, o que ele vai pedir.
   const talento = pagina.locator('.painel', { hasText: 'talento' }).first()
+  // O rótulo da própria escolha, para reencontrá-la depois de gravar. Procurar por
+  // "Iniciado em Magia" não serve mais: desde que as opções avisam "já tem por…",
+  // esse texto aparece em qualquer painel de magia que o talento já tenha dado.
+  const rotuloDoTalento = await talento.locator('h2').first().innerText()
   await talento.locator('.opcao', { hasText: 'Iniciado em Magia' }).first().click()
   await talento.locator('.aninhado').first().waitFor({ timeout: 10_000 })
   const abre = await talento.locator('.aninhado h2').allInnerTexts()
@@ -277,15 +292,87 @@ try {
     throw new Error(`não deu para completar o talento na tela: ${await confirmar.innerText()}`)
   }
   await confirmar.click()
-  // Some o painel que oferecia o talento. Os outros que falam em "talento" no
-  // rótulo são as sub-escolhas dele, que continuam legítimas: o que a prévia tinha
-  // revelado até o clique foi gravado junto, e o que sobrou virou pendência normal.
+  // Some o painel que oferecia o talento. As sub-escolhas dele continuam legítimas:
+  // o que a prévia tinha revelado até o clique foi gravado junto, e o que sobrou
+  // virou pendência normal.
   await pagina
-    .locator('.painel', { hasText: 'Iniciado em Magia' })
+    .locator('.painel')
+    .filter({ has: pagina.getByRole('heading', { name: rotuloDoTalento, exact: true }) })
     .first().waitFor({ state: 'detached', timeout: 10_000 })
   passo('talento e sub-escolhas gravados de uma vez só')
 
+  // ------------------------------------------------- conjurar, e ver que conjurou
+  // As duas queixas do dia 4: "clico em usar num truque e não fala nada" e "quero
+  // os números já calculados, não '+ mod SAB'".
+  await pagina.getByRole('button', { name: 'Ficha' }).click()
+  const painelDeMagias = pagina.locator('.painel', { hasText: 'Magias' }).first()
+  await painelDeMagias.locator('.magia').first().waitFor({ timeout: 10_000 })
+
+  const comNumeros = await painelDeMagias.locator('.numeros-de-magia').allInnerTexts()
+  const jogaveis = comNumeros.filter((t) => /\d/.test(t))
+  if (!jogaveis.length) throw new Error('nenhuma magia trouxe número para jogar')
+  passo(`linha de mesa pronta: ${jogaveis[0]}`)
+
+  const truque = painelDeMagias.locator('.magia', { hasText: 'truque' }).first()
+  const usar = (await truque.count())
+    ? truque.getByRole('button', { name: /^usar/ })
+    : painelDeMagias.locator('.magia').first().getByRole('button', { name: /^usar/ })
+  await usar.click()
+  await pagina.locator('.aviso-de-acao').waitFor({ timeout: 10_000 })
+  const feedback = await pagina.locator('.aviso-de-acao').innerText()
+  passo(`usar deu resposta na tela: ${feedback}`)
+
+  await pagina.getByRole('button', { name: 'Histórico' }).click()
+  await pagina.getByText(/conjurou|lançou o truque/).first().waitFor({ timeout: 10_000 })
+  passo('e a linha entrou no histórico')
+
+  // ------------------------------------------------ inventário: pegar e equipar
+  // O escudo é o caso que prova a corrente inteira: a tela manda estado, o motor
+  // recalcula, e a CA lá em cima muda sem que esta tela saiba o que um escudo faz.
+  // O rótulo é exato: 'CA' casaria também com 'CAR' na lista de atributos.
+  const numeroDaCA = async () =>
+    Number(await pagina.locator('.numero')
+      .filter({ has: pagina.locator('.rotulo', { hasText: /^CA$/ }) })
+      .locator('.valor').first().innerText())
+
+  await pagina.getByRole('button', { name: 'Ficha' }).click()
+  const inventario = pagina.locator('.painel', { hasText: 'Inventário' }).first()
+  await inventario.waitFor({ timeout: 10_000 })
+  const caAntes = await numeroDaCA()
+
+  await inventario.getByLabel('Adicionar item').fill('escudo')
+  await inventario.locator('.opcao', { hasText: 'Escudo' }).first().click()
+  const linhaDoEscudo = inventario.locator('.item', { hasText: 'Escudo' }).first()
+  await linhaDoEscudo.waitFor({ timeout: 10_000 })
+  passo('pegou o escudo: entrou no inventário')
+
+  await linhaDoEscudo.getByRole('button', { name: 'equipar' }).click()
+  for (let i = 0; i < 20 && (await numeroDaCA()) === caAntes; i++) {
+    await pagina.waitForTimeout(250)
+  }
+  const caDepois = await numeroDaCA()
+  if (caDepois <= caAntes) throw new Error(`a CA não subiu ao equipar: ${caAntes} → ${caDepois}`)
+  passo(`equipou e a CA subiu: ${caAntes} → ${caDepois}`)
+
+  // ------------------------------------------------------ perícias e salvaguardas
+  await pagina.getByRole('button', { name: 'Detalhes' }).click()
+  const pericias = pagina.locator('.painel', { hasText: 'Perícias' }).first()
+  await pericias.locator('.linha-de-pericia').first().waitFor({ timeout: 10_000 })
+  const quantasPericias = await pericias.locator('.linha-de-pericia').count()
+  if (quantasPericias < 18) throw new Error(`só ${quantasPericias} perícias na ficha`)
+
+  const arcanismo = pericias.locator('.linha-de-pericia', { hasText: 'Arcanismo' }).first()
+  const valor = await arcanismo.locator('strong').innerText()
+  await arcanismo.click()
+  const conta = await pericias.locator('.proveniencia').first().innerText()
+  passo(`Arcanismo ${valor} — e a conta aparece: ${conta}`)
+
+  const salvas = pagina.locator('.painel', { hasText: 'Salvaguardas' }).first()
+  if ((await salvas.locator('.numero').count()) !== 6) throw new Error('faltam salvaguardas')
+  passo('as seis salvaguardas na tela')
+
   // ---------------------------------------------------------------- sessão
+  await pagina.getByRole('button', { name: 'Ficha' }).click()
   await pagina.getByRole('button', { name: '← meus personagens' }).click()
   await pagina.getByText('Vesna').click()
   await pagina.getByRole('heading', { name: 'Vesna' }).waitFor({ timeout: 10_000 })

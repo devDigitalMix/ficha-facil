@@ -160,3 +160,41 @@ label > span { display: block; font-size: 13px; color: var(--fraco); margin-bott
 .historico .quando { color: var(--fraco); font-size: 12px; }
 
 .vazio { color: var(--fraco); text-align: center; padding: 28px 12px; font-size: 14px; }
+
+/* A conta que se abre: "PV 12 = 11 (nível 1) + 1 (característica)" e, embaixo,
+   de que o 11 é feito. */
+.detalhe-parcelas {
+  list-style: none; margin: 4px 0 0; padding: 0 0 0 10px;
+  border-left: 2px solid var(--borda); font-size: 12px; color: var(--fraco);
+}
+.detalhe-parcelas li { padding: 1px 0; }
+
+/* ------------------------------------------------------------- magias
+   A linha de mesa: nome em cima, números embaixo, e o botão de usar à direita. */
+.magia { padding: 8px 0; border-top: 1px solid var(--borda); }
+.linha-de-magia {
+  border: none; background: none; color: inherit; font: inherit; text-align: left;
+  padding: 0; cursor: pointer; display: block; flex: 1; min-width: 0;
+}
+.numeros-de-magia { display: block; font-size: 12px; color: var(--fraco); margin-top: 2px; }
+.linha-de-magia[aria-expanded='true'] .numeros-de-magia { color: var(--realce); }
+
+/* O que acabou de acontecer. Some sozinho: é feedback, não estado. */
+.aviso-de-acao {
+  background: color-mix(in srgb, var(--realce) 14%, var(--painel));
+  border: 1px solid color-mix(in srgb, var(--realce) 40%, transparent);
+  border-radius: 8px; padding: 8px 10px; margin: 0 0 10px; font-size: 13px;
+  animation: sumir 4s forwards;
+}
+@keyframes sumir { 0%, 70% { opacity: 1 } 100% { opacity: 0 } }
+
+/* ------------------------------------------------- perícias e inventário */
+.linha-de-pericia {
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+  border: none; background: none; color: inherit; font: inherit; cursor: pointer;
+  padding: 7px 0; border-top: 1px solid var(--borda); text-align: left;
+}
+.linha-de-pericia .proficiente { color: var(--realce); font-weight: 600; }
+.numero.proficiente { border-color: color-mix(in srgb, var(--realce) 50%, transparent); }
+
+.item { padding: 8px 0; border-top: 1px solid var(--borda); }

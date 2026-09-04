@@ -133,6 +133,7 @@ FILTROS_DE_RUNTIME = {
     'exceto',                          # exclusão declarada na própria escolha
     'alguma',                          # árvore booleana dentro do filtro
     'id',                              # seleção direta por id
+    'sem_proficiencia_em_salvaguarda', # Resiliente (p. 203): depende do personagem
 }
 
 
@@ -371,12 +372,16 @@ def checar_efeito(ctx, e, dentro_de_escolha=None):
             elif (de.get('todo_o_catalogo') and isinstance(e.get('quantidade'), int)
                   and e['quantidade'] > len(CHAVES[cat])):
                 erros.append(f"[quantidade > opções] {ctx}: {e.get('quantidade')} de {len(CHAVES[cat])} em '{cat}'")
-            if 'filtro' in de:
-                for k in chaves_de_filtro_desconhecidas(cat, de['filtro']):
+            # `filtro_adicional` é filtro como qualquer outro, e ficava de fora:
+            # foi por essa fresta que passou o `ja_proficiente` da Especialização do
+            # Ladino — uma chave que não existe, que casava com nada e deixava a
+            # escolha com ZERO opções sem uma palavra de aviso.
+            for onde in ('filtro', 'filtro_adicional'):
+                for k in chaves_de_filtro_desconhecidas(cat, de.get(onde) or {}):
                     erros.append(
-                        f"[chave de filtro desconhecida] {ctx}: '{k}' não é campo de "
-                        f"'{cat}' nem filtro de runtime declarado. Se o motor resolve, "
-                        f"declare em FILTROS_DE_RUNTIME; se não, é erro de digitação.")
+                        f"[chave de filtro desconhecida] {ctx}: '{k}' em '{onde}' não é "
+                        f"campo de '{cat}' nem filtro de runtime declarado. Se o motor "
+                        f"resolve, declare em FILTROS_DE_RUNTIME; se não, é erro de digitação.")
             # regra 5 do esquema: filtro não pode resolver para conjunto vazio
             if 'filtro' in de and not de.get('pendente'):
                 n, motivo = resolver_filtro(cat, de['filtro'])
@@ -858,6 +863,10 @@ CATALOGOS_DE_VOCABULARIO = {
     'itens', 'listas_de_iniciado_em_magia', 'listas_de_magia',
     'magias', 'manifestacoes_da_ordem', 'modos_de_aumento_de_atributo',
     'modos_de_aumento_do_antecedente',
+    # Nível de domínio não é opção que o jogador escolhe: é quanto o Bônus de
+    # Proficiência entra num teste (p. 361). Vive em dado para o motor não trazer
+    # "especialista dobra" escrito dentro de si.
+    'niveis_de_dominio',
     'pericias', 'riscos', 'sentidos', 'tamanhos',
     'tipos_de_criatura', 'tipos_de_dano', 'tipos_de_descanso',
     'tipos_de_deslocamento', 'tipos_de_efeito',
@@ -1613,6 +1622,64 @@ def checar_tem_o_que_escolher(ctx, obj):
 for cid, c in list(catalogos.items()) + list(colecoes.items()):
     for i in c['itens']:
         checar_tem_o_que_escolher(f"{cid}/{i['id']}", i)
+
+
+# ------------------- todo efeito nomeado resolve, e aqui (fase 23)
+# O João montou um Bruxo e um Bardo e os dois derrubaram a montagem inteira:
+# "efeito nomeado 'pacto_da_lamina' não existe em 'invocacoes_misticas'". A varredura
+# achou 15 lugares, não dois — quase toda classe. A causa era sempre a mesma: a
+# escolha tira as opções de um catálogo e o `aplicar_efeito_nomeado` não diz de qual,
+# então o coletor procura em `efeitos_nomeados` do dono, que nem existe.
+#
+# Esta é a checagem que faltava, e ela é ESTÁTICA: dá para responder sem personagem
+# nenhum. Deixar isso para o teste de tela achar significa achar uma classe por vez,
+# e só depois de alguém jogar com ela.
+def checar_efeito_nomeado(ctx, no, dono, catalogo_da_escolha=None):
+    if isinstance(no, list):
+        for x in no:
+            checar_efeito_nomeado(ctx, x, dono, catalogo_da_escolha)
+        return
+    if not isinstance(no, dict):
+        return
+
+    if no.get('tipo') == 'aplicar_efeito_nomeado':
+        chave = no.get('chave')
+        cat = no.get('catalogo')
+        nomeados = dono.get('efeitos_nomeados') or {}
+        if cat:
+            fonte = catalogos.get(cat, colecoes.get(cat))
+            if fonte is None:
+                erros.append(f"[catálogo inexistente] {ctx}: aplicar_efeito_nomeado aponta "
+                             f"para '{cat}'")
+            else:
+                itens = {i['id']: i for i in fonte.get('itens', [])}
+                alvos = list(itens) if chave == PLACEHOLDER else [chave]
+                for a in alvos:
+                    if a not in itens:
+                        erros.append(f"[efeito nomeado inexistente] {ctx}: '{a}' não está "
+                                     f"em '{cat}'")
+                    elif not itens[a].get('efeitos'):
+                        erros.append(f"[efeito nomeado vazio] {ctx}: '{a}' de '{cat}' não "
+                                     f"traz efeitos para aplicar")
+        elif chave == PLACEHOLDER:
+            if not nomeados:
+                erros.append(f"[efeito nomeado sem onde resolver] {ctx}: a escolha oferece "
+                             f"itens de '{catalogo_da_escolha or '?'}' e o efeito não declara "
+                             f"catálogo, mas '{dono.get('id')}' não tem 'efeitos_nomeados'")
+        elif chave not in nomeados:
+            erros.append(f"[efeito nomeado inexistente] {ctx}: '{chave}' não está em "
+                         f"'efeitos_nomeados' de '{dono.get('id')}'")
+
+    proximo = catalogo_da_escolha
+    if no.get('tipo') == 'escolha':
+        proximo = (no.get('de') or {}).get('catalogo') or catalogo_da_escolha
+    for v in no.values():
+        checar_efeito_nomeado(ctx, v, dono, proximo)
+
+
+for cid, c in list(catalogos.items()) + list(colecoes.items()):
+    for i in c['itens']:
+        checar_efeito_nomeado(f"{cid}/{i['id']}", i.get('efeitos'), i, cid)
 
 
 # --------------------------- toda fonte é alimentada por alguém (fase 21)

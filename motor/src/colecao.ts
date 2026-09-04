@@ -96,6 +96,8 @@ type Entidade = {
   efeitos_nomeados?: Record<string, Nomeados>
   /** Característica que a classe concede mais de uma vez (o Aumento no Valor de Atributo). */
   repetivel?: boolean
+  /** 'todo_personagem' é o que vem da criação (cap. 2), e não de espécie ou classe. */
+  escopo?: string
 }
 
 function listaDeEfeitos(n: Nomeados | undefined): Efeito[] | undefined {
@@ -154,7 +156,14 @@ class Coletor {
     dono?: Entidade,
     sufixo = '',
   ): void {
-    for (const e of efeitos ?? []) {
+    for (const cru of efeitos ?? []) {
+      // `$escolhido_em:<escolha>` é o dado apontando para o que o jogador escolheu
+      // em OUTRA escolha. Os filtros já sabiam resolver isso; os efeitos, não — e o
+      // `conjurar_sem_espaco` do Iniciado em Magia, que diz "esta magia, a que você
+      // escolheu ali, uma vez por Descanso Longo", chegava com um cifrão no lugar do
+      // id e era descartado. Era por isso que a magia do talento cobrava espaço.
+      const e = this.resolverReferencias(cru, sufixo)
+
       if (e.tipo === 'escolha') {
         this.resolverEscolha(e, origem, portas, dono, sufixo)
         continue
@@ -242,6 +251,36 @@ class Coletor {
         this.subclasse(e.chave, portas)
       }
     }
+  }
+
+  /**
+   * Troca `$escolhido_em:<id>` pelo que foi escolhido naquela escolha.
+   *
+   * Escolha ainda não respondida fica como está: o efeito então não se aplica, e
+   * aparece em `nao_consumidos` — que é a verdade, e não um id inventado.
+   */
+  private resolverReferencias(e: Efeito, sufixo = ''): Efeito {
+    const troca = (v: unknown): unknown => {
+      if (typeof v === 'string' && v.startsWith('$escolhido_em:')) {
+        const alvo = v.slice('$escolhido_em:'.length)
+        // O mesmo talento vindo de duas portas tem escolhas qualificadas
+        // (`..._magia_1@humano_versatil`). A referência é escrita sem o sufixo, e
+        // tem de achar a DESTA porta — senão o Iniciado em Magia do Humano aponta
+        // para a magia que o Acólito escolheu.
+        const resolvida =
+          (sufixo ? this.escolhaResolvida(`${alvo}${sufixo}`) : undefined) ??
+          this.escolhaResolvida(alvo)
+        if (resolvida === undefined) return v
+        const ids = normalizarEscolhidos(resolvida)
+        return ids.length === 1 ? ids[0] : ids
+      }
+      if (Array.isArray(v)) return v.map(troca)
+      if (v && typeof v === 'object') {
+        return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, troca(x)]))
+      }
+      return v
+    }
+    return troca(e) as Efeito
   }
 
   private resolverEscolha(
@@ -434,6 +473,16 @@ export function coletar(c: Construcao): Colecao {
   const col = new Coletor(c, nivel)
   const CARS = caracteristicas()
   const carPorId = (id: string, origem: string) => porId(CARS, id, `caracteristicas.json (${origem})`)
+
+  // --- o que TODO personagem tem
+  //
+  // O capítulo 2 concede coisas que não são de espécie, antecedente nem classe: todo
+  // personagem sabe o Comum e mais dois idiomas (p. 37). Antes disso não havia onde
+  // pendurar uma regra de criação — e o personagem nascia sem falar nada, enquanto a
+  // escolha "mais um idioma" do Ladino oferecia o Comum como novidade.
+  for (const car of CARS.filter((x) => x.escopo === 'todo_personagem')) {
+    col.coletarComNomeados(car, `criação do personagem / ${car.id}`)
+  }
 
   // --- espécie
   const esp = porId(catalogo<Especie>('especies').itens, c.especie, 'catalogos/especies.json')

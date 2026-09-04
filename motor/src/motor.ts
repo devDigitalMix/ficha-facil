@@ -44,7 +44,11 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
   if (!vocab) vocab = vocabularioDeRuntime()
 
   const colecao = coletar(construcao)
-  const equipado = construcao.equipamento_equipado ?? []
+  // O que está na mão é ESTADO, não construção: troca-se de arma no meio da luta, e
+  // isso não muda quem o personagem é. `construcao.equipamento_equipado` continua
+  // valendo para os personagens de ouro e para quem foi criado antes de existir
+  // inventário — quando o estado diz, é ele que manda.
+  const equipado = estado.equipado ?? construcao.equipamento_equipado ?? []
   const { contexto, nao_consumidos } = montarContexto(
     colecao,
     construcao.atributos_base,
@@ -75,7 +79,16 @@ export function montar(construcao: Construcao, estado: Estado = {}): Resultado {
           ? undefined
           : (resolvida as { escolhido?: string }).escolhido
     if (valor === undefined) continue
-    if (nome) variaveis[nome] = valor
+    // O mesmo talento vindo de duas portas abre escolhas qualificadas
+    // (`iniciado_em_magia_lista@humano_versatil`), mas a VARIÁVEL que elas definem
+    // tinha nome único — e a segunda cópia sobrescrevia a primeira. O Humano
+    // escolhia a lista de Mago e os truques ofertados eram os do Acólito.
+    const sufixo = id.includes('@') ? id.slice(id.indexOf('@')) : ''
+    if (nome) {
+      variaveis[`${nome}${sufixo}`] = valor
+      // sem sufixo o nome cru continua valendo, para quem só tem uma cópia
+      if (!sufixo || variaveis[nome] === undefined) variaveis[nome] = valor
+    }
     variaveis[id] = valor
     variaveis[`escolhido_em:${id}`] = valor
   }

@@ -91,6 +91,8 @@ export type Retrato = {
   pv_maximo: number
   /** Espaços por círculo que o personagem TEM (não os gastos). */
   espacos: Record<string, number>
+  /** Nome de cada item, para a linha do histórico não dizer `espada_longa`. */
+  nomes_de_item?: Record<string, string>
 }
 
 /** Contexto opcional de quem pediu a mudança: hoje, qual magia foi conjurada. */
@@ -163,6 +165,37 @@ export function aoMudarEstado(
         ...(para > de && motivo?.magia_id
           ? { magia_id: motivo.magia_id, magia_nome: motivo.magia_nome }
           : {}),
+      })
+    }
+  }
+
+  // ------------------------------------------------------------ inventário
+  if (depois.inventario !== undefined) {
+    const iAntes = mapa(antes.inventario)
+    const iDepois = mapa(depois.inventario)
+    for (const item of Object.keys({ ...iAntes, ...iDepois }).sort()) {
+      const de = numero(iAntes[item])
+      const para = numero(iDepois[item])
+      if (de === para) continue
+      eventos.push({
+        tipo: para > de ? 'item_ganho' : 'item_perdido',
+        item_id: item,
+        item_nome: retrato.nomes_de_item?.[item],
+        quantidade: Math.abs(para - de),
+        quantidade_depois: para,
+      })
+    }
+  }
+
+  if (depois.equipado !== undefined) {
+    const eAntes = new Set((antes.equipado as string[] | undefined) ?? [])
+    const eDepois = new Set((depois.equipado as string[] | undefined) ?? [])
+    for (const item of [...eDepois].filter((x) => !eAntes.has(x)).sort()) {
+      eventos.push({ tipo: 'item_equipado', item_id: item, item_nome: retrato.nomes_de_item?.[item] })
+    }
+    for (const item of [...eAntes].filter((x) => !eDepois.has(x)).sort()) {
+      eventos.push({
+        tipo: 'item_desequipado', item_id: item, item_nome: retrato.nomes_de_item?.[item],
       })
     }
   }

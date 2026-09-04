@@ -109,6 +109,20 @@ ORDEM = [
      'fase 16: nove talentos que pediam escolha entre uma opção só'),
     ('gerar_ajustes_nomes_de_magia.py',
      'fase 19: quatro magias com o nome diferente da entrada do capítulo 7'),
+    ('gerar_ajustes_efeito_nomeado.py',
+     'fase 23: 15 efeitos nomeados que não diziam de que catálogo vinham'),
+    ('gerar_ajustes_filtros_de_proficiencia.py',
+     'fase 23: três chaves de filtro inventadas, em nove escolhas'),
+    ('gerar_ajustes_idiomas.py',
+     'fase 23: escolher idioma não oferece o que já se fala'),
+    ('gerar_ajustes_espacos_de_magia.py',
+     'fase 23: espaços do Bardo e do Feiticeiro numa coluna por círculo'),
+    ('gerar_escala_dos_truques.py',
+     'fase 23: o dado do truque por nível, declarado em vez de em prosa'),
+    ('gerar_idiomas_iniciais.py',
+     'fase 24: Comum e mais dois idiomas, que todo personagem tem (p. 37)'),
+    ('gerar_niveis_de_dominio.py',
+     'fase 24: quanto vale proficiência e Especialização, declarado'),
     # fase 13 — vocabulário de runtime. A normalização reescreve o dado inteiro,
     # então é a ÚLTIMA de todas: qualquer gerador de conteúdo rodado depois dela
     # reintroduz o token antigo, e o validador acusa. A declaração vem em seguida,
@@ -214,6 +228,13 @@ def main():
         print(f"DIFERENTES EM CONTEÚDO ({len(conteudo)}):")
         for f in conteudo:
             print(f"   {f}")
+        # Diferença de conteúdo é FALHA, e não relatório. A conferência da raiz olha
+        # só o código de saída: com --comparar devolvendo 0 mesmo com três arquivos
+        # divergentes, ela dizia "19 de 19 passos limpos" enquanto o dado versionado
+        # já não era o que os geradores produzem. Um gerador novo que ninguém
+        # registrou passava despercebido exatamente assim.
+        if conteudo:
+            return 1
     return 0 if ok == len(resultados) else 1
 
 

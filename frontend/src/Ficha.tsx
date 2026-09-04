@@ -16,6 +16,8 @@ import { Historico } from './Historico.tsx'
 export function Ficha({ id, aoVoltar }: { id: string; aoVoltar: () => void }) {
   const [p, setP] = useState<Personagem>()
   const [erro, setErro] = useState('')
+  /** A última coisa que aconteceu, para o clique não sumir sem resposta. */
+  const [aviso, setAviso] = useState('')
   const [aba, setAba] = useState<'ficha' | 'detalhes' | 'escolhas' | 'historico'>('ficha')
   const [versaoDoHistorico, recarregarHistorico] = useState(0)
 
@@ -44,13 +46,28 @@ export function Ficha({ id, aoVoltar }: { id: string; aoVoltar: () => void }) {
    * Conjurar: gasta o espaço e diz QUAL magia foi, para o histórico não dizer só
    * "gastou um espaço de 3º".
    */
-  async function conjurar(magia: MagiaDaFicha, circulo: number) {
-    if (magia.circulo === 0) return // truque não gasta espaço
-    const gastos = p?.estado.espacos_gastos ?? {}
-    await mudarEstado({
-      espacos_gastos: { ...gastos, [circulo]: (gastos[circulo] ?? 0) + 1 },
-      motivo: { magia_id: magia.id },
-    })
+  /**
+   * Conjurar: a tela diz QUAL magia, e o servidor diz o que aquilo custou.
+   *
+   * Antes esta função gastava um espaço sempre — e saía cedo no truque, que é por
+   * que clicar em "usar" num truque não fazia absolutamente nada. Quem sabe se a
+   * magia custa espaço, um uso do talento ou nada é o motor, lendo o dataset.
+   */
+  async function conjurar(magia: MagiaDaFicha, comEspaco = false) {
+    setErro('')
+    try {
+      const r = await api.post<Personagem & { eventos?: { resumo: string }[] }>(
+        `/personagens/${id}/conjurar`,
+        { magia_id: magia.id, ...(comEspaco ? { com_espaco: true } : {}) },
+      )
+      setP((atual) => (atual ? { ...atual, estado: r.estado, ficha: r.ficha } : atual))
+      recarregarHistorico((v) => v + 1)
+      // O aviso é o feedback que faltava: truque não muda número nenhum na tela, e
+      // sem uma palavra o jogador não sabia se tinha clicado.
+      setAviso(r.eventos?.[0]?.resumo ?? `conjurou ${magia.nome}`)
+    } catch (e) {
+      setErro(e instanceof ErroDaApi ? e.message : 'não consegui conjurar')
+    }
   }
 
   /** Devolve o que o servidor disse ter voltado, para a tela poder mostrá-lo. */
@@ -97,6 +114,9 @@ export function Ficha({ id, aoVoltar }: { id: string; aoVoltar: () => void }) {
       </p>
 
       {erro && <p className="erro">{erro}</p>}
+      {aviso && (
+        <p className="aviso-de-acao" onAnimationEnd={() => setAviso('')}>{aviso}</p>
+      )}
       {p.aviso_de_versao && <p className="aviso">{p.aviso_de_versao}</p>}
       {p.erro_de_ficha && (
         <p className="erro">
@@ -127,8 +147,11 @@ export function Ficha({ id, aoVoltar }: { id: string; aoVoltar: () => void }) {
           <Numeros ficha={p.ficha} />
           <Espacos ficha={p.ficha} estado={p.estado} aoMudar={mudarEstado} />
           <Recursos ficha={p.ficha} estado={p.estado} aoMudar={mudarEstado} />
-          <Magias ficha={p.ficha} estado={p.estado} aoConjurar={conjurar} />
+          {/* Ataques antes das magias: a lista de magias fica comprida, e o ataque
+              é o que se procura mais vezes na mesa. */}
           <Ataques ficha={p.ficha} />
+          <Magias ficha={p.ficha} estado={p.estado} aoConjurar={conjurar} />
+          <Inventario estado={p.estado} aoMudar={mudarEstado} />
         </>
       )}
 
@@ -281,11 +304,24 @@ function Numeros({ ficha }: { ficha: NonNullable<Personagem['ficha']> }) {
  * estava presa dentro do painel dos Números.
  */
 function Proveniencia({ rotulo, resultado }: { rotulo: string; resultado: Resultado }) {
+  const soma = (p: { valor: number | string }) =>
+    (Number(p.valor) < 0 ? `− ${Math.abs(Number(p.valor))}` : `${p.valor}`)
+
   return (
-    <p className="proveniencia">
-      {rotulo} ={' '}
-      {resultado.parcelas.map((x) => `${x.valor} (${x.rotulo})`).join(' + ')}
-    </p>
+    <div className="proveniencia">
+      {rotulo} = {resultado.parcelas.map((x) => `${soma(x)} (${x.rotulo})`).join(' + ')}
+      {/* A parcela que é ela mesma uma conta se abre embaixo: "11 de PV do nível 1"
+          não responde por que são 11, e a pergunta era essa. */}
+      {resultado.parcelas.some((p) => p.parcelas?.length) && (
+        <ul className="detalhe-parcelas">
+          {resultado.parcelas.filter((p) => p.parcelas?.length).map((p) => (
+            <li key={p.rotulo}>
+              {p.rotulo}: {p.parcelas!.map((x) => `${soma(x)} (${x.rotulo})`).join(' + ')}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }
 
@@ -473,7 +509,7 @@ const ROTULO_DO_MODO: Record<string, string> = {
 function Magias({ ficha, estado, aoConjurar }: {
   ficha: NonNullable<Personagem['ficha']>
   estado: Estado
-  aoConjurar: (magia: MagiaDaFicha, circulo: number) => Promise<void>
+  aoConjurar: (magia: MagiaDaFicha, comEspaco?: boolean) => Promise<void>
 }) {
   const [detalhes, setDetalhes] = useState<Map<string, ItemDoCompendio>>()
   const [aberta, setAberta] = useState('')
@@ -487,70 +523,89 @@ function Magias({ ficha, estado, aoConjurar }: {
 
   if (!ficha.magias?.length) return null
   const gastos = estado.espacos_gastos ?? {}
+  const recursosGastos = estado.recursos_gastos ?? {}
   const espacos = ficha.conjuracao?.espacos ?? {}
 
   /** O menor círculo com espaço livre que ainda comporta a magia (p. 236). */
   function menorEspacoLivre(circulo: number): number | undefined {
-    for (let c = circulo; c <= 9; c++) {
+    for (let c = Math.max(1, circulo); c <= 9; c++) {
       const total = espacos[c] ?? 0
       if (total > (gastos[String(c)] ?? 0)) return c
     }
     return undefined
   }
 
+  /**
+   * O que o botão faz, e se ele pode.
+   *
+   * A tela NÃO decide o custo — ela lê o que o motor mandou em `custo` e traduz em
+   * um rótulo. Quando o uso de graça acabou e o livro deixa gastar espaço, o botão
+   * passa a oferecer o espaço, porque o motor disse que dá.
+   */
+  function botao(m: MagiaDaFicha): { texto: string; titulo: string; pode: boolean; comEspaco: boolean } {
+    if (!m.pronta_para_conjurar) {
+      return { texto: 'usar', titulo: 'esta magia ainda não está preparada', pode: false, comEspaco: false }
+    }
+    if (m.custo.tipo === 'nenhum' || m.custo.tipo === 'sem_espaco') {
+      return { texto: 'usar', titulo: `não gasta nada — ${m.custo.porque}`, pode: true, comEspaco: false }
+    }
+    if (m.custo.tipo === 'recurso') {
+      const custo = m.custo
+      const recurso = ficha.recursos?.find((r) => r.id === custo.recurso_id)
+      const restam = (recurso?.maximo ?? 0) - (recursosGastos[custo.recurso_id] ?? 0)
+      if (restam > 0) {
+        return {
+          texto: `usar (${restam} de graça)`,
+          titulo: `sem gastar espaço — ${custo.porque}`,
+          pode: true,
+          comEspaco: false,
+        }
+      }
+      const espaco = custo.tambem_com_espaco ? menorEspacoLivre(m.circulo) : undefined
+      return espaco
+        ? { texto: `usar (${espaco}º)`, titulo: `o uso de graça acabou; gasta um espaço de ${espaco}º`, pode: true, comEspaco: true }
+        : { texto: 'sem uso', titulo: 'o uso de graça volta no descanso', pode: false, comEspaco: false }
+    }
+    const espaco = menorEspacoLivre(m.custo.circulo_minimo)
+    return espaco
+      ? { texto: `usar (${espaco}º)`, titulo: `gasta um espaço de ${espaco}º`, pode: true, comEspaco: false }
+      : { texto: 'sem espaço', titulo: 'nenhum espaço livre que comporte esta magia', pode: false, comEspaco: false }
+  }
+
   return (
     <div className="painel">
       <h2>Magias</h2>
       {ficha.magias.map((m) => {
-        const d = detalhes?.get(m.id)
-        const espaco = m.circulo === 0 ? undefined : menorEspacoLivre(m.circulo)
-        const podeConjurar = m.pronta_para_conjurar && (m.circulo === 0 || espaco !== undefined)
+        const b = botao(m)
         return (
-          <div key={m.id} style={{ padding: '8px 0', borderTop: '1px solid var(--borda)' }}>
+          <div key={m.id} className="magia">
             <div className="espalha">
-              <span
-                style={{ cursor: 'pointer' }}
+              <button
+                className="linha-de-magia"
                 onClick={() => setAberta(aberta === m.id ? '' : m.id)}
+                aria-expanded={aberta === m.id}
               >
                 <strong>{m.nome}</strong>
-                <br />
-                <span className="fraco">
-                  {m.circulo === 0 ? 'truque' : `${m.circulo}º círculo`}
-                  {' · '}{ROTULO_DO_MODO[m.modo] ?? m.modo}
-                  {' · '}{m.origem}
-                  {m.nao_conta_para_o_limite && ' · não ocupa vaga'}
-                </span>
-              </span>
-              <button
-                disabled={!podeConjurar}
-                onClick={() => void aoConjurar(m, espaco ?? 0)}
-                title={
-                  m.pronta_para_conjurar
-                    ? m.circulo === 0 ? 'truque não gasta espaço' : `gasta um espaço de ${espaco}º`
-                    : 'esta magia ainda não está preparada'
-                }
-              >
-                {m.circulo === 0 ? 'usar' : espaco ? `usar (${espaco}º)` : 'sem espaço'}
+                <span className="numeros-de-magia">{numerosDeMesa(m).join(' · ')}</span>
+              </button>
+              <button disabled={!b.pode} title={b.titulo} onClick={() => void aoConjurar(m, b.comEspaco)}>
+                {b.texto}
               </button>
             </div>
             {aberta === m.id && (
-              <p className="descricao" style={{ marginTop: 6 }}>
-                {d?.descricao_curta ?? 'sem resumo no compêndio.'}
-                {d && (
-                  <>
-                    <br />
-                    <span className="fraco">
-                      {[
-                        d.tempo_de_conjuracao?.texto, d.alcance?.texto, d.duracao?.texto,
-                        d.concentracao ? 'concentração' : undefined,
-                        d.ritual ? 'ritual' : undefined,
-                        d.dano?.formula_dado
-                          ? `${d.dano.formula_dado} ${d.dano.tipo_dano ?? ''}`.trim()
-                          : undefined,
-                      ].filter(Boolean).join(' · ')}
-                    </span>
-                  </>
-                )}
+              <p className="descricao">
+                {detalhes?.get(m.id)?.descricao_curta ?? 'sem resumo no compêndio.'}
+                <br />
+                <span className="fraco">
+                  {[
+                    m.circulo === 0 ? 'truque' : `${m.circulo}º círculo`,
+                    ROTULO_DO_MODO[m.modo] ?? m.modo,
+                    m.origem,
+                    m.jogo.tempo_de_conjuracao,
+                    m.jogo.duracao,
+                    m.nao_conta_para_o_limite ? 'não ocupa vaga' : undefined,
+                  ].filter(Boolean).join(' · ')}
+                </span>
               </p>
             )}
           </div>
@@ -560,12 +615,236 @@ function Magias({ ficha, estado, aoConjurar }: {
   )
 }
 
+/**
+ * A linha que serve na mesa: já calculada, sem "+ mod SAB".
+ *
+ * Tudo aqui vem pronto do motor (`magia.jogo`) — a tela só junta com barras. Era a
+ * queixa: "eu quero o nome, o número e tipo de dados que lanço para acertar, o mesmo
+ * para cura ou dano, a salvaguarda que ele usa se tiver, e a distância e área".
+ */
+function numerosDeMesa(m: MagiaDaFicha): string[] {
+  const j = m.jogo
+  const partes: (string | undefined)[] = [
+    j.jogada_de_ataque
+      ? `${j.jogada_de_ataque.valor >= 0 ? '+' : ''}${j.jogada_de_ataque.valor}` +
+        `${j.ataque === 'corpo_a_corpo' ? ' corpo a corpo' : ''}`
+      : undefined,
+    j.salvaguarda ? `CD ${j.salvaguarda.cd} ${j.salvaguarda.atributo}` : undefined,
+    j.dano ? `${j.dano.formula}${j.dano.tipo ? ` ${j.dano.tipo.replace(/_/g, ' ')}` : ''}` : undefined,
+    j.cura ? `cura ${j.cura.formula}` : undefined,
+    j.alcance,
+    j.area,
+    j.concentracao ? 'concentração' : undefined,
+    j.ritual ? 'ritual' : undefined,
+  ]
+  const numeros = partes.filter(Boolean) as string[]
+  // Magia sem número nenhum (Luz, Taumaturgia) não fica com a linha vazia: diz o
+  // que dá para dizer dela.
+  return numeros.length ? numeros : [m.circulo === 0 ? 'truque' : `${m.circulo}º círculo`]
+}
+
 // -------------------------------------------------------------------- detalhes
 
 const NOME_DA_FAMILIA: Record<string, string> = {
   caracteristica: 'Características',
   traco: 'Traços de espécie',
   talento: 'Talentos',
+}
+
+const sinal = (n: number) => `${n >= 0 ? '+' : ''}${n}`
+
+// ----------------------------------------------------------------- inventário
+
+/**
+ * O que o personagem carrega, e o que está na mão.
+ *
+ * A tela não sabe o que uma armadura faz: ela manda o estado, e o motor devolve a
+ * ficha com a CA já recalculada. Por isso equipar um escudo aqui muda o número lá em
+ * cima sem uma linha de regra neste arquivo.
+ *
+ * O inventário inteiro vai a cada mudança, como os espaços gastos: é um mapa, e
+ * mandar o mapa todo evita que duas telas discordem sobre o que sumiu.
+ */
+function Inventario({ estado, aoMudar }: {
+  estado: Estado
+  aoMudar: (m: Estado) => Promise<void>
+}) {
+  const [itens, setItens] = useState<Map<string, ItemDoCompendio>>()
+  const [busca, setBusca] = useState('')
+  const [aberto, setAberto] = useState('')
+
+  useEffect(() => {
+    let vivo = true
+    void lerCatalogo('itens').then((m) => { if (vivo) setItens(m) })
+    return () => { vivo = false }
+  }, [])
+
+  const inventario = estado.inventario ?? {}
+  const equipado = new Set(estado.equipado ?? [])
+  const carregados = Object.entries(inventario).filter(([, n]) => n > 0)
+
+  const mudarQuantidade = (id: string, delta: number) => {
+    const novo = Math.max(0, (inventario[id] ?? 0) + delta)
+    const proximo = { ...inventario, [id]: novo }
+    if (novo === 0) {
+      delete proximo[id]
+      // Largar o que está na mão tira da mão junto: o backend recusaria, e recusar
+      // aqui uma coisa que o jogador claramente quis é pior que fazer as duas.
+      if (equipado.has(id)) {
+        void aoMudar({ inventario: proximo, equipado: [...equipado].filter((x) => x !== id) })
+        return
+      }
+    }
+    void aoMudar({ inventario: proximo })
+  }
+
+  const alternarEquipado = (id: string) => {
+    const proximo = new Set(equipado)
+    if (proximo.has(id)) proximo.delete(id)
+    else proximo.add(id)
+    void aoMudar({ equipado: [...proximo] })
+  }
+
+  const achados = busca.trim().length < 2 || !itens
+    ? []
+    : [...itens.values()]
+        .filter((i) => (i.nome ?? i.id).toLowerCase().includes(busca.trim().toLowerCase()))
+        .slice(0, 8)
+
+  return (
+    <div className="painel">
+      <h2>Inventário</h2>
+
+      <label>
+        <span>Adicionar item</span>
+        <input
+          value={busca} placeholder="espada, corda, tocha…"
+          onChange={(e) => setBusca(e.target.value)}
+        />
+      </label>
+      {achados.length > 0 && (
+        <div className="opcoes" style={{ marginBottom: 10 }}>
+          {achados.map((i) => (
+            <button
+              key={i.id} className="opcao"
+              onClick={() => { mudarQuantidade(i.id, 1); setBusca('') }}
+            >
+              <strong>{i.nome ?? i.id}</strong>
+              <div className="etiquetas">
+                {[i.categoria, i.grupo, typeof i.peso_kg === 'number' ? `${i.peso_kg} kg` : undefined]
+                  .filter(Boolean).join(' · ')}
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {!carregados.length && <p className="vazio">Nada no inventário ainda.</p>}
+
+      {carregados.map(([id, n]) => {
+        const item = itens?.get(id)
+        const equipavel = item?.categoria === 'arma' || item?.categoria === 'armadura'
+        return (
+          <div key={id} className="item">
+            <div className="espalha">
+              <button className="linha-de-magia" onClick={() => setAberto(aberto === id ? '' : id)}>
+                <strong>{item?.nome ?? id}</strong>
+                <span className="numeros-de-magia">
+                  {[
+                    n > 1 ? `${n}×` : undefined,
+                    item?.categoria?.replace(/_/g, ' '),
+                    equipado.has(id) ? 'equipado' : undefined,
+                  ].filter(Boolean).join(' · ')}
+                </span>
+              </button>
+              <span className="linha">
+                <button onClick={() => mudarQuantidade(id, -1)} aria-label={`tirar ${item?.nome ?? id}`}>−</button>
+                <button onClick={() => mudarQuantidade(id, +1)} aria-label={`pôr mais ${item?.nome ?? id}`}>+</button>
+                {equipavel && (
+                  <button
+                    aria-pressed={equipado.has(id)}
+                    onClick={() => alternarEquipado(id)}
+                  >
+                    {equipado.has(id) ? 'guardar' : 'equipar'}
+                  </button>
+                )}
+              </span>
+            </div>
+            {aberto === id && (
+              <p className="descricao">{item?.descricao_curta ?? 'sem resumo no compêndio.'}</p>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+/**
+ * As salvaguardas, todas as seis.
+ *
+ * Todas, e não só as proficientes: a mesa pede salvaguarda de Constituição para
+ * manter concentração mesmo sem proficiência, e ter de fazer a conta de cabeça no
+ * meio da luta é exatamente o que a ficha existe para evitar.
+ */
+function Salvaguardas({ ficha }: { ficha: NonNullable<Personagem['ficha']> }) {
+  return (
+    <div className="painel">
+      <h2>Salvaguardas</h2>
+      <div className="numeros">
+        {Object.entries(ficha.salvaguardas).map(([a, v]) => {
+          const proficiente = ficha.modificadores[a] !== v
+          return (
+            <div className={`numero ${proficiente ? 'proficiente' : ''}`} key={a}>
+              <div className="valor">{sinal(v)}</div>
+              <div className="rotulo">{a}</div>
+            </div>
+          )
+        })}
+      </div>
+      <p className="fraco" style={{ fontSize: 12, margin: '6px 0 0' }}>
+        Em destaque, as que somam o Bônus de Proficiência.
+      </p>
+    </div>
+  )
+}
+
+/**
+ * As perícias, com o número pronto.
+ *
+ * "Poder ver o número que tenho em arcanismo" era a queixa, e a lista mostra as 18
+ * — não só as treinadas —, porque é justamente na que não se tem proficiência que a
+ * conta não é óbvia. Tocar numa mostra de onde vem o número.
+ */
+function Pericias({ ficha }: { ficha: NonNullable<Personagem['ficha']> }) {
+  const [aberta, setAberta] = useState('')
+  const itens = Object.entries(ficha.testes_de_pericia ?? {})
+    .sort(([, a], [, b]) => a.nome.localeCompare(b.nome, 'pt-BR'))
+
+  if (!itens.length) return null
+  return (
+    <div className="painel">
+      <h2>Perícias</h2>
+      {itens.map(([id, t]) => (
+        <div key={id}>
+          <button
+            className="linha-de-pericia" onClick={() => setAberta(aberta === id ? '' : id)}
+            aria-expanded={aberta === id}
+          >
+            <span className={t.dominio !== 'nenhum' ? 'proficiente' : ''}>
+              {t.nome} <span className="fraco">{t.atributo}</span>
+            </span>
+            <strong>{sinal(t.valor)}</strong>
+          </button>
+          {aberta === id && (
+            <p className="proveniencia">
+              {t.parcelas.map((x) => `${x.valor} (${x.rotulo})`).join(' + ')}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  )
 }
 
 /**
@@ -588,17 +867,14 @@ function Detalhes({ ficha, construcao }: {
 
   return (
     <>
+      <Salvaguardas ficha={ficha} />
+      <Pericias ficha={ficha} />
+
       <div className="painel">
         <h2>Proficiências</h2>
-        <Lista rotulo="Salvaguardas" itens={
-          Object.entries(ficha.salvaguardas)
-            .filter(([a]) => ficha.modificadores[a] !== ficha.salvaguardas[a])
-            .map(([a, v]) => `${a} ${v >= 0 ? '+' : ''}${v}`)
-        } />
-        <Lista rotulo="Perícias" itens={
-          Object.entries(ficha.testes_de_pericia ?? {})
-            .map(([p, v]) => `${p} ${v >= 0 ? '+' : ''}${v}`)
-        } />
+        <Lista rotulo="Idiomas" itens={(ficha.proficiencias?.idiomas ?? [])} />
+        <Lista rotulo="Ferramentas" itens={(ficha.proficiencias?.ferramentas ?? [])} />
+        <Lista rotulo="Armaduras" itens={(ficha.proficiencias?.armaduras ?? [])} />
         <div className="espalha" style={{ padding: '6px 0' }}>
           <span className="fraco">Espécie · antecedente</span>
           <span>{construcao.especie} · {construcao.antecedente}</span>

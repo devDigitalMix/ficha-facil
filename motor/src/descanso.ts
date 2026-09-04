@@ -43,7 +43,21 @@ export type EfeitoDoDescanso = {
   recursos_gastos?: Record<string, number>
   /** Para o histórico dizer o que aconteceu, em vez de "estado mudou". */
   o_que_voltou: string[]
+  /**
+   * O que o descanso DIZ que recupera e este motor ainda não sabe aplicar.
+   *
+   * O Descanso Longo do livro devolve os Dados de Vida, tira um nível de Exaustão e
+   * remove reduções de máximo e de atributo (p. 366). Nada disso é estado que o app
+   * guarde hoje — e um campo declarado no dataset que ninguém lê é exatamente o
+   * defeito da fase 21, onde 88 `recurso_com_recarga` e 31 modificadores sumiram em
+   * silêncio. Aqui o silêncio vira lista: quem mostra a tela pode dizer "confira na
+   * mão", em vez de o jogador supor que o app cuidou disso.
+   */
+  nao_aplicado: string[]
 }
+
+/** O que este motor sabe aplicar de um `recupera`. O resto sai declarado. */
+const APLICADOS = new Set(['pontos_de_vida', 'pontos_de_vida_temporarios'])
 
 export function tiposDeDescanso(): TipoDeDescanso[] {
   return catalogo<TipoDeDescanso>('tipos_de_descanso').itens
@@ -73,7 +87,14 @@ export function descansar(
     throw new ErroDoMotor(`o descanso '${tipoId}' não declara o que recupera`)
   }
 
-  const saida: EfeitoDoDescanso = { o_que_voltou: [] }
+  const saida: EfeitoDoDescanso = {
+    o_que_voltou: [],
+    // "nenhum" e "mantem" são o descanso dizendo que NÃO mexe naquilo: aplicados por
+    // não fazer nada, e não pendências disfarçadas.
+    nao_aplicado: Object.entries(recupera)
+      .filter(([chave, valor]) => !APLICADOS.has(chave) && valor !== 'nenhum' && valor !== 'mantem')
+      .map(([chave]) => chave),
+  }
 
   // ------------------------------------------------------------- Pontos de Vida
   if (recupera.pontos_de_vida === 'todos') {

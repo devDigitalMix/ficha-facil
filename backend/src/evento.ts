@@ -24,6 +24,12 @@ export const TIPOS_DE_EVENTO = [
   'espaco_recuperado',
   'recurso_gasto',
   'recurso_recuperado',
+  'magia_conjurada',
+  'descanso',
+  'item_ganho',
+  'item_perdido',
+  'item_equipado',
+  'item_desequipado',
 ] as const
 
 export type TipoDeEvento = (typeof TIPOS_DE_EVENTO)[number]
@@ -49,6 +55,27 @@ export type Evento = Base &
         magia_id?: string; magia_nome?: string }
     | { tipo: 'recurso_gasto' | 'recurso_recuperado'
         recurso_id: string; quantidade: number; gastos_depois: number }
+    /**
+     * Conjurar não é sempre uma mudança de estado.
+     *
+     * Um truque não gasta nada, e a magia que um talento dá de graça pode não gastar
+     * espaço: pelo diff de estado, não aconteceu nada — e a queixa do João foi
+     * exatamente essa, "clico em usar num truque mas não fala nada". O evento então
+     * é dito por quem conjurou, não deduzido da diferença, e guarda o que aquilo
+     * custou naquele momento.
+     */
+    | { tipo: 'magia_conjurada'
+        magia_id: string; magia_nome: string; circulo: number
+        /** 'nenhum' | 'espaco' | 'recurso' | 'sem_espaco' — o custo daquele momento. */
+        custo: string
+        /** Só quando gastou espaço. */
+        circulo_gasto?: number; restantes?: number; total?: number
+        /** Só quando gastou um recurso (o uso de graça, Pontos de Feitiçaria…). */
+        recurso_id?: string; recurso_nome?: string; usos_restantes?: number; usos_totais?: number }
+    | { tipo: 'descanso'; descanso_id: string; descanso_nome: string; o_que_voltou: string[] }
+    | { tipo: 'item_ganho' | 'item_perdido'
+        item_id: string; item_nome?: string; quantidade: number; quantidade_depois: number }
+    | { tipo: 'item_equipado' | 'item_desequipado'; item_id: string; item_nome?: string }
   )
 
 /**
@@ -84,6 +111,33 @@ export function resumo(e: Evento): string {
       return `gastou ${e.quantidade} de ${e.recurso_id}`
     case 'recurso_recuperado':
       return `recuperou ${e.quantidade} de ${e.recurso_id}`
+    case 'magia_conjurada': {
+      const oQue = e.circulo === 0 ? 'lançou o truque' : 'conjurou'
+      if (e.custo === 'espaco') {
+        return `${oQue} ${e.magia_nome} com espaço de ${e.circulo_gasto}º` +
+          ` · ${e.restantes}/${e.total} restantes`
+      }
+      if (e.custo === 'recurso') {
+        const nome = e.recurso_nome ?? e.recurso_id
+        return `${oQue} ${e.magia_nome} sem gastar espaço` +
+          ` · ${nome} ${e.usos_restantes}/${e.usos_totais}`
+      }
+      return `${oQue} ${e.magia_nome}${e.circulo === 0 ? '' : ' sem gastar espaço'}`
+    }
+    case 'item_ganho':
+      return `pegou ${e.quantidade}× ${e.item_nome ?? e.item_id}` +
+        (e.quantidade_depois > e.quantidade ? ` · agora ${e.quantidade_depois}` : '')
+    case 'item_perdido':
+      return `perdeu ${e.quantidade}× ${e.item_nome ?? e.item_id}` +
+        (e.quantidade_depois > 0 ? ` · restam ${e.quantidade_depois}` : '')
+    case 'item_equipado':
+      return `equipou ${e.item_nome ?? e.item_id}`
+    case 'item_desequipado':
+      return `guardou ${e.item_nome ?? e.item_id}`
+    case 'descanso':
+      return e.o_que_voltou.length
+        ? `${e.descanso_nome}: ${e.o_que_voltou.join(', ')}`
+        : `${e.descanso_nome}, sem nada a recuperar`
   }
 }
 

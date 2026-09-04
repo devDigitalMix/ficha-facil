@@ -30,6 +30,10 @@
       "monge_pericias_iniciais": [
         "acrobacia",
         "furtividade"
+      ],
+      "idiomas_iniciais_escolha": [
+        "anao",
+        "elfico"
       ]
     },
     "equipamento_equipado": [],

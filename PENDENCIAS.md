@@ -724,7 +724,7 @@ uma não era — e a que não era vale tanto quanto as outras, porque a resposta
 
 ---
 
-## Fase 21 — as sete queixas do João, e o que elas revelaram
+## Fase 22 — as sete queixas do João, e o que elas revelaram
 
 O João usou o app e trouxe sete coisas. Cinco eram pedido de tela; duas eram defeito. Consertar as
 duas destapou outras quatro que ninguém tinha visto, todas da mesma família: **o motor descartava
@@ -781,6 +781,20 @@ Duas correções de regra vieram da releitura do livro (p. 33 e p. 366), ambas d
 o Descanso Longo devolve **todos** os Dados de Vida (não metade), e os Pontos de Vida Temporários
 **atravessam** o Descanso Curto.
 
+### Achado na revisão desta fase (2026-09-04)
+
+- **O aviso `ja_tem` não avisava justamente no caso que ele existe para cobrir.** A comparação era
+  `d.origem.includes(escolhaId)` — texto dentro de texto —, e `iniciado_em_magia_truques` casava
+  com `iniciado_em_magia_truques@humano_versatil`. O talento repetido concluía que a magia tinha
+  vindo dele mesmo e ficava calado: pegar Iniciado em Magia duas vezes e gastar as duas escolhas no
+  mesmo truque passava sem uma palavra. Agora a trilha é comparada por **segmento inteiro**.
+- **`descansar()` descartava em silêncio quatro coisas que o dataset declara.** O `recupera` do
+  Descanso Longo traz `dados_de_vida`, `exaustao`, `reducoes_de_maximo` e `reducoes_de_atributo`;
+  o motor lia só os Pontos de Vida e os temporários. É a mesma família dos 88 `recurso_com_recarga`
+  desta fase — e o teste `os dois descansos do livro declaram o que recuperam` chegava a conferir
+  que `dados_de_vida: "todos"` está lá, sem que nada o aplicasse. O efeito do descanso agora traz
+  `nao_aplicado`, e `"nenhum"`/`"mantem"` não entram: não mexer É o que aquele descanso faz.
+
 ### Aberto
 
 - **Proveniência da CA ainda tem literal cru**: `16 = 13 (13) + 1 (Destreza) + 2 (escudo)`. O "13"
@@ -793,3 +807,168 @@ o Descanso Longo devolve **todos** os Dados de Vida (não metade), e os Pontos d
   `nao_consumidos` para ninguém.
 - **`conjurar_sem_espaco` continua irregular** (passo 1 do `PLANO-FASE-A.md`). Enquanto isso, o
   botão "usar" das magias gasta espaço sempre, e não sabe que a Invocação Mística conjura de graça.
+
+---
+
+## Fase 23 — as dez do João, e as que vieram junto
+
+Dez itens relatados em 2026-09-04, entre defeito e melhoria. Consertar os dois erros de
+montagem que ele viu (`pacto_da_lamina`, `padrao`) destapou **15**; e as três queixas sobre
+magia — o custo, o truque mudo, a linha sem números — eram todas o mesmo buraco: o app
+decidia o que uma magia custa.
+
+### Uma família inteira: efeito nomeado que não dizia o catálogo
+
+O erro que ele viu duas vezes valia para **15 lugares**, e derrubava a montagem de quase toda
+classe assim que a escolha fosse respondida: Guerreiro (manobras), Bruxo (invocações), Bárbaro
+(golpe brutal, fúria/aspecto/poder dos selvagens), Ladino (golpe astuto), Bardo (inspiração),
+Feiticeiro (metamagia, surtos), Druida (passos feéricos), Vigilante (revelação em carne) e dois
+talentos. É a fase 21 vista pelo outro lado: **lá o efeito declarava `catalogo` e o motor
+ignorava; aqui o motor lê e o dado não declarava.** `gerar_ajustes_efeito_nomeado.py` aplica a
+regra mecânica — se a escolha tira as opções de um catálogo e o efeito aplicado não diz de onde
+vem, é daquele catálogo —, e o `validar.py` passou a **exigir que todo `aplicar_efeito_nomeado`
+resolva**, estaticamente. Era checagem que dava para fazer sem personagem nenhum.
+
+### Três chaves de filtro que não existiam, em nove escolhas
+
+"A escolha de perícias de especialização não mostra nada nem a do tipo de arma": `ja_proficiente`
+não é campo de `pericias` nem filtro de runtime — casava com nada, e a escolha ficava com **zero
+opções, calada**. Junto vieram `sem_especializacao` e `sem_proficiencia_em_salvaguarda`, nas duas
+Especializações de talento, no Acadêmico do Mago, no Especialista do Bardo, no Mestre das Armas e
+no Resiliente. A fresta era do validador: ele conferia as chaves de `filtro` e **não as de
+`filtro_adicional`**.
+
+E `com_proficiencia` não valia para arma: a Maestria do Ladino ("dois tipos de arma com que você
+tem proficiência", p. 137) procurava a adaga na lista de perícias. Agora usa o mesmo
+`proficienteComArma` que a ficha usa para decidir se o ataque leva bônus — uma verdade só.
+
+### Idioma e armadura eram concedidos para ninguém
+
+`conceder_proficiencia` só sabia pousar em perícia, ferramenta e salvaguarda: os **14 de idioma e
+armadura caíam calados** em `nao_consumidos`. Por isso a Gíria dos Ladrões não aparecia em canto
+nenhum, e a escolha "mais um idioma" oferecia de volta o que o Ladino já falava.
+
+### Bardo e Feiticeiro não tinham bloco de magia nenhum
+
+Os dois guardavam os espaços como **lista numa coluna só** (`espacos_de_magia: [4, 3, 2]`)
+enquanto o resto do dataset usa uma coluna por círculo — e nada lia aquela forma. Daí as 127
+magias de Bardo oferecidas no nível 1 (o filtro de círculo não achava coluna, declarava-se
+`nao_avaliado` e não recortava) e o painel de espaços inexistente. Puxando o fio: **nenhum dos
+dois tinha `preparar_magias`**, então a ficha devolvia `conjuracao: undefined` — sem CD, sem
+ataque mágico, sem espaço. O livro diz o atributo com todas as letras (p. 60 e p. 104).
+
+O Bruxo era o mesmo sintoma pelo lado oposto: a tabela dele é mesmo diferente (Espaços de Pacto,
+todos do mesmo círculo, p. 121), e quem tinha de aprender a ler era o motor. Fechado com o teste
+que faz a pergunta para todas: **quem conjura tem com o que conjurar?**
+
+### Conjurar deixou de ser "gastar espaço"
+
+As três queixas de magia:
+
+- *"tem magias que posso usar uma vez por dia mas não gastam"* — os **41 `conjurar_sem_espaco`**
+  do dataset nunca eram lidos. Pior: no Iniciado em Magia a magia vem de outra escolha
+  (`$escolhido_em:iniciado_em_magia_magia_1`), e essa referência não era resolvida em efeito
+  nenhum — só em filtro. Agora a magia do talento tem custo de **uso**, que é um recurso de 1 que
+  volta no Descanso Longo, e o livro permite gastar espaço também quando o uso acabou.
+- *"clico em usar num truque e não fala nada"* — a função saía cedo no truque, e o histórico só
+  registrava o que mudava de estado. Agora existe `POST /personagens/:id/conjurar`: o cliente diz
+  **qual magia**, o motor diz o que custa, e o evento é **dito** por quem conjurou em vez de
+  deduzido da diferença.
+- *"quero o nome, o número e tipo de dados que lanço, a salvaguarda, a distância e a área, já
+  calculado"* — `magia.jogo` traz tudo resolvido: `+7`, `CD 14 DES`, `2d8 radiante`, `18 metros`,
+  área e concentração. O crescimento do truque saiu da prosa para `escala_por_nivel` (17 dos 20;
+  o Raio Místico não entra porque ele aumenta **feixes**, não dado).
+
+Ataques passaram para antes das magias, como pedido.
+
+### A vida agora diz por que é 11
+
+A proveniência abre um nível: `12 = 11 (PV do nível 1) + 1 (bônus de características)`, e embaixo
+`PV do nível 1: 8 (Dado de Vida) + 3 (Constituição)` e `bônus: 1 (Anão · Tenacidade Anã)`. Os
+rótulos vêm dos `parcelas` que o catálogo **já declarava** — o motor não escreve frase nenhuma.
+
+### Achado sem ninguém pedir
+
+- **Duas cópias do mesmo talento roubavam a variável uma da outra.** O Acólito concede Iniciado em
+  Magia e o Humano concede outro: as duas escolhas definiam `lista_do_talento`, e a segunda
+  sobrescrevia a primeira — os truques oferecidos a uma vinham da lista da outra, e a construção
+  era recusada. Variável e `depende_de` passaram a respeitar o `@sufixo` da porta.
+- **`reconstruir.py --comparar` devolvia 0 mesmo com arquivos divergentes.** A conferência olha o
+  código de saída: ela dizia "19 de 19 passos limpos" enquanto três arquivos de `dados/` já não
+  eram o que os geradores produzem. Divergência agora é falha.
+
+### Aberto
+
+- **Não é defeito, é o livro**: a Gíria do Ladrão dá mesmo "outro idioma à sua escolha" (p. 137).
+  O que estava errado era a lista oferecer o que ele já fala.
+- **Comum não é concedido a ninguém.** Todo personagem sabe Comum e mais dois idiomas da tabela
+  (p. 37), e isso é criação de personagem — capítulo 2, que o dataset ainda não cobre.
+- A Especialização do Ladino mostra poucas opções até as perícias iniciais serem escolhidas. Está
+  certo (ela só pode escolher entre as que já tem), mas a tela não explica a ordem.
+- Três truques continuam com o crescimento só em prosa: Acudir os Moribundos, Badalar Fúnebre e
+  Raio Místico.
+
+---
+
+## Fase 24 — a língua que sumiu, os números que faltavam e o inventário
+
+### O Ladino não conseguia escolher idioma nenhum — e a causa era geral
+
+Regressão da fase 23, e das boas de aprender: pus `com_proficiencia: false` na escolha
+"mais um idioma" para ela não oferecer o que o personagem já fala. Só que, respondida
+Dracônico, o personagem **passa a falar Dracônico** — e a conferência seguinte recusava a
+própria resposta com 422. Na tela: "não me deixou escolher nenhuma língua".
+
+Vale para qualquer escolha que filtre pelo que ela mesma concede. O conserto é o mesmo
+que o aviso "você já tem" usa: a proficiência agora guarda **de onde veio**
+(`proficiencias_com_origem`), e o filtro ignora o que veio desta mesma escolha.
+
+### "Deveria ser retirado o Comum e o da raça?" — só o Comum, e ele não é da raça
+
+O livro (p. 37): "O seu personagem sabe pelo menos três idiomas: **Comum e mais dois
+idiomas** que você pode escolher da tabela Idiomas Comuns." E **nenhuma espécie concede
+idioma em 2024** — conferido no dataset inteiro: espécie nenhuma cita idioma, antecedente
+nenhum também. O Anão não dá Anão; isso é 2014.
+
+Faltava o começo: o personagem nascia sem falar nada. Agora `escopo: "todo_personagem"`
+existe como terceiro tipo de fonte, ao lado de espécie/antecedente/classe, e a criação
+concede o Comum e abre a escolha dos outros dois — só entre os **comuns**, porque os raros
+vêm por característica que os conceda (a Gíria do Ladrão, o Idioma Druídico).
+
+### Salvaguardas e perícias, com o número
+
+`testes_de_pericia` era um campo declarado que devolvia `{}`. Agora traz as 18 perícias —
+**todas**, não só as treinadas, porque é justamente na que não se tem proficiência que a
+conta não é óbvia — cada uma com valor, atributo e a conta que a explica ao toque. As seis
+salvaguardas ganharam painel próprio, com destaque nas que somam proficiência.
+
+Puxando esse fio: **Especialização não somava nada.** O `nivel_dominio` era jogado fora ao
+guardar a proficiência, então a Especialização do Ladino, a do Bardo e a dos dois talentos
+existiam no JSON e não existiam na conta. E havia quatro grafias para três ideias
+(`proficiente`, `especialista`, `especializacao`, `treinado`). Normalizadas, e o quanto
+cada uma vale virou catálogo (`niveis_de_dominio`, com `multiplicador_do_bonus`): o motor
+lê, em vez de trazer "especialista dobra" escrito dentro de si — o lint de id de conteúdo,
+aliás, foi quem cobrou isso.
+
+### Inventário
+
+`inventario` (id → quantidade) e `equipado` passaram a ser **estado**, e não construção:
+pegar uma corda e sacar o escudo acontecem na mesa e não mudam quem o personagem é.
+O que a criação vestia é materializado no inventário na primeira vez que a mesa mexe nele
+— sem isso, o primeiro "equipar escudo" apagaria a armadura que veio da criação e a CA
+cairia sozinha.
+
+O backend confere **coerência** (o item existe, você equipa só o que carrega, quantidade
+zero é não ter, largar o que está na mão tira da mão), e a regra continua no motor: equipar
+um escudo muda a CA porque o motor recalcula, e a tela não sabe o que um escudo faz.
+Quatro eventos novos no histórico: pegou, perdeu, equipou, guardou.
+
+Teste de fumaça em **22 passos**: o escudo entra no inventário, é equipado, e a CA sobe de
+10 para 12 num navegador de verdade.
+
+### Aberto
+
+- Dinheiro não existe: pegar um item não desconta moeda, e comprar não é uma operação.
+- Peso e capacidade de carga não são calculados (o dado tem `peso_kg` em todo item).
+- O que se equipa é decidido pela categoria (arma/armadura) na tela; foco de conjuração e
+  munição ainda não têm tratamento próprio.

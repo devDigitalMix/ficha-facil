@@ -52,6 +52,10 @@ export type EstadoDeJogo = {
   condicoes?: string[]
   /** Em que magia está concentrado, se estiver. */
   concentracao?: string | null
+  /** O que o personagem carrega: id do item → quantidade. */
+  inventario?: Record<string, number>
+  /** O que está vestido ou na mão, dentre o que ele carrega. */
+  equipado?: string[]
 }
 
 export const CAMPOS_DE_ESTADO = [
@@ -64,4 +68,8 @@ export const CAMPOS_DE_ESTADO = [
   'recursos_gastos',
   'condicoes',
   'concentracao',
+  // O que se carrega e o que está na mão mudam NA MESA — pegar uma corda, sacar o
+  // escudo — e por isso são estado, como os Pontos de Vida, e não construção.
+  'inventario',
+  'equipado',
 ] as const

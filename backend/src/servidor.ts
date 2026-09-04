@@ -25,6 +25,22 @@ import {
 
 const agora = () => new Date().toISOString()
 
+/**
+ * Id → nome dos itens, para o histórico dizer "Espada Longa".
+ *
+ * Lido uma vez: `itens.json` é imutável entre builds, como todo o compêndio.
+ */
+let nomes: Record<string, string> | null = null
+function nomesDeItem(): Record<string, string> {
+  if (!nomes) {
+    nomes = Object.fromEntries(
+      (lerColecao('itens') as { itens: { id: string; nome?: string }[] }).itens
+        .map((i) => [i.id, i.nome ?? i.id]),
+    )
+  }
+  return nomes
+}
+
 /** Compêndio: imutável entre builds, então cache longo com o ETag da versão. */
 function respostaDeCompendio(pedido: Pedido, corpo: unknown): Resposta {
   const etag = `"${versaoDoDataset()}"`
@@ -170,6 +186,8 @@ const TIPO_DO_ESTADO: Record<string, (v: unknown) => boolean> = {
   pontos_de_vida_atuais: (v) => Number.isInteger(v),
   pontos_de_vida_temporarios: (v) => Number.isInteger(v) && (v as number) >= 0,
   fonte_dos_temporarios: (v) => typeof v === 'string',
+  inventario: (v) => ehMapaDeInteiros(v),
+  equipado: (v) => Array.isArray(v) && v.every((x) => typeof x === 'string'),
   espacos_gastos: (v) => ehMapaDeInteiros(v),
   recursos_gastos: (v) => ehMapaDeInteiros(v),
   concentracao: (v) => v === null || typeof v === 'string',
@@ -182,6 +200,69 @@ function ehMapaDeInteiros(v: unknown): boolean {
     !Array.isArray(v) &&
     Object.values(v as Record<string, unknown>).every((n) => Number.isInteger(n) && (n as number) >= 0)
   )
+}
+
+/**
+ * O equipamento da CRIAÇÃO vira inventário na primeira vez que a mesa mexe nele.
+ *
+ * `construcao.equipamento_equipado` é o que o personagem nasceu vestindo, e valia
+ * enquanto o app não tinha inventário. Agora que tem, o estado manda — e sem esta
+ * materialização o primeiro "equipar escudo" apagaria a armadura que veio da
+ * criação, derrubando a CA sem que ninguém tivesse tirado nada.
+ *
+ * Acontece uma vez só: depois disso o estado é a única verdade sobre o que ele tem.
+ */
+function materializarEquipamento(personagem: Personagem, corpo: Record<string, unknown>): void {
+  const daCriacao = personagem.construcao.equipamento_equipado ?? []
+  if (!daCriacao.length) return
+  if (personagem.estado.inventario !== undefined) return
+  if (corpo.inventario === undefined && corpo.equipado === undefined) return
+
+  const base: Record<string, number> = {}
+  for (const id of daCriacao) base[id] = (base[id] ?? 0) + 1
+  corpo.inventario = { ...base, ...((corpo.inventario as Record<string, number>) ?? {}) }
+  if (corpo.equipado === undefined) corpo.equipado = [...new Set(daCriacao)]
+}
+
+/**
+ * Só se equipa o que se carrega, e só se carrega o que existe no compêndio.
+ *
+ * A regra de D&D (o que a armadura faz, se a arma soma proficiência) continua no
+ * motor; o que se confere aqui é a coerência do próprio estado — equipar uma espada
+ * que não está no inventário não é uma jogada de regra, é um estado impossível.
+ */
+function conferirInventario(personagem: Personagem, corpo: Record<string, unknown>): void {
+  materializarEquipamento(personagem, corpo)
+  const inventario = (corpo.inventario ?? personagem.estado.inventario ?? {}) as
+    Record<string, number>
+  const equipado = (corpo.equipado ?? personagem.estado.equipado ?? []) as string[]
+
+  const doCompendio = new Set(
+    (lerColecao('itens') as { itens: { id: string }[] }).itens.map((i) => i.id),
+  )
+  for (const id of Object.keys(inventario)) {
+    if (!doCompendio.has(id)) throw naoEncontrado(`o item '${id}' no compêndio`)
+  }
+  // Quantidade zero é "não tenho mais": some do inventário em vez de virar linha
+  // morta que ainda conta como carregada.
+  if (corpo.inventario) {
+    for (const [id, n] of Object.entries(inventario)) {
+      if (n === 0) delete (corpo.inventario as Record<string, number>)[id]
+    }
+  }
+  const carregados = new Set(
+    Object.entries(inventario).filter(([, n]) => n > 0).map(([id]) => id),
+  )
+  const fora = equipado.filter((id) => !carregados.has(id))
+  if (fora.length) {
+    throw pedidoInvalido(
+      `não dá para equipar o que não está no inventário: ${fora.join(', ')}`,
+      { fora_do_inventario: fora },
+    )
+  }
+  if (new Set(equipado).size !== equipado.length) {
+    throw pedidoInvalido('o mesmo item aparece duas vezes em `equipado`')
+  }
 }
 
 function conferirTiposDoEstado(corpo: Record<string, unknown>): void {
@@ -325,6 +406,15 @@ export function criarRoteador(
       throw pedidoInvalido(`status precisa ser um de: ${STATUS.join(', ')}`)
     }
     const estado = (corpo.estado ?? {}) as Personagem['estado']
+    // O que a criação veste já nasce como inventário: a partir daqui existe um lugar
+    // só que diz o que o personagem tem, e é o estado.
+    const daCriacao = construcao.equipamento_equipado ?? []
+    if (daCriacao.length && estado.inventario === undefined) {
+      const inventario: Record<string, number> = {}
+      for (const id of daCriacao) inventario[id] = (inventario[id] ?? 0) + 1
+      estado.inventario = inventario
+      estado.equipado ??= [...new Set(daCriacao)]
+    }
     montarComRegras(construcao, estado) // recusa antes de gravar, nunca depois
     const criado = await armazem.criar({
       usuario_id: dono.id,
@@ -393,6 +483,7 @@ export function criarRoteador(
       )
     }
     conferirTiposDoEstado(corpo)
+    conferirInventario(personagem, corpo)
 
     return { corpo: await gravarEstado(personagem, corpo, motivo) }
   })
@@ -421,9 +512,139 @@ export function criarRoteador(
       recursos: montado.ficha.recursos,
     }, personagem.estado)
 
-    const { o_que_voltou, ...mudanca } = efeito
-    const resposta = await gravarEstado(personagem, mudanca as Partial<Personagem['estado']>)
-    return { corpo: { ...resposta, descanso: { tipo, o_que_voltou } } }
+    const { o_que_voltou, nao_aplicado, ...mudanca } = efeito
+    // O descanso também é linha de histórico: sem ela, o jogador vê os espaços
+    // voltarem e não vê por quê — e um Descanso Longo sem nada a recuperar não
+    // deixaria rastro nenhum de ter acontecido.
+    const nome = tiposDeDescanso().find((t) => t.id === tipo)?.nome ?? tipo
+    const resposta = await gravarEstado(
+      personagem, mudanca as Partial<Personagem['estado']>, undefined,
+      [{
+        personagem_id: personagem.id,
+        usuario_id: personagem.usuario_id,
+        em: agora(),
+        tipo: 'descanso',
+        descanso_id: tipo,
+        descanso_nome: nome,
+        o_que_voltou,
+      }],
+    )
+    return { corpo: { ...resposta, descanso: { tipo, o_que_voltou, nao_aplicado } } }
+  })
+
+  /**
+   * Conjurar uma magia.
+   *
+   * O cliente diz **qual magia**, e só. O que aquilo custa é resposta do motor:
+   * truque não custa nada, magia comum gasta um espaço do círculo dela para cima, e
+   * a que um talento deu de graça gasta o uso dela (um recurso que volta no descanso
+   * declarado). Fazer o app decidir isso seria pôr regra de D&D na tela — e foi
+   * justamente o botão que gastava espaço sempre que produziu as duas queixas:
+   * "posso usar uma vez por dia mas não gasta" e "clico em usar num truque e não
+   * fala nada".
+   *
+   * Conjurar sem mudar estado (um truque) também vira linha de histórico: o evento
+   * é DITO por quem conjurou, e não deduzido da diferença de estado.
+   */
+  r.rota('POST', '/personagens/:id/conjurar', async (p) => {
+    const personagem = await exigirPersonagem(p)
+    const corpo = exigirObjeto(p.corpo, 'o corpo')
+    const magiaId = corpo.magia_id
+    if (typeof magiaId !== 'string') throw pedidoInvalido('informe `magia_id`')
+
+    const montado = montarComRegras(personagem.construcao, personagem.estado)
+    const magia = montado.ficha.magias.find((m) => m.id === magiaId)
+    if (!magia) throw naoEncontrado(`a magia '${magiaId}' na ficha deste personagem`)
+    if (!magia.pronta_para_conjurar) {
+      throw pedidoInvalido(`'${magia.nome}' não está preparada`, { modo: magia.modo })
+    }
+
+    // `circulo` é do jogador: subir uma magia de círculo é decisão dele. O mínimo é
+    // o da própria magia, e o máximo é o maior espaço que ele tem.
+    const pedido = corpo.circulo
+    if (pedido !== undefined && !Number.isInteger(pedido)) {
+      throw pedidoInvalido('`circulo` precisa ser inteiro')
+    }
+
+    const espacos = montado.ficha.conjuracao?.espacos ?? {}
+    const gastos = { ...(personagem.estado.espacos_gastos ?? {}) }
+    const recursosGastos = { ...(personagem.estado.recursos_gastos ?? {}) }
+    let mudanca: Partial<Personagem['estado']> = {}
+    let registro: Parameters<typeof eventos.registrar>[0][number]
+
+    const base = {
+      personagem_id: personagem.id,
+      usuario_id: personagem.usuario_id,
+      em: agora(),
+      tipo: 'magia_conjurada' as const,
+      magia_id: magia.id,
+      magia_nome: magia.nome,
+      circulo: magia.circulo,
+    }
+
+    // O uso de graça pode ter acabado; o livro deixa conjurar com espaço quando ele
+    // mesmo diz que dá (`tambem_com_espaco`). Então o custo escolhido aqui é o que o
+    // cliente pediu, dentro do que a ficha permite.
+    const usarEspaco =
+      magia.custo.tipo === 'espaco' ||
+      (magia.custo.tipo === 'recurso' &&
+        magia.custo.tambem_com_espaco === true &&
+        corpo.com_espaco === true)
+
+    if (usarEspaco) {
+      const minimo = magia.circulo || 1
+      const circulo = typeof pedido === 'number' ? pedido : minimo
+      if (circulo < minimo) {
+        throw pedidoInvalido(
+          `'${magia.nome}' é de ${minimo}º círculo: não cabe num espaço de ${circulo}º`,
+        )
+      }
+      const total = espacos[circulo] ?? 0
+      const jaGastos = gastos[String(circulo)] ?? 0
+      if (jaGastos >= total) {
+        throw pedidoInvalido(`sem espaço de ${circulo}º círculo`, { total, gastos: jaGastos })
+      }
+      gastos[String(circulo)] = jaGastos + 1
+      mudanca = { espacos_gastos: gastos }
+      registro = {
+        ...base,
+        custo: 'espaco',
+        circulo_gasto: circulo,
+        restantes: total - (jaGastos + 1),
+        total,
+      }
+    } else if (magia.custo.tipo === 'recurso') {
+      const recursoId = magia.custo.recurso_id
+      const recurso = montado.ficha.recursos.find((x) => x.id === recursoId)
+      const total = recurso?.maximo ?? 0
+      const jaGastos = recursosGastos[recursoId] ?? 0
+      if (!recurso || jaGastos >= total) {
+        throw pedidoInvalido(
+          `'${magia.nome}' já foi usada sem gastar espaço; ela volta no descanso`,
+          { recurso_id: recursoId, total, gastos: jaGastos,
+            ...(magia.custo.tambem_com_espaco ? { pode_com_espaco: true } : {}) },
+        )
+      }
+      recursosGastos[recursoId] = jaGastos + 1
+      mudanca = { recursos_gastos: recursosGastos }
+      registro = {
+        ...base,
+        custo: 'recurso',
+        recurso_id: recursoId,
+        recurso_nome: recurso.nome,
+        usos_restantes: total - (jaGastos + 1),
+        usos_totais: total,
+      }
+    } else {
+      // truque, ou magia que o livro deixa conjurar sem limite declarado: nada muda
+      // no estado, e mesmo assim a linha do histórico existe.
+      registro = { ...base, custo: magia.custo.tipo }
+    }
+
+    const resposta = Object.keys(mudanca).length
+      ? await gravarEstado(personagem, mudanca, undefined, [registro])
+      : await gravarEstado(personagem, {}, undefined, [registro])
+    return { corpo: { ...resposta, conjurou: { magia_id: magia.id, custo: magia.custo } } }
   })
 
   /**
@@ -438,6 +659,8 @@ export function criarRoteador(
     personagem: Personagem,
     corpo: Partial<Personagem['estado']>,
     motivo?: Motivo,
+    /** Eventos que o próprio caminho declara — conjurar um truque não muda estado. */
+    declarados: Parameters<typeof eventos.registrar>[0] = [],
   ) {
     const antes = personagem.estado
     const depois = { ...personagem.estado, ...corpo }
@@ -449,6 +672,7 @@ export function criarRoteador(
     const registros = aoMudarEstado(antes, depois, {
       pv_maximo: ficha.pontos_de_vida_maximos.valor as number,
       espacos: ficha.conjuracao?.espacos ?? {},
+      nomes_de_item: nomesDeItem(),
     }, motivo)
 
     personagem.estado = depois
@@ -457,12 +681,15 @@ export function criarRoteador(
 
     // Grava DEPOIS do personagem: um evento sobre uma mudança que não chegou a
     // acontecer seria pior do que uma mudança sem evento.
-    const gravados = await eventos.registrar(registros.map((e) => ({
-      ...e,
-      personagem_id: personagem.id,
-      usuario_id: personagem.usuario_id,
-      em: agora(),
-    })))
+    const gravados = await eventos.registrar([
+      ...declarados,
+      ...registros.map((e) => ({
+        ...e,
+        personagem_id: personagem.id,
+        usuario_id: personagem.usuario_id,
+        em: agora(),
+      })),
+    ])
 
     return { ...fichaDoPersonagem(personagem), eventos: gravados.map(eventoParaOCliente) }
   }

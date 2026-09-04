@@ -15,6 +15,7 @@
 import type { Contexto } from './tipos.ts'
 import { ErroDoMotor } from './tipos.ts'
 import { catalogo, lerJson, trilhaLegivel } from './dataset.ts'
+import { proficienteComArma } from './equipamento.ts'
 import type { Efeito, Pendencia } from './colecao.ts'
 import { avaliar } from './formula.ts'
 
@@ -163,6 +164,7 @@ const RUNTIME = new Set([
   'pre_requisitos_atendidos',
   'nd_maximo',
   'sem_deslocamento_de_voo',
+  'sem_proficiencia_em_salvaguarda',
   'exceto',
   'alguma',
   'id',
@@ -198,7 +200,7 @@ function casaCampo(item: Item, k: string, v: unknown): boolean {
 }
 
 /** Filtros que dependem do personagem — os que o validador delega ao motor. */
-function casaRuntime(item: Item, k: string, v: unknown, ctx: Contexto): boolean {
+function casaRuntime(item: Item, k: string, v: unknown, ctx: Contexto, escolhaId = ''): boolean {
   switch (k) {
     case 'id':
       return Array.isArray(v) ? v.includes(item.id) : item.id === v
@@ -208,9 +210,13 @@ function casaRuntime(item: Item, k: string, v: unknown, ctx: Contexto): boolean 
     }
     case 'proficiente':
     case 'com_proficiencia': {
-      const tem = proficienteEm(item.id, ctx)
+      const tem = proficienteEm(item.id, ctx, escolhaId)
       return tem === Boolean(v)
     }
+    case 'sem_proficiencia_em_salvaguarda':
+      // Resiliente (p. 203): "escolha um atributo em que você não tenha proficiência
+      // em salvaguardas". A lista de salvaguardas responde direto.
+      return !ctx.proficiencias?.salvaguardas?.includes(item.id) === Boolean(v)
     case 'ainda_nao_especialista':
       // especialização ainda não é estado que o motor guarde; oferecer a mais é
       // melhor que esconder — e o problema fica declarado em `nao_avaliados`
@@ -226,15 +232,16 @@ function casaRuntime(item: Item, k: string, v: unknown, ctx: Contexto): boolean 
     }
     case 'alguma': {
       const ramos = v as Record<string, unknown>[]
-      return ramos.some((r) => Object.entries(r).every(([k2, v2]) => casaUma(item, k2, v2, ctx)))
+      return ramos.some((r) =>
+        Object.entries(r).every(([k2, v2]) => casaUma(item, k2, v2, ctx, escolhaId)))
     }
     default:
       return true
   }
 }
 
-function casaUma(item: Item, k: string, v: unknown, ctx: Contexto): boolean {
-  return RUNTIME.has(k) ? casaRuntime(item, k, v, ctx) : casaCampo(item, k, v)
+function casaUma(item: Item, k: string, v: unknown, ctx: Contexto, escolhaId = ''): boolean {
+  return RUNTIME.has(k) ? casaRuntime(item, k, v, ctx, escolhaId) : casaCampo(item, k, v)
 }
 
 /** O maior círculo para o qual o personagem tem espaço; 0 quando não tem nenhum. */
@@ -247,11 +254,47 @@ export function maiorCirculoComEspaco(ctx: Contexto): number {
   return maior
 }
 
-function proficienteEm(id: string, ctx: Contexto): boolean {
+/**
+ * O personagem é proficiente nisto?
+ *
+ * As listas simples respondem por perícia, ferramenta, salvaguarda e idioma. **Arma
+ * não tem lista**: a classe concede "armas Simples", que é um filtro, e é por isso
+ * que a Maestria em Arma do Ladino — "dois tipos de armas com as quais você tem
+ * proficiência" (p. 137) — vinha com ZERO opções: o motor procurava a adaga numa
+ * lista de perícias. Quem sabe responder isso é o mesmo `proficienteComArma` que a
+ * ficha já usa para decidir se o ataque leva bônus de proficiência; usar outro
+ * critério aqui seria ter duas verdades sobre a mesma coisa.
+ */
+function proficienteEm(id: string, ctx: Contexto, escolhaId = ''): boolean {
   const p = ctx.proficiencias
-  return Boolean(
-    p?.pericias?.includes(id) || p?.ferramentas?.includes(id) || p?.salvaguardas?.includes(id),
-  )
+  // A proficiência que ESTA escolha concedeu não conta contra ela.
+  //
+  // "Escolha mais um idioma" filtra por `com_proficiencia: false`. Respondida
+  // Dracônico, o personagem passa a falar Dracônico — e, na conferência seguinte, a
+  // própria resposta deixava de estar entre as opções: 422 ao gravar, e a queixa foi
+  // "não me deixou escolher nenhuma língua". Uma escolha não pode invalidar a si
+  // mesma; é a mesma regra do aviso "você já tem", que também ignora a própria porta.
+  const daPropriaEscolha = escolhaId
+    ? new Set(
+        (ctx.proficiencias_com_origem ?? [])
+          .filter((x) => x.origem.split(' / ').includes(escolhaId))
+          .map((x) => x.chave),
+      )
+    : new Set<string>()
+  if (daPropriaEscolha.has(id)) return false
+
+  if (
+    p?.pericias?.includes(id) ||
+    p?.ferramentas?.includes(id) ||
+    p?.salvaguardas?.includes(id) ||
+    p?.idiomas?.includes(id) ||
+    p?.armaduras?.includes(id)
+  ) {
+    return true
+  }
+  const arma = itensDe('itens').find((i) => i.id === id)
+  if (arma?.categoria === 'arma') return proficienteComArma(arma, p?.armas ?? [])
+  return false
 }
 
 /**
@@ -272,8 +315,16 @@ export function opcoesDe(
 
   // Depende de outra escolha que ainda não foi feita: não se oferece nada, e se diz
   // por quê. Uma lista completa aqui seria pior que uma lista vazia.
+  // A escolha desta porta lê a variável DESTA porta: `@humano_versatil` no id da
+  // escolha vale para o `depende_de` e para todo `$variavel` do filtro.
+  const sufixo = id.includes('@') ? id.slice(id.indexOf('@')) : ''
+  const variavel = (nome: string) =>
+    (sufixo && variaveis[`${nome}${sufixo}`] !== undefined
+      ? variaveis[`${nome}${sufixo}`]
+      : variaveis[nome])
+
   const dep = e.depende_de as string | undefined
-  if (dep && !(nomeDaVariavelDe(dep) in variaveis) && !(dep in variaveis)) {
+  if (dep && variavel(nomeDaVariavelDe(dep)) === undefined && variavel(dep) === undefined) {
     return { ...oferta(e, ctx, [], []), bloqueada_por: dep }
   }
   const de = (e.de ?? {}) as Record<string, unknown>
@@ -329,7 +380,7 @@ export function opcoesDe(
         valor = n
       }
       if (typeof v === 'string' && v.startsWith('$')) {
-        const resolvido = variaveis[v.slice(1)]
+        const resolvido = variavel(v.slice(1))
         if (resolvido === undefined) {
           naoAvaliados.push(k) // a variável ainda não foi definida por ninguém
           continue
@@ -358,7 +409,7 @@ export function opcoesDe(
         itens = itens.filter((i) => preRequisitosAtendidos(i, ctx))
         continue
       }
-      itens = itens.filter((i) => casaUma(i, k, valor, ctx))
+      itens = itens.filter((i) => casaUma(i, k, valor, ctx, id))
     }
   }
 
@@ -404,7 +455,12 @@ function marcarJaConhecidas(escolhaId: string, opcoes: Opcao[], ctx: Contexto): 
   if (!desbloqueadas.length) return opcoes
   const deOutraPorta = new Map<string, string>()
   for (const d of desbloqueadas) {
-    if (d.origem.includes(escolhaId)) continue
+    // Segmento inteiro, não pedaço de texto: a trilha separa por ' / ', e
+    // `includes` fazia `iniciado_em_magia_truques` casar com
+    // `iniciado_em_magia_truques@humano_versatil`. O talento repetido — que é
+    // justamente onde o aviso mais importa — não avisava nada, porque achava que a
+    // magia tinha vindo dele mesmo.
+    if (d.origem.split(' / ').includes(escolhaId)) continue
     if (!deOutraPorta.has(d.magia)) deOutraPorta.set(d.magia, d.origem)
   }
   if (!deOutraPorta.size) return opcoes

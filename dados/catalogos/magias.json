@@ -266,7 +266,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     },
@@ -314,7 +319,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dado de dano muda quando você atinge os níveis 5 (1d10), 11 (1d12) e 17 (2d6)."
+        "texto": "O dado de dano muda quando você atinge os níveis 5 (1d10), 11 (1d12) e 17 (2d6).",
+        "escala_por_nivel": {
+          "5": "1d10",
+          "11": "1d12",
+          "17": "2d6"
+        }
       },
       "detalhada": true
     },
@@ -366,7 +376,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -419,7 +434,12 @@
       "ataque": "corpo_a_corpo",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     },
@@ -468,7 +488,12 @@
       "ataque": "a_distancia",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -568,7 +593,12 @@
       ],
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -618,7 +648,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "Seja o dano Radiante ou o tipo de dano normal da arma, o ataque causa dano Radiante adicional quando você atinge os níveis 5 (1d6), 11 (2d6) e 17 (3d6)."
+        "texto": "Seja o dano Radiante ou o tipo de dano normal da arma, o ataque causa dano Radiante adicional quando você atinge os níveis 5 (1d6), 11 (2d6) e 17 (3d6).",
+        "escala_por_nivel": {
+          "5": "1d6",
+          "11": "2d6",
+          "17": "3d6"
+        }
       },
       "detalhada": true
     },
@@ -957,7 +992,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     },
@@ -1094,7 +1134,12 @@
       "ataque": "a_distancia",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d10 quando você atinge os níveis 5 (2d10), 11 (3d10) e 17 (4d10)."
+        "texto": "O dano aumenta em 1d10 quando você atinge os níveis 5 (2d10), 11 (3d10) e 17 (4d10).",
+        "escala_por_nivel": {
+          "5": "2d10",
+          "11": "3d10",
+          "17": "4d10"
+        }
       },
       "detalhada": true
     },
@@ -1144,7 +1189,12 @@
       "ataque": "a_distancia",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -1245,7 +1295,12 @@
       "ataque": "a_distancia",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d12 quando você atinge os níveis 5 (2d12), 11 (3d12) e 17 (4d12)."
+        "texto": "O dano aumenta em 1d12 quando você atinge os níveis 5 (2d12), 11 (3d12) e 17 (4d12).",
+        "escala_por_nivel": {
+          "5": "2d12",
+          "11": "3d12",
+          "17": "4d12"
+        }
       },
       "detalhada": true
     },
@@ -1388,7 +1443,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     },
@@ -1478,7 +1538,12 @@
       "ataque": "corpo_a_corpo",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -1528,7 +1593,12 @@
       "ataque": "corpo_a_corpo",
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d10 quando você atinge os níveis 5 (2d10), 11 (3d10) e 17 (4d10)."
+        "texto": "O dano aumenta em 1d10 quando você atinge os níveis 5 (2d10), 11 (3d10) e 17 (4d10).",
+        "escala_por_nivel": {
+          "5": "2d10",
+          "11": "3d10",
+          "17": "4d10"
+        }
       },
       "detalhada": true
     },
@@ -1587,7 +1657,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     },
@@ -19625,7 +19700,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8)."
+        "texto": "O dano aumenta em 1d8 quando você atinge os níveis 5 (2d8), 11 (3d8) e 17 (4d8).",
+        "escala_por_nivel": {
+          "5": "2d8",
+          "11": "3d8",
+          "17": "4d8"
+        }
       },
       "detalhada": true
     },
@@ -20171,7 +20251,12 @@
       },
       "aprimoramento": {
         "tipo": "truque",
-        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6)."
+        "texto": "O dano aumenta em 1d6 quando você atinge os níveis 5 (2d6), 11 (3d6) e 17 (4d6).",
+        "escala_por_nivel": {
+          "5": "2d6",
+          "11": "3d6",
+          "17": "4d6"
+        }
       },
       "detalhada": true
     }
