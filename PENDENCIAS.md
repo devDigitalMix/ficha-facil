@@ -14,12 +14,12 @@ resta são as coisas adiadas de propósito, listadas abaixo.
 
 **O que isso afeta hoje**
 
-| onde | o que acontece |
-|---|---|
-| Druida — Forma Selvagem | O app **não oferece seletor de formas**. Ao subir de nível ele apenas informa quantas formas o personagem conhece, o ND máximo e se já pode voar. O jogador escolhe as Feras fora do app. |
-| Bruxo — Pacto da Corrente | As formas especiais de familiar (Diabrete, Pseudodragão, Quasit, Sprite…) estão citadas como texto, sem bloco de estatísticas. |
+| onde                        | o que acontece                                                                                                                                                                                                                            |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Druida — Forma Selvagem     | O app **não oferece seletor de formas**. Ao subir de nível ele apenas informa quantas formas o personagem conhece, o ND máximo e se já pode voar. O jogador escolhe as Feras fora do app.                                                 |
+| Bruxo — Pacto da Corrente   | As formas especiais de familiar (Diabrete, Pseudodragão, Quasit, Sprite…) estão citadas como texto, sem bloco de estatísticas.                                                                                                            |
 | Guardião — Senhor das Feras | **Não afeta.** Os três blocos (Fera da Terra, do Céu e do Mar) são impressos no capítulo 3 e foram extraídos para o catálogo próprio `feras_companheiras`. Não são bestiário: derivam do nível e do modificador de Sabedoria do Guardião. |
-| Ap. B inteiro | Não extraído. |
+| Ap. B inteiro               | Não extraído.                                                                                                                                                                                                                             |
 
 **Como está preparado para o futuro.** O catálogo `dados/catalogos/criaturas.json` existe, declarado
 vazio com `"preenchida": false`. A escolha da Forma Selvagem já tem o **filtro completo** escrito —
@@ -153,11 +153,11 @@ traços.** Era o último capítulo do escopo, e o que bloqueava a criação de p
 Eu tinha listado quatro primitivos como se fossem trabalho do backend. Três eram declaração de
 dado, e o quarto era metade e metade. Todos fechados em 2026-09-01:
 
-| primitivo | onde vive |
-|---|---|
-| mãos ocupadas | `maos_ocupadas` em 49 itens; `maos_alternativas` nas armas Versáteis |
-| consumo de munição | `consumo` em 9 armas, com id da munição e recuperação pós-combate |
-| teto por ação | `limite_por_acao` em 6 armas com Recarga |
+| primitivo                   | onde vive                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| mãos ocupadas               | `maos_ocupadas` em 49 itens; `maos_alternativas` nas armas Versáteis                  |
+| consumo de munição          | `consumo` em 9 armas, com id da munição e recuperação pós-combate                     |
+| teto por ação               | `limite_por_acao` em 6 armas com Recarga                                              |
 | cálculos de CA concorrentes | `concorre_como: calculo_de_ca_base` em 15 cálculos (armaduras e Defesas sem Armadura) |
 
 As quatro propriedades saíram de `substituir_regra` para o tipo `declara_campo_no_item`, e o
@@ -177,45 +177,45 @@ validador cobra: item com a propriedade e sem o campo é erro.
 
 Ficam aqui como histórico — todas com nota dentro do dado.
 
-| onde | divergência | resolução |
-|---|---|---|
-| Monge, níveis 6 e 10 | tabela diz "Ataques Potencializados"/"Autocura"; título diz "Golpes Potencializados"/"Restauro Pessoal" | vale o título; nome da tabela guardado em `nome_na_tabela` |
-| Monge, Passo da Sombra Aprimorado | redação ambígua sobre o requisito de luz | ruling seu: gastando 1 Ponto de Foco, os dois requisitos caem |
-| Guerreiro, Gato Por Lebre | parágrafo do bônus de CA aparecia solto por quebra de coluna | é parte da manobra |
-| Mago, Ilusionista | Criaturas Espectrais cita Invocar Fera, fora da lista do Mago | acesso concedido pela subclasse |
-| Bruxo, patronos | "Magias Psíquicas" e "Mente Desperta" impressas sob o título do Ínfero | são do Grande Antigo |
-| Bruxo, Fome de Hadar | escola grafada "Conjuração"; no resto do livro é "Invocação" | normalizado, com nota na magia |
-| Druida, lista de magias | Visão no Escuro caía no 3º círculo por cabeçalho colado | corrigido no parser; é 2º círculo (cap. 7, p. 342) |
-| Clérigo, Domínio da Luz | tabela lista "Mãos Ardentes", magia inexistente | é Mãos Flamejantes (p. 303); nome guardado em `nomes_alternativos` |
-| Clérigo, Domínio da Guerra | concede Manto do Cruzado, que a entrada declara de Paladino | acesso concedido pela subclasse |
-| "Remeter" | Evocação na lista do Clérigo, Adivinhação na entrada e na lista do Mago | vale a entrada: Adivinhação |
-| Consagrar | Evocação na lista do Clérigo (p. 84), Abjuração na entrada (p. 264) | vale a entrada: Abjuração |
-| Esfera Flamejante | Evocação nas listas de Druida e Mago, Invocação na entrada (p. 279) | vale a entrada: Invocação |
-| Tempestade Radiante | "Jallarzi" na lista do Bruxo e na entrada, "Jallazar" na do Mago | vale a entrada; as duas grafias tinham virado DUAS magias no catálogo, fundidas em uma |
-| Animar Mortos | o círculo é impresso com `3°` (sinal de grau) em vez de `3º` | erro tipográfico do livro; o parser aceita os dois |
-| Armaduras | a tabela diz "Couro"/"Couro Batido"; as classes dizem "Armadura de Couro"/"de Couro Batido" | mesmo item, com as duas formas em `nomes_alternativos` |
-| Munição | a tabela de Armas diz "Flecha"/"Virote"; a de Munição vende "Flechas"/"Virotes", e "Bala" serve a duas linhas | resolvido pelo id real, decidindo pela arma |
-| Veículos | a tabela imprime "Aeronau" (p. 230) | mantido como impresso, marcado como dúvida |
-| Bárbaro, níveis 13 e 17 | tabela diz "Golpe Brutal Aprimorado"; títulos dizem "Fortalecido" | vale o título; duas seções tituladas ⇒ duas características (`_13` e `_17`) |
-| Ladino, nível 1 | tabela diz "Especialização" e "Gíria dos Ladrões"; títulos dizem "Especialista" e "Gíria do Ladrão" | vale o título; nome da tabela em `nome_na_tabela` |
-| Paladino, Juramento da Vingança, nível 3 | a tabela concede "Marca do Caçador", magia inexistente no cap. 7 | é Marca do Predador (p. 303), nome 2024 da Hunter's Mark; resolvido pelo id real, com nota |
-| Guardião e Paladino, magias de subclasse | 41 das magias concedidas não estão na lista da própria classe | é o desenho: a subclasse concede acesso, como o Ilusionista com Invocar Fera. Marcado com `acesso_concedido_pela_subclasse` |
-| Paladino, níveis 13 e 17 | a tabela imprime "—" | níveis sem característica; `caracteristicas: []`, e a progressão mantém as 20 linhas |
-| Gnomo das Rochas (p. 191) | o traço cita o truque "Consertar" | a entrada do cap. 7 é Reparar; resolvido pelo id real, com nota |
-| Elfo Silvestre (p. 190) | a tabela diz "Passos Sem Rastro" (plural) | a magia é Passo Sem Rastro, como no cap. 7 e na lista do Guardião |
-| Fazendeiro (p. 182) | o pacote diz "Balde de Ferro" | no cap. 6 o item é Balde; id real, nome impresso na nota |
-| Drow e Elfo Silvestre (p. 190) | "aumenta para 36 m" / "aumenta para 10,5 m" | é substituição, não soma: `empilha: maior_valor` |
+| onde                                     | divergência                                                                                                   | resolução                                                                                                                   |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Monge, níveis 6 e 10                     | tabela diz "Ataques Potencializados"/"Autocura"; título diz "Golpes Potencializados"/"Restauro Pessoal"       | vale o título; nome da tabela guardado em `nome_na_tabela`                                                                  |
+| Monge, Passo da Sombra Aprimorado        | redação ambígua sobre o requisito de luz                                                                      | ruling seu: gastando 1 Ponto de Foco, os dois requisitos caem                                                               |
+| Guerreiro, Gato Por Lebre                | parágrafo do bônus de CA aparecia solto por quebra de coluna                                                  | é parte da manobra                                                                                                          |
+| Mago, Ilusionista                        | Criaturas Espectrais cita Invocar Fera, fora da lista do Mago                                                 | acesso concedido pela subclasse                                                                                             |
+| Bruxo, patronos                          | "Magias Psíquicas" e "Mente Desperta" impressas sob o título do Ínfero                                        | são do Grande Antigo                                                                                                        |
+| Bruxo, Fome de Hadar                     | escola grafada "Conjuração"; no resto do livro é "Invocação"                                                  | normalizado, com nota na magia                                                                                              |
+| Druida, lista de magias                  | Visão no Escuro caía no 3º círculo por cabeçalho colado                                                       | corrigido no parser; é 2º círculo (cap. 7, p. 342)                                                                          |
+| Clérigo, Domínio da Luz                  | tabela lista "Mãos Ardentes", magia inexistente                                                               | é Mãos Flamejantes (p. 303); nome guardado em `nomes_alternativos`                                                          |
+| Clérigo, Domínio da Guerra               | concede Manto do Cruzado, que a entrada declara de Paladino                                                   | acesso concedido pela subclasse                                                                                             |
+| "Remeter"                                | Evocação na lista do Clérigo, Adivinhação na entrada e na lista do Mago                                       | vale a entrada: Adivinhação                                                                                                 |
+| Consagrar                                | Evocação na lista do Clérigo (p. 84), Abjuração na entrada (p. 264)                                           | vale a entrada: Abjuração                                                                                                   |
+| Esfera Flamejante                        | Evocação nas listas de Druida e Mago, Invocação na entrada (p. 279)                                           | vale a entrada: Invocação                                                                                                   |
+| Tempestade Radiante                      | "Jallarzi" na lista do Bruxo e na entrada, "Jallazar" na do Mago                                              | vale a entrada; as duas grafias tinham virado DUAS magias no catálogo, fundidas em uma                                      |
+| Animar Mortos                            | o círculo é impresso com `3°` (sinal de grau) em vez de `3º`                                                  | erro tipográfico do livro; o parser aceita os dois                                                                          |
+| Armaduras                                | a tabela diz "Couro"/"Couro Batido"; as classes dizem "Armadura de Couro"/"de Couro Batido"                   | mesmo item, com as duas formas em `nomes_alternativos`                                                                      |
+| Munição                                  | a tabela de Armas diz "Flecha"/"Virote"; a de Munição vende "Flechas"/"Virotes", e "Bala" serve a duas linhas | resolvido pelo id real, decidindo pela arma                                                                                 |
+| Veículos                                 | a tabela imprime "Aeronau" (p. 230)                                                                           | mantido como impresso, marcado como dúvida                                                                                  |
+| Bárbaro, níveis 13 e 17                  | tabela diz "Golpe Brutal Aprimorado"; títulos dizem "Fortalecido"                                             | vale o título; duas seções tituladas ⇒ duas características (`_13` e `_17`)                                                 |
+| Ladino, nível 1                          | tabela diz "Especialização" e "Gíria dos Ladrões"; títulos dizem "Especialista" e "Gíria do Ladrão"           | vale o título; nome da tabela em `nome_na_tabela`                                                                           |
+| Paladino, Juramento da Vingança, nível 3 | a tabela concede "Marca do Caçador", magia inexistente no cap. 7                                              | é Marca do Predador (p. 303), nome 2024 da Hunter's Mark; resolvido pelo id real, com nota                                  |
+| Guardião e Paladino, magias de subclasse | 41 das magias concedidas não estão na lista da própria classe                                                 | é o desenho: a subclasse concede acesso, como o Ilusionista com Invocar Fera. Marcado com `acesso_concedido_pela_subclasse` |
+| Paladino, níveis 13 e 17                 | a tabela imprime "—"                                                                                          | níveis sem característica; `caracteristicas: []`, e a progressão mantém as 20 linhas                                        |
+| Gnomo das Rochas (p. 191)                | o traço cita o truque "Consertar"                                                                             | a entrada do cap. 7 é Reparar; resolvido pelo id real, com nota                                                             |
+| Elfo Silvestre (p. 190)                  | a tabela diz "Passos Sem Rastro" (plural)                                                                     | a magia é Passo Sem Rastro, como no cap. 7 e na lista do Guardião                                                           |
+| Fazendeiro (p. 182)                      | o pacote diz "Balde de Ferro"                                                                                 | no cap. 6 o item é Balde; id real, nome impresso na nota                                                                    |
+| Drow e Elfo Silvestre (p. 190)           | "aumenta para 36 m" / "aumenta para 10,5 m"                                                                   | é substituição, não soma: `empilha: maior_valor`                                                                            |
 
 ---
 
 ## 7. Conteúdo do livro que faltava e foi recuperado
 
-| onde | o que faltava | quando |
-|---|---|---|
+| onde                     | o que faltava                                                                                                      | quando               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------ | -------------------- |
 | Druida, Círculo da Terra | as **4 tabelas de Magias de Círculo Druídico** (p. 98), 24 magias — o terreno escolhido não concedia magia nenhuma | varredura das opções |
-| 11 catálogos de opção | 37 opções tinham só texto, sem efeitos executáveis | varredura das opções |
-| catálogo de magias | 24 magias do cap. 7 nunca tinham entrado (as de Bardo, Feiticeiro, Guardião e Paladino) | fase 3a |
-| catálogo de itens | o capítulo 6 inteiro, exceto as 38 armas sem detalhe | fase 4 |
+| 11 catálogos de opção    | 37 opções tinham só texto, sem efeitos executáveis                                                                 | varredura das opções |
+| catálogo de magias       | 24 magias do cap. 7 nunca tinham entrado (as de Bardo, Feiticeiro, Guardião e Paladino)                            | fase 3a              |
+| catálogo de itens        | o capítulo 6 inteiro, exceto as 38 armas sem detalhe                                                               | fase 4               |
 
 ---
 
@@ -426,14 +426,14 @@ Quando for construída, decidir de saída:
 
 Com o capítulo 4, nenhum capítulo do escopo está em aberto. O que resta:
 
-| o quê | por quê | onde está registrado |
-|---|---|---|
-| Criaturas (Ap. B) | decisão de escopo; a Fase C do mestre reabre | seção 1 |
-| Multiclasse | decisão da Fase 0; os dados já vêm sendo gravados em `multiclasse` | seção 4 |
-| Apêndice A (Multiverso) | fora do escopo | seção 4 |
-| Camada de overrides da mesa | princípio declarado, nunca construído | seção 8 |
-| Releitura das 391 magias contra a paráfrase | proposta minha, decisão sua | fase 8 |
-| Pente-fino no glossário (Ap. C) | termos sem marcador entre colchetes | seção 5 |
+| o quê                                       | por quê                                                            | onde está registrado |
+| ------------------------------------------- | ------------------------------------------------------------------ | -------------------- |
+| Criaturas (Ap. B)                           | decisão de escopo; a Fase C do mestre reabre                       | seção 1              |
+| Multiclasse                                 | decisão da Fase 0; os dados já vêm sendo gravados em `multiclasse` | seção 4              |
+| Apêndice A (Multiverso)                     | fora do escopo                                                     | seção 4              |
+| Camada de overrides da mesa                 | princípio declarado, nunca construído                              | seção 8              |
+| Releitura das 391 magias contra a paráfrase | proposta minha, decisão sua                                        | fase 8               |
+| Pente-fino no glossário (Ap. C)             | termos sem marcador entre colchetes                                | seção 5              |
 
 **A Fase A do app está destravada.**
 
@@ -468,12 +468,12 @@ versionado.
 Com o caminho corrigido, 37 dos 51 geradores rodavam e **22 arquivos saíam diferentes** do
 versionado: o dataset não era reproduzível a partir das próprias fontes. As causas e o conserto:
 
-| causa | conserto |
-|---|---|
+| causa                                                                                                      | conserto                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | seis geradores liam intermediários de sessões antigas (`/tmp/claude-0/cap6.txt`, `/tmp/lista_druida.json`) | `geradores/extrair_texto.py` regera o texto do PDF em `intermediarios/`, e `caminhos.py` resolve tudo pela raiz |
-| três apontavam o PDF por caminho absoluto de outra máquina | `caminhos.pdf()` acha por glob na raiz |
-| `beneficios_do_terceiro_olho.json` não tinha gerador nenhum | `gerar_beneficios_do_terceiro_olho.py` |
-| correções das fases 2 a 9 feitas à mão, sem virar código | `gerar_ajustes_historicos.py` + `ajustes_historicos.json` |
+| três apontavam o PDF por caminho absoluto de outra máquina                                                 | `caminhos.pdf()` acha por glob na raiz                                                                          |
+| `beneficios_do_terceiro_olho.json` não tinha gerador nenhum                                                | `gerar_beneficios_do_terceiro_olho.py`                                                                          |
+| correções das fases 2 a 9 feitas à mão, sem virar código                                                   | `gerar_ajustes_historicos.py` + `ajustes_historicos.json`                                                       |
 
 Hoje: **58 de 58 geradores rodam e a comparação dá 0 diferenças de conteúdo.** O comando é
 `python3 reconstruir.py /tmp/rb --comparar`, e ele nunca escreve em `dados/`.
@@ -500,13 +500,13 @@ geradores de origem, que é dívida paga mas ainda mal endereçada.
 
 **Deliberadamente aberto, e já registrado em outras seções**
 
-| o quê | quantos | onde |
-|---|---|---|
-| `efeito_narrativo` no dataset | 132 | fases 9, 10 e 11 — cada um marcado, nenhum escondido |
-| `substituir_regra` | 1 (Compreensão Superior) | seção 3 |
-| `revisao: duvida` | 4 | Aeronau, Kit de Explorador do Druida, instrumentos do Bardo, Compreensão Superior |
-| `pendente: true` | 1 (Forma Selvagem) + `criaturas` vazio | seção 1 |
-| `conflito_2014` | 0 | — |
+| o quê                         | quantos                                | onde                                                                              |
+| ----------------------------- | -------------------------------------- | --------------------------------------------------------------------------------- |
+| `efeito_narrativo` no dataset | 132                                    | fases 9, 10 e 11 — cada um marcado, nenhum escondido                              |
+| `substituir_regra`            | 1 (Compreensão Superior)               | seção 3                                                                           |
+| `revisao: duvida`             | 4                                      | Aeronau, Kit de Explorador do Druida, instrumentos do Bardo, Compreensão Superior |
+| `pendente: true`              | 1 (Forma Selvagem) + `criaturas` vazio | seção 1                                                                           |
+| `conflito_2014`               | 0                                      | —                                                                                 |
 
 ---
 
@@ -521,7 +521,7 @@ geradores de origem, que é dívida paga mas ainda mal endereçada.
   Agora: 58/58 geradores, **0 diferenças de conteúdo**.
 - **Golpe Astuto / Envenenar (B11).** A `revisao: duvida` com "id depende do cap. 6" era dívida
   vencida desde a fase 4. Virou `pre_requisitos: [{"tipo": "ferramenta", "chave":
-  "kit_de_veneno"}]`, e o validador passou a resolver chave de pré-requisito.
+"kit_de_veneno"}]`, e o validador passou a resolver chave de pré-requisito.
 - **Instrumentos musicais do Bardo.** A dúvida dizia que o livro não enumerava; **enumera** — linha
   "Variantes:" da entrada de Instrumento Musical (p. 221), com custo e peso. As dez variantes
   ganharam custo e peso, e Bardo e Músico passaram a escolher 3 de 10 com `de_variantes: true`. O
@@ -544,11 +544,11 @@ geradores de origem, que é dívida paga mas ainda mal endereçada.
 
 **Checagens novas no validador**
 
-| checagem | o que pega |
-|---|---|
-| `de_variantes` numa escolha | item sem `variantes`, mais de uma chave, ou quantidade maior que o número de variantes |
-| `variante` num efeito | variante que o item apontado não declara |
-| `pre_requisitos` de item/ferramenta | chave que não existe no catálogo |
+| checagem                            | o que pega                                                                             |
+| ----------------------------------- | -------------------------------------------------------------------------------------- |
+| `de_variantes` numa escolha         | item sem `variantes`, mais de uma chave, ou quantidade maior que o número de variantes |
+| `variante` num efeito               | variante que o item apontado não declara                                               |
+| `pre_requisitos` de item/ferramenta | chave que não existe no catálogo                                                       |
 
 ---
 
@@ -665,8 +665,8 @@ uma não era — e a que não era vale tanto quanto as outras, porque a resposta
 
 - **`aplicar_efeito_nomeado` ignorava o campo `catalogo`** (`motor/src/colecao.ts`). O efeito era
   procurado sempre em `dono.efeitos_nomeados`, e **10 dos 37 usos** declaram um catálogo. Resultado:
-  escolher a herança do Draconato explodia com *"efeito nomeado 'dragao_vermelho' não existe em
-  '(sem dono)'"*, e o mesmo valia para Elfo, Gnomo, Golias, Tiferino, Aasimar, Guardião, Paladino e
+  escolher a herança do Draconato explodia com _"efeito nomeado 'dragao_vermelho' não existe em
+  '(sem dono)'"_, e o mesmo valia para Elfo, Gnomo, Golias, Tiferino, Aasimar, Guardião, Paladino e
   Vigilante — seis espécies e três classes intransponíveis na criação.
 - **Talento repetível vindo de duas fontes colidia no mesmo id.** O Humano concede um talento de
   Origem e o antecedente já concede outro; escolhido Iniciado em Magia nos dois, as escolhas dele
@@ -764,13 +764,13 @@ Sopro do Draconato existia no livro, existia no JSON, e não existia na tela de 
 
 ### O que passou a existir
 
-| na ficha | o que é |
-|---|---|
-| `atributos` | a PONTUAÇÃO, ao lado do modificador — não dava para conferir um aumento só com o modificador |
-| `magias` | todas as magias, de todas as fontes, com `modo`, `origem` legível e `pronta_para_conjurar` |
-| `recursos` | o que se gasta e volta num descanso, com o máximo já calculado |
+| na ficha          | o que é                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- |
+| `atributos`       | a PONTUAÇÃO, ao lado do modificador — não dava para conferir um aumento só com o modificador                  |
+| `magias`          | todas as magias, de todas as fontes, com `modo`, `origem` legível e `pronta_para_conjurar`                    |
+| `recursos`        | o que se gasta e volta num descanso, com o máximo já calculado                                                |
 | `caracteristicas` | características, traços e talentos que INCIDEM, tiradas das trilhas de origem — sem segunda lista para manter |
-| `opcao.ja_tem` | aviso (não bloqueio) de que a opção já vem por outra porta |
+| `opcao.ja_tem`    | aviso (não bloqueio) de que a opção já vem por outra porta                                                    |
 
 Mais `descansar()` no motor e `POST /personagens/:id/descanso` no backend. **A regra do descanso
 não mora no backend**: `tipos_de_descanso.json` ganhou `recupera`, cada recurso já declarava a sua
@@ -865,17 +865,17 @@ que faz a pergunta para todas: **quem conjura tem com o que conjurar?**
 
 As três queixas de magia:
 
-- *"tem magias que posso usar uma vez por dia mas não gastam"* — os **41 `conjurar_sem_espaco`**
+- _"tem magias que posso usar uma vez por dia mas não gastam"_ — os **41 `conjurar_sem_espaco`**
   do dataset nunca eram lidos. Pior: no Iniciado em Magia a magia vem de outra escolha
   (`$escolhido_em:iniciado_em_magia_magia_1`), e essa referência não era resolvida em efeito
   nenhum — só em filtro. Agora a magia do talento tem custo de **uso**, que é um recurso de 1 que
   volta no Descanso Longo, e o livro permite gastar espaço também quando o uso acabou.
-- *"clico em usar num truque e não fala nada"* — a função saía cedo no truque, e o histórico só
+- _"clico em usar num truque e não fala nada"_ — a função saía cedo no truque, e o histórico só
   registrava o que mudava de estado. Agora existe `POST /personagens/:id/conjurar`: o cliente diz
   **qual magia**, o motor diz o que custa, e o evento é **dito** por quem conjurou em vez de
   deduzido da diferença.
-- *"quero o nome, o número e tipo de dados que lanço, a salvaguarda, a distância e a área, já
-  calculado"* — `magia.jogo` traz tudo resolvido: `+7`, `CD 14 DES`, `2d8 radiante`, `18 metros`,
+- _"quero o nome, o número e tipo de dados que lanço, a salvaguarda, a distância e a área, já
+  calculado"_ — `magia.jogo` traz tudo resolvido: `+7`, `CD 14 DES`, `2d8 radiante`, `18 metros`,
   área e concentração. O crescimento do truque saiu da prosa para `escala_por_nivel` (17 dos 20;
   o Raio Místico não entra porque ele aumenta **feixes**, não dado).
 
@@ -1030,3 +1030,13 @@ compêndio abrindo a categoria de armaduras com o nome inteiro na tela.
 - `tambem_foco: "arcano"` está declarado e ninguém o lê ainda: quando o custo de
   conjuração olhar componentes materiais, é ele que vai dizer que o Cajado serve de foco.
 - Continua sem dinheiro, sem peso carregado e sem munição.
+
+### Anotações do João
+
+- Revisitar a parte de itens para fazer melhorias
+- Fazer o resto do compêndio
+- Fazer sistema de level up
+- Adicionar Imagens aos personagens
+- Adicionar Update e Delete aos personagens
+- Refazer Front end, visual mais moderno, limpo e descontraído (tons de azul), focado em mobile, com abas para separar as informações
+-
